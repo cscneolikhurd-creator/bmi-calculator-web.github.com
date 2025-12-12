@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free BMI Calculator | स्वास्थ्य जांच</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>HealthCalc</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-calculator"></i> Tools</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1><i class="fas fa-weight-scale"></i> BMI Calculator</h1>
+                <p class="subtitle">Check your Body Mass Index for FREE. Know your health status instantly!</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>10,000+ Users</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Accurate Results</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacy Protected</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-placeholder">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="calculator-section">
+            <div class="calculator-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calculator"></i> Calculate Your BMI</h2>
+                    <p>Enter your height and weight to check your Body Mass Index</p>
+                </div>
+                
+                <div class="calculator-container">
+                    <div class="input-group">
+                        <label for="height"><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="height" placeholder="Enter height in cm" min="50" max="250" value="170">
+                            <span class="input-icon">cm</span>
+                        </div>
+                        <div class="range-slider">
+                            <input type="range" id="height-slider" min="50" max="250" value="170">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="weight"><i class="fas fa-weight-hanging"></i> Weight (kg)</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="weight" placeholder="Enter weight in kg" min="20" max="200" value="70">
+                            <span class="input-icon">kg</span>
+                        </div>
+                        <div class="range-slider">
+                            <input type="range" id="weight-slider" min="20" max="200" value="70">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label><i class="fas fa-user"></i> Age (Optional)</label>
+                        <input type="number" id="age" placeholder="Enter your age" min="2" max="120">
+                    </div>
+
+                    <div class="input-group">
+                        <label><i class="fas fa-venus-mars"></i> Gender</label>
+                        <div class="gender-buttons">
+                            <button class="gender-btn active" data-gender="male">
+                                <i class="fas fa-mars"></i> Male
+                            </button>
+                            <button class="gender-btn" data-gender="female">
+                                <i class="fas fa-venus"></i> Female
+                            </button>
+                        </div>
+                    </div>
+
+                    <button id="calculate-btn" class="calculate-button">
+                        <i class="fas fa-calculator"></i> Calculate BMI
+                    </button>
+                </div>
+
+                <div class="result-section" id="result-section">
+                    <div class="result-header">
+                        <h3><i class="fas fa-chart-line"></i> Your Result</h3>
+                        <button id="reset-btn" class="reset-btn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                    
+                    <div class="result-container">
+                        <div class="bmi-circle">
+                            <div class="circle">
+                                <span id="bmi-value">00.0</span>
+                                <div class="circle-label">BMI</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bmi-category">
+                            <div class="category" id="category-underweight">
+                                <div class="category-color underweight"></div>
+                                <span>Underweight</span>
+                                <span>&lt; 18.5</span>
+                            </div>
+                            <div class="category" id="category-normal">
+                                <div class="category-color normal"></div>
+                                <span>Normal</span>
+                                <span>18.5 - 24.9</span>
+                            </div>
+                            <div class="category" id="category-overweight">
+                                <div class="category-color overweight"></div>
+                                <span>Overweight</span>
+                                <span>25 - 29.9</span>
+                            </div>
+                            <div class="category" id="category-obese">
+                                <div class="category-color obese"></div>
+                                <span>Obese</span>
+                                <span>≥ 30</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-details">
+                        <div class="detail-box">
+                            <i class="fas fa-info-circle"></i>
+                            <div>
+                                <h4>Your Category</h4>
+                                <p id="category-text">Enter values to calculate</p>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <h4>Health Advice</h4>
+                                <p id="advice-text">Calculate BMI to get personalized advice</p>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <i class="fas fa-bullseye"></i>
+                            <div>
+                                <h4>Ideal Weight</h4>
+                                <p id="ideal-weight">-- kg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2><i class="fas fa-lightbulb"></i> What is BMI?</h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Definition</h3>
+                    <p>Body Mass Index (BMI) is a person's weight in kilograms divided by the square of height in meters.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-stethoscope"></i>
+                    <h3>Importance</h3>
+                    <p>BMI is a simple screening tool for weight categories that may lead to health problems.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Limitations</h3>
+                    <p>BMI doesn't consider muscle mass, bone density, or overall body composition.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-calculator"></i> HealthCalc</h3>
+                    <p>Free health tools for everyone. No signup required.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Other Tools</h3>
+                    <ul>
+                        <li><a href="#">Calorie Calculator</a></li>
+                        <li><a href="#">Water Intake</a></li>
+                        <li><a href="#">Body Fat %</a></li>
+                        <li><a href="#">Ideal Weight</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 HealthCalc. All rights reserved. | Made with <i class="fas fa-heart"></i> for everyone</p>
+                <p class="disclaimer">Disclaimer: This tool provides approximate values. Consult a doctor for medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
