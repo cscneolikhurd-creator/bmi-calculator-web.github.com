@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | HealthCalc - Free Health Tools</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<header>
+<div class="container">
+<nav>
+<div class="logo">
+<i class="fas fa-heartbeat"></i>
+<span>HealthCalc</span>
+</div>
+<ul class="nav-links">
+<li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+<li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a></li>
+<li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy</a></li>
+<li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<main class="container">
+<section class="about-section">
+<h1><i class="fas fa-users"></i> About HealthCalc</h1>
+
+<div class="about-content">
+<div class="about-card">
+<h2><i class="fas fa-rocket"></i> Our Mission</h2>
+<p>To provide free, accurate, and easy-to-use health tools for everyone. We believe that health awareness should be accessible to all without any cost or barriers.</p>
+</div>
+
+<div class="about-card">
+<h2><i class="fas fa-bullseye"></i> Our Vision</h2>
+<p>To become the most trusted platform for free online health calculators, helping millions make informed decisions about their health and wellness.</p>
+</div>
+
+<div class="about-card">
+<h2><i class="fas fa-heart"></i> Why Choose Us?</h2>
+<ul>
+<li><i class="fas fa-check-circle"></i> <strong>100% Free:</strong> No hidden charges, no signup required</li>
+<li><i class="fas fa-check-circle"></i> <strong>Privacy First:</strong> We don't store your personal data</li>
+<li><i class="fas fa-check-circle"></i> <strong>Accurate Results:</strong> Based on medical standards</li>
+<li><i class="fas fa-check-circle"></i> <strong>Mobile Friendly:</strong> Works on all devices</li>
+<li><i class="fas fa-check-circle"></i> <strong>No Ads:</strong> Clean, distraction-free experience</li>
+</ul>
+</div>
+
+<div class="about-card">
+<h2><i class="fas fa-calculator"></i> Our Tools</h2>
+<p>Currently we offer BMI Calculator. More health tools are coming soon:</p>
+<div class="tools-list">
+<span><i class="fas fa-fire"></i> Calorie Calculator</span>
+<span><i class="fas fa-tint"></i> Water Intake</span>
+<span><i class="fas fa-running"></i> Ideal Weight</span>
+<span><i class="fas fa-heartbeat"></i> Body Fat %</span>
+<span><i class="fas fa-bed"></i> Sleep Calculator</span>
+<span><i class="fas fa-walking"></i> Step Counter</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3><i class="fas fa-calculator"></i> HealthCalc</h3>
+<p>Free health tools for everyone. No signup required.</p>
+</div>
+<div class="footer-section">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="privacy.html">Privacy Policy</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Other Tools</h3>
+<ul>
+<li><a href="index.html">BMI Calculator</a></li>
+<li><a href="#">Calorie Calculator</a></li>
+<li><a href="#">Water Intake</a></li>
+<li><a href="#">Body Fat %</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2024 HealthCalc. All rights reserved. | Made with <i class="fas fa-heart"></i> for everyone</p>
+</div>
+</div>
+</footer>
+</body>
+</html>
