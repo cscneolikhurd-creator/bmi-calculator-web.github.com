@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Calculator - Health & Fitness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .language-selector {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .lang-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        header {
+            text-align: center;
+            padding: 25px 0;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto 10px;
+        }
+
+        .hindi-subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .calculator-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .input-section, .result-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .input-section:hover, .result-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #3498db;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .hindi-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-option input {
+            width: auto;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .result-box {
+            text-align: center;
+            padding: 25px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-box.active {
+            display: block;
+        }
+
+        .calorie-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .calorie-unit {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .result-details {
+            margin-top: 25px;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .tips-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+        }
+
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tip:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .tip-icon {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tip-icon i {
+            color: #3498db;
+            font-size: 1.3rem;
+        }
+
+        .tip-content h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .tip-content p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .hindi-tip {
+            font-style: italic;
+            color: #555;
+            margin-top: 5px;
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border-right: 3px solid #3498db;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .calorie-value {
+                font-size: 2.8rem;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .info-note {
+            background: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        .info-note i {
+            color: #3498db;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-selector">
+            <button class="lang-btn" id="hindiBtn">
+                <i class="fas fa-language"></i> हिंदी में देखें
+            </button>
+        </div>
+        
+        <header>
+            <h1><i class="fas fa-calculator"></i> Calorie Calculator</h1>
+            <p class="subtitle">Calculate your daily calorie needs. Enter your gender, age, weight, height and activity level to get personalized results.</p>
+            <p class="hindi-subtitle">अपनी दैनिक कैलोरी आवश्यकताओं की गणना करें। अपना लिंग, उम्र, वजन, ऊंचाई और गतिविधि स्तर दर्ज करें और व्यक्तिगत परिणाम प्राप्त करें।</p>
+        </header>
+        
+        <div class="calculator-container">
+            <section class="input-section">
+                <h2 class="section-title"><i class="fas fa-user-edit"></i> Enter Your Information</h2>
+                
+                <div class="form-group">
+                    <label for="gender">Gender <span class="hindi-label">(लिंग)</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="male" name="gender" value="male" checked>
+                            <label for="male">Male (पुरुष)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Female (महिला)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Age (years) <span class="hindi-label">(आयु - वर्ष)</span></label>
+                    <input type="number" id="age" min="1" max="120" value="30">
+                </div>
+                
+                <div class="form-group">
+                    <label for="weight">Weight (kg) <span class="hindi-label">(वजन - किलोग्राम)</span></label>
+                    <input type="number" id="weight" min="1" max="300" value="70">
+                </div>
+                
+                <div class="form-group">
+                    <label for="height">Height (cm) <span class="hindi-label">(ऊंचाई - सेंटीमीटर)</span></label>
+                    <input type="number" id="height" min="50" max="300" value="170">
+                </div>
+                
+                <div class="form-group">
+                    <label for="activity">Activity Level <span class="hindi-label">(गतिविधि स्तर)</span></label>
+                    <select id="activity">
+                        <option value="1.2">Sedentary (little or no exercise)</option>
+                        <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
+                        <option value="1.55" selected>Moderately active (moderate exercise 3-5 days/week)</option>
+                        <option value="1.725">Very active (hard exercise 6-7 days/week)</option>
+                        <option value="1.9">Extra active (very hard exercise & physical job)</option>
+                    </select>
+                </div>
+                
+                <button class="btn" id="calculateBtn">
+                    <i class="fas fa-calculator"></i> Calculate Calories
+                </button>
+                
+                <div class="info-note">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Note:</strong> This calculator uses the Mifflin-St Jeor equation, which is considered the most accurate for calculating basal metabolic rate (BMR).
+                </div>
+            </section>
+            
+            <section class="result-section">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> Your Results</h2>
+                
+                <p>Your daily calorie requirements will appear here after clicking the calculate button.</p>
+                <p class="hindi-label">कैलकुलेट बटन पर क्लिक करने के बाद आपकी दैनिक कैलोरी आवश्यकताएं यहां दिखाई देंगी।</p>
+                
+                <div class="result-box" id="resultBox">
+                    <h3>Your Daily Calorie Needs:</h3>
+                    <div class="calorie-value" id="calorieValue">0</div>
+                    <div class="calorie-unit">Calories per day</div>
+                    
+                    <div class="result-details">
+                        <div class="result-row">
+                            <span class="result-label">
+                                <i class="fas fa-heartbeat"></i> Basal Metabolic Rate (BMR)
+                            </span>
+                            <span class="result-value" id="bmrValue">0 Cal</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">
+                                <i class="fas fa-running"></i> Activity Factor
+                            </span>
+                            <span class="result-value" id="activityValue">1.55</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">
+                                <i class="fas fa-balance-scale"></i> Goal: Maintain Weight
+                            </span>
+                            <span class="result-value" id="maintenanceValue">0 Cal</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">
+                                <i class="fas fa-weight"></i> Goal: Lose Weight (Safe)
+                            </span>
+                            <span class="result-value" id="weightLossValue">0 Cal</span>
+                        </div>
+                        <div class="result-row">
+                            <span class="result-label">
+                                <i class="fas fa-arrow-up"></i> Goal: Gain Weight
+                            </span>
+                            <span class="result-value" id="weightGainValue">0 Cal</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <section class="tips-section">
+            <h2 class="section-title"><i class="fas fa-lightbulb"></i> Health & Fitness Tips</h2>
+            
+            <div class="tip">
+                <div class="tip-icon">
+                    <i class="fas fa-apple-alt"></i>
+                </div>
+                <div class="tip-content">
+                    <h4>Eat a Balanced Diet</h4>
+                    <p>Consume a balanced amount of protein, carbohydrates, fats, vitamins and minerals. Prioritize fresh fruits, vegetables and whole grains.</p>
+                    <div class="hindi-tip">प्रोटीन, कार्बोहाइड्रेट, वसा, विटामिन और खनिजों का संतुलित मात्रा में सेवन करें। ताजे फल, सब्जियां और साबुत अनाज को प्राथमिकता दें।</div>
+                </div>
+            </div>
+            
+            <div class="tip">
+                <div class="tip-icon">
+                    <i class="fas fa-glass-water"></i>
+                </div>
+                <div class="tip-content">
+                    <h4>Drink Plenty of Water</h4>
+                    <p>Drink at least 8-10 glasses of water daily. This helps keep the body's metabolism smooth and flush out toxins.</p>
+                    <div class="hindi-tip">प्रतिदिन कम से कम 8-10 गिलास पानी पिएं। यह शरीर के चयापचय को सुचारू रखने और विषाक्त पदार्थों को बाहर निकालने में मदद करता है।</div>
+                </div>
+            </div>
+            
+            <div class="tip">
+                <div class="tip-icon">
+                    <i class="fas fa-running"></i>
+                </div>
+                <div class="tip-content">
+                    <h4>Exercise Regularly</h4>
+                    <p>Aim for at least 150 minutes of moderate-intensity exercise or 75 minutes of high-intensity exercise per week.</p>
+                    <div class="hindi-tip">सप्ताह में कम से कम 150 मिनट मध्यम तीव्रता वाला व्यायाम या 75 मिनट उच्च तीव्रता वाला व्यायाम करने का लक्ष्य रखें।</div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 Calorie Calculator | This tool is for general information only. It is best to consult a specialist for personalized advice.</p>
+            <p style="margin-top: 5px;">© २०२३ कैलोरी कैलक्यूलेटर | यह उपकरण सामान्य जानकारी के लिए है। व्यक्तिगत सलाह के लिए किसी विशेषज्ञ से परामर्श करना सबसे अच्छा है।</p>
+        </footer>
+    </div>
+
+    <script>
+        // Calculate calories function
+        function calculateCalories() {
+            // Get user inputs
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activityFactor = parseFloat(document.getElementById('activity').value);
+            
+            // Calculate BMR (Mifflin-St Jeor Equation)
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+            
+            // Calculate Total Daily Energy Expenditure (TDEE)
+            const tdee = bmr * activityFactor;
+            
+            // Calculate calories for different goals
+            const maintenanceCalories = Math.round(tdee);
+            const weightLossCalories = Math.round(tdee * 0.85); // 15% reduction
+            const weightGainCalories = Math.round(tdee * 1.15); // 15% increase
+            
+            // Display results
+            document.getElementById('calorieValue').textContent = maintenanceCalories.toLocaleString();
+            document.getElementById('bmrValue').textContent = Math.round(bmr).toLocaleString() + ' Cal';
+            document.getElementById('activityValue').textContent = activityFactor;
+            document.getElementById('maintenanceValue').textContent = maintenanceCalories.toLocaleString() + ' Cal';
+            document.getElementById('weightLossValue').textContent = weightLossCalories.toLocaleString() + ' Cal';
+            document.getElementById('weightGainValue').textContent = weightGainCalories.toLocaleString() + ' Cal';
+            
+            // Show result box
+            document.getElementById('resultBox').classList.add('active');
+            
+            // Animate the calorie value
+            animateValue('calorieValue', 0, maintenanceCalories, 1000);
+        }
+        
+        // Animate number counting effect
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.textContent = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Add event listeners
+        document.getElementById('calculateBtn').addEventListener('click', calculateCalories);
+        
+        // Calculate on Enter key press in input fields
+        const inputFields = document.querySelectorAll('input, select');
+        inputFields.forEach(field => {
+            field.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    calculateCalories();
+                }
+            });
+        });
+        
+        // Calculate on page load
+        window.addEventListener('load', calculateCalories);
+        
+        // Language toggle functionality
+        document.getElementById('hindiBtn').addEventListener('click', function() {
+            const btn = this;
+            if (btn.innerHTML.includes('हिंदी')) {
+                // Switch to Hindi view
+                document.querySelector('title').textContent = 'कैलोरी कैलक्यूलेटर - स्वास्थ्य और फिटनेस';
+                document.querySelector('h1').innerHTML = '<i class="fas fa-calculator"></i> कैलोरी कैलक्यूलेटर';
+                document.querySelector('.subtitle').textContent = 'अपनी दैनिक कैलोरी आवश्यकताओं की गणना करें। अपना लिंग, उम्र, वजन, ऊंचाई और गतिविधि स्तर दर्ज करें और व्यक्तिगत परिणाम प्राप्त करें।';
+                document.querySelector('.hindi-subtitle').textContent = 'Calculate your daily calorie needs. Enter your gender, age, weight, height and activity level to get personalized results.';
+                btn.innerHTML = '<i class="fas fa-language"></i> View in English';
+                
+                // Update other text elements
+                document.querySelectorAll('.section-title')[0].innerHTML = '<i class="fas fa-user-edit"></i> अपनी जानकारी दर्ज करें';
+                document.querySelectorAll('.section-title')[1].innerHTML = '<i class="fas fa-chart-line"></i> आपके परिणाम';
+                document.querySelectorAll('.section-title')[2].innerHTML = '<i class="fas fa-lightbulb"></i> स्वास्थ्य और फिटनेस टिप्स';
+                
+                document.getElementById('calculateBtn').innerHTML = '<i class="fas fa-calculator"></i> कैलोरी की गणना करें';
+                
+                // Update result section text
+                const resultSection = document.querySelector('.result-section p');
+                if (resultSection) {
+                    resultSection.textContent = 'कैलकुलेट बटन पर क्लिक करने के बाद आपकी दैनिक कैलोरी आवश्यकताएं यहां दिखाई देंगी।';
+                }
+            } else {
+                // Switch back to English
+                location.reload(); // Reload to get original English text
+            }
+        });
+        
+        // Input validation
+        document.getElementById('age').addEventListener('input', function() {
+            if (this.value < 1) this.value = 1;
+            if (this.value > 120) this.value = 120;
+        });
+        
+        document.getElementById('weight').addEventListener('input', function() {
+            if (this.value < 1) this.value = 1;
+            if (this.value > 300) this.value = 300;
+        });
+        
+        document.getElementById('height').addEventListener('input', function() {
+            if (this.value < 50) this.value = 50;
+            if (this.value > 300) this.value = 300;
+        });
+    </script>
+</body>
+</html>
