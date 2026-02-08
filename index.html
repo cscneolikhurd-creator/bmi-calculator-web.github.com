@@ -18,23 +18,28 @@
     </script>
     
     <!-- ========== SEO META TAGS ========== -->
-    <title>Free BMI Calculator | Check Your Body Mass Index Online | HealthCalc</title>
-    <meta name="description" content="Free & accurate BMI Calculator tool. Check your Body Mass Index instantly with health advice and ideal weight range. Mobile-friendly, no signup required.">
-    <meta name="keywords" content="BMI calculator, free BMI tool, body mass index, health calculator, weight calculator, online BMI, health check, BMI tool, body mass index calculator">
-    <meta name="author" content="HealthCalc">
-    <meta name="robots" content="index, follow">
+    <title>Free Health Calculators - BMI, Calories, Body Fat, Water Intake | HealthCalc.in</title>
+    <meta name="description" content="Free health calculators - BMI, Calorie, Body Fat %, Water Intake. Accurate, instant results with health advice. No signup required. Mobile-friendly tools.">
+    <meta name="keywords" content="BMI calculator, calorie calculator, body fat calculator, water intake calculator, health tools, fitness calculators, weight calculator, health check, online health tools, free calculators">
+    <meta name="author" content="HealthCalc.in">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <!-- ========== CANONICAL TAG ========== -->
+    <link rel="canonical" href="https://healthcalc.in" />
     
     <!-- ========== OPEN GRAPH (Social Media) TAGS ========== -->
-    <meta property="og:title" content="Free BMI Calculator | Check Your Body Mass Index">
-    <meta property="og:description" content="Calculate your BMI for free with instant health advice and ideal weight range.">
+    <meta property="og:title" content="Free Health Calculators - BMI, Calories, Body Fat, Water | HealthCalc.in">
+    <meta property="og:description" content="All-in-one health calculator platform. Calculate BMI, calories, body fat %, water intake for free with instant health advice.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80">
-    <meta property="og:url" content="https://bmiwebtool-2026.netlify.app">
+    <meta property="og:url" content="https://healthcalc.in">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="HealthCalc.in">
     
     <!-- ========== TWITTER CARD TAGS ========== -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Free BMI Calculator | HealthCalc">
-    <meta name="twitter:description" content="Check your Body Mass Index for FREE. Know your health status instantly!">
+    <meta name="twitter:title" content="Free Health Calculators | HealthCalc.in">
+    <meta name="twitter:description" content="BMI, Calorie, Body Fat %, Water Intake calculators. Free, accurate, instant results!">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630&q=80">
     
     <!-- ========== FAVICON ========== -->
     <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
@@ -44,21 +49,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- ========== SCHEMA MARKUP (For Rich Results) ========== -->
+    <!-- ========== BREADCRUMB SCHEMA ========== -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "BMI Calculator",
-        "description": "Free online BMI (Body Mass Index) calculator tool",
-        "url": "https://bmiwebtool-2026.netlify.app",
-        "applicationCategory": "HealthApplication",
-        "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+        "@type": "WebSite",
+        "name": "HealthCalc.in",
+        "url": "https://healthcalc.in",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://healthcalc.in/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
         }
+    }
+    </script>
+    
+    <!-- ========== HEALTH CALCULATOR SCHEMA ========== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Health Calculators Collection",
+        "description": "Collection of free health calculators including BMI, Calorie, Body Fat and Water Intake calculators",
+        "url": "https://healthcalc.in",
+        "mainEntity": [
+            {
+                "@type": "WebApplication",
+                "name": "BMI Calculator",
+                "description": "Calculate Body Mass Index with health category and ideal weight range",
+                "url": "https://healthcalc.in",
+                "applicationCategory": "HealthApplication"
+            },
+            {
+                "@type": "WebApplication",
+                "name": "Calorie Calculator",
+                "description": "Calculate daily calorie needs for weight loss, maintenance or gain",
+                "url": "https://healthcalc.in/calorie-calculator.html",
+                "applicationCategory": "HealthApplication"
+            },
+            {
+                "@type": "WebApplication",
+                "name": "Body Fat Percentage Calculator",
+                "description": "Calculate body fat percentage using multiple methods with visualization",
+                "url": "https://healthcalc.in/body-fat-percentage.html",
+                "applicationCategory": "HealthApplication"
+            },
+            {
+                "@type": "WebApplication",
+                "name": "Water Intake Calculator",
+                "description": "Calculate daily water needs based on weight, activity and climate",
+                "url": "https://healthcalc.in/water-calculator.html",
+                "applicationCategory": "HealthApplication"
+            }
+        ]
     }
     </script>
 </head>
@@ -69,38 +112,54 @@
             <nav>
                 <div class="logo">
                     <i class="fas fa-heartbeat"></i>
-                    <span>HealthCalc</span>
+                    <span>HealthCalc.in</span>
                 </div>
-                <!-- ▼▼▼ NAVIGATION LINKS FIXED HERE ▼▼▼ -->
+                <!-- ▼▼▼ UPDATED NAVIGATION LINKS WITH ALL CALCULATORS ▼▼▼ -->
                 <ul class="nav-links">
-                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="index.html#calculator"><i class="fas fa-calculator"></i> Tools</a></li>
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
                     <li><a href="calorie-calculator.html"><i class="fas fa-fire"></i> Calorie Calculator</a></li>
+                    <li><a href="body-fat-percentage.html"><i class="fas fa-percentage"></i> Body Fat %</a></li>
+                    <li><a href="water-calculator.html"><i class="fas fa-tint"></i> Water Intake</a></li>
                     <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
                     <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
-                <!-- ▲▲▲ NAVIGATION LINKS FIXED HERE ▲▲▲ -->
+                <!-- ▲▲▲ UPDATED NAVIGATION LINKS ▲▲▲ -->
             </nav>
         </div>
     </header>
 
     <main class="container">
+        <!-- ========== HERO SECTION WITH ALL TOOLS ========== -->
         <section class="hero">
             <div class="hero-content">
-                <h1><i class="fas fa-weight-scale"></i> BMI Calculator</h1>
-                <p class="subtitle">Check your Body Mass Index for FREE. Know your health status instantly!</p>
+                <h1><i class="fas fa-heartbeat"></i> Free Health Calculators</h1>
+                <p class="subtitle">All-in-one platform for BMI, Calories, Body Fat %, Water Intake - Get instant health insights!</p>
+                
+                <div class="cta-buttons">
+                    <a href="#bmi-calculator" class="cta-btn primary">
+                        <i class="fas fa-weight-scale"></i> Calculate BMI
+                    </a>
+                    <a href="calorie-calculator.html" class="cta-btn secondary">
+                        <i class="fas fa-fire"></i> Calorie Calculator
+                    </a>
+                </div>
+                
                 <div class="stats">
                     <div class="stat-item">
-                        <i class="fas fa-users"></i>
-                        <span>10,000+ Users</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Accurate Results</span>
+                        <i class="fas fa-calculator"></i>
+                        <span>4+ Health Tools</span>
                     </div>
                     <div class="stat-item">
                         <i class="fas fa-shield-alt"></i>
-                        <span>Privacy Protected</span>
+                        <span>100% Free</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Mobile Friendly</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-globe"></i>
+                        <span>No Signup</span>
                     </div>
                 </div>
             </div>
@@ -111,11 +170,80 @@
             </div>
         </section>
 
+        <!-- ========== FEATURED CALCULATORS GRID ========== -->
+        <section class="calculators-grid">
+            <h2><i class="fas fa-calculator"></i> Our Health Calculators</h2>
+            <p class="section-subtitle">Choose from our collection of accurate health calculation tools</p>
+            
+            <div class="grid-container">
+                <div class="calculator-card featured" id="bmi-calculator">
+                    <div class="card-icon">
+                        <i class="fas fa-weight-scale"></i>
+                    </div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate your Body Mass Index and get health category with ideal weight range.</p>
+                    <a href="#calculator" class="card-btn">
+                        <i class="fas fa-calculator"></i> Calculate Now
+                    </a>
+                    <div class="card-tags">
+                        <span>Instant Results</span>
+                        <span>Health Advice</span>
+                    </div>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="card-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Calorie Calculator</h3>
+                    <p>Calculate daily calorie needs for weight loss, maintenance or weight gain goals.</p>
+                    <a href="calorie-calculator.html" class="card-btn">
+                        <i class="fas fa-calculator"></i> Calculate Now
+                    </a>
+                    <div class="card-tags">
+                        <span>Weight Goals</span>
+                        <span>TDEE</span>
+                    </div>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="card-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Body Fat % Calculator</h3>
+                    <p>Estimate body fat percentage using multiple methods with visual representation.</p>
+                    <a href="body-fat-percentage.html" class="card-btn">
+                        <i class="fas fa-calculator"></i> Calculate Now
+                    </a>
+                    <div class="card-tags">
+                        <span>3 Methods</span>
+                        <span>Visual Chart</span>
+                    </div>
+                </div>
+                
+                <div class="calculator-card">
+                    <div class="card-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Water Intake Calculator</h3>
+                    <p>Calculate daily water needs based on weight, activity level and climate factors.</p>
+                    <a href="water-calculator.html" class="card-btn">
+                        <i class="fas fa-calculator"></i> Calculate Now
+                    </a>
+                    <div class="card-tags">
+                        <span>Hydration</span>
+                        <span>Climate Adjusted</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== MAIN BMI CALCULATOR SECTION ========== -->
         <section class="calculator-section" id="calculator">
             <div class="calculator-card">
                 <div class="card-header">
-                    <h2><i class="fas fa-calculator"></i> Calculate Your BMI</h2>
-                    <p>Enter your height and weight to check your Body Mass Index</p>
+                    <h2><i class="fas fa-calculator"></i> BMI Calculator</h2>
+                    <p>Check your Body Mass Index instantly with health category and ideal weight range</p>
                 </div>
                 
                 <div class="calculator-container">
@@ -165,7 +293,7 @@
 
                 <div class="result-section" id="result-section">
                     <div class="result-header">
-                        <h3><i class="fas fa-chart-line"></i> Your Result</h3>
+                        <h3><i class="fas fa-chart-line"></i> Your BMI Result</h3>
                         <button id="reset-btn" class="reset-btn">
                             <i class="fas fa-redo"></i> Reset
                         </button>
@@ -175,7 +303,7 @@
                         <div class="bmi-circle">
                             <div class="circle">
                                 <span id="bmi-value">00.0</span>
-                                <div class="circle-label">BMI</div>
+                                <div class="circle-label">BMI Score</div>
                             </div>
                         </div>
                         
@@ -207,22 +335,22 @@
                         <div class="detail-box">
                             <i class="fas fa-info-circle"></i>
                             <div>
-                                <h4>Your Category</h4>
+                                <h4>Health Category</h4>
                                 <p id="category-text">Enter values to calculate</p>
                             </div>
                         </div>
                         <div class="detail-box">
                             <i class="fas fa-heart"></i>
                             <div>
-                                <h4>Health Advice</h4>
-                                <p id="advice-text">Calculate BMI to get personalized advice</p>
+                                <h4>Personalized Advice</h4>
+                                <p id="advice-text">Calculate BMI to get health recommendations</p>
                             </div>
                         </div>
                         <div class="detail-box">
                             <i class="fas fa-bullseye"></i>
                             <div>
-                                <h4>Ideal Weight</h4>
-                                <p id="ideal-weight">-- kg</p>
+                                <h4>Ideal Weight Range</h4>
+                                <p id="ideal-weight">-- kg to -- kg</p>
                             </div>
                         </div>
                     </div>
@@ -230,43 +358,108 @@
             </div>
         </section>
 
-        <section class="info-section">
-            <h2><i class="fas fa-lightbulb"></i> What is BMI?</h2>
-            <div class="info-cards">
-                <div class="info-card">
-                    <i class="fas fa-balance-scale"></i>
-                    <h3>Definition</h3>
-                    <p>Body Mass Index (BMI) is a person's weight in kilograms divided by the square of height in meters.</p>
+        <!-- ========== SEO CONTENT SECTION ========== -->
+        <section class="seo-content-section">
+            <div class="seo-article">
+                <h2><i class="fas fa-search"></i> Comprehensive Health Calculators Platform</h2>
+                
+                <div class="seo-grid">
+                    <div class="seo-item">
+                        <h3>Why Choose HealthCalc.in?</h3>
+                        <p>HealthCalc.in provides a comprehensive collection of <strong>free health calculators</strong> including BMI calculator, calorie calculator, body fat percentage calculator, and water intake calculator. Our tools are designed to give you instant, accurate results without any signup requirements.</p>
+                    </div>
+                    
+                    <div class="seo-item">
+                        <h3>Accurate Health Insights</h3>
+                        <p>All our calculators use scientifically validated formulas. The BMI calculator uses the standard WHO formula, calorie calculator uses Mifflin-St Jeor equation, body fat calculator offers multiple methods, and water intake calculator considers activity level and climate.</p>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <i class="fas fa-stethoscope"></i>
-                    <h3>Importance</h3>
-                    <p>BMI is a simple screening tool for weight categories that may lead to health problems.</p>
+                
+                <h3>Complete Health Calculator Collection</h3>
+                <div class="calculator-list">
+                    <div class="calc-item">
+                        <h4><i class="fas fa-weight-scale"></i> <a href="#calculator">BMI Calculator</a></h4>
+                        <p>Calculate your Body Mass Index to understand if you're underweight, normal, overweight or obese. Get personalized health advice and ideal weight range.</p>
+                    </div>
+                    
+                    <div class="calc-item">
+                        <h4><i class="fas fa-fire"></i> <a href="calorie-calculator.html">Calorie Calculator</a></h4>
+                        <p>Determine your daily calorie needs for weight loss, maintenance or weight gain. Based on age, gender, weight, height and activity level.</p>
+                    </div>
+                    
+                    <div class="calc-item">
+                        <h4><i class="fas fa-percentage"></i> <a href="body-fat-percentage.html">Body Fat % Calculator</a></h4>
+                        <p>Estimate body fat percentage using U.S. Navy method, BMI method or Covert Bailey method. Visual representation and health category included.</p>
+                    </div>
+                    
+                    <div class="calc-item">
+                        <h4><i class="fas fa-tint"></i> <a href="water-calculator.html">Water Intake Calculator</a></h4>
+                        <p>Calculate daily water requirements based on weight, activity level, climate and special conditions like pregnancy or breastfeeding.</p>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h3>Limitations</h3>
-                    <p>BMI doesn't consider muscle mass, bone density, or overall body composition.</p>
+                
+                <h3>Health Calculator FAQs</h3>
+                <div class="faq-section">
+                    <div class="faq-item">
+                        <h4>How accurate are the calculators?</h4>
+                        <p>Our calculators use scientifically validated formulas. However, they provide estimates and should not replace professional medical advice.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>Are these calculators really free?</h4>
+                        <p>Yes, all calculators on HealthCalc.in are completely free with no signup required. We believe health information should be accessible to everyone.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>Do you store personal data?</h4>
+                        <p>No, we don't store any personal information. All calculations happen in your browser for maximum privacy protection.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>Can I use these on mobile?</h4>
+                        <p>Yes, all our calculators are mobile-friendly and work perfectly on smartphones, tablets, and desktop computers.</p>
+                    </div>
+                </div>
+                
+                <div class="cta-box">
+                    <h3>Start Your Health Journey Today</h3>
+                    <p>Use our free health calculators to understand your body better and make informed health decisions. Remember, these tools are for informational purposes only. Always consult healthcare professionals for medical advice.</p>
+                    <div class="cta-buttons">
+                        <a href="#calculator" class="cta-btn primary">
+                            <i class="fas fa-weight-scale"></i> Check BMI
+                        </a>
+                        <a href="calorie-calculator.html" class="cta-btn secondary">
+                            <i class="fas fa-fire"></i> Calculate Calories
+                        </a>
+                    </div>
                 </div>
             </div>
-            
-            <!-- ========== EXTRA SEO CONTENT ========== -->
-            <div class="seo-content">
-                <h3><i class="fas fa-search"></i> Why Use Our BMI Calculator?</h3>
-                <p>Our free BMI calculator provides instant results to help you understand your body mass index. BMI is an important indicator of overall health. Whether you're underweight, normal, overweight, or obese, our tool gives you personalized advice and ideal weight range.</p>
-                
-                <h4>How to Calculate BMI?</h4>
-                <p>BMI = weight (kg) / (height (m))². For example, if you weigh 70kg and your height is 1.75m, your BMI would be 22.86 which falls in the normal weight category.</p>
-                
-                <h4>BMI Categories:</h4>
-                <ul>
-                    <li><strong>Underweight:</strong> BMI less than 18.5</li>
-                    <li><strong>Normal weight:</strong> BMI 18.5 to 24.9</li>
-                    <li><strong>Overweight:</strong> BMI 25 to 29.9</li>
-                    <li><strong>Obese:</strong> BMI 30 or greater</li>
-                </ul>
-                
-                <p>Remember that BMI is just one indicator of health. Always consult with a healthcare professional for personalized medical advice.</p>
+        </section>
+
+        <!-- ========== BLOG/TIPS SECTION ========== -->
+        <section class="tips-section">
+            <h2><i class="fas fa-lightbulb"></i> Health & Fitness Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>Balanced Diet</h3>
+                    <p>Include all food groups - proteins, carbs, healthy fats, vitamins and minerals in your daily diet.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Regular Exercise</h3>
+                    <p>Aim for 150 minutes of moderate or 75 minutes of vigorous exercise weekly for optimal health.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-bed"></i>
+                    <h3>Adequate Sleep</h3>
+                    <p>7-9 hours of quality sleep improves metabolism, mood, and overall health.</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>Stay Hydrated</h3>
+                    <p>Drink at least 8-10 glasses of water daily. Use our water calculator for personalized needs.</p>
+                </div>
             </div>
         </section>
     </main>
@@ -275,50 +468,92 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3><i class="fas fa-calculator"></i> HealthCalc</h3>
-                    <p>Free health tools for everyone. No signup required.</p>
+                    <h3><i class="fas fa-heartbeat"></i> HealthCalc.in</h3>
+                    <p>Free health calculators for everyone. No signup required. Instant results.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" aria-label="Share via Email"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <!-- ▼▼▼ FOOTER LINKS FIXED HERE ▼▼▼ -->
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <!-- ▲▲▲ FOOTER LINKS FIXED HERE ▲▲▲ -->
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Other Tools</h3>
+                    <h3>Health Calculators</h3>
                     <ul>
                         <li><a href="index.html#calculator">BMI Calculator</a></li>
                         <li><a href="calorie-calculator.html">Calorie Calculator</a></li>
-                        <li><a href="#">Water Intake</a></li>
-                        <li><a href="#">Body Fat %</a></li>
+                        <li><a href="body-fat-percentage.html">Body Fat % Calculator</a></li>
+                        <li><a href="water-calculator.html">Water Intake Calculator</a></li>
                     </ul>
                 </div>
+                <div class="footer-section">
+                    <h3>SEO Keywords</h3>
+                    <div class="keyword-tags">
+                        <a href="index.html">BMI Calculator</a>
+                        <a href="calorie-calculator.html">Calorie Calculator</a>
+                        <a href="body-fat-percentage.html">Body Fat Calculator</a>
+                        <a href="water-calculator.html">Water Calculator</a>
+                        <a href="index.html">Health Tools</a>
+                        <a href="index.html">Fitness Calculators</a>
+                    </div>
+                </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>© 2024 HealthCalc. All rights reserved. | Made with <i class="fas fa-heart"></i> for everyone</p>
-                <p class="disclaimer">Disclaimer: This tool provides approximate values. Consult a doctor for medical advice.</p>
-                <p class="seo-links">
-                    <a href="/">BMI Calculator</a> | 
-                    <a href="/">Free Health Tools</a> | 
-                    <a href="/">Body Mass Index</a> | 
-                    <a href="/">Online Calculator</a>
-                </p>
+                <p>© 2024 HealthCalc.in - All Rights Reserved. | Made with <i class="fas fa-heart"></i> for better health awareness</p>
+                <p class="disclaimer">Disclaimer: These tools provide approximate values for informational purposes only. Always consult healthcare professionals for medical advice.</p>
+                <div class="footer-seo">
+                    <p>HealthCalc.in provides free online health calculators including <strong>BMI Calculator</strong>, <strong>Calorie Calculator</strong>, <strong>Body Fat Percentage Calculator</strong>, and <strong>Water Intake Calculator</strong>. Our tools are mobile-friendly, require no signup, and provide instant results with health advice.</p>
+                </div>
+                <div class="site-links">
+                    <a href="sitemap.xml">Sitemap</a> | 
+                    <a href="robots.txt">Robots.txt</a> | 
+                    <a href="privacy.html">Privacy Policy</a> | 
+                    <a href="contact.html">Contact Us</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
     
-    <!-- ========== SIMPLE ANALYTICS (Optional) ========== -->
+    <!-- ========== INTERNAL LINKING SCRIPT ========== -->
     <script>
-    // Simple page view tracking
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Page load analytics
     window.addEventListener('load', function() {
-        console.log('BMI Calculator loaded successfully');
+        console.log('HealthCalc.in loaded successfully');
+        if(typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                'page_title': 'HealthCalc Homepage',
+                'page_location': window.location.href
+            });
+        }
     });
     </script>
 </body>
