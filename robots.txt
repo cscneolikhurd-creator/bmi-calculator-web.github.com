@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Sitemap: https://bmiwebtool-2026.netlify.app/sitemap.xml
+Sitemap: https://healthcalc.in/sitemap.xml
