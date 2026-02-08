@@ -27,30 +27,6 @@
             margin: 0 auto;
         }
 
-        .language-selector {
-            text-align: right;
-            margin-bottom: 10px;
-        }
-
-        .lang-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s;
-        }
-
-        .lang-btn:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-        }
-
         header {
             text-align: center;
             padding: 25px 0;
@@ -74,12 +50,6 @@
             color: #7f8c8d;
             max-width: 800px;
             margin: 0 auto 10px;
-        }
-
-        .hindi-subtitle {
-            font-size: 1.1rem;
-            color: #555;
-            font-weight: 500;
         }
 
         .calculator-container {
@@ -127,13 +97,6 @@
             margin-bottom: 8px;
             font-weight: 500;
             color: #444;
-        }
-
-        .hindi-label {
-            font-size: 0.9rem;
-            color: #666;
-            font-style: italic;
-            margin-top: 3px;
         }
 
         input, select {
@@ -305,16 +268,6 @@
             line-height: 1.7;
         }
 
-        .hindi-tip {
-            font-style: italic;
-            color: #555;
-            margin-top: 5px;
-            padding: 8px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            border-right: 3px solid #3498db;
-        }
-
         footer {
             text-align: center;
             margin-top: 40px;
@@ -360,16 +313,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="language-selector">
-            <button class="lang-btn" id="hindiBtn">
-                <i class="fas fa-language"></i> हिंदी में देखें
-            </button>
-        </div>
-        
         <header>
             <h1><i class="fas fa-calculator"></i> Calorie Calculator</h1>
             <p class="subtitle">Calculate your daily calorie needs. Enter your gender, age, weight, height and activity level to get personalized results.</p>
-            <p class="hindi-subtitle">अपनी दैनिक कैलोरी आवश्यकताओं की गणना करें। अपना लिंग, उम्र, वजन, ऊंचाई और गतिविधि स्तर दर्ज करें और व्यक्तिगत परिणाम प्राप्त करें।</p>
         </header>
         
         <div class="calculator-container">
@@ -377,36 +323,36 @@
                 <h2 class="section-title"><i class="fas fa-user-edit"></i> Enter Your Information</h2>
                 
                 <div class="form-group">
-                    <label for="gender">Gender <span class="hindi-label">(लिंग)</span></label>
+                    <label for="gender">Gender</label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="male" name="gender" value="male" checked>
-                            <label for="male">Male (पुरुष)</label>
+                            <label for="male">Male</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">Female (महिला)</label>
+                            <label for="female">Female</label>
                         </div>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="age">Age (years) <span class="hindi-label">(आयु - वर्ष)</span></label>
+                    <label for="age">Age (years)</label>
                     <input type="number" id="age" min="1" max="120" value="30">
                 </div>
                 
                 <div class="form-group">
-                    <label for="weight">Weight (kg) <span class="hindi-label">(वजन - किलोग्राम)</span></label>
+                    <label for="weight">Weight (kg)</label>
                     <input type="number" id="weight" min="1" max="300" value="70">
                 </div>
                 
                 <div class="form-group">
-                    <label for="height">Height (cm) <span class="hindi-label">(ऊंचाई - सेंटीमीटर)</span></label>
+                    <label for="height">Height (cm)</label>
                     <input type="number" id="height" min="50" max="300" value="170">
                 </div>
                 
                 <div class="form-group">
-                    <label for="activity">Activity Level <span class="hindi-label">(गतिविधि स्तर)</span></label>
+                    <label for="activity">Activity Level</label>
                     <select id="activity">
                         <option value="1.2">Sedentary (little or no exercise)</option>
                         <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
@@ -430,7 +376,6 @@
                 <h2 class="section-title"><i class="fas fa-chart-line"></i> Your Results</h2>
                 
                 <p>Your daily calorie requirements will appear here after clicking the calculate button.</p>
-                <p class="hindi-label">कैलकुलेट बटन पर क्लिक करने के बाद आपकी दैनिक कैलोरी आवश्यकताएं यहां दिखाई देंगी।</p>
                 
                 <div class="result-box" id="resultBox">
                     <h3>Your Daily Calorie Needs:</h3>
@@ -483,7 +428,6 @@
                 <div class="tip-content">
                     <h4>Eat a Balanced Diet</h4>
                     <p>Consume a balanced amount of protein, carbohydrates, fats, vitamins and minerals. Prioritize fresh fruits, vegetables and whole grains.</p>
-                    <div class="hindi-tip">प्रोटीन, कार्बोहाइड्रेट, वसा, विटामिन और खनिजों का संतुलित मात्रा में सेवन करें। ताजे फल, सब्जियां और साबुत अनाज को प्राथमिकता दें।</div>
                 </div>
             </div>
             
@@ -494,7 +438,6 @@
                 <div class="tip-content">
                     <h4>Drink Plenty of Water</h4>
                     <p>Drink at least 8-10 glasses of water daily. This helps keep the body's metabolism smooth and flush out toxins.</p>
-                    <div class="hindi-tip">प्रतिदिन कम से कम 8-10 गिलास पानी पिएं। यह शरीर के चयापचय को सुचारू रखने और विषाक्त पदार्थों को बाहर निकालने में मदद करता है।</div>
                 </div>
             </div>
             
@@ -505,14 +448,12 @@
                 <div class="tip-content">
                     <h4>Exercise Regularly</h4>
                     <p>Aim for at least 150 minutes of moderate-intensity exercise or 75 minutes of high-intensity exercise per week.</p>
-                    <div class="hindi-tip">सप्ताह में कम से कम 150 मिनट मध्यम तीव्रता वाला व्यायाम या 75 मिनट उच्च तीव्रता वाला व्यायाम करने का लक्ष्य रखें।</div>
                 </div>
             </div>
         </section>
         
         <footer>
             <p>© 2023 Calorie Calculator | This tool is for general information only. It is best to consult a specialist for personalized advice.</p>
-            <p style="margin-top: 5px;">© २०२३ कैलोरी कैलक्यूलेटर | यह उपकरण सामान्य जानकारी के लिए है। व्यक्तिगत सलाह के लिए किसी विशेषज्ञ से परामर्श करना सबसे अच्छा है।</p>
         </footer>
     </div>
 
@@ -588,35 +529,6 @@
         
         // Calculate on page load
         window.addEventListener('load', calculateCalories);
-        
-        // Language toggle functionality
-        document.getElementById('hindiBtn').addEventListener('click', function() {
-            const btn = this;
-            if (btn.innerHTML.includes('हिंदी')) {
-                // Switch to Hindi view
-                document.querySelector('title').textContent = 'कैलोरी कैलक्यूलेटर - स्वास्थ्य और फिटनेस';
-                document.querySelector('h1').innerHTML = '<i class="fas fa-calculator"></i> कैलोरी कैलक्यूलेटर';
-                document.querySelector('.subtitle').textContent = 'अपनी दैनिक कैलोरी आवश्यकताओं की गणना करें। अपना लिंग, उम्र, वजन, ऊंचाई और गतिविधि स्तर दर्ज करें और व्यक्तिगत परिणाम प्राप्त करें।';
-                document.querySelector('.hindi-subtitle').textContent = 'Calculate your daily calorie needs. Enter your gender, age, weight, height and activity level to get personalized results.';
-                btn.innerHTML = '<i class="fas fa-language"></i> View in English';
-                
-                // Update other text elements
-                document.querySelectorAll('.section-title')[0].innerHTML = '<i class="fas fa-user-edit"></i> अपनी जानकारी दर्ज करें';
-                document.querySelectorAll('.section-title')[1].innerHTML = '<i class="fas fa-chart-line"></i> आपके परिणाम';
-                document.querySelectorAll('.section-title')[2].innerHTML = '<i class="fas fa-lightbulb"></i> स्वास्थ्य और फिटनेस टिप्स';
-                
-                document.getElementById('calculateBtn').innerHTML = '<i class="fas fa-calculator"></i> कैलोरी की गणना करें';
-                
-                // Update result section text
-                const resultSection = document.querySelector('.result-section p');
-                if (resultSection) {
-                    resultSection.textContent = 'कैलकुलेट बटन पर क्लिक करने के बाद आपकी दैनिक कैलोरी आवश्यकताएं यहां दिखाई देंगी।';
-                }
-            } else {
-                // Switch back to English
-                location.reload(); // Reload to get original English text
-            }
-        });
         
         // Input validation
         document.getElementById('age').addEventListener('input', function() {
