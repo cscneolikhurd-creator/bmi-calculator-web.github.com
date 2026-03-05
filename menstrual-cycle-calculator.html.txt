@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Menstrual Cycle Calculator: Track Periods, Ovulation & Fertile Window | HealthCalc.in</title>
+<meta name="description" content="Free menstrual cycle calculator - track your periods, predict ovulation, and identify fertile windows. Includes 2-page PDF guide with cycle tracking and symptom management.">
+<meta name="keywords" content="menstrual cycle calculator, period tracker, ovulation calculator, fertility calculator">
+
+<meta property="og:title" content="Menstrual Cycle Calculator">
+<meta property="og:description" content="Track your cycle and predict ovulation. Free PDF guide included.">
+<link rel="canonical" href="https://healthcalc.in/menstrual-cycle-calculator.html">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* Same CSS as previous files */
+:root {
+--bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+--card-bg: #ffffff;
+--text-primary: #333333;
+--text-secondary: #555555;
+--border-color: #e0e0e0;
+--input-bg: #ffffff;
+--result-bg: #f8f9ff;
+--result-border: #764ba2;
+--shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+--btn-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+[data-theme="dark"] {
+--bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+--card-bg: #1e1e2f;
+--text-primary: #e0e0e0;
+--text-secondary: #b0b0b0;
+--border-color: #333344;
+--input-bg: #2a2a3a;
+--result-bg: #2a2a3a;
+--result-border: #9146ff;
+--shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+--btn-gradient: linear-gradient(135deg, #9146ff 0%, #6b3fa0 100%);
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Inter', sans-serif;
+transition: all 0.3s ease;
+}
+
+body {
+background: var(--bg-gradient);
+min-height: 100vh;
+padding: 20px;
+}
+
+.container {
+max-width: 800px;
+margin: 0 auto;
+}
+
+.theme-toggle {
+position: fixed;
+top: 20px;
+right: 20px;
+background: var(--card-bg);
+border: none;
+border-radius: 50px;
+padding: 10px 20px;
+cursor: pointer;
+box-shadow: var(--shadow);
+color: var(--text-primary);
+z-index: 1000;
+}
+
+.back-link {
+display: inline-block;
+margin-bottom: 30px;
+color: white;
+text-decoration: none;
+font-weight: 500;
+}
+
+.calculator-card {
+background: var(--card-bg);
+border-radius: 30px;
+padding: 40px;
+box-shadow: var(--shadow);
+margin: 60px 0 30px;
+}
+
+.calculator-card h1 {
+font-size: 2.2rem;
+color: var(--text-primary);
+margin-bottom: 10px;
+}
+
+.subtitle {
+color: var(--text-secondary);
+margin-bottom: 30px;
+}
+
+.input-group {
+margin-bottom: 20px;
+}
+
+.input-group label {
+display: block;
+margin-bottom: 8px;
+color: var(--text-primary);
+font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+width: 100%;
+padding: 15px;
+border: 2px solid var(--border-color);
+border-radius: 12px;
+background: var(--input-bg);
+color: var(--text-primary);
+}
+
+.btn {
+background: var(--btn-gradient);
+color: white;
+border: none;
+padding: 16px;
+border-radius: 12px;
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+width: 100%;
+margin: 10px 0;
+}
+
+.result-area {
+background: var(--result-bg);
+border-radius: 12px;
+padding: 20px;
+margin: 20px 0;
+color: var(--text-primary);
+border-left: 4px solid var(--result-border);
+line-height: 1.8;
+white-space: pre-line;
+}
+
+.pdf-guide {
+background: var(--result-bg);
+border-radius: 16px;
+padding: 30px;
+margin: 30px 0;
+}
+
+.pdf-preview {
+display: flex;
+gap: 20px;
+margin: 25px 0;
+flex-wrap: wrap;
+}
+
+.pdf-page {
+flex: 1;
+min-width: 200px;
+background: var(--card-bg);
+border: 2px solid var(--border-color);
+border-radius: 12px;
+padding: 20px;
+text-align: center;
+}
+
+.pdf-page i {
+font-size: 3rem;
+color: #ff6b6b;
+margin-bottom: 15px;
+}
+
+.download-btn {
+background: var(--btn-gradient);
+color: white;
+border: none;
+padding: 15px 30px;
+border-radius: 50px;
+font-size: 1.1rem;
+font-weight: 600;
+cursor: pointer;
+width: 100%;
+margin-top: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+
+footer {
+text-align: center;
+color: rgba(255, 255, 255, 0.8);
+padding: 20px;
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle">
+<i class="fas fa-moon"></i>
+<span>Dark Mode</span>
+</button>
+
+<div class="container">
+<a href="index.html" class="back-link">
+<i class="fas fa-arrow-left"></i> Back to All Calculators
+</a>
+
+<div class="calculator-card">
+<h1>Menstrual Cycle Calculator</h1>
+<p class="subtitle">Track your periods, predict ovulation, and identify fertile windows</p>
+
+<div class="input-group">
+<label>First day of last period (day of month)</label>
+<input type="number" id="lastPeriod" placeholder="5" min="1" max="31" value="5">
+</div>
+
+<div class="input-group">
+<label>Average cycle length (days)</label>
+<input type="number" id="cycleLength" placeholder="28" min="21" max="40" value="28">
+<small style="color: var(--text-secondary);">Typical range: 21-35 days</small>
+</div>
+
+<div class="input-group">
+<label>Period length (days)</label>
+<input type="number" id="periodLength" placeholder="5" min="2" max="10" value="5">
+</div>
+
+<button class="btn" onclick="calculateCycle()">Calculate Cycle</button>
+
+<div class="result-area" id="result">
+Enter your details to see cycle predictions
+</div>
+
+<div class="pdf-guide">
+<h3>📘 Cycle Health Guide (2 Pages)</h3>
+<div class="pdf-preview">
+<div class="pdf-page">
+<i class="fas fa-file-pdf"></i>
+<h4>Page 1: Cycle Phases</h4>
+<ul>
+<li>✓ Menstrual phase</li>
+<li>✓ Follicular phase</li>
+<li>✓ Ovulation</li>
+<li>✓ Luteal phase</li>
+</ul>
+</div>
+<div class="pdf-page">
+<i class="fas fa-file-pdf"></i>
+<h4>Page 2: Symptom Tracker</h4>
+<ul>
+<li>✓ PMS management</li>
+<li>✓ Diet by phase</li>
+<li>✓ Exercise tips</li>
+</ul>
+</div>
+</div>
+<button class="download-btn" onclick="downloadCycleGuide()">
+<i class="fas fa-download"></i> Download Free 2-Page PDF Guide
+</button>
+</div>
+</div>
+
+<footer>
+<p>© 2024 HealthCalc.in - Your trusted health calculator</p>
+</footer>
+</div>
+
+<script>
+// Dark Mode Toggle
+const themeToggle = document.getElementById('themeToggle');
+const icon = themeToggle.querySelector('i');
+const text = themeToggle.querySelector('span');
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+document.documentElement.setAttribute('data-theme', 'dark');
+icon.className = 'fas fa-sun';
+text.textContent = 'Light Mode';
+}
+
+themeToggle.addEventListener('click', () => {
+if (document.documentElement.getAttribute('data-theme') === 'dark') {
+document.documentElement.removeAttribute('data-theme');
+localStorage.setItem('theme', 'light');
+icon.className = 'fas fa-moon';
+text.textContent = 'Dark Mode';
+} else {
+document.documentElement.setAttribute('data-theme', 'dark');
+localStorage.setItem('theme', 'dark');
+icon.className = 'fas fa-sun';
+text.textContent = 'Light Mode';
+}
+});
+
+function calculateCycle() {
+const lastPeriod = parseInt(document.getElementById('lastPeriod').value);
+const cycleLength = parseInt(document.getElementById('cycleLength').value);
+const periodLength = parseInt(document.getElementById('periodLength').value);
+
+if (!lastPeriod || !cycleLength || !periodLength) {
+document.getElementById('result').innerText = "Please fill all fields";
+return;
+}
+
+if (lastPeriod < 1 || lastPeriod > 31) {
+document.getElementById('result').innerText = "Please enter a valid day (1-31)";
+return;
+}
+
+// Calculate next period
+let nextPeriod = lastPeriod + cycleLength;
+let nextPeriodMonth = nextPeriod > 31 ? nextPeriod - 31 : nextPeriod;
+
+// Calculate ovulation (typically 14 days before next period)
+const ovulationDay = lastPeriod + (cycleLength - 14);
+let ovulationDisplay = ovulationDay > 31 ? ovulationDay - 31 : ovulationDay;
+
+// Fertile window (5 days before ovulation to day of ovulation)
+const fertileStart = ovulationDay - 5;
+const fertileEnd = ovulationDay;
+
+let fertileStartDisplay = fertileStart > 31 ? fertileStart - 31 : fertileStart;
+let fertileEndDisplay = fertileEnd > 31 ? fertileEnd - 31 : fertileEnd;
+
+// Safe days (simplified)
+const safeDays = `Days 1-${fertileStart-1} and ${fertileEnd+1}-${cycleLength}`;
+
+const result = `🌸 Your Cycle Predictions:\n\n` +
+`Next Period: Day ${nextPeriodMonth} (of next month)\n` +
+`Ovulation Day: Day ${ovulationDisplay}\n` +
+`Fertile Window: Days ${fertileStartDisplay} - ${fertileEndDisplay}\n\n` +
+`Cycle Phases:\n` +
+`• Menstruation: Days 1-${periodLength}\n` +
+`• Follicular Phase: Days ${periodLength+1}-${ovulationDay-1}\n` +
+`• Ovulation: Day ${ovulationDisplay}\n` +
+`• Luteal Phase: Days ${ovulationDay+1}-${cycleLength}\n\n` +
+`💡 Note: This is an estimate. Actual cycles may vary.`;
+
+document.getElementById('result').innerText = result;
+}
+
+function downloadCycleGuide() {
+const guide = `MENSTRUAL CYCLE GUIDE - 2 PAGES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PAGE 1: UNDERSTANDING YOUR CYCLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE FOUR PHASES OF MENSTRUAL CYCLE:
+
+1. MENSTRUAL PHASE (Days 1-5)
+• Uterine lining sheds
+• Hormones: Estrogen and progesterone low
+• Symptoms: Cramps, fatigue, bloating
+• Best for: Rest, gentle movement
+
+2. FOLLICULAR PHASE (Days 6-14)
+• Eggs mature in follicles
+• Hormones: Estrogen rises
+• Symptoms: Energy increases, mood improves
+• Best for: High-intensity workouts, new projects
+
+3. OVULATION (Day 14 in 28-day cycle)
+• Egg released from ovary
+• Hormones: LH surge, testosterone peaks
+• Symptoms: Increased libido, clear cervical mucus
+• Best for: Conception, social activities
+
+4. LUTEAL PHASE (Days 15-28)
+• Body prepares for pregnancy
+• Hormones: Progesterone rises then drops
+• Symptoms: PMS, cravings, breast tenderness
+• Best for: Self-care, planning
+
+AVERAGE CYCLE STATISTICS:
+• Normal cycle length: 21-35 days
+• Normal period length: 3-7 days
+• Ovulation: 12-16 days before next period
+• Fertile window: 6 days ending on ovulation
+
+PAGE 2: MANAGING YOUR CYCLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DIET BY PHASE:
+
+Menstrual Phase:
+• Iron-rich foods (spinach, legumes)
+• Warm foods and soups
+• Dark chocolate (magnesium)
+• Hydrating foods (watermelon, cucumber)
+
+Follicular Phase:
+• Complex carbs (oats, quinoa)
+• Lean proteins
+• Fermented foods
+• Green vegetables
+
+Ovulation:
+• Anti-inflammatory foods (berries, nuts)
+• Fiber-rich foods
+• Healthy fats (avocado, olive oil)
+
+Luteal Phase:
+• Complex carbs (sweet potatoes)
+• Magnesium-rich foods (bananas, dark chocolate)
+• B vitamins (whole grains, eggs)
+• Limit salt, caffeine, sugar
+
+EXERCISE BY PHASE:
+
+Menstrual: Yoga, walking, stretching
+Follicular: HIIT, strength training, running
+Ovulation: Cardio, dance, team sports
+Luteal: Moderate exercise, Pilates, lighter weights
+
+PMS SYMPTOM TRACKER:
+Symptom | Days before period | Relief strategies
+Bloating | 5-7 days | Reduce salt, drink water
+Cramps | 1-2 days | Heat pack, gentle stretch
+Mood swings | 7-10 days | Magnesium, B6 vitamins
+Fatigue | 3-5 days | Extra rest, iron-rich foods
+Headaches | 2-3 days | Hydration, magnesium
+
+WHEN TO SEE A DOCTOR:
+• Cycles shorter than 21 or longer than 35 days
+• Bleeding for more than 7 days
+• Severe pain not relieved by OTC meds
+• Bleeding between periods
+• Missed periods (and not pregnant)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Download more free calculators at www.healthcalc.in
+`;
+const blob = new Blob([guide], { type: 'text/plain;charset=utf-8' });
+const url = window.URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = 'Menstrual_Cycle_Guide_2_Pages.txt';
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+window.URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
