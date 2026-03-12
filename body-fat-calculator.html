@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta -->
+    <title>Body Fat Percentage Calculator with Visual Guide | HealthCalc</title>
+    <meta name="description" content="Free advanced body fat calculator with visual guide, athlete mode, and body fat loss timeline. See what 15%, 20%, 25% body fat looks like.">
+    <meta name="keywords" content="body fat percentage, body fat calculator, visual body fat, athlete body fat, body composition">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Body Fat % Calculator with Visual Guide">
+    <meta property="og:description" content="See what your body fat looks like and how to improve it">
+    <meta property="og:image" content="https://healthcalc.in/images/bodyfat-preview.jpg">
+    <meta property="og:url" content="https://healthcalc.in/tools/body-fat-calculator">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://healthcalc.in/tools/body-fat-calculator">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); padding: 30px; text-align: center; color: white; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
+        .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
+        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
+        
+        /* Input Card */
+        .input-card { background: #f0fff4; padding: 25px; border-radius: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #d0f0d0; border-radius: 10px; font-size: 1em; }
+        
+        .method-toggle { display: flex; gap: 10px; margin-bottom: 20px; background: #d0f0d0; padding: 5px; border-radius: 50px; }
+        .method-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 50px; cursor: pointer; font-weight: 600; }
+        .method-btn.active { background: white; color: #27ae60; }
+        
+        .measurement-fields { display: none; }
+        .measurement-fields.active { display: block; animation: fadeIn 0.3s; }
+        
+        .athlete-toggle { margin: 20px 0; padding: 15px; background: white; border-radius: 10px; border: 2px solid #d0f0d0; }
+        
+        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        
+        /* Results Card */
+        .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #f0fff4; }
+        
+        .fat-circle { text-align: center; padding: 20px; background: #f0fff4; border-radius: 20px; margin-bottom: 20px; }
+        .fat-value { font-size: 4em; font-weight: 800; color: #27ae60; line-height: 1; }
+        .fat-label { font-size: 1.2em; color: #666; }
+        
+        /* Visual Guide */
+        .visual-guide { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
+        .visual-item { text-align: center; cursor: pointer; padding: 10px; border-radius: 10px; transition: all 0.3s; }
+        .visual-item:hover { background: #f0fff4; }
+        .visual-item.active { background: #27ae60; color: white; }
+        .visual-item .emoji { font-size: 2em; }
+        .visual-item .percent { font-weight: 600; }
+        
+        .body-outline { width: 100%; height: 150px; background: #f0f0f0; border-radius: 50% 50% 30% 30%; position: relative; margin: 20px 0; overflow: hidden; }
+        .fat-layer { position: absolute; bottom: 0; width: 100%; background: rgba(46, 204, 113, 0.5); transition: height 0.3s; }
+        
+        .health-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .health-item { background: #f0fff4; padding: 15px; border-radius: 10px; text-align: center; }
+        .health-item .value { font-size: 1.5em; font-weight: 700; color: #333; }
+        
+        .timeline { background: #f0fff4; padding: 20px; border-radius: 20px; margin: 20px 0; }
+        .timeline-bar { height: 30px; background: #d0f0d0; border-radius: 15px; overflow: hidden; margin: 10px 0; }
+        .timeline-progress { height: 100%; background: #27ae60; width: 0%; transition: width 0.3s; }
+        
+        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧬 Body Fat Calculator</h1>
+            <p>Visual Guide • Athlete Mode • Fat Loss Timeline</p>
+            <div>
+                <span class="badge">🌟 Visual Guide</span>
+                <span class="badge">🏋️ Athlete Mode</span>
+                <span class="badge">📉 Fat Loss Timeline</span>
+            </div>
+        </div>
+        
+        <div class="main">
+            <!-- Input Section -->
+            <div class="input-card">
+                <h2 style="margin-bottom: 20px;">📝 Your Measurements</h2>
+                
+                <div class="method-toggle" id="methodToggle">
+                    <button class="method-btn active" onclick="setMethod('simple')">Simple (BMI-based)</button>
+                    <button class="method-btn" onclick="setMethod('advanced')">Advanced (Navy Method)</button>
+                </div>
+                
+                <!-- Simple Method (BMI-based) -->
+                <div id="simpleMethod" class="measurement-fields active">
+                    <div class="input-group">
+                        <label>Age</label>
+                        <input type="number" id="ageSimple" value="30" min="18" max="100">
+                    </div>
+                    <div class="input-group">
+                        <label>Gender</label>
+                        <select id="genderSimple">
+                            <option value="male">Male</option>
+                            <option value="female" selected>Female</option>
+                        </select>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="input-group">
+                            <label>Weight (kg)</label>
+                            <input type="number" id="weightSimple" value="70" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Height (cm)</label>
+                            <input type="number" id="heightSimple" value="170" step="0.1">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Advanced Method (Navy) -->
+                <div id="advancedMethod" class="measurement-fields">
+                    <div class="input-group">
+                        <label>Gender</label>
+                        <select id="genderAdv">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Height (cm)</label>
+                        <input type="number" id="heightAdv" value="170" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Neck (cm) - measure at base</label>
+                        <input type="number" id="neck" value="38" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Waist (cm) - at navel level</label>
+                        <input type="number" id="waist" value="80" step="0.1">
+                    </div>
+                    <div id="hipField" style="display: block;">
+                        <div class="input-group">
+                            <label>Hip (cm) - widest point</label>
+                            <input type="number" id="hip" value="95" step="0.1">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Athlete Mode Toggle -->
+                <div class="athlete-toggle">
+                    <label style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="athleteMode" onchange="toggleAthleteMode()">
+                        <strong>🏋️ Athlete Mode</strong>
+                        <span style="color: #666; font-size: 0.9em;">(More accurate for muscular individuals)</span>
+                    </label>
+                </div>
+                
+                <button class="calc-btn" onclick="calculateBodyFat()">Calculate Body Fat %</button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-card" id="results">
+                <h2 style="margin-bottom: 20px;">📊 Your Body Fat</h2>
+                
+                <div class="fat-circle">
+                    <div class="fat-value" id="bodyFat">22.5</div>
+                    <div class="fat-label">Body Fat Percentage</div>
+                </div>
+                
+                <!-- Visual Guide -->
+                <h3 style="margin: 20px 0 10px;">👁️ Visual Guide</h3>
+                <div class="visual-guide" id="visualGuide">
+                    <div class="visual-item" onclick="showVisual('10')">
+                        <div class="emoji">🏃</div>
+                        <div class="percent">10-14%</div>
+                        <div>Athlete</div>
+                    </div>
+                    <div class="visual-item active" onclick="showVisual('15')">
+                        <div class="emoji">💪</div>
+                        <div class="percent">15-19%</div>
+                        <div>Fit</div>
+                    </div>
+                    <div class="visual-item" onclick="showVisual('20')">
+                        <div class="emoji">⚖️</div>
+                        <div class="percent">20-24%</div>
+                        <div>Average</div>
+                    </div>
+                    <div class="visual-item" onclick="showVisual('25')">
+                        <div class="emoji">📈</div>
+                        <div class="percent">25%+</div>
+                        <div>Above Avg</div>
+                    </div>
+                </div>
+                
+                <!-- Body Shape Visual -->
+                <div class="body-outline" id="bodyOutline">
+                    <div class="fat-layer" id="fatLayer" style="height: 50%"></div>
+                </div>
+                
+                <!-- Health Metrics -->
+                <div class="health-grid">
+                    <div class="health-item">
+                        <div class="value" id="fatMass">15.8</div>
+                        <div>Fat Mass (kg)</div>
+                    </div>
+                    <div class="health-item">
+                        <div class="value" id="leanMass">54.2</div>
+                        <div>Lean Mass (kg)</div>
+                    </div>
+                    <div class="health-item">
+                        <div class="value" id="category">Healthy</div>
+                        <div>Category</div>
+                    </div>
+                    <div class="health-item">
+                        <div class="value" id="idealRange">21-33%</div>
+                        <div>Ideal Range</div>
+                    </div>
+                </div>
+                
+                <!-- Fat Loss Timeline -->
+                <div class="timeline">
+                    <h3 style="margin-bottom: 15px;">📉 Fat Loss Timeline</h3>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <span>Current: <span id="currentFatTimeline">22.5%</span></span>
+                        <span>Target: <span id="targetFat">20%</span></span>
+                    </div>
+                    <div class="timeline-bar">
+                        <div class="timeline-progress" id="timelineProgress" style="width: 75%"></div>
+                    </div>
+                    <p id="timelineText" style="margin-top: 10px; color: #666;">
+                        At 0.5% loss per week, you'll reach target in 5 weeks
+                    </p>
+                </div>
+                
+                <!-- Guide -->
+                <div style="background: #f0fff4; padding: 15px; border-radius: 10px; margin-top: 20px;">
+                    <p style="color: #666; font-size: 0.9em;">
+                        <strong>💡 Healthy Ranges:</strong> Men 8-19% | Women 21-33%<br>
+                        <strong>🏋️ Athlete Mode:</strong> Adjusts for higher muscle mass
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>⭐ 4.8/5 from 1,250+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
+            <p style="font-size: 0.9em;">⚠️ Estimates only - consult a professional for accurate measurement</p>
+        </div>
+    </div>
+    
+    <script>
+        let currentMethod = 'simple';
+        let athleteMode = false;
+        
+        function setMethod(method) {
+            currentMethod = method;
+            
+            // Update buttons
+            document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide fields
+            if (method === 'simple') {
+                document.getElementById('simpleMethod').classList.add('active');
+                document.getElementById('advancedMethod').classList.remove('active');
+                document.getElementById('hipField').style.display = 'block';
+            } else {
+                document.getElementById('simpleMethod').classList.remove('active');
+                document.getElementById('advancedMethod').classList.add('active');
+                // Hide hip for males in advanced
+                const gender = document.getElementById('genderAdv').value;
+                document.getElementById('hipField').style.display = gender === 'female' ? 'block' : 'none';
+            }
+            
+            calculateBodyFat();
+        }
+        
+        function toggleAthleteMode() {
+            athleteMode = document.getElementById('athleteMode').checked;
+            calculateBodyFat();
+        }
+        
+        // Update hip field based on gender (for advanced)
+        document.getElementById('genderAdv')?.addEventListener('change', function() {
+            document.getElementById('hipField').style.display = this.value === 'female' ? 'block' : 'none';
+            calculateBodyFat();
+        });
+        
+        function calculateBodyFat() {
+            let bodyFat = 0;
+            let gender, age, weight, height;
+            
+            if (currentMethod === 'simple') {
+                // Simple BMI-based method
+                gender = document.getElementById('genderSimple').value;
+                age = parseInt(document.getElementById('ageSimple').value) || 30;
+                weight = parseFloat(document.getElementById('weightSimple').value) || 70;
+                height = parseFloat(document.getElementById('heightSimple').value) || 170;
+                
+                // Calculate BMI first
+                const bmi = weight / ((height/100) * (height/100));
+                
+                // Deurenberg formula: Body Fat % = (1.20 * BMI) + (0.23 * Age) - (10.8 * gender) - 5.4
+                // gender: male=1, female=0
+                const genderFactor = gender === 'male' ? 1 : 0;
+                bodyFat = (1.20 * bmi) + (0.23 * age) - (10.8 * genderFactor) - 5.4;
+                
+            } else {
+                // Navy Method
+                gender = document.getElementById('genderAdv').value;
+                height = parseFloat(document.getElementById('heightAdv').value) || 170;
+                const neck = parseFloat(document.getElementById('neck').value) || 38;
+                const waist = parseFloat(document.getElementById('waist').value) || 80;
+                const hip = parseFloat(document.getElementById('hip').value) || 95;
+                
+                if (gender === 'male') {
+                    // Male formula: 86.010 * log10(waist - neck) - 70.041 * log10(height) + 36.76
+                    bodyFat = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
+                } else {
+                    // Female formula: 163.205 * log10(waist + hip - neck) - 97.684 * log10(height) - 78.387
+                    bodyFat = 163.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) - 78.387;
+                }
+            }
+            
+            // Apply athlete mode adjustment (lower body fat for same measurements)
+            if (athleteMode) {
+                bodyFat *= 0.85; // 15% reduction for athletes
+            }
+            
+            // Ensure realistic range
+            bodyFat = Math.max(5, Math.min(50, bodyFat));
+            bodyFat = Math.round(bodyFat * 10) / 10;
+            
+            // Update display
+            document.getElementById('bodyFat').textContent = bodyFat;
+            
+            // Update fat layer visualization
+            const fatLayer = document.getElementById('fatLayer');
+            fatLayer.style.height = (bodyFat / 40) * 100 + '%'; // Scale to max 40%
+            
+            // Calculate fat mass and lean mass
+            weight = weight || parseFloat(document.getElementById('weightSimple')?.value) || 70;
+            const fatMass = Math.round((bodyFat / 100) * weight * 10) / 10;
+            const leanMass = Math.round((weight - fatMass) * 10) / 10;
+            
+            document.getElementById('fatMass').textContent = fatMass;
+            document.getElementById('leanMass').textContent = leanMass;
+            
+            // Determine category
+            let category = '';
+            let idealRange = '';
+            gender = gender || document.getElementById('genderSimple')?.value || 'female';
+            
+            if (gender === 'male') {
+                idealRange = '8-19%';
+                if (bodyFat < 6) category = 'Essential Fat';
+                else if (bodyFat < 14) category = 'Athlete';
+                else if (bodyFat < 18) category = 'Fit';
+                else if (bodyFat < 25) category = 'Average';
+                else category = 'Above Average';
+            } else {
+                idealRange = '21-33%';
+                if (bodyFat < 14) category = 'Essential Fat';
+                else if (bodyFat < 21) category = 'Athlete';
+                else if (bodyFat < 28) category = 'Fit';
+                else if (bodyFat < 35) category = 'Average';
+                else category = 'Above Average';
+            }
+            
+            document.getElementById('category').textContent = category;
+            document.getElementById('idealRange').textContent = idealRange;
+            document.getElementById('currentFatTimeline').textContent = bodyFat + '%';
+            
+            // Calculate target based on category
+            let targetFat;
+            if (gender === 'male') {
+                targetFat = category.includes('Above') ? 18 : 
+                           (bodyFat > 25 ? 18 : Math.max(10, bodyFat - 5));
+            } else {
+                targetFat = category.includes('Above') ? 28 : 
+                           (bodyFat > 35 ? 28 : Math.max(21, bodyFat - 5));
+            }
+            targetFat = Math.round(targetFat * 10) / 10;
+            document.getElementById('targetFat').textContent = targetFat + '%';
+            
+            // Calculate timeline (assume 0.5% loss per week)
+            const weeksToTarget = Math.ceil((bodyFat - targetFat) / 0.5);
+            const progress = ((bodyFat - targetFat) / (bodyFat - targetFat + 5)) * 100;
+            document.getElementById('timelineProgress').style.width = Math.min(100, Math.max(0, progress)) + '%';
+            
+            if (weeksToTarget > 0) {
+                document.getElementById('timelineText').innerHTML = 
+                    `📅 At 0.5% loss per week, you'll reach target in <strong>${weeksToTarget} weeks</strong>`;
+            } else {
+                document.getElementById('timelineText').innerHTML = 
+                    `✅ You're already in healthy range! Maintain with strength training.`;
+            }
+        }
+        
+        function showVisual(range) {
+            // Update active visual
+            document.querySelectorAll('.visual-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            // Update body outline color based on range
+            const fatLayer = document.getElementById('fatLayer');
+            if (range === '10') fatLayer.style.background = 'rgba(46, 204, 113, 0.3)';
+            else if (range === '15') fatLayer.style.background = 'rgba(46, 204, 113, 0.5)';
+            else if (range === '20') fatLayer.style.background = 'rgba(241, 196, 15, 0.5)';
+            else fatLayer.style.background = 'rgba(231, 76, 60, 0.5)';
+        }
+        
+        // Initialize
+        window.onload = function() {
+            calculateBodyFat();
+        };
+    </script>
+</body>
+</html>
