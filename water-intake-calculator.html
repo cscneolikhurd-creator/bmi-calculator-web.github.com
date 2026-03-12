@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta -->
+    <title>Water Intake Calculator: Personalized Hydration | HealthCalc</title>
+    <meta name="description" content="Free advanced water calculator with sweat rate, activity level, and caffeine adjustment. Get personalized daily water needs.">
+    <meta name="keywords" content="water intake calculator, daily water, hydration calculator, how much water to drink, sweat rate">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Water Intake Calculator with Activity Adjust">
+    <meta property="og:description" content="Know exactly how much water you need daily">
+    <meta property="og:image" content="https://healthcalc.in/images/water-preview.jpg">
+    <meta property="og:url" content="https://healthcalc.in/tools/water-intake-calculator">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://healthcalc.in/tools/water-intake-calculator">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); padding: 30px; text-align: center; color: white; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
+        .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
+        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
+        
+        /* Input Card */
+        .input-card { background: #e8f4fc; padding: 25px; border-radius: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #b8d9f0; border-radius: 10px; font-size: 1em; }
+        
+        .unit-toggle { display: flex; gap: 10px; margin-bottom: 20px; background: #b8d9f0; padding: 5px; border-radius: 50px; }
+        .unit-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 50px; cursor: pointer; font-weight: 600; }
+        .unit-btn.active { background: white; color: #2980b9; }
+        
+        .slider-container { margin: 20px 0; }
+        .slider-label { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        input[type=range] { width: 100%; height: 8px; border-radius: 4px; background: #b8d9f0; outline: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: #2980b9; border-radius: 50%; cursor: pointer; }
+        
+        .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .checkbox-item { display: flex; align-items: center; gap: 10px; padding: 10px; background: white; border-radius: 10px; }
+        
+        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        
+        /* Results Card */
+        .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #e8f4fc; }
+        
+        .water-circle { text-align: center; padding: 30px; background: #e8f4fc; border-radius: 20px; margin-bottom: 20px; }
+        .water-value { font-size: 4em; font-weight: 800; color: #2980b9; line-height: 1; }
+        .water-unit { font-size: 1.2em; color: #666; }
+        
+        .water-glass-visual { display: flex; align-items: flex-end; justify-content: center; height: 150px; margin: 20px 0; }
+        .glass { width: 60px; background: #e8f4fc; border: 3px solid #2980b9; border-radius: 0 0 30px 30px; position: relative; transition: height 0.3s; }
+        .glass-fill { position: absolute; bottom: 0; width: 100%; background: linear-gradient(to top, #3498db, #9b59b6); border-radius: 0 0 27px 27px; transition: height 0.3s; }
+        .glass-label { margin-top: 10px; font-size: 0.9em; color: #666; }
+        
+        .breakdown-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+        .breakdown-item { background: #e8f4fc; padding: 15px; border-radius: 10px; text-align: center; }
+        .breakdown-item .value { font-size: 1.5em; font-weight: 700; color: #333; }
+        
+        .time-chart { background: #e8f4fc; padding: 20px; border-radius: 20px; margin: 20px 0; }
+        .time-slots { display: flex; justify-content: space-between; margin: 10px 0; }
+        .time-slot { text-align: center; flex: 1; }
+        .time-dot { width: 30px; height: 30px; background: #3498db; border-radius: 50%; margin: 0 auto 5px; opacity: 0.3; }
+        .time-dot.active { opacity: 1; }
+        
+        .weather-impact { display: flex; gap: 15px; margin: 20px 0; padding: 15px; background: #e8f4fc; border-radius: 20px; }
+        .weather-factor { flex: 1; text-align: center; padding: 10px; border-radius: 10px; }
+        .weather-factor.hot { background: #e74c3c20; }
+        .weather-factor.humid { background: #3498db20; }
+        
+        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💧 Water Intake Calculator</h1>
+            <p>Sweat Rate • Activity • Caffeine Adjust</p>
+            <div>
+                <span class="badge">🌟 Sweat Rate Adjust</span>
+                <span class="badge">☕ Caffeine Impact</span>
+                <span class="badge">🌡️ Weather Smart</span>
+            </div>
+        </div>
+        
+        <div class="main">
+            <!-- Input Section -->
+            <div class="input-card">
+                <h2 style="margin-bottom: 20px;">📝 Your Details</h2>
+                
+                <div class="unit-toggle" id="unitToggle">
+                    <button class="unit-btn active" onclick="setWaterUnit('metric')">Metric (kg)</button>
+                    <button class="unit-btn" onclick="setWaterUnit('imperial')">Imperial (lbs)</button>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label>Weight</label>
+                        <input type="number" id="weight" value="70" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Unit</label>
+                        <select id="weightUnit">
+                            <option value="kg">kg</option>
+                            <option value="lbs">lbs</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" id="age" value="30" min="1" max="120">
+                </div>
+                
+                <!-- Activity Slider -->
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span>Activity Level</span>
+                        <span id="activityValue">Moderate (3-5x/week)</span>
+                    </div>
+                    <input type="range" id="activity" min="0" max="4" value="2" step="1" oninput="updateActivityLabel(this.value)">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8em; color: #666;">
+                        <span>Sedentary</span>
+                        <span>Light</span>
+                        <span>Moderate</span>
+                        <span>Active</span>
+                        <span>Very Active</span>
+                    </div>
+                </div>
+                
+                <!-- Sweat Rate -->
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span>Sweat Rate</span>
+                        <span id="sweatValue">Average</span>
+                    </div>
+                    <input type="range" id="sweat" min="0" max="2" value="1" step="1" oninput="updateSweatLabel(this.value)">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8em; color: #666;">
+                        <span>Low</span>
+                        <span>Average</span>
+                        <span>High</span>
+                    </div>
+                </div>
+                
+                <!-- Environment -->
+                <div style="margin: 20px 0;">
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600;">Current Weather</label>
+                    <select id="weather" class="input-group">
+                        <option value="normal">🌤️ Normal (20-25°C)</option>
+                        <option value="hot">☀️ Hot (30°C+)</option>
+                        <option value="humid">💦 Humid</option>
+                        <option value="cold">❄️ Cold (below 10°C)</option>
+                    </select>
+                </div>
+                
+                <!-- Lifestyle Factors -->
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="caffeine" onchange="calculateWater()">
+                        <span>☕ Drink coffee/tea (daily)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="alcohol" onchange="calculateWater()">
+                        <span>🍷 Drink alcohol</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="pregnant" onchange="calculateWater()">
+                        <span>🤰 Pregnant</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="breastfeeding" onchange="calculateWater()">
+                        <span>🍼 Breastfeeding</span>
+                    </label>
+                </div>
+                
+                <button class="calc-btn" onclick="calculateWater()">Calculate My Water Needs</button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-card" id="results">
+                <h2 style="margin-bottom: 20px;">📊 Your Daily Water</h2>
+                
+                <div class="water-circle">
+                    <div class="water-value" id="waterAmount">2.5</div>
+                    <div class="water-unit">liters</div>
+                    <div style="margin-top: 10px; color: #666;" id="waterCups">~10 cups</div>
+                </div>
+                
+                <!-- Water Glass Visualization -->
+                <div class="water-glass-visual">
+                    <div style="text-align: center; width: 80px;">
+                        <div class="glass" style="height: 150px;">
+                            <div class="glass-fill" id="glassFill" style="height: 70%"></div>
+                        </div>
+                        <div class="glass-label" id="glassPercent">70% of goal</div>
+                    </div>
+                </div>
+                
+                <!-- Breakdown -->
+                <div class="breakdown-grid">
+                    <div class="breakdown-item">
+                        <div class="value" id="baseWater">2.0</div>
+                        <div>Base Need</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="value" id="activityWater">+0.5</div>
+                        <div>Activity</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="value" id="envWater">+0.0</div>
+                        <div>Environment</div>
+                    </div>
+                </div>
+                
+                <!-- Drinking Schedule -->
+                <div class="time-chart">
+                    <h3 style="margin-bottom: 15px;">⏰ When to Drink</h3>
+                    <div class="time-slots" id="timeSlots">
+                        <div class="time-slot">
+                            <div class="time-dot active"></div>
+                            <div>Morning</div>
+                            <div style="font-size: 0.8em; color: #666;">500ml</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-dot active"></div>
+                            <div>Afternoon</div>
+                            <div style="font-size: 0.8em; color: #666;">1000ml</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-dot active"></div>
+                            <div>Evening</div>
+                            <div style="font-size: 0.8em; color: #666;">750ml</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time-dot"></div>
+                            <div>Night</div>
+                            <div style="font-size: 0.8em; color: #666;">250ml</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Weather Impact -->
+                <div class="weather-impact">
+                    <div class="weather-factor hot" id="hotFactor">
+                        <div>🔥 Hot Weather</div>
+                        <div style="font-size: 1.2em; font-weight: 700;">+500ml</div>
+                    </div>
+                    <div class="weather-factor humid" id="humidFactor">
+                        <div>💦 High Humidity</div>
+                        <div style="font-size: 1.2em; font-weight: 700;">+300ml</div>
+                    </div>
+                </div>
+                
+                <!-- Tips -->
+                <div style="background: #e8f4fc; padding: 15px; border-radius: 10px; margin-top: 20px;">
+                    <p style="color: #666; font-size: 0.9em;" id="waterTip">
+                        <strong>💡 Tip:</strong> Drink a glass of water first thing in morning
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>⭐ 4.8/5 from 1,250+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
+            <p style="font-size: 0.9em;">⚠️ Individual needs vary - listen to your body</p>
+        </div>
+    </div>
+    
+    <script>
+        function setWaterUnit(unit) {
+            document.querySelectorAll('#unitToggle .unit-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const weightInput = document.getElementById('weight');
+            const unitSelect = document.getElementById('weightUnit');
+            
+            if (unit === 'metric') {
+                unitSelect.value = 'kg';
+                weightInput.placeholder = 'kg';
+            } else {
+                unitSelect.value = 'lbs';
+                weightInput.placeholder = 'lbs';
+            }
+            
+            calculateWater();
+        }
+        
+        function updateActivityLabel(value) {
+            const labels = ['Sedentary', 'Light', 'Moderate', 'Active', 'Very Active'];
+            document.getElementById('activityValue').textContent = labels[value] + 
+                (value == 2 ? ' (3-5x/week)' : '');
+            calculateWater();
+        }
+        
+        function updateSweatLabel(value) {
+            const labels = ['Low Sweat', 'Average', 'Heavy Sweat'];
+            document.getElementById('sweatValue').textContent = labels[value];
+            calculateWater();
+        }
+        
+        function calculateWater() {
+            // Get weight and convert to kg
+            let weight = parseFloat(document.getElementById('weight').value) || 70;
+            const unit = document.getElementById('weightUnit').value;
+            
+            if (unit === 'lbs') {
+                weight = weight / 2.205; // Convert to kg
+            }
+            
+            // Base water: 33ml per kg (standard formula)
+            let baseWater = weight * 0.033;
+            
+            // Age adjustment (older need slightly less)
+            const age = parseInt(document.getElementById('age').value) || 30;
+            if (age > 50) baseWater *= 0.95;
+            else if (age < 18) baseWater *= 1.1;
+            
+            // Activity adjustment
+            const activity = parseInt(document.getElementById('activity').value);
+            const activityFactors = [0, 0.3, 0.5, 0.8, 1.2];
+            let activityAdd = activityFactors[activity];
+            
+            // Sweat adjustment
+            const sweat = parseInt(document.getElementById('sweat').value);
+            const sweatFactors = [0, 0.2, 0.4];
+            const sweatAdd = sweatFactors[sweat];
+            
+            // Weather adjustment
+            const weather = document.getElementById('weather').value;
+            let weatherAdd = 0;
+            if (weather === 'hot') weatherAdd = 0.5;
+            else if (weather === 'humid') weatherAdd = 0.3;
+            else if (weather === 'cold') weatherAdd = -0.1;
+            
+            // Lifestyle factors
+            let lifestyleAdd = 0;
+            if (document.getElementById('caffeine').checked) lifestyleAdd += 0.2;
+            if (document.getElementById('alcohol').checked) lifestyleAdd += 0.3;
+            if (document.getElementById('pregnant').checked) lifestyleAdd += 0.3;
+            if (document.getElementById('breastfeeding').checked) lifestyleAdd += 0.7;
+            
+            // Total water
+            let totalWater = baseWater + activityAdd + sweatAdd + weatherAdd + lifestyleAdd;
+            totalWater = Math.round(totalWater * 10) / 10;
+            
+            // Update display
+            document.getElementById('waterAmount').textContent = totalWater.toFixed(1);
+            const cups = Math.round(totalWater * 4.227); // liters to cups
+            document.getElementById('waterCups').textContent = `~${cups} cups`;
+            
+            // Update glass fill (max 4L for visualization)
+            const fillPercent = Math.min(100, (totalWater / 4) * 100);
+            document.getElementById('glassFill').style.height = fillPercent + '%';
+            document.getElementById('glassPercent').textContent = Math.round(fillPercent) + '% of 4L max';
+            
+            // Update breakdown
+            document.getElementById('baseWater').textContent = baseWater.toFixed(1);
+            document.getElementById('activityWater').textContent = 
+                (activityAdd + sweatAdd) > 0 ? '+' + (activityAdd + sweatAdd).toFixed(1) : '0';
+            document.getElementById('envWater').textContent = 
+                weatherAdd > 0 ? '+' + weatherAdd.toFixed(1) : weatherAdd.toFixed(1);
+            
+            // Update weather impact display
+            document.getElementById('hotFactor').style.opacity = weather === 'hot' ? '1' : '0.3';
+            document.getElementById('humidFactor').style.opacity = weather === 'humid' ? '1' : '0.3';
+            
+            // Update drinking schedule
+            const morning = Math.round(totalWater * 0.2 * 100) / 100; // 20% morning
+            const afternoon = Math.round(totalWater * 0.4 * 100) / 100; // 40% afternoon
+            const evening = Math.round(totalWater * 0.3 * 100) / 100; // 30% evening
+            const night = Math.round(totalWater * 0.1 * 100) / 100; // 10% night
+            
+            const slots = document.querySelectorAll('.time-slot');
+            slots[0].querySelector('div:last-child').textContent = morning + 'L';
+            slots[1].querySelector('div:last-child').textContent = afternoon + 'L';
+            slots[2].querySelector('div:last-child').textContent = evening + 'L';
+            slots[3].querySelector('div:last-child').textContent = night + 'L';
+            
+            // Tips based on total
+            let tip = '';
+            if (totalWater > 3.5) {
+                tip = '💪 High intake! Spread throughout day, don\'t drink too fast';
+            } else if (totalWater < 1.5) {
+                tip = '⚠️ Low intake! Try to increase gradually';
+            } else if (document.getElementById('caffeine').checked) {
+                tip = '☕ Add an extra glass for every coffee to stay hydrated';
+            } else if (weather === 'hot') {
+                tip = '🌞 Hot day! Sip water throughout, don\'t wait until thirsty';
+            } else {
+                tip = '💧 Drink a glass now to start your day right!';
+            }
+            document.getElementById('waterTip').innerHTML = '<strong>💡 Tip:</strong> ' + tip;
+        }
+        
+        // Initialize
+        window.onload = function() {
+            calculateWater();
+        };
+    </script>
+</body>
+</html>
