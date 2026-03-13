@@ -1,6 +1,9 @@
+# robots.txt for HealthCalc.in
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /private/
 
+# Sitemap location
 Sitemap: https://healthcalc.in/sitemap.xml
+
+# Disallow admin or private areas (if any)
+# Disallow: /private/
