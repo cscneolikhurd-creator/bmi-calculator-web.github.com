@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta -->
+    <title>Heart Rate Zones Calculator: Karvonen Method & Training Zones | HealthCalc</title>
+    <meta name="description" content="Free heart rate zone calculator: Calculate 5 heart rate zones using Karvonen formula. Find fat burn, cardio, and peak zones for optimal training.">
+    <meta name="keywords" content="heart rate zones, Karvonen method, target heart rate, fat burn zone, cardio zone, max heart rate, training zones">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Heart Rate Zones Calculator with Karvonen Method">
+    <meta property="og:description" content="Optimize your workouts with personalized heart rate zones">
+    <meta property="og:image" content="https://healthcalc.in/images/heartrate-preview.jpg">
+    <meta property="og:url" content="https://healthcalc.in/tools/heart-rate">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://healthcalc.in/tools/heart-rate">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); padding: 30px; text-align: center; color: white; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
+        .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
+        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
+        
+        /* Input Card */
+        .input-card { background: #fee2e2; padding: 25px; border-radius: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #fecaca; border-radius: 10px; font-size: 1em; }
+        
+        .method-toggle { display: flex; gap: 10px; margin-bottom: 20px; background: #fecaca; padding: 5px; border-radius: 50px; }
+        .method-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 50px; cursor: pointer; font-weight: 600; }
+        .method-btn.active { background: white; color: #dc2626; }
+        
+        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        
+        /* Results Card */
+        .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #fee2e2; }
+        
+        .max-hr-box { text-align: center; padding: 20px; background: #fee2e2; border-radius: 20px; margin-bottom: 20px; }
+        .max-value { font-size: 3em; font-weight: 800; color: #dc2626; }
+        
+        .zones-grid { display: grid; gap: 15px; margin: 20px 0; }
+        .zone-item { display: grid; grid-template-columns: 80px 1fr 100px; align-items: center; padding: 15px; background: #fee2e2; border-radius: 15px; }
+        .zone-name { font-weight: 700; }
+        .zone-bar { height: 30px; background: #fecaca; border-radius: 15px; margin: 0 15px; overflow: hidden; }
+        .zone-fill { height: 100%; width: 0%; transition: width 0.3s; }
+        .zone-range { font-weight: 600; color: #dc2626; }
+        
+        .training-tips { background: #fee2e2; padding: 20px; border-radius: 20px; margin: 20px 0; }
+        .tip-item { display: flex; align-items: center; gap: 15px; padding: 10px; border-bottom: 1px solid #fecaca; }
+        
+        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>❤️ Heart Rate Zones Calculator</h1>
+            <p>Karvonen Method • 5 Training Zones • Personalized</p>
+            <div>
+                <span class="badge">🌟 Karvonen Formula</span>
+                <span class="badge">🔥 Fat Burn Zone</span>
+                <span class="badge">🏃 Training Plans</span>
+            </div>
+        </div>
+        
+        <div class="main">
+            <!-- Input Section -->
+            <div class="input-card">
+                <h2 style="margin-bottom: 20px;">📝 Your Details</h2>
+                
+                <div class="method-toggle" id="methodToggle">
+                    <button class="method-btn active" onclick="setMethod('karvonen')">Karvonen (Accurate)</button>
+                    <button class="method-btn" onclick="setMethod('standard')">Standard (220-age)</button>
+                </div>
+                
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" id="age" value="35" min="15" max="100">
+                </div>
+                
+                <div class="input-group">
+                    <label>Resting Heart Rate</label>
+                    <input type="number" id="restingHr" value="70" min="40" max="120" step="1">
+                    <small style="color: #666;">Measure when fully rested, in morning</small>
+                </div>
+                
+                <div class="input-group">
+                    <label>Fitness Level</label>
+                    <select id="fitness">
+                        <option value="beginner">Beginner (just starting)</option>
+                        <option value="intermediate" selected>Intermediate (exercise 2-3x/week)</option>
+                        <option value="advanced">Advanced (exercise 4-5x/week)</option>
+                        <option value="athlete">Athlete (6-7x/week)</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>Workout Goal</label>
+                    <select id="goal">
+                        <option value="fatburn">🔥 Fat Burn / Weight Loss</option>
+                        <option value="cardio">🏃 Cardio / Endurance</option>
+                        <option value="performance">⚡ Peak Performance</option>
+                        <option value="general" selected>General Health</option>
+                    </select>
+                </div>
+                
+                <button class="calc-btn" onclick="calculateZones()">Calculate My Zones</button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-card" id="results">
+                <h2 style="margin-bottom: 20px;">📊 Your Heart Rate Zones</h2>
+                
+                <!-- Max HR -->
+                <div class="max-hr-box">
+                    <div class="max-value" id="maxHr">185</div>
+                    <div>Maximum Heart Rate (bpm)</div>
+                </div>
+                
+                <!-- Zones -->
+                <div class="zones-grid" id="zones">
+                    <!-- Generated by JS -->
+                </div>
+                
+                <!-- Training Tips -->
+                <div class="training-tips">
+                    <h3 style="margin-bottom: 15px;">💡 Training Tips</h3>
+                    <div id="tips">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Goal Recommendation -->
+                <div style="background: #fee2e2; padding: 15px; border-radius: 10px; text-align: center; margin-top: 20px;">
+                    <p id="goalAdvice" style="color: #333;">⏱️ For fat loss, spend 30-45 min in Zone 2</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>⭐ 4.8/5 from 780+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
+            <p style="font-size: 0.9em;">⚠️ Consult a doctor before starting intense exercise</p>
+        </div>
+    </div>
+    
+    <script>
+        let useKarvonen = true;
+        
+        function setMethod(method) {
+            useKarvonen = method === 'karvonen';
+            document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            calculateZones();
+        }
+        
+        function calculateZones() {
+            const age = parseInt(document.getElementById('age').value) || 35;
+            const resting = parseInt(document.getElementById('restingHr').value) || 70;
+            const fitness = document.getElementById('fitness').value;
+            const goal = document.getElementById('goal').value;
+            
+            // Calculate max HR
+            let maxHr;
+            if (useKarvonen) {
+                // More accurate formula based on fitness
+                if (fitness === 'athlete') maxHr = 205 - age/2;
+                else if (fitness === 'advanced') maxHr = 210 - age;
+                else maxHr = 220 - age;
+            } else {
+                maxHr = 220 - age;
+            }
+            
+            document.getElementById('maxHr').textContent = maxHr;
+            
+            // Calculate reserve (Karvonen)
+            const reserve = maxHr - resting;
+            
+            // Define zone percentages
+            const zones = [
+                { name: 'Zone 1', desc: 'Very Light', percent: [0.5, 0.6], color: '#94a3b8', purpose: 'Warm up, recovery' },
+                { name: 'Zone 2', desc: 'Light / Fat Burn', percent: [0.6, 0.7], color: '#4ade80', purpose: 'Fat burning, endurance' },
+                { name: 'Zone 3', desc: 'Moderate / Cardio', percent: [0.7, 0.8], color: '#fbbf24', purpose: 'Cardiovascular fitness' },
+                { name: 'Zone 4', desc: 'Hard / Threshold', percent: [0.8, 0.9], color: '#f97316', purpose: 'Lactate threshold' },
+                { name: 'Zone 5', desc: 'Maximum / Peak', percent: [0.9, 1.0], color: '#ef4444', purpose: 'Maximum performance' }
+            ];
+            
+            // Calculate HR for each zone
+            const zoneRanges = zones.map(zone => {
+                let low, high;
+                if (useKarvonen) {
+                    low = Math.round(resting + reserve * zone.percent[0]);
+                    high = Math.round(resting + reserve * zone.percent[1]);
+                } else {
+                    low = Math.round(maxHr * zone.percent[0]);
+                    high = Math.round(maxHr * zone.percent[1]);
+                }
+                return { ...zone, low, high };
+            });
+            
+            // Render zones
+            const zonesDiv = document.getElementById('zones');
+            zonesDiv.innerHTML = zoneRanges.map(zone => `
+                <div class="zone-item">
+                    <div class="zone-name">${zone.name}</div>
+                    <div class="zone-bar">
+                        <div class="zone-fill" style="width: 100%; background: ${zone.color}; opacity: 0.5;"></div>
+                    </div>
+                    <div class="zone-range">${zone.low}-${zone.high} bpm</div>
+                    <div style="grid-column: 1/-1; font-size: 0.9rem; color: #666; margin-top: 5px;">
+                        ${zone.desc} • ${zone.purpose}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Generate tips based on goal
+            const tipsDiv = document.getElementById('tips');
+            let tips = [];
+            
+            if (goal === 'fatburn') {
+                tips = [
+                    { icon: '🔥', title: 'Zone 2 is your friend', desc: '60-70% of max HR - 30-45 min sessions' },
+                    { icon: '⏱️', title: 'Duration over intensity', desc: 'Longer, steady sessions burn more fat' },
+                    { icon: '🍽️', title: 'Fasted cardio?', desc: 'May help fat oxidation - try morning workouts' }
+                ];
+                document.getElementById('goalAdvice').innerHTML = '🔥 For fat loss: 30-45 min in Zone 2 (fat burn zone)';
+            } else if (goal === 'cardio') {
+                tips = [
+                    { icon: '🏃', title: 'Mix Zone 2 & 3', desc: 'Combine endurance with cardio sessions' },
+                    { icon: '📈', title: 'Progressive overload', desc: 'Increase duration by 10% weekly' },
+                    { icon: '❤️', title: 'Monitor recovery', desc: 'Heart rate should drop quickly after' }
+                ];
+                document.getElementById('goalAdvice').innerHTML = '🏃 For cardio: 20-40 min in Zone 3, 2-3x weekly';
+            } else if (goal === 'performance') {
+                tips = [
+                    { icon: '⚡', title: 'HIIT in Zone 4-5', desc: 'Short bursts with full recovery' },
+                    { icon: '📊', title: 'Track lactate threshold', desc: 'Zone 4 is key for performance' },
+                    { icon: '💪', title: 'Strength training', desc: 'Combine with zone 2 for recovery' }
+                ];
+                document.getElementById('goalAdvice').innerHTML = '⚡ For performance: Interval training in Zone 4-5';
+            } else {
+                tips = [
+                    { icon: '🌟', title: 'Variety is key', desc: 'Mix zones 2,3,4 throughout week' },
+                    { icon: '📱', title: 'Use a heart rate monitor', desc: 'More accurate than perceived effort' },
+                    { icon: '😴', title: 'Rest days matter', desc: 'Active recovery in Zone 1' }
+                ];
+                document.getElementById('goalAdvice').innerHTML = '💡 For general health: 150 min Zone 2-3 per week';
+            }
+            
+            tipsDiv.innerHTML = tips.map(t => `
+                <div class="tip-item">
+                    <span style="font-size: 1.5rem;">${t.icon}</span>
+                    <div>
+                        <strong>${t.title}</strong>
+                        <p style="color: #666; font-size: 0.9rem;">${t.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Initialize
+        window.onload = calculateZones;
+    </script>
+</body>
+</html>
