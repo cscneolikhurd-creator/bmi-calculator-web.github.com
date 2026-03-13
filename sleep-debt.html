@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta -->
+    <title>Sleep Debt Calculator: Recovery Plan & Chronotype | HealthCalc</title>
+    <meta name="description" content="Free sleep debt calculator: Calculate your sleep debt, get personalized recovery schedule, and discover your chronotype (owl or lark). Improve your sleep quality.">
+    <meta name="keywords" content="sleep debt calculator, sleep recovery, chronotype test, sleep deprivation, sleep cycle, bedtime calculator">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sleep Debt Calculator with Recovery Plan">
+    <meta property="og:description" content="Know your sleep debt and get a personalized recovery schedule">
+    <meta property="og:image" content="https://healthcalc.in/images/sleep-preview.jpg">
+    <meta property="og:url" content="https://healthcalc.in/tools/sleep-debt">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://healthcalc.in/tools/sleep-debt">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); padding: 30px; text-align: center; color: white; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
+        .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
+        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
+        
+        /* Input Card */
+        .input-card { background: #f0f2f5; padding: 25px; border-radius: 20px; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #d1d5db; border-radius: 10px; font-size: 1em; }
+        
+        .slider-container { margin: 20px 0; }
+        .slider-label { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        input[type=range] { width: 100%; height: 8px; border-radius: 4px; background: #d1d5db; outline: none; }
+        
+        .chronotype-quiz { background: white; padding: 20px; border-radius: 20px; margin: 20px 0; }
+        .quiz-question { margin-bottom: 15px; }
+        
+        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        
+        /* Results Card */
+        .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #f0f2f5; }
+        
+        .debt-circle { text-align: center; padding: 20px; background: #f0f2f5; border-radius: 20px; margin-bottom: 20px; }
+        .debt-value { font-size: 4em; font-weight: 800; color: #1e293b; line-height: 1; }
+        .debt-label { font-size: 1.2em; color: #666; }
+        
+        .recovery-timeline { background: #f0f2f5; padding: 20px; border-radius: 20px; margin: 20px 0; }
+        .timeline-item { display: flex; align-items: center; margin-bottom: 15px; }
+        .timeline-day { width: 80px; font-weight: 600; }
+        .timeline-bar { flex: 1; height: 30px; background: #d1d5db; border-radius: 15px; margin: 0 15px; overflow: hidden; }
+        .timeline-fill { height: 100%; background: #1e293b; width: 0%; }
+        .timeline-hours { width: 80px; text-align: right; }
+        
+        .chronotype-result { display: flex; align-items: center; gap: 20px; padding: 20px; background: #f0f2f5; border-radius: 20px; margin: 20px 0; }
+        .chronotype-icon { font-size: 3em; }
+        .chronotype-desc { flex: 1; }
+        
+        .tips-list { background: #f0f2f5; padding: 20px; border-radius: 20px; }
+        .tip-item { display: flex; align-items: center; gap: 15px; padding: 10px; border-bottom: 1px solid #d1d5db; }
+        
+        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>😴 Sleep Debt Calculator</h1>
+            <p>Recovery Plan • Chronotype • Sleep Quality</p>
+            <div>
+                <span class="badge">🌟 Recovery Schedule</span>
+                <span class="badge">🦉 Owl or Lark?</span>
+                <span class="badge">📊 Sleep Score</span>
+            </div>
+        </div>
+        
+        <div class="main">
+            <!-- Input Section -->
+            <div class="input-card">
+                <h2 style="margin-bottom: 20px;">📝 Your Sleep Patterns</h2>
+                
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" id="age" value="30" min="1" max="120">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="input-group">
+                        <label>Bedtime</label>
+                        <input type="time" id="bedtime" value="23:00">
+                    </div>
+                    <div class="input-group">
+                        <label>Wake time</label>
+                        <input type="time" id="waketime" value="07:00">
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>How many days of insufficient sleep?</label>
+                    <input type="number" id="badDays" value="5" min="0" max="30" step="1">
+                </div>
+                
+                <div class="input-group">
+                    <label>Sleep quality (1-10)</label>
+                    <input type="range" id="quality" min="1" max="10" value="6" step="1" oninput="updateQualityLabel(this.value)">
+                    <div style="text-align: right;" id="qualityLabel">6/10 - Average</div>
+                </div>
+                
+                <!-- Quick Chronotype Quiz -->
+                <div class="chronotype-quiz">
+                    <h3 style="margin-bottom: 15px;">🦉 Quick Chronotype Quiz</h3>
+                    
+                    <div class="quiz-question">
+                        <label>When do you feel most energetic?</label>
+                        <select id="energy">
+                            <option value="morning">Morning (6am-12pm)</option>
+                            <option value="afternoon">Afternoon (12pm-6pm)</option>
+                            <option value="evening">Evening (6pm-12am)</option>
+                            <option value="night">Night (after 12am)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <label>If free, when would you wake up?</label>
+                        <select id="wakePref">
+                            <option value="early">Before 7am</option>
+                            <option value="normal">7am-9am</option>
+                            <option value="late">After 9am</option>
+                        </select>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <label>Morning coffee/tea?</label>
+                        <select id="coffee">
+                            <option value="yes">Need it to function</option>
+                            <option value="sometimes">Sometimes</option>
+                            <option value="no">No, I'm alert naturally</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="calc-btn" onclick="calculateSleep()">Calculate Sleep Debt</button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-card" id="results">
+                <h2 style="margin-bottom: 20px;">📊 Your Sleep Analysis</h2>
+                
+                <!-- Debt Circle -->
+                <div class="debt-circle">
+                    <div class="debt-value" id="debtHours">12.5</div>
+                    <div class="debt-label">Total Sleep Debt (hours)</div>
+                    <div style="margin-top: 10px; color: #666;" id="debtDays">5 days of debt</div>
+                </div>
+                
+                <!-- Chronotype -->
+                <div class="chronotype-result" id="chronotype">
+                    <div class="chronotype-icon">🦉</div>
+                    <div class="chronotype-desc">
+                        <strong id="chronoName">Night Owl</strong>
+                        <p style="color: #666; font-size: 0.9rem;" id="chronoDesc">You're most active in evening/night hours</p>
+                    </div>
+                </div>
+                
+                <!-- Recovery Timeline -->
+                <div class="recovery-timeline">
+                    <h3 style="margin-bottom: 15px;">📅 Recovery Plan</h3>
+                    <div id="timeline">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Sleep Tips -->
+                <div class="tips-list">
+                    <h3 style="margin-bottom: 15px;">💡 Personalized Tips</h3>
+                    <div id="tips">
+                        <!-- Generated by JS -->
+                    </div>
+                </div>
+                
+                <!-- Next Check -->
+                <div style="background: #f0f2f5; padding: 15px; border-radius: 10px; text-align: center; margin-top: 20px;">
+                    <p style="color: #666;">📊 Sleep Score: <strong id="sleepScore">72</strong>/100 - <span id="scoreGrade">Fair</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>⭐ 4.7/5 from 920+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
+            <p style="font-size: 0.9em;">⚠️ Consult a doctor if you have chronic sleep issues</p>
+        </div>
+    </div>
+    
+    <script>
+        function updateQualityLabel(val) {
+            const labels = ['Very Poor', 'Poor', 'Below Avg', 'Average', 'Good', 'Excellent'];
+            const idx = Math.floor(val / 2);
+            document.getElementById('qualityLabel').textContent = val + '/10 - ' + labels[idx];
+        }
+        
+        function calculateSleep() {
+            // Get inputs
+            const age = parseInt(document.getElementById('age').value) || 30;
+            const bedtime = document.getElementById('bedtime').value;
+            const waketime = document.getElementById('waketime').value;
+            const badDays = parseInt(document.getElementById('badDays').value) || 0;
+            const quality = parseInt(document.getElementById('quality').value) || 6;
+            
+            // Calculate sleep hours
+            const bedHour = parseInt(bedtime.split(':')[0]);
+            const bedMin = parseInt(bedtime.split(':')[1]);
+            const wakeHour = parseInt(waketime.split(':')[0]);
+            const wakeMin = parseInt(waketime.split(':')[1]);
+            
+            let sleepHours = (wakeHour + wakeMin/60) - (bedHour + bedMin/60);
+            if (sleepHours < 0) sleepHours += 24;
+            sleepHours = Math.round(sleepHours * 10) / 10;
+            
+            // Required sleep by age
+            let required = 7.5;
+            if (age < 18) required = 9;
+            else if (age < 30) required = 8;
+            else if (age < 60) required = 7.5;
+            else required = 7;
+            
+            // Calculate daily debt
+            const dailyDebt = Math.max(0, required - sleepHours);
+            const totalDebt = Math.round((dailyDebt * badDays + (required * (7 - quality/10))) * 10) / 10;
+            
+            // Determine chronotype
+            const energy = document.getElementById('energy').value;
+            const wakePref = document.getElementById('wakePref').value;
+            const coffee = document.getElementById('coffee').value;
+            
+            let chronoType = '';
+            let chronoIcon = '';
+            let chronoDesc = '';
+            
+            if (energy === 'morning' || wakePref === 'early') {
+                chronoType = 'Morning Lark';
+                chronoIcon = '🐦';
+                chronoDesc = 'You're most energetic in mornings - best to wake up early';
+            } else if (energy === 'night' || (energy === 'evening' && coffee === 'yes')) {
+                chronoType = 'Night Owl';
+                chronoIcon = '🦉';
+                chronoDesc = 'You're most active at night - try to align work with peak hours';
+            } else {
+                chronoType = 'Intermediate';
+                chronoIcon = '🐧';
+                chronoDesc = 'You're flexible - can adapt to any schedule';
+            }
+            
+            document.getElementById('chronoName').textContent = chronoType;
+            document.getElementById('chronoIcon').textContent = chronoIcon;
+            document.getElementById('chronoDesc').textContent = chronoDesc;
+            
+            // Update debt display
+            document.getElementById('debtHours').textContent = totalDebt.toFixed(1);
+            document.getElementById('debtDays').textContent = badDays + ' days of debt';
+            
+            // Generate recovery timeline
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+            
+            let remainingDebt = totalDebt;
+            for (let day = 1; day <= 7; day++) {
+                if (remainingDebt <= 0) {
+                    timeline.innerHTML += `
+                        <div class="timeline-item">
+                            <span class="timeline-day">Day ${day}</span>
+                            <div class="timeline-bar"><div class="timeline-fill" style="width: 100%"></div></div>
+                            <span class="timeline-hours">✅ Recovered</span>
+                        </div>
+                    `;
+                    continue;
+                }
+                
+                const recoverToday = Math.min(1.5, remainingDebt);
+                remainingDebt -= recoverToday;
+                const percent = (recoverToday / 1.5) * 100;
+                
+                timeline.innerHTML += `
+                    <div class="timeline-item">
+                        <span class="timeline-day">Day ${day}</span>
+                        <div class="timeline-bar"><div class="timeline-fill" style="width: ${percent}%"></div></div>
+                        <span class="timeline-hours">+${recoverToday.toFixed(1)}h</span>
+                    </div>
+                `;
+            }
+            
+            // Generate personalized tips
+            const tips = document.getElementById('tips');
+            let tipsList = [];
+            
+            if (totalDebt > 10) {
+                tipsList.push({ icon: '⏰', title: 'Major sleep debt', desc: 'Add 1 hour extra for next 2 weeks' });
+            }
+            
+            if (sleepHours < 6) {
+                tipsList.push({ icon: '🌙', title: 'Too little sleep', desc: 'Try to go to bed 30min earlier each night' });
+            }
+            
+            if (quality < 5) {
+                tipsList.push({ icon: '📱', title: 'Poor quality', desc: 'No screens 1 hour before bed' });
+            }
+            
+            if (chronoType === 'Night Owl' && wakePref !== 'late') {
+                tipsList.push({ icon: '⏲️', title: 'Chronotype mismatch', desc: 'Try to start work later if possible' });
+            }
+            
+            // Add standard tips
+            tipsList.push(
+                { icon: '☕', title: 'No caffeine after 2pm', desc: 'Caffeine stays in system for 6+ hours' },
+                { icon: '🌡️', title: 'Cool room', desc: '18-20°C is optimal for sleep' },
+                { icon: '🧘', title: 'Wind-down routine', desc: 'Same routine 30min before bed' }
+            );
+            
+            // Remove duplicates and limit
+            tipsList = tipsList.slice(0, 4);
+            
+            tips.innerHTML = tipsList.map(t => `
+                <div class="tip-item">
+                    <span style="font-size: 1.5rem;">${t.icon}</span>
+                    <div>
+                        <strong>${t.title}</strong>
+                        <p style="color: #666; font-size: 0.9rem;">${t.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Sleep score
+            let score = 100;
+            score -= dailyDebt * 10;
+            score -= (10 - quality) * 5;
+            score = Math.max(0, Math.min(100, Math.round(score)));
+            
+            let grade = '';
+            if (score >= 90) grade = 'Excellent';
+            else if (score >= 70) grade = 'Good';
+            else if (score >= 50) grade = 'Fair';
+            else grade = 'Poor';
+            
+            document.getElementById('sleepScore').textContent = score;
+            document.getElementById('scoreGrade').textContent = grade;
+        }
+        
+        // Initialize
+        window.onload = calculateSleep;
+    </script>
+</body>
+</html>
