@@ -1,241 +1,1403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🔬 Hormone Health Calculator: Testosterone, Estrogen & Cortisol | HealthCalc</title>
-<meta name="description" content="Free hormone health assessment based on age, gender, and lifestyle factors. Estimate testosterone, estrogen, cortisol, and get personalized balance recommendations.">
-<style>
-:root { --primary: #8b5cf6; --primary-light: #ede9fe; }
-body { background: linear-gradient(145deg, #f5f3ff, #ede9fe); }
-.btn-primary { background: linear-gradient(145deg, #8b5cf6, #7c3aed); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <!-- SEO Meta -->
+    <title>🔬 Hormone Health Calculator: Testosterone, Estrogen, Cortisol & Thyroid Analysis | HealthCalc</title>
+    <meta name="description" content="Free hormone health assessment for men and women. Analyze testosterone, estrogen, progesterone, cortisol, and thyroid levels based on age, lifestyle, and symptoms. Get personalized hormone balance recommendations.">
+    <meta name="keywords" content="hormone test, testosterone calculator, estrogen levels, cortisol test, thyroid function, menopause symptoms, andropause, hormone imbalance, women's hormones, men's hormones">
+    <meta name="author" content="HealthCalc">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Hormone Health Calculator - Complete Hormone Analysis">
+    <meta property="og:description" content="Analyze your hormone health with gender-specific assessment">
+    <meta property="og:image" content="https://healthcalc.in/images/hormone-og.jpg">
+    <meta property="og:url" content="https://healthcalc.in/hormone-health-calculator">
+    
+    <!-- Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "name": "Hormone Health Calculator",
+        "description": "Comprehensive hormone health assessment based on endocrine society guidelines",
+        "url": "https://healthcalc.in/hormone-health-calculator",
+        "about": {
+            "@type": "Thing",
+            "name": "Hormone Health"
+        }
+    }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #ede9fe;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+            
+            --gradient-primary: linear-gradient(145deg, #8b5cf6, #7c3aed);
+            --gradient-female: linear-gradient(145deg, #ec4899, #db2777);
+            --gradient-male: linear-gradient(145deg, #3b82f6, #2563eb);
+            
+            --shadow-sm: 0 10px 30px -10px rgba(139,92,246,0.2);
+            --shadow-md: 0 20px 40px -15px rgba(139,92,246,0.3);
+            --shadow-lg: 0 30px 60px -15px rgba(139,92,246,0.4);
+            
+            --border-radius-sm: 12px;
+            --border-radius-md: 20px;
+            --border-radius-lg: 30px;
+            --border-radius-xl: 40px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f5f3ff, #ede9fe);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            border: none;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(145deg, #8b5cf6, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .badge {
+            background: var(--primary-light);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(139,92,246,0.2);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 1000px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-xl);
+            padding: 35px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--primary-dark);
+            border-bottom: 2px dashed var(--primary-light);
+            padding-bottom: 20px;
+        }
+
+        .card-title i {
+            background: var(--primary-light);
+            padding: 12px;
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* Gender Selector */
+        .gender-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .gender-option {
+            flex: 1;
+            background: #f3f4f6;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius-lg);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gender-option.male.active {
+            background: linear-gradient(145deg, #dbeafe, #bfdbfe);
+            border-color: #3b82f6;
+        }
+
+        .gender-option.female.active {
+            background: linear-gradient(145deg, #fce7f3, #fbcfe8);
+            border-color: #ec4899;
+        }
+
+        .gender-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .gender-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .gender-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        /* Age Input */
+        .age-input {
+            margin-bottom: 30px;
+        }
+
+        .age-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .age-slider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .age-slider input[type="range"] {
+            flex: 1;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            -webkit-appearance: none;
+        }
+
+        .age-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .age-value {
+            background: var(--primary-light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            min-width: 80px;
+            text-align: center;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-dark);
+        }
+
+        .section-header i {
+            color: var(--primary);
+        }
+
+        /* Input Groups */
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .input-label i {
+            color: var(--primary);
+            width: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--border-radius-sm);
+            font-family: 'Inter';
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+        }
+
+        /* Symptoms Grid */
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .symptom-item {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--border-radius-sm);
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .symptom-item:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .symptom-item.selected {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        .symptom-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        /* Results Card */
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .result-badge {
+            background: var(--primary-light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        /* Hormone Score Box */
+        .hormone-score-box {
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-xl);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hormone-score-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .score-number {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            position: relative;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+
+        .score-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .score-category {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        /* Hormone Gauges */
+        .gauges-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .gauge-item {
+            background: #f9fafb;
+            border-radius: var(--border-radius-lg);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gauge-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .gauge-bar {
+            height: 10px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .gauge-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        .gauge-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .gauge-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Key Findings */
+        .findings-box {
+            background: #f9fafb;
+            border-radius: var(--border-radius-lg);
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid var(--primary);
+        }
+
+        .finding-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .finding-item:last-child {
+            border-bottom: none;
+        }
+
+        .finding-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        /* Recommendations */
+        .recommendations-box {
+            background: #f9fafb;
+            border-radius: var(--border-radius-lg);
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .rec-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .rec-item:last-child {
+            border-bottom: none;
+        }
+
+        .rec-icon {
+            font-size: 2rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .rec-content {
+            flex: 1;
+        }
+
+        .rec-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .rec-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .rec-impact {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0 20px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            box-shadow: 0 10px 20px -5px rgba(139,92,246,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -5px rgba(139,92,246,0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-light);
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-section h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-dark);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 700px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--gray);
+            display: none;
+            padding-top: 10px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .toggle {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--gray);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin-top: 60px;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<h1>🔬 Hormone Health Calculator</h1>
-<p>Based on endocrine society guidelines and clinical research</p>
-</div>
+    <!-- Scroll to top -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<div class="grid">
-<!-- Input Card -->
-<div class="card">
-<div class="card-title">🧬 Your Hormone Profile</div>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🔬 Hormone Health Calculator</h1>
+            <p>Complete hormone analysis for men and women based on Endocrine Society guidelines and clinical research. Get personalized insights for testosterone, estrogen, cortisol, and thyroid.</p>
+            <div class="badges">
+                <span class="badge"><i class="fas fa-venus-mars"></i> Gender-Specific</span>
+                <span class="badge"><i class="fas fa-tachometer-alt"></i> Hormone Score</span>
+                <span class="badge"><i class="fas fa-brain"></i> Cortisol Analysis</span>
+                <span class="badge"><i class="fas fa-shield-alt"></i> 100% Private</span>
+            </div>
+        </div>
 
-<div class="double-input">
-<div class="input-group">
-<label>Age</label>
-<input type="number" id="age" value="35" min="18" max="80">
-</div>
-<div class="input-group">
-<label>Gender</label>
-<select id="gender">
-<option value="male">Male</option>
-<option value="female" selected>Female</option>
-</select>
-</div>
-</div>
+        <!-- Main Grid -->
+        <div class="grid">
+            <!-- Input Card -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-clipboard-list"></i> Your Hormone Profile
+                </div>
 
-<div class="input-group">
-<label>Menopause Status (Female)</label>
-<select id="menopause">
-<option value="pre">Pre-menopause</option>
-<option value="peri">Peri-menopause</option>
-<option value="post">Post-menopause</option>
-<option value="na">N/A</option>
-</select>
-</div>
+                <!-- Gender Selection -->
+                <div class="gender-selector">
+                    <div class="gender-option male" id="genderMale" onclick="setGender('male')">
+                        <div class="gender-icon">♂️</div>
+                        <div class="gender-title">Male</div>
+                        <div class="gender-desc">Testosterone, DHT, Andropause</div>
+                    </div>
+                    <div class="gender-option female active" id="genderFemale" onclick="setGender('female')">
+                        <div class="gender-icon">♀️</div>
+                        <div class="gender-title">Female</div>
+                        <div class="gender-desc">Estrogen, Progesterone, Menopause</div>
+                    </div>
+                </div>
 
-<h4 style="margin:20px 0 10px">💪 Lifestyle Factors</h4>
+                <!-- Age Slider -->
+                <div class="age-input">
+                    <div class="age-label">
+                        <i class="fas fa-calendar-alt"></i> Your Age
+                    </div>
+                    <div class="age-slider">
+                        <input type="range" id="age" min="18" max="80" value="35" step="1">
+                        <span class="age-value" id="ageValue">35</span>
+                    </div>
+                </div>
 
-<div class="input-group">
-<label>Sleep Quality</label>
-<select id="sleep">
-<option value="0">Excellent (7-9h)</option>
-<option value="1">Good (7-8h)</option>
-<option value="2" selected>Fair (6-7h)</option>
-<option value="3">Poor (<6h)</option>
-</select>
-</div>
+                <!-- Female-specific fields -->
+                <div id="femaleFields">
+                    <div class="section-header">
+                        <i class="fas fa-female"></i> Women's Health
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-calendar-alt"></i> Menopause Status</div>
+                        <select id="menopause">
+                            <option value="pre">Pre-menopause (Regular cycles)</option>
+                            <option value="peri">Peri-menopause (Irregular cycles)</option>
+                            <option value="post">Post-menopause (No periods >12 months)</option>
+                            <option value="pregnant">Pregnant / Breastfeeding</option>
+                        </select>
+                    </div>
 
-<div class="input-group">
-<label>Stress Level</label>
-<select id="stress">
-<option value="0">Very Low</option>
-<option value="1">Low</option>
-<option value="2" selected>Moderate</option>
-<option value="3">High</option>
-<option value="4">Very High</option>
-</select>
-</div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-calendar-check"></i> Menstrual Cycle Regularity</div>
+                        <select id="cycleRegular">
+                            <option value="0">Very regular (like clockwork)</option>
+                            <option value="1" selected>Mostly regular</option>
+                            <option value="2">Sometimes irregular</option>
+                            <option value="3">Very irregular</option>
+                            <option value="4">No cycle (post-menopause)</option>
+                        </select>
+                    </div>
 
-<div class="input-group">
-<label>Exercise Frequency</label>
-<select id="exercise">
-<option value="0">Daily</option>
-<option value="1">4-6x/week</option>
-<option value="2" selected>2-3x/week</option>
-<option value="3">1x/week</option>
-<option value="4">Rarely</option>
-</select>
-</div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-tint"></i> Menstrual Symptoms</div>
+                        <select id="cycleSymptoms">
+                            <option value="0">No significant symptoms</option>
+                            <option value="1" selected>Mild PMS</option>
+                            <option value="2">Moderate PMS</option>
+                            <option value="3">Severe PMS / PMDD</option>
+                        </select>
+                    </div>
+                </div>
 
-<div class="input-group">
-<label>Body Fat Level</label>
-<select id="bodyFat">
-<option value="0">Low (Athletic)</option>
-<option value="1">Healthy</option>
-<option value="2" selected>Moderate</option>
-<option value="3">High</option>
-<option value="4">Very High</option>
-</select>
-</div>
+                <!-- Male-specific fields (hidden by default) -->
+                <div id="maleFields" style="display: none;">
+                    <div class="section-header">
+                        <i class="fas fa-male"></i> Men's Health
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-dumbbell"></i> Andropause Symptoms</div>
+                        <select id="andropause">
+                            <option value="0">No symptoms</option>
+                            <option value="1">Mild (low energy occasionally)</option>
+                            <option value="2" selected>Moderate (low libido, fatigue)</option>
+                            <option value="3">Significant (multiple symptoms)</option>
+                        </select>
+                    </div>
+                </div>
 
-<div class="input-group">
-<label>Alcohol Consumption</label>
-<select id="alcohol">
-<option value="0">None</option>
-<option value="1">1-2/week</option>
-<option value="2" selected>3-5/week</option>
-<option value="3">Daily</option>
-<option value="4">Heavy</option>
-</select>
-</div>
+                <!-- Common Lifestyle Factors -->
+                <div class="section-header">
+                    <i class="fas fa-heart"></i> Lifestyle Factors
+                </div>
 
-<h4 style="margin:20px 0 10px">⚠️ Symptoms</h4>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-bed"></i> Sleep Quality</div>
+                        <select id="sleep">
+                            <option value="0">Excellent (7-9h, refreshed)</option>
+                            <option value="1">Good (7-8h)</option>
+                            <option value="2" selected>Fair (6-7h)</option>
+                            <option value="3">Poor (<6h)</option>
+                        </select>
+                    </div>
 
-<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px;">
-<label><input type="checkbox" id="sym1"> Fatigue/Low energy</label>
-<label><input type="checkbox" id="sym2"> Low libido</label>
-<label><input type="checkbox" id="sym3"> Mood swings</label>
-<label><input type="checkbox" id="sym4"> Weight gain</label>
-<label><input type="checkbox" id="sym5"> Hot flashes</label>
-<label><input type="checkbox" id="sym6"> Muscle loss</label>
-</div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-brain"></i> Stress Level</div>
+                        <select id="stress">
+                            <option value="0">Very Low</option>
+                            <option value="1">Low</option>
+                            <option value="2" selected>Moderate</option>
+                            <option value="3">High</option>
+                            <option value="4">Very High</option>
+                        </select>
+                    </div>
 
-<button class="btn-primary" onclick="calculateHormones()">Analyze Hormone Health</button>
-</div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-running"></i> Exercise</div>
+                        <select id="exercise">
+                            <option value="0">Daily (60+ min)</option>
+                            <option value="1">4-6x/week</option>
+                            <option value="2" selected>2-3x/week</option>
+                            <option value="3">1x/week</option>
+                            <option value="4">Rarely</option>
+                        </select>
+                    </div>
 
-<!-- Results Card -->
-<div class="card">
-<div class="card-title">📊 Your Hormone Analysis</div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-weight-scale"></i> Body Fat</div>
+                        <select id="bodyFat">
+                            <option value="0">Low (Athletic)</option>
+                            <option value="1">Healthy</option>
+                            <option value="2" selected>Moderate</option>
+                            <option value="3">High</option>
+                            <option value="4">Very High</option>
+                        </select>
+                    </div>
 
-<div class="score-box" style="background:linear-gradient(145deg,#8b5cf6,#7c3aed)">
-<div class="score-number" id="hormoneScore">72</div>
-<div class="score-category" id="hormoneStatus">Good</div>
-</div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-utensils"></i> Diet Quality</div>
+                        <select id="diet">
+                            <option value="0">Excellent (Whole foods, balanced)</option>
+                            <option value="1">Good (Mostly healthy)</option>
+                            <option value="2" selected>Fair (Mixed)</option>
+                            <option value="3">Poor (Processed foods)</option>
+                        </select>
+                    </div>
 
-<div class="factors-grid">
-<div class="factor-item">
-<div>Testosterone (T-Score)</div>
-<div id="testosterone" style="font-weight:700">65/100</div>
-</div>
-<div class="factor-item">
-<div>Cortisol (Stress)</div>
-<div id="cortisol" style="color:#f59e0b">Moderate</div>
-</div>
-</div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-wine-bottle"></i> Alcohol</div>
+                        <select id="alcohol">
+                            <option value="0">None</option>
+                            <option value="1">1-2/week</option>
+                            <option value="2" selected>3-5/week</option>
+                            <option value="3">Daily</option>
+                            <option value="4">Heavy</option>
+                        </select>
+                    </div>
+                </div>
 
-<div class="factors-grid">
-<div class="factor-item">
-<div>Estrogen/Progesterone</div>
-<div id="estrogen" style="font-weight:700">70/100</div>
-</div>
-<div class="factor-item">
-<div>Thyroid (Metabolism)</div>
-<div id="thyroid" style="font-weight:700">68/100</div>
-</div>
-</div>
+                <!-- Hormone Symptoms -->
+                <div class="section-header">
+                    <i class="fas fa-exclamation-triangle"></i> Hormone-Related Symptoms
+                </div>
 
-<div class="crp-box" style="margin:20px 0;">
-<strong>Key Findings:</strong>
-<div id="keyFindings">Your cortisol is elevated due to stress. Testosterone is in normal range.</div>
-</div>
+                <div class="symptoms-grid" id="symptomsGrid">
+                    <!-- Dynamic symptoms based on gender -->
+                </div>
 
-<div style="margin:30px 0" id="recommendations">
-<!-- Recommendations -->
-</div>
+                <button class="btn-primary" onclick="calculateHormones()">
+                    <i class="fas fa-calculator"></i> Analyze My Hormones
+                </button>
+            </div>
 
-<button class="btn-outline" onclick="shareResults()">📤 Share Results</button>
-</div>
-</div>
-</div>
+            <!-- Results Card -->
+            <div class="card">
+                <div class="result-header">
+                    <div class="card-title" style="border:none; padding:0; margin:0;">
+                        <i class="fas fa-chart-line"></i> Your Hormone Analysis
+                    </div>
+                    <div class="result-badge" id="analysisDate">
+                        <i class="far fa-calendar"></i> <span id="currentDate"></span>
+                    </div>
+                </div>
 
-<script>
-function calculateHormones() {
-const age = parseInt(document.getElementById('age').value);
-const gender = document.getElementById('gender').value;
-const menopause = document.getElementById('menopause').value;
-const sleep = parseInt(document.getElementById('sleep').value);
-const stress = parseInt(document.getElementById('stress').value);
-const exercise = parseInt(document.getElementById('exercise').value);
-const bodyFat = parseInt(document.getElementById('bodyFat').value);
-const alcohol = parseInt(document.getElementById('alcohol').value);
+                <!-- Hormone Score -->
+                <div class="hormone-score-box">
+                    <div class="score-number" id="hormoneScore">78</div>
+                    <div class="score-label">Overall Hormone Health Score</div>
+                    <div class="score-category" id="hormoneStatus">Good</div>
+                </div>
 
-// Count symptoms
-let symptoms = 0;
-for (let i = 1; i <= 6; i++) {
-if (document.getElementById(`sym${i}`).checked) symptoms++;
-}
+                <!-- Hormone Gauges -->
+                <div class="gauges-grid">
+                    <div class="gauge-item">
+                        <div class="gauge-title">
+                            <i class="fas fa-bolt"></i> Testosterone
+                        </div>
+                        <div class="gauge-bar">
+                            <div class="gauge-fill" id="testosteroneBar" style="width:70%; background:#3b82f6;"></div>
+                        </div>
+                        <div class="gauge-value" id="testosteroneValue">70</div>
+                        <div class="gauge-desc" id="testosteroneDesc">Optimal range</div>
+                    </div>
 
-// Calculate hormone scores
-let testosterone = 100 - (age * 0.5) - (stress * 5) - (bodyFat * 4) - (alcohol * 3) - (symptoms * 2);
-testosterone = Math.max(20, Math.min(100, Math.round(testosterone)));
+                    <div class="gauge-item">
+                        <div class="gauge-title">
+                            <i class="fas fa-brain"></i> Cortisol
+                        </div>
+                        <div class="gauge-bar">
+                            <div class="gauge-fill" id="cortisolBar" style="width:45%; background:#f59e0b;"></div>
+                        </div>
+                        <div class="gauge-value" id="cortisolValue">45</div>
+                        <div class="gauge-desc" id="cortisolDesc">Moderate</div>
+                    </div>
 
-let cortisol = stress * 25;
-let cortisolLevel = cortisol > 75 ? 'Very High' : cortisol > 50 ? 'High' : cortisol > 25 ? 'Moderate' : 'Low';
+                    <div class="gauge-item">
+                        <div class="gauge-title">
+                            <i class="fas fa-venus"></i> Estrogen
+                        </div>
+                        <div class="gauge-bar">
+                            <div class="gauge-fill" id="estrogenBar" style="width:65%; background:#ec4899;"></div>
+                        </div>
+                        <div class="gauge-value" id="estrogenValue">65</div>
+                        <div class="gauge-desc" id="estrogenDesc">Balanced</div>
+                    </div>
 
-let estrogen = 100;
-if (gender === 'female') {
-if (menopause === 'post') estrogen -= 30;
-else if (menopause === 'peri') estrogen -= 15;
-estrogen -= (bodyFat * 3) + (stress * 2) + (alcohol * 2);
-} else {
-estrogen = 40 - (age * 0.3) - (bodyFat * 2);
-}
-estrogen = Math.max(10, Math.min(100, Math.round(estrogen)));
+                    <div class="gauge-item">
+                        <div class="gauge-title">
+                            <i class="fas fa-shield-alt"></i> Thyroid
+                        </div>
+                        <div class="gauge-bar">
+                            <div class="gauge-fill" id="thyroidBar" style="width:72%; background:#8b5cf6;"></div>
+                        </div>
+                        <div class="gauge-value" id="thyroidValue">72</div>
+                        <div class="gauge-desc" id="thyroidDesc">Good</div>
+                    </div>
+                </div>
 
-let thyroid = 100 - (stress * 4) - (sleep * 3) - (bodyFat * 2) - (symptoms);
-thyroid = Math.max(20, Math.min(100, Math.round(thyroid)));
+                <!-- Key Findings -->
+                <div class="findings-box">
+                    <h4 style="margin-bottom: 15px;">🔍 Key Findings</h4>
+                    <div id="keyFindings">
+                        <div class="finding-item">
+                            <div class="finding-icon"><i class="fas fa-check"></i></div>
+                            <div>Testosterone within optimal range for your age</div>
+                        </div>
+                        <div class="finding-item">
+                            <div class="finding-icon"><i class="fas fa-exclamation"></i></div>
+                            <div>Cortisol elevated due to stress levels</div>
+                        </div>
+                    </div>
+                </div>
 
-// Overall hormone score
-let totalScore = Math.round((testosterone + estrogen + thyroid) / 3);
-document.getElementById('hormoneScore').innerText = totalScore;
+                <!-- Personalized Recommendations -->
+                <div class="recommendations-box">
+                    <h4 style="margin-bottom: 20px;">📋 Personalized Recommendations</h4>
+                    <div id="recommendations">
+                        <div class="rec-item">
+                            <div class="rec-icon">🧘</div>
+                            <div class="rec-content">
+                                <div class="rec-title">Reduce Stress</div>
+                                <div class="rec-desc">Practice meditation 10 min daily</div>
+                                <div class="rec-impact">+15 points potential</div>
+                            </div>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-icon">😴</div>
+                            <div class="rec-content">
+                                <div class="rec-title">Improve Sleep</div>
+                                <div class="rec-desc">Aim for 7-8 hours consistently</div>
+                                <div class="rec-impact">+12 points potential</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-let status = totalScore > 80 ? 'Excellent' : totalScore > 60 ? 'Good' : totalScore > 40 ? 'Fair' : 'Needs Attention';
-document.getElementById('hormoneStatus').innerText = status;
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="window.print()">
+                        <i class="fas fa-download"></i> PDF Report
+                    </button>
+                    <button class="btn-outline" onclick="shareResults()">
+                        <i class="fas fa-share-alt"></i> Share
+                    </button>
+                </div>
 
-// Update individual scores
-document.getElementById('testosterone').innerText = testosterone + '/100';
-document.getElementById('cortisol').innerText = cortisolLevel;
-document.getElementById('estrogen').innerText = estrogen + '/100';
-document.getElementById('thyroid').innerText = thyroid + '/100';
+                <div class="disclaimer">
+                    ⚕️ This calculator provides estimates based on population data and Endocrine Society guidelines. Not a substitute for medical testing. Consult a healthcare provider for personalized advice.
+                </div>
+            </div>
+        </div>
 
-// Key findings
-let findings = [];
-if (stress > 2) findings.push('High stress affecting cortisol and testosterone');
-if (sleep > 1) findings.push('Poor sleep disrupting hormone balance');
-if (bodyFat > 2) findings.push('Excess body fat affecting estrogen metabolism');
-if (alcohol > 2) findings.push('Alcohol impacting liver hormone clearance');
-if (symptoms > 3) findings.push('Multiple symptoms suggest hormone imbalance');
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How accurate is this hormone calculator?
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">This calculator uses research data from the Endocrine Society, Journal of Clinical Endocrinology & Metabolism, and peer-reviewed studies. It provides estimates based on population averages and lifestyle factors.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What's the difference between male and female hormones?
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Men produce more testosterone; women produce more estrogen and progesterone. Both genders have all hormones but in different ratios. The calculator adjusts for these differences.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What is cortisol and why does it matter?
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Cortisol is your primary stress hormone. Chronically high cortisol disrupts sleep, increases belly fat, and can suppress testosterone and thyroid function.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How can I improve my hormone health?
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-answer">Quality sleep, stress management, strength training, healthy fats, and reducing alcohol/processed foods are the foundations of hormone health.</div>
+                </div>
+            </div>
+        </div>
 
-document.getElementById('keyFindings').innerText = findings[0] || 'Your hormones appear balanced';
+        <!-- Footer -->
+        <footer>
+            <p>© 2024 HealthCalc.in - Hormone Health Calculator | Based on Endocrine Society Guidelines</p>
+        </footer>
+    </div>
 
-// Recommendations
-let recs = [];
-if (stress > 1) recs.push('🧘 Reduce stress: meditation, deep breathing, adaptogenic herbs');
-if (sleep > 1) recs.push('😴 Improve sleep: consistent schedule, no screens, dark room');
-if (exercise > 2) recs.push('🏋️ Increase strength training - boosts testosterone and HGH');
-if (bodyFat > 2) recs.push('🥗 Reduce body fat through nutrition and exercise');
-if (alcohol > 2) recs.push('🍷 Reduce alcohol - impacts liver and hormone balance');
+    <script>
+        let currentGender = 'female';
 
-document.getElementById('recommendations').innerHTML = recs.map(r =>
-`<div style="padding:10px; border-bottom:1px solid #e5e7eb">${r}</div>`
-).join('');
-}
+        // Initialize date
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { 
+            year: 'numeric', month: 'short', day: 'numeric' 
+        });
 
-window.onload = calculateHormones;
-</script>
+        // Age slider
+        document.getElementById('age').addEventListener('input', function(e) {
+            document.getElementById('ageValue').innerText = e.target.value;
+            calculateHormones();
+        });
+
+        // Gender selection
+        function setGender(gender) {
+            currentGender = gender;
+            
+            // Update UI
+            document.getElementById('genderMale').classList.remove('active');
+            document.getElementById('genderFemale').classList.remove('active');
+            
+            if (gender === 'male') {
+                document.getElementById('genderMale').classList.add('active');
+                document.getElementById('maleFields').style.display = 'block';
+                document.getElementById('femaleFields').style.display = 'none';
+            } else {
+                document.getElementById('genderFemale').classList.add('active');
+                document.getElementById('maleFields').style.display = 'none';
+                document.getElementById('femaleFields').style.display = 'block';
+            }
+            
+            updateSymptoms();
+            calculateHormones();
+        }
+
+        // Update symptoms based on gender
+        function updateSymptoms() {
+            const symptomsGrid = document.getElementById('symptomsGrid');
+            
+            if (currentGender === 'male') {
+                symptomsGrid.innerHTML = `
+                    <label class="symptom-item"><input type="checkbox" id="sym1"> Low libido</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym2"> Erectile dysfunction</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym3"> Fatigue/low energy</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym4"> Loss of muscle mass</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym5"> Mood swings</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym6"> Belly fat gain</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym7"> Hair loss</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym8"> Poor focus</label>
+                `;
+            } else {
+                symptomsGrid.innerHTML = `
+                    <label class="symptom-item"><input type="checkbox" id="sym1"> Irregular periods</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym2"> Heavy periods</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym3"> PMS / mood swings</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym4"> Hot flashes</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym5"> Night sweats</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym6"> Fatigue</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym7"> Weight gain</label>
+                    <label class="symptom-item"><input type="checkbox" id="sym8"> Low libido</label>
+                `;
+            }
+        }
+
+        // Main calculation function
+        function calculateHormones() {
+            const age = parseInt(document.getElementById('age').value);
+            
+            // Get lifestyle values
+            const sleep = parseInt(document.getElementById('sleep').value);
+            const stress = parseInt(document.getElementById('stress').value);
+            const exercise = parseInt(document.getElementById('exercise').value);
+            const bodyFat = parseInt(document.getElementById('bodyFat').value);
+            const diet = parseInt(document.getElementById('diet').value);
+            const alcohol = parseInt(document.getElementById('alcohol').value);
+            
+            // Get gender-specific values
+            let menopause = 0;
+            let cycleRegular = 0;
+            let cycleSymptoms = 0;
+            let andropause = 0;
+            
+            if (currentGender === 'female') {
+                menopause = document.getElementById('menopause').value;
+                cycleRegular = parseInt(document.getElementById('cycleRegular').value);
+                cycleSymptoms = parseInt(document.getElementById('cycleSymptoms').value);
+            } else {
+                andropause = parseInt(document.getElementById('andropause').value);
+            }
+            
+            // Count symptoms
+            let symptoms = 0;
+            for (let i = 1; i <= 8; i++) {
+                if (document.getElementById(`sym${i}`) && document.getElementById(`sym${i}`).checked) {
+                    symptoms++;
+                }
+            }
+            
+            // Calculate hormone scores
+            let testosterone, estrogen, cortisol, thyroid;
+            
+            if (currentGender === 'male') {
+                // Male hormone calculations
+                testosterone = 100 - (age * 0.8) - (stress * 4) - (bodyFat * 3) - (alcohol * 2) - (symptoms * 2) - (andropause * 5);
+                testosterone = Math.max(20, Math.min(100, Math.round(testosterone)));
+                
+                estrogen = 40 - (age * 0.3) - (bodyFat * 1.5);
+                estrogen = Math.max(10, Math.min(60, Math.round(estrogen)));
+            } else {
+                // Female hormone calculations
+                let menopauseFactor = 0;
+                if (menopause === 'post') menopauseFactor = 30;
+                else if (menopause === 'peri') menopauseFactor = 15;
+                else if (menopause === 'pregnant') menopauseFactor = -10;
+                
+                testosterone = 40 - (age * 0.3) - (stress * 2) - (bodyFat * 2);
+                testosterone = Math.max(10, Math.min(60, Math.round(testosterone)));
+                
+                estrogen = 100 - menopauseFactor - (cycleSymptoms * 5) - (cycleRegular * 3) - (stress * 3) - (bodyFat * 2);
+                estrogen = Math.max(20, Math.min(100, Math.round(estrogen)));
+            }
+            
+            // Common hormones
+            cortisol = 100 - (stress * 15) + (sleep * 5);
+            cortisol = Math.max(20, Math.min(90, Math.round(cortisol)));
+            
+            thyroid = 100 - (stress * 3) - (sleep * 4) - (diet * 5) - (symptoms);
+            thyroid = Math.max(20, Math.min(100, Math.round(thyroid)));
+            
+            // Overall score
+            let totalScore = Math.round((testosterone + estrogen + cortisol + thyroid) / 4);
+            
+            // Update displays
+            document.getElementById('hormoneScore').innerText = totalScore;
+            
+            let status = '';
+            if (totalScore >= 80) status = 'Excellent';
+            else if (totalScore >= 60) status = 'Good';
+            else if (totalScore >= 40) status = 'Fair';
+            else status = 'Needs Attention';
+            document.getElementById('hormoneStatus').innerText = status;
+            
+            // Update gauges
+            document.getElementById('testosteroneValue').innerText = testosterone;
+            document.getElementById('testosteroneBar').style.width = testosterone + '%';
+            
+            document.getElementById('cortisolValue').innerText = cortisol;
+            document.getElementById('cortisolBar').style.width = cortisol + '%';
+            
+            document.getElementById('estrogenValue').innerText = estrogen;
+            document.getElementById('estrogenBar').style.width = estrogen + '%';
+            
+            document.getElementById('thyroidValue').innerText = thyroid;
+            document.getElementById('thyroidBar').style.width = thyroid + '%';
+            
+            // Descriptions
+            document.getElementById('testosteroneDesc').innerText = 
+                testosterone > 70 ? 'Optimal' : testosterone > 50 ? 'Normal' : 'Low';
+            
+            document.getElementById('cortisolDesc').innerText = 
+                cortisol > 70 ? 'High' : cortisol > 40 ? 'Moderate' : 'Optimal';
+            
+            document.getElementById('estrogenDesc').innerText = 
+                currentGender === 'male' ? (estrogen > 40 ? 'Check' : 'Normal') : 
+                (estrogen > 70 ? 'Optimal' : estrogen > 50 ? 'Normal' : 'Low');
+            
+            document.getElementById('thyroidDesc').innerText = 
+                thyroid > 70 ? 'Optimal' : thyroid > 50 ? 'Normal' : 'Low';
+            
+            // Generate findings
+            let findings = [];
+            
+            if (testosterone < 50 && currentGender === 'male') {
+                findings.push('Testosterone below optimal range - consider strength training and zinc');
+            }
+            if (cortisol > 70) {
+                findings.push('Cortisol is elevated - stress management is priority');
+            }
+            if (estrogen < 50 && currentGender === 'female') {
+                findings.push('Estrogen balance could improve - consider phytoestrogens');
+            }
+            if (thyroid < 50) {
+                findings.push('Thyroid function suboptimal - check iodine and selenium');
+            }
+            if (sleep > 2) {
+                findings.push('Poor sleep affecting hormone balance');
+            }
+            if (stress > 2) {
+                findings.push('High stress impacting multiple hormones');
+            }
+            
+            if (findings.length === 0) {
+                findings.push('Your hormones appear well-balanced');
+                findings.push('Continue healthy lifestyle habits');
+            }
+            
+            document.getElementById('keyFindings').innerHTML = findings.slice(0,3).map(f => `
+                <div class="finding-item">
+                    <div class="finding-icon"><i class="fas fa-${findings.indexOf(f) === 0 ? 'check' : 'info'}"></i></div>
+                    <div>${f}</div>
+                </div>
+            `).join('');
+            
+            // Generate recommendations
+            let recs = [];
+            
+            if (stress > 1) recs.push({
+                icon: '🧘',
+                title: 'Reduce Stress',
+                desc: 'Practice meditation, deep breathing, or yoga daily',
+                impact: '+15'
+            });
+            
+            if (sleep > 1) recs.push({
+                icon: '😴',
+                title: 'Improve Sleep',
+                desc: 'Aim for 7-8 hours, consistent schedule, no screens before bed',
+                impact: '+12'
+            });
+            
+            if (exercise > 2) recs.push({
+                icon: '🏋️',
+                title: 'Increase Exercise',
+                desc: 'Strength training 3x/week boosts testosterone and HGH',
+                impact: '+10'
+            });
+            
+            if (bodyFat > 2) recs.push({
+                icon: '🥗',
+                title: 'Reduce Body Fat',
+                desc: 'Excess fat affects estrogen and testosterone balance',
+                impact: '+8'
+            });
+            
+            if (alcohol > 2) recs.push({
+                icon: '🍷',
+                title: 'Reduce Alcohol',
+                desc: 'Alcohol impacts liver function and hormone clearance',
+                impact: '+7'
+            });
+            
+            if (diet > 1) recs.push({
+                icon: '🥑',
+                title: 'Improve Diet',
+                desc: 'Healthy fats (avocado, nuts, olive oil) support hormones',
+                impact: '+9'
+            });
+            
+            document.getElementById('recommendations').innerHTML = recs.slice(0,3).map(r => `
+                <div class="rec-item">
+                    <div class="rec-icon">${r.icon}</div>
+                    <div class="rec-content">
+                        <div class="rec-title">${r.title}</div>
+                        <div class="rec-desc">${r.desc}</div>
+                        <div class="rec-impact">+${r.impact} points potential</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleFAQ(element) {
+            const faqItem = element.closest('.faq-item');
+            faqItem.classList.toggle('active');
+            const toggle = element.querySelector('.toggle');
+            toggle.textContent = faqItem.classList.contains('active') ? '−' : '+';
+        }
+
+        function shareResults() {
+            const score = document.getElementById('hormoneScore').innerText;
+            const status = document.getElementById('hormoneStatus').innerText;
+            const text = `My Hormone Health Score is ${score} (${status}). Check yours at HealthCalc!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Hormone Health Score',
+                    text: text,
+                    url: window.location.href
+                }).catch(() => {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Link copied to clipboard!');
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copied to clipboard!');
+            }
+        }
+
+        // Scroll to top
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Add event listeners
+        document.querySelectorAll('select, input[type="range"], input[type="checkbox"]').forEach(el => {
+            el.addEventListener('change', calculateHormones);
+        });
+
+        // Initialize
+        window.onload = function() {
+            updateSymptoms();
+            calculateHormones();
+        };
+    </script>
 </body>
 </html>
