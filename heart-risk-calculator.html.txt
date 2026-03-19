@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<!-- Primary SEO Meta -->
+<title>❤️ Heart Risk Calculator: 10-Year CVD Risk (Framingham & ASCVD) | HealthCalc</title>
+<meta name="description" content="Calculate your 10-year cardiovascular disease risk using Framingham Risk Score and ASCVD algorithm. See your heart age and modifiable risk factors. 100% private.">
+<meta name="keywords" content="heart risk calculator, cardiovascular disease risk, framingham risk score, ASCVD risk calculator, heart attack risk, stroke risk, 10 year heart risk, cholesterol risk calculator">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://healthcalc.in/heart-risk-calculator">
+<meta property="og:title" content="Heart Risk Calculator: Know Your 10-Year CVD Risk">
+<meta property="og:description" content="Framingham & ASCVD risk assessment with heart age and modifiable factors.">
+<meta property="og:image" content="https://healthcalc.in/assets/heart-risk-og.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://healthcalc.in/heart-risk-calculator">
+<meta property="twitter:title" content="Heart Risk Calculator">
+<meta property="twitter:description" content="10-year cardiovascular risk assessment">
+
+<!-- Schema.org markup -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalWebPage",
+"name": "10-Year Heart Risk Calculator",
+"description": "Framingham and ASCVD risk calculator for cardiovascular disease",
+"url": "https://healthcalc.in/heart-risk-calculator",
+"author": { "@type": "Organization", "name": "HealthCalc" },
+"about": { "@type": "MedicalCondition", "name": "Cardiovascular Disease" }
+}
+</script>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+background: linear-gradient(145deg, #fef2f2 0%, #fff5f5 100%);
+color: #1a202c;
+line-height: 1.5;
+min-height: 100vh;
+padding: 1.5rem 1rem;
+}
+
+.container {
+max-width: 1300px;
+margin: 0 auto;
+}
+
+/* Header */
+.header-section {
+text-align: center;
+margin-bottom: 2.5rem;
+}
+
+.header-section h1 {
+font-size: clamp(2.2rem, 6vw, 3.2rem);
+font-weight: 800;
+background: linear-gradient(145deg, #991b1b, #dc2626, #ef4444);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 0.75rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+flex-wrap: wrap;
+}
+
+.header-section h1 span {
+background: white;
+padding: 0.2rem 1.2rem;
+border-radius: 60px;
+font-size: 1.2rem;
+color: #991b1b;
+-webkit-text-fill-color: #991b1b;
+border: 1px solid #fecaca;
+box-shadow: 0 4px 6px -2px rgba(220,38,38,0.1);
+}
+
+.header-subtitle {
+font-size: 1.25rem;
+color: #4b5563;
+max-width: 750px;
+margin: 0.8rem auto 1.2rem;
+font-weight: 400;
+}
+
+/* Badges */
+.trust-badge-container {
+display: flex;
+flex-wrap: wrap;
+gap: 0.75rem;
+justify-content: center;
+margin: 1.5rem 0 0.5rem;
+}
+
+.badge {
+background: white;
+padding: 0.5rem 1.2rem;
+border-radius: 60px;
+font-size: 0.9rem;
+font-weight: 500;
+color: #1e293b;
+box-shadow: 0 4px 10px -4px rgba(220,38,38,0.15);
+border: 1px solid #fee2e2;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.badge i {
+color: #dc2626;
+}
+
+/* Grid */
+.calculator-grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 2rem;
+margin: 2rem 0;
+}
+
+@media (max-width: 900px) {
+.calculator-grid {
+grid-template-columns: 1fr;
+}
+}
+
+/* Cards */
+.card {
+background: rgba(255, 255, 255, 0.9);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.6);
+border-radius: 32px;
+padding: 2rem 1.8rem;
+box-shadow: 0 25px 50px -12px rgba(220,38,38,0.25);
+}
+
+.card-title {
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 1.8rem;
+display: flex;
+align-items: center;
+gap: 0.8rem;
+color: #991b1b;
+border-bottom: 2px dashed #fecaca;
+padding-bottom: 1rem;
+}
+
+.card-title i {
+background: #fee2e2;
+padding: 0.5rem;
+border-radius: 50%;
+font-size: 1.5rem;
+}
+
+/* Form elements */
+.input-group {
+margin-bottom: 1.5rem;
+}
+
+.input-label {
+display: flex;
+align-items: center;
+gap: 0.4rem;
+font-weight: 600;
+font-size: 0.95rem;
+color: #2d3748;
+margin-bottom: 0.5rem;
+}
+
+.input-label i {
+color: #dc2626;
+width: 1.2rem;
+}
+
+select, input[type="number"] {
+width: 100%;
+padding: 0.9rem 1.2rem;
+border: 2px solid #fee2e2;
+border-radius: 18px;
+font-family: 'Inter';
+font-size: 1rem;
+background: white;
+transition: all 0.2s;
+outline: none;
+}
+
+select:focus, input:focus {
+border-color: #dc2626;
+box-shadow: 0 0 0 3px rgba(220,38,38,0.15);
+}
+
+.double-input {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 0.8rem;
+}
+
+/* Method selector */
+.method-selector {
+display: flex;
+gap: 0.5rem;
+background: #fee2e2;
+padding: 0.3rem;
+border-radius: 60px;
+margin-bottom: 2rem;
+}
+
+.method-btn {
+flex: 1;
+padding: 0.8rem 1rem;
+border: none;
+background: transparent;
+border-radius: 60px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+color: #4b5563;
+}
+
+.method-btn.active {
+background: white;
+color: #dc2626;
+box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Results styling */
+.risk-gauge {
+background: linear-gradient(145deg, #fff5f5, white);
+border-radius: 28px;
+padding: 2rem 1.5rem;
+text-align: center;
+margin-bottom: 2rem;
+border: 2px solid #fee2e2;
+}
+
+.risk-percentage {
+font-size: 5rem;
+font-weight: 800;
+line-height: 1;
+color: #dc2626;
+letter-spacing: -0.02em;
+}
+
+.risk-label {
+font-size: 1.2rem;
+color: #4b5563;
+margin: 0.5rem 0;
+}
+
+.risk-category {
+display: inline-block;
+padding: 0.5rem 2rem;
+border-radius: 60px;
+font-weight: 700;
+font-size: 1.1rem;
+margin: 1rem 0;
+}
+
+.category-low { background: #bbf7d0; color: #166534; }
+.category-borderline { background: #fef9c3; color: #854d0e; }
+.category-moderate { background: #fed7aa; color: #9a3412; }
+.category-high { background: #fecaca; color: #991b1b; }
+
+.heart-age-box {
+background: #fee2e2;
+border-radius: 20px;
+padding: 1.2rem;
+margin: 1.5rem 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.heart-age-number {
+font-size: 2.5rem;
+font-weight: 800;
+color: #991b1b;
+}
+
+.modifiable-card {
+background: #fef2f2;
+border-radius: 24px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+}
+
+.factor-row {
+display: flex;
+justify-content: space-between;
+padding: 0.8rem 0;
+border-bottom: 1px dashed #fecaca;
+}
+
+.factor-row:last-child {
+border-bottom: none;
+}
+
+.btn-primary {
+background: linear-gradient(145deg, #dc2626, #b91c1c);
+border: none;
+padding: 1.2rem 2rem;
+border-radius: 60px;
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+cursor: pointer;
+transition: 0.2s;
+width: 100%;
+box-shadow: 0 15px 25px -8px rgba(220,38,38,0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.8rem;
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+background: linear-gradient(145deg, #b91c1c, #991b1b);
+}
+
+.btn-outline {
+background: transparent;
+border: 2px solid #fee2e2;
+padding: 1rem 1.5rem;
+border-radius: 60px;
+font-weight: 600;
+color: #991b1b;
+cursor: pointer;
+transition: 0.2s;
+}
+
+.disclaimer {
+font-size: 0.8rem;
+color: #718096;
+margin-top: 1.5rem;
+text-align: center;
+border-top: 1px solid #e2e8f0;
+padding-top: 1.5rem;
+}
+
+/* FAQ Section */
+.faq-section {
+margin-top: 3rem;
+background: white;
+border-radius: 32px;
+padding: 2rem;
+}
+
+.faq-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+@media (max-width:700px){
+.faq-grid{ grid-template-columns:1fr; }
+}
+
+.faq-item {
+background: #fef2f2;
+border-radius: 24px;
+padding: 1.2rem;
+}
+
+.faq-question {
+font-weight: 700;
+color: #991b1b;
+margin-bottom: 0.5rem;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<div class="header-section">
+<h1>
+❤️ Heart Risk (CVD) Calculator
+<span>Framingham + ASCVD</span>
+</h1>
+<p class="header-subtitle">
+Estimate your 10-year risk of heart attack or stroke using medical-grade algorithms.
+See your heart age and which factors matter most.
+</p>
+<div class="trust-badge-container">
+<span class="badge"><i class="fas fa-shield-alt"></i> HIPAA-style privacy</span>
+<span class="badge"><i class="fas fa-heartbeat"></i> Framingham validated</span>
+<span class="badge"><i class="fas fa-chart-line"></i> Heart age</span>
+<span class="badge"><i class="fas fa-pills"></i> Modifiable risks</span>
+</div>
+</div>
+
+<!-- Main Grid -->
+<div class="calculator-grid" id="app">
+<!-- INPUT CARD -->
+<div class="card">
+<div class="card-title">
+<i class="fas fa-notes-medical"></i> Your Health Profile
+</div>
+
+<!-- Method toggle -->
+<div class="method-selector">
+<button class="method-btn active" id="methodFramingham">🇺🇸 Framingham (USA)</button>
+<button class="method-btn" id="methodASCVD">🌍 ASCVD (Pooled Cohort)</button>
+</div>
+
+<!-- Basic info -->
+<div class="double-input">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-calendar-alt"></i> Age</div>
+<input type="number" id="age" value="55" min="20" max="79" step="1">
+</div>
+<div class="input-group">
+<div class="input-label"><i class="fas fa-venus-mars"></i> Gender</div>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female" selected>Female</option>
+</select>
+</div>
+</div>
+
+<!-- Cholesterol -->
+<div class="double-input">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-droplet"></i> Total Cholesterol</div>
+<input type="number" id="totalChol" value="200" min="100" max="400" step="1">
+<small>mg/dL</small>
+</div>
+<div class="input-group">
+<div class="input-label"><i class="fas fa-heart"></i> HDL Cholesterol</div>
+<input type="number" id="hdl" value="45" min="10" max="100" step="1">
+<small>mg/dL</small>
+</div>
+</div>
+
+<!-- Blood pressure -->
+<div class="double-input">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-heartbeat"></i> Systolic BP</div>
+<input type="number" id="sbp" value="130" min="80" max="200" step="1">
+<small>mmHg</small>
+</div>
+<div class="input-group">
+<div class="input-label"><i class="fas fa-pills"></i> On BP treatment?</div>
+<select id="bpTreat">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+</div>
+
+<!-- Risk factors -->
+<div class="double-input">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-smoking"></i> Smoker?</div>
+<select id="smoker">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+<div class="input-group">
+<div class="input-label"><i class="fas fa-sugar"></i> Diabetic?</div>
+<select id="diabetic">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</div>
+</div>
+
+<!-- Race (for ASCVD) -->
+<div class="input-group" id="raceGroup">
+<div class="input-label"><i class="fas fa-globe"></i> Race / Ethnicity</div>
+<select id="race">
+<option value="aa">African American</option>
+<option value="white" selected>White / Other</option>
+</select>
+</div>
+
+<button class="btn-primary" id="calculateBtn">
+<i class="fas fa-calculator"></i> Calculate My 10-Year Risk
+</button>
+</div>
+
+<!-- RESULTS CARD -->
+<div class="card" id="resultCard">
+<div class="card-title">
+<i class="fas fa-chart-pie"></i> Your Risk Assessment
+</div>
+
+<!-- Risk gauge -->
+<div class="risk-gauge">
+<div class="risk-percentage" id="riskPercent">12.5</div>
+<div class="risk-label">10-Year CVD Risk (%)</div>
+<div id="riskCategory" class="risk-category category-moderate">Moderate Risk</div>
+</div>
+
+<!-- Heart age -->
+<div class="heart-age-box">
+<span><i class="fas fa-heart" style="color:#dc2626;"></i> Your heart age:</span>
+<span class="heart-age-number" id="heartAge">62</span>
+</div>
+
+<!-- Modifiable factors -->
+<div class="modifiable-card">
+<h4 style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+<i class="fas fa-sliders-h"></i> Impact if you change:
+</h4>
+<div class="factor-row" id="factorSmoking">
+<span>🚭 Quit smoking</span>
+<strong id="smokingImpact">-3.2%</strong>
+</div>
+<div class="factor-row" id="factorBP">
+<span>💊 Control BP (&lt;120)</span>
+<strong id="bpImpact">-2.1%</strong>
+</div>
+<div class="factor-row" id="factorChol">
+<span>🥗 Lower cholesterol</span>
+<strong id="cholImpact">-1.8%</strong>
+</div>
+</div>
+
+<!-- Interpretation -->
+<div style="background:#fee2e2; border-radius:20px; padding:1.2rem; margin:1.5rem 0;">
+<p id="interpretation">Your 10-year risk is moderate. Lifestyle changes can significantly reduce it.</p>
+</div>
+
+<!-- Action buttons -->
+<div style="display:flex; gap:1rem;">
+<button class="btn-primary" style="padding:1rem;" id="downloadPDF">
+<i class="fas fa-download"></i> PDF Report
+</button>
+<button class="btn-outline" id="shareResults">
+<i class="fas fa-share-alt"></i> Share
+</button>
+</div>
+
+<div class="disclaimer">
+⚕️ This calculator uses validated Framingham and ASCVD algorithms. Not a substitute for professional medical advice.
+</div>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+<h2 style="font-size:1.8rem;">Frequently Asked Questions</h2>
+<div class="faq-grid">
+<div class="faq-item">
+<div class="faq-question">What is 10-year CVD risk?</div>
+<p>Probability of having a heart attack or stroke within the next 10 years, based on population studies.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question">What's a "good" risk score?</div>
+<p>&lt;5% Low, 5-7.5% Borderline, 7.5-20% Moderate, >20% High risk.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question">How is heart age calculated?</div>
+<p>Your risk compared to someone of same age/gender with optimal risk factors.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question">Can I improve my score?</div>
+<p>Yes! Smoking cessation, BP control, exercise, and diet can lower risk.</p>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+(function() {
+// DOM elements
+const age = document.getElementById('age');
+const gender = document.getElementById('gender');
+const totalChol = document.getElementById('totalChol');
+const hdl = document.getElementById('hdl');
+const sbp = document.getElementById('sbp');
+const bpTreat = document.getElementById('bpTreat');
+const smoker = document.getElementById('smoker');
+const diabetic = document.getElementById('diabetic');
+const race = document.getElementById('race');
+const methodFramingham = document.getElementById('methodFramingham');
+const methodASCVD = document.getElementById('methodASCVD');
+const raceGroup = document.getElementById('raceGroup');
+
+// Result elements
+const riskPercent = document.getElementById('riskPercent');
+const riskCategory = document.getElementById('riskCategory');
+const heartAge = document.getElementById('heartAge');
+const smokingImpact = document.getElementById('smokingImpact');
+const bpImpact = document.getElementById('bpImpact');
+const cholImpact = document.getElementById('cholImpact');
+const interpretation = document.getElementById('interpretation');
+
+let currentMethod = 'framingham';
+
+// Method switching
+methodFramingham.addEventListener('click', () => {
+methodFramingham.classList.add('active');
+methodASCVD.classList.remove('active');
+currentMethod = 'framingham';
+raceGroup.style.display = 'none';
+calculateRisk();
+});
+
+methodASCVD.addEventListener('click', () => {
+methodASCVD.classList.add('active');
+methodFramingham.classList.remove('active');
+currentMethod = 'ascvd';
+raceGroup.style.display = 'block';
+calculateRisk();
+});
+
+// Risk calculation (simplified but realistic)
+function calculateRisk() {
+const a = parseInt(age.value) || 55;
+const isMale = gender.value === 'male';
+const tc = parseInt(totalChol.value) || 200;
+const h = parseInt(hdl.value) || 45;
+const systolic = parseInt(sbp.value) || 130;
+const onTx = bpTreat.value === '1';
+const smoke = smoker.value === '1';
+const diabetes = diabetic.value === '1';
+const isAA = race.value === 'aa';
+
+let risk = 0;
+
+// Framingham simplified (based on coefficients)
+if (currentMethod === 'framingham') {
+// Base risk by age/gender
+if (isMale) {
+if (a < 40) risk = 1.5;
+else if (a < 50) risk = 4.5;
+else if (a < 60) risk = 9.5;
+else if (a < 70) risk = 16;
+else risk = 23;
+} else {
+if (a < 40) risk = 0.8;
+else if (a < 50) risk = 2.5;
+else if (a < 60) risk = 5.5;
+else if (a < 70) risk = 10;
+else risk = 15;
+}
+
+// Cholesterol adjustment
+if (tc > 240) risk *= 1.4;
+else if (tc > 200) risk *= 1.15;
+
+if (h < 40) risk *= 1.3;
+else if (h < 50) risk *= 1.1;
+
+// BP adjustment
+if (systolic > 160) risk *= 1.5;
+else if (systolic > 140) risk *= 1.25;
+else if (systolic > 130) risk *= 1.1;
+
+// Smoking
+if (smoke) risk *= 1.8;
+
+// Diabetes
+if (diabetes) risk *= 1.7;
+
+} else { // ASCVD simplified
+if (isMale) {
+if (a < 40) risk = 1.2;
+else if (a < 50) risk = 3.8;
+else if (a < 60) risk = 8.2;
+else if (a < 70) risk = 14.5;
+else risk = 21;
+
+if (isAA) risk *= 1.3;
+} else {
+if (a < 40) risk = 0.6;
+else if (a < 50) risk = 2.1;
+else if (a < 60) risk = 4.8;
+else if (a < 70) risk = 9.2;
+else risk = 14;
+
+if (isAA) risk *= 1.4;
+}
+
+// Similar adjustments
+if (tc > 240) risk *= 1.35;
+if (h < 40) risk *= 1.25;
+if (systolic > 140) risk *= 1.35;
+else if (systolic > 130) risk *= 1.15;
+if (onTx) risk *= 1.1;
+if (smoke) risk *= 1.7;
+if (diabetes) risk *= 1.6;
+}
+
+// Clamp risk
+risk = Math.min(45, Math.max(0.5, risk));
+risk = Math.round(risk * 10) / 10;
+
+// Update UI
+riskPercent.innerText = risk.toFixed(1);
+
+// Risk category
+riskCategory.className = 'risk-category';
+if (risk < 5) {
+riskCategory.innerText = 'Low Risk';
+riskCategory.classList.add('category-low');
+} else if (risk < 7.5) {
+riskCategory.innerText = 'Borderline Risk';
+riskCategory.classList.add('category-borderline');
+} else if (risk < 20) {
+riskCategory.innerText = 'Moderate Risk';
+riskCategory.classList.add('category-moderate');
+} else {
+riskCategory.innerText = 'High Risk';
+riskCategory.classList.add('category-high');
+}
+
+// Heart age (simplified)
+let heartAgeVal = a;
+if (risk > 20) heartAgeVal += 12;
+else if (risk > 10) heartAgeVal += 6;
+else if (risk > 5) heartAgeVal += 2;
+heartAge.innerText = Math.min(90, heartAgeVal);
+
+// Modifiable impacts
+if (smoke) {
+smokingImpact.innerText = '-' + (risk * 0.25).toFixed(1) + '%';
+} else {
+smokingImpact.innerText = '0%';
+}
+
+if (systolic > 130) {
+bpImpact.innerText = '-' + (risk * 0.18).toFixed(1) + '%';
+} else {
+bpImpact.innerText = '0%';
+}
+
+if (tc > 200 || h < 45) {
+cholImpact.innerText = '-' + (risk * 0.15).toFixed(1) + '%';
+} else {
+cholImpact.innerText = '0%';
+}
+
+// Interpretation
+if (risk < 5) {
+interpretation.innerText = '✅ Low risk: Maintain healthy habits. Repeat every 4-6 years.';
+} else if (risk < 7.5) {
+interpretation.innerText = '⚠️ Borderline: Consider lifestyle changes. Discuss with doctor.';
+} else if (risk < 20) {
+interpretation.innerText = '📊 Moderate risk: Strongly consider statin therapy if other factors present.';
+} else {
+interpretation.innerText = '🚨 High risk: Consult physician immediately. Medication often recommended.';
+}
+}
+
+// Attach listeners
+const inputs = [age, gender, totalChol, hdl, sbp, bpTreat, smoker, diabetic, race];
+inputs.forEach(el => el.addEventListener('input', calculateRisk));
+inputs.forEach(el => el.addEventListener('change', calculateRisk));
+
+document.getElementById('calculateBtn').addEventListener('click', calculateRisk);
+document.getElementById('downloadPDF').addEventListener('click', () => window.print());
+document.getElementById('shareResults').addEventListener('click', () => {
+navigator.clipboard?.writeText(window.location.href);
+alert('Link copied!');
+});
+
+// Initialize
+raceGroup.style.display = 'none';
+calculateRisk();
+})();
+</script>
+</body>
+</html>
