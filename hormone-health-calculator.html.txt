@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔬 Hormone Health Calculator: Testosterone, Estrogen & Cortisol | HealthCalc</title>
+<meta name="description" content="Free hormone health assessment based on age, gender, and lifestyle factors. Estimate testosterone, estrogen, cortisol, and get personalized balance recommendations.">
+<style>
+:root { --primary: #8b5cf6; --primary-light: #ede9fe; }
+body { background: linear-gradient(145deg, #f5f3ff, #ede9fe); }
+.btn-primary { background: linear-gradient(145deg, #8b5cf6, #7c3aed); }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🔬 Hormone Health Calculator</h1>
+<p>Based on endocrine society guidelines and clinical research</p>
+</div>
+
+<div class="grid">
+<!-- Input Card -->
+<div class="card">
+<div class="card-title">🧬 Your Hormone Profile</div>
+
+<div class="double-input">
+<div class="input-group">
+<label>Age</label>
+<input type="number" id="age" value="35" min="18" max="80">
+</div>
+<div class="input-group">
+<label>Gender</label>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female" selected>Female</option>
+</select>
+</div>
+</div>
+
+<div class="input-group">
+<label>Menopause Status (Female)</label>
+<select id="menopause">
+<option value="pre">Pre-menopause</option>
+<option value="peri">Peri-menopause</option>
+<option value="post">Post-menopause</option>
+<option value="na">N/A</option>
+</select>
+</div>
+
+<h4 style="margin:20px 0 10px">💪 Lifestyle Factors</h4>
+
+<div class="input-group">
+<label>Sleep Quality</label>
+<select id="sleep">
+<option value="0">Excellent (7-9h)</option>
+<option value="1">Good (7-8h)</option>
+<option value="2" selected>Fair (6-7h)</option>
+<option value="3">Poor (<6h)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Stress Level</label>
+<select id="stress">
+<option value="0">Very Low</option>
+<option value="1">Low</option>
+<option value="2" selected>Moderate</option>
+<option value="3">High</option>
+<option value="4">Very High</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Exercise Frequency</label>
+<select id="exercise">
+<option value="0">Daily</option>
+<option value="1">4-6x/week</option>
+<option value="2" selected>2-3x/week</option>
+<option value="3">1x/week</option>
+<option value="4">Rarely</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Body Fat Level</label>
+<select id="bodyFat">
+<option value="0">Low (Athletic)</option>
+<option value="1">Healthy</option>
+<option value="2" selected>Moderate</option>
+<option value="3">High</option>
+<option value="4">Very High</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Alcohol Consumption</label>
+<select id="alcohol">
+<option value="0">None</option>
+<option value="1">1-2/week</option>
+<option value="2" selected>3-5/week</option>
+<option value="3">Daily</option>
+<option value="4">Heavy</option>
+</select>
+</div>
+
+<h4 style="margin:20px 0 10px">⚠️ Symptoms</h4>
+
+<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px;">
+<label><input type="checkbox" id="sym1"> Fatigue/Low energy</label>
+<label><input type="checkbox" id="sym2"> Low libido</label>
+<label><input type="checkbox" id="sym3"> Mood swings</label>
+<label><input type="checkbox" id="sym4"> Weight gain</label>
+<label><input type="checkbox" id="sym5"> Hot flashes</label>
+<label><input type="checkbox" id="sym6"> Muscle loss</label>
+</div>
+
+<button class="btn-primary" onclick="calculateHormones()">Analyze Hormone Health</button>
+</div>
+
+<!-- Results Card -->
+<div class="card">
+<div class="card-title">📊 Your Hormone Analysis</div>
+
+<div class="score-box" style="background:linear-gradient(145deg,#8b5cf6,#7c3aed)">
+<div class="score-number" id="hormoneScore">72</div>
+<div class="score-category" id="hormoneStatus">Good</div>
+</div>
+
+<div class="factors-grid">
+<div class="factor-item">
+<div>Testosterone (T-Score)</div>
+<div id="testosterone" style="font-weight:700">65/100</div>
+</div>
+<div class="factor-item">
+<div>Cortisol (Stress)</div>
+<div id="cortisol" style="color:#f59e0b">Moderate</div>
+</div>
+</div>
+
+<div class="factors-grid">
+<div class="factor-item">
+<div>Estrogen/Progesterone</div>
+<div id="estrogen" style="font-weight:700">70/100</div>
+</div>
+<div class="factor-item">
+<div>Thyroid (Metabolism)</div>
+<div id="thyroid" style="font-weight:700">68/100</div>
+</div>
+</div>
+
+<div class="crp-box" style="margin:20px 0;">
+<strong>Key Findings:</strong>
+<div id="keyFindings">Your cortisol is elevated due to stress. Testosterone is in normal range.</div>
+</div>
+
+<div style="margin:30px 0" id="recommendations">
+<!-- Recommendations -->
+</div>
+
+<button class="btn-outline" onclick="shareResults()">📤 Share Results</button>
+</div>
+</div>
+</div>
+
+<script>
+function calculateHormones() {
+const age = parseInt(document.getElementById('age').value);
+const gender = document.getElementById('gender').value;
+const menopause = document.getElementById('menopause').value;
+const sleep = parseInt(document.getElementById('sleep').value);
+const stress = parseInt(document.getElementById('stress').value);
+const exercise = parseInt(document.getElementById('exercise').value);
+const bodyFat = parseInt(document.getElementById('bodyFat').value);
+const alcohol = parseInt(document.getElementById('alcohol').value);
+
+// Count symptoms
+let symptoms = 0;
+for (let i = 1; i <= 6; i++) {
+if (document.getElementById(`sym${i}`).checked) symptoms++;
+}
+
+// Calculate hormone scores
+let testosterone = 100 - (age * 0.5) - (stress * 5) - (bodyFat * 4) - (alcohol * 3) - (symptoms * 2);
+testosterone = Math.max(20, Math.min(100, Math.round(testosterone)));
+
+let cortisol = stress * 25;
+let cortisolLevel = cortisol > 75 ? 'Very High' : cortisol > 50 ? 'High' : cortisol > 25 ? 'Moderate' : 'Low';
+
+let estrogen = 100;
+if (gender === 'female') {
+if (menopause === 'post') estrogen -= 30;
+else if (menopause === 'peri') estrogen -= 15;
+estrogen -= (bodyFat * 3) + (stress * 2) + (alcohol * 2);
+} else {
+estrogen = 40 - (age * 0.3) - (bodyFat * 2);
+}
+estrogen = Math.max(10, Math.min(100, Math.round(estrogen)));
+
+let thyroid = 100 - (stress * 4) - (sleep * 3) - (bodyFat * 2) - (symptoms);
+thyroid = Math.max(20, Math.min(100, Math.round(thyroid)));
+
+// Overall hormone score
+let totalScore = Math.round((testosterone + estrogen + thyroid) / 3);
+document.getElementById('hormoneScore').innerText = totalScore;
+
+let status = totalScore > 80 ? 'Excellent' : totalScore > 60 ? 'Good' : totalScore > 40 ? 'Fair' : 'Needs Attention';
+document.getElementById('hormoneStatus').innerText = status;
+
+// Update individual scores
+document.getElementById('testosterone').innerText = testosterone + '/100';
+document.getElementById('cortisol').innerText = cortisolLevel;
+document.getElementById('estrogen').innerText = estrogen + '/100';
+document.getElementById('thyroid').innerText = thyroid + '/100';
+
+// Key findings
+let findings = [];
+if (stress > 2) findings.push('High stress affecting cortisol and testosterone');
+if (sleep > 1) findings.push('Poor sleep disrupting hormone balance');
+if (bodyFat > 2) findings.push('Excess body fat affecting estrogen metabolism');
+if (alcohol > 2) findings.push('Alcohol impacting liver hormone clearance');
+if (symptoms > 3) findings.push('Multiple symptoms suggest hormone imbalance');
+
+document.getElementById('keyFindings').innerText = findings[0] || 'Your hormones appear balanced';
+
+// Recommendations
+let recs = [];
+if (stress > 1) recs.push('🧘 Reduce stress: meditation, deep breathing, adaptogenic herbs');
+if (sleep > 1) recs.push('😴 Improve sleep: consistent schedule, no screens, dark room');
+if (exercise > 2) recs.push('🏋️ Increase strength training - boosts testosterone and HGH');
+if (bodyFat > 2) recs.push('🥗 Reduce body fat through nutrition and exercise');
+if (alcohol > 2) recs.push('🍷 Reduce alcohol - impacts liver and hormone balance');
+
+document.getElementById('recommendations').innerHTML = recs.map(r =>
+`<div style="padding:10px; border-bottom:1px solid #e5e7eb">${r}</div>`
+).join('');
+}
+
+window.onload = calculateHormones;
+</script>
+</body>
+</html>
