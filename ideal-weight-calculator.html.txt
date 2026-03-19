@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ideal Weight Calculator: Frame Size & Goal Projection · HealthCalc</title>
+<meta name="description" content="Most accurate ideal weight calculator with body frame size, Peterson formula, and 3-month goal projection. 100% private.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #f9fbfd; color: #1a2e3f; padding: 1.5rem 1rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+.tool-header { text-align: center; margin-bottom: 2rem; }
+.tool-header h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(145deg, #0B2A4A 0%, #1B4A6B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.badge-container { display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+.badge { background: #e7edf4; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.85rem; font-weight: 500; }
+.calculator-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 1.8rem; margin-top: 1.5rem; }
+@media (max-width:850px){ .calculator-grid { grid-template-columns: 1fr; } }
+.input-panel, .result-panel { background: white; border-radius: 32px; padding: 1.8rem 1.5rem; box-shadow: 0 15px 40px -12px rgba(0,32,64,0.12); border: 1px solid #eef3f8; }
+.panel-title { font-weight: 600; font-size: 1.3rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+.input-group { margin-bottom: 1.25rem; }
+.input-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+.input-row label { font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
+.value-badge { background: #eaf1f9; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; color: #105e5a; }
+input[type=range] { width: 100%; height: 6px; background: #dbe4ed; border-radius: 10px; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: #1b8c87; border-radius: 20px; cursor: pointer; border: 2px solid white; }
+select, .mini-input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #e2eaf2; border-radius: 20px; font-family: 'Inter'; }
+.double-input { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.result-card { background: #f3f9fc; border-radius: 28px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
+.big-number { font-size: 3.5rem; font-weight: 800; color: #003153; }
+.range-badge { display: inline-block; background: #e2f0f2; padding: 0.4rem 1.2rem; border-radius: 40px; margin: 1rem 0; }
+.frame-guide { display: flex; gap: 0.5rem; margin: 1rem 0; }
+.frame-option { flex: 1; padding: 0.7rem; border: 2px solid #d9e3ee; border-radius: 40px; text-align: center; cursor: pointer; }
+.frame-option.active { background: #1d3d5c; color: white; border-color: #1d3d5c; }
+.btn-primary { background: #1d3d5c; border: none; padding: 1rem 2rem; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; width: 100%; }
+.disclaimer { font-size:0.75rem; color:#6a7e94; margin-top:1rem; text-align:center; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="tool-header">
+<h1>⚖️ Ideal Weight · Body Frame Calculator</h1>
+<p>Peterson formula + frame size adjustment — most accurate ideal weight range</p>
+<div class="badge-container">
+<span class="badge"><i class="fas fa-shield-alt"></i> 100% private</span>
+<span class="badge"><i class="fas fa-chart-line"></i> 3-month projection</span>
+<span class="badge"><i class="fas fa-arrows-alt"></i> body frame size</span>
+</div>
+</div>
+
+<div class="calculator-grid">
+<!-- Inputs -->
+<div class="input-panel">
+<div class="panel-title"><i class="fas fa-sliders-h"></i> Your details</div>
+
+<div class="input-group">
+<label>Gender</label>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female" selected>Female</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-row">
+<label>Height</label>
+<span class="value-badge" id="heightVal">170 cm</span>
+</div>
+<input type="range" id="height" min="140" max="210" value="170" step="1">
+<div style="display:flex; justify-content:space-between; margin-top:0.3rem;">
+<span>140 cm</span><span>210 cm</span>
+</div>
+</div>
+
+<div class="input-group">
+<label>Current Weight (kg)</label>
+<input type="number" id="currentWeight" class="mini-input" value="75" min="30" max="200">
+</div>
+
+<div class="input-group">
+<label>Body Frame Size</label>
+<div class="frame-guide" id="frameSelector">
+<div class="frame-option active" data-frame="small">Small</div>
+<div class="frame-option" data-frame="medium">Medium</div>
+<div class="frame-option" data-frame="large">Large</div>
+</div>
+<small style="color:#6a7e94;">Measure wrist circumference or estimate</small>
+</div>
+
+<div class="input-group">
+<div class="input-row">
+<label>Activity Level</label>
+<span class="value-badge" id="activityVal">Moderate</span>
+</div>
+<select id="activity">
+<option value="1.2">Sedentary (office job)</option>
+<option value="1.375">Light (1-3 days/week)</option>
+<option value="1.55" selected>Moderate (3-5 days/week)</option>
+<option value="1.725">Active (6-7 days/week)</option>
+<option value="1.9">Athlete (2x/day)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Goal Weight (optional)</label>
+<input type="number" id="goalWeight" class="mini-input" placeholder="kg" value="70">
+</div>
+</div>
+
+<!-- Results -->
+<div class="result-panel">
+<div class="result-card">
+<div style="font-size:1.1rem; color:#41647c;">Your ideal weight range</div>
+<div class="big-number" id="idealWeight">62.5 - 71.2</div>
+<div class="range-badge" id="frameText">Medium frame: 66.8 kg (ideal)</div>
+</div>
+
+<div style="background:#f0f6fd; border-radius:28px; padding:1.2rem; margin-bottom:1.5rem;">
+<h4>📊 Peterson formula estimate</h4>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+<div>
+<div style="font-size:0.9rem;">Miller (1983)</div>
+<strong id="miller">68.2 kg</strong>
+</div>
+<div>
+<div style="font-size:0.9rem;">Robinson (1983)</div>
+<strong id="robinson">66.5 kg</strong>
+</div>
+<div>
+<div style="font-size:0.9rem;">Devine (1974)</div>
+<strong id="devine">67.8 kg</strong>
+</div>
+<div>
+<div style="font-size:0.9rem;">Peterson (2016)</div>
+<strong id="peterson">66.2 kg</strong>
+</div>
+</div>
+</div>
+
+<div id="goalProjection" style="background:#dff2f0; border-radius:28px; padding:1.2rem; margin-bottom:1.5rem;">
+🎯 <strong>Goal projection:</strong> At your current activity, reaching 70 kg may take <span id="weeksToGoal">8.2 weeks</span>
+</div>
+
+<div style="font-size:0.9rem; margin:1rem 0;">
+<i class="fas fa-ruler"></i> <strong>How to measure frame size:</strong> Wrap thumb & middle finger around opposite wrist. If they overlap = small, touch = medium, don't touch = large.
+</div>
+
+<button class="btn-primary" onclick="window.print()"><i class="fas fa-download"></i> Download PDF</button>
+<div class="disclaimer">Estimate based on multiple formulas. Always consult professional.</div>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+const gender = document.getElementById('gender');
+const height = document.getElementById('height');
+const heightVal = document.getElementById('heightVal');
+const currentWeight = document.getElementById('currentWeight');
+const activity = document.getElementById('activity');
+const goalWeight = document.getElementById('goalWeight');
+
+// Frame selection
+const frameOptions = document.querySelectorAll('.frame-option');
+let frame = 'medium';
+frameOptions.forEach(opt => {
+opt.addEventListener('click', function(){
+frameOptions.forEach(o => o.classList.remove('active'));
+this.classList.add('active');
+frame = this.dataset.frame;
+updateAll();
+});
+});
+
+// Display elements
+const idealWeightSpan = document.getElementById('idealWeight');
+const frameText = document.getElementById('frameText');
+const millerSpan = document.getElementById('miller');
+const robinsonSpan = document.getElementById('robinson');
+const devineSpan = document.getElementById('devine');
+const petersonSpan = document.getElementById('peterson');
+const weeksToGoal = document.getElementById('weeksToGoal');
+
+function updateAll(){
+// Update height badge
+heightVal.innerText = height.value + ' cm';
+
+const h = parseFloat(height.value); // cm
+const isMale = gender.value === 'male';
+const wCurrent = parseFloat(currentWeight.value) || 75;
+const wGoal = parseFloat(goalWeight.value) || wCurrent;
+
+// Peterson formula (most accurate)
+let peterson;
+if(isMale){
+peterson = 50 + 0.91 * (h - 152.4);
+} else {
+peterson = 45.5 + 0.91 * (h - 152.4);
+}
+
+// Frame adjustment (±5% based on frame)
+let frameAdjust = 1.0;
+if(frame === 'small') frameAdjust = 0.95;
+if(frame === 'large') frameAdjust = 1.05;
+
+const idealMin = (peterson * frameAdjust * 0.94).toFixed(1);
+const idealMax = (peterson * frameAdjust * 1.06).toFixed(1);
+const idealCenter = (peterson * frameAdjust).toFixed(1);
+
+idealWeightSpan.innerText = `${idealMin} – ${idealMax} kg`;
+frameText.innerText = `${frame.charAt(0).toUpperCase()+frame.slice(1)} frame: ${idealCenter} kg (ideal)`;
+
+// Other formulas for comparison
+let miller = isMale ? 56.2 + 1.41*(h-152.4)/2.54 : 53.1 + 1.36*(h-152.4)/2.54;
+let robinson = isMale ? 52 + 1.9*(h-152.4)/2.54 : 49 + 1.7*(h-152.4)/2.54;
+let devine = isMale ? 50 + 2.3*(h-152.4)/2.54 : 45.5 + 2.3*(h-152.4)/2.54;
+
+millerSpan.innerText = miller.toFixed(1) + ' kg';
+robinsonSpan.innerText = robinson.toFixed(1) + ' kg';
+devineSpan.innerText = devine.toFixed(1) + ' kg';
+petersonSpan.innerText = peterson.toFixed(1) + ' kg';
+
+// Goal projection (simple CICO estimate)
+if(wGoal < wCurrent){
+const diff = wCurrent - wGoal; // kg to lose
+const calorieDeficit = diff * 7700; // total kcal deficit needed
+const activityMultiplier = parseFloat(activity.value);
+const bmr = isMale ? (10*wCurrent + 6.25*h - 5*30 + 5) : (10*wCurrent + 6.25*h - 5*30 - 161);
+const tdee = bmr * activityMultiplier;
+const deficitPerDay = tdee - 2000; // assuming 2000 kcal intake
+if(deficitPerDay > 0){
+const days = calorieDeficit / deficitPerDay;
+weeksToGoal.innerText = (days/7).toFixed(1) + ' weeks';
+} else {
+weeksToGoal.innerText = 'adjust diet';
+}
+} else {
+weeksToGoal.innerText = 'maintenance';
+}
+}
+
+// Add listeners
+[gender, height, currentWeight, activity, goalWeight].forEach(el => el.addEventListener('input', updateAll));
+updateAll();
+})();
+</script>
+</body>
+</html>

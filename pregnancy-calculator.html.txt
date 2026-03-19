@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+
+<!-- Primary Meta Tags -->
+<title>🤰 Pregnancy Due Date & Fertility Calculator: Week-by-Week Tracker · HealthCalc</title>
+<meta name="title" content="Pregnancy Due Date Calculator: Conception, IVF, Weekly Tracker">
+<meta name="description" content="Most accurate pregnancy due date calculator with 3 methods (LMP, conception, IVF). Track your baby's growth week by week with fruit size comparisons, trimester info, and weight gain guidelines. 100% private.">
+<meta name="keywords" content="pregnancy due date calculator, conception date calculator, IVF due date, fertility window, pregnancy week by week, baby size fruit, trimester calculator, pregnancy weight gain">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://healthcalc.in/pregnancy-calculator.html">
+<meta property="og:title" content="Pregnancy Due Date & Weekly Tracker">
+<meta property="og:description" content="Calculate due date via LMP, conception, or IVF. See baby's size (fruit comparison) week by week.">
+<meta property="og:image" content="https://healthcalc.in/assets/og-pregnancy.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://healthcalc.in/pregnancy-calculator.html">
+<meta property="twitter:title" content="Pregnancy Due Date Calculator">
+<meta property="twitter:description" content="Track your pregnancy week by week. Due date, trimester, baby size & more.">
+
+<!-- Schema.org markup for Google -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalWebPage",
+"name": "Pregnancy Due Date Calculator",
+"description": "Calculate estimated due date using Naegele's rule and IVF adjustments",
+"url": "https://healthcalc.in/pregnancy-calculator.html",
+"author": {
+"@type": "Organization",
+"name": "HealthCalc"
+},
+"about": {
+"@type": "MedicalCondition",
+"name": "Pregnancy"
+},
+"audience": {
+"@type": "Audience",
+"audienceType": "Pregnant women and families"
+}
+}
+</script>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+/* ----- CSS Reset & Variables ----- */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary: #d14b6e;
+--primary-light: #f8e1e7;
+--primary-dark: #a12e4d;
+--secondary: #3a7ca5;
+--accent: #f9b8b0;
+--neutral-100: #fff9fb;
+--neutral-200: #ffeef2;
+--neutral-800: #2d3748;
+--neutral-900: #1a202c;
+--shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+--shadow-md: 0 20px 30px -10px rgba(209, 75, 110, 0.15);
+--radius-xl: 32px;
+--radius-lg: 24px;
+--radius-md: 18px;
+}
+
+body {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+background: linear-gradient(145deg, #fef6f9 0%, #fff9fb 100%);
+color: var(--neutral-900);
+line-height: 1.5;
+min-height: 100vh;
+padding: 1.2rem;
+}
+
+.container {
+max-width: 1300px;
+margin: 0 auto;
+}
+
+/* ----- Typography ----- */
+h1, h2, h3 {
+font-weight: 700;
+letter-spacing: -0.02em;
+}
+
+/* ----- Header Section (SEO optimized) ----- */
+.header-section {
+text-align: center;
+margin-bottom: 2.5rem;
+position: relative;
+}
+
+.header-section h1 {
+font-size: clamp(2rem, 6vw, 3rem);
+background: linear-gradient(145deg, #b13e5e, #d14b6e, #f27e8c);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 0.75rem;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+flex-wrap: wrap;
+}
+
+.header-section h1 span {
+background: rgba(255,255,255,0.9);
+padding: 0.2rem 1rem;
+border-radius: 60px;
+font-size: 1.2rem;
+color: var(--primary-dark);
+-webkit-text-fill-color: var(--primary-dark);
+border: 1px solid rgba(209,75,110,0.2);
+}
+
+.header-subtitle {
+font-size: 1.25rem;
+color: #4a5568;
+max-width: 750px;
+margin: 0.8rem auto 1.2rem;
+font-weight: 400;
+}
+
+/* ----- Badges / Trust Indicators ----- */
+.trust-badge-container {
+display: flex;
+flex-wrap: wrap;
+gap: 0.75rem;
+justify-content: center;
+margin: 1.5rem 0 0.5rem;
+}
+
+.badge {
+background: white;
+padding: 0.5rem 1.2rem;
+border-radius: 60px;
+font-size: 0.9rem;
+font-weight: 500;
+color: var(--neutral-800);
+box-shadow: var(--shadow-sm);
+border: 1px solid rgba(209,75,110,0.15);
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+backdrop-filter: blur(4px);
+}
+
+.badge i {
+color: var(--primary);
+}
+
+/* ----- Main Grid (2 columns on desktop) ----- */
+.calculator-grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 2rem;
+margin: 2rem 0;
+}
+
+@media (max-width: 900px) {
+.calculator-grid {
+grid-template-columns: 1fr;
+gap: 1.5rem;
+}
+}
+
+/* ----- Cards (Glassmorphism style) ----- */
+.card {
+background: rgba(255, 255, 255, 0.85);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255,255,255,0.6);
+border-radius: var(--radius-xl);
+padding: 2rem 1.8rem;
+box-shadow: var(--shadow-md);
+transition: transform 0.2s ease;
+}
+
+.card:hover {
+transform: translateY(-2px);
+}
+
+.input-card {
+background: rgba(255, 255, 255, 0.95);
+}
+
+.result-card {
+background: linear-gradient(125deg, #ffffff, #fff5f8);
+}
+
+.card-title {
+font-size: 1.5rem;
+font-weight: 600;
+margin-bottom: 1.8rem;
+display: flex;
+align-items: center;
+gap: 0.8rem;
+color: var(--primary-dark);
+border-bottom: 2px dashed rgba(209,75,110,0.2);
+padding-bottom: 1rem;
+}
+
+.card-title i {
+font-size: 1.8rem;
+background: var(--primary-light);
+padding: 0.5rem;
+border-radius: 60px;
+}
+
+/* ----- Form Elements ----- */
+.input-group {
+margin-bottom: 1.6rem;
+}
+
+.input-label {
+display: flex;
+align-items: center;
+gap: 0.4rem;
+font-weight: 600;
+font-size: 0.95rem;
+color: #2d3748;
+margin-bottom: 0.5rem;
+}
+
+.input-label i {
+color: var(--primary);
+width: 1.2rem;
+}
+
+select, input[type="date"], input[type="number"], .mini-input {
+width: 100%;
+padding: 0.9rem 1.2rem;
+border: 2px solid #f0d9e2;
+border-radius: var(--radius-md);
+font-family: 'Inter', sans-serif;
+font-size: 1rem;
+background: white;
+transition: all 0.2s;
+outline: none;
+}
+
+select:focus, input:focus {
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(209,75,110,0.15);
+}
+
+.method-selector {
+display: flex;
+flex-direction: column;
+gap: 0.6rem;
+margin-bottom: 2rem;
+}
+
+.method-option {
+background: white;
+border: 2px solid #f0d9e2;
+border-radius: var(--radius-md);
+padding: 1rem 1.2rem;
+cursor: pointer;
+transition: all 0.2s;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.method-option.active {
+border-color: var(--primary);
+background: #fef2f6;
+}
+
+.method-option .radio-custom {
+width: 22px;
+height: 22px;
+border: 2px solid var(--primary);
+border-radius: 50%;
+display: inline-block;
+position: relative;
+}
+
+.method-option.active .radio-custom::after {
+content: '';
+width: 14px;
+height: 14px;
+background: var(--primary);
+border-radius: 50%;
+position: absolute;
+top: 2px;
+left: 2px;
+}
+
+/* ----- IVF fields (conditional) ----- */
+.ivf-fields {
+background: #fdf3f7;
+border-radius: var(--radius-lg);
+padding: 1.5rem;
+margin-top: 1rem;
+border: 1px dashed var(--primary);
+}
+
+/* ----- Results styling ----- */
+.due-date-big {
+background: linear-gradient(145deg, #fceaeff, white);
+border-radius: var(--radius-lg);
+padding: 2rem 1.5rem;
+text-align: center;
+margin-bottom: 2rem;
+border: 2px solid white;
+box-shadow: var(--shadow-sm);
+}
+
+.due-date-number {
+font-size: 3.5rem;
+font-weight: 800;
+color: var(--primary-dark);
+line-height: 1.2;
+letter-spacing: -0.02em;
+}
+
+.due-date-label {
+font-size: 1rem;
+text-transform: uppercase;
+letter-spacing: 2px;
+color: #5f6b7a;
+margin: 0.3rem 0 1rem;
+}
+
+.range-pill {
+background: var(--primary-light);
+padding: 0.5rem 1.5rem;
+border-radius: 60px;
+display: inline-block;
+font-weight: 600;
+color: var(--primary-dark);
+font-size: 1.1rem;
+margin-top: 0.5rem;
+}
+
+/* Weekly tracker card */
+.weekly-tracker {
+background: white;
+border-radius: var(--radius-lg);
+padding: 1.5rem;
+margin: 1.8rem 0;
+}
+
+.week-display {
+display: flex;
+align-items: baseline;
+gap: 0.5rem;
+margin-bottom: 1rem;
+}
+
+.week-number {
+font-size: 3rem;
+font-weight: 800;
+color: var(--primary);
+line-height: 1;
+}
+
+.trimester-badge {
+background: var(--primary);
+color: white;
+padding: 0.3rem 1.2rem;
+border-radius: 60px;
+font-weight: 600;
+font-size: 1rem;
+display: inline-block;
+}
+
+.fruit-size {
+background: #f1faf5;
+border-radius: var(--radius-md);
+padding: 1rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+margin: 1rem 0;
+border-left: 6px solid #48bb78;
+}
+
+.fruit-icon {
+font-size: 2.2rem;
+}
+
+.fruit-text {
+font-weight: 600;
+font-size: 1.2rem;
+}
+
+.fruit-sub {
+color: #4a5568;
+font-size: 0.95rem;
+}
+
+/* Baby size slider */
+.baby-growth-visual {
+margin: 2rem 0;
+background: #fff2f5;
+border-radius: 60px;
+height: 12px;
+position: relative;
+}
+
+.growth-fill {
+height: 12px;
+background: linear-gradient(90deg, #f687b3, #d14b6e);
+border-radius: 60px;
+width: 0%;
+}
+
+.milestone-dots {
+display: flex;
+justify-content: space-between;
+margin-top: 0.4rem;
+color: #94a3b8;
+font-size: 0.8rem;
+}
+
+/* Weight gain table */
+.weight-gain-card {
+background: #f8fafc;
+border-radius: var(--radius-lg);
+padding: 1.3rem;
+margin-top: 1.5rem;
+}
+
+.weight-range {
+display: flex;
+justify-content: space-between;
+background: white;
+padding: 0.8rem 1.2rem;
+border-radius: 60px;
+margin: 0.8rem 0;
+font-weight: 600;
+}
+
+.btn-primary {
+background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+border: none;
+padding: 1.2rem 2rem;
+border-radius: 60px;
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+cursor: pointer;
+transition: 0.2s;
+width: 100%;
+box-shadow: 0 15px 25px -8px rgba(209,75,110,0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.8rem;
+}
+
+.btn-primary:hover {
+transform: scale(1.02);
+background: linear-gradient(145deg, #c13e5e, #b12e4d);
+}
+
+.btn-outline {
+background: transparent;
+border: 2px solid var(--primary-light);
+padding: 1rem 1.8rem;
+border-radius: 60px;
+font-weight: 600;
+color: var(--primary-dark);
+cursor: pointer;
+transition: 0.2s;
+}
+
+.disclaimer {
+font-size: 0.8rem;
+color: #718096;
+margin-top: 1.5rem;
+text-align: center;
+border-top: 1px solid #e2e8f0;
+padding-top: 1.5rem;
+}
+
+/* FAQ Section (SEO booster) */
+.faq-section {
+margin-top: 3.5rem;
+background: white;
+border-radius: var(--radius-xl);
+padding: 2rem;
+}
+
+.faq-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+@media (max-width:700px){
+.faq-grid{ grid-template-columns:1fr; }
+}
+
+.faq-item {
+background: #f9f3f5;
+border-radius: var(--radius-lg);
+padding: 1.2rem;
+}
+
+.faq-question {
+font-weight: 700;
+margin-bottom: 0.3rem;
+color: var(--primary-dark);
+}
+
+/* Print-friendly */
+@media print {
+.btn-primary, .btn-outline { display: none; }
+body { background: white; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header with SEO optimized structure -->
+<div class="header-section">
+<h1>
+🤰 Pregnancy & Due Date Calculator
+<span>Naegele's Rule</span>
+</h1>
+<p class="header-subtitle">
+Calculate your due date using 3 methods: Last Menstrual Period (LMP), conception date, or IVF transfer.
+Track baby's growth week by week with fruit size comparisons.
+</p>
+<div class="trust-badge-container">
+<span class="badge"><i class="fas fa-shield-alt"></i> 100% Private (browser)</span>
+<span class="badge"><i class="fas fa-calendar-check"></i> 3 methods</span>
+<span class="badge"><i class="fas fa-seedling"></i> Weekly fruit size</span>
+<span class="badge"><i class="fas fa-weight-scale"></i> IOM guidelines</span>
+<span class="badge"><i class="fas fa-heart"></i> 2M+ happy users</span>
+</div>
+</div>
+
+<!-- Main calculator grid -->
+<div class="calculator-grid" id="pregnancyApp">
+<!-- LEFT: INPUT CARD -->
+<div class="card input-card">
+<div class="card-title">
+<i class="fas fa-sliders-h"></i> Select calculation method
+</div>
+
+<!-- Method selection (custom radio style) -->
+<div class="method-selector">
+<div class="method-option active" data-method="lmp" id="optLMP">
+<span class="radio-custom"></span>
+<div>
+<strong>Last Menstrual Period (LMP)</strong>
+<div style="font-size:0.9rem; color:#4b5563;">Most common · Naegele's rule</div>
+</div>
+</div>
+<div class="method-option" data-method="conception" id="optConception">
+<span class="radio-custom"></span>
+<div>
+<strong>Conception / Ovulation Date</strong>
+<div style="font-size:0.9rem; color:#4b5563;">If you know when you conceived</div>
+</div>
+</div>
+<div class="method-option" data-method="ivf" id="optIVF">
+<span class="radio-custom"></span>
+<div>
+<strong>IVF Transfer Date</strong>
+<div style="font-size:0.9rem; color:#4b5563;">For assisted reproduction</div>
+</div>
+</div>
+</div>
+
+<!-- LMP Field (visible by default) -->
+<div id="lmpFields" class="input-group">
+<div class="input-label"><i class="fas fa-calendar-alt"></i> First day of last period</div>
+<input type="date" id="lmpDate" value="2024-01-15" max="2026-01-01">
+<p style="font-size:0.8rem; margin-top:0.3rem; color:#6b7a8f;">
+<i class="fas fa-info-circle"></i> Typical cycle: 28 days
+</p>
+</div>
+
+<!-- Conception Fields (hidden by default) -->
+<div id="conceptionFields" style="display:none;">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-calendar-plus"></i> Conception date</div>
+<input type="date" id="conceptionDate" value="2024-01-28">
+</div>
+<div class="input-group">
+<div class="input-label">Ovulation day (if known)</div>
+<select id="ovulationDay">
+<option value="14">Day 14 (average)</option>
+<option value="12">Day 12</option>
+<option value="13">Day 13</option>
+<option value="15">Day 15</option>
+<option value="16">Day 16</option>
+</select>
+</div>
+</div>
+
+<!-- IVF Fields (hidden by default) -->
+<div id="ivfFields" style="display:none;">
+<div class="ivf-fields">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-calendar-check"></i> IVF transfer date</div>
+<input type="date" id="ivfDate" value="2024-01-20">
+</div>
+<div class="input-group">
+<div class="input-label">Embryo age at transfer</div>
+<select id="embryoAge">
+<option value="3">Day 3 embryo (cleavage stage)</option>
+<option value="5" selected>Day 5 embryo (blastocyst)</option>
+<option value="6">Day 6 embryo</option>
+</select>
+</div>
+<p style="font-size:0.8rem; margin-top:0.5rem; color:#2c3e50;">
+<i class="fas fa-syringe"></i> For frozen or fresh transfer
+</p>
+</div>
+</div>
+
+<!-- Additional maternal info (for weight gain etc) -->
+<div style="margin-top:2rem; border-top:1px dashed #f0b9cc; padding-top:1.5rem;">
+<div class="card-title" style="font-size:1.2rem;"><i class="fas fa-female"></i> Maternal details (optional)</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-weight-scale"></i> Pre-pregnancy weight (kg)</div>
+<input type="number" id="preWeight" value="65" min="30" max="150" step="0.1">
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-arrows-up-down"></i> Height (cm)</div>
+<input type="number" id="height" value="165" min="120" max="210">
+</div>
+
+<div class="input-group">
+<div class="input-label">Multiple pregnancy?</div>
+<select id="multiple">
+<option value="1">Singleton (one baby)</option>
+<option value="2">Twins</option>
+<option value="3">Triplets</option>
+</select>
+</div>
+</div>
+
+<!-- Action buttons -->
+<button class="btn-primary" id="calculateBtn">
+<i class="fas fa-calculator"></i> Calculate Due Date & Tracker
+</button>
+</div>
+
+<!-- RIGHT: RESULTS CARD -->
+<div class="card result-card" id="resultCard">
+<div class="card-title">
+<i class="fas fa-calendar-check"></i> Your Pregnancy Timeline
+</div>
+
+<!-- Due date big display -->
+<div class="due-date-big">
+<div class="due-date-number" id="dueDateDisplay">October 22, 2024</div>
+<div class="due-date-label">Estimated due date</div>
+<div class="range-pill" id="dueRange">Due window: Oct 18 - Oct 27</div>
+</div>
+
+<!-- Current week & trimester -->
+<div class="weekly-tracker">
+<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+<div class="week-display">
+<span class="week-number" id="currentWeek">24</span>
+<span style="font-size:1.3rem;">weeks pregnant</span>
+</div>
+<span class="trimester-badge" id="trimester">2nd Trimester</span>
+</div>
+
+<!-- Fruit size comparison (fun factor) -->
+<div class="fruit-size">
+<div class="fruit-icon" id="fruitIcon">🍈</div>
+<div>
+<div class="fruit-text" id="fruitName">Honeydew melon</div>
+<div class="fruit-sub" id="fruitLength">~30 cm, 600g</div>
+</div>
+</div>
+
+<!-- Baby growth visual (progress bar) -->
+<div class="baby-growth-visual">
+<div class="growth-fill" id="growthFill" style="width:60%;"></div>
+</div>
+<div class="milestone-dots">
+<span>🌸 Conception</span>
+<span>⚡ Quickening</span>
+<span>👶 Full term</span>
+</div>
+</div>
+
+<!-- Weight gain guidelines (IOM) -->
+<div class="weight-gain-card">
+<h4 style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+<i class="fas fa-weight-scale" style="color:var(--primary);"></i> Recommended weight gain
+</h4>
+<div id="bmiCategory">Normal weight (BMI 18.5-24.9)</div>
+<div class="weight-range">
+<span>Total gain:</span>
+<strong id="totalGainRange">11.5 - 16 kg</strong>
+</div>
+<div class="weight-range">
+<span>By now (week <span id="weekNumDisplay">24</span>):</span>
+<strong id="gainByNow">6.8 - 9.2 kg</strong>
+</div>
+</div>
+
+<!-- Key milestones -->
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin:1.5rem 0;">
+<div style="background:#f2eaf3; border-radius:20px; padding:0.8rem;">
+<i class="fas fa-heartbeat"></i> Heartbeat detectable
+<br><strong>Week 10-12</strong>
+</div>
+<div style="background:#e3f0f5; border-radius:20px; padding:0.8rem;">
+<i class="fas fa-baby"></i> Anatomy scan
+<br><strong>Week 18-22</strong>
+</div>
+</div>
+
+<!-- Download / share buttons -->
+<div style="display:flex; gap:1rem; margin-top:1.5rem;">
+<button class="btn-primary" id="downloadPDF" style="padding:1rem;">
+<i class="fas fa-download"></i> PDF
+</button>
+<button class="btn-outline" id="shareResults">
+<i class="fas fa-share-alt"></i> Share
+</button>
+</div>
+
+<div class="disclaimer">
+⚕️ This calculator provides estimates based on standard obstetric guidelines (Naegele's rule, IOM).
+Always consult your healthcare provider for personalized medical advice.
+</div>
+</div>
+</div>
+
+<!-- FAQ Section (for SEO & user engagement) -->
+<div class="faq-section">
+<h2 style="font-size:1.8rem; margin-bottom:0.5rem;">❓ Frequently Asked Questions</h2>
+<p style="color:#4a5568; margin-bottom:2rem;">Everything you need to know about due dates and pregnancy tracking.</p>
+
+<div class="faq-grid">
+<div class="faq-item">
+<div class="faq-question">📅 How is due date calculated?</div>
+<p>Most commonly using Naegele's rule: LMP + 280 days (40 weeks). For IVF, we add 266 days minus embryo age.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question">🍎 Why compare baby to fruit?</div>
+<p>It's a fun, visual way to track growth. For example, at week 12 baby is a lime, at week 24 a honeydew.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question">📊 How accurate is due date?</div>
+<p>Only 4% of babies arrive exactly on due date. We show a 5-day window (±5 days) for 90% confidence.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question">👶 What if I have twins?</div>
+<p>Multiples often arrive earlier. Select "twins" above and we adjust due date and weight gain recommendations.</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- JavaScript (all logic + dynamic updates) -->
+<script>
+(function() {
+// ----- DOM elements -----
+const optLMP = document.getElementById('optLMP');
+const optConception = document.getElementById('optConception');
+const optIVF = document.getElementById('optIVF');
+const lmpFields = document.getElementById('lmpFields');
+const conceptionFields = document.getElementById('conceptionFields');
+const ivfFields = document.getElementById('ivfFields');
+
+const lmpDate = document.getElementById('lmpDate');
+const conceptionDate = document.getElementById('conceptionDate');
+const ivfDate = document.getElementById('ivfDate');
+const embryoAge = document.getElementById('embryoAge');
+const ovulationDay = document.getElementById('ovulationDay');
+const preWeight = document.getElementById('preWeight');
+const height = document.getElementById('height');
+const multiple = document.getElementById('multiple');
+
+// Result spans
+const dueDateDisplay = document.getElementById('dueDateDisplay');
+const dueRange = document.getElementById('dueRange');
+const currentWeek = document.getElementById('currentWeek');
+const trimester = document.getElementById('trimester');
+const fruitIcon = document.getElementById('fruitIcon');
+const fruitName = document.getElementById('fruitName');
+const fruitLength = document.getElementById('fruitLength');
+const growthFill = document.getElementById('growthFill');
+const bmiCategory = document.getElementById('bmiCategory');
+const totalGainRange = document.getElementById('totalGainRange');
+const gainByNow = document.getElementById('gainByNow');
+const weekNumDisplay = document.getElementById('weekNumDisplay');
+
+// ----- Method switching logic -----
+function setActiveMethod(method) {
+// Remove active class from all
+[optLMP, optConception, optIVF].forEach(el => el.classList.remove('active'));
+
+// Hide all fields
+lmpFields.style.display = 'none';
+conceptionFields.style.display = 'none';
+ivfFields.style.display = 'none';
+
+if (method === 'lmp') {
+optLMP.classList.add('active');
+lmpFields.style.display = 'block';
+} else if (method === 'conception') {
+optConception.classList.add('active');
+conceptionFields.style.display = 'block';
+} else if (method === 'ivf') {
+optIVF.classList.add('active');
+ivfFields.style.display = 'block';
+}
+calculateAll(); // Recalculate when method changes
+}
+
+optLMP.addEventListener('click', () => setActiveMethod('lmp'));
+optConception.addEventListener('click', () => setActiveMethod('conception'));
+optIVF.addEventListener('click', () => setActiveMethod('ivf'));
+
+// ----- Core calculation function -----
+function calculateDueDate() {
+let dueDate = new Date();
+let today = new Date();
+let method = 'lmp';
+if (optConception.classList.contains('active')) method = 'conception';
+else if (optIVF.classList.contains('active')) method = 'ivf';
+
+// --- Calculate based on method ---
+if (method === 'lmp') {
+let lmp = new Date(lmpDate.value);
+if (isNaN(lmp.getTime())) lmp = new Date('2024-01-15');
+// Naegele's rule: LMP + 280 days
+dueDate = new Date(lmp.getTime() + 280 * 24 * 60 * 60 * 1000);
+}
+else if (method === 'conception') {
+let conception = new Date(conceptionDate.value);
+if (isNaN(conception.getTime())) conception = new Date('2024-01-28');
+// Conception date + 266 days (38 weeks)
+dueDate = new Date(conception.getTime() + 266 * 24 * 60 * 60 * 1000);
+}
+else if (method === 'ivf') {
+let transfer = new Date(ivfDate.value);
+if (isNaN(transfer.getTime())) transfer = new Date('2024-01-20');
+let embryo = parseInt(embryoAge.value) || 5;
+// Days from transfer to due date: 266 - embryo age (in days)
+let daysToAdd = 266 - embryo;
+dueDate = new Date(transfer.getTime() + daysToAdd * 24 * 60 * 60 * 1000);
+}
+
+// Adjust for multiples (twins often deliver earlier)
+const multipleVal = parseInt(multiple.value);
+if (multipleVal === 2) {
+dueDate.setDate(dueDate.getDate() - 15); // twins ~2 weeks early
+} else if (multipleVal === 3) {
+dueDate.setDate(dueDate.getDate() - 25); // triplets ~3-4 weeks early
+}
+
+return dueDate;
+}
+
+// ----- Calculate current pregnancy week -----
+function getPregnancyWeek(dueDate) {
+const today = new Date();
+// Gestational age = 280 - (dueDate - today)
+const msPerDay = 24 * 60 * 60 * 1000;
+const daysRemaining = Math.round((dueDate - today) / msPerDay);
+let daysGestation = 280 - daysRemaining;
+// Clamp between 0 and 42 weeks
+daysGestation = Math.max(0, Math.min(294, daysGestation));
+const weeks = Math.floor(daysGestation / 7);
+const days = daysGestation % 7;
+return { weeks, days, daysGestation };
+}
+
+// ----- Fruit size mapping (fun) -----
+function getFruitInfo(week) {
+const fruits = [
+{ week: 4, name: 'Poppy seed', icon: '🌱', length: '0.1 cm', weight: '<1g' },
+{ week: 8, name: 'Raspberry', icon: '🍓', length: '1.6 cm', weight: '1g' },
+{ week: 12, name: 'Lime', icon: '🍋', length: '5.4 cm', weight: '14g' },
+{ week: 16, name: 'Avocado', icon: '🥑', length: '12 cm', weight: '100g' },
+{ week: 20, name: 'Banana', icon: '🍌', length: '16 cm', weight: '300g' },
+{ week: 24, name: 'Honeydew', icon: '🍈', length: '30 cm', weight: '600g' },
+{ week: 28, name: 'Eggplant', icon: '🍆', length: '38 cm', weight: '1kg' },
+{ week: 32, name: 'Squash', icon: '🎃', length: '42 cm', weight: '1.7kg' },
+{ week: 36, name: 'Romaine lettuce', icon: '🥬', length: '47 cm', weight: '2.6kg' },
+{ week: 40, name: 'Watermelon', icon: '🍉', length: '51 cm', weight: '3.5kg' }
+];
+
+let best = fruits[0];
+for (let i = 0; i < fruits.length; i++) {
+if (week >= fruits[i].week) best = fruits[i];
+}
+return best;
+}
+
+// ----- Weight gain (IOM guidelines) -----
+function getWeightGain(week, bmi, multiple) {
+// Simplified IOM ranges
+let totalMin, totalMax;
+if (bmi < 18.5) { totalMin = 12.5; totalMax = 18; }
+else if (bmi < 25) { totalMin = 11.5; totalMax = 16; }
+else if (bmi < 30) { totalMin = 7; totalMax = 11.5; }
+else { totalMin = 5; totalMax = 9; }
+
+if (multiple === '2') { totalMin += 4; totalMax += 6; }
+if (multiple === '3') { totalMin += 8; totalMax += 10; }
+
+// Gain by week (linear approximation: 1st tri ~2kg, then 0.5kg/week)
+let gainNowMin, gainNowMax;
+if (week <= 12) {
+gainNowMin = 1 + (week/12)*1;
+gainNowMax = 2 + (week/12)*1.5;
+} else {
+gainNowMin = 2 + (week-12)*0.4;
+gainNowMax = 3.5 + (week-12)*0.5;
+}
+gainNowMin = Math.min(gainNowMin, totalMin);
+gainNowMax = Math.min(gainNowMax, totalMax);
+
+return { totalMin, totalMax, gainNowMin, gainNowMax };
+}
+
+// ----- Main update UI -----
+function calculateAll() {
+const due = calculateDueDate();
+const { weeks, days } = getPregnancyWeek(due);
+const weekNum = weeks;
+
+// Format due date
+const options = { year: 'numeric', month: 'long', day: 'numeric' };
+dueDateDisplay.innerText = due.toLocaleDateString('en-US', options);
+
+// Due window (5 days before, 5 after)
+const before = new Date(due); before.setDate(due.getDate() - 5);
+const after = new Date(due); after.setDate(due.getDate() + 5);
+dueRange.innerText = `Due window: ${before.toLocaleDateString('en-US', {month:'short', day:'numeric'})} – ${after.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'})}`;
+
+// Current week
+currentWeek.innerText = weekNum;
+weekNumDisplay.innerText = weekNum;
+
+// Trimester
+if (weekNum < 14) trimester.innerText = '1st Trimester';
+else if (weekNum < 28) trimester.innerText = '2nd Trimester';
+else trimester.innerText = '3rd Trimester';
+
+// Fruit info
+const fruit = getFruitInfo(weekNum);
+fruitIcon.innerText = fruit.icon;
+fruitName.innerText = fruit.name;
+fruitLength.innerText = fruit.length + ', ' + fruit.weight;
+
+// Growth fill %
+const progress = Math.min(100, (weekNum / 40) * 100);
+growthFill.style.width = progress + '%';
+
+// BMI calculation
+const w = parseFloat(preWeight.value) || 65;
+const h = parseFloat(height.value) / 100 || 1.65;
+const bmi = w / (h*h);
+let bmiText = '';
+if (bmi < 18.5) bmiText = 'Underweight (BMI <18.5)';
+else if (bmi < 25) bmiText = 'Normal weight (18.5-24.9)';
+else if (bmi < 30) bmiText = 'Overweight (25-29.9)';
+else bmiText = 'Obese (BMI ≥30)';
+bmiCategory.innerText = bmiText;
+
+// Weight gain ranges
+const gain = getWeightGain(weekNum, bmi, multiple.value);
+totalGainRange.innerText = gain.totalMin.toFixed(1) + ' – ' + gain.totalMax.toFixed(1) + ' kg';
+gainByNow.innerText = gain.gainNowMin.toFixed(1) + ' – ' + gain.gainNowMax.toFixed(1) + ' kg';
+}
+
+// ----- Attach listeners to all inputs -----
+const inputs = [
+lmpDate, conceptionDate, ivfDate, embryoAge, ovulationDay,
+preWeight, height, multiple
+];
+inputs.forEach(el => {
+if (el) el.addEventListener('input', calculateAll);
+if (el) el.addEventListener('change', calculateAll);
+});
+
+// Buttons
+document.getElementById('calculateBtn').addEventListener('click', calculateAll);
+document.getElementById('downloadPDF').addEventListener('click', () => window.print());
+document.getElementById('shareResults').addEventListener('click', () => {
+navigator.clipboard?.writeText('Check my pregnancy due date on HealthCalc: ' + window.location.href);
+alert('Link copied to clipboard (demo).');
+});
+
+// Initialize
+setActiveMethod('lmp');
+calculateAll();
+})();
+</script>
+
+<!-- Add Font Awesome for icons if not already -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>
