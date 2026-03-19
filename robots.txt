@@ -1,9 +1,96 @@
-# robots.txt for HealthCalc.in
+# ============================================
+# ROBOTS.TXT for HealthCalc.in
+# Last Updated: 2026-03-19
+# Total Tools: 15 Health Calculators
+# ============================================
+
+# Allow all crawlers full access
 User-agent: *
 Allow: /
 
-# Sitemap location
+# ============================================
+# SITEMAP LOCATION
+# ============================================
 Sitemap: https://healthcalc.in/sitemap.xml
 
-# Disallow admin or private areas (if any)
+# ============================================
+# MAIN CALCULATOR TOOLS - ALL INDEXED
+# ============================================
+
+# Body Composition Tools
+Allow: /bmi-calculator.html
+Allow: /body-fat-calculator.html
+Allow: /ideal-weight-calculator.html
+Allow: /metabolic-age.html
+Allow: /metabolic-age-pro.html
+
+# Nutrition Tools
+Allow: /calorie-calculator.html
+Allow: /water-intake-calculator.html
+
+# Fitness Tools
+Allow: /heart-rate-zones-calculator.html
+Allow: /heart-risk-calculator.html
+Allow: /met-calculator.html
+
+# Women's Health Tools
+Allow: /menstrual-cycle-calculator.html
+Allow: /pregnancy-calculator.html
+
+# Sleep & Recovery Tools
+Allow: /sleep-debt-calculator.html
+Allow: /sleep-cycle-calculator.html
+
+# Longevity & Health Tools
+Allow: /life-expectancy-calculator.html
+Allow: /gut-microbiome-calculator.html
+Allow: /circadian-rhythm-calculator.html
+Allow: /inflammation-calculator.html
+Allow: /vascular-age-calculator.html
+Allow: /hormone-health-calculator.html
+
+# ============================================
+# STATIC PAGES - ALL INDEXED
+# ============================================
+Allow: /about.html
+Allow: /contact.html
+Allow: /privacy-policy.html
+Allow: /terms-of-service.html
+
+# ============================================
+# DISALLOW RULES
+# ============================================
+
+# Disallow any admin or private directories (if they exist)
+# Disallow: /admin/
 # Disallow: /private/
+# Disallow: /temp/
+# Disallow: /backup/
+
+# Disallow temporary or duplicate files
+Disallow: /*.tmp$
+Disallow: /*.temp$
+Disallow: /*.bak$
+Disallow: /*.old$
+
+# Disallow URL parameters that create duplicate content
+Disallow: /*?utm_source=
+Disallow: /*?utm_medium=
+Disallow: /*?utm_campaign=
+Disallow: /*?fbclid=
+Disallow: /*?ref=
+
+# ============================================
+# CRAWL DELAY (Optional - for slower servers)
+# ============================================
+# Crawl-delay: 1
+
+# ============================================
+# HOST (Optional - specifies canonical domain)
+# ============================================
+Host: https://healthcalc.in
+
+# ============================================
+# END OF ROBOTS.TXT
+# Total URLs to Index: 15 Calculators + 4 Static = 19 Pages
+# ============================================
