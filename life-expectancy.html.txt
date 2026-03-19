@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life expectancy Calculator: Healthspan & Lifespan · HealthCalc</title>
+<meta name="description" content="Most accurate life expectancy calculator. See how your lifestyle affects your healthspan. 100% private, no signup, global data.">
+<!-- Google Fonts + Font Awesome -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', sans-serif;
+background: #f9fbfd;
+color: #1a2e3f;
+line-height: 1.5;
+padding: 1.5rem 1rem;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/* header style matching healthcalc.in */
+.tool-header {
+text-align: center;
+margin-bottom: 2rem;
+}
+
+.tool-header h1 {
+font-size: 2.2rem;
+font-weight: 700;
+background: linear-gradient(145deg, #0B2A4A 0%, #1B4A6B 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+letter-spacing: -0.02em;
+}
+
+.tool-header p {
+font-size: 1.2rem;
+color: #4a5f73;
+max-width: 700px;
+margin: 0.5rem auto 0;
+}
+
+.badge-container {
+display: flex;
+flex-wrap: wrap;
+gap: 0.75rem;
+justify-content: center;
+margin-top: 1rem;
+}
+
+.badge {
+background: #e7edf4;
+padding: 0.4rem 1rem;
+border-radius: 40px;
+font-size: 0.85rem;
+font-weight: 500;
+color: #1e3b5c;
+display: inline-flex;
+align-items: center;
+gap: 0.4rem;
+}
+
+.badge i {
+color: #2f7e79;
+}
+
+/* main grid */
+.calculator-grid {
+display: grid;
+grid-template-columns: 1fr 1.1fr;
+gap: 1.8rem;
+margin-top: 1.5rem;
+}
+
+@media (max-width: 850px) {
+.calculator-grid {
+grid-template-columns: 1fr;
+gap: 2rem;
+}
+}
+
+/* input panel */
+.input-panel {
+background: white;
+border-radius: 32px;
+padding: 1.8rem 1.5rem;
+box-shadow: 0 15px 40px -12px rgba(0,32,64,0.12);
+border: 1px solid #eef3f8;
+}
+
+.panel-title {
+font-weight: 600;
+font-size: 1.3rem;
+margin-bottom: 1.5rem;
+display: flex;
+align-items: center;
+gap: 0.6rem;
+}
+
+.panel-title i {
+color: #1e6f6b;
+}
+
+.mode-switch {
+display: flex;
+background: #edf3f9;
+border-radius: 60px;
+padding: 0.25rem;
+margin-bottom: 2rem;
+}
+
+.mode-btn {
+flex: 1;
+border: none;
+background: transparent;
+padding: 0.7rem 0.5rem;
+border-radius: 60px;
+font-weight: 600;
+font-size: 0.95rem;
+color: #4d6278;
+cursor: pointer;
+transition: 0.2s;
+}
+
+.mode-btn.active {
+background: white;
+color: #0b2f4a;
+box-shadow: 0 4px 12px rgba(0,40,70,0.08);
+}
+
+.input-group {
+margin-bottom: 1.25rem;
+}
+
+.input-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 0.3rem;
+}
+
+.input-row label {
+font-weight: 500;
+font-size: 0.95rem;
+color: #1f3c54;
+display: flex;
+align-items: center;
+gap: 0.4rem;
+}
+
+.input-row .value-badge {
+background: #eaf1f9;
+padding: 0.2rem 0.8rem;
+border-radius: 30px;
+font-size: 0.85rem;
+font-weight: 600;
+color: #105e5a;
+}
+
+input[type=range] {
+width: 100%;
+height: 6px;
+background: #dbe4ed;
+border-radius: 10px;
+-webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+background: #1b8c87;
+border-radius: 20px;
+box-shadow: 0 4px 8px rgba(20,80,70,0.2);
+cursor: pointer;
+border: 2px solid white;
+}
+
+select, .unit-toggle {
+width: 100%;
+padding: 0.7rem 1rem;
+border: 1.5px solid #e2eaf2;
+border-radius: 20px;
+font-family: 'Inter', sans-serif;
+font-size: 0.95rem;
+background: white;
+color: #1a2e3f;
+margin-top: 0.25rem;
+}
+
+.double-input {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 0.8rem;
+margin-top: 0.3rem;
+}
+
+.mini-input {
+border: 1.5px solid #e2eaf2;
+border-radius: 18px;
+padding: 0.6rem 1rem;
+width: 100%;
+}
+
+/* deep mode extra fields (initially hidden) */
+.deep-fields {
+display: none;
+margin-top: 1.5rem;
+border-top: 2px dashed #cbdae8;
+padding-top: 1.5rem;
+}
+
+.deep-fields.visible {
+display: block;
+}
+
+/* result panel */
+.result-panel {
+background: white;
+border-radius: 32px;
+padding: 1.8rem 1.5rem;
+box-shadow: 0 20px 50px -12px rgba(9, 51, 80, 0.2);
+border: 1px solid #eef3f8;
+}
+
+.live-number {
+background: linear-gradient(115deg, #e2f0f2 0%, #d1e7ed 100%);
+border-radius: 40px;
+padding: 1.8rem 1rem;
+text-align: center;
+margin-bottom: 2rem;
+}
+
+.live-main {
+font-size: 4.2rem;
+font-weight: 800;
+line-height: 1;
+color: #003153;
+letter-spacing: -0.02em;
+}
+
+.live-label {
+font-size: 1rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+color: #1f5c6e;
+font-weight: 600;
+}
+
+.live-sub {
+margin-top: 0.6rem;
+color: #2a4d69;
+font-weight: 500;
+}
+
+.healthspan-row {
+display: flex;
+justify-content: space-between;
+background: #f3f9fc;
+padding: 1rem 1.5rem;
+border-radius: 40px;
+margin: 1.8rem 0;
+font-weight: 600;
+}
+
+.healthspan-item {
+text-align: center;
+}
+
+.healthspan-number {
+font-size: 2rem;
+color: #0a3d53;
+}
+
+.healthspan-desc {
+font-size: 0.9rem;
+color: #41647c;
+}
+
+.gain-message {
+background: #dff2f0;
+padding: 1rem 1.5rem;
+border-radius: 60px;
+color: #004d66;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+margin: 1.5rem 0;
+}
+
+.country-compare {
+border-top: 1px solid #d9e3ee;
+padding-top: 1.5rem;
+margin-top: 1rem;
+}
+
+.action-buttons {
+display: flex;
+gap: 1rem;
+margin-top: 2rem;
+flex-wrap: wrap;
+}
+
+.btn-primary {
+background: #1d3d5c;
+border: none;
+padding: 1rem 2rem;
+border-radius: 40px;
+color: white;
+font-weight: 600;
+font-size: 1rem;
+cursor: pointer;
+transition: 0.15s;
+flex: 1;
+box-shadow: 0 8px 18px -6px #0d2d41;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.6rem;
+}
+
+.btn-primary:hover {
+background: #12406b;
+}
+
+.btn-outline {
+background: transparent;
+border: 1.5px solid #b2c9de;
+padding: 1rem 1.5rem;
+border-radius: 40px;
+font-weight: 600;
+color: #1f3c54;
+cursor: pointer;
+transition: 0.15s;
+}
+
+.btn-outline:hover {
+background: #ecf5fc;
+}
+
+.disclaimer {
+font-size: 0.75rem;
+color: #6a7e94;
+margin-top: 1.2rem;
+text-align: center;
+}
+
+.faq-hint {
+margin-top: 2.5rem;
+background: #f7fafd;
+border-radius: 28px;
+padding: 1.2rem;
+font-size: 0.9rem;
+border: 1px solid #e2edf5;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- header -->
+<div class="tool-header">
+<h1>⏳ Life expectancy · Healthspan Calculator</h1>
+<p>See how your habits rewrite your future — 100% private, real‑time, global data</p>
+<div class="badge-container">
+<span class="badge"><i class="fas fa-shield-alt"></i> HIPAA‑like privacy</span>
+<span class="badge"><i class="fas fa-globe"></i> 200+ countries</span>
+<span class="badge"><i class="fas fa-mobile-alt"></i> mobile first</span>
+<span class="badge"><i class="fas fa-chart-line"></i> healthspan > lifespan</span>
+</div>
+</div>
+
+<!-- main grid -->
+<div class="calculator-grid" id="app">
+<!-- left: inputs -->
+<div class="input-panel">
+<div class="panel-title">
+<i class="fas fa-sliders-h"></i> Your lifestyle
+</div>
+<!-- quick/deep toggle -->
+<div class="mode-switch">
+<button class="mode-btn active" id="modeQuick">⚡ Quick (9 factors)</button>
+<button class="mode-btn" id="modeDeep">🔬 Deep (38 factors)</button>
+</div>
+
+<!-- basic fields (always visible) -->
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-venus-mars"></i> Gender</label>
+</div>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female" selected>Female</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-calendar-alt"></i> Age</label>
+<span class="value-badge" id="ageVal">35</span>
+</div>
+<input type="range" id="age" min="18" max="100" value="35" step="1">
+</div>
+
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-flag"></i> Country</label>
+</div>
+<select id="country">
+<option value="USA">United States</option>
+<option value="IND" selected>India</option>
+<option value="GBR">United Kingdom</option>
+<option value="CAN">Canada</option>
+<option value="AUS">Australia</option>
+<option value="JPN">Japan</option>
+<option value="DEU">Germany</option>
+<option value="FRA">France</option>
+<option value="BRA">Brazil</option>
+<option value="ZAF">South Africa</option>
+<option value="OTHER">Other</option>
+</select>
+</div>
+
+<!-- height / weight -->
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-ruler"></i> Height / Weight</label>
+</div>
+<div class="double-input">
+<input type="number" id="height" class="mini-input" placeholder="cm" value="165" min="120" max="220">
+<input type="number" id="weight" class="mini-input" placeholder="kg" value="70" min="30" max="200">
+</div>
+</div>
+
+<!-- core risk factors -->
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-smoking"></i> Smoking</label>
+<span class="value-badge" id="smokeVal">Never</span>
+</div>
+<select id="smoking">
+<option value="0">Never smoked</option>
+<option value="1">Former smoker</option>
+<option value="2">Current smoker</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-cocktail"></i> Alcohol</label>
+<span class="value-badge" id="alcoholVal">Light</span>
+</div>
+<select id="alcohol">
+<option value="0">None</option>
+<option value="1" selected>Light (1-2 / week)</option>
+<option value="2">Moderate (3-7 / week)</option>
+<option value="3">Heavy (>7 / week)</option>
+</select>
+</div>
+
+<!-- exercise -->
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-walking"></i> Exercise (min/week)</label>
+<span class="value-badge" id="exVal">120</span>
+</div>
+<input type="range" id="exercise" min="0" max="400" value="120" step="5">
+</div>
+
+<!-- diet quality -->
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-apple-alt"></i> Diet quality</label>
+<span class="value-badge" id="dietVal">3/5</span>
+</div>
+<input type="range" id="diet" min="1" max="5" value="3" step="1">
+</div>
+
+<!-- sleep -->
+<div class="input-group">
+<div class="input-row">
+<label><i class="fas fa-bed"></i> Sleep (avg hours)</label>
+<span class="value-badge" id="sleepVal">7</span>
+</div>
+<input type="range" id="sleep" min="3" max="11" value="7" step="0.5">
+</div>
+
+<!-- ###### DEEP MODE FIELDS ###### -->
+<div class="deep-fields" id="deepFields">
+<h4 style="margin-bottom:1rem; color:#124e6b;">🫀 Advanced health markers</h4>
+
+<div class="input-group">
+<label>Resting heart rate (bpm)</label>
+<input type="number" id="restingHr" class="mini-input" value="72" min="40" max="120">
+</div>
+
+<div class="input-group">
+<label>Systolic BP (mmHg)</label>
+<input type="number" id="bpSystolic" class="mini-input" value="120" min="80" max="200">
+</div>
+
+<div class="input-group">
+<label>Total cholesterol (mg/dL)</label>
+<input type="number" id="cholesterol" class="mini-input" value="190" min="100" max="350">
+</div>
+
+<div class="input-group">
+<label>Blood glucose (fasting, mg/dL)</label>
+<input type="number" id="glucose" class="mini-input" value="95" min="60" max="300">
+</div>
+
+<div class="input-group">
+<div class="input-row">
+<label>Stress level</label>
+<span class="value-badge" id="stressVal">4</span>
+</div>
+<input type="range" id="stress" min="1" max="10" value="4">
+</div>
+
+<div class="input-group">
+<label>Mental health (1-10)</label>
+<input type="range" id="mental" min="1" max="10" value="7">
+</div>
+
+<div class="input-group">
+<label>Social support (1-10)</label>
+<input type="range" id="social" min="1" max="10" value="7">
+</div>
+
+<div class="input-group">
+<label>Chronic condition?</label>
+<select id="chronic">
+<option value="none">None</option>
+<option value="diabetes">Type 2 diabetes</option>
+<option value="heart">Heart disease</option>
+<option value="cancer">Cancer (in remission)</option>
+</select>
+</div>
+</div>
+
+<div style="font-size:0.8rem; color:#768b9f; margin-top:1.5rem;">
+<i class="fas fa-lock"></i> 100% private · nothing stored
+</div>
+</div> <!-- /input panel -->
+
+<!-- right: results -->
+<div class="result-panel">
+<div class="live-number">
+<div class="live-label">your estimated lifespan</div>
+<div class="live-main" id="lifespanDisplay">83.2</div>
+<div class="live-sub" id="deathDateDisplay">Saturday, 2 May 2068</div>
+</div>
+
+<!-- healthspan vs lifespan -->
+<div class="healthspan-row">
+<div class="healthspan-item">
+<div class="healthspan-number" id="healthspanNum">74.1</div>
+<div class="healthspan-desc">healthspan (healthy years)</div>
+</div>
+<div style="font-size:2rem; color:#abbacf;">|</div>
+<div class="healthspan-item">
+<div class="healthspan-number" id="lifespanNum">83.2</div>
+<div class="healthspan-desc">lifespan (total years)</div>
+</div>
+</div>
+
+<!-- health gap message -->
+<div class="gain-message" id="healthGapMsg">
+<i class="fas fa-leaf"></i> <span>You may spend 9.1 years in less‑than‑good health.</span>
+</div>
+
+<!-- top 3 positive actions (real time) -->
+<div style="background:#f0f6fd; border-radius:28px; padding:1.2rem;">
+<div style="display:flex; gap:0.5rem; margin-bottom:0.8rem; font-weight:600;"><i class="fas fa-lightbulb"></i> Top actions to gain years</div>
+<ul style="list-style-type: none;" id="actionList">
+<li style="margin-bottom:0.5rem;">✅ Quit smoking → <strong>+3.2 yrs</strong></li>
+<li style="margin-bottom:0.5rem;">✅ Sleep 7-8h → <strong>+1.8 yrs</strong></li>
+<li>✅ 30 min walk daily → <strong>+2.0 yrs</strong></li>
+</ul>
+</div>
+
+<!-- country comparison -->
+<div class="country-compare">
+<div style="display:flex; justify-content:space-between;">
+<span><i class="fas fa-globe-asia"></i> Your country avg: <span id="countryAvg">72.3</span> yrs</span>
+<span>You: <span id="youVsCountry">+10.9</span> yrs</span>
+</div>
+</div>
+
+<!-- action buttons -->
+<div class="action-buttons">
+<button class="btn-primary" id="downloadPdf"><i class="fas fa-download"></i> Download PDF report</button>
+<button class="btn-outline" id="copyResults"><i class="fas fa-share-alt"></i> Share</button>
+</div>
+
+<div class="disclaimer">
+⚕️ This is a statistical estimate based on global cohort studies, not a medical diagnosis. Always consult a physician.
+</div>
+
+<!-- mini faq / hint -->
+<div class="faq-hint">
+<i class="fas fa-robot"></i> <strong>How it works:</strong> Sullivan healthspan method + life tables (WHO/UN). Real‑time recalculation — change any slider above.
+</div>
+</div>
+</div>
+</div>
+
+<script>
+(function() {
+// DOM elements
+const ageInput = document.getElementById('age');
+const ageVal = document.getElementById('ageVal');
+const genderSelect = document.getElementById('gender');
+const countrySelect = document.getElementById('country');
+const heightInput = document.getElementById('height');
+const weightInput = document.getElementById('weight');
+const smokingSelect = document.getElementById('smoking');
+const alcoholSelect = document.getElementById('alcohol');
+const exerciseRange = document.getElementById('exercise');
+const dietRange = document.getElementById('diet');
+const sleepRange = document.getElementById('sleep');
+
+// deep fields
+const deepFields = document.getElementById('deepFields');
+const modeQuick = document.getElementById('modeQuick');
+const modeDeep = document.getElementById('modeDeep');
+const restingHr = document.getElementById('restingHr');
+const bpSystolic = document.getElementById('bpSystolic');
+const cholesterol = document.getElementById('cholesterol');
+const glucose = document.getElementById('glucose');
+const stressRange = document.getElementById('stress');
+const mentalRange = document.getElementById('mental');
+const socialRange = document.getElementById('social');
+const chronicSelect = document.getElementById('chronic');
+
+// display elements
+const lifespanDisplay = document.getElementById('lifespanDisplay');
+const deathDateDisplay = document.getElementById('deathDateDisplay');
+const healthspanNum = document.getElementById('healthspanNum');
+const lifespanNum = document.getElementById('lifespanNum');
+const healthGapMsg = document.getElementById('healthGapMsg').querySelector('span');
+const actionList = document.getElementById('actionList');
+const countryAvgSpan = document.getElementById('countryAvg');
+const youVsCountry = document.getElementById('youVsCountry');
+
+// value badges
+const smokeVal = document.getElementById('smokeVal');
+const alcoholVal = document.getElementById('alcoholVal');
+const exVal = document.getElementById('exVal');
+const dietVal = document.getElementById('dietVal');
+const sleepVal = document.getElementById('sleepVal');
+const stressVal = document.getElementById('stressVal');
+
+// mode toggle
+modeQuick.addEventListener('click', () => {
+modeQuick.classList.add('active');
+modeDeep.classList.remove('active');
+deepFields.classList.remove('visible');
+});
+modeDeep.addEventListener('click', () => {
+modeDeep.classList.add('active');
+modeQuick.classList.remove('active');
+deepFields.classList.add('visible');
+});
+
+// update live badges
+function updateBadges() {
+ageVal.innerText = ageInput.value;
+const smokeText = {0:'Never',1:'Former',2:'Current'};
+smokeVal.innerText = smokeText[smokingSelect.value] || 'Never';
+const alcText = {0:'None',1:'Light',2:'Moderate',3:'Heavy'};
+alcoholVal.innerText = alcText[alcoholSelect.value] || 'Light';
+exVal.innerText = exerciseRange.value;
+dietVal.innerText = dietRange.value + '/5';
+sleepVal.innerText = sleepRange.value;
+if (stressVal) stressVal.innerText = stressRange.value;
+}
+
+[ageInput, smokingSelect, alcoholSelect, exerciseRange, dietRange, sleepRange, stressRange].forEach(el => {
+if (el) el.addEventListener('input', updateBadges);
+});
+
+// ---------- core algorithm (simplified but realistic) ----------
+function calculateLifeExpectancy() {
+// base life expectancy from country (UN data approx)
+const countryBase = {
+'USA': 78.5, 'IND': 70.8, 'GBR': 81.4, 'CAN': 82.2, 'AUS': 83.4,
+'JPN': 84.5, 'DEU': 81.0, 'FRA': 82.5, 'BRA': 75.9, 'ZAF': 64.1,
+'OTHER': 77.0
+};
+let base = countryBase[countrySelect.value] || 77.0;
+
+// gender adjustment
+if (genderSelect.value === 'female') base += 2.5;
+
+// age already factored in life tables, but we adjust for remaining
+const age = parseInt(ageInput.value);
+// simple remaining model: if older, reduce ceiling (progressive)
+let remaining = 0;
+if (age < 50) remaining = base - age + 1.5;
+else if (age < 70) remaining = base - age + 0.5;
+else remaining = Math.max(4, base - age - 2);
+
+let lifespan = age + remaining;
+
+// --- risk factor adjustments (years added/subtracted) ---
+let modifier = 0;
+
+// smoking
+if (smokingSelect.value === '2') modifier -= 8.0;
+else if (smokingSelect.value === '1') modifier -= 2.0;
+
+// alcohol
+const alc = parseInt(alcoholSelect.value);
+if (alc === 3) modifier -= 3.5;
+else if (alc === 2) modifier -= 0.5;
+else if (alc === 1) modifier += 0.3; // light beneficial
+
+// exercise (min/week) 0-400
+const ex = parseInt(exerciseRange.value);
+if (ex < 30) modifier -= 3.0;
+else if (ex >= 150 && ex <= 300) modifier += 2.8;
+else if (ex > 300) modifier += 1.8;
+else if (ex >= 60) modifier += 0.8;
+
+// diet (1-5)
+const diet = parseInt(dietRange.value);
+modifier += (diet - 3) * 0.9;
+
+// sleep (hours)
+const sleep = parseFloat(sleepRange.value);
+if (sleep < 5.5) modifier -= 3.0;
+else if (sleep < 6.5) modifier -= 0.5;
+else if (sleep >= 7 && sleep <= 9) modifier += 1.2;
+else if (sleep > 9) modifier += 0.0;
+
+// BMI proxy from height/weight
+const h = parseFloat(heightInput.value) / 100;
+const w = parseFloat(weightInput.value);
+const bmi = w / (h*h);
+if (bmi < 18.5) modifier -= 1.2;
+else if (bmi >= 30) modifier -= 3.0;
+else if (bmi >= 25) modifier -= 0.8;
+else modifier += 0.5;
+
+// deep mode factors
+if (deepFields.classList.contains('visible')) {
+const hr = parseInt(restingHr.value) || 72;
+if (hr > 85) modifier -= 1.5;
+else if (hr < 55) modifier += 0.5;
+
+const bp = parseInt(bpSystolic.value) || 120;
+if (bp > 140) modifier -= 2.0;
+else if (bp > 130) modifier -= 0.7;
+
+const chol = parseInt(cholesterol.value) || 190;
+if (chol > 240) modifier -= 1.8;
+
+const glu = parseInt(glucose.value) || 95;
+if (glu > 125) modifier -= 4.0;
+else if (glu > 100) modifier -= 1.0;
+
+const stress = parseInt(stressRange.value) || 4;
+modifier -= (stress - 3) * 0.25;
+
+const mental = parseInt(mentalRange.value) || 7;
+modifier += (mental - 5) * 0.2;
+
+const social = parseInt(socialRange.value) || 7;
+modifier += (social - 5) * 0.15;
+
+const chronic = chronicSelect.value;
+if (chronic === 'diabetes') modifier -= 5.0;
+else if (chronic === 'heart') modifier -= 7.0;
+else if (chronic === 'cancer') modifier -= 3.0;
+}
+
+// clamp modifier & compute final lifespan
+lifespan = lifespan + modifier;
+lifespan = Math.min(105, Math.max(45, lifespan));
+
+// healthspan: ~85% of lifespan but decreases with poor habits (Sullivan approx)
+let healthRatio = 0.88; // base
+if (modifier < -5) healthRatio = 0.75;
+else if (modifier < -2) healthRatio = 0.82;
+else if (modifier > 3) healthRatio = 0.92;
+let healthspan = lifespan * healthRatio;
+
+return { lifespan, healthspan, modifier, base };
+}
+
+function updateUI() {
+const { lifespan, healthspan, modifier, base } = calculateLifeExpectancy();
+
+lifespanDisplay.innerText = lifespan.toFixed(1);
+healthspanNum.innerText = healthspan.toFixed(1);
+lifespanNum.innerText = lifespan.toFixed(1);
+
+// death date estimate
+const today = new Date();
+const birthYear = today.getFullYear() - parseInt(ageInput.value);
+const deathYear = birthYear + Math.round(lifespan);
+const deathDate = new Date(deathYear, today.getMonth(), today.getDate());
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+deathDateDisplay.innerText = deathDate.toLocaleDateString('en-US', options);
+
+// health gap message
+const gap = (lifespan - healthspan).toFixed(1);
+healthGapMsg.innerText = `You may spend ${gap} years in less‑than‑good health.`;
+
+// country comparison
+const countryBase = {'USA':78.5,'IND':70.8,'GBR':81.4,'CAN':82.2,'AUS':83.4,'JPN':84.5,'DEU':81.0,'FRA':82.5,'BRA':75.9,'ZAF':64.1,'OTHER':77.0};
+let baseC = countryBase[countrySelect.value] || 77.0;
+if (genderSelect.value === 'female') baseC += 2.5;
+countryAvgSpan.innerText = baseC.toFixed(1);
+const diff = (lifespan - baseC).toFixed(1);
+youVsCountry.innerText = (diff > 0 ? '+' : '') + diff;
+
+// dynamic top actions (simplified)
+let actions = [];
+if (smokingSelect.value === '2') actions.push('🚭 Quit smoking → +3.2 yrs');
+if (parseFloat(sleepRange.value) < 6.5 || parseFloat(sleepRange.value) > 9.5) actions.push('😴 Optimize sleep (7-9h) → +1.8 yrs');
+if (parseInt(exerciseRange.value) < 120) actions.push('🚶 30 min daily walk → +2.0 yrs');
+if (parseInt(dietRange.value) < 4) actions.push('🥗 Improve diet quality → +1.5 yrs');
+if (bmiRisk()) actions.push('⚖️ Healthy BMI range → +1.6 yrs');
+if (actions.length === 0) actions = ['🎉 You are doing great! Maintain healthy habits'];
+actionList.innerHTML = actions.slice(0,3).map(a => `<li style="margin-bottom:0.5rem;">✅ ${a}</li>`).join('');
+}
+
+function bmiRisk() {
+const h = parseFloat(heightInput.value)/100;
+const w = parseFloat(weightInput.value);
+const b = w/(h*h);
+return (b < 18.5 || b > 24.9);
+}
+
+// attach listeners to all inputs
+const inputs = [
+ageInput, genderSelect, countrySelect, heightInput, weightInput,
+smokingSelect, alcoholSelect, exerciseRange, dietRange, sleepRange,
+restingHr, bpSystolic, cholesterol, glucose, stressRange,
+mentalRange, socialRange, chronicSelect
+];
+inputs.forEach(inp => { if (inp) inp.addEventListener('input', updateUI); });
+
+// initial update
+updateBadges();
+updateUI();
+
+// PDF download simulation (browser print)
+document.getElementById('downloadPdf').addEventListener('click', () => {
+window.print(); // simple, user can save as pdf
+});
+
+// copy/share dummy
+document.getElementById('copyResults').addEventListener('click', () => {
+navigator.clipboard?.writeText('Check my life expectancy on HealthCalc: ' + window.location.href);
+alert('Link copied to clipboard (demo).');
+});
+})();
+</script>
+
+<!-- style for print -->
+<style>
+@media print {
+body { background: white; }
+.btn-primary, .btn-outline, .badge-container .badge:last-child { display: none; }
+}
+</style>
+</body>
+</html>
