@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <!-- ========== PRIMARY META TAGS (SEO) ========== -->
-    <title>9-in-1 Advanced Health Calculator Suite: BMI, Calorie, Body Fat, Water & More | HealthCalc</title>
-    <meta name="title" content="Advanced Health Calculator Suite: BMI, Calories, Body Fat, Water & More">
-    <meta name="description" content="Free advanced health calculators with unique features: Visceral fat indicator, BMI by age graph, athlete mode, sweat rate adjust, 3-month weight projection, and more. Used by 10,000+ users daily. 100% private, no signup.">
-    <meta name="keywords" content="BMI calculator with visceral fat, calorie calculator with macros, body fat calculator with visual guide, water intake with sweat rate, metabolic age test, sleep debt calculator, ovulation tracker 2026, heart rate zones by age, MET activity calculator, free health tools, TDEE calculator, body composition analyzer">
+    <title>11-in-1 Advanced Health Calculator Suite: BMI, Calorie, Body Fat, Water, Pregnancy & More | HealthCalc</title>
+    <meta name="title" content="Advanced Health Calculator Suite: 11 Unique Tools for BMI, Calories, Body Fat, Water, Pregnancy & Life Expectancy">
+    <meta name="description" content="Free advanced health calculators with unique features: Visceral fat indicator, BMI age graph, athlete mode, sweat rate adjust, 3-month weight projection, pregnancy due date tracker, life expectancy with healthspan, and more. Used by 10,000+ users daily. 100% private, no signup.">
+    <meta name="keywords" content="BMI calculator with visceral fat, calorie calculator with macros, body fat calculator with visual guide, water intake with sweat rate, metabolic age test, sleep debt calculator, ovulation tracker, heart rate zones, MET calculator, pregnancy due date calculator, life expectancy calculator with healthspan, free health tools, TDEE calculator, body composition analyzer">
     <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="revisit-after" content="1 day">
     
     <!-- ========== OPEN GRAPH / SOCIAL MEDIA ========== -->
-    <meta property="og:title" content="Most Advanced Free Health Calculator Suite">
-    <meta property="og:description" content="9 unique health calculators with features you won't find elsewhere: Visceral fat, age graphs, athlete mode, sweat adjustment & more.">
+    <meta property="og:title" content="11-in-1 Advanced Health Calculator Suite">
+    <meta property="og:description" content="11 unique health calculators with features you won't find elsewhere: Visceral fat, age graphs, athlete mode, sweat adjustment, pregnancy tracker, life expectancy & more.">
     <meta property="og:url" content="https://healthcalc.in">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://healthcalc.in/images/healthcalc-og.jpg">
@@ -27,8 +27,8 @@
     
     <!-- ========== TWITTER CARD ========== -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="9-in-1 Advanced Health Calculator Suite">
-    <meta name="twitter:description" content="BMI with visceral fat, calorie with macros, body fat visual guide & more. 100% free & private.">
+    <meta name="twitter:title" content="11-in-1 Advanced Health Calculator Suite">
+    <meta name="twitter:description" content="BMI with visceral fat, calorie with macros, body fat visual guide, pregnancy tracker, life expectancy & more. 100% free & private.">
     <meta name="twitter:image" content="https://healthcalc.in/images/healthcalc-twitter.jpg">
     
     <!-- ========== CANONICAL URL ========== -->
@@ -52,7 +52,7 @@
         "@type": "WebApplication",
         "name": "HealthCalc - Advanced Health Calculator Suite",
         "url": "https://healthcalc.in",
-        "description": "Free suite of 9 advanced health calculators with unique features: visceral fat indicator, BMI by age graphs, athlete mode for body fat, sweat-adjusted water intake, 3-month weight projection, and more.",
+        "description": "Free suite of 11 advanced health calculators with unique features: visceral fat indicator, BMI by age graphs, athlete mode for body fat, sweat-adjusted water intake, 3-month weight projection, pregnancy due date tracker, life expectancy with healthspan, and more.",
         "applicationCategory": "Health & Fitness",
         "operatingSystem": "All",
         "offers": {
@@ -74,7 +74,9 @@
             "Menstrual Cycle Tracker with Fertility Window",
             "Sleep Debt Calculator with Recovery Plan",
             "Heart Rate Zone Calculator with Karvonen Method",
-            "MET Activity Burn Calculator with 500+ Activities"
+            "MET Activity Burn Calculator with 500+ Activities",
+            "Pregnancy Due Date Calculator with Weekly Tracker & Fruit Size",
+            "Life Expectancy Calculator with Healthspan & Country Comparison"
         ]
     }
     </script>
@@ -118,6 +120,8 @@
             --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
             --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
             --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --gradient-6: linear-gradient(135deg, #0B2A4A, #1B4A6B);
+            --gradient-7: linear-gradient(135deg, #d14b6e, #f27e8c);
             
             --card-bg: rgba(255, 255, 255, 0.95);
             --glass-bg: rgba(255, 255, 255, 0.25);
@@ -142,7 +146,7 @@
         }
 
         body {
-            background: var(--gradient-1);
+            background: linear-gradient(145deg, #4158D0, #C850C0, #FFCC70);
             min-height: 100vh;
             padding: 20px;
             position: relative;
@@ -158,10 +162,17 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 30%);
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 0%, transparent 30%),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.1) 0%, transparent 40%);
             pointer-events: none;
             z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         .container {
@@ -198,31 +209,32 @@
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-size: clamp(2rem, 6vw, 3.8rem);
             font-weight: 800;
             margin-bottom: 20px;
             line-height: 1.2;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
             letter-spacing: -0.02em;
         }
 
         .hero .highlight {
-            background: linear-gradient(135deg, #fff 0%, #f0f0ff 100%);
+            background: linear-gradient(135deg, #fff 0%, #ffe6f0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            max-width: 800px;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            max-width: 900px;
             margin: 0 auto 30px;
             opacity: 0.95;
             backdrop-filter: blur(10px);
-            padding: 20px;
+            padding: 25px 30px;
             border-radius: var(--border-radius-lg);
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.3);
         }
 
         /* Trust Badges */
@@ -237,37 +249,45 @@
         .trust-badge {
             background: rgba(255,255,255,0.15);
             backdrop-filter: blur(10px);
-            padding: 10px 24px;
+            padding: 12px 28px;
             border-radius: 50px;
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-weight: 600;
+            font-size: 1rem;
             border: 1px solid rgba(255,255,255,0.3);
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: transform 0.3s;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
         }
 
         .trust-badge:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.05);
             background: rgba(255,255,255,0.25);
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.3);
         }
 
         /* Stats Counter */
         .stats-grid {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 60px;
             margin: 50px 0 20px;
             flex-wrap: wrap;
         }
 
         .stat-item {
             text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: 20px 40px;
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(255,255,255,0.2);
+            min-width: 180px;
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
             line-height: 1;
             background: linear-gradient(135deg, #fff, #f0f0ff);
@@ -276,36 +296,38 @@
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 1rem;
             opacity: 0.9;
-            margin-top: 5px;
+            margin-top: 8px;
+            font-weight: 500;
         }
 
         /* ========== FEATURED BADGES ========== */
         .featured-badges {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin: 30px 0;
+            margin: 40px 0 30px;
         }
 
         .feature-badge {
             background: var(--card-bg);
             color: var(--dark);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
             font-weight: 600;
             box-shadow: var(--shadow-sm);
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.5);
         }
 
         .feature-badge:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
@@ -314,93 +336,121 @@
             color: white;
         }
 
+        .feature-badge.premium {
+            background: var(--gradient-7);
+            color: white;
+        }
+
         /* ========== SEARCH SECTION ========== */
         .search-section {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 50px;
             position: relative;
         }
 
         .search-box {
             width: 100%;
-            padding: 18px 25px;
+            padding: 20px 30px;
             border: none;
-            border-radius: 60px;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 70px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.3);
             color: white;
             font-size: 1.1rem;
-            padding-left: 60px;
+            padding-left: 70px;
             transition: all 0.3s;
+            font-weight: 500;
         }
 
         .search-box::placeholder {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.8);
+            font-weight: 400;
         }
 
         .search-box:focus {
             outline: none;
-            background: rgba(255,255,255,0.25);
-            box-shadow: 0 0 0 4px rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.3);
+            border-color: white;
+            box-shadow: 0 0 0 6px rgba(255,255,255,0.1);
         }
 
         .search-icon {
             position: absolute;
-            left: 25px;
+            left: 30px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: white;
-            opacity: 0.7;
+            opacity: 0.9;
+        }
+
+        .search-results-count {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 40px;
+            backdrop-filter: blur(5px);
         }
 
         /* ========== CATEGORY TABS ========== */
         .category-tabs {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
         .category-tab {
-            padding: 10px 25px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 40px;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50px;
             color: white;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             backdrop-filter: blur(5px);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
         }
 
-        .category-tab:hover,
+        .category-tab:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
         .category-tab.active {
             background: white;
             color: var(--primary);
             border-color: white;
-            box-shadow: 0 10px 30px -10px rgba(255,255,255,0.3);
+            box-shadow: 0 15px 30px -10px rgba(255,255,255,0.4);
         }
 
         /* ========== TOOLS GRID ========== */
         .section-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: white;
             text-align: center;
-            margin: 60px 0 30px;
+            margin: 70px 0 40px;
             font-weight: 700;
             position: relative;
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 0;
             width: 100%;
             height: 4px;
@@ -410,9 +460,9 @@
 
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
         }
 
         /* Tool Card - Modern Glassmorphism */
@@ -420,10 +470,10 @@
             background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: var(--border-radius-lg);
-            padding: 25px;
+            padding: 28px;
             box-shadow: var(--shadow-md);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.7);
             position: relative;
             overflow: hidden;
             text-decoration: none;
@@ -431,6 +481,7 @@
             display: flex;
             flex-direction: column;
             cursor: pointer;
+            height: 100%;
         }
 
         .tool-card::before {
@@ -440,14 +491,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 100%);
             opacity: 0;
             transition: opacity 0.3s;
+            pointer-events: none;
         }
 
         .tool-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-10px) scale(1.02);
             box-shadow: var(--shadow-hover);
+            border-color: white;
         }
 
         .tool-card:hover::before {
@@ -458,22 +511,22 @@
         .card-header {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             margin-bottom: 20px;
         }
 
         .tool-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-1);
-            border-radius: 18px;
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: white;
-            box-shadow: 0 10px 20px -5px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.3);
             transition: all 0.3s;
+            flex-shrink: 0;
         }
 
         .tool-card:hover .tool-icon {
@@ -481,7 +534,7 @@
         }
 
         .card-header h2 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--dark);
             line-height: 1.3;
@@ -489,32 +542,38 @@
 
         .card-header h2 span {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--gray);
             font-weight: 500;
-            margin-top: 4px;
+            margin-top: 5px;
         }
 
         /* Features List */
         .features-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
+            gap: 10px;
+            margin: 15px 0 20px;
         }
 
         .feature-tag {
             background: linear-gradient(135deg, #f0f0ff, #e6e9ff);
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 30px;
             font-size: 0.75rem;
             font-weight: 600;
             color: var(--primary);
             border: 1px solid rgba(67, 97, 238, 0.2);
+            letter-spacing: 0.2px;
         }
 
         .feature-tag.new {
             background: var(--gradient-4);
+            color: white;
+        }
+
+        .feature-tag.premium {
+            background: var(--gradient-7);
             color: white;
         }
 
@@ -525,28 +584,30 @@
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid rgba(0,0,0,0.05);
-            padding-top: 15px;
+            padding-top: 18px;
         }
 
         .popularity {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.85rem;
+            gap: 8px;
+            font-size: 0.9rem;
             color: var(--gray);
+            font-weight: 500;
         }
 
         .stars {
             color: #fbbf24;
             letter-spacing: 2px;
+            font-size: 1rem;
         }
 
         .cta-btn {
             background: var(--gradient-2);
             color: white;
-            padding: 8px 20px;
+            padding: 10px 24px;
             border-radius: 40px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             border: none;
             cursor: pointer;
@@ -554,93 +615,134 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            box-shadow: 0 10px 20px -8px rgba(247, 37, 133, 0.4);
         }
 
         .cta-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px -5px rgba(247, 37, 133, 0.4);
+            box-shadow: 0 15px 30px -8px rgba(247, 37, 133, 0.6);
+        }
+
+        .cta-btn i {
+            font-size: 0.9rem;
         }
 
         /* ========== COMPARISON SECTION ========== */
         .comparison-section {
             background: white;
             border-radius: var(--border-radius-xl);
-            padding: 50px;
+            padding: 60px 50px;
             margin: 80px 0;
             box-shadow: var(--shadow-lg);
         }
 
         .comparison-section h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--dark);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             text-align: center;
+            position: relative;
+        }
+
+        .comparison-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-1);
+            border-radius: 2px;
         }
 
         .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .comparison-item {
             text-align: center;
-            padding: 30px;
+            padding: 35px 25px;
             border-radius: var(--border-radius-md);
             background: #f8f9ff;
             transition: all 0.3s;
+            border: 1px solid #eef2f6;
         }
 
         .comparison-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-md);
+            background: white;
         }
 
         .comparison-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
 
         .comparison-item h3 {
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
         }
 
         .comparison-item p {
             color: var(--gray);
             font-size: 0.95rem;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
         }
 
         .check {
             color: var(--success);
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
         .cross {
             color: var(--danger);
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
         /* ========== FAQ SECTION ========== */
         .faq-section {
             background: white;
             border-radius: var(--border-radius-xl);
-            padding: 50px;
-            margin: 60px 0;
+            padding: 60px 50px;
+            margin: 80px 0;
             box-shadow: var(--shadow-lg);
         }
 
         .faq-section h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--dark);
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-align: center;
+            position: relative;
+        }
+
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 2px;
         }
 
         .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 30px;
         }
 
@@ -657,13 +759,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
+            transition: color 0.3s;
+        }
+
+        .faq-item h3:hover {
+            color: var(--secondary);
         }
 
         .faq-item p {
             color: #666;
             line-height: 1.6;
             display: none;
-            padding-top: 10px;
+            padding: 0 0 15px 0;
         }
 
         .faq-item.active p {
@@ -671,70 +779,100 @@
         }
 
         .faq-item .toggle {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
+            font-weight: 300;
         }
 
         /* ========== CTA BANNER ========== */
         .cta-banner {
-            background: var(--gradient-3);
+            background: linear-gradient(145deg, #4158D0, #C850C0);
             border-radius: var(--border-radius-xl);
-            padding: 60px;
+            padding: 70px;
             text-align: center;
             color: white;
-            margin: 60px 0;
+            margin: 80px 0;
             position: relative;
             overflow: hidden;
         }
 
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
         .cta-banner h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
+            font-weight: 800;
+            position: relative;
         }
 
         .cta-banner p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            margin-bottom: 40px;
             opacity: 0.95;
+            position: relative;
         }
 
         .cta-banner .btn {
             background: white;
             color: var(--primary);
-            padding: 18px 40px;
+            padding: 20px 50px;
             border-radius: 60px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             border: none;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
         }
 
         .cta-banner .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 30px 50px -10px rgba(0,0,0,0.4);
         }
 
         /* ========== FOOTER ========== */
         footer {
             color: white;
-            padding: 40px 0 20px;
-            margin-top: 60px;
+            padding: 60px 0 30px;
+            margin-top: 80px;
             border-top: 1px solid rgba(255,255,255,0.2);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
 
         .footer-col h4 {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
         }
 
         .footer-col ul {
@@ -742,22 +880,25 @@
         }
 
         .footer-col ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-col ul li a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            display: inline-block;
         }
 
         .footer-col ul li a:hover {
             color: white;
+            transform: translateX(5px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.2);
             color: rgba(255,255,255,0.7);
             font-size: 0.9rem;
@@ -783,12 +924,31 @@
                 gap: 20px;
             }
             
+            .stat-item {
+                padding: 15px 25px;
+                min-width: 140px;
+            }
+            
             .stat-number {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-banner h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-banner .btn {
+                padding: 15px 35px;
+                font-size: 1.1rem;
             }
         }
 
@@ -806,6 +966,21 @@
                 width: 100%;
                 justify-content: center;
             }
+            
+            .category-tab {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+            
+            .search-box {
+                padding: 15px 20px 15px 50px;
+                font-size: 1rem;
+            }
+            
+            .search-icon {
+                left: 20px;
+                font-size: 1.2rem;
+            }
         }
 
         /* ========== ANIMATIONS ========== */
@@ -819,7 +994,17 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Loading Skeleton */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Loading Animation */
         .skeleton {
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
             background-size: 200% 100%;
@@ -830,30 +1015,66 @@
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            border: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+            background: var(--primary);
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
     <div class="container">
         <!-- ========== HERO SECTION ========== -->
         <section class="hero">
             <h1>
-                <span class="highlight">Advanced</span> Health Calculator Suite<br>
-                <span style="font-size: 0.7em; display: block; margin-top: 10px;">9 Tools • 45+ Countries • 100% Private</span>
+                <span class="highlight">11-in-1 Advanced</span> Health Calculator Suite<br>
+                <span style="font-size: 0.65em; display: block; margin-top: 15px;">11 Tools • 45+ Countries • 100% Private</span>
             </h1>
             <p class="hero-subtitle">
-                ✨ <strong>Unique features you won't find elsewhere:</strong> Visceral fat indicator, BMI age graphs, athlete mode, sweat rate adjustment, 3-month weight projection & more.
+                ✨ <strong>Unique features you won't find elsewhere:</strong> Visceral fat indicator, BMI age graphs, athlete mode, sweat rate adjustment, 3-month weight projection, pregnancy due date tracker with fruit size, life expectancy with healthspan & more.
             </p>
             
             <div class="stats-grid">
-                <div class="stat-item">
+                <div class="stat-item floating">
                     <div class="stat-number">2,150+</div>
                     <div class="stat-label">★★★★★ Reviews</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item floating" style="animation-delay: 0.2s;">
                     <div class="stat-number">45+</div>
                     <div class="stat-label">Countries</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item floating" style="animation-delay: 0.4s;">
                     <div class="stat-number">10k+</div>
                     <div class="stat-label">Daily Users</div>
                 </div>
@@ -871,17 +1092,19 @@
         <!-- ========== SEARCH BAR ========== -->
         <div class="search-section">
             <span class="search-icon">🔍</span>
-            <input type="text" class="search-box" id="searchTools" placeholder="Search calculators (e.g., BMI with visceral fat, calorie with macros...)" onkeyup="filterTools()">
+            <input type="text" class="search-box" id="searchTools" placeholder="Search 11 calculators (e.g., BMI with visceral fat, pregnancy due date, life expectancy...)" onkeyup="filterTools()">
+            <span class="search-results-count" id="searchCount">11 tools</span>
         </div>
 
         <!-- ========== CATEGORY TABS ========== -->
         <div class="category-tabs" id="categoryTabs">
-            <span class="category-tab active" onclick="filterCategory('all')">All Tools</span>
-            <span class="category-tab" onclick="filterCategory('body')">Body Composition</span>
-            <span class="category-tab" onclick="filterCategory('nutrition')">Nutrition</span>
-            <span class="category-tab" onclick="filterCategory('fitness')">Fitness</span>
-            <span class="category-tab" onclick="filterCategory('women')">Women's Health</span>
-            <span class="category-tab" onclick="filterCategory('sleep')">Sleep & Recovery</span>
+            <span class="category-tab active" onclick="filterCategory('all')">📊 All Tools (11)</span>
+            <span class="category-tab" onclick="filterCategory('body')">⚖️ Body Composition</span>
+            <span class="category-tab" onclick="filterCategory('nutrition')">🥗 Nutrition</span>
+            <span class="category-tab" onclick="filterCategory('fitness')">🏋️ Fitness</span>
+            <span class="category-tab" onclick="filterCategory('women')">🌸 Women's Health</span>
+            <span class="category-tab" onclick="filterCategory('sleep')">😴 Sleep & Recovery</span>
+            <span class="category-tab" onclick="filterCategory('longevity')">⏳ Longevity</span>
         </div>
 
         <!-- ========== FEATURED NEW BADGES ========== -->
@@ -892,6 +1115,8 @@
             <span class="feature-badge new">💦 Sweat Rate Adjust</span>
             <span class="feature-badge new">📈 3-Month Projection</span>
             <span class="feature-badge new">🎯 Macro Split</span>
+            <span class="feature-badge premium">🤰 Pregnancy Tracker</span>
+            <span class="feature-badge premium">⏳ Life Expectancy</span>
         </div>
 
         <!-- ========== TOOLS GRID ========== -->
@@ -973,6 +1198,20 @@
                 </div>
                 <div class="faq-item">
                     <h3 onclick="toggleFAQ(this)">
+                        How does the pregnancy due date calculator work?
+                        <span class="toggle">+</span>
+                    </h3>
+                    <p>Our pregnancy calculator supports 3 methods: LMP (last menstrual period), conception date, and IVF transfer. It shows weekly fruit size comparisons, trimester info, and IOM weight gain guidelines.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 onclick="toggleFAQ(this)">
+                        What is "Healthspan" in life expectancy calculator?
+                        <span class="toggle">+</span>
+                    </h3>
+                    <p>Healthspan is the number of years you're likely to live in good health, vs total lifespan. We use the Sullivan method to show this gap and give personalized actions to improve both.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 onclick="toggleFAQ(this)">
                         Are these calculators really free?
                         <span class="toggle">+</span>
                     </h3>
@@ -1005,16 +1244,25 @@
                         <li><a href="calorie-calculator.html">Calorie Calculator</a></li>
                         <li><a href="body-fat-calculator.html">Body Fat Calculator</a></li>
                         <li><a href="water-intake-calculator.html">Water Intake</a></li>
+                        <li><a href="metabolic-age.html">Metabolic Age</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>More Tools</h4>
                     <ul>
-                        <li><a href="metabolic-age.html">Metabolic Age</a></li>
                         <li><a href="menstrual-cycle-calculator.html">Menstrual Cycle</a></li>
                         <li><a href="sleep-debt-calculator.html">Sleep Debt</a></li>
-                        <li><a href="heart-rate-calculator.html">Heart Rate Zones</a></li>
+                        <li><a href="heart-rate-zones-calculator.html">Heart Rate Zones</a></li>
                         <li><a href="met-calculator.html">MET Activity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>New Tools</h4>
+                    <ul>
+                        <li><a href="pregnancy-calculator.html">🤰 Pregnancy Due Date</a></li>
+                        <li><a href="life-expectancy-calculator.html">⏳ Life Expectancy</a></li>
+                        <li><a href="ideal-weight-calculator.html">⚖️ Ideal Weight</a></li>
+                        <li><a href="heart-risk-calculator.html">❤️ Heart Risk</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1029,23 +1277,23 @@
                 <div class="footer-col">
                     <h4>Follow Us</h4>
                     <ul>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#" target="_blank">Twitter</a></li>
+                        <li><a href="#" target="_blank">Facebook</a></li>
+                        <li><a href="#" target="_blank">Instagram</a></li>
+                        <li><a href="#" target="_blank">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>© 2024 HealthCalc.in - Advanced Health Calculators for Everyone. All rights reserved.</p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">Made with ❤️ for global health | Used in 45+ countries</p>
+                <p>© 2024 HealthCalc.in - 11-in-1 Advanced Health Calculators for Everyone. All rights reserved.</p>
+                <p style="margin-top: 15px; font-size: 0.85rem;">Made with ❤️ for global health | Trusted in 45+ countries | 100% private browser-based calculations</p>
             </div>
         </footer>
     </div>
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // ========== TOOLS DATA ==========
+        // ========== TOOLS DATA (11 Tools with all links active) ==========
         const tools = [
             {
                 icon: "⚖️",
@@ -1128,7 +1376,7 @@
                 icon: "❤️",
                 title: "Heart Rate Zones",
                 subtitle: "Workout Optimizer",
-                url: "heart-rate-calculator.html",
+                url: "heart-rate-zones-calculator.html",
                 features: ["Karvonen Method", "5 Zones", "Training Plans"],
                 category: "fitness",
                 popularity: 4.6,
@@ -1145,35 +1393,44 @@
                 popularity: 4.5,
                 color: "linear-gradient(135deg, #10b981, #34d399)",
                 description: "Calculate calories burned for any activity with MET values"
+            },
+            {
+                icon: "🤰",
+                title: "Pregnancy Due Date",
+                subtitle: "Weekly Tracker",
+                url: "pregnancy-calculator.html",
+                features: ["3 Methods", "Fruit Size", "Weight Gain"],
+                category: "women",
+                popularity: 4.9,
+                color: "linear-gradient(135deg, #d14b6e, #f27e8c)",
+                description: "Calculate due date via LMP, conception, or IVF with weekly fruit comparisons"
+            },
+            {
+                icon: "⏳",
+                title: "Life Expectancy",
+                subtitle: "Healthspan & Lifespan",
+                url: "life-expectancy-calculator.html",
+                features: ["Healthspan", "Country Compare", "Medical Conditions", "Real-time Sliders"],
+                category: "longevity",
+                popularity: 4.9,
+                color: "linear-gradient(135deg, #0B2A4A, #1B4A6B)",
+                description: "See your true healthspan vs lifespan. Real-time sliders show how habits add years."
             }
         ];
-        {
-              icon: "⏳",
-             title: "Life expectancy",
-            subtitle: "Healthspan & Lifespan",
-            url: "life-expectancy-calculator.html",
-           features: ["Healthspan", "Country Compare", "Medical Conditions", "Real-time Sliders"],
-           category: "longevity",
-           popularity: 4.9,
-           color: "linear-gradient(135deg, #0B2A4A, #1B4A6B)",
-          description: "See your true healthspan vs lifespan. Real-time sliders show how habits add years."
-}
-        {
-    icon: "🤰",
-    title: "Pregnancy Due Date",
-    subtitle: "Weekly Tracker",
-    url: "pregnancy-calculator.html",
-    features: ["3 Methods", "Fruit Size", "Weight Gain"],
-    category: "women",
-    popularity: 4.9,
-    color: "linear-gradient(135deg, #d14b6e, #f27e8c)"
-}
 
         // ========== RENDER TOOLS ==========
         const toolsGrid = document.getElementById('toolsGrid');
+        const searchCount = document.getElementById('searchCount');
         
         function renderTools(filteredTools = tools) {
             toolsGrid.innerHTML = '';
+            
+            if (filteredTools.length === 0) {
+                toolsGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px; background: white; border-radius: 30px;"><h3 style="color: #666;">🔍 No tools found. Try a different search term.</h3></div>';
+                searchCount.innerText = '0 tools';
+                return;
+            }
+            
             filteredTools.forEach(tool => {
                 const stars = '★'.repeat(Math.floor(tool.popularity)) + '☆'.repeat(5 - Math.floor(tool.popularity));
                 
@@ -1189,29 +1446,39 @@
                     </div>
                     <p style="color: #4b5563; margin-bottom: 15px; font-size: 0.95rem;">${tool.description}</p>
                     <div class="features-list">
-                        ${tool.features.map(f => `<span class="feature-tag new">✨ ${f}</span>`).join('')}
+                        ${tool.features.map(f => `<span class="feature-tag ${f.includes('Healthspan') || f.includes('Fruit') ? 'premium' : 'new'}">✨ ${f}</span>`).join('')}
                     </div>
                     <div class="card-footer">
                         <span class="popularity">
-                            <span class="stars">${stars}</span> (${tool.popularity})
+                            <span class="stars">${stars}</span> ${tool.popularity}
                         </span>
-                        <span class="cta-btn">Try Now →</span>
+                        <span class="cta-btn">Try Now <i>→</i></span>
                     </div>
                 `;
                 
                 toolsGrid.appendChild(card);
             });
+            
+            searchCount.innerText = `${filteredTools.length} tools`;
         }
 
         // ========== FILTER TOOLS ==========
         function filterTools() {
             const searchTerm = document.getElementById('searchTools').value.toLowerCase();
+            
+            if (searchTerm === '') {
+                renderTools(tools);
+                return;
+            }
+            
             const filtered = tools.filter(tool => 
                 tool.title.toLowerCase().includes(searchTerm) ||
                 tool.subtitle.toLowerCase().includes(searchTerm) ||
                 tool.features.some(f => f.toLowerCase().includes(searchTerm)) ||
-                tool.description.toLowerCase().includes(searchTerm)
+                tool.description.toLowerCase().includes(searchTerm) ||
+                tool.category.toLowerCase().includes(searchTerm)
             );
+            
             renderTools(filtered);
         }
 
@@ -1226,6 +1493,9 @@
                 const filtered = tools.filter(tool => tool.category === category);
                 renderTools(filtered);
             }
+            
+            // Clear search box
+            document.getElementById('searchTools').value = '';
         }
 
         // ========== FAQ TOGGLE ==========
@@ -1241,6 +1511,16 @@
             document.getElementById('toolsGrid').scrollIntoView({ behavior: 'smooth' });
         }
 
+        // ========== SCROLL TO TOP BUTTON ==========
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
         // ========== INITIALIZE ==========
         document.addEventListener('DOMContentLoaded', () => {
             renderTools();
@@ -1249,18 +1529,21 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
             
-            // Add loading skeleton effect (remove after load)
+            // Add loading animation
             setTimeout(() => {
                 document.querySelectorAll('.tool-card').forEach(card => {
-                    card.classList.remove('skeleton');
+                    card.style.opacity = '1';
                 });
-            }, 500);
+            }, 100);
         });
 
         // ========== DEBOUNCE SEARCH ==========
