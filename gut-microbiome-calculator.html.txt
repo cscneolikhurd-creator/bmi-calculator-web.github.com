@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+<!-- ========== PRIMARY SEO META ========== -->
+<title>🦠 Gut Microbiome Health Score Calculator: Diversity, Fiber & Digestive Health | HealthCalc</title>
+<meta name="description" content="Free gut microbiome health score calculator. Assess your gut diversity, fiber intake, probiotic foods, and digestive health. Get personalized recommendations to improve your gut microbiome. 100% private, no signup.">
+<meta name="keywords" content="gut microbiome test, gut health score, microbiome diversity, fiber calculator, probiotic foods, prebiotic foods, digestive health, gut-brain axis, leaky gut, SIBO, intestinal health, gut bacteria test">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+
+<!-- ========== OPEN GRAPH ========== -->
+<meta property="og:title" content="Gut Microbiome Health Score Calculator">
+<meta property="og:description" content="Assess your gut health with our scientific microbiome score. Fiber intake, probiotic diversity, and digestive symptoms analysis.">
+<meta property="og:image" content="https://healthcalc.in/images/gut-microbiome-og.jpg">
+<meta property="og:url" content="https://healthcalc.in/gut-microbiome-calculator">
+<meta property="og:type" content="website">
+
+<!-- ========== TWITTER CARD ========== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gut Microbiome Health Score">
+<meta name="twitter:description" content="Free gut health assessment based on scientific research">
+<meta name="twitter:image" content="https://healthcalc.in/images/gut-microbiome-twitter.jpg">
+
+<!-- ========== CANONICAL ========== -->
+<link rel="canonical" href="https://healthcalc.in/gut-microbiome-calculator">
+
+<!-- ========== SCHEMA MARKUP ========== -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalWebPage",
+"name": "Gut Microbiome Health Score Calculator",
+"description": "Scientific assessment of gut health based on diet, lifestyle, and digestive symptoms",
+"url": "https://healthcalc.in/gut-microbiome-calculator",
+"about": {
+"@type": "Thing",
+"name": "Gut Microbiome"
+},
+"author": {
+"@type": "Organization",
+"name": "HealthCalc"
+}
+}
+</script>
+
+<!-- ========== FONTS & ICONS ========== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- ========== STYLES ========== -->
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary: #10b981;
+--primary-dark: #059669;
+--primary-light: #d1fae5;
+--secondary: #8b5cf6;
+--accent: #f59e0b;
+--success: #10b981;
+--warning: #f59e0b;
+--danger: #ef4444;
+--dark: #1f2937;
+--light: #f9fafb;
+--gray: #6b7280;
+
+--gradient-1: linear-gradient(145deg, #10b981, #34d399);
+--gradient-2: linear-gradient(145deg, #8b5cf6, #a78bfa);
+--gradient-3: linear-gradient(145deg, #f59e0b, #fbbf24);
+
+--shadow-sm: 0 10px 30px -10px rgba(16,185,129,0.2);
+--shadow-md: 0 20px 40px -15px rgba(16,185,129,0.3);
+--shadow-lg: 0 30px 60px -15px rgba(16,185,129,0.4);
+
+--border-radius-sm: 12px;
+--border-radius-md: 20px;
+--border-radius-lg: 30px;
+--border-radius-xl: 40px;
+}
+
+body {
+font-family: 'Inter', sans-serif;
+background: linear-gradient(145deg, #ecfdf5, #d1fae5);
+min-height: 100vh;
+padding: 20px;
+color: var(--dark);
+line-height: 1.6;
+}
+
+.container {
+max-width: 1300px;
+margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.header {
+text-align: center;
+padding: 40px 20px;
+background: white;
+border-radius: var(--border-radius-xl);
+margin-bottom: 30px;
+box-shadow: var(--shadow-sm);
+}
+
+.header h1 {
+font-size: clamp(2.5rem, 6vw, 3.5rem);
+font-weight: 800;
+background: linear-gradient(145deg, #059669, #10b981, #34d399);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-bottom: 15px;
+}
+
+.header p {
+font-size: 1.2rem;
+max-width: 800px;
+margin: 0 auto 20px;
+color: var(--gray);
+}
+
+.badges {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+margin: 20px 0;
+}
+
+.badge {
+background: var(--primary-light);
+padding: 10px 25px;
+border-radius: 50px;
+font-weight: 600;
+color: var(--primary-dark);
+display: inline-flex;
+align-items: center;
+gap: 8px;
+}
+
+/* ===== GRID ===== */
+.grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 30px;
+margin: 40px 0;
+}
+
+@media (max-width: 900px) {
+.grid {
+grid-template-columns: 1fr;
+}
+}
+
+/* ===== CARDS ===== */
+.card {
+background: white;
+border-radius: var(--border-radius-lg);
+padding: 30px;
+box-shadow: var(--shadow-sm);
+transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+transform: translateY(-5px);
+box-shadow: var(--shadow-md);
+}
+
+.card-title {
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 25px;
+display: flex;
+align-items: center;
+gap: 10px;
+color: var(--primary-dark);
+border-bottom: 2px dashed var(--primary-light);
+padding-bottom: 15px;
+}
+
+.card-title i {
+background: var(--primary-light);
+padding: 10px;
+border-radius: 50%;
+color: var(--primary);
+}
+
+/* ===== INPUT SECTIONS ===== */
+.section-label {
+font-weight: 600;
+margin: 20px 0 15px;
+color: var(--dark);
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.input-group {
+margin-bottom: 20px;
+}
+
+.input-label {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 8px;
+font-weight: 500;
+color: var(--gray);
+}
+
+.input-label i {
+color: var(--primary);
+width: 20px;
+}
+
+select, input[type="number"], input[type="range"] {
+width: 100%;
+padding: 12px 15px;
+border: 2px solid #e5e7eb;
+border-radius: var(--border-radius-sm);
+font-family: 'Inter';
+font-size: 1rem;
+transition: all 0.3s;
+}
+
+select:focus, input:focus {
+outline: none;
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
+}
+
+input[type="range"] {
+padding: 0;
+height: 8px;
+background: #e5e7eb;
+border: none;
+-webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+width: 24px;
+height: 24px;
+background: var(--primary);
+border-radius: 50%;
+cursor: pointer;
+border: 3px solid white;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.range-value {
+display: inline-block;
+background: var(--primary-light);
+padding: 5px 15px;
+border-radius: 30px;
+font-weight: 600;
+color: var(--primary-dark);
+margin-top: 5px;
+}
+
+.double-input {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+}
+
+/* ===== CHECKBOX GRID ===== */
+.checkbox-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+margin: 15px 0;
+}
+
+.checkbox-item {
+background: #f9fafb;
+border: 2px solid #e5e7eb;
+border-radius: var(--border-radius-sm);
+padding: 12px;
+cursor: pointer;
+transition: all 0.2s;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.checkbox-item:hover {
+background: var(--primary-light);
+border-color: var(--primary);
+}
+
+.checkbox-item.selected {
+background: var(--primary-light);
+border-color: var(--primary);
+}
+
+.checkbox-item input[type="checkbox"] {
+width: 18px;
+height: 18px;
+accent-color: var(--primary);
+}
+
+/* ===== RESULTS SECTION ===== */
+.score-box {
+background: linear-gradient(145deg, #059669, #10b981);
+border-radius: var(--border-radius-xl);
+padding: 40px;
+text-align: center;
+color: white;
+margin-bottom: 30px;
+position: relative;
+overflow: hidden;
+}
+
+.score-box::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+
+.score-label {
+font-size: 1.2rem;
+opacity: 0.9;
+position: relative;
+}
+
+.score-number {
+font-size: 5rem;
+font-weight: 800;
+line-height: 1;
+margin: 15px 0;
+position: relative;
+text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+.score-category {
+font-size: 1.5rem;
+font-weight: 700;
+position: relative;
+background: rgba(255,255,255,0.2);
+padding: 10px 30px;
+border-radius: 50px;
+display: inline-block;
+}
+
+/* ===== METER GAUGE ===== */
+.meter-container {
+margin: 30px 0;
+}
+
+.meter-label {
+display: flex;
+justify-content: space-between;
+margin-bottom: 8px;
+font-weight: 500;
+}
+
+.meter-bar {
+height: 12px;
+background: #e5e7eb;
+border-radius: 20px;
+overflow: hidden;
+margin-bottom: 20px;
+}
+
+.meter-fill {
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, var(--danger), var(--warning), var(--success));
+border-radius: 20px;
+transition: width 0.5s;
+}
+
+/* ===== FACTOR GRID ===== */
+.factors-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 20px;
+margin: 30px 0;
+}
+
+.factor-card {
+background: #f9fafb;
+border-radius: var(--border-radius-md);
+padding: 20px;
+border-left: 5px solid var(--primary);
+}
+
+.factor-title {
+font-weight: 700;
+margin-bottom: 8px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.factor-value {
+font-size: 1.2rem;
+font-weight: 600;
+margin-bottom: 5px;
+}
+
+.factor-desc {
+color: var(--gray);
+font-size: 0.9rem;
+}
+
+/* ===== RECOMMENDATIONS ===== */
+.recommendations-box {
+background: #f9fafb;
+border-radius: var(--border-radius-lg);
+padding: 25px;
+margin: 30px 0;
+}
+
+.rec-item {
+display: flex;
+gap: 15px;
+padding: 15px 0;
+border-bottom: 1px solid #e5e7eb;
+}
+
+.rec-item:last-child {
+border-bottom: none;
+}
+
+.rec-icon {
+font-size: 1.8rem;
+}
+
+.rec-content {
+flex: 1;
+}
+
+.rec-title {
+font-weight: 700;
+margin-bottom: 5px;
+}
+
+.rec-desc {
+color: var(--gray);
+font-size: 0.9rem;
+}
+
+.rec-impact {
+color: var(--primary);
+font-weight: 600;
+font-size: 0.9rem;
+margin-top: 5px;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+background: linear-gradient(145deg, #10b981, #059669);
+border: none;
+padding: 15px 30px;
+border-radius: 50px;
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+cursor: pointer;
+transition: all 0.3s;
+width: 100%;
+margin: 20px 0;
+box-shadow: 0 10px 20px -5px rgba(16,185,129,0.4);
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 20px 30px -5px rgba(16,185,129,0.6);
+}
+
+.btn-outline {
+background: transparent;
+border: 2px solid var(--primary-light);
+padding: 12px 25px;
+border-radius: 50px;
+color: var(--primary-dark);
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.btn-outline:hover {
+background: var(--primary-light);
+}
+
+.button-group {
+display: flex;
+gap: 15px;
+margin-top: 20px;
+}
+
+/* ===== FAQ ===== */
+.faq-section {
+background: white;
+border-radius: var(--border-radius-xl);
+padding: 50px;
+margin: 60px 0;
+box-shadow: var(--shadow-sm);
+}
+
+.faq-section h2 {
+font-size: 2rem;
+text-align: center;
+margin-bottom: 40px;
+color: var(--primary-dark);
+}
+
+.faq-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 30px;
+}
+
+@media (max-width: 700px) {
+.faq-grid {
+grid-template-columns: 1fr;
+}
+}
+
+.faq-item {
+border-bottom: 1px solid #e5e7eb;
+padding-bottom: 20px;
+}
+
+.faq-question {
+font-weight: 700;
+color: var(--primary);
+margin-bottom: 10px;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.faq-answer {
+color: var(--gray);
+display: none;
+padding-top: 10px;
+}
+
+.faq-item.active .faq-answer {
+display: block;
+}
+
+.toggle {
+font-size: 1.5rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+text-align: center;
+padding: 40px 0;
+color: var(--gray);
+border-top: 1px solid #e5e7eb;
+margin-top: 60px;
+}
+
+.scroll-top {
+position: fixed;
+bottom: 30px;
+right: 30px;
+background: var(--primary);
+color: white;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: var(--shadow-lg);
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s;
+border: none;
+z-index: 1000;
+}
+
+.scroll-top.visible {
+opacity: 1;
+visibility: visible;
+}
+
+.scroll-top:hover {
+transform: scale(1.1);
+background: var(--primary-dark);
+}
+</style>
+</head>
+<body>
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<div class="container">
+<!-- Header -->
+<div class="header">
+<h1>🦠 Gut Microbiome Health Score</h1>
+<p>Assess your gut health based on scientific research from the American Gut Project, Harvard, and Nature Reviews. 100% private, no signup.</p>
+<div class="badges">
+<span class="badge"><i class="fas fa-dna"></i> Microbiome Diversity</span>
+<span class="badge"><i class="fas fa-apple-alt"></i> Fiber Intake</span>
+<span class="badge"><i class="fas fa-brain"></i> Gut-Brain Axis</span>
+<span class="badge"><i class="fas fa-flask"></i> Science-Based</span>
+</div>
+</div>
+
+<!-- Main Grid -->
+<div class="grid">
+<!-- Input Card -->
+<div class="card">
+<div class="card-title">
+<i class="fas fa-clipboard-list"></i> Your Gut Health Profile
+</div>
+
+<!-- Diet Section -->
+<div class="section-label">
+<i class="fas fa-apple-alt"></i> Diet & Nutrition
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-carrot"></i> Daily Fiber Intake</div>
+<select id="fiber">
+<option value="0">Less than 10g (very low)</option>
+<option value="1">10-15g (low)</option>
+<option value="2" selected>15-25g (moderate)</option>
+<option value="3">25-35g (optimal)</option>
+<option value="4">More than 35g (excellent)</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-drumstick-bite"></i> Probiotic Foods</div>
+<select id="probiotic">
+<option value="0">Never (0/week)</option>
+<option value="1">Rarely (1-2/week)</option>
+<option value="2" selected>Sometimes (3-4/week)</option>
+<option value="3">Often (5-6/week)</option>
+<option value="4">Daily (7+/week)</option>
+</select>
+<small style="color: var(--gray);">Yogurt, kefir, kimchi, sauerkraut, kombucha</small>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-seedling"></i> Prebiotic Foods</div>
+<select id="prebiotic">
+<option value="0">Never (0/week)</option>
+<option value="1">Rarely (1-2/week)</option>
+<option value="2" selected>Sometimes (3-4/week)</option>
+<option value="3">Often (5-6/week)</option>
+<option value="4">Daily (7+/week)</option>
+</select>
+<small style="color: var(--gray);">Garlic, onions, bananas, oats, asparagus</small>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-candy-cane"></i> Processed Foods</div>
+<select id="processed">
+<option value="4">Never / Rarely</option>
+<option value="3">1-2 times/week</option>
+<option value="2" selected>3-5 times/week</option>
+<option value="1">Daily</option>
+<option value="0">Multiple times daily</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-wine-bottle"></i> Alcohol Consumption</div>
+<select id="alcohol">
+<option value="4">None</option>
+<option value="3" selected>1-2 drinks/week</option>
+<option value="2">3-5 drinks/week</option>
+<option value="1">6-10 drinks/week</option>
+<option value="0">11+ drinks/week</option>
+</select>
+</div>
+
+<!-- Lifestyle Section -->
+<div class="section-label">
+<i class="fas fa-heart"></i> Lifestyle Factors
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-pills"></i> Antibiotic Use (last 5 years)</div>
+<select id="antibiotics">
+<option value="4">None</option>
+<option value="3">1 course</option>
+<option value="2" selected>2-3 courses</option>
+<option value="1">4-5 courses</option>
+<option value="0">6+ courses</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-bed"></i> Sleep Quality</div>
+<select id="sleep">
+<option value="4">Excellent (7-9h, refreshed)</option>
+<option value="3">Good (7-8h, sometimes tired)</option>
+<option value="2" selected>Fair (6-7h, often tired)</option>
+<option value="1">Poor (5-6h, tired)</option>
+<option value="0">Very Poor (<5h, exhausted)</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-running"></i> Exercise</div>
+<select id="exercise">
+<option value="4">Daily (60+ min)</option>
+<option value="3">4-6 days/week</option>
+<option value="2" selected>2-3 days/week</option>
+<option value="1">1 day/week</option>
+<option value="0">Rarely / Never</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-brain"></i> Stress Level</div>
+<select id="stress">
+<option value="4">Very Low</option>
+<option value="3">Low</option>
+<option value="2" selected>Moderate</option>
+<option value="1">High</option>
+<option value="0">Very High</option>
+</select>
+</div>
+
+<!-- Digestive Symptoms -->
+<div class="section-label">
+<i class="fas fa-stomach"></i> Digestive Symptoms (last 2 weeks)
+</div>
+
+<div class="checkbox-grid">
+<label class="checkbox-item">
+<input type="checkbox" id="symptom1" value="bloating"> <span>Bloating / Gas</span>
+</label>
+<label class="checkbox-item">
+<input type="checkbox" id="symptom2" value="heartburn"> Heartburn / Reflux
+</label>
+<label class="checkbox-item">
+<input type="checkbox" id="symptom3" value="constipation"> Constipation
+</label>
+<label class="checkbox-item">
+<input type="checkbox" id="symptom4" value="diarrhea"> Diarrhea
+</label>
+<label class="checkbox-item">
+<input type="checkbox" id="symptom5" value="pain"> Abdominal Pain
+</label>
+<label class="checkbox-item">
+<input type="checkbox" id="symptom6" value="nausea"> Nausea
+</label>
+</div>
+
+<button class="btn-primary" onclick="calculateGutScore()">
+<i class="fas fa-calculator"></i> Calculate My Gut Health Score
+</button>
+</div>
+
+<!-- Results Card -->
+<div class="card">
+<div class="card-title">
+<i class="fas fa-chart-pie"></i> Your Gut Microbiome Analysis
+</div>
+
+<!-- Score Box -->
+<div class="score-box">
+<div class="score-label">Your Gut Microbiome Health Score</div>
+<div class="score-number" id="scoreNumber">72</div>
+<div class="score-category" id="scoreCategory">Good</div>
+</div>
+
+<!-- Meter Gauge -->
+<div class="meter-container">
+<div class="meter-label">
+<span>Poor</span>
+<span>Optimal</span>
+</div>
+<div class="meter-bar">
+<div class="meter-fill" id="scoreMeter" style="width: 72%;"></div>
+</div>
+</div>
+
+<!-- Key Factors -->
+<div class="factors-grid">
+<div class="factor-card">
+<div class="factor-title"><i class="fas fa-dna"></i> Diversity Score</div>
+<div class="factor-value" id="diversityScore">68/100</div>
+<div class="factor-desc" id="diversityDesc">Moderate diversity</div>
+</div>
+<div class="factor-card">
+<div class="factor-title"><i class="fas fa-carrot"></i> Fiber Intake</div>
+<div class="factor-value" id="fiberScore">15-25g</div>
+<div class="factor-desc" id="fiberDesc">Below optimal (30g+)</div>
+</div>
+</div>
+
+<!-- Diversity Breakdown -->
+<div style="margin: 20px 0;">
+<h4 style="margin-bottom: 15px;">🌱 Microbiome Diversity Factors</h4>
+
+<div style="margin-bottom: 12px;">
+<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+<span>Probiotic Foods</span>
+<span id="probioticScore">3/4</span>
+</div>
+<div class="meter-bar" style="height: 6px;">
+<div class="meter-fill" id="probioticBar" style="width: 75%; background: #10b981;"></div>
+</div>
+</div>
+
+<div style="margin-bottom: 12px;">
+<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+<span>Prebiotic Foods</span>
+<span id="prebioticScore">2/4</span>
+</div>
+<div class="meter-bar" style="height: 6px;">
+<div class="meter-fill" id="prebioticBar" style="width: 50%; background: #f59e0b;"></div>
+</div>
+</div>
+
+<div style="margin-bottom: 12px;">
+<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+<span>Processed Foods (negative)</span>
+<span id="processedScore">2/4</span>
+</div>
+<div class="meter-bar" style="height: 6px;">
+<div class="meter-fill" id="processedBar" style="width: 50%; background: #ef4444;"></div>
+</div>
+</div>
+</div>
+
+<!-- Recommendations -->
+<div class="recommendations-box">
+<h4 style="margin-bottom: 15px;">📋 Personalized Recommendations</h4>
+<div id="recommendations">
+<div class="rec-item">
+<div class="rec-icon">🥗</div>
+<div class="rec-content">
+<div class="rec-title">Increase fiber to 30g/day</div>
+<div class="rec-desc">Add beans, lentils, oats, and berries</div>
+<div class="rec-impact">+8 points potential</div>
+</div>
+</div>
+<div class="rec-item">
+<div class="rec-icon">🥣</div>
+<div class="rec-content">
+<div class="rec-title">Add fermented foods daily</div>
+<div class="rec-desc">Yogurt, kefir, kimchi, kombucha</div>
+<div class="rec-impact">+5 points potential</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Gut-Brain Axis -->
+<div style="background: #f9fafb; border-radius: 20px; padding: 20px; margin: 20px 0;">
+<h4 style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+<i class="fas fa-brain" style="color: var(--primary);"></i> Gut-Brain Axis
+</h4>
+<p id="gutBrainText">Your stress levels may be affecting your gut health. Consider meditation and stress management.</p>
+</div>
+
+<!-- Action Buttons -->
+<div class="button-group">
+<button class="btn-primary" onclick="window.print()">
+<i class="fas fa-download"></i> PDF Report
+</button>
+<button class="btn-outline" onclick="shareResults()">
+<i class="fas fa-share-alt"></i> Share
+</button>
+</div>
+
+<div style="font-size: 0.8rem; color: var(--gray); text-align: center; margin-top: 20px;">
+⚕️ Based on research from American Gut Project, Harvard, and Nature Reviews. Not a medical diagnosis.
+</div>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+<h2>❓ Frequently Asked Questions</h2>
+<div class="faq-grid">
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+What is gut microbiome diversity?
+<span class="toggle">+</span>
+</div>
+<div class="faq-answer">Higher diversity means more types of beneficial bacteria, which is linked to better health outcomes. The American Gut Project found that people who eat 30+ different plant foods per week have the most diverse microbiomes.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+How accurate is this calculator?
+<span class="toggle">+</span>
+</div>
+<div class="faq-answer">This calculator uses peer-reviewed research from Nature Reviews Gastroenterology & Hepatology, the American Gut Project, and Harvard T.H. Chan School of Public Health. It provides a research-based estimate of your gut health.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+What's the difference between probiotics and prebiotics?
+<span class="toggle">+</span>
+</div>
+<div class="faq-answer">Probiotics are beneficial bacteria (found in fermented foods). Prebiotics are food for those bacteria (fiber, onions, garlic). You need both for optimal gut health.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFAQ(this)">
+How can I improve my score?
+<span class="toggle">+</span>
+</div>
+<div class="faq-answer">Eat 30+ different plant foods weekly, include fermented foods daily, reduce processed foods, manage stress, sleep 7-8 hours, and exercise regularly.</div>
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer>
+<p>© 2024 HealthCalc.in - Gut Microbiome Health Score Calculator | 100% Private | No Data Storage</p>
+</footer>
+</div>
+
+<script>
+function calculateGutScore() {
+// Get all input values
+const fiber = parseInt(document.getElementById('fiber').value);
+const probiotic = parseInt(document.getElementById('probiotic').value);
+const prebiotic = parseInt(document.getElementById('prebiotic').value);
+const processed = parseInt(document.getElementById('processed').value);
+const alcohol = parseInt(document.getElementById('alcohol').value);
+const antibiotics = parseInt(document.getElementById('antibiotics').value);
+const sleep = parseInt(document.getElementById('sleep').value);
+const exercise = parseInt(document.getElementById('exercise').value);
+const stress = parseInt(document.getElementById('stress').value);
+
+// Count symptoms (each symptom reduces score)
+let symptoms = 0;
+const symptomIds = ['symptom1', 'symptom2', 'symptom3', 'symptom4', 'symptom5', 'symptom6'];
+symptomIds.forEach(id => {
+if (document.getElementById(id).checked) symptoms++;
+});
+
+// Calculate base score (max 100)
+let score = 0;
+let maxScore = 44; // Total possible points from factors (excluding symptoms)
+
+// Add up all positive factors (each out of 4)
+score += fiber * 3; // Fiber is weighted more (max 12)
+score += probiotic * 2; // Probiotics (max 8)
+score += prebiotic * 2; // Prebiotics (max 8)
+score += processed * 1; // Processed foods reverse (max 4)
+score += alcohol * 1; // Alcohol (max 4)
+score += antibiotics * 1; // Antibiotics (max 4)
+score += sleep * 2; // Sleep weighted (max 8)
+score += exercise * 2; // Exercise weighted (max 8)
+score += (4 - stress) * 2; // Stress (inverse, max 8)
+
+// Subtract for symptoms (each symptom -2 points)
+score -= symptoms * 2;
+
+// Calculate max possible (44 from factors - 0 symptoms = 44)
+// Scale to 0-100
+const scaledScore = Math.max(0, Math.min(100, Math.round((score / 44) * 100)));
+
+// Update score display
+document.getElementById('scoreNumber').innerText = scaledScore;
+document.getElementById('scoreMeter').style.width = scaledScore + '%';
+
+// Score category
+let category = '';
+if (scaledScore >= 80) category = 'Excellent';
+else if (scaledScore >= 60) category = 'Good';
+else if (scaledScore >= 40) category = 'Fair';
+else if (scaledScore >= 20) category = 'Poor';
+else category = 'Very Poor';
+
+document.getElementById('scoreCategory').innerText = category;
+
+// Update individual scores display
+document.getElementById('probioticScore').innerText = probiotic + '/4';
+document.getElementById('probioticBar').style.width = (probiotic * 25) + '%';
+
+document.getElementById('prebioticScore').innerText = prebiotic + '/4';
+document.getElementById('prebioticBar').style.width = (prebiotic * 25) + '%';
+
+document.getElementById('processedScore').innerText = processed + '/4';
+document.getElementById('processedBar').style.width = (processed * 25) + '%';
+
+// Fiber display
+const fiberText = ['<10g', '10-15g', '15-25g', '25-35g', '>35g'];
+document.getElementById('fiberScore').innerText = fiberText[fiber];
+if (fiber >= 3) {
+document.getElementById('fiberDesc').innerText = 'Optimal!';
+} else {
+document.getElementById('fiberDesc').innerText = 'Target: 30g+';
+}
+
+// Diversity score (based on probiotic + prebiotic + fiber)
+const diversity = Math.round((probiotic * 2 + prebiotic * 2 + fiber * 3) / 28 * 100);
+document.getElementById('diversityScore').innerText = diversity + '/100';
+if (diversity >= 70) {
+document.getElementById('diversityDesc').innerText = 'Good diversity';
+} else if (diversity >= 50) {
+document.getElementById('diversityDesc').innerText = 'Moderate diversity';
+} else {
+document.getElementById('diversityDesc').innerText = 'Low diversity';
+}
+
+// Gut-brain axis text
+let gutBrainText = '';
+if (stress <= 1) {
+gutBrainText = 'Your stress levels are high, which can negatively impact gut health. Consider meditation, deep breathing, or yoga.';
+} else if (sleep <= 1) {
+gutBrainText = 'Poor sleep affects the gut microbiome. Aim for 7-8 hours of quality sleep.';
+} else if (scaledScore >= 70) {
+gutBrainText = 'Your gut-brain axis appears balanced. Continue your healthy habits!';
+} else {
+gutBrainText = 'Your stress and lifestyle factors may be affecting your gut health. Focus on the recommendations below.';
+}
+document.getElementById('gutBrainText').innerText = gutBrainText;
+
+// Generate recommendations
+generateRecommendations(fiber, probiotic, prebiotic, processed, stress, sleep, exercise, symptoms);
+}
+
+function generateRecommendations(fiber, probiotic, prebiotic, processed, stress, sleep, exercise, symptoms) {
+const recContainer = document.getElementById('recommendations');
+let recommendations = [];
+
+if (fiber < 3) {
+recommendations.push({
+icon: '🥗',
+title: 'Increase fiber to 30g/day',
+desc: 'Add beans, lentils, oats, chia seeds, and berries',
+impact: '+8 points'
+});
+}
+
+if (probiotic < 3) {
+recommendations.push({
+icon: '🥣',
+title: 'Add fermented foods daily',
+desc: 'Yogurt, kefir, kimchi, sauerkraut, kombucha',
+impact: '+5 points'
+});
+}
+
+if (prebiotic < 3) {
+recommendations.push({
+icon: '🧄',
+title: 'Eat more prebiotic foods',
+desc: 'Garlic, onions, bananas, asparagus, oats',
+impact: '+5 points'
+});
+}
+
+if (processed < 3) {
+recommendations.push({
+icon: '🚫',
+title: 'Reduce processed foods',
+desc: 'Limit ultra-processed foods, added sugars, artificial sweeteners',
+impact: '+4 points'
+});
+}
+
+if (stress < 2) {
+recommendations.push({
+icon: '🧘',
+title: 'Manage stress levels',
+desc: 'Try meditation, deep breathing, or yoga daily',
+impact: '+6 points'
+});
+}
+
+if (sleep < 3) {
+recommendations.push({
+icon: '😴',
+title: 'Improve sleep quality',
+desc: 'Aim for 7-8 hours, consistent schedule, no screens before bed',
+impact: '+4 points'
+});
+}
+
+if (exercise < 3) {
+recommendations.push({
+icon: '🏃',
+title: 'Increase physical activity',
+desc: '150 minutes moderate exercise weekly',
+impact: '+4 points'
+});
+}
+
+if (symptoms > 2) {
+recommendations.push({
+icon: '⚠️',
+title: 'Address digestive symptoms',
+desc: 'Consider food diary to identify triggers',
+impact: '+6 points'
+});
+}
+
+if (recommendations.length === 0) {
+recommendations.push({
+icon: '🎉',
+title: 'Excellent gut health!',
+desc: 'Maintain your healthy habits and eat a variety of plant foods.',
+impact: 'Keep it up!'
+});
+}
+
+// Display top 4 recommendations
+recContainer.innerHTML = recommendations.slice(0, 4).map(rec => `
+<div class="rec-item">
+<div class="rec-icon">${rec.icon}</div>
+<div class="rec-content">
+<div class="rec-title">${rec.title}</div>
+<div class="rec-desc">${rec.desc}</div>
+<div class="rec-impact">+${rec.impact} potential</div>
+</div>
+</div>
+`).join('');
+}
+
+function toggleFAQ(element) {
+const faqItem = element.closest('.faq-item');
+faqItem.classList.toggle('active');
+const toggle = element.querySelector('.toggle');
+toggle.textContent = faqItem.classList.contains('active') ? '−' : '+';
+}
+
+function shareResults() {
+const score = document.getElementById('scoreNumber').innerText;
+const category = document.getElementById('scoreCategory').innerText;
+const text = `My Gut Microbiome Health Score is ${score} (${category}). Check yours at HealthCalc!`;
+
+if (navigator.share) {
+navigator.share({
+title: 'Gut Microbiome Score',
+text: text,
+url: window.location.href
+}).catch(() => {
+navigator.clipboard.writeText(window.location.href);
+alert('Link copied to clipboard!');
+});
+} else {
+navigator.clipboard.writeText(window.location.href);
+alert('Link copied to clipboard!');
+}
+}
+
+// Scroll to top button
+window.addEventListener('scroll', function() {
+const scrollTop = document.getElementById('scrollTop');
+if (window.scrollY > 500) {
+scrollTop.classList.add('visible');
+} else {
+scrollTop.classList.remove('visible');
+}
+});
+
+// Add event listeners to all inputs for real-time calculation
+document.querySelectorAll('select, input[type="checkbox"]').forEach(el => {
+el.addEventListener('change', calculateGutScore);
+});
+
+// Initialize
+window.onload = calculateGutScore;
+</script>
+</body>
+</html>
