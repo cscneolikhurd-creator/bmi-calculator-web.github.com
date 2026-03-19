@@ -63,7 +63,7 @@
         <priority>0.9</priority>
     </url>
     
-    <!-- ===== FITNESS CALCULATORS (3 Tools) ===== -->
+    <!-- ===== FITNESS CALCULATORS (5 Tools) ===== -->
     <url>
         <loc>https://healthcalc.in/heart-rate-zones-calculator.html</loc>
         <lastmod>2026-03-19</lastmod>
@@ -80,6 +80,14 @@
     
     <url>
         <loc>https://healthcalc.in/met-calculator.html</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- NEW: Vascular Age Calculator -->
+    <url>
+        <loc>https://healthcalc.in/vascular-age-calculator.html</loc>
         <lastmod>2026-03-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -118,6 +126,40 @@
     <!-- ===== LONGEVITY CALCULATOR (1 Tool) ===== -->
     <url>
         <loc>https://healthcalc.in/life-expectancy-calculator.html</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- ===== ADVANCED HEALTH CALCULATORS (3 NEW Tools) ===== -->
+    
+    <!-- NEW: Gut Microbiome Calculator -->
+    <url>
+        <loc>https://healthcalc.in/gut-microbiome-calculator.html</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- NEW: Circadian Rhythm Calculator -->
+    <url>
+        <loc>https://healthcalc.in/circadian-rhythm-calculator.html</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- NEW: Inflammation Calculator -->
+    <url>
+        <loc>https://healthcalc.in/inflammation-calculator.html</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- NEW: Hormone Health Calculator -->
+    <url>
+        <loc>https://healthcalc.in/hormone-health-calculator.html</loc>
         <lastmod>2026-03-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
