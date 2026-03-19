@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+<!-- SEO Meta -->
+<title>🔥 Inflammation Score Calculator: Dietary Inflammatory Index & CRP Estimate | HealthCalc</title>
+<meta name="description" content="Free inflammation score calculator based on Dietary Inflammatory Index. Assess your inflammatory load from diet, lifestyle, and symptoms. Get personalized anti-inflammatory recommendations.">
+<meta name="keywords" content="inflammation test, chronic inflammation, dietary inflammatory index, anti-inflammatory diet, CRP levels, inflammatory foods, omega-6 omega-3 ratio, inflammaging">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Inflammation Score Calculator">
+<meta property="og:description" content="Assess your body's inflammatory load and get personalized anti-inflammatory recommendations.">
+<meta property="og:image" content="https://healthcalc.in/images/inflammation-og.jpg">
+<meta property="og:url" content="https://healthcalc.in/inflammation-calculator">
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalWebPage",
+"name": "Inflammation Score Calculator",
+"description": "Dietary Inflammatory Index based inflammation assessment",
+"url": "https://healthcalc.in/inflammation-calculator"
+}
+</script>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+--primary: #ef4444;
+--primary-dark: #b91c1c;
+--primary-light: #fee2e2;
+--secondary: #f97316;
+--success: #10b981;
+--warning: #f59e0b;
+--danger: #ef4444;
+--gradient: linear-gradient(145deg, #ef4444, #f97316);
+}
+body {
+font-family: 'Inter', sans-serif;
+background: linear-gradient(145deg, #fef2f2, #fee2e2);
+min-height: 100vh;
+padding: 20px;
+}
+.container { max-width: 1300px; margin: 0 auto; }
+
+/* Header */
+.header {
+background: white;
+border-radius: 40px;
+padding: 40px;
+text-align: center;
+margin-bottom: 30px;
+box-shadow: 0 10px 30px -10px rgba(239,68,68,0.2);
+}
+.header h1 {
+font-size: 3rem;
+background: linear-gradient(145deg, #b91c1c, #ef4444);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-bottom: 15px;
+}
+.badges {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+margin: 20px 0;
+}
+.badge {
+background: var(--primary-light);
+padding: 10px 25px;
+border-radius: 50px;
+font-weight: 600;
+color: var(--primary-dark);
+}
+
+/* Grid */
+.grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 30px;
+}
+@media (max-width:900px){ .grid { grid-template-columns: 1fr; } }
+
+/* Cards */
+.card {
+background: white;
+border-radius: 30px;
+padding: 30px;
+box-shadow: 0 10px 40px -15px rgba(239,68,68,0.2);
+}
+.card-title {
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 25px;
+color: var(--primary-dark);
+border-bottom: 2px dashed var(--primary-light);
+padding-bottom: 15px;
+}
+
+/* Score Box */
+.score-box {
+background: linear-gradient(145deg, #ef4444, #f97316);
+border-radius: 40px;
+padding: 40px;
+text-align: center;
+color: white;
+margin-bottom: 30px;
+}
+.score-number {
+font-size: 5rem;
+font-weight: 800;
+line-height: 1;
+}
+.score-label { font-size: 1.2rem; opacity: 0.9; }
+.score-category {
+background: rgba(255,255,255,0.2);
+padding: 10px 30px;
+border-radius: 50px;
+display: inline-block;
+margin-top: 15px;
+font-size: 1.3rem;
+}
+
+/* Meter */
+.meter-bar {
+height: 12px;
+background: #e5e7eb;
+border-radius: 20px;
+overflow: hidden;
+margin: 20px 0;
+}
+.meter-fill {
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
+transition: width 0.5s;
+}
+
+/* CRP Box */
+.crp-box {
+background: #f8fafc;
+border-radius: 20px;
+padding: 20px;
+margin: 20px 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.crp-value {
+font-size: 2rem;
+font-weight: 700;
+color: var(--primary);
+}
+
+/* Factors Grid */
+.factors-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 15px;
+margin: 20px 0;
+}
+.factor-item {
+background: #f8fafc;
+border-radius: 15px;
+padding: 15px;
+}
+
+/* Input Styles */
+.input-group { margin-bottom: 20px; }
+.input-label {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 8px;
+font-weight: 500;
+}
+select, input[type="range"] {
+width: 100%;
+padding: 12px;
+border: 2px solid #e5e7eb;
+border-radius: 12px;
+}
+.range-value {
+background: var(--primary-light);
+padding: 5px 15px;
+border-radius: 30px;
+font-weight: 600;
+color: var(--primary-dark);
+}
+
+/* Recommendations */
+.rec-item {
+display: flex;
+gap: 15px;
+padding: 15px 0;
+border-bottom: 1px solid #e5e7eb;
+}
+.rec-icon { font-size: 1.8rem; }
+.rec-title { font-weight: 700; }
+.rec-desc { color: #6b7280; font-size: 0.9rem; }
+
+/* Buttons */
+.btn-primary {
+background: linear-gradient(145deg, #ef4444, #b91c1c);
+color: white;
+padding: 15px 30px;
+border: none;
+border-radius: 50px;
+font-weight: 700;
+width: 100%;
+cursor: pointer;
+}
+.btn-outline {
+background: transparent;
+border: 2px solid var(--primary-light);
+padding: 12px 25px;
+border-radius: 50px;
+color: var(--primary-dark);
+cursor: pointer;
+}
+.button-group {
+display: flex;
+gap: 15px;
+margin-top: 20px;
+}
+
+footer {
+text-align: center;
+padding: 40px;
+color: #6b7280;
+margin-top: 60px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<div class="header">
+<h1>🔥 Inflammation Score Calculator</h1>
+<p>Based on the Dietary Inflammatory Index (DII) from University of South Carolina</p>
+<div class="badges">
+<span class="badge"><i class="fas fa-fire"></i> Inflammatory Load</span>
+<span class="badge"><i class="fas fa-dna"></i> Omega-6:3 Ratio</span>
+<span class="badge"><i class="fas fa-tint"></i> CRP Estimate</span>
+</div>
+</div>
+
+<!-- Main Grid -->
+<div class="grid">
+<!-- Input Card -->
+<div class="card">
+<div class="card-title"><i class="fas fa-clipboard-list"></i> Your Inflammatory Profile</div>
+
+<!-- Diet Section -->
+<h4 style="margin:20px 0 10px">🥗 Diet Factors</h4>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-fish"></i> Omega-6: Omega-3 Ratio</div>
+<select id="omegaRatio">
+<option value="0">Excellent (< 4:1)</option>
+<option value="1">Good (4:1 - 8:1)</option>
+<option value="2" selected>Average (8:1 - 12:1)</option>
+<option value="3">Poor (12:1 - 15:1)</option>
+<option value="4">Very Poor (> 15:1)</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-candy-cane"></i> Added Sugar Intake</div>
+<select id="sugar">
+<option value="0">None / Very Low</option>
+<option value="1">Low (1-2 servings/week)</option>
+<option value="2" selected>Moderate (3-5 servings/week)</option>
+<option value="3">High (1-2 servings/day)</option>
+<option value="4">Very High (3+ servings/day)</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-wine-bottle"></i> Alcohol</div>
+<select id="alcohol">
+<option value="0">None</option>
+<option value="1">1-2 drinks/week</option>
+<option value="2" selected>3-5 drinks/week</option>
+<option value="3">6-10 drinks/week</option>
+<option value="4">11+ drinks/week</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-carrot"></i> Vegetables & Fruits</div>
+<select id="veggies">
+<option value="4">Less than 1 serving/day</option>
+<option value="3">1-2 servings/day</option>
+<option value="2">3-4 servings/day</option>
+<option value="1">5-6 servings/day</option>
+<option value="0">7+ servings/day</option>
+</select>
+</div>
+
+<!-- Lifestyle -->
+<h4 style="margin:20px 0 10px">💪 Lifestyle Factors</h4>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-running"></i> Exercise</div>
+<select id="exercise">
+<option value="0">Daily (60+ min)</option>
+<option value="1">4-6 days/week</option>
+<option value="2" selected>2-3 days/week</option>
+<option value="3">1 day/week</option>
+<option value="4">Sedentary</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-weight-scale"></i> BMI Category</div>
+<select id="bmi">
+<option value="0">Healthy (18.5-24.9)</option>
+<option value="1">Overweight (25-29.9)</option>
+<option value="2" selected>Obese Class I (30-34.9)</option>
+<option value="3">Obese Class II (35-39.9)</option>
+<option value="4">Obese Class III (40+)</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-smoking"></i> Smoking</div>
+<select id="smoking">
+<option value="0">Never smoked</option>
+<option value="1">Former smoker</option>
+<option value="2" selected>Current smoker (<1 pack/day)</option>
+<option value="3">Current smoker (1+ packs/day)</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-bed"></i> Sleep Quality</div>
+<select id="sleep">
+<option value="0">Excellent (7-9h, refreshed)</option>
+<option value="1">Good (7-8h)</option>
+<option value="2" selected>Fair (6-7h)</option>
+<option value="3">Poor (<6h)</option>
+</select>
+</div>
+
+<!-- Symptoms -->
+<h4 style="margin:20px 0 10px">⚠️ Inflammation Symptoms</h4>
+
+<div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 10px;">
+<label><input type="checkbox" id="symptom1"> Joint pain/stiffness</label>
+<label><input type="checkbox" id="symptom2"> Fatigue</label>
+<label><input type="checkbox" id="symptom3"> Skin issues</label>
+<label><input type="checkbox" id="symptom4"> Brain fog</label>
+<label><input type="checkbox" id="symptom5"> Digestive issues</label>
+<label><input type="checkbox" id="symptom6"> Allergies</label>
+</div>
+
+<button class="btn-primary" onclick="calculateInflammation()">
+<i class="fas fa-calculator"></i> Calculate Inflammation Score
+</button>
+</div>
+
+<!-- Results Card -->
+<div class="card">
+<div class="card-title"><i class="fas fa-chart-line"></i> Your Inflammation Analysis</div>
+
+<!-- Score -->
+<div class="score-box">
+<div class="score-label">Inflammation Score</div>
+<div class="score-number" id="scoreNumber">45</div>
+<div class="score-category" id="scoreCategory">Moderate</div>
+</div>
+
+<!-- Meter -->
+<div class="meter-bar">
+<div class="meter-fill" id="scoreMeter" style="width:45%"></div>
+</div>
+
+<!-- CRP Estimate -->
+<div class="crp-box">
+<div>
+<div style="color:#6b7280;">Estimated CRP Level</div>
+<div class="crp-value" id="crpValue">2.8 mg/L</div>
+</div>
+<div>
+<div style="color:#6b7280;">Risk Level</div>
+<div id="crpRisk" style="font-weight:700;">Moderate</div>
+</div>
+</div>
+
+<!-- Factors -->
+<div class="factors-grid">
+<div class="factor-item">
+<div style="font-weight:700;">Diet Score</div>
+<div id="dietScore">32/60</div>
+</div>
+<div class="factor-item">
+<div style="font-weight:700;">Lifestyle Score</div>
+<div id="lifestyleScore">18/40</div>
+</div>
+</div>
+
+<!-- Recommendations -->
+<div style="margin:30px 0">
+<h4>📋 Anti-Inflammatory Recommendations</h4>
+<div id="recommendations">
+<div class="rec-item">
+<div class="rec-icon">🐟</div>
+<div>
+<div class="rec-title">Increase Omega-3</div>
+<div class="rec-desc">Fatty fish 2x/week, flaxseeds, walnuts</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Buttons -->
+<div class="button-group">
+<button class="btn-primary" onclick="window.print()">📥 PDF Report</button>
+<button class="btn-outline" onclick="shareResults()">📤 Share</button>
+</div>
+
+<div style="font-size:0.8rem; color:#6b7280; text-align:center; margin-top:20px;">
+Based on Dietary Inflammatory Index research
+</div>
+</div>
+</div>
+</div>
+
+<script>
+function calculateInflammation() {
+// Get all values
+const omega = parseInt(document.getElementById('omegaRatio').value);
+const sugar = parseInt(document.getElementById('sugar').value);
+const alcohol = parseInt(document.getElementById('alcohol').value);
+const veggies = parseInt(document.getElementById('veggies').value);
+const exercise = parseInt(document.getElementById('exercise').value);
+const bmi = parseInt(document.getElementById('bmi').value);
+const smoking = parseInt(document.getElementById('smoking').value);
+const sleep = parseInt(document.getElementById('sleep').value);
+
+// Count symptoms
+let symptoms = 0;
+for (let i = 1; i <= 6; i++) {
+if (document.getElementById(`symptom${i}`).checked) symptoms++;
+}
+
+// Calculate scores
+let dietScore = (omega * 8) + (sugar * 6) + (alcohol * 5) + (veggies * 6);
+let lifestyleScore = (exercise * 6) + (bmi * 8) + (smoking * 8) + (sleep * 5) + (symptoms * 4);
+
+let totalScore = dietScore + lifestyleScore;
+let maxScore = 240;
+let percentage = Math.round((totalScore / maxScore) * 100);
+
+// Update display
+document.getElementById('scoreNumber').innerText = percentage;
+document.getElementById('scoreMeter').style.width = percentage + '%';
+
+// Category
+let category = '';
+if (percentage < 25) category = 'Low Inflammation';
+else if (percentage < 50) category = 'Moderate Inflammation';
+else if (percentage < 75) category = 'High Inflammation';
+else category = 'Severe Inflammation';
+document.getElementById('scoreCategory').innerText = category;
+
+// CRP estimate
+let crp = (percentage / 20).toFixed(1);
+document.getElementById('crpValue').innerText = crp + ' mg/L';
+
+let crpRisk = '';
+if (crp < 1) crpRisk = 'Low Risk';
+else if (crp < 3) crpRisk = 'Moderate Risk';
+else crpRisk = 'High Risk';
+document.getElementById('crpRisk').innerText = crpRisk;
+
+// Diet/Lifestyle scores
+document.getElementById('dietScore').innerText = dietScore + '/100';
+document.getElementById('lifestyleScore').innerText = lifestyleScore + '/140';
+
+// Recommendations
+let recs = [];
+if (omega > 1) recs.push({icon:'🐟', title:'Improve Omega-3:6 Ratio', desc:'Eat fatty fish 2x/week, add flaxseeds, reduce vegetable oils'});
+if (sugar > 2) recs.push({icon:'🍬', title:'Reduce Added Sugar', desc:'Cut sugary drinks, desserts, and processed foods'});
+if (veggies < 2) recs.push({icon:'🥗', title:'Eat More Vegetables', desc:'Aim for 7+ servings of colorful veggies daily'});
+if (exercise > 1) recs.push({icon:'🏃', title:'Increase Exercise', desc:'150 minutes moderate exercise weekly reduces inflammation'});
+if (bmi > 1) recs.push({icon:'⚖️', title:'Healthy Weight', desc:'Losing 5-10% body weight reduces inflammatory markers'});
+if (smoking > 1) recs.push({icon:'🚭', title:'Quit Smoking', desc:'Smoking increases CRP by 30-50%'});
+if (sleep > 2) recs.push({icon:'😴', title:'Improve Sleep', desc:'Poor sleep increases inflammatory cytokines'});
+
+document.getElementById('recommendations').innerHTML = recs.slice(0,4).map(r => `
+<div class="rec-item">
+<div class="rec-icon">${r.icon}</div>
+<div><div class="rec-title">${r.title}</div><div class="rec-desc">${r.desc}</div></div>
+</div>
+`).join('');
+}
+
+function shareResults() {
+navigator.clipboard.writeText(window.location.href);
+alert('Link copied!');
+}
+
+window.onload = calculateInflammation;
+</script>
+</body>
+</html>

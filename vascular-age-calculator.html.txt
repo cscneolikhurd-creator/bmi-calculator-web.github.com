@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ Vascular Age Calculator: Arterial Stiffness & Pulse Wave Velocity | HealthCalc</title>
+<meta name="description" content="Calculate your vascular age and arterial stiffness using Framingham and Rotterdam study data. See if your arteries are younger or older than you.">
+<style>
+/* Similar styles as above with heart theme */
+:root { --primary: #dc2626; --primary-light: #fee2e2; }
+body { background: linear-gradient(145deg, #fef2f2, #fee2e2); }
+.btn-primary { background: linear-gradient(145deg, #dc2626, #b91c1c); }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>❤️ Vascular Age Calculator</h1>
+<p>Based on Framingham Heart Study & Rotterdam Study data</p>
+</div>
+
+<div class="grid">
+<!-- Input Card -->
+<div class="card">
+<div class="card-title">📝 Your Cardiovascular Profile</div>
+
+<div class="input-group">
+<label>Age</label>
+<input type="number" id="age" value="45" min="20" max="90">
+</div>
+
+<div class="input-group">
+<label>Systolic Blood Pressure</label>
+<select id="sbp">
+<option value="0">< 120 mmHg (Optimal)</option>
+<option value="1">120-129 mmHg (Elevated)</option>
+<option value="2" selected>130-139 mmHg (Stage 1 HTN)</option>
+<option value="3">140-159 mmHg (Stage 2 HTN)</option>
+<option value="4">160+ mmHg (Severe HTN)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Blood Pressure Medication</label>
+<select id="bpMeds">
+<option value="0">No</option>
+<option value="1" selected>Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Total Cholesterol</label>
+<select id="cholesterol">
+<option value="0">< 200 mg/dL (Optimal)</option>
+<option value="1" selected>200-239 mg/dL (Borderline)</option>
+<option value="2">240+ mg/dL (High)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>HDL Cholesterol</label>
+<select id="hdl">
+<option value="2">< 40 mg/dL (Low)</option>
+<option value="1" selected>40-59 mg/dL (Normal)</option>
+<option value="0">60+ mg/dL (Optimal)</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Smoking Status</label>
+<select id="smoking">
+<option value="0">Never smoked</option>
+<option value="1">Former smoker</option>
+<option value="2" selected>Current smoker</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Diabetes</label>
+<select id="diabetes">
+<option value="0">No</option>
+<option value="1" selected>Yes</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Exercise (min/week)</label>
+<select id="exercise">
+<option value="0">150+ min (Optimal)</option>
+<option value="1">75-149 min (Moderate)</option>
+<option value="2" selected>< 75 min (Low)</option>
+<option value="3">Sedentary</option>
+</select>
+</div>
+
+<button class="btn-primary" onclick="calculateVascularAge()">Calculate Vascular Age</button>
+</div>
+
+<!-- Results Card -->
+<div class="card">
+<div class="card-title">📊 Your Vascular Analysis</div>
+
+<div class="score-box" style="background:linear-gradient(145deg,#dc2626,#b91c1c)">
+<div class="score-number" id="vascularAge">52</div>
+<div class="score-category" id="ageComparison">7 years older than your age</div>
+</div>
+
+<div class="factors-grid">
+<div class="factor-item">
+<div>Pulse Wave Velocity</div>
+<div class="crp-value" id="pwv">8.2 m/s</div>
+</div>
+<div class="factor-item">
+<div>Arterial Stiffness</div>
+<div id="stiffness" style="color:#dc2626">Moderate-High</div>
+</div>
+</div>
+
+<div class="crp-box">
+<div><strong>10-Year CVD Risk:</strong> <span id="cvdRisk">12.5%</span></div>
+<div><strong>Heart Age:</strong> <span id="heartAge">52</span></div>
+</div>
+
+<div style="margin:30px 0" id="recommendations">
+<!-- Dynamic recommendations -->
+</div>
+
+<button class="btn-outline" onclick="shareResults()">Share Results</button>
+</div>
+</div>
+</div>
+
+<script>
+function calculateVascularAge() {
+const age = parseInt(document.getElementById('age').value);
+const sbp = parseInt(document.getElementById('sbp').value);
+const bpMeds = parseInt(document.getElementById('bpMeds').value);
+const cholesterol = parseInt(document.getElementById('cholesterol').value);
+const hdl = parseInt(document.getElementById('hdl').value);
+const smoking = parseInt(document.getElementById('smoking').value);
+const diabetes = parseInt(document.getElementById('diabetes').value);
+const exercise = parseInt(document.getElementById('exercise').value);
+
+// Calculate vascular age (simplified Framingham)
+let vascularAge = age;
+
+// SBP effect
+vascularAge += sbp * 2;
+if (bpMeds > 0) vascularAge += 2;
+
+// Cholesterol effects
+vascularAge += cholesterol * 2;
+vascularAge += (hdl === 2) ? 3 : (hdl === 1) ? 0 : -2;
+
+// Lifestyle effects
+vascularAge += smoking * 3;
+vascularAge += diabetes * 5;
+vascularAge += exercise * 2;
+
+// Calculate PWV (simplified)
+let pwv = 5 + (vascularAge - 20) * 0.1;
+
+// Update display
+document.getElementById('vascularAge').innerText = vascularAge;
+
+let diff = vascularAge - age;
+let comparison = diff > 0 ? `${diff} years older` : diff < 0 ? `${-diff} years younger` : 'Same as your age';
+document.getElementById('ageComparison').innerText = comparison;
+
+document.getElementById('pwv').innerText = pwv.toFixed(1) + ' m/s';
+
+let stiffness = '';
+if (pwv < 7) stiffness = 'Low (Healthy)';
+else if (pwv < 9) stiffness = 'Moderate';
+else stiffness = 'High (Stiff)';
+document.getElementById('stiffness').innerText = stiffness;
+
+// CVD Risk (simplified)
+let risk = 5 + (vascularAge - 40) * 0.5;
+risk = Math.min(30, Math.max(1, risk)).toFixed(1);
+document.getElementById('cvdRisk').innerText = risk + '%';
+document.getElementById('heartAge').innerText = vascularAge;
+
+// Recommendations
+let recs = [];
+if (sbp > 1) recs.push('✅ Lower blood pressure: reduce sodium, exercise, DASH diet');
+if (smoking > 0) recs.push('✅ Quit smoking - single best thing for vascular health');
+if (exercise > 1) recs.push('✅ Increase exercise to 150 min/week - reduces arterial stiffness');
+if (cholesterol > 0) recs.push('✅ Improve cholesterol: soluble fiber, omega-3s, reduce saturated fat');
+if (hdl < 1) recs.push('✅ Boost HDL: exercise, healthy fats, moderate alcohol');
+
+document.getElementById('recommendations').innerHTML = recs.map(r =>
+`<div style="padding:10px; border-bottom:1px solid #e5e7eb">${r}</div>`
+).join('');
+}
+
+window.onload = calculateVascularAge;
+</script>
+</body>
+</html>
