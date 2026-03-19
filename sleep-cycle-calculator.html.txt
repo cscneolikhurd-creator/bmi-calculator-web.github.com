@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+<!-- SEO Meta -->
+<title>😴 Sleep Cycle Calculator: Optimal Wake-Up Times & Sleep Debt | HealthCalc</title>
+<meta name="description" content="Free sleep cycle calculator: Find the best time to wake up based on 90-minute cycles. Calculate sleep debt, get personalized recovery plans, and optimize your sleep schedule. 100% private.">
+<meta name="keywords" content="sleep cycle calculator, sleep debt calculator, best time to wake up, sleep cycles, 90 minute sleep cycle, REM sleep, deep sleep, circadian rhythm, sleep optimization, wake up refreshed">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Sleep Cycle & Debt Calculator">
+<meta property="og:description" content="Wake up refreshed between sleep cycles. Calculate optimal bedtimes and recover sleep debt.">
+<meta property="og:image" content="https://healthcalc.in/images/sleep-cycle-og.jpg">
+<meta property="og:url" content="https://healthcalc.in/sleep-cycle-calculator">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalWebPage",
+"name": "Sleep Cycle Calculator",
+"description": "Calculate optimal wake times based on 90-minute sleep cycles",
+"url": "https://healthcalc.in/sleep-cycle-calculator",
+"about": {
+"@type": "Thing",
+"name": "Sleep Medicine"
+}
+}
+</script>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary: #1e3a8a;
+--primary-dark: #1e293b;
+--primary-light: #dbeafe;
+--secondary: #3b82f6;
+--accent: #8b5cf6;
+--success: #4ade80;
+--warning: #fbbf24;
+--danger: #f87171;
+--dark: #0f172a;
+--light: #f8fafc;
+
+--gradient-night: linear-gradient(145deg, #0f172a, #1e293b, #334155);
+--gradient-sleep: linear-gradient(145deg, #1e3a8a, #3b82f6, #8b5cf6);
+
+--shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.2);
+--shadow-md: 0 20px 40px -15px rgba(0,0,0,0.3);
+--shadow-lg: 0 30px 60px -15px rgba(0,0,0,0.4);
+
+--border-radius: 24px;
+}
+
+body {
+font-family: 'Inter', sans-serif;
+background: var(--gradient-night);
+min-height: 100vh;
+padding: 20px;
+color: white;
+line-height: 1.6;
+}
+
+.container {
+max-width: 1300px;
+margin: 0 auto;
+}
+
+/* Header */
+.header {
+text-align: center;
+padding: 40px 20px;
+}
+
+.header h1 {
+font-size: clamp(2.5rem, 6vw, 3.5rem);
+font-weight: 800;
+margin-bottom: 15px;
+background: linear-gradient(135deg, #fff, #a5f3fc);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.header p {
+font-size: 1.2rem;
+max-width: 800px;
+margin: 0 auto;
+opacity: 0.9;
+}
+
+.badges {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+margin: 30px 0;
+}
+
+.badge {
+background: rgba(255,255,255,0.1);
+backdrop-filter: blur(10px);
+padding: 10px 25px;
+border-radius: 50px;
+font-weight: 500;
+border: 1px solid rgba(255,255,255,0.2);
+display: inline-flex;
+align-items: center;
+gap: 8px;
+}
+
+/* Grid */
+.grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 30px;
+margin: 40px 0;
+}
+
+@media (max-width: 900px) {
+.grid {
+grid-template-columns: 1fr;
+}
+}
+
+/* Cards */
+.card {
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: var(--border-radius);
+padding: 30px;
+transition: transform 0.3s;
+}
+
+.card:hover {
+transform: translateY(-5px);
+border-color: rgba(255,255,255,0.2);
+}
+
+.card-title {
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 25px;
+display: flex;
+align-items: center;
+gap: 10px;
+color: #a5f3fc;
+}
+
+/* Mode Toggle */
+.mode-toggle {
+display: flex;
+gap: 10px;
+background: rgba(0,0,0,0.3);
+padding: 5px;
+border-radius: 50px;
+margin-bottom: 30px;
+}
+
+.mode-btn {
+flex: 1;
+padding: 12px;
+border: none;
+background: transparent;
+border-radius: 50px;
+color: white;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.mode-btn.active {
+background: var(--gradient-sleep);
+box-shadow: 0 10px 20px -5px rgba(59,130,246,0.5);
+}
+
+/* Input Groups */
+.input-group {
+margin-bottom: 25px;
+}
+
+.input-label {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 10px;
+font-weight: 500;
+color: #cbd5e1;
+}
+
+input[type="time"], input[type="number"], select {
+width: 100%;
+padding: 15px;
+background: rgba(0,0,0,0.3);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: 15px;
+color: white;
+font-size: 1rem;
+font-family: 'Inter';
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+filter: invert(1);
+}
+
+.time-slider {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.time-slider input[type="range"] {
+flex: 1;
+height: 8px;
+background: rgba(255,255,255,0.1);
+border-radius: 10px;
+-webkit-appearance: none;
+}
+
+.time-slider input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+width: 25px;
+height: 25px;
+background: var(--secondary);
+border-radius: 50%;
+cursor: pointer;
+border: 2px solid white;
+}
+
+/* Results */
+.cycle-times {
+background: rgba(0,0,0,0.3);
+border-radius: 20px;
+padding: 25px;
+margin-bottom: 30px;
+text-align: center;
+}
+
+.cycle-title {
+font-size: 1.1rem;
+color: #94a3b8;
+margin-bottom: 15px;
+}
+
+.cycle-list {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 15px;
+margin: 20px 0;
+}
+
+.cycle-item {
+background: var(--gradient-sleep);
+padding: 15px 25px;
+border-radius: 50px;
+font-weight: 700;
+font-size: 1.3rem;
+box-shadow: 0 10px 20px -5px rgba(59,130,246,0.3);
+}
+
+.cycle-desc {
+color: #94a3b8;
+font-size: 0.95rem;
+}
+
+/* Sleep Debt */
+.debt-card {
+background: rgba(0,0,0,0.3);
+border-radius: 20px;
+padding: 25px;
+margin: 30px 0;
+}
+
+.debt-number {
+font-size: 3rem;
+font-weight: 800;
+color: var(--warning);
+line-height: 1;
+}
+
+.debt-label {
+color: #94a3b8;
+margin: 10px 0;
+}
+
+.progress-bar {
+height: 12px;
+background: rgba(255,255,255,0.1);
+border-radius: 10px;
+overflow: hidden;
+margin: 20px 0;
+}
+
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, #4ade80, #fbbf24, #f87171);
+width: 0%;
+transition: width 0.3s;
+}
+
+/* Chronotype */
+.chronotype-card {
+background: rgba(255,255,255,0.05);
+border-radius: 20px;
+padding: 20px;
+margin: 20px 0;
+border-left: 5px solid var(--secondary);
+}
+
+.chronotype-title {
+font-size: 1.2rem;
+font-weight: 700;
+margin-bottom: 5px;
+}
+
+.chronotype-desc {
+color: #94a3b8;
+font-size: 0.95rem;
+}
+
+/* Tips */
+.tips-section {
+margin: 30px 0;
+}
+
+.tip-item {
+display: flex;
+gap: 15px;
+padding: 15px 0;
+border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.tip-icon {
+font-size: 1.8rem;
+}
+
+.tip-content h4 {
+font-weight: 700;
+margin-bottom: 5px;
+}
+
+.tip-content p {
+color: #94a3b8;
+font-size: 0.9rem;
+}
+
+/* Buttons */
+.btn-primary {
+background: var(--gradient-sleep);
+border: none;
+padding: 15px 30px;
+border-radius: 50px;
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+cursor: pointer;
+transition: all 0.3s;
+width: 100%;
+box-shadow: 0 10px 20px -5px rgba(59,130,246,0.3);
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 20px 30px -5px rgba(59,130,246,0.5);
+}
+
+.btn-outline {
+background: transparent;
+border: 1px solid rgba(255,255,255,0.2);
+padding: 12px 25px;
+border-radius: 50px;
+color: white;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.btn-outline:hover {
+background: rgba(255,255,255,0.1);
+}
+
+.button-group {
+display: flex;
+gap: 15px;
+margin-top: 30px;
+}
+
+.disclaimer {
+font-size: 0.8rem;
+color: #64748b;
+text-align: center;
+margin-top: 30px;
+padding-top: 20px;
+border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* FAQ */
+.faq-section {
+background: rgba(255,255,255,0.03);
+border-radius: var(--border-radius);
+padding: 40px;
+margin: 60px 0;
+}
+
+.faq-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 25px;
+margin-top: 30px;
+}
+
+@media (max-width:700px){
+.faq-grid{grid-template-columns:1fr;}
+}
+
+.faq-item {
+background: rgba(255,255,255,0.05);
+padding: 20px;
+border-radius: 20px;
+}
+
+.faq-question {
+font-weight: 700;
+margin-bottom: 10px;
+color: #a5f3fc;
+}
+
+.faq-answer {
+color: #94a3b8;
+font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+margin-top: 60px;
+padding: 40px 0;
+border-top: 1px solid rgba(255,255,255,0.1);
+text-align: center;
+color: #64748b;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<div class="header">
+<h1>😴 Sleep Cycle Calculator</h1>
+<p>Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Calculate sleep debt and get personalized recovery plans.</p>
+<div class="badges">
+<span class="badge"><i class="fas fa-moon"></i> 90-min Cycles</span>
+<span class="badge"><i class="fas fa-clock"></i> Optimal Wake Times</span>
+<span class="badge"><i class="fas fa-chart-line"></i> Sleep Debt Tracker</span>
+<span class="badge"><i class="fas fa-brain"></i> REM & Deep Sleep</span>
+</div>
+</div>
+
+<!-- Main Grid -->
+<div class="grid">
+<!-- Input Card -->
+<div class="card">
+<div class="card-title">
+<i class="fas fa-sliders-h"></i> Your Sleep Schedule
+</div>
+
+<!-- Mode Toggle -->
+<div class="mode-toggle" id="modeToggle">
+<button class="mode-btn active" onclick="setMode('wake')">🌅 I want to wake at...</button>
+<button class="mode-btn" onclick="setMode('sleep')">🌙 I will sleep at...</button>
+</div>
+
+<!-- Wake Mode (default) -->
+<div id="wakeMode">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-alarm-clock"></i> I need to wake up at</div>
+<input type="time" id="wakeTime" value="07:00">
+</div>
+</div>
+
+<!-- Sleep Mode (hidden by default) -->
+<div id="sleepMode" style="display: none;">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-bed"></i> I will go to bed at</div>
+<input type="time" id="sleepTime" value="23:00">
+</div>
+</div>
+
+<!-- Fall asleep time -->
+<div class="input-group">
+<div class="input-label"><i class="fas fa-hourglass-half"></i> Time to fall asleep</div>
+<select id="fallAsleep">
+<option value="5">5 minutes</option>
+<option value="10">10 minutes</option>
+<option value="15" selected>15 minutes</option>
+<option value="20">20 minutes</option>
+<option value="30">30 minutes</option>
+<option value="45">45 minutes</option>
+<option value="60">1 hour</option>
+</select>
+</div>
+
+<!-- Chronotype -->
+<div class="input-group">
+<div class="input-label"><i class="fas fa-owl"></i> Your chronotype</div>
+<select id="chronotype">
+<option value="lion">🦁 Lion (Early bird - wake 5-6am, sleep 9-10pm)</option>
+<option value="bear" selected>🐻 Bear (Follows sun - wake 7-8am, sleep 11pm)</option>
+<option value="wolf">🐺 Wolf (Night owl - wake 9-10am, sleep 12-1am)</option>
+<option value="dolphin">🐬 Dolphin (Light sleeper - irregular)</option>
+</select>
+</div>
+
+<!-- Sleep Debt Section -->
+<div style="margin-top: 40px;">
+<h3 style="margin-bottom: 20px; color: #a5f3fc;">📉 Sleep Debt Tracker</h3>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-history"></i> Avg sleep last 7 days</div>
+<div class="time-slider">
+<input type="range" id="avgSleep" min="3" max="12" value="6.5" step="0.5">
+<span id="avgSleepValue">6.5 hrs</span>
+</div>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-bullseye"></i> Target sleep (recommended)</div>
+<div class="time-slider">
+<input type="range" id="targetSleep" min="6" max="10" value="8" step="0.5">
+<span id="targetSleepValue">8 hrs</span>
+</div>
+</div>
+</div>
+
+<button class="btn-primary" onclick="calculateSleep()">
+<i class="fas fa-calculator"></i> Calculate My Sleep Cycle
+</button>
+</div>
+
+<!-- Results Card -->
+<div class="card">
+<div class="card-title">
+<i class="fas fa-chart-line"></i> Your Sleep Analysis
+</div>
+
+<!-- Cycle Times -->
+<div class="cycle-times" id="cycleTimes">
+<div class="cycle-title">
+<span id="modeDisplay">If you wake at 7:00 AM, try sleeping at:</span>
+</div>
+<div class="cycle-list" id="cycleList">
+<span class="cycle-item">9:45 PM</span>
+<span class="cycle-item">11:15 PM</span>
+<span class="cycle-item">12:45 AM</span>
+<span class="cycle-item">2:15 AM</span>
+</div>
+<div class="cycle-desc">
+These times allow you to complete full 90-minute sleep cycles
+</div>
+</div>
+
+<!-- Sleep Debt -->
+<div class="debt-card">
+<div style="display: flex; justify-content: space-between; align-items: center;">
+<div>
+<div class="debt-number" id="sleepDebt">10.5</div>
+<div class="debt-label">hours of sleep debt</div>
+</div>
+<i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: var(--warning);"></i>
+</div>
+
+<div class="progress-bar">
+<div class="progress-fill" id="debtProgress" style="width: 45%;"></div>
+</div>
+
+<div id="recoveryPlan" style="color: #cbd5e1; margin-top: 15px;">
+To recover, add 1.5 hours of sleep for 7 nights
+</div>
+</div>
+
+<!-- Chronotype Recommendation -->
+<div class="chronotype-card" id="chronotypeCard">
+<div class="chronotype-title">
+<i class="fas fa-bear"></i> Bear Chronotype
+</div>
+<div class="chronotype-desc">
+Your ideal bedtime: 11:00 PM - 11:30 PM<br>
+Your ideal wake time: 7:00 AM - 7:30 AM
+</div>
+</div>
+
+<!-- Sleep Tips -->
+<div class="tips-section">
+<h3 style="margin-bottom: 15px; color: #a5f3fc;">💡 Sleep Optimization Tips</h3>
+<div id="sleepTips">
+<div class="tip-item">
+<div class="tip-icon">🌙</div>
+<div class="tip-content">
+<h4>Consistent schedule</h4>
+<p>Go to bed and wake up at the same time every day, even weekends</p>
+</div>
+</div>
+<div class="tip-item">
+<div class="tip-icon">📱</div>
+<div class="tip-content">
+<h4>No screens 1 hour before bed</h4>
+<p>Blue light disrupts melatonin production</p>
+</div>
+</div>
+<div class="tip-item">
+<div class="tip-icon">☕</div>
+<div class="tip-content">
+<h4>Limit caffeine after 2 PM</h4>
+<p>Caffeine can stay in your system for 8+ hours</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Action Buttons -->
+<div class="button-group">
+<button class="btn-primary" onclick="window.print()">
+<i class="fas fa-download"></i> PDF Report
+</button>
+<button class="btn-outline" onclick="shareResults()">
+<i class="fas fa-share-alt"></i> Share
+</button>
+</div>
+
+<div class="disclaimer">
+⚕️ Sleep needs vary by individual. These are estimates based on sleep research.
+</div>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+<h2 style="font-size: 2rem; text-align: center; margin-bottom: 20px;">❓ Frequently Asked Questions</h2>
+<div class="faq-grid">
+<div class="faq-item">
+<div class="faq-question">What is a sleep cycle?</div>
+<div class="faq-answer">A sleep cycle lasts about 90 minutes and includes light sleep, deep sleep, and REM sleep. Waking up between cycles helps you feel refreshed.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">How many cycles do I need?</div>
+<div class="faq-answer">Most adults need 5-6 complete cycles (7.5-9 hours). The calculator shows 4-6 cycle options.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">What is sleep debt?</div>
+<div class="faq-answer">Sleep debt is the cumulative effect of not getting enough sleep. A debt of 10+ hours requires a week of extended sleep to recover.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">What's my chronotype?</div>
+<div class="faq-answer">Chronotype is your natural preference for sleeping/waking times. Lions wake early, wolves wake late, bears follow the sun, dolphins are light sleepers.</div>
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer>
+<p>© 2024 HealthCalc.in - Sleep Cycle Calculator | 100% Private | No Data Storage</p>
+</footer>
+</div>
+
+<script>
+let currentMode = 'wake';
+
+function setMode(mode) {
+currentMode = mode;
+
+// Update buttons
+document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+if (mode === 'wake') {
+event.target.classList.add('active');
+document.getElementById('wakeMode').style.display = 'block';
+document.getElementById('sleepMode').style.display = 'none';
+} else {
+event.target.classList.add('active');
+document.getElementById('wakeMode').style.display = 'none';
+document.getElementById('sleepMode').style.display = 'block';
+}
+
+calculateSleep();
+}
+
+// Update slider values
+document.getElementById('avgSleep').addEventListener('input', function(e) {
+document.getElementById('avgSleepValue').innerText = e.target.value + ' hrs';
+calculateSleep();
+});
+
+document.getElementById('targetSleep').addEventListener('input', function(e) {
+document.getElementById('targetSleepValue').innerText = e.target.value + ' hrs';
+calculateSleep();
+});
+
+function calculateSleep() {
+const cycleLength = 90; // minutes
+const fallAsleep = parseInt(document.getElementById('fallAsleep').value);
+
+let baseTime;
+if (currentMode === 'wake') {
+baseTime = document.getElementById('wakeTime').value;
+} else {
+baseTime = document.getElementById('sleepTime').value;
+}
+
+if (!baseTime) return;
+
+const [hours, minutes] = baseTime.split(':').map(Number);
+let baseDate = new Date();
+baseDate.setHours(hours, minutes, 0);
+
+let cycleTimes = [];
+let displayText = '';
+
+if (currentMode === 'wake') {
+// Calculate bedtimes (subtract cycles + fall asleep time)
+for (let i = 1; i <= 6; i++) {
+let bedTime = new Date(baseDate.getTime() - (cycleLength * i + fallAsleep) * 60000);
+cycleTimes.push(bedTime);
+}
+displayText = 'If you wake at ' + baseTime + ', try sleeping at:';
+} else {
+// Calculate wake times (add cycles + fall asleep time)
+let sleepDate = new Date(baseDate.getTime() + fallAsleep * 60000);
+for (let i = 1; i <= 6; i++) {
+let wakeTime = new Date(sleepDate.getTime() + cycleLength * i * 60000);
+cycleTimes.push(wakeTime);
+}
+displayText = 'If you sleep at ' + baseTime + ', try waking at:';
+}
+
+// Display cycle times
+document.getElementById('modeDisplay').innerText = displayText;
+
+const cycleList = document.getElementById('cycleList');
+cycleList.innerHTML = cycleTimes.map(time => {
+let hours = time.getHours();
+let minutes = time.getMinutes();
+let ampm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12 || 12;
+minutes = minutes.toString().padStart(2, '0');
+return `<span class="cycle-item">${hours}:${minutes} ${ampm}</span>`;
+}).join('');
+
+// Calculate sleep debt
+const avgSleep = parseFloat(document.getElementById('avgSleep').value);
+const targetSleep = parseFloat(document.getElementById('targetSleep').value);
+const debt = (targetSleep - avgSleep) * 7;
+
+document.getElementById('sleepDebt').innerText = debt.toFixed(1);
+
+// Progress bar (0-20 hours debt)
+const debtPercent = Math.min(100, (debt / 20) * 100);
+document.getElementById('debtProgress').style.width = debtPercent + '%';
+
+// Recovery plan
+let recoveryText = '';
+if (debt <= 0) {
+recoveryText = '✨ No sleep debt! Great job maintaining healthy sleep.';
+} else if (debt < 5) {
+recoveryText = `Add ${(debt/7).toFixed(1)}h extra sleep for ${Math.ceil(debt)} nights to recover.`;
+} else if (debt < 10) {
+recoveryText = `Add 1h extra sleep for 7 nights to recover.`;
+} else {
+recoveryText = `Significant debt. Add 1.5h extra sleep for 10-14 nights.`;
+}
+document.getElementById('recoveryPlan').innerText = recoveryText;
+
+// Chronotype tips
+const chronotype = document.getElementById('chronotype').value;
+const chronotypeCard = document.getElementById('chronotypeCard');
+let chronoHtml = '';
+
+if (chronotype === 'lion') {
+chronoHtml = '<div class="chronotype-title">🦁 Lion Chronotype</div><div class="chronotype-desc">Best bedtime: 9:00-10:00 PM • Best wake time: 5:00-6:00 AM • Most productive before noon</div>';
+} else if (chronotype === 'bear') {
+chronoHtml = '<div class="chronotype-title">🐻 Bear Chronotype</div><div class="chronotype-desc">Best bedtime: 11:00-11:30 PM • Best wake time: 7:00-7:30 AM • Productive mid-morning</div>';
+} else if (chronotype === 'wolf') {
+chronoHtml = '<div class="chronotype-title">🐺 Wolf Chronotype</div><div class="chronotype-desc">Best bedtime: 12:00-1:00 AM • Best wake time: 9:00-10:00 AM • Most productive afternoon/evening</div>';
+} else {
+chronoHtml = '<div class="chronotype-title">🐬 Dolphin Chronotype</div><div class="chronotype-desc">Light sleeper. Need consistent routine. Avoid caffeine after noon. Try meditation before bed.</div>';
+}
+chronotypeCard.innerHTML = chronoHtml;
+
+// Update tips based on chronotype
+const tipsDiv = document.getElementById('sleepTips');
+let tips = [];
+
+if (chronotype === 'lion') {
+tips = [
+{ icon: '🌅', title: 'Morning person', desc: 'Schedule important tasks before noon when you\'re most alert.' },
+{ icon: '🌙', title: 'Early bedtime', desc: 'Don\'t fight your natural rhythm. Aim for 9-10 PM bedtime.' },
+{ icon: '☀️', title: 'Get morning light', desc: 'Morning sunlight helps regulate your circadian rhythm.' }
+];
+} else if (chronotype === 'bear') {
+tips = [
+{ icon: '⏰', title: 'Consistency is key', desc: 'Stick to 11 PM - 7 AM schedule even on weekends.' },
+{ icon: '💪', title: 'Peak hours 10 AM - 2 PM', desc: 'Schedule important work during this window.' },
+{ icon: '🌆', title: 'Evening wind-down', desc: 'Start relaxing 1 hour before your target bedtime.' }
+];
+} else if (chronotype === 'wolf') {
+tips = [
+{ icon: '🌙', title: 'Night owl', desc: 'Your creativity peaks in evening. Schedule creative work then.' },
+{ icon: '🌅', title: 'Gentle mornings', desc: 'Don\'t force early wake-ups. Try 9 AM if possible.' },
+{ icon: '💡', title: 'Light management', desc: 'Use bright light in mornings, dim light in evenings.' }
+];
+} else {
+tips = [
+{ icon: '🧘', title: 'Relaxation routine', desc: 'Try meditation or deep breathing before bed.' },
+{ icon: '☕', title: 'No caffeine after 2 PM', desc: 'Dolphins are extra sensitive to stimulants.' },
+{ icon: '📝', title: 'Journal before bed', desc: 'Write down worries to clear your mind.' }
+];
+}
+
+tipsDiv.innerHTML = tips.map(t => `
+<div class="tip-item">
+<div class="tip-icon">${t.icon}</div>
+<div class="tip-content">
+<h4>${t.title}</h4>
+<p>${t.desc}</p>
+</div>
+</div>
+`).join('');
+}
+
+function shareResults() {
+navigator.clipboard.writeText(window.location.href);
+alert('Link copied to clipboard!');
+}
+
+// Add event listeners
+document.getElementById('wakeTime').addEventListener('change', calculateSleep);
+document.getElementById('sleepTime').addEventListener('change', calculateSleep);
+document.getElementById('fallAsleep').addEventListener('change', calculateSleep);
+document.getElementById('chronotype').addEventListener('change', calculateSleep);
+
+// Initialize
+window.onload = calculateSleep;
+</script>
+</body>
+</html>

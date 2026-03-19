@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+<!-- SEO Meta -->
+<title>🔬 Metabolic Age Pro: Advanced BMR & Metabolism Test | HealthCalc</title>
+<meta name="description" content="Advanced metabolic age calculator with Katch-McArdle formula, body fat analysis, and personalized metabolism improvement plan. Compare BMR to your chronological age. 100% private.">
+<meta name="keywords" content="metabolic age, basal metabolic rate, BMR calculator, metabolism test, metabolic rate, Katch-McArdle formula, resting metabolic rate, metabolism age, body composition">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Metabolic Age Pro - Advanced Metabolism Calculator">
+<meta property="og:description" content="Calculate your metabolic age using Katch-McArdle formula. See if your metabolism is younger or older than you.">
+<meta property="og:image" content="https://healthcalc.in/images/metabolic-age-og.jpg">
+<meta property="og:url" content="https://healthcalc.in/metabolic-age-pro">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalWebPage",
+"name": "Metabolic Age Pro Calculator",
+"description": "Advanced metabolic age calculator using body fat percentage",
+"url": "https://healthcalc.in/metabolic-age-pro",
+"about": {
+"@type": "Thing",
+"name": "Metabolism"
+}
+}
+</script>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+:root {
+--primary: #a855f7;
+--primary-dark: #7e22ce;
+--primary-light: #f3e8ff;
+--secondary: #ec4899;
+--accent: #06b6d4;
+--success: #4ade80;
+--warning: #fbbf24;
+--danger: #f87171;
+
+--gradient-1: linear-gradient(145deg, #a855f7, #ec4899);
+--gradient-2: linear-gradient(145deg, #3b82f6, #a855f7);
+--gradient-3: linear-gradient(145deg, #06b6d4, #3b82f6);
+
+--shadow-sm: 0 10px 30px -10px rgba(168,85,247,0.3);
+--shadow-md: 0 20px 40px -15px rgba(168,85,247,0.4);
+--shadow-lg: 0 30px 60px -15px rgba(168,85,247,0.5);
+
+--border-radius: 24px;
+}
+
+body {
+font-family: 'Inter', sans-serif;
+background: linear-gradient(145deg, #0f172a, #1e1b4b, #2e1065);
+min-height: 100vh;
+padding: 20px;
+color: white;
+}
+
+.container {
+max-width: 1300px;
+margin: 0 auto;
+}
+
+/* Header */
+.header {
+text-align: center;
+padding: 40px 20px;
+}
+
+.header h1 {
+font-size: clamp(2.5rem, 6vw, 3.5rem);
+font-weight: 800;
+background: linear-gradient(135deg, #fff, #e9d5ff);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-bottom: 15px;
+}
+
+.header p {
+font-size: 1.2rem;
+max-width: 800px;
+margin: 0 auto;
+opacity: 0.9;
+}
+
+.badges {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+margin: 30px 0;
+}
+
+.badge {
+background: rgba(255,255,255,0.1);
+backdrop-filter: blur(10px);
+padding: 10px 25px;
+border-radius: 50px;
+border: 1px solid rgba(255,255,255,0.2);
+display: inline-flex;
+align-items: center;
+gap: 8px;
+}
+
+/* Grid */
+.grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 30px;
+margin: 40px 0;
+}
+
+@media (max-width: 900px) {
+.grid {
+grid-template-columns: 1fr;
+}
+}
+
+/* Cards */
+.card {
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: var(--border-radius);
+padding: 30px;
+transition: transform 0.3s;
+}
+
+.card:hover {
+transform: translateY(-5px);
+border-color: rgba(168,85,247,0.3);
+box-shadow: var(--shadow-md);
+}
+
+.card-title {
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 25px;
+display: flex;
+align-items: center;
+gap: 10px;
+color: #e9d5ff;
+}
+
+/* Formula selector */
+.formula-selector {
+display: flex;
+gap: 10px;
+background: rgba(0,0,0,0.3);
+padding: 5px;
+border-radius: 50px;
+margin-bottom: 30px;
+}
+
+.formula-btn {
+flex: 1;
+padding: 12px;
+border: none;
+background: transparent;
+border-radius: 50px;
+color: white;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.formula-btn.active {
+background: var(--gradient-1);
+box-shadow: 0 10px 20px -5px rgba(168,85,247,0.5);
+}
+
+/* Input groups */
+.input-group {
+margin-bottom: 20px;
+}
+
+.input-label {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 8px;
+font-weight: 500;
+color: #cbd5e1;
+}
+
+input, select {
+width: 100%;
+padding: 15px;
+background: rgba(0,0,0,0.3);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: 15px;
+color: white;
+font-size: 1rem;
+font-family: 'Inter';
+}
+
+.double-input {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+}
+
+.unit-toggle {
+display: flex;
+gap: 5px;
+background: rgba(0,0,0,0.3);
+padding: 3px;
+border-radius: 10px;
+margin-bottom: 15px;
+}
+
+.unit-btn {
+flex: 1;
+padding: 8px;
+border: none;
+background: transparent;
+border-radius: 8px;
+color: white;
+cursor: pointer;
+}
+
+.unit-btn.active {
+background: var(--primary);
+}
+
+/* Results */
+.metabolic-age-box {
+background: var(--gradient-1);
+border-radius: 30px;
+padding: 30px;
+text-align: center;
+margin-bottom: 30px;
+position: relative;
+overflow: hidden;
+}
+
+.metabolic-age-box::before {
+content: '';
+position: absolute;
+top: -50%;
+right: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+
+.age-label {
+font-size: 1.1rem;
+opacity: 0.9;
+position: relative;
+}
+
+.age-number {
+font-size: 5rem;
+font-weight: 800;
+line-height: 1;
+margin: 10px 0;
+position: relative;
+text-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.age-comparison {
+font-size: 1.2rem;
+position: relative;
+background: rgba(255,255,255,0.2);
+padding: 10px 20px;
+border-radius: 50px;
+display: inline-block;
+}
+
+/* BMR Box */
+.bmr-box {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+margin: 20px 0;
+}
+
+.bmr-item {
+background: rgba(255,255,255,0.05);
+border-radius: 20px;
+padding: 20px;
+text-align: center;
+}
+
+.bmr-value {
+font-size: 2rem;
+font-weight: 700;
+color: #e9d5ff;
+}
+
+.bmr-label {
+color: #94a3b8;
+font-size: 0.9rem;
+}
+
+/* Gauge */
+.gauge-container {
+margin: 30px 0;
+text-align: center;
+}
+
+.gauge {
+width: 200px;
+height: 100px;
+margin: 0 auto;
+position: relative;
+overflow: hidden;
+}
+
+.gauge-fill {
+width: 200px;
+height: 200px;
+background: conic-gradient(
+from 120deg,
+#4ade80 0deg,
+#fbbf24 120deg,
+#f87171 240deg
+);
+border-radius: 50%;
+transform: rotate(0deg);
+transition: transform 0.3s;
+}
+
+.gauge-center {
+position: absolute;
+top: 20px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 1.5rem;
+font-weight: 700;
+color: white;
+}
+
+/* Factors */
+.factors-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 15px;
+margin: 30px 0;
+}
+
+.factor-item {
+background: rgba(255,255,255,0.05);
+border-radius: 15px;
+padding: 15px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.factor-icon {
+font-size: 1.8rem;
+}
+
+.factor-text {
+flex: 1;
+}
+
+.factor-title {
+font-weight: 600;
+margin-bottom: 3px;
+}
+
+.factor-value {
+color: #94a3b8;
+font-size: 0.85rem;
+}
+
+.factor-impact {
+font-weight: 700;
+color: var(--success);
+}
+
+/* Improvement Plan */
+.plan-card {
+background: rgba(0,0,0,0.3);
+border-radius: 20px;
+padding: 20px;
+margin: 20px 0;
+border-left: 5px solid var(--primary);
+}
+
+.plan-item {
+display: flex;
+align-items: center;
+gap: 15px;
+padding: 12px 0;
+border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.plan-item:last-child {
+border-bottom: none;
+}
+
+.plan-check {
+color: var(--success);
+font-size: 1.2rem;
+}
+
+.plan-text {
+flex: 1;
+}
+
+.plan-title {
+font-weight: 600;
+}
+
+.plan-desc {
+color: #94a3b8;
+font-size: 0.85rem;
+}
+
+.plan-gain {
+color: var(--warning);
+font-weight: 700;
+}
+
+/* Buttons */
+.btn-primary {
+background: var(--gradient-1);
+border: none;
+padding: 15px 30px;
+border-radius: 50px;
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+cursor: pointer;
+transition: all 0.3s;
+width: 100%;
+margin: 20px 0;
+}
+
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 20px 30px -5px rgba(168,85,247,0.5);
+}
+
+.btn-outline {
+background: transparent;
+border: 1px solid rgba(255,255,255,0.2);
+padding: 12px 25px;
+border-radius: 50px;
+color: white;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+.button-group {
+display: flex;
+gap: 15px;
+margin-top: 20px;
+}
+
+.disclaimer {
+font-size: 0.8rem;
+color: #64748b;
+text-align: center;
+margin-top: 30px;
+padding-top: 20px;
+border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* FAQ */
+.faq-section {
+background: rgba(255,255,255,0.03);
+border-radius: var(--border-radius);
+padding: 40px;
+margin: 60px 0;
+}
+
+.faq-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 25px;
+margin-top: 30px;
+}
+
+@media (max-width:700px){
+.faq-grid{grid-template-columns:1fr;}
+}
+
+.faq-item {
+background: rgba(255,255,255,0.05);
+padding: 20px;
+border-radius: 20px;
+}
+
+.faq-question {
+font-weight: 700;
+margin-bottom: 10px;
+color: #e9d5ff;
+}
+
+.faq-answer {
+color: #94a3b8;
+font-size: 0.95rem;
+}
+
+footer {
+margin-top: 60px;
+padding: 40px 0;
+border-top: 1px solid rgba(255,255,255,0.1);
+text-align: center;
+color: #64748b;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<!-- Header -->
+<div class="header">
+<h1>🔬 Metabolic Age Pro</h1>
+<p>Advanced metabolic age calculator using Katch-McArdle formula with body fat analysis. See if your metabolism is younger or older than you.</p>
+<div class="badges">
+<span class="badge"><i class="fas fa-fire"></i> BMR Analysis</span>
+<span class="badge"><i class="fas fa-chart-line"></i> Metabolic Age</span>
+<span class="badge"><i class="fas fa-dumbbell"></i> Katch-McArdle</span>
+<span class="badge"><i class="fas fa-heart"></i> Improvement Plan</span>
+</div>
+</div>
+
+<!-- Main Grid -->
+<div class="grid">
+<!-- Input Card -->
+<div class="card">
+<div class="card-title">
+<i class="fas fa-sliders-h"></i> Your Details
+</div>
+
+<!-- Formula Selector -->
+<div class="formula-selector">
+<button class="formula-btn active" onclick="setFormula('katch')">🏋️ Katch-McArdle (Most Accurate)</button>
+<button class="formula-btn" onclick="setFormula('mifflin')">📊 Mifflin-St Jeor</button>
+</div>
+
+<!-- Basic Info -->
+<div class="double-input">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-calendar-alt"></i> Age</div>
+<input type="number" id="age" value="35" min="18" max="100">
+</div>
+<div class="input-group">
+<div class="input-label"><i class="fas fa-venus-mars"></i> Gender</div>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female" selected>Female</option>
+</select>
+</div>
+</div>
+
+<!-- Height/Weight with Unit Toggle -->
+<div class="unit-toggle" id="unitToggle">
+<button class="unit-btn active" onclick="setUnit('metric')">📏 Metric (cm/kg)</button>
+<button class="unit-btn" onclick="setUnit('imperial')">📐 Imperial (ft/lbs)</button>
+</div>
+
+<div class="double-input">
+<div class="input-group">
+<div class="input-label"><i class="fas fa-ruler"></i> Height</div>
+<input type="number" id="height" value="165" min="100" max="250" step="0.1">
+</div>
+<div class="input-group">
+<div class="input-label"><i class="fas fa-weight-scale"></i> Weight</div>
+<input type="number" id="weight" value="70" min="30" max="200" step="0.1">
+</div>
+</div>
+
+<!-- Body Fat (for Katch-McArdle) -->
+<div class="input-group">
+<div class="input-label"><i class="fas fa-percent"></i> Body Fat Percentage</div>
+<input type="number" id="bodyFat" value="25" min="5" max="50" step="0.1">
+<small style="color: #94a3b8;">If unknown, estimate visually or use our <a href="body-fat-calculator.html" style="color: #a855f7;">Body Fat Calculator</a></small>
+</div>
+
+<!-- Activity Level -->
+<div class="input-group">
+<div class="input-label"><i class="fas fa-running"></i> Activity Level</div>
+<select id="activity">
+<option value="1.2">🪑 Sedentary (office job, little exercise)</option>
+<option value="1.375">🚶 Light (exercise 1-3 days/week)</option>
+<option value="1.55" selected>🏃 Moderate (exercise 3-5 days/week)</option>
+<option value="1.725">🏋️ Active (exercise 6-7 days/week)</option>
+<option value="1.9">⚡ Athlete (2x/day, intense training)</option>
+</select>
+</div>
+
+<button class="btn-primary" onclick="calculateMetabolicAge()">
+<i class="fas fa-calculator"></i> Calculate Metabolic Age
+</button>
+</div>
+
+<!-- Results Card -->
+<div class="card">
+<div class="card-title">
+<i class="fas fa-chart-pie"></i> Your Metabolic Analysis
+</div>
+
+<!-- Metabolic Age -->
+<div class="metabolic-age-box">
+<div class="age-label">Your Metabolic Age</div>
+<div class="age-number" id="metabolicAge">32</div>
+<div class="age-comparison" id="ageComparison">
+<i class="fas fa-leaf" style="color: #4ade80;"></i> 3 years younger than your age
+</div>
+</div>
+
+<!-- BMR Display -->
+<div class="bmr-box">
+<div class="bmr-item">
+<div class="bmr-value" id="bmr">1450</div>
+<div class="bmr-label">BMR (calories/day)</div>
+</div>
+<div class="bmr-item">
+<div class="bmr-value" id="tdee">2250</div>
+<div class="bmr-label">TDEE (with activity)</div>
+</div>
+</div>
+
+<!-- Gauge -->
+<div class="gauge-container">
+<div class="gauge">
+<div class="gauge-fill" id="gaugeFill" style="transform: rotate(0deg);"></div>
+<div class="gauge-center" id="gaugeText">⚡</div>
+</div>
+<div style="display: flex; justify-content: space-between; margin-top: 10px;">
+<span style="color: #4ade80;">Younger</span>
+<span style="color: #fbbf24;">Match</span>
+<span style="color: #f87171;">Older</span>
+</div>
+</div>
+
+<!-- Key Factors -->
+<div class="factors-grid">
+<div class="factor-item">
+<div class="factor-icon">💪</div>
+<div class="factor-text">
+<div class="factor-title">Lean Mass</div>
+<div class="factor-value" id="leanMass">52.5 kg</div>
+</div>
+<div class="factor-impact" id="leanImpact">+</div>
+</div>
+<div class="factor-item">
+<div class="factor-icon">🔥</div>
+<div class="factor-text">
+<div class="factor-title">BMR/Age Ratio</div>
+<div class="factor-value" id="bmrRatio">1.2x</div>
+</div>
+<div class="factor-impact" id="ratioImpact">Good</div>
+</div>
+</div>
+
+<!-- Improvement Plan -->
+<div class="plan-card">
+<h3 style="margin-bottom: 15px;">📈 Personalized Improvement Plan</h3>
+<div id="improvementPlan">
+<div class="plan-item">
+<div class="plan-check">✅</div>
+<div class="plan-text">
+<div class="plan-title">Increase protein intake</div>
+<div class="plan-desc">Aim for 1.6g per kg body weight</div>
+</div>
+<div class="plan-gain">+50 cal BMR</div>
+</div>
+<div class="plan-item">
+<div class="plan-check">✅</div>
+<div class="plan-text">
+<div class="plan-title">Strength training 3x/week</div>
+<div class="plan-desc">Builds muscle, increases resting metabolism</div>
+</div>
+<div class="plan-gain">+100 cal BMR</div>
+</div>
+<div class="plan-item">
+<div class="plan-check">✅</div>
+<div class="plan-text">
+<div class="plan-title">HIIT cardio 2x/week</div>
+<div class="plan-desc">EPOC effect burns calories post-workout</div>
+</div>
+<div class="plan-gain">+75 cal BMR</div>
+</div>
+</div>
+</div>
+
+<!-- Action Buttons -->
+<div class="button-group">
+<button class="btn-primary" onclick="window.print()">
+<i class="fas fa-download"></i> PDF Report
+</button>
+<button class="btn-outline" onclick="shareResults()">
+<i class="fas fa-share-alt"></i> Share
+</button>
+</div>
+
+<div class="disclaimer">
+⚕️ Metabolic age is an estimate based on population averages. Consult a professional for medical advice.
+</div>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+<h2 style="font-size: 2rem; text-align: center;">❓ Frequently Asked Questions</h2>
+<div class="faq-grid">
+<div class="faq-item">
+<div class="faq-question">What is metabolic age?</div>
+<div class="faq-answer">Metabolic age compares your BMR to the average BMR of people your age. If your metabolic age is lower than your actual age, your metabolism is better than average.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">Katch-McArdle vs Mifflin-St Jeor?</div>
+<div class="faq-answer">Katch-McArdle is more accurate if you know your body fat % because it uses lean body mass. Mifflin-St Jeor is best if body fat is unknown.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">How can I improve metabolic age?</div>
+<div class="faq-answer">Build muscle through strength training, eat enough protein, stay hydrated, get quality sleep, and do HIIT cardio.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">What is a good metabolic age?</div>
+<div class="faq-answer">A metabolic age equal to or lower than your chronological age is considered good. The lower, the better.</div>
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer>
+<p>© 2024 HealthCalc.in - Metabolic Age Pro | Advanced Metabolism Analysis</p>
+</footer>
+</div>
+
+<script>
+let currentFormula = 'katch';
+let currentUnit = 'metric';
+
+function setFormula(formula) {
+currentFormula = formula;
+document.querySelectorAll('.formula-btn').forEach(btn => btn.classList.remove('active'));
+event.target.classList.add('active');
+calculateMetabolicAge();
+}
+
+function setUnit(unit) {
+currentUnit = unit;
+document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+event.target.classList.add('active');
+
+// Convert values
+const heightInput = document.getElementById('height');
+const weightInput = document.getElementById('weight');
+
+if (unit === 'metric') {
+// Convert imperial to metric
+if (heightInput.value > 100) return; // Already metric
+heightInput.value = (parseFloat(heightInput.value) * 30.48).toFixed(1);
+weightInput.value = (parseFloat(weightInput.value) * 0.453592).toFixed(1);
+} else {
+// Convert metric to imperial
+if (heightInput.value < 100) return; // Already imperial
+heightInput.value = (parseFloat(heightInput.value) / 30.48).toFixed(1);
+weightInput.value = (parseFloat(weightInput.value) / 0.453592).toFixed(1);
+}
+
+calculateMetabolicAge();
+}
+
+function calculateMetabolicAge() {
+const age = parseInt(document.getElementById('age').value);
+const gender = document.getElementById('gender').value;
+const activity = parseFloat(document.getElementById('activity').value);
+const bodyFat = parseFloat(document.getElementById('bodyFat').value);
+
+let height = parseFloat(document.getElementById('height').value);
+let weight = parseFloat(document.getElementById('weight').value);
+
+// Convert to metric if imperial
+if (currentUnit === 'imperial') {
+height = height * 30.48; // ft to cm
+weight = weight * 0.453592; // lbs to kg
+}
+
+// Calculate lean mass
+const leanMass = weight * (1 - bodyFat / 100);
+
+// Calculate BMR based on formula
+let bmr;
+if (currentFormula === 'katch') {
+// Katch-McArdle (uses lean mass)
+bmr = 370 + (21.6 * leanMass);
+} else {
+// Mifflin-St Jeor
+if (gender === 'male') {
+bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+} else {
+bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+}
+}
+
+// TDEE
+const tdee = bmr * activity;
+
+// Calculate metabolic age
+// Average BMR by age (simplified)
+let avgBMR;
+if (gender === 'male') {
+avgBMR = 1600 - (age * 5);
+} else {
+avgBMR = 1400 - (age * 4);
+}
+
+// Metabolic age = age * (avgBMR / bmr)
+const metabolicAge = Math.round(age * (avgBMR / bmr));
+const clampedMetabolicAge = Math.max(15, Math.min(100, metabolicAge));
+
+// Update display
+document.getElementById('metabolicAge').innerText = clampedMetabolicAge;
+document.getElementById('bmr').innerText = Math.round(bmr);
+document.getElementById('tdee').innerText = Math.round(tdee);
+document.getElementById('leanMass').innerText = leanMass.toFixed(1) + ' kg';
+
+// Age comparison
+const diff = age - clampedMetabolicAge;
+let comparisonText = '';
+let gaugeRotate = 0;
+
+if (diff > 0) {
+comparisonText = `<i class="fas fa-leaf" style="color: #4ade80;"></i> ${diff} years younger than your age`;
+gaugeRotate = 30 + (diff * 5);
+} else if (diff < 0) {
+comparisonText = `<i class="fas fa-exclamation-triangle" style="color: #f87171;"></i> ${-diff} years older than your age`;
+gaugeRotate = 30 - (Math.abs(diff) * 5);
+} else {
+comparisonText = `<i class="fas fa-equals" style="color: #fbbf24;"></i> Matches your age`;
+gaugeRotate = 30;
+}
+
+document.getElementById('ageComparison').innerHTML = comparisonText;
+
+// Gauge (0-60deg range)
+gaugeRotate = Math.max(0, Math.min(60, gaugeRotate));
+document.getElementById('gaugeFill').style.transform = `rotate(${gaugeRotate}deg)`;
+
+// Gauge text
+if (diff > 2) {
+document.getElementById('gaugeText').innerHTML = '⚡';
+} else if (diff < -2) {
+document.getElementById('gaugeText').innerHTML = '⚠️';
+} else {
+document.getElementById('gaugeText').innerHTML = '✓';
+}
+
+// BMR Ratio
+const ratio = (bmr / avgBMR).toFixed(2);
+document.getElementById('bmrRatio').innerHTML = ratio + 'x';
+document.getElementById('ratioImpact').innerHTML = ratio > 1 ? 'Good' : 'Needs work';
+
+// Generate improvement plan
+const planDiv = document.getElementById('improvementPlan');
+let plans = [];
+
+if (bodyFat > 30) {
+plans.push({
+check: '✅',
+title: 'Reduce body fat',
+desc: 'Focus on nutrition and cardio to lower body fat %',
+gain: '+100 cal'
+});
+}
+
+if (leanMass < 45 && gender === 'female' || leanMass < 55 && gender === 'male') {
+plans.push({
+check: '✅',
+title: 'Build muscle',
+desc: 'Strength training 3x/week to increase lean mass',
+gain: '+150 cal'
+});
+}
+
+if (activity < 1.55) {
+plans.push({
+check: '✅',
+title: 'Increase activity',
+desc: 'Add more movement throughout the day',
+gain: '+200 cal'
+});
+}
+
+if (plans.length === 0) {
+plans = [{
+check: '🎉',
+title: 'Great job!',
+desc: 'Your metabolism is already optimized',
+gain: 'Maintain'
+}];
+}
+
+planDiv.innerHTML = plans.map(p => `
+<div class="plan-item">
+<div class="plan-check">${p.check}</div>
+<div class="plan-text">
+<div class="plan-title">${p.title}</div>
+<div class="plan-desc">${p.desc}</div>
+</div>
+<div class="plan-gain">${p.gain}</div>
+</div>
+`).join('');
+}
+
+function shareResults() {
+navigator.clipboard.writeText(window.location.href);
+alert('Link copied to clipboard!');
+}
+
+// Add event listeners
+document.getElementById('age').addEventListener('input', calculateMetabolicAge);
+document.getElementById('gender').addEventListener('change', calculateMetabolicAge);
+document.getElementById('height').addEventListener('input', calculateMetabolicAge);
+document.getElementById('weight').addEventListener('input', calculateMetabolicAge);
+document.getElementById('bodyFat').addEventListener('input', calculateMetabolicAge);
+document.getElementById('activity').addEventListener('change', calculateMetabolicAge);
+
+// Initialize
+window.onload = calculateMetabolicAge;
+</script>
+</body>
+</html>
