@@ -955,8 +955,8 @@
         <!-- ========== SEARCH BAR ========== -->
         <div class="search-section">
             <span class="search-icon">🔍</span>
-            <input type="text" class="search-box" id="searchTools" placeholder="Search 15 calculators (e.g., BMI, pregnancy, life expectancy, ideal weight...)" onkeyup="filterTools()">
-            <span class="search-results-count" id="searchCount">15 tools</span>
+            <input type="text" class="search-box" id="searchTools" placeholder="Search 20 calculators (e.g., BMI, pregnancy, life expectancy, ideal weight...)" onkeyup="filterTools()">
+            <span class="search-results-count" id="searchCount">20 tools</span>
         </div>
 
         <!-- ========== CATEGORY TABS ========== -->
@@ -1304,6 +1304,62 @@
                 description: "Advanced metabolic age calculator with detailed body composition analysis"
             }
         ];
+            {
+        icon: "🦠",
+        title: "Gut Microbiome",
+        subtitle: "Health Score",
+        url: "gut-microbiome-calculator.html",
+        features: ["Diversity Score", "Fiber Analysis", "Gut-Brain Axis"],
+        category: "health",
+        popularity: 5.0,
+        color: "linear-gradient(135deg, #10b981, #34d399)",
+        description: "First free gut microbiome score calculator. Assess your gut health based on scientific research from the American Gut Project."
+    },
+    {
+        icon: "🌙",
+        title: "Circadian Rhythm",
+        subtitle: "Chronotype Optimizer",
+        url: "circadian-rhythm-calculator.html",
+        features: ["MEQ Test", "4 Chronotypes", "Social Jetlag"],
+        category: "sleep",
+        popularity: 4.9,
+        color: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+        description: "Discover your chronotype (lion, bear, wolf, dolphin) and optimize your daily schedule for peak performance."
+    },
+    {
+        icon: "🔥",
+        title: "Inflammation Score",
+        subtitle: "Inflammatory Load",
+        url: "inflammation-score-calculator.html",
+        features: ["Dietary Inflammatory Index", "Omega-6:3 Ratio", "CRP Estimate"],
+        category: "health",
+        popularity: 4.8,
+        color: "linear-gradient(135deg, #f97316, #facc15)",
+        description: "Calculate your inflammatory load based on diet, lifestyle, and symptoms. Track 'inflammaging' risk."
+    },
+    {
+        icon: "❤️",
+        title: "Vascular Age",
+        subtitle: "Pulse Wave Velocity",
+        url: "vascular-age-calculator.html",
+        features: ["Arterial Stiffness", "Heart Age", "Endothelial Score"],
+        category: "heart",
+        popularity: 4.7,
+        color: "linear-gradient(135deg, #b91c1c, #ef4444)",
+        description: "Estimate your vascular age and arterial stiffness. Stronger predictor of heart attack risk than chronological age."
+    },
+    {
+        icon: "🔬",
+        title: "Hormone Health",
+        subtitle: "Femtech & Andropause",
+        url: "hormone-health-calculator.html",
+        features: ["Estrogen/Testosterone", "Menopause Stage", "Symptom Assessment"],
+        category: "women",
+        popularity: 4.9,
+        color: "linear-gradient(135deg, #d14b6e, #fb7185)",
+        description: "Comprehensive hormone health assessment for women and men. Track estrogen, progesterone, testosterone levels."
+    }
+];
 
         // ========== RENDER TOOLS ==========
         const toolsGrid = document.getElementById('toolsGrid');
