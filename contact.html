@@ -3,236 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | HealthCalc.in</title>
+    
+    <!-- ========== SEO META ========== -->
+    <title>Contact Us | HealthCalc.in - Get in Touch</title>
+    <meta name="description" content="Contact the HealthCalc team. Questions, suggestions, or feedback? We'd love to hear from you.">
+    <meta name="keywords" content="contact healthcalc, feedback, suggest tool, health calculator support">
+    <meta name="robots" content="index, follow">
+    
+    <!-- ========== CANONICAL ========== -->
+    <link rel="canonical" href="https://healthcalc.in/contact">
+    
+    <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .hover-card { transition: all 0.2s ease; }
-        .hover-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.01); }
+        .gradient-green { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- Simple Navigation -->
-    <nav class="bg-white shadow-sm border-b border-gray-100">
+    <!-- Navigation (same as others) -->
+    <nav class="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="/" class="text-2xl font-bold text-emerald-700">Health<span class="text-emerald-500">Calc</span>.in</a>
-                <div class="space-x-8 text-gray-600 font-medium">
-                    <a href="#" class="hover:text-emerald-600">Home</a>
-                    <a href="#" class="hover:text-emerald-600">Tools</a>
-                    <a href="#" class="hover:text-emerald-600">About</a>
-                    <a href="#" class="text-emerald-600 border-b-2 border-emerald-500 pb-1">Contact</a>
+                <a href="/" class="text-2xl font-bold">
+                    <span class="text-emerald-700">Health</span><span class="text-emerald-500">Calc</span><span class="text-gray-600 text-sm ml-1">.in</span>
+                </a>
+                <div class="hidden md:flex space-x-8 text-gray-600 font-medium">
+                    <a href="index.html" class="hover:text-emerald-600">Home</a>
+                    <a href="about.html" class="hover:text-emerald-600">About</a>
+                    <a href="privacy-policy.html" class="hover:text-emerald-600">Privacy</a>
+                    <a href="terms-of-service.html" class="hover:text-emerald-600">Terms</a>
+                    <a href="contact.html" class="text-emerald-600 border-b-2 border-emerald-500 pb-1">Contact</a>
                 </div>
+                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <div class="md:hidden hidden mt-4 space-y-2" id="mobileMenu">
+                <a href="index.html" class="block py-2">Home</a>
+                <a href="about.html" class="block py-2">About</a>
+                <a href="privacy-policy.html" class="block py-2">Privacy</a>
+                <a href="terms-of-service.html" class="block py-2">Terms</a>
+                <a href="contact.html" class="block py-2 text-emerald-600">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Contact Hero -->
-    <section class="bg-gradient-to-b from-emerald-50 to-white py-16">
-        <div class="container mx-auto px-6 max-w-5xl text-center">
-            <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold">Get in Touch</span>
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mt-6">We'd love to hear <span class="text-emerald-600">from you</span></h1>
-            <p class="text-gray-500 text-lg mt-4 max-w-2xl mx-auto">Have questions, feedback, or suggestions? Reach out to us anytime.</p>
+    <!-- Header -->
+    <section class="gradient-green py-16">
+        <div class="container mx-auto px-6 max-w-4xl text-center text-white">
+            <span class="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold inline-block mb-4">
+                <i class="fas fa-headset mr-2"></i> We're Here to Help
+            </span>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+            <p class="text-xl text-white text-opacity-90">Have questions? Suggestions? We'd love to hear from you.</p>
         </div>
     </section>
 
-    <!-- Contact Cards - 3 Options -->
-    <section class="py-12 bg-white">
+    <!-- Contact Section -->
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-3 gap-8 -mt-8">
-                
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
                 <!-- Email Card -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover-card text-center">
-                    <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5">
-                        📧
+                <div class="bg-emerald-50 p-8 rounded-2xl border border-emerald-200 text-center hover-card">
+                    <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-envelope"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Email Us</h3>
-                    <p class="text-gray-500 text-sm mb-4">Quick response within 24 hours</p>
-                    <a href="mailto:support@healthcalc.in" class="text-emerald-600 font-medium hover:text-emerald-700 break-all">support@healthcalc.in</a>
+                    <h3 class="font-bold text-xl mb-2">Email Us</h3>
+                    <p class="text-gray-500 mb-4">General inquiries</p>
+                    <a href="mailto:hello@healthcalc.in" class="text-emerald-600 font-semibold hover:underline">hello@healthcalc.in</a>
                 </div>
                 
-                <!-- Twitter Card -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover-card text-center">
-                    <div class="w-16 h-16 bg-sky-100 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5">
-                        🐦
+                <!-- Support Card -->
+                <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200 text-center hover-card">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-life-ring"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Twitter / X</h3>
-                    <p class="text-gray-500 text-sm mb-4">Follow us for updates & tips</p>
-                    <a href="#" class="text-emerald-600 font-medium hover:text-emerald-700">@HealthCalc_in</a>
+                    <h3 class="font-bold text-xl mb-2">Technical Support</h3>
+                    <p class="text-gray-500 mb-4">Issues with calculators</p>
+                    <a href="mailto:support@healthcalc.in" class="text-blue-600 font-semibold hover:underline">support@healthcalc.in</a>
                 </div>
                 
-                <!-- GitHub Card -->
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover-card text-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5">
-                        🐙
+                <!-- Suggestions Card -->
+                <div class="bg-purple-50 p-8 rounded-2xl border border-purple-200 text-center hover-card">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">GitHub</h3>
-                    <p class="text-gray-500 text-sm mb-4">Open source & contributions</p>
-                    <a href="#" class="text-emerald-600 font-medium hover:text-emerald-700">github.com/healthcalc</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form & Info Side by Side -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid lg:grid-cols-2 gap-12">
-                
-                <!-- Contact Form -->
-                <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
-                    
-                    <form class="space-y-5">
-                        <!-- Name Field -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
-                            <input type="text" placeholder="John Doe" 
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
-                        </div>
-                        
-                        <!-- Email Field -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input type="email" placeholder="hello@example.com" 
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
-                        </div>
-                        
-                        <!-- Subject Field -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                            <input type="text" placeholder="BMI Calculator feedback, partnership, etc." 
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
-                        </div>
-                        
-                        <!-- Message Field -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea rows="5" placeholder="Tell us how we can help..." 
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"></textarea>
-                        </div>
-                        
-                        <!-- Submit Button -->
-                        <button type="submit" 
-                            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 px-6 rounded-xl transition duration-200 text-lg">
-                            Send Message →
-                        </button>
-                        
-                        <p class="text-xs text-gray-400 text-center mt-4">
-                            No signup required. We'll get back to you within 24 hours.
-                        </p>
-                    </form>
-                </div>
-                
-                <!-- Contact Info & FAQ -->
-                <div class="space-y-8">
-                    <!-- Quick Help Card -->
-                    <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6">📋 Quick Help</h2>
-                        
-                        <div class="space-y-5">
-                            <div class="flex gap-4">
-                                <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">⚕️</div>
-                                <div>
-                                    <h3 class="font-semibold text-gray-800">BMI Calculator issue?</h3>
-                                    <p class="text-gray-500 text-sm">Try refreshing the page. All calculations happen in your browser — no data is sent to our servers.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex gap-4">
-                                <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">🔒</div>
-                                <div>
-                                    <h3 class="font-semibold text-gray-800">Privacy concerns?</h3>
-                                    <p class="text-gray-500 text-sm">We don't store any personal data. All calculations are done locally on your device.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex gap-4">
-                                <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">💡</div>
-                                <div>
-                                    <h3 class="font-semibold text-gray-800">Suggestion for new tool?</h3>
-                                    <p class="text-gray-500 text-sm">We'd love to hear it! Use the contact form or email us directly.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Response Time Card -->
-                    <div class="bg-emerald-50 p-8 rounded-2xl border border-emerald-100">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-emerald-200 rounded-xl flex items-center justify-center text-2xl">
-                                ⚡
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-800">Response Time</h3>
-                                <p class="text-sm text-gray-600">Typically within 24 hours</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">
-                            We're a small team dedicated to keeping HealthCalc 100% free. We try to respond to every message within one business day.
-                        </p>
-                    </div>
-                    
-                    <!-- Alternative Contact -->
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
-                        <p class="text-gray-600 text-sm flex items-center gap-2">
-                            <span class="text-emerald-600">📢</span> 
-                            Prefer email? Write to us directly at <a href="mailto:support@healthcalc.in" class="text-emerald-600 font-medium hover:underline">support@healthcalc.in</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer - Exactly as you requested -->
-    <footer class="bg-white pt-12 pb-8 border-t border-gray-200">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Brand -->
-                <div>
-                    <h3 class="text-xl font-bold text-emerald-700 mb-4">HealthCalc</h3>
-                    <p class="text-gray-500 text-sm leading-relaxed">Free health tools for everyone. No signup required.</p>
-                </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-semibold text-gray-800 mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-emerald-600">Home</a></li>
-                        <li><a href="#" class="hover:text-emerald-600">About Us</a></li>
-                        <li><a href="#" class="hover:text-emerald-600">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-emerald-600">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Other Tools -->
-                <div>
-                    <h4 class="font-semibold text-gray-800 mb-4">Other Tools</h4>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-emerald-600">BMI Calculator</a></li>
-                        <li><a href="#" class="hover:text-emerald-600">Calorie Calculator</a></li>
-                        <li><a href="#" class="hover:text-emerald-600">Water Intake</a></li>
-                        <li><a href="#" class="hover:text-emerald-600">Body Fat %</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Trust -->
-                <div>
-                    <h4 class="font-semibold text-gray-800 mb-4">Trusted By</h4>
-                    <div class="flex items-center gap-2 text-gray-500 text-sm mb-2">✅ 10,000+ monthly users</div>
-                    <div class="flex items-center gap-2 text-gray-500 text-sm">⭐ 4.8/5 stars</div>
+                    <h3 class="font-bold text-xl mb-2">Suggest a Tool</h3>
+                    <p class="text-gray-500 mb-4">New calculator ideas</p>
+                    <a href="mailto:ideas@healthcalc.in" class="text-purple-600 font-semibold hover:underline">ideas@healthcalc.in</a>
                 </div>
             </div>
             
-            <!-- Copyright -->
-            <div class="border-t border-gray-200 mt-10 pt-6 text-center text-gray-400 text-sm">
-                © 2024 HealthCalc. All rights reserved. | Made with ❤️ for everyone
+            <!-- Contact Form -->
+            <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-3xl border border-gray-200">
+                <h2 class="text-2xl font-bold text-center mb-6">Send us a Message</h2>
+                
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                        <select name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500">
+                            <option>General Question</option>
+                            <option>Technical Support</option>
+                            <option>Tool Suggestion</option>
+                            <option>Feedback</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                        <textarea name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-semibold hover:bg-emerald-700 transition transform hover:-translate-y-1">
+                        <i class="fas fa-paper-plane mr-2"></i> Send Message
+                    </button>
+                </form>
+                
+                <p class="text-xs text-gray-400 text-center mt-4">
+                    We'll respond within 24-48 hours. No spam, ever.
+                </p>
+            </div>
+            
+            <!-- FAQ Link -->
+            <div class="text-center mt-12">
+                <p class="text-gray-600">Prefer self-help? Check our <a href="#faq" class="text-emerald-600 font-semibold hover:underline">FAQ section</a> or <a href="about.html" class="text-emerald-600 font-semibold hover:underline">About page</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-4 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-400 mb-4">HealthCalc.in</h3>
+                    <p class="text-gray-400 text-sm">Free health tools for everyone.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-emerald-400">Home</a></li>
+                        <li><a href="about.html" class="hover:text-emerald-400">About</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-emerald-400">Privacy</a></li>
+                        <li><a href="terms-of-service.html" class="hover:text-emerald-400">Terms</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="mailto:hello@healthcalc.in" class="hover:text-emerald-400">hello@healthcalc.in</a></li>
+                        <li><a href="mailto:support@healthcalc.in" class="hover:text-emerald-400">support@healthcalc.in</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                © 2024 HealthCalc.in
             </div>
         </div>
     </footer>
 
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
