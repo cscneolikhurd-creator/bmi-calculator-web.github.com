@@ -283,6 +283,8 @@ position: relative;
 display: flex;
 justify-content: center;
 align-items: center;
+background: #f8f9ff;
+border-radius: 50%;
 }
 
 .bmi-value {
@@ -300,7 +302,7 @@ margin-top: 5px;
 }
 
 .bmi-scale {
-background: linear-gradient(to right, #4facfe 0%, #00f2fe 50%, #ff6b6b 100%);
+background: linear-gradient(to right, #4facfe 0%, #00f2fe 25%, #ffd93d 50%, #ff6b6b 75%, #c92a2a 100%);
 height: 20px;
 border-radius: 10px;
 margin: 20px 0;
@@ -374,27 +376,35 @@ border-radius: 15px;
 
 .graph-container {
 position: relative;
-height: 200px;
+height: 250px;
 margin: 20px 0;
+padding-left: 30px;
+}
+
+.age-bar-container {
+position: relative;
+display: inline-block;
+width: 60px;
+margin-right: 20px;
+vertical-align: bottom;
+height: 200px;
 }
 
 .age-bar {
 position: absolute;
 bottom: 0;
-width: 30px;
+width: 40px;
 background: linear-gradient(to top, #667eea, #764ba2);
 border-radius: 10px 10px 0 0;
 transition: height 0.3s;
+left: 10px;
 }
 
 .age-label {
-position: absolute;
-bottom: -25px;
-left: 50%;
-transform: translateX(-50%);
+text-align: center;
+margin-top: 5px;
 font-size: 0.8em;
 color: #666;
-white-space: nowrap;
 }
 
 .user-indicator {
@@ -405,9 +415,16 @@ background: #ff6b6b;
 border-radius: 50%;
 border: 3px solid white;
 box-shadow: 0 5px 15px rgba(255,107,107,0.3);
-transform: translate(-50%, -50%);
+transform: translateX(-50%);
 pointer-events: none;
 transition: left 0.3s, bottom 0.3s;
+z-index: 10;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.7em;
+color: white;
+font-weight: bold;
 }
 
 /* Guide Section */
@@ -461,6 +478,39 @@ text-decoration: none;
 .footer-note a:hover {
 text-decoration: underline;
 }
+
+.recommendation-box {
+margin-top: 20px;
+padding: 15px;
+background: #e8f5e9;
+border-radius: 10px;
+border-left: 4px solid #4caf50;
+}
+
+.recommendation-box.warning {
+background: #fff3e0;
+border-left-color: #ff9800;
+}
+
+.recommendation-box.danger {
+background: #ffebee;
+border-left-color: #f44336;
+}
+
+.recommendation-text {
+font-size: 0.95em;
+color: #333;
+}
+
+.reset-btn {
+margin-top: 10px;
+padding: 8px 15px;
+background: #e0e4ff;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-size: 0.85em;
+}
 </style>
 </head>
 <body>
@@ -502,24 +552,24 @@ text-decoration: underline;
 <div id="imperial-fields" class="imperial-fields">
 <div class="input-group">
 <label>Weight (lbs)</label>
-<input type="number" id="weight-lbs" placeholder="e.g., 154" min="44" max="660" step="0.1">
+<input type="number" id="weight-lbs" placeholder="e.g., 154" min="44" max="660" step="0.1" value="154">
 </div>
 <div class="input-group">
 <label>Height (inches)</label>
-<input type="number" id="height-in" placeholder="e.g., 67" min="39" max="98" step="0.1">
+<input type="number" id="height-in" placeholder="e.g., 67" min="39" max="98" step="0.1" value="67">
 </div>
 </div>
 
 <div class="age-gender-row">
 <div class="input-group">
-<label>Age</label>
-<input type="number" id="age" placeholder="Years" min="18" max="100" value="30">
+<label>Age (years)</label>
+<input type="number" id="age" placeholder="Years" min="18" max="120" value="30">
 </div>
 <div class="input-group">
 <label>Gender</label>
 <select id="gender">
 <option value="male">Male</option>
-<option value="female" selected>Female</option>
+<option value="female">Female</option>
 </select>
 </div>
 </div>
@@ -535,7 +585,19 @@ text-decoration: underline;
 <small style="display: block; margin-top: 5px; color: #666;">Asian population has different healthy BMI ranges</small>
 </div>
 
+<div class="input-group">
+<label>Activity Level (for health score)</label>
+<select id="activity">
+<option value="sedentary">Sedentary (little exercise)</option>
+<option value="light" selected>Light (1-3 days/week)</option>
+<option value="moderate">Moderate (3-5 days/week)</option>
+<option value="active">Active (daily exercise)</option>
+<option value="very-active">Very Active (athlete)</option>
+</select>
+</div>
+
 <button class="calculate-btn" onclick="calculateBMI()">Calculate Your Health Score</button>
+<button class="reset-btn" onclick="resetForm()" style="margin-top: 10px; width: 100%;">Reset All Fields</button>
 </div>
 
 <!-- Results Column -->
@@ -544,13 +606,13 @@ text-decoration: underline;
 
 <div class="bmi-circle">
 <div>
-<div class="bmi-value" id="bmi-display">22.5</div>
+<div class="bmi-value" id="bmi-display">--</div>
 <div class="bmi-label">Your BMI</div>
 </div>
 </div>
 
 <div class="bmi-scale">
-<div class="bmi-marker" id="bmi-marker" style="left: 50%"></div>
+<div class="bmi-marker" id="bmi-marker" style="left: 0%"></div>
 </div>
 <div class="bmi-categories">
 <span>Underweight</span>
@@ -562,22 +624,22 @@ text-decoration: underline;
 <div class="health-cards">
 <div class="health-card">
 <span class="emoji">⚠️</span>
-<div class="value" id="visceral-fat">Low</div>
+<div class="value" id="visceral-fat">--</div>
 <div class="label">Visceral Fat Risk</div>
 </div>
 <div class="health-card">
 <span class="emoji">📊</span>
-<div class="value" id="bmi-category">Normal</div>
+<div class="value" id="bmi-category">--</div>
 <div class="label">BMI Category</div>
 </div>
 <div class="health-card">
 <span class="emoji">📈</span>
-<div class="value" id="adjusted-bmi">22.5</div>
+<div class="value" id="adjusted-bmi">--</div>
 <div class="label">Ethnicity Adjusted</div>
 </div>
 <div class="health-card">
 <span class="emoji">❤️</span>
-<div class="value" id="health-score">85</div>
+<div class="value" id="health-score">--</div>
 <div class="label">Health Score</div>
 </div>
 </div>
@@ -585,12 +647,17 @@ text-decoration: underline;
 <!-- BMI by Age Graph -->
 <div class="graph-section">
 <h3 style="margin-bottom: 15px;">📈 Your BMI vs. Age Group Average</h3>
-<div class="graph-container" id="graph-container">
-<!-- Bars will be added by JavaScript -->
-</div>
-<p style="text-align: center; color: #666; margin-top: 30px;" id="graph-comparison">
-You are below average for your age group
+<div id="graph-container" style="min-height: 250px;"></div>
+<p style="text-align: center; color: #666; margin-top: 20px;" id="graph-comparison">
+Enter your details to see comparison
 </p>
+</div>
+
+<!-- Recommendation Box -->
+<div id="recommendation-box" class="recommendation-box">
+<div class="recommendation-text" id="recommendation-text">
+Enter your details to get personalized recommendations
+</div>
 </div>
 </div>
 
@@ -600,7 +667,7 @@ You are below average for your age group
 <div class="guide-grid">
 <div class="guide-item">
 <strong>BMI Range</strong>
-Underweight: <18.5<br>
+Underweight: &lt;18.5<br>
 Normal: 18.5-24.9<br>
 Overweight: 25-29.9<br>
 Obese: 30+
@@ -637,202 +704,360 @@ Below 50: Needs attention
 </div>
 
 <script>
+// Global variables
+let currentUnit = 'metric';
+
 // Unit Toggle Function
 function setUnit(unit) {
-const metricBtn = document.querySelector('.unit-btn:first-child');
-const imperialBtn = document.querySelector('.unit-btn:last-child');
-const metricFields = document.getElementById('metric-fields');
-const imperialFields = document.getElementById('imperial-fields');
-
-if (unit === 'metric') {
-metricBtn.classList.add('active');
-imperialBtn.classList.remove('active');
-metricFields.classList.add('active');
-imperialFields.classList.remove('active');
-} else {
-metricBtn.classList.remove('active');
-imperialBtn.classList.add('active');
-metricFields.classList.remove('active');
-imperialFields.classList.add('active');
-}
-}
-
-// Main Calculation Function
-function calculateBMI() {
-// Get values
-const unit = document.querySelector('.unit-btn.active').textContent.includes('Metric') ? 'metric' : 'imperial';
-const age = parseInt(document.getElementById('age').value) || 30;
-const gender = document.getElementById('gender').value;
-const ethnicity = document.getElementById('ethnicity').value;
-
-let weight, height, bmi;
-
-if (unit === 'metric') {
-weight = parseFloat(document.getElementById('weight-kg').value);
-height = parseFloat(document.getElementById('height-cm').value) / 100; // Convert to meters
-
-if (!weight || !height || weight <= 0 || height <= 0) {
-alert('Please enter valid weight and height');
-return;
-}
-
-bmi = weight / (height * height);
-} else {
-weight = parseFloat(document.getElementById('weight-lbs').value);
-height = parseFloat(document.getElementById('height-in').value) * 0.0254; // Convert to meters
-
-if (!weight || !height || weight <= 0 || height <= 0) {
-alert('Please enter valid weight and height');
-return;
+    currentUnit = unit;
+    const metricBtn = document.querySelector('.unit-btn:first-child');
+    const imperialBtn = document.querySelector('.unit-btn:last-child');
+    const metricFields = document.getElementById('metric-fields');
+    const imperialFields = document.getElementById('imperial-fields');
+    
+    // Sync values between unit systems
+    if (unit === 'metric') {
+        // Convert imperial to metric if needed
+        const weightLbs = document.getElementById('weight-lbs').value;
+        const heightIn = document.getElementById('height-in').value;
+        if (weightLbs && weightLbs !== '154') {
+            document.getElementById('weight-kg').value = (parseFloat(weightLbs) / 2.205).toFixed(1);
+        }
+        if (heightIn && heightIn !== '67') {
+            document.getElementById('height-cm').value = (parseFloat(heightIn) * 2.54).toFixed(1);
+        }
+        metricBtn.classList.add('active');
+        imperialBtn.classList.remove('active');
+        metricFields.classList.add('active');
+        imperialFields.classList.remove('active');
+    } else {
+        // Convert metric to imperial
+        const weightKg = document.getElementById('weight-kg').value;
+        const heightCm = document.getElementById('height-cm').value;
+        if (weightKg && weightKg !== '70') {
+            document.getElementById('weight-lbs').value = (parseFloat(weightKg) * 2.205).toFixed(1);
+        }
+        if (heightCm && heightCm !== '170') {
+            document.getElementById('height-in').value = (parseFloat(heightCm) / 2.54).toFixed(1);
+        }
+        metricBtn.classList.remove('active');
+        imperialBtn.classList.add('active');
+        metricFields.classList.remove('active');
+        imperialFields.classList.add('active');
+    }
+    calculateBMI();
 }
 
-bmi = (weight / 2.205) / (height * height); // Convert lbs to kg
+// Reset Form Function
+function resetForm() {
+    document.getElementById('weight-kg').value = '70';
+    document.getElementById('height-cm').value = '170';
+    document.getElementById('weight-lbs').value = '154';
+    document.getElementById('height-in').value = '67';
+    document.getElementById('age').value = '30';
+    document.getElementById('gender').value = 'female';
+    document.getElementById('ethnicity').value = 'caucasian';
+    document.getElementById('activity').value = 'light';
+    setUnit(currentUnit);
+    calculateBMI();
 }
 
-// Round to 1 decimal
-bmi = Math.round(bmi * 10) / 10;
-
-// Display BMI
-document.getElementById('bmi-display').textContent = bmi.toFixed(1);
-
-// Update BMI marker position
-const marker = document.getElementById('bmi-marker');
-let leftPosition;
-if (bmi < 18.5) {
-leftPosition = (bmi / 18.5) * 25; // 0-25% of scale
-} else if (bmi < 25) {
-leftPosition = 25 + ((bmi - 18.5) / 6.5) * 25; // 25-50% of scale
-} else if (bmi < 30) {
-leftPosition = 50 + ((bmi - 25) / 5) * 25; // 50-75% of scale
-} else {
-leftPosition = 75 + Math.min((bmi - 30) / 10, 1) * 25; // 75-100% of scale
-}
-leftPosition = Math.min(100, Math.max(0, leftPosition));
-marker.style.left = leftPosition + '%';
-
-// Determine BMI category
-let category;
-if (bmi < 18.5) category = 'Underweight';
-else if (bmi < 25) category = 'Normal';
-else if (bmi < 30) category = 'Overweight';
-else category = 'Obese';
-document.getElementById('bmi-category').textContent = category;
-
-// Calculate visceral fat risk
-let visceralFat;
-if (bmi < 25) {
-visceralFat = 'Low';
-} else if (bmi < 30) {
-visceralFat = 'Moderate';
-} else {
-visceralFat = 'High';
+// Get BMI Category
+function getBMICategory(bmi) {
+    if (bmi < 18.5) return 'Underweight';
+    if (bmi < 25) return 'Normal';
+    if (bmi < 30) return 'Overweight';
+    return 'Obese';
 }
 
-// Adjust for gender (men typically have more visceral fat)
-if (gender === 'male' && bmi > 25) {
-if (visceralFat === 'Moderate') visceralFat = 'Moderate-High';
-else if (visceralFat === 'High') visceralFat = 'Very High';
+// Get Visceral Fat Risk
+function getVisceralFat(bmi, gender, age) {
+    let risk;
+    if (bmi < 22) risk = 'Low';
+    else if (bmi < 27) risk = 'Moderate';
+    else if (bmi < 32) risk = 'High';
+    else risk = 'Very High';
+    
+    // Gender adjustment
+    if (gender === 'male' && bmi > 25) {
+        if (risk === 'Moderate') risk = 'Moderate-High';
+        else if (risk === 'High') risk = 'Very High';
+    }
+    
+    // Age adjustment
+    if (age > 50 && bmi > 25) {
+        if (risk === 'Moderate') risk = 'High';
+        else if (risk === 'High') risk = 'Very High';
+    }
+    
+    return risk;
 }
-document.getElementById('visceral-fat').textContent = visceralFat;
 
-// Ethnicity adjusted BMI
-let adjustedBMI = bmi;
-if (ethnicity === 'asian') {
-// Asian population has higher risk at lower BMI
-adjustedBMI = bmi * 1.1; // Rough adjustment
+// Get Health Score
+function getHealthScore(bmi, age, gender, ethnicity, activity) {
+    let score = 100;
+    
+    // BMI impact
+    if (bmi < 18.5) score -= (18.5 - bmi) * 6;
+    else if (bmi < 22) score += 5;
+    else if (bmi < 25) score += 2;
+    else if (bmi < 27) score -= 10;
+    else if (bmi < 30) score -= 20;
+    else if (bmi < 35) score -= 35;
+    else score -= 50;
+    
+    // Age impact
+    if (age > 60) score -= 15;
+    else if (age > 50) score -= 10;
+    else if (age > 40) score -= 5;
+    else if (age < 30) score += 5;
+    
+    // Gender impact
+    if (gender === 'male' && bmi > 25) score -= 5;
+    
+    // Ethnicity adjustment
+    if (ethnicity === 'asian') {
+        if (bmi > 23) score -= 8;
+        else if (bmi < 23) score += 3;
+    }
+    
+    // Activity level impact
+    switch(activity) {
+        case 'very-active': score += 15; break;
+        case 'active': score += 10; break;
+        case 'moderate': score += 5; break;
+        case 'light': break;
+        case 'sedentary': score -= 10; break;
+    }
+    
+    return Math.max(0, Math.min(100, Math.round(score)));
 }
-document.getElementById('adjusted-bmi').textContent = adjustedBMI.toFixed(1);
 
-// Health Score (0-100)
-let healthScore = 100;
-
-// Deduct for high/low BMI
-if (bmi < 18.5) healthScore -= (18.5 - bmi) * 5;
-else if (bmi > 25) healthScore -= (bmi - 25) * 4;
-
-// Deduct for age (older = slightly lower)
-if (age > 50) healthScore -= (age - 50) * 0.5;
-
-// Add for good ethnicity adjustment
-if (ethnicity === 'asian' && bmi < 23) healthScore += 5;
-
-healthScore = Math.max(0, Math.min(100, Math.round(healthScore)));
-document.getElementById('health-score').textContent = healthScore;
-
-// Generate BMI by Age Graph
-generateAgeGraph(bmi, age);
+// Get Recommendation
+function getRecommendation(bmi, category, visceralFat, healthScore, age, activity) {
+    if (category === 'Underweight') {
+        return '⚠️ You are underweight. Consider consulting a nutritionist for healthy weight gain strategies. Focus on nutrient-rich foods and strength training.';
+    } else if (category === 'Overweight' || category === 'Obese') {
+        if (visceralFat.includes('High') || visceralFat.includes('Very')) {
+            return '⚠️ High visceral fat detected! This increases risk of heart disease and diabetes. Consider: 30min daily exercise, reduce sugar/processed foods, increase fiber intake, and consult a doctor.';
+        } else {
+            return '📉 Your BMI indicates excess weight. Start with: walking 10,000 steps daily, portion control, reducing sugary drinks, and strength training 2-3x/week.';
+        }
+    } else if (category === 'Normal') {
+        if (healthScore >= 85) {
+            return '✅ Excellent health! Maintain with: balanced diet, regular exercise, good sleep (7-8 hours), and stress management.';
+        } else {
+            return '👍 Good BMI! To improve health score: increase physical activity, eat more vegetables, reduce processed foods, and stay hydrated.';
+        }
+    }
+    return 'Maintain a healthy lifestyle with balanced diet and regular exercise.';
 }
 
 // Generate BMI by Age Graph
 function generateAgeGraph(userBMI, userAge) {
-const container = document.getElementById('graph-container');
-container.innerHTML = '';
-
-// Average BMI by age (simplified data)
-const ageGroups = [20, 30, 40, 50, 60, 70];
-const avgBMIs = [22.5, 24.0, 25.2, 26.1, 26.5, 26.3]; // Typical values
-
-// Find closest age group
-let closestAgeIndex = 0;
-let minDiff = Math.abs(userAge - ageGroups[0]);
-for (let i = 1; i < ageGroups.length; i++) {
-const diff = Math.abs(userAge - ageGroups[i]);
-if (diff < minDiff) {
-minDiff = diff;
-closestAgeIndex = i;
+    const container = document.getElementById('graph-container');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    // Age groups and their average BMIs
+    const ageGroups = [20, 30, 40, 50, 60, 70, 80];
+    const avgBMIs = [23.5, 24.5, 25.5, 26.5, 27.0, 27.2, 26.8];
+    
+    const maxHeight = 180;
+    const maxBMI = 35;
+    
+    ageGroups.forEach((age, index) => {
+        const barHeight = (avgBMIs[index] / maxBMI) * maxHeight;
+        
+        const barContainer = document.createElement('div');
+        barContainer.style.cssText = 'display: inline-block; width: 70px; margin-right: 15px; vertical-align: bottom; text-align: center; position: relative; height: 200px;';
+        
+        const bar = document.createElement('div');
+        bar.style.cssText = `width: 50px; background: linear-gradient(to top, #667eea, #764ba2); border-radius: 10px 10px 0 0; transition: height 0.3s; position: absolute; bottom: 25px; left: 10px; height: ${barHeight}px;`;
+        
+        const label = document.createElement('div');
+        label.style.cssText = 'margin-top: 185px; font-size: 0.8em; color: #666;';
+        label.textContent = age + 'y';
+        
+        barContainer.appendChild(bar);
+        barContainer.appendChild(label);
+        container.appendChild(barContainer);
+    });
+    
+    // Find closest age group for user
+    let closestIndex = 0;
+    let minDiff = Math.abs(userAge - ageGroups[0]);
+    for (let i = 1; i < ageGroups.length; i++) {
+        const diff = Math.abs(userAge - ageGroups[i]);
+        if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = i;
+        }
+    }
+    
+    const avgForAge = avgBMIs[closestIndex];
+    const userBarHeight = (userBMI / maxBMI) * maxHeight;
+    const userX = (closestIndex * 85) + 35;
+    const userY = 200 - userBarHeight;
+    
+    const userIndicator = document.createElement('div');
+    userIndicator.className = 'user-indicator';
+    userIndicator.style.left = userX + 'px';
+    userIndicator.style.bottom = (userBarHeight + 20) + 'px';
+    userIndicator.textContent = 'You';
+    container.appendChild(userIndicator);
+    
+    const comparison = document.getElementById('graph-comparison');
+    if (comparison) {
+        const diff = userBMI - avgForAge;
+        if (diff < -2) {
+            comparison.innerHTML = `✅ <strong>Excellent!</strong> Your BMI (${userBMI}) is significantly BELOW average (${avgForAge.toFixed(1)}) for age ${userAge}. Great job!`;
+        } else if (diff < 0) {
+            comparison.innerHTML = `📉 <strong>Good!</strong> Your BMI (${userBMI}) is below average (${avgForAge.toFixed(1)}) for age ${userAge}. Keep it up!`;
+        } else if (diff < 2) {
+            comparison.innerHTML = `📊 Your BMI (${userBMI}) is close to average (${avgForAge.toFixed(1)}) for age ${userAge}.`;
+        } else if (diff < 5) {
+            comparison.innerHTML = `⚠️ Your BMI (${userBMI}) is above average (${avgForAge.toFixed(1)}) for age ${userAge}. Consider lifestyle improvements.`;
+        } else {
+            comparison.innerHTML = `⚠️ <strong>Attention needed!</strong> Your BMI (${userBMI}) is significantly above average (${avgForAge.toFixed(1)}) for age ${userAge}. Please consult a healthcare provider.`;
+        }
+    }
 }
+
+// Main Calculation Function
+function calculateBMI() {
+    const unit = currentUnit;
+    const age = parseInt(document.getElementById('age').value) || 30;
+    const gender = document.getElementById('gender').value;
+    const ethnicity = document.getElementById('ethnicity').value;
+    const activity = document.getElementById('activity').value;
+    
+    let weight, height, bmi;
+    
+    if (unit === 'metric') {
+        weight = parseFloat(document.getElementById('weight-kg').value);
+        height = parseFloat(document.getElementById('height-cm').value) / 100;
+        
+        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+            alert('Please enter valid weight and height');
+            return;
+        }
+        bmi = weight / (height * height);
+    } else {
+        weight = parseFloat(document.getElementById('weight-lbs').value);
+        height = parseFloat(document.getElementById('height-in').value) * 0.0254;
+        
+        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+            alert('Please enter valid weight and height');
+            return;
+        }
+        bmi = (weight / 2.205) / (height * height);
+    }
+    
+    // Round BMI to 1 decimal
+    bmi = Math.round(bmi * 10) / 10;
+    
+    // Get category
+    const category = getBMICategory(bmi);
+    
+    // Get visceral fat risk
+    const visceralFat = getVisceralFat(bmi, gender, age);
+    
+    // Ethnicity adjusted BMI
+    let adjustedBMI = bmi;
+    let adjustmentText = '';
+    if (ethnicity === 'asian') {
+        adjustedBMI = bmi * 1.08;
+        adjustmentText = ' (Asian: +8% risk adjustment)';
+    } else if (ethnicity === 'african') {
+        adjustedBMI = bmi * 0.97;
+        adjustmentText = ' (African: -3% due to muscle mass)';
+    }
+    adjustedBMI = Math.round(adjustedBMI * 10) / 10;
+    
+    // Get health score
+    const healthScore = getHealthScore(bmi, age, gender, ethnicity, activity);
+    
+    // Get recommendation
+    const recommendation = getRecommendation(bmi, category, visceralFat, healthScore, age, activity);
+    
+    // Update DOM
+    document.getElementById('bmi-display').textContent = bmi.toFixed(1);
+    document.getElementById('bmi-category').textContent = category;
+    document.getElementById('visceral-fat').textContent = visceralFat;
+    document.getElementById('adjusted-bmi').textContent = adjustedBMI.toFixed(1) + adjustmentText;
+    document.getElementById('health-score').textContent = healthScore;
+    
+    // Update recommendation box style
+    const recBox = document.getElementById('recommendation-box');
+    recBox.className = 'recommendation-box';
+    if (category === 'Obese' || visceralFat.includes('Very')) {
+        recBox.classList.add('danger');
+    } else if (category === 'Overweight' || visceralFat.includes('High')) {
+        recBox.classList.add('warning');
+    }
+    document.getElementById('recommendation-text').textContent = recommendation;
+    
+    // Update BMI marker position
+    const marker = document.getElementById('bmi-marker');
+    let leftPosition;
+    if (bmi < 18.5) leftPosition = (bmi / 18.5) * 25;
+    else if (bmi < 25) leftPosition = 25 + ((bmi - 18.5) / 6.5) * 25;
+    else if (bmi < 30) leftPosition = 50 + ((bmi - 25) / 5) * 25;
+    else leftPosition = 75 + Math.min((bmi - 30) / 15, 1) * 25;
+    leftPosition = Math.min(98, Math.max(2, leftPosition));
+    marker.style.left = leftPosition + '%';
+    
+    // Generate graph
+    generateAgeGraph(bmi, age);
 }
 
-const avgForAge = avgBMIs[closestAgeIndex];
+// Auto-save to localStorage and load on page load
+function saveToLocalStorage() {
+    const data = {
+        weightKg: document.getElementById('weight-kg').value,
+        heightCm: document.getElementById('height-cm').value,
+        weightLbs: document.getElementById('weight-lbs').value,
+        heightIn: document.getElementById('height-in').value,
+        age: document.getElementById('age').value,
+        gender: document.getElementById('gender').value,
+        ethnicity: document.getElementById('ethnicity').value,
+        activity: document.getElementById('activity').value,
+        unit: currentUnit
+    };
+    localStorage.setItem('bmiCalculatorData', JSON.stringify(data));
+}
 
-// Create bars
-const barWidth = 40;
-const spacing = 30;
-const totalWidth = ageGroups.length * (barWidth + spacing);
-container.style.height = '200px';
-container.style.position = 'relative';
+function loadFromLocalStorage() {
+    const saved = localStorage.getItem('bmiCalculatorData');
+    if (saved) {
+        const data = JSON.parse(saved);
+        document.getElementById('weight-kg').value = data.weightKg || '70';
+        document.getElementById('height-cm').value = data.heightCm || '170';
+        document.getElementById('weight-lbs').value = data.weightLbs || '154';
+        document.getElementById('height-in').value = data.heightIn || '67';
+        document.getElementById('age').value = data.age || '30';
+        document.getElementById('gender').value = data.gender || 'female';
+        document.getElementById('ethnicity').value = data.ethnicity || 'caucasian';
+        document.getElementById('activity').value = data.activity || 'light';
+        if (data.unit) setUnit(data.unit);
+        else setUnit('metric');
+    }
+    calculateBMI();
+}
 
-ageGroups.forEach((age, index) => {
-const bar = document.createElement('div');
-bar.className = 'age-bar';
-bar.style.height = (avgBMIs[index] / 35) * 180 + 'px'; // Scale to fit
-bar.style.left = index * (barWidth + spacing) + 'px';
-
-const label = document.createElement('div');
-label.className = 'age-label';
-label.textContent = age + 'y';
-label.style.left = index * (barWidth + spacing) + barWidth/2 + 'px';
-
-container.appendChild(bar);
-container.appendChild(label);
+// Auto-save on input changes
+const inputs = ['weight-kg', 'height-cm', 'weight-lbs', 'height-in', 'age', 'gender', 'ethnicity', 'activity'];
+inputs.forEach(id => {
+    const element = document.getElementById(id);
+    if (element) element.addEventListener('change', () => { saveToLocalStorage(); calculateBMI(); });
 });
 
-// Add user indicator
-const userX = closestAgeIndex * (barWidth + spacing) + barWidth/2;
-const userY = 200 - (userBMI / 35) * 180; // 200px height, invert Y
-
-const userIndicator = document.createElement('div');
-userIndicator.className = 'user-indicator';
-userIndicator.style.left = userX + 'px';
-userIndicator.style.bottom = (userBMI / 35) * 180 + 'px';
-container.appendChild(userIndicator);
-
-// Comparison text
-const comparison = document.getElementById('graph-comparison');
-if (userBMI < avgForAge) {
-comparison.textContent = `✅ Your BMI (${userBMI}) is BELOW average for your age group (${avgForAge.toFixed(1)}). Good job!`;
-} else if (userBMI > avgForAge) {
-comparison.textContent = `⚠️ Your BMI (${userBMI}) is ABOVE average for your age group (${avgForAge.toFixed(1)}). Consider lifestyle changes.`;
-} else {
-comparison.textContent = `📊 Your BMI matches the average for your age group (${avgForAge.toFixed(1)}).`;
-}
-}
-
-// Initialize with default values
+// Initialize on page load
 window.onload = function() {
-calculateBMI();
+    loadFromLocalStorage();
 };
 </script>
 </body>
-
 </html>
