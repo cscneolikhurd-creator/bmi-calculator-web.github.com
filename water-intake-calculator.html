@@ -1,42 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta -->
-    <title>Water Intake Calculator: Personalized Hydration | HealthCalc</title>
-    <meta name="description" content="Free advanced water calculator with sweat rate, activity level, and caffeine adjustment. Get personalized daily water needs.">
-    <meta name="keywords" content="water intake calculator, daily water, hydration calculator, how much water to drink, sweat rate">
+    <!-- SEO Meta (Global + Indian) -->
+    <title>💧 Water Intake Calculator: Personalized Hydration (Indian Summer Adjust) | HealthCalc</title>
+    <meta name="description" content="Free advanced water calculator with sweat rate, activity level, and caffeine adjustment. Indian summer hydration tips included. Personalized daily water needs.">
+    <meta name="keywords" content="water intake calculator, daily water, hydration calculator, how much water to drink, sweat rate, Indian summer hydration, nariyal pani">
+    <meta name="author" content="HealthCalc">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://healthcalc.in/water-intake-calculator.html">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Water Intake Calculator with Activity Adjust">
-    <meta property="og:description" content="Know exactly how much water you need daily">
+    <meta property="og:title" content="Water Intake Calculator with Indian Summer Adjust">
+    <meta property="og:description" content="Know exactly how much water you need daily. Includes Indian drink suggestions.">
     <meta property="og:image" content="https://healthcalc.in/images/water-preview.jpg">
-    <meta property="og:url" content="https://healthcalc.in/tools/water-intake-calculator">
+    <meta property="og:url" content="https://healthcalc.in/water-intake-calculator.html">
+    <meta property="og:locale" content="en_IN">
     
-    <!-- Canonical -->
-    <link rel="canonical" href="https://healthcalc.in/tools/water-intake-calculator">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Water Intake Calculator">
+    <meta property="twitter:description" content="Personalized hydration with Indian summer tips">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "name": "Water Intake Calculator",
+        "description": "Calculate personalized daily water intake based on weight, activity, sweat rate, and climate. Includes Indian summer hydration tips.",
+        "url": "https://healthcalc.in/water-intake-calculator.html",
+        "author": {"@type": "Organization", "name": "HealthCalc"},
+        "inLanguage": ["en", "hi"]
+    }
+    </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         body { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .container { max-width: 1300px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
         .header { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); padding: 30px; text-align: center; color: white; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .header h1 span { background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; font-size: 0.8em; }
         .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
+        .badge.indian { background: linear-gradient(135deg, #FF9933, #FF8C00); }
+        
+        /* Global Controls */
+        .global-controls { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .unit-toggle, .lang-toggle { display: inline-flex; gap: 5px; background: rgba(255,255,255,0.3); padding: 5px; border-radius: 50px; }
+        .unit-btn, .lang-btn { padding: 10px 20px; border: none; background: transparent; border-radius: 40px; cursor: pointer; font-weight: 600; color: white; transition: all 0.2s; }
+        .unit-btn.active, .lang-btn.active { background: white; color: #2980b9; }
+        
         .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
-        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
         
         /* Input Card */
         .input-card { background: #e8f4fc; padding: 25px; border-radius: 20px; }
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
-        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #b8d9f0; border-radius: 10px; font-size: 1em; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #b8d9f0; border-radius: 10px; font-size: 1em; background: white; }
         
-        .unit-toggle { display: flex; gap: 10px; margin-bottom: 20px; background: #b8d9f0; padding: 5px; border-radius: 50px; }
-        .unit-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 50px; cursor: pointer; font-weight: 600; }
-        .unit-btn.active { background: white; color: #2980b9; }
+        .input-with-unit { display: flex; align-items: center; background: white; border: 2px solid #b8d9f0; border-radius: 10px; padding: 0 10px; }
+        .input-with-unit input { border: none; padding: 12px 0; flex: 1; outline: none; }
+        .input-with-unit .unit-label { color: #666; font-weight: 500; padding: 0 10px; }
         
         .slider-container { margin: 20px 0; }
         .slider-label { display: flex; justify-content: space-between; margin-bottom: 10px; }
@@ -44,16 +72,22 @@
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: #2980b9; border-radius: 50%; cursor: pointer; }
         
         .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
-        .checkbox-item { display: flex; align-items: center; gap: 10px; padding: 10px; background: white; border-radius: 10px; }
+        .checkbox-item { display: flex; align-items: center; gap: 10px; padding: 10px; background: white; border-radius: 10px; cursor: pointer; }
         
-        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; transition: transform 0.2s; }
+        .calc-btn:hover { transform: scale(1.02); }
         
         /* Results Card */
         .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #e8f4fc; }
         
         .water-circle { text-align: center; padding: 30px; background: #e8f4fc; border-radius: 20px; margin-bottom: 20px; }
-        .water-value { font-size: 4em; font-weight: 800; color: #2980b9; line-height: 1; }
+        .water-value { font-size: 4em; font-weight: 800; color: #2980b9; line-height: 1; display: flex; align-items: baseline; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .water-value small { font-size: 0.3em; color: #666; }
         .water-unit { font-size: 1.2em; color: #666; }
+        
+        .unit-switch-row { display: flex; justify-content: center; gap: 10px; margin: 15px 0; }
+        .unit-pill { padding: 8px 16px; background: white; border-radius: 50px; cursor: pointer; font-size: 0.9em; border: 1px solid #b8d9f0; }
+        .unit-pill.active { background: #2980b9; color: white; border-color: #2980b9; }
         
         .water-glass-visual { display: flex; align-items: flex-end; justify-content: center; height: 150px; margin: 20px 0; }
         .glass { width: 60px; background: #e8f4fc; border: 3px solid #2980b9; border-radius: 0 0 30px 30px; position: relative; transition: height 0.3s; }
@@ -63,6 +97,13 @@
         .breakdown-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
         .breakdown-item { background: #e8f4fc; padding: 15px; border-radius: 10px; text-align: center; }
         .breakdown-item .value { font-size: 1.5em; font-weight: 700; color: #333; }
+        
+        /* Indian Drink Suggestions */
+        .indian-drinks { background: linear-gradient(135deg, #FFF8E1, #FFECB3); border-radius: 20px; padding: 20px; margin: 20px 0; border-left: 6px solid #FF9933; }
+        .indian-drinks h4 { color: #E65100; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .drink-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .drink-item { display: flex; align-items: center; gap: 8px; padding: 8px; background: white; border-radius: 50px; }
+        .drink-item i { color: #FF9933; }
         
         .time-chart { background: #e8f4fc; padding: 20px; border-radius: 20px; margin: 20px 0; }
         .time-slots { display: flex; justify-content: space-between; margin: 10px 0; }
@@ -75,58 +116,76 @@
         .weather-factor.hot { background: #e74c3c20; }
         .weather-factor.humid { background: #3498db20; }
         
+        /* Future Plan Section */
+        .future-plan { background: linear-gradient(135deg, #E8EAF6, #C5CAE9); border-radius: 20px; padding: 25px; margin: 20px 30px; }
+        .future-plan h3 { color: #1A237E; margin-bottom: 20px; }
+        .future-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .future-item { background: white; border-radius: 15px; padding: 15px; text-align: center; }
+        .future-item i { font-size: 1.8rem; color: #2980b9; margin-bottom: 8px; }
+        .coming-soon { background: #FF9800; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-top: 8px; }
+        
         .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; }
+        .footer a { color: #2980b9; text-decoration: none; }
+        
+        /* RTL Support */
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .indian-drinks { border-left: none; border-right: 6px solid #FF9933; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>💧 Water Intake Calculator</h1>
-            <p>Sweat Rate • Activity • Caffeine Adjust</p>
+            <h1>
+                💧 <span id="titleMain">Water Intake Calculator</span>
+                <span id="titleSub">Sweat Rate • Activity</span>
+            </h1>
+            <p id="headerSub">Personalized hydration with Indian summer adjustment</p>
             <div>
-                <span class="badge">🌟 Sweat Rate Adjust</span>
-                <span class="badge">☕ Caffeine Impact</span>
-                <span class="badge">🌡️ Weather Smart</span>
+                <span class="badge">🌟 Sweat Rate</span>
+                <span class="badge">☕ Caffeine</span>
+                <span class="badge">🌡️ Weather</span>
+                <span class="badge indian">🇮🇳 Indian Summer</span>
+            </div>
+            
+            <!-- Global Controls -->
+            <div class="global-controls">
+                <div class="unit-toggle" id="unitToggle">
+                    <button class="unit-btn active" data-unit="metric" onclick="setWaterUnit('metric')">🌏 Metric (L)</button>
+                    <button class="unit-btn" data-unit="imperial" onclick="setWaterUnit('imperial')">🌎 Imperial (oz)</button>
+                </div>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">🇬🇧 English</button>
+                    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">🇮🇳 हिंदी</button>
+                </div>
             </div>
         </div>
         
         <div class="main">
             <!-- Input Section -->
             <div class="input-card">
-                <h2 style="margin-bottom: 20px;">📝 Your Details</h2>
+                <h2 style="margin-bottom: 20px;" id="detailsTitle">📝 Your Details</h2>
                 
-                <div class="unit-toggle" id="unitToggle">
-                    <button class="unit-btn active" onclick="setWaterUnit('metric')">Metric (kg)</button>
-                    <button class="unit-btn" onclick="setWaterUnit('imperial')">Imperial (lbs)</button>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
-                    <div class="input-group">
-                        <label>Weight</label>
+                <div class="input-group">
+                    <label id="weightLabel">Weight</label>
+                    <div class="input-with-unit">
                         <input type="number" id="weight" value="70" step="0.1">
-                    </div>
-                    <div class="input-group">
-                        <label>Unit</label>
-                        <select id="weightUnit">
-                            <option value="kg">kg</option>
-                            <option value="lbs">lbs</option>
-                        </select>
+                        <span class="unit-label" id="weightUnitDisplay">kg</span>
                     </div>
                 </div>
                 
                 <div class="input-group">
-                    <label>Age</label>
+                    <label id="ageLabel">Age</label>
                     <input type="number" id="age" value="30" min="1" max="120">
                 </div>
                 
                 <!-- Activity Slider -->
                 <div class="slider-container">
                     <div class="slider-label">
-                        <span>Activity Level</span>
-                        <span id="activityValue">Moderate (3-5x/week)</span>
+                        <span id="activityLabel">Activity Level</span>
+                        <span id="activityValue">Moderate</span>
                     </div>
                     <input type="range" id="activity" min="0" max="4" value="2" step="1" oninput="updateActivityLabel(this.value)">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8em; color: #666;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8em; color: #666;" id="activityLabels">
                         <span>Sedentary</span>
                         <span>Light</span>
                         <span>Moderate</span>
@@ -138,11 +197,11 @@
                 <!-- Sweat Rate -->
                 <div class="slider-container">
                     <div class="slider-label">
-                        <span>Sweat Rate</span>
+                        <span id="sweatLabel">Sweat Rate</span>
                         <span id="sweatValue">Average</span>
                     </div>
                     <input type="range" id="sweat" min="0" max="2" value="1" step="1" oninput="updateSweatLabel(this.value)">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.8em; color: #666;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8em; color: #666;" id="sweatLabels">
                         <span>Low</span>
                         <span>Average</span>
                         <span>High</span>
@@ -151,46 +210,55 @@
                 
                 <!-- Environment -->
                 <div style="margin: 20px 0;">
-                    <label style="display: block; margin-bottom: 10px; font-weight: 600;">Current Weather</label>
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600;" id="weatherLabel">Current Weather</label>
                     <select id="weather" class="input-group">
                         <option value="normal">🌤️ Normal (20-25°C)</option>
                         <option value="hot">☀️ Hot (30°C+)</option>
                         <option value="humid">💦 Humid</option>
                         <option value="cold">❄️ Cold (below 10°C)</option>
+                        <option value="indian-summer">🔥 Indian Summer (35°C+)</option>
                     </select>
                 </div>
                 
                 <!-- Lifestyle Factors -->
-                <div class="checkbox-group">
+                <div class="checkbox-group" id="lifestyleGroup">
                     <label class="checkbox-item">
                         <input type="checkbox" id="caffeine" onchange="calculateWater()">
-                        <span>☕ Drink coffee/tea (daily)</span>
+                        <span id="caffeineLabel">☕ Coffee/tea daily</span>
                     </label>
                     <label class="checkbox-item">
                         <input type="checkbox" id="alcohol" onchange="calculateWater()">
-                        <span>🍷 Drink alcohol</span>
+                        <span id="alcoholLabel">🍷 Alcohol</span>
                     </label>
                     <label class="checkbox-item">
                         <input type="checkbox" id="pregnant" onchange="calculateWater()">
-                        <span>🤰 Pregnant</span>
+                        <span id="pregnantLabel">🤰 Pregnant</span>
                     </label>
                     <label class="checkbox-item">
                         <input type="checkbox" id="breastfeeding" onchange="calculateWater()">
-                        <span>🍼 Breastfeeding</span>
+                        <span id="breastfeedingLabel">🍼 Breastfeeding</span>
                     </label>
                 </div>
                 
-                <button class="calc-btn" onclick="calculateWater()">Calculate My Water Needs</button>
+                <button class="calc-btn" onclick="calculateWater()" id="calcBtn">Calculate My Water Needs</button>
             </div>
             
             <!-- Results Section -->
             <div class="results-card" id="results">
-                <h2 style="margin-bottom: 20px;">📊 Your Daily Water</h2>
+                <h2 style="margin-bottom: 20px;" id="resultsTitle">📊 Your Daily Water</h2>
                 
                 <div class="water-circle">
-                    <div class="water-value" id="waterAmount">2.5</div>
-                    <div class="water-unit">liters</div>
-                    <div style="margin-top: 10px; color: #666;" id="waterCups">~10 cups</div>
+                    <div class="water-value">
+                        <span id="waterAmount">2.5</span>
+                        <small id="waterUnit">L</small>
+                    </div>
+                    <div class="unit-switch-row">
+                        <span class="unit-pill active" data-display="L" onclick="switchDisplayUnit('L')">Liters</span>
+                        <span class="unit-pill" data-display="oz" onclick="switchDisplayUnit('oz')">Ounces (oz)</span>
+                        <span class="unit-pill" data-display="cups" onclick="switchDisplayUnit('cups')">Cups</span>
+                        <span class="unit-pill" data-display="glasses" onclick="switchDisplayUnit('glasses')">Glasses</span>
+                    </div>
+                    <div style="margin-top: 10px; color: #666;" id="waterCups">~10 glasses</div>
                 </div>
                 
                 <!-- Water Glass Visualization -->
@@ -199,7 +267,7 @@
                         <div class="glass" style="height: 150px;">
                             <div class="glass-fill" id="glassFill" style="height: 70%"></div>
                         </div>
-                        <div class="glass-label" id="glassPercent">70% of goal</div>
+                        <div class="glass-label" id="glassPercent">70% of 4L max</div>
                     </div>
                 </div>
                 
@@ -207,41 +275,57 @@
                 <div class="breakdown-grid">
                     <div class="breakdown-item">
                         <div class="value" id="baseWater">2.0</div>
-                        <div>Base Need</div>
+                        <div id="baseLabel">Base Need</div>
                     </div>
                     <div class="breakdown-item">
                         <div class="value" id="activityWater">+0.5</div>
-                        <div>Activity</div>
+                        <div id="activityAddLabel">Activity</div>
                     </div>
                     <div class="breakdown-item">
                         <div class="value" id="envWater">+0.0</div>
-                        <div>Environment</div>
+                        <div id="envLabel">Environment</div>
                     </div>
+                </div>
+                
+                <!-- Indian Drink Suggestions -->
+                <div class="indian-drinks" id="indianDrinkBox">
+                    <h4><i>🥥</i> <span id="drinkTitle">🇮🇳 Indian Hydration Suggestions</span></h4>
+                    <div class="drink-grid">
+                        <div class="drink-item"><i>🥥</i> <span id="drink1">Nariyal Pani</span></div>
+                        <div class="drink-item"><i>🥛</i> <span id="drink2">Chhach (Buttermilk)</span></div>
+                        <div class="drink-item"><i>🍋</i> <span id="drink3">Nimbu Pani</span></div>
+                        <div class="drink-item"><i>🍚</i> <span id="drink4">Sattu Drink</span></div>
+                        <div class="drink-item"><i>🥤</i> <span id="drink5">Jaljeera</span></div>
+                        <div class="drink-item"><i>🍹</i> <span id="drink6">Aam Panna</span></div>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 0.85rem; color: #E65100;" id="drinkNote">
+                        <i>💡</i> These traditional drinks help beat Indian summers
+                    </p>
                 </div>
                 
                 <!-- Drinking Schedule -->
                 <div class="time-chart">
-                    <h3 style="margin-bottom: 15px;">⏰ When to Drink</h3>
+                    <h3 style="margin-bottom: 15px;" id="scheduleTitle">⏰ When to Drink</h3>
                     <div class="time-slots" id="timeSlots">
                         <div class="time-slot">
                             <div class="time-dot active"></div>
-                            <div>Morning</div>
-                            <div style="font-size: 0.8em; color: #666;">500ml</div>
+                            <div id="morningLabel">Morning</div>
+                            <div style="font-size: 0.8em; color: #666;" id="morningAmount">0.5L</div>
                         </div>
                         <div class="time-slot">
                             <div class="time-dot active"></div>
-                            <div>Afternoon</div>
-                            <div style="font-size: 0.8em; color: #666;">1000ml</div>
+                            <div id="afternoonLabel">Afternoon</div>
+                            <div style="font-size: 0.8em; color: #666;" id="afternoonAmount">1.0L</div>
                         </div>
                         <div class="time-slot">
                             <div class="time-dot active"></div>
-                            <div>Evening</div>
-                            <div style="font-size: 0.8em; color: #666;">750ml</div>
+                            <div id="eveningLabel">Evening</div>
+                            <div style="font-size: 0.8em; color: #666;" id="eveningAmount">0.75L</div>
                         </div>
                         <div class="time-slot">
                             <div class="time-dot"></div>
-                            <div>Night</div>
-                            <div style="font-size: 0.8em; color: #666;">250ml</div>
+                            <div id="nightLabel">Night</div>
+                            <div style="font-size: 0.8em; color: #666;" id="nightAmount">0.25L</div>
                         </div>
                     </div>
                 </div>
@@ -249,12 +333,12 @@
                 <!-- Weather Impact -->
                 <div class="weather-impact">
                     <div class="weather-factor hot" id="hotFactor">
-                        <div>🔥 Hot Weather</div>
-                        <div style="font-size: 1.2em; font-weight: 700;">+500ml</div>
+                        <div>🔥 <span id="hotLabel">Hot Weather</span></div>
+                        <div style="font-size: 1.2em; font-weight: 700;" id="hotAmount">+0.5L</div>
                     </div>
                     <div class="weather-factor humid" id="humidFactor">
-                        <div>💦 High Humidity</div>
-                        <div style="font-size: 1.2em; font-weight: 700;">+300ml</div>
+                        <div>💦 <span id="humidLabel">High Humidity</span></div>
+                        <div style="font-size: 1.2em; font-weight: 700;" id="humidAmount">+0.3L</div>
                     </div>
                 </div>
                 
@@ -267,57 +351,292 @@
             </div>
         </div>
         
+        <!-- Future Plan Section -->
+        <div class="future-plan">
+            <h3>🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
+            <div class="future-grid">
+                <div class="future-item">
+                    <i>📱</i>
+                    <h4 id="future1">Hydration Reminders</h4>
+                    <p id="future1Desc">Customizable alerts</p>
+                    <span class="coming-soon">Coming Jan 2027</span>
+                </div>
+                <div class="future-item">
+                    <i>📊</i>
+                    <h4 id="future2">Weekly Tracker</h4>
+                    <p id="future2Desc">Track intake history</p>
+                    <span class="coming-soon">Coming Feb 2027</span>
+                </div>
+                <div class="future-item">
+                    <i>🧴</i>
+                    <h4 id="future3">Skin Hydration Score</h4>
+                    <p id="future3Desc">AI-powered analysis</p>
+                    <span class="coming-soon">Coming Mar 2027</span>
+                </div>
+                <div class="future-item">
+                    <i>⌚</i>
+                    <h4 id="future4">Smartwatch Sync</h4>
+                    <p id="future4Desc">Fitbit, Apple Watch</p>
+                    <span class="coming-soon">Coming Apr 2027</span>
+                </div>
+            </div>
+        </div>
+        
         <div class="footer">
-            <p>⭐ 4.8/5 from 1,250+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
-            <p style="font-size: 0.9em;">⚠️ Individual needs vary - listen to your body</p>
+            <p>⭐ 4.8/5 from 2,150+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
+            <p style="font-size: 0.9em;" id="disclaimer">⚠️ Individual needs vary - listen to your body</p>
         </div>
     </div>
     
     <script>
-        function setWaterUnit(unit) {
-            document.querySelectorAll('#unitToggle .unit-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        // ===== GLOBAL STATE =====
+        let currentUnit = 'metric';
+        let currentLang = 'en';
+        let displayUnit = 'L';
+        let currentWaterLiters = 2.5;
+        
+        // ===== TRANSLATIONS =====
+        const translations = {
+            en: {
+                titleMain: 'Water Intake Calculator',
+                titleSub: 'Sweat Rate • Activity',
+                headerSub: 'Personalized hydration with Indian summer adjustment',
+                detailsTitle: '📝 Your Details',
+                weightLabel: 'Weight',
+                ageLabel: 'Age',
+                activityLabel: 'Activity Level',
+                sweatLabel: 'Sweat Rate',
+                weatherLabel: 'Current Weather',
+                caffeineLabel: '☕ Coffee/tea daily',
+                alcoholLabel: '🍷 Alcohol',
+                pregnantLabel: '🤰 Pregnant',
+                breastfeedingLabel: '🍼 Breastfeeding',
+                calcBtn: 'Calculate My Water Needs',
+                resultsTitle: '📊 Your Daily Water',
+                baseLabel: 'Base Need',
+                activityAddLabel: 'Activity',
+                envLabel: 'Environment',
+                drinkTitle: '🇮🇳 Indian Hydration Suggestions',
+                drink1: 'Nariyal Pani',
+                drink2: 'Chhach (Buttermilk)',
+                drink3: 'Nimbu Pani',
+                drink4: 'Sattu Drink',
+                drink5: 'Jaljeera',
+                drink6: 'Aam Panna',
+                drinkNote: '💡 These traditional drinks help beat Indian summers',
+                scheduleTitle: '⏰ When to Drink',
+                morningLabel: 'Morning',
+                afternoonLabel: 'Afternoon',
+                eveningLabel: 'Evening',
+                nightLabel: 'Night',
+                hotLabel: 'Hot Weather',
+                humidLabel: 'High Humidity',
+                futureTitle: 'Coming Soon: Future Features',
+                future1: 'Hydration Reminders',
+                future1Desc: 'Customizable alerts',
+                future2: 'Weekly Tracker',
+                future2Desc: 'Track intake history',
+                future3: 'Skin Hydration Score',
+                future3Desc: 'AI-powered analysis',
+                future4: 'Smartwatch Sync',
+                future4Desc: 'Fitbit, Apple Watch',
+                disclaimer: '⚠️ Individual needs vary - listen to your body'
+            },
+            hi: {
+                titleMain: 'पानी सेवन कैलकुलेटर',
+                titleSub: 'पसीना दर • गतिविधि',
+                headerSub: 'भारतीय गर्मी समायोजन के साथ व्यक्तिगत हाइड्रेशन',
+                detailsTitle: '📝 आपका विवरण',
+                weightLabel: 'वज़न',
+                ageLabel: 'आयु',
+                activityLabel: 'गतिविधि स्तर',
+                sweatLabel: 'पसीने की दर',
+                weatherLabel: 'वर्तमान मौसम',
+                caffeineLabel: '☕ चाय/कॉफी रोज़',
+                alcoholLabel: '🍷 शराब',
+                pregnantLabel: '🤰 गर्भवती',
+                breastfeedingLabel: '🍼 स्तनपान',
+                calcBtn: 'पानी की आवश्यकता जानें',
+                resultsTitle: '📊 आपका दैनिक पानी',
+                baseLabel: 'आधार आवश्यकता',
+                activityAddLabel: 'गतिविधि',
+                envLabel: 'पर्यावरण',
+                drinkTitle: '🇮🇳 भारतीय हाइड्रेशन सुझाव',
+                drink1: 'नारियल पानी',
+                drink2: 'छाछ',
+                drink3: 'नींबू पानी',
+                drink4: 'सत्तू ड्रिंक',
+                drink5: 'जलजीरा',
+                drink6: 'आम पन्ना',
+                drinkNote: '💡 ये पारंपरिक पेय भारतीय गर्मी में मददगार हैं',
+                scheduleTitle: '⏰ कब पीना है',
+                morningLabel: 'सुबह',
+                afternoonLabel: 'दोपहर',
+                eveningLabel: 'शाम',
+                nightLabel: 'रात',
+                hotLabel: 'गर्म मौसम',
+                humidLabel: 'उच्च आर्द्रता',
+                futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
+                future1: 'हाइड्रेशन रिमाइंडर',
+                future1Desc: 'कस्टम अलर्ट',
+                future2: 'साप्ताहिक ट्रैकर',
+                future2Desc: 'सेवन इतिहास ट्रैक करें',
+                future3: 'त्वचा हाइड्रेशन स्कोर',
+                future3Desc: 'AI विश्लेषण',
+                future4: 'स्मार्टवॉच सिंक',
+                future4Desc: 'Fitbit, Apple Watch',
+                disclaimer: '⚠️ व्यक्तिगत ज़रूरतें अलग होती हैं - अपने शरीर की सुनें'
+            }
+        };
+        
+        // ===== LANGUAGE SWITCHER =====
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            document.documentElement.lang = lang;
             
-            const weightInput = document.getElementById('weight');
-            const unitSelect = document.getElementById('weightUnit');
+            const t = translations[lang] || translations.en;
+            Object.keys(t).forEach(key => {
+                const el = document.getElementById(key);
+                if (el) el.textContent = t[key];
+            });
             
-            if (unit === 'metric') {
-                unitSelect.value = 'kg';
-                weightInput.placeholder = 'kg';
+            // Update activity labels
+            updateActivityLabel(document.getElementById('activity').value);
+            updateSweatLabel(document.getElementById('sweat').value);
+            
+            // Update weather options
+            const weatherSelect = document.getElementById('weather');
+            if (lang === 'hi') {
+                weatherSelect.options[0].text = '🌤️ सामान्य (20-25°C)';
+                weatherSelect.options[1].text = '☀️ गर्म (30°C+)';
+                weatherSelect.options[2].text = '💦 आर्द्र';
+                weatherSelect.options[3].text = '❄️ ठंडा (10°C से कम)';
+                weatherSelect.options[4].text = '🔥 भारतीय गर्मी (35°C+)';
             } else {
-                unitSelect.value = 'lbs';
-                weightInput.placeholder = 'lbs';
+                weatherSelect.options[0].text = '🌤️ Normal (20-25°C)';
+                weatherSelect.options[1].text = '☀️ Hot (30°C+)';
+                weatherSelect.options[2].text = '💦 Humid';
+                weatherSelect.options[3].text = '❄️ Cold (below 10°C)';
+                weatherSelect.options[4].text = '🔥 Indian Summer (35°C+)';
             }
             
             calculateWater();
         }
         
+        // ===== UNIT TOGGLE =====
+        function setWaterUnit(unit) {
+            currentUnit = unit;
+            document.querySelectorAll('#unitToggle .unit-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.unit === unit);
+            });
+            
+            const weightInput = document.getElementById('weight');
+            const unitDisplay = document.getElementById('weightUnitDisplay');
+            const unitLabel = document.getElementById('weightLabel');
+            
+            if (unit === 'metric') {
+                unitDisplay.textContent = 'kg';
+                unitLabel.textContent = currentLang === 'hi' ? 'वज़न (kg)' : 'Weight (kg)';
+                weightInput.placeholder = 'kg';
+                weightInput.min = 30; weightInput.max = 200;
+            } else {
+                unitDisplay.textContent = 'lbs';
+                unitLabel.textContent = currentLang === 'hi' ? 'वज़न (lbs)' : 'Weight (lbs)';
+                weightInput.placeholder = 'lbs';
+                weightInput.min = 66; weightInput.max = 440;
+                // Convert existing value
+                if (weightInput.value) {
+                    weightInput.value = Math.round(parseFloat(weightInput.value) * 2.20462 * 10) / 10;
+                }
+            }
+            
+            calculateWater();
+        }
+        
+        // ===== DISPLAY UNIT SWITCHER =====
+        function switchDisplayUnit(unit) {
+            displayUnit = unit;
+            document.querySelectorAll('.unit-pill').forEach(pill => {
+                pill.classList.toggle('active', pill.dataset.display === unit);
+            });
+            updateWaterDisplay();
+        }
+        
+        function convertWaterValue(liters, targetUnit) {
+            const conversions = {
+                'L': liters,
+                'oz': liters * 33.814,
+                'cups': liters * 4.227,
+                'glasses': liters * 4 // 250ml per glass
+            };
+            return conversions[targetUnit] || liters;
+        }
+        
+        function getUnitLabel(unit) {
+            const labels = { 'L': 'L', 'oz': 'oz', 'cups': 'cups', 'glasses': 'glasses' };
+            return labels[unit] || 'L';
+        }
+        
+        function updateWaterDisplay() {
+            const converted = convertWaterValue(currentWaterLiters, displayUnit);
+            document.getElementById('waterAmount').textContent = converted.toFixed(1);
+            document.getElementById('waterUnit').textContent = getUnitLabel(displayUnit);
+            
+            const glasses = Math.round(currentWaterLiters * 4);
+            document.getElementById('waterCups').textContent = `~${glasses} glasses`;
+            
+            // Update schedule amounts
+            const slots = document.querySelectorAll('.time-slot');
+            const multipliers = [0.2, 0.4, 0.3, 0.1];
+            slots.forEach((slot, i) => {
+                const amount = convertWaterValue(currentWaterLiters * multipliers[i], displayUnit);
+                slot.querySelector('div:last-child').textContent = 
+                    amount.toFixed(1) + getUnitLabel(displayUnit);
+            });
+            
+            // Update weather impact
+            const weather = document.getElementById('weather').value;
+            const hotAmount = weather === 'hot' ? 0.5 : (weather === 'indian-summer' ? 0.8 : 0);
+            const humidAmount = weather === 'humid' ? 0.3 : 0;
+            document.getElementById('hotAmount').textContent = 
+                '+' + convertWaterValue(hotAmount, displayUnit).toFixed(1) + getUnitLabel(displayUnit);
+            document.getElementById('humidAmount').textContent = 
+                '+' + convertWaterValue(humidAmount, displayUnit).toFixed(1) + getUnitLabel(displayUnit);
+        }
+        
+        // ===== ACTIVITY & SWEAT LABELS =====
         function updateActivityLabel(value) {
-            const labels = ['Sedentary', 'Light', 'Moderate', 'Active', 'Very Active'];
-            document.getElementById('activityValue').textContent = labels[value] + 
-                (value == 2 ? ' (3-5x/week)' : '');
+            const labelsEn = ['Sedentary', 'Light', 'Moderate', 'Active', 'Very Active'];
+            const labelsHi = ['निष्क्रिय', 'हल्का', 'मध्यम', 'सक्रिय', 'बहुत सक्रिय'];
+            const labels = currentLang === 'hi' ? labelsHi : labelsEn;
+            document.getElementById('activityValue').textContent = labels[value];
             calculateWater();
         }
         
         function updateSweatLabel(value) {
-            const labels = ['Low Sweat', 'Average', 'Heavy Sweat'];
+            const labelsEn = ['Low Sweat', 'Average', 'Heavy Sweat'];
+            const labelsHi = ['कम पसीना', 'औसत', 'बहुत पसीना'];
+            const labels = currentLang === 'hi' ? labelsHi : labelsEn;
             document.getElementById('sweatValue').textContent = labels[value];
             calculateWater();
         }
         
+        // ===== MAIN CALCULATION =====
         function calculateWater() {
             // Get weight and convert to kg
             let weight = parseFloat(document.getElementById('weight').value) || 70;
-            const unit = document.getElementById('weightUnit').value;
             
-            if (unit === 'lbs') {
-                weight = weight / 2.205; // Convert to kg
+            if (currentUnit === 'imperial') {
+                weight = weight / 2.20462; // lbs to kg
             }
             
-            // Base water: 33ml per kg (standard formula)
+            // Base water: 33ml per kg
             let baseWater = weight * 0.033;
             
-            // Age adjustment (older need slightly less)
+            // Age adjustment
             const age = parseInt(document.getElementById('age').value) || 30;
             if (age > 50) baseWater *= 0.95;
             else if (age < 18) baseWater *= 1.1;
@@ -332,12 +651,13 @@
             const sweatFactors = [0, 0.2, 0.4];
             const sweatAdd = sweatFactors[sweat];
             
-            // Weather adjustment
+            // Weather adjustment (including Indian summer)
             const weather = document.getElementById('weather').value;
             let weatherAdd = 0;
             if (weather === 'hot') weatherAdd = 0.5;
             else if (weather === 'humid') weatherAdd = 0.3;
             else if (weather === 'cold') weatherAdd = -0.1;
+            else if (weather === 'indian-summer') weatherAdd = 0.8; // Extra for Indian summer
             
             // Lifestyle factors
             let lifestyleAdd = 0;
@@ -347,62 +667,72 @@
             if (document.getElementById('breastfeeding').checked) lifestyleAdd += 0.7;
             
             // Total water
-            let totalWater = baseWater + activityAdd + sweatAdd + weatherAdd + lifestyleAdd;
-            totalWater = Math.round(totalWater * 10) / 10;
+            currentWaterLiters = baseWater + activityAdd + sweatAdd + weatherAdd + lifestyleAdd;
+            currentWaterLiters = Math.round(currentWaterLiters * 10) / 10;
             
             // Update display
-            document.getElementById('waterAmount').textContent = totalWater.toFixed(1);
-            const cups = Math.round(totalWater * 4.227); // liters to cups
-            document.getElementById('waterCups').textContent = `~${cups} cups`;
+            updateWaterDisplay();
             
             // Update glass fill (max 4L for visualization)
-            const fillPercent = Math.min(100, (totalWater / 4) * 100);
+            const fillPercent = Math.min(100, (currentWaterLiters / 4) * 100);
             document.getElementById('glassFill').style.height = fillPercent + '%';
             document.getElementById('glassPercent').textContent = Math.round(fillPercent) + '% of 4L max';
             
             // Update breakdown
-            document.getElementById('baseWater').textContent = baseWater.toFixed(1);
+            const convertedBase = convertWaterValue(baseWater, displayUnit);
+            const convertedActivity = convertWaterValue(activityAdd + sweatAdd, displayUnit);
+            const convertedEnv = convertWaterValue(weatherAdd, displayUnit);
+            
+            document.getElementById('baseWater').textContent = convertedBase.toFixed(1);
             document.getElementById('activityWater').textContent = 
-                (activityAdd + sweatAdd) > 0 ? '+' + (activityAdd + sweatAdd).toFixed(1) : '0';
+                (activityAdd + sweatAdd) > 0 ? '+' + convertedActivity.toFixed(1) : '0';
             document.getElementById('envWater').textContent = 
-                weatherAdd > 0 ? '+' + weatherAdd.toFixed(1) : weatherAdd.toFixed(1);
+                weatherAdd > 0 ? '+' + convertedEnv.toFixed(1) : convertedEnv.toFixed(1);
             
             // Update weather impact display
-            document.getElementById('hotFactor').style.opacity = weather === 'hot' ? '1' : '0.3';
-            document.getElementById('humidFactor').style.opacity = weather === 'humid' ? '1' : '0.3';
-            
-            // Update drinking schedule
-            const morning = Math.round(totalWater * 0.2 * 100) / 100; // 20% morning
-            const afternoon = Math.round(totalWater * 0.4 * 100) / 100; // 40% afternoon
-            const evening = Math.round(totalWater * 0.3 * 100) / 100; // 30% evening
-            const night = Math.round(totalWater * 0.1 * 100) / 100; // 10% night
-            
-            const slots = document.querySelectorAll('.time-slot');
-            slots[0].querySelector('div:last-child').textContent = morning + 'L';
-            slots[1].querySelector('div:last-child').textContent = afternoon + 'L';
-            slots[2].querySelector('div:last-child').textContent = evening + 'L';
-            slots[3].querySelector('div:last-child').textContent = night + 'L';
+            document.getElementById('hotFactor').style.opacity = 
+                (weather === 'hot' || weather === 'indian-summer') ? '1' : '0.3';
+            document.getElementById('humidFactor').style.opacity = 
+                weather === 'humid' ? '1' : '0.3';
             
             // Tips based on total
             let tip = '';
-            if (totalWater > 3.5) {
-                tip = '💪 High intake! Spread throughout day, don\'t drink too fast';
-            } else if (totalWater < 1.5) {
-                tip = '⚠️ Low intake! Try to increase gradually';
+            if (currentWaterLiters > 3.5) {
+                tip = currentLang === 'hi' ? 
+                    '💪 अधिक मात्रा! दिन भर में फैलाकर पिएं' : 
+                    '💪 High intake! Spread throughout day, don\'t drink too fast';
+            } else if (currentWaterLiters < 1.5) {
+                tip = currentLang === 'hi' ? 
+                    '⚠️ कम मात्रा! धीरे-धीरे बढ़ाएं' : 
+                    '⚠️ Low intake! Try to increase gradually';
+            } else if (weather === 'indian-summer') {
+                tip = currentLang === 'hi' ? 
+                    '🌞 भारतीय गर्मी! नारियल पानी और छाछ पिएं' : 
+                    '🌞 Indian summer! Try nariyal pani and chhach';
             } else if (document.getElementById('caffeine').checked) {
-                tip = '☕ Add an extra glass for every coffee to stay hydrated';
-            } else if (weather === 'hot') {
-                tip = '🌞 Hot day! Sip water throughout, don\'t wait until thirsty';
+                tip = currentLang === 'hi' ? 
+                    '☕ हर कॉफी के साथ एक गिलास पानी अतिरिक्त लें' : 
+                    '☕ Add an extra glass for every coffee';
             } else {
-                tip = '💧 Drink a glass now to start your day right!';
+                tip = currentLang === 'hi' ? 
+                    '💧 दिन की शुरुआत एक गिलास पानी से करें!' : 
+                    '💧 Drink a glass now to start your day right!';
             }
             document.getElementById('waterTip').innerHTML = '<strong>💡 Tip:</strong> ' + tip;
         }
         
-        // Initialize
+        // ===== INITIALIZE =====
         window.onload = function() {
             calculateWater();
         };
+        
+        // Expose functions globally
+        window.setWaterUnit = setWaterUnit;
+        window.setLanguage = setLanguage;
+        window.switchDisplayUnit = switchDisplayUnit;
+        window.updateActivityLabel = updateActivityLabel;
+        window.updateSweatLabel = updateSweatLabel;
+        window.calculateWater = calculateWater;
     </script>
 </body>
 </html>
