@@ -1,435 +1,400 @@
-/* ========== NEW STYLES FOR UPDATED LAYOUT ========== */
+/* =============================================
+   GLOBAL + INDIAN MARKET STYLES
+   Unit Toggle, Ethnicity Selector, Language Switcher
+   ============================================= */
 
-/* Calculators Grid */
-.calculators-grid {
-    margin: 60px 0;
-    padding: 40px 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 15px;
-}
-
-.calculators-grid h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: #7f8c8d;
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 0 20px;
-}
-
-.calculator-card {
-    background: white;
-    border-radius: 12px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    height: 100%;
+/* ---------- Unit Toggle Switch (Metric/Imperial) ---------- */
+.unit-toggle-wrapper {
     display: flex;
-    flex-direction: column;
-}
-
-.calculator-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    border-color: #3498db;
-}
-
-.calculator-card.featured {
-    border: 2px solid #3498db;
-    background: linear-gradient(135deg, #ffffff 0%, #e8f4fc 100%);
-}
-
-.card-icon {
-    font-size: 2.5rem;
-    color: #3498db;
+    justify-content: flex-end;
     margin-bottom: 20px;
-    background: #e8f4fc;
-    width: 70px;
-    height: 70px;
-    line-height: 70px;
-    border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.calculator-card h3 {
-    font-size: 1.4rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-.calculator-card p {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    flex-grow: 1;
-}
-
-.card-btn {
-    display: inline-block;
-    background: #3498db;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s;
-    border: 2px solid #3498db;
-}
-
-.card-btn:hover {
-    background: white;
-    color: #3498db;
-}
-
-.card-tags {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.card-tags span {
-    background: #f0f7ff;
-    color: #3498db;
-    padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-/* CTA Buttons */
-.cta-buttons {
-    display: flex;
-    gap: 15px;
-    margin: 25px 0;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.cta-btn {
-    padding: 15px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
+.unit-toggle-container {
     display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 5px;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.cta-btn.primary {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
+.unit-toggle-btn {
+    padding: 12px 24px;
     border: none;
+    background: transparent;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.cta-btn.secondary {
+.unit-toggle-btn i {
+    font-size: 1.1rem;
+}
+
+.unit-toggle-btn.active {
     background: white;
     color: #3498db;
-    border: 2px solid #3498db;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
 }
 
-.cta-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
-}
-
-/* SEO Content Section */
-.seo-content-section {
-    margin: 60px 0;
-    background: white;
-    border-radius: 15px;
-    padding: 40px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-.seo-article h2 {
+.unit-toggle-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.6);
     color: #2c3e50;
-    margin-bottom: 30px;
-    font-size: 1.8rem;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 15px;
 }
 
-.seo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin: 30px 0;
-}
-
-.seo-item h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
-}
-
-.seo-item p {
-    color: #666;
-    line-height: 1.7;
-}
-
-.calculator-list {
-    margin: 30px 0;
-    display: grid;
-    gap: 20px;
-}
-
-.calc-item {
+/* ---------- Ethnicity Selector (Indian BMI Cutoff) ---------- */
+.ethnicity-group {
+    margin: 20px 0;
+    padding: 15px;
     background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     border-left: 4px solid #3498db;
 }
 
-.calc-item h4 {
+.ethnicity-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
     color: #2c3e50;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+}
+
+.ethnicity-group label i {
+    color: #3498db;
+    font-size: 1.2rem;
+}
+
+.ethnicity-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: white;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ethnicity-select:hover {
+    border-color: #3498db;
+}
+
+.ethnicity-select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.ethnicity-hint {
+    display: block;
+    margin-top: 8px;
+    color: #e67e22;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.ethnicity-hint i {
+    margin-right: 5px;
+}
+
+/* Indian specific warning badge */
+.indian-warning {
+    background: linear-gradient(135deg, #fff3cd, #ffe69c);
+    color: #856404;
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin: 15px 0;
+    font-size: 0.95rem;
+    border: 1px solid #ffc107;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.calc-item a {
-    color: #3498db;
-    text-decoration: none;
-}
-
-.calc-item a:hover {
-    text-decoration: underline;
-}
-
-/* FAQ Section */
-.faq-section {
-    margin: 40px 0;
-}
-
-.faq-item {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.faq-item:last-child {
-    border-bottom: none;
-}
-
-.faq-item h4 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-.faq-item p {
-    color: #666;
-    line-height: 1.6;
-}
-
-/* CTA Box */
-.cta-box {
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    color: white;
-    padding: 40px;
-    border-radius: 15px;
-    margin-top: 40px;
-    text-align: center;
-}
-
-.cta-box h3 {
-    color: white;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.cta-box p {
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 800px;
-    margin: 0 auto 30px;
-    line-height: 1.7;
-}
-
-/* Tips Section Updates */
-.tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.tip-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s;
-}
-
-.tip-card:hover {
-    transform: translateY(-5px);
-}
-
-.tip-card i {
-    font-size: 2.5rem;
-    color: #3498db;
-    margin-bottom: 20px;
-}
-
-.tip-card h3 {
-    color: #2c3e50;
-    margin-bottom: 15px;
+.indian-warning i {
     font-size: 1.3rem;
+    color: #e67e22;
 }
 
-.tip-card p {
-    color: #666;
+/* ---------- Language Switcher (Global) ---------- */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.lang-btn:hover {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.lang-btn.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+/* ---------- Global Trust Badges ---------- */
+.global-trust-badge {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 50px;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.trust-item i {
+    color: #27ae60;
+    font-size: 1.2rem;
+}
+
+/* ---------- Multi-currency / Unit Label ---------- */
+.unit-label {
+    margin-left: 8px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    font-weight: normal;
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0 15px;
+    transition: all 0.3s;
+}
+
+.input-with-unit:focus-within {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.input-with-unit input {
+    border: none;
+    padding: 15px 0;
+    flex: 1;
+    outline: none;
+    font-size: 1rem;
+}
+
+.input-with-unit .unit-label {
+    background: #f1f5f9;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* ---------- Result Section Global Enhancements ---------- */
+.bmi-category-indian {
+    background: linear-gradient(135deg, #fff9e6, #fff3cd);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #e67e22;
+}
+
+.bmi-category-indian h4 {
+    color: #e67e22;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bmi-category-indian p {
+    color: #856404;
+    font-size: 0.95rem;
     line-height: 1.6;
 }
 
-/* Footer Updates */
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
+/* Health Risk Indicator */
+.health-risk-meter {
+    margin: 20px 0;
 }
 
-.social-links {
+.risk-level {
     display: flex;
-    gap: 15px;
-    margin-top: 20px;
+    justify-content: space-between;
+    margin: 10px 0;
 }
 
-.social-links a {
+.risk-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.risk-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.risk-fill.low { background: #10b981; }
+.risk-fill.moderate { background: #f59e0b; }
+.risk-fill.high { background: #ef4444; }
+
+/* ---------- Country Flag Indicator ---------- */
+.country-badge {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: #f0f0f0;
-    border-radius: 50%;
-    color: #666;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.social-links a:hover {
-    background: #3498db;
-    color: white;
-}
-
-.keyword-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.keyword-tags a {
-    background: #f0f7ff;
-    color: #3498db;
-    padding: 8px 15px;
+    gap: 5px;
+    background: white;
+    padding: 5px 12px;
     border-radius: 20px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.keyword-tags a:hover {
-    background: #3498db;
-    color: white;
+.country-badge img {
+    width: 18px;
+    height: 14px;
+    border-radius: 2px;
 }
 
-.footer-seo {
-    margin: 20px 0;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-.footer-seo strong {
-    color: #3498db;
-}
-
-.site-links {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    font-size: 0.9rem;
-}
-
-.site-links a {
-    color: #666;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-.site-links a:hover {
-    color: #3498db;
-    text-decoration: underline;
-}
-
-/* Active Navigation Link */
-.nav-links li a.active {
-    color: #3498db;
-    background: #e8f4fc;
-    border-radius: 8px;
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
+/* ---------- Mobile Responsive for Global Features ---------- */
 @media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-    }
-    
-    .cta-btn {
-        width: 100%;
+    .unit-toggle-wrapper {
         justify-content: center;
     }
     
-    .seo-content-section {
-        padding: 20px;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
-    .nav-links li a {
-        padding: 8px 15px;
+    .unit-toggle-btn {
+        padding: 10px 16px;
         font-size: 0.9rem;
+    }
+    
+    .language-switcher {
+        margin-left: 0;
+        margin-top: 10px;
+        justify-content: center;
+    }
+    
+    .global-trust-badge {
+        border-radius: 20px;
+        gap: 15px;
+    }
+    
+    .trust-item {
+        font-size: 0.85rem;
+    }
+    
+    .ethnicity-group {
+        padding: 12px;
+    }
+    
+    .indian-warning {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ---------- RTL Support (For Arabic/Hebrew Future) ---------- */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .ethnicity-group {
+    border-left: none;
+    border-right: 4px solid #3498db;
+}
+
+[dir="rtl"] .unit-toggle-btn i {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+/* ---------- Print Styles for Global Users ---------- */
+@media print {
+    .unit-toggle-wrapper,
+    .language-switcher,
+    .cta-buttons,
+    .social-links,
+    .keyword-tags {
+        display: none !important;
+    }
+    
+    .result-section {
+        border: 2px solid #3498db;
+        padding: 20px;
+        break-inside: avoid;
+    }
+}
+
+/* ---------- High Contrast / Accessibility ---------- */
+@media (prefers-contrast: high) {
+    .unit-toggle-btn.active {
+        outline: 3px solid #000;
+    }
+    
+    .ethnicity-select {
+        border: 2px solid #000;
+    }
+}
+
+/* ---------- Dark Mode Support (Optional Future) ---------- */
+@media (prefers-color-scheme: dark) {
+    .unit-toggle-container {
+        background: #2d3748;
+    }
+    
+    .unit-toggle-btn {
+        color: #cbd5e0;
+    }
+    
+    .unit-toggle-btn.active {
+        background: #4a5568;
+        color: #63b3ed;
+    }
+    
+    .ethnicity-group {
+        background: #2d3748;
+    }
+    
+    .ethnicity-select {
+        background: #1a202c;
+        color: #e2e8f0;
+        border-color: #4a5568;
+    }
+    
+    .global-trust-badge {
+        background: #2d3748;
     }
 }
