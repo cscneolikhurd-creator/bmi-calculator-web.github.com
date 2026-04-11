@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     
-    <!-- SEO Meta -->
-    <title>Body Fat Percentage Calculator with Visual Guide | HealthCalc</title>
-    <meta name="description" content="Free advanced body fat calculator with visual guide, athlete mode, US Navy Method, and body fat loss timeline. See what 15%, 20%, 25% body fat looks like.">
-    <meta name="keywords" content="body fat percentage, body fat calculator, visual body fat, athlete body fat, body composition, navy method body fat">
+    <!-- SEO Meta (Global + Indian) -->
+    <title>Body Fat Calculator: Visual Guide & Indian Standards | HealthCalc</title>
+    <meta name="description" content="Advanced body fat calculator with visual guide, US Navy Method, athlete mode & Indian body fat ranges. See what your body fat looks like. Hindi/English support.">
+    <meta name="keywords" content="body fat calculator, Indian body fat, visual body fat guide, Navy method, body composition Hindi, शरीर में वसा कैलकुलेटर">
     <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Body Fat % Calculator with Visual Guide | HealthCalc">
-    <meta property="og:description" content="See what your body fat looks like and how to improve it. US Navy Method + Visual Guide + Athlete Mode.">
+    <meta property="og:title" content="Body Fat % Calculator with Indian Standards | HealthCalc">
+    <meta property="og:description" content="See what your body fat looks like. US Navy Method + Visual Guide + Indian body fat ranges.">
     <meta property="og:image" content="https://healthcalc.in/images/bodyfat-preview.jpg">
     <meta property="og:url" content="https://healthcalc.in/body-fat-calculator">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_IN">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Body Fat % Calculator with Visual Guide">
-    <meta property="twitter:description" content="Free advanced body fat calculator with visual guide and athlete mode">
+    <meta property="twitter:description" content="Advanced body fat calculator with visual guide, Indian standards & Hindi support">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://healthcalc.in/body-fat-calculator">
@@ -31,27 +32,49 @@
     {
         "@context": "https://schema.org",
         "@type": "MedicalWebPage",
-        "name": "Body Fat Percentage Calculator",
-        "description": "Advanced body fat calculator with visual guide and US Navy Method",
+        "name": "Body Fat Percentage Calculator with Indian Standards",
+        "description": "Advanced body fat calculator with visual guide, US Navy Method, and Indian body fat ranges",
         "url": "https://healthcalc.in/body-fat-calculator",
-        "medicalAudience": "General Public",
-        "creator": {
-            "@type": "Organization",
-            "name": "HealthCalc",
-            "url": "https://healthcalc.in"
-        }
+        "inLanguage": ["en", "hi"],
+        "medicalAudience": "General Public (India & Global)",
+        "creator": {"@type": "Organization", "name": "HealthCalc", "url": "https://healthcalc.in"}
     }
     </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --indian-saffron: #FF9933;
+            --indian-green: #138808;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+        
         body { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); animation: slideIn 0.5s ease-out; }
+        .container { max-width: 1300px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); animation: slideIn 0.5s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
         .header { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); padding: 30px; text-align: center; color: white; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .header p { font-size: 1.2em; opacity: 0.95; }
+        
+        /* Language Toggle */
+        .lang-toggle { display: flex; justify-content: center; gap: 10px; margin: 20px 0 0; }
+        .lang-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 10px 25px; border-radius: 50px; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 1em; display: flex; align-items: center; gap: 8px; }
+        .lang-btn.active { background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .lang-btn i { font-size: 1.2em; }
+        
         .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; backdrop-filter: blur(5px); }
+        .badge.indian-badge { background: linear-gradient(135deg, var(--indian-saffron), #FFB74D); border-left: 3px solid white; }
+        
+        /* Unit Toggle */
+        .unit-toggle { display: flex; gap: 15px; margin-bottom: 25px; background: #d0f0d0; padding: 5px; border-radius: 50px; }
+        .unit-btn { flex: 1; padding: 12px; border: none; background: transparent; border-radius: 50px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s; color: #555; }
+        .unit-btn.active { background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(46,204,113,0.2); }
+        
         .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
         @media (max-width: 768px) { .main { grid-template-columns: 1fr; padding: 20px; } .header h1 { font-size: 1.8em; } }
         
@@ -63,6 +86,10 @@
         .input-group input, .input-group select { width: 100%; padding: 12px 15px; border: 2px solid #d0f0d0; border-radius: 10px; font-size: 1em; transition: all 0.3s; background: white; }
         .input-group input:focus, .input-group select:focus { outline: none; border-color: #2ecc71; box-shadow: 0 0 0 3px rgba(46,204,113,0.1); }
         
+        .input-with-unit { display: flex; align-items: center; background: white; border: 2px solid #d0f0d0; border-radius: 10px; padding: 0 10px; }
+        .input-with-unit input { border: none; padding: 12px 0; flex: 1; outline: none; background: transparent; }
+        .input-with-unit .unit-label { color: #666; font-weight: 500; padding-left: 10px; border-left: 1px solid #d0f0d0; }
+        
         .method-toggle { display: flex; gap: 10px; margin-bottom: 20px; background: #d0f0d0; padding: 5px; border-radius: 50px; }
         .method-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
         .method-btn.active { background: white; color: #27ae60; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
@@ -73,6 +100,10 @@
         .athlete-toggle { margin: 20px 0; padding: 15px; background: white; border-radius: 10px; border: 2px solid #d0f0d0; cursor: pointer; }
         .athlete-toggle label { cursor: pointer; display: flex; align-items: center; gap: 10px; }
         .athlete-toggle input { width: 20px; height: 20px; cursor: pointer; }
+        
+        /* Indian Body Fat Note */
+        .indian-note { background: linear-gradient(135deg, #FFF8E1, #FFECB3); padding: 15px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--indian-saffron); font-size: 0.95em; }
+        .indian-note i { color: var(--indian-saffron); margin-right: 8px; }
         
         .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; transition: all 0.3s; box-shadow: 0 10px 20px rgba(46,204,113,0.3); }
         .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(46,204,113,0.4); }
@@ -104,6 +135,13 @@
         .health-item .value { font-size: 1.5em; font-weight: 700; color: #333; }
         .health-item .label { font-size: 0.85em; color: #666; margin-top: 5px; }
         
+        /* Indian Tips Card */
+        .indian-tips-card { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid var(--indian-green); }
+        .indian-tips-card h4 { color: #1B5E20; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .indian-tips-card ul { list-style: none; padding-left: 0; }
+        .indian-tips-card li { padding: 8px 0; border-bottom: 1px dashed #A5D6A7; display: flex; align-items: center; gap: 10px; }
+        .indian-tips-card li i { color: var(--indian-green); width: 20px; }
+        
         .timeline { background: #f0fff4; padding: 20px; border-radius: 20px; margin: 20px 0; }
         .timeline-bar { height: 30px; background: #d0f0d0; border-radius: 15px; overflow: hidden; margin: 10px 0; }
         .timeline-progress { height: 100%; background: linear-gradient(90deg, #2ecc71, #27ae60); width: 0%; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: white; font-size: 0.8em; font-weight: bold; }
@@ -111,6 +149,16 @@
         .recommendation-box { margin-top: 20px; padding: 15px; background: #e8f5e9; border-radius: 10px; border-left: 4px solid #2ecc71; }
         .recommendation-box.warning { background: #fff3e0; border-left-color: #ff9800; }
         .recommendation-box.danger { background: #ffebee; border-left-color: #f44336; }
+        
+        /* Future Plan Section */
+        .future-plan-section { grid-column: span 2; background: linear-gradient(135deg, #E8EAF6, #C5CAE9); border-radius: 20px; padding: 25px; margin: 20px 0; border: 2px dashed var(--primary); }
+        .future-plan-section h3 { color: #1A237E; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
+        .future-feature:hover { transform: translateY(-5px); }
+        .future-feature i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .future-feature h5 { color: #1A237E; margin-bottom: 8px; font-size: 1rem; }
+        .coming-soon { background: #FF9800; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-top: 10px; }
         
         .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; background: #fafafa; }
         .footer a { color: #27ae60; text-decoration: none; }
@@ -121,16 +169,28 @@
         .tooltip { border-bottom: 1px dashed #999; cursor: help; }
         input[type="number"]::-webkit-inner-spin-button { opacity: 0.5; }
     </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧬 Advanced Body Fat Calculator</h1>
-            <p>Visual Guide • US Navy Method • Athlete Mode • Fat Loss Timeline</p>
+            <h1>
+                🧬 Advanced Body Fat Calculator
+                <span style="font-size: 0.5em; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px;" id="headerSubtitle">Indian Standards</span>
+            </h1>
+            <p id="headerDesc">Visual Guide • US Navy Method • Athlete Mode • Indian Body Fat Ranges</p>
+            
+            <!-- Language Toggle -->
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" id="langEN"><i>🇬🇧</i> English</button>
+                <button class="lang-btn" data-lang="hi" id="langHI"><i>🇮🇳</i> हिंदी</button>
+            </div>
+            
             <div>
                 <span class="badge">🌟 Visual Guide</span>
+                <span class="badge indian-badge">🇮🇳 Indian Ranges</span>
                 <span class="badge">🏋️ Athlete Mode</span>
-                <span class="badge">📉 Fat Loss Timeline</span>
                 <span class="badge">⚓ US Navy Method</span>
             </div>
         </div>
@@ -138,34 +198,46 @@
         <div class="main">
             <!-- Input Section -->
             <div class="input-card">
-                <h2>📝 Your Measurements</h2>
+                <h2 id="detailsTitle">📝 Your Measurements</h2>
+                
+                <!-- Unit Toggle -->
+                <div class="unit-toggle">
+                    <button class="unit-btn active" data-unit="metric" onclick="setUnit('metric')">🌏 Metric (cm/kg)</button>
+                    <button class="unit-btn" data-unit="imperial" onclick="setUnit('imperial')">🌎 Imperial (in/lbs)</button>
+                </div>
                 
                 <div class="method-toggle" id="methodToggle">
-                    <button class="method-btn active" data-method="simple" onclick="setMethod('simple', this)">Simple (BMI-based)</button>
-                    <button class="method-btn" data-method="advanced" onclick="setMethod('advanced', this)">Advanced (US Navy)</button>
+                    <button class="method-btn active" data-method="simple" onclick="setMethod('simple', this)">BMI-based</button>
+                    <button class="method-btn" data-method="advanced" onclick="setMethod('advanced', this)">US Navy</button>
                 </div>
                 
                 <!-- Simple Method (BMI-based) -->
                 <div id="simpleMethod" class="measurement-fields active">
                     <div class="input-group">
-                        <label>Age <span class="tooltip" title="Body fat increases with age">📘</span></label>
+                        <label id="ageLabel">Age <span class="tooltip" title="Body fat increases with age">📘</span></label>
                         <input type="number" id="ageSimple" value="30" min="18" max="100" step="1">
                     </div>
                     <div class="input-group">
-                        <label>Gender</label>
+                        <label id="genderLabel">Gender</label>
                         <select id="genderSimple">
-                            <option value="male">Male</option>
-                            <option value="female" selected>Female</option>
+                            <option value="male" id="maleOpt">Male</option>
+                            <option value="female" id="femaleOpt" selected>Female</option>
                         </select>
                     </div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                         <div class="input-group">
-                            <label>Weight (kg)</label>
-                            <input type="number" id="weightSimple" value="70" min="30" max="250" step="0.1">
+                            <label id="weightLabel">Weight (<span id="weightUnitSimple">kg</span>)</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="weightSimple" value="70" min="30" max="250" step="0.1">
+                                <span class="unit-label" id="weightUnitDisplaySimple">kg</span>
+                            </div>
                         </div>
                         <div class="input-group">
-                            <label>Height (cm)</label>
-                            <input type="number" id="heightSimple" value="170" min="100" max="250" step="0.1">
+                            <label id="heightLabel">Height (<span id="heightUnitSimple">cm</span>)</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="heightSimple" value="170" min="100" max="250" step="0.1">
+                                <span class="unit-label" id="heightUnitDisplaySimple">cm</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -173,112 +245,141 @@
                 <!-- Advanced Method (US Navy) -->
                 <div id="advancedMethod" class="measurement-fields">
                     <div class="input-group">
-                        <label>Gender</label>
+                        <label id="genderAdvLabel">Gender</label>
                         <select id="genderAdv">
-                            <option value="male">Male</option>
-                            <option value="female" selected>Female</option>
+                            <option value="male" id="maleAdvOpt">Male</option>
+                            <option value="female" id="femaleAdvOpt" selected>Female</option>
                         </select>
                     </div>
                     <div class="input-group">
-                        <label>Height (cm)</label>
-                        <input type="number" id="heightAdv" value="170" min="100" max="250" step="0.1">
+                        <label id="heightAdvLabel">Height (<span id="heightUnitAdv">cm</span>)</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="heightAdv" value="170" min="100" max="250" step="0.1">
+                            <span class="unit-label" id="heightUnitDisplayAdv">cm</span>
+                        </div>
                     </div>
                     <div class="input-group">
-                        <label>Neck (cm) <span class="tooltip" title="Measure at the base, just below Adam's apple">📘</span></label>
-                        <input type="number" id="neck" value="38" min="30" max="60" step="0.1">
+                        <label id="neckLabel">Neck (<span id="neckUnit">cm</span>) <span class="tooltip" title="Measure at the base, just below Adam's apple">📘</span></label>
+                        <div class="input-with-unit">
+                            <input type="number" id="neck" value="38" min="30" max="60" step="0.1">
+                            <span class="unit-label" id="neckUnitDisplay">cm</span>
+                        </div>
                     </div>
                     <div class="input-group">
-                        <label>Waist (cm) <span class="tooltip" title="Measure at navel level">📘</span></label>
-                        <input type="number" id="waist" value="80" min="50" max="150" step="0.1">
+                        <label id="waistLabel">Waist (<span id="waistUnit">cm</span>) <span class="tooltip" title="Measure at navel level">📘</span></label>
+                        <div class="input-with-unit">
+                            <input type="number" id="waist" value="80" min="50" max="150" step="0.1">
+                            <span class="unit-label" id="waistUnitDisplay">cm</span>
+                        </div>
                     </div>
                     <div id="hipField">
                         <div class="input-group">
-                            <label>Hip (cm) <span class="tooltip" title="Measure at widest point - women only">📘</span></label>
-                            <input type="number" id="hip" value="95" min="50" max="160" step="0.1">
+                            <label id="hipLabel">Hip (<span id="hipUnit">cm</span>) <span class="tooltip" title="Measure at widest point - women only">📘</span></label>
+                            <div class="input-with-unit">
+                                <input type="number" id="hip" value="95" min="50" max="160" step="0.1">
+                                <span class="unit-label" id="hipUnitDisplay">cm</span>
+                            </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Indian Body Fat Note -->
+                <div class="indian-note" id="indianNote">
+                    <i class="fas fa-info-circle"></i> 
+                    <span id="indianNoteText">🇮🇳 Indians typically have higher body fat % at same BMI. Healthy range for Indian men: 12-25%, women: 20-35%.</span>
                 </div>
                 
                 <!-- Athlete Mode Toggle -->
                 <div class="athlete-toggle">
                     <label>
                         <input type="checkbox" id="athleteMode" onchange="toggleAthleteMode()">
-                        <strong>🏋️ Athlete Mode</strong>
-                        <span style="color: #666; font-size: 0.9em;">(More accurate for muscular individuals, subtracts 5-7% body fat)</span>
+                        <strong id="athleteLabel">🏋️ Athlete Mode</strong>
+                        <span style="color: #666; font-size: 0.9em;" id="athleteDesc">(More accurate for muscular individuals)</span>
                     </label>
                 </div>
                 
-                <button class="calc-btn" onclick="calculateBodyFat()">Calculate Body Fat %</button>
-                <button class="reset-btn" onclick="resetForm()">Reset All Fields</button>
+                <button class="calc-btn" onclick="calculateBodyFat()" id="calculateBtn">Calculate Body Fat %</button>
+                <button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
             </div>
             
             <!-- Results Section -->
             <div class="results-card" id="results">
-                <h2>📊 Your Body Composition</h2>
+                <h2 id="resultsTitle">📊 Your Body Composition</h2>
                 
                 <div class="fat-circle">
                     <div class="fat-value" id="bodyFat">--</div>
-                    <div class="fat-label">Body Fat Percentage</div>
+                    <div class="fat-label" id="bodyFatLabel">Body Fat Percentage</div>
                 </div>
                 
                 <!-- Visual Guide -->
-                <h3 style="margin: 20px 0 10px;">👁️ Visual Reference Guide</h3>
-                <p style="color: #666; font-size: 0.85em; margin-bottom: 10px;">Click any category to see visual representation</p>
+                <h3 style="margin: 20px 0 10px;" id="visualGuideTitle">👁️ Visual Reference Guide</h3>
+                <p style="color: #666; font-size: 0.85em; margin-bottom: 10px;" id="visualGuideDesc">Click any category to see visual representation</p>
                 <div class="visual-guide" id="visualGuide">
                     <div class="visual-item" data-fat="10">
                         <span class="emoji">🏃</span>
                         <div class="percent">10-14%</div>
-                        <div>Athlete</div>
+                        <div id="athleteCat">Athlete</div>
                     </div>
                     <div class="visual-item active" data-fat="15">
                         <span class="emoji">💪</span>
                         <div class="percent">15-19%</div>
-                        <div>Fit</div>
+                        <div id="fitCat">Fit</div>
                     </div>
                     <div class="visual-item" data-fat="20">
                         <span class="emoji">⚖️</span>
                         <div class="percent">20-24%</div>
-                        <div>Average</div>
+                        <div id="averageCat">Average</div>
                     </div>
                     <div class="visual-item" data-fat="25">
                         <span class="emoji">📈</span>
                         <div class="percent">25%+</div>
-                        <div>Above Avg</div>
+                        <div id="aboveAvgCat">Above Avg</div>
                     </div>
                 </div>
                 
                 <!-- Body Shape Visual -->
                 <div class="body-outline" id="bodyOutline">
                     <div class="fat-layer" id="fatLayer" style="height: 50%"></div>
-                    <div class="body-label">⬅️ Less Fat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; More Fat ➡️</div>
+                    <div class="body-label" id="bodyLabel">⬅️ Less Fat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; More Fat ➡️</div>
                 </div>
                 
                 <!-- Health Metrics -->
                 <div class="health-grid">
                     <div class="health-item">
                         <div class="value" id="fatMass">--</div>
-                        <div class="label">Fat Mass (kg)</div>
+                        <div class="label" id="fatMassLabel">Fat Mass</div>
                     </div>
                     <div class="health-item">
                         <div class="value" id="leanMass">--</div>
-                        <div class="label">Lean Mass (kg)</div>
+                        <div class="label" id="leanMassLabel">Lean Mass</div>
                     </div>
                     <div class="health-item">
                         <div class="value" id="category">--</div>
-                        <div class="label">Category</div>
+                        <div class="label" id="categoryLabel">Category</div>
                     </div>
                     <div class="health-item">
                         <div class="value" id="idealRange">--</div>
-                        <div class="label">Ideal Range</div>
+                        <div class="label" id="idealRangeLabel">Ideal Range</div>
                     </div>
+                </div>
+                
+                <!-- Indian Tips Card -->
+                <div class="indian-tips-card" id="indianTipsBox">
+                    <h4><i class="fas fa-heart"></i> <span id="tipsTitle">🇮🇳 Indian Health Tips</span></h4>
+                    <ul id="tipsList">
+                        <li id="tip1"><i class="fas fa-check-circle"></i> Include protein in every meal (dal, paneer, eggs, sprouts)</li>
+                        <li id="tip2"><i class="fas fa-check-circle"></i> Practice Surya Namaskar (12 rounds daily)</li>
+                        <li id="tip3"><i class="fas fa-check-circle"></i> Replace white rice with brown rice or millets (jowar, bajra)</li>
+                        <li id="tip4"><i class="fas fa-check-circle"></i> Drink warm water with lemon and honey in morning</li>
+                    </ul>
                 </div>
                 
                 <!-- Fat Loss Timeline -->
                 <div class="timeline">
-                    <h3 style="margin-bottom: 15px;">📉 Personalized Fat Loss Timeline</h3>
+                    <h3 style="margin-bottom: 15px;" id="timelineTitle">📉 Fat Loss Timeline</h3>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Current: <strong id="currentFatTimeline">--</strong></span>
-                        <span>Healthy Target: <strong id="targetFat">--</strong></span>
+                        <span id="currentLabel">Current: <strong id="currentFatTimeline">--</strong></span>
+                        <span id="targetLabel">Target: <strong id="targetFat">--</strong></span>
                     </div>
                     <div class="timeline-bar">
                         <div class="timeline-progress" id="timelineProgress" style="width: 0%">0%</div>
@@ -295,31 +396,252 @@
                 
                 <!-- Guide -->
                 <div style="background: #f0fff4; padding: 15px; border-radius: 10px; margin-top: 20px;">
-                    <p style="color: #666; font-size: 0.9em;">
-                        <strong>💡 Healthy Body Fat Ranges (American Council on Exercise):</strong><br>
-                        • Men: Essential (2-5%) | Athletes (6-13%) | Fitness (14-17%) | Acceptable (18-24%)<br>
-                        • Women: Essential (10-13%) | Athletes (14-20%) | Fitness (21-24%) | Acceptable (25-31%)<br>
-                        <strong>🏋️ Athlete Mode:</strong> Recommended for those who exercise 4+ times weekly
+                    <p style="color: #666; font-size: 0.9em;" id="guideText">
+                        <strong>💡 Healthy Body Fat Ranges:</strong><br>
+                        • Men (Global): Essential 2-5% | Athletes 6-13% | Fitness 14-17% | Acceptable 18-24%<br>
+                        • Women (Global): Essential 10-13% | Athletes 14-20% | Fitness 21-24% | Acceptable 25-31%<br>
+                        • 🇮🇳 Indian Men: Healthy 12-25% | Indian Women: Healthy 20-35%
                     </p>
+                </div>
+            </div>
+            
+            <!-- Future Plan Section -->
+            <div class="future-plan-section">
+                <h3><i class="fas fa-rocket"></i> 🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
+                <div class="future-features-grid">
+                    <div class="future-feature">
+                        <i class="fas fa-camera"></i>
+                        <h5 id="future1">AI Body Fat Scanner</h5>
+                        <span class="coming-soon">Coming Jan 2027</span>
+                    </div>
+                    <div class="future-feature">
+                        <i class="fas fa-utensils"></i>
+                        <h5 id="future2">Indian Diet Plan</h5>
+                        <span class="coming-soon">Coming Feb 2027</span>
+                    </div>
+                    <div class="future-feature">
+                        <i class="fas fa-dumbbell"></i>
+                        <h5 id="future3">Workout Generator</h5>
+                        <span class="coming-soon">Coming March 2027</span>
+                    </div>
+                    <div class="future-feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h5 id="future4">Progress Tracker</h5>
+                        <span class="coming-soon">Coming April 2027</span>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            <p>⭐ 4.8/5 from 2,150+ reviews | Used in 45+ countries | <a href="/">More Health Tools →</a></p>
-            <p style="font-size: 0.9em;">⚠️ Estimates only based on scientific formulas. Consult a healthcare professional for accurate medical assessment.</p>
+            <p id="footerReviews">⭐ 4.8/5 from 2,150+ reviews | Used in 45+ countries | <a href="/">More Health Tools →</a></p>
+            <p style="font-size: 0.9em;" id="disclaimerText">⚠️ Estimates only. Consult a healthcare professional for accurate medical assessment.</p>
         </div>
     </div>
     
     <script>
+        // ===== GLOBAL STATE =====
         let currentMethod = 'simple';
         let athleteMode = false;
+        let currentUnit = 'metric';
+        let currentLang = 'en';
         
-        // Save to localStorage
+        // ===== TRANSLATIONS =====
+        const translations = {
+            en: {
+                headerSubtitle: 'Indian Standards',
+                headerDesc: 'Visual Guide • US Navy Method • Athlete Mode • Indian Body Fat Ranges',
+                detailsTitle: '📝 Your Measurements',
+                ageLabel: 'Age',
+                genderLabel: 'Gender',
+                maleOpt: 'Male',
+                femaleOpt: 'Female',
+                weightLabel: 'Weight',
+                heightLabel: 'Height',
+                genderAdvLabel: 'Gender',
+                maleAdvOpt: 'Male',
+                femaleAdvOpt: 'Female',
+                heightAdvLabel: 'Height',
+                neckLabel: 'Neck',
+                waistLabel: 'Waist',
+                hipLabel: 'Hip',
+                indianNoteText: '🇮🇳 Indians typically have higher body fat % at same BMI. Healthy range for Indian men: 12-25%, women: 20-35%.',
+                athleteLabel: '🏋️ Athlete Mode',
+                athleteDesc: '(More accurate for muscular individuals)',
+                calculateBtn: 'Calculate Body Fat %',
+                resetBtn: 'Reset All Fields',
+                resultsTitle: '📊 Your Body Composition',
+                bodyFatLabel: 'Body Fat Percentage',
+                visualGuideTitle: '👁️ Visual Reference Guide',
+                visualGuideDesc: 'Click any category to see visual representation',
+                athleteCat: 'Athlete',
+                fitCat: 'Fit',
+                averageCat: 'Average',
+                aboveAvgCat: 'Above Avg',
+                bodyLabel: '⬅️ Less Fat                               More Fat ➡️',
+                fatMassLabel: 'Fat Mass',
+                leanMassLabel: 'Lean Mass',
+                categoryLabel: 'Category',
+                idealRangeLabel: 'Ideal Range',
+                tipsTitle: '🇮🇳 Indian Health Tips',
+                tip1: 'Include protein in every meal (dal, paneer, eggs, sprouts)',
+                tip2: 'Practice Surya Namaskar (12 rounds daily)',
+                tip3: 'Replace white rice with brown rice or millets (jowar, bajra)',
+                tip4: 'Drink warm water with lemon and honey in morning',
+                timelineTitle: '📉 Fat Loss Timeline',
+                currentLabel: 'Current:',
+                targetLabel: 'Target:',
+                futureTitle: 'Coming Soon: Future Features',
+                future1: 'AI Body Fat Scanner',
+                future2: 'Indian Diet Plan',
+                future3: 'Workout Generator',
+                future4: 'Progress Tracker',
+                footerReviews: '⭐ 4.8/5 from 2,150+ reviews | Used in 45+ countries |',
+                disclaimerText: '⚠️ Estimates only. Consult a healthcare professional for accurate medical assessment.',
+                guideText: '<strong>💡 Healthy Body Fat Ranges:</strong><br>• Men (Global): Essential 2-5% | Athletes 6-13% | Fitness 14-17% | Acceptable 18-24%<br>• Women (Global): Essential 10-13% | Athletes 14-20% | Fitness 21-24% | Acceptable 25-31%<br>• 🇮🇳 Indian Men: Healthy 12-25% | Indian Women: Healthy 20-35%'
+            },
+            hi: {
+                headerSubtitle: 'भारतीय मानक',
+                headerDesc: 'विज़ुअल गाइड • US नेवी मेथड • एथलीट मोड • भारतीय बॉडी फैट रेंज',
+                detailsTitle: '📝 आपकी माप',
+                ageLabel: 'उम्र',
+                genderLabel: 'लिंग',
+                maleOpt: 'पुरुष',
+                femaleOpt: 'महिला',
+                weightLabel: 'वज़न',
+                heightLabel: 'ऊंचाई',
+                genderAdvLabel: 'लिंग',
+                maleAdvOpt: 'पुरुष',
+                femaleAdvOpt: 'महिला',
+                heightAdvLabel: 'ऊंचाई',
+                neckLabel: 'गर्दन',
+                waistLabel: 'कमर',
+                hipLabel: 'कूल्हा',
+                indianNoteText: '🇮🇳 भारतीयों में समान BMI पर बॉडी फैट % अधिक होता है। भारतीय पुरुष: 12-25%, महिला: 20-35% स्वस्थ सीमा है।',
+                athleteLabel: '🏋️ एथलीट मोड',
+                athleteDesc: '(मस्कुलर व्यक्तियों के लिए अधिक सटीक)',
+                calculateBtn: 'बॉडी फैट % कैलकुलेट करें',
+                resetBtn: 'सभी रीसेट करें',
+                resultsTitle: '📊 आपकी बॉडी कंपोज़िशन',
+                bodyFatLabel: 'बॉडी फैट प्रतिशत',
+                visualGuideTitle: '👁️ विज़ुअल रेफरेंस गाइड',
+                visualGuideDesc: 'विज़ुअल देखने के लिए कोई भी श्रेणी क्लिक करें',
+                athleteCat: 'एथलीट',
+                fitCat: 'फिट',
+                averageCat: 'औसत',
+                aboveAvgCat: 'औसत से अधिक',
+                bodyLabel: '⬅️ कम फैट                               अधिक फैट ➡️',
+                fatMassLabel: 'फैट मास',
+                leanMassLabel: 'लीन मास',
+                categoryLabel: 'श्रेणी',
+                idealRangeLabel: 'आदर्श सीमा',
+                tipsTitle: '🇮🇳 भारतीय स्वास्थ्य सुझाव',
+                tip1: 'हर भोजन में प्रोटीन शामिल करें (दाल, पनीर, अंडे, स्प्राउट्स)',
+                tip2: 'सूर्य नमस्कार करें (12 राउंड रोज़)',
+                tip3: 'सफेद चावल की जगह ब्राउन राइस या मिलेट्स (ज्वार, बाजरा) लें',
+                tip4: 'सुबह गर्म पानी में नींबू और शहद मिलाकर पिएं',
+                timelineTitle: '📉 फैट घटाने की समय-सीमा',
+                currentLabel: 'वर्तमान:',
+                targetLabel: 'लक्ष्य:',
+                futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
+                future1: 'AI बॉडी फैट स्कैनर',
+                future2: 'भारतीय डाइट प्लान',
+                future3: 'वर्कआउट जेनरेटर',
+                future4: 'प्रोग्रेस ट्रैकर',
+                footerReviews: '⭐ 2,150+ समीक्षाओं से 4.8/5 | 45+ देशों में उपयोग |',
+                disclaimerText: '⚠️ केवल अनुमान। सटीक चिकित्सा आकलन के लिए डॉक्टर से परामर्श लें।',
+                guideText: '<strong>💡 स्वस्थ बॉडी फैट सीमाएं:</strong><br>• पुरुष (ग्लोबल): आवश्यक 2-5% | एथलीट 6-13% | फिटनेस 14-17% | स्वीकार्य 18-24%<br>• महिला (ग्लोबल): आवश्यक 10-13% | एथलीट 14-20% | फिटनेस 21-24% | स्वीकार्य 25-31%<br>• 🇮🇳 भारतीय पुरुष: 12-25% | भारतीय महिला: 20-35%'
+            }
+        };
+        
+        // ===== LANGUAGE SWITCHER =====
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+            
+            const t = translations[lang] || translations.en;
+            Object.keys(t).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id.includes('Text') || id.includes('Note') || id.includes('Desc') || id === 'guideText') {
+                        el.innerHTML = t[id];
+                    } else if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+                        // Skip
+                    } else {
+                        el.textContent = t[id];
+                    }
+                }
+            });
+            
+            // Update title
+            document.querySelector('title').textContent = lang === 'hi' 
+                ? 'बॉडी फैट कैलकुलेटर: विज़ुअल गाइड और भारतीय मानक | HealthCalc'
+                : 'Body Fat Calculator: Visual Guide & Indian Standards | HealthCalc';
+            
+            calculateBodyFat();
+        }
+        
+        // ===== UNIT TOGGLE =====
+        function setUnit(unit) {
+            currentUnit = unit;
+            document.querySelectorAll('.unit-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.unit === unit);
+            });
+            
+            const isMetric = unit === 'metric';
+            const weightFactor = isMetric ? 1 : 2.205;
+            const heightFactor = isMetric ? 1 : 0.393701;
+            
+            // Update unit displays
+            document.getElementById('weightUnitSimple').textContent = isMetric ? 'kg' : 'lbs';
+            document.getElementById('heightUnitSimple').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('weightUnitDisplaySimple').textContent = isMetric ? 'kg' : 'lbs';
+            document.getElementById('heightUnitDisplaySimple').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('heightUnitAdv').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('heightUnitDisplayAdv').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('neckUnit').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('neckUnitDisplay').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('waistUnit').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('waistUnitDisplay').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('hipUnit').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('hipUnitDisplay').textContent = isMetric ? 'cm' : 'in';
+            
+            // Convert values
+            if (!isMetric) {
+                // Metric to Imperial
+                document.getElementById('weightSimple').value = (parseFloat(document.getElementById('weightSimple').value) * 2.205).toFixed(1);
+                document.getElementById('heightSimple').value = (parseFloat(document.getElementById('heightSimple').value) * 0.393701).toFixed(1);
+                document.getElementById('heightAdv').value = (parseFloat(document.getElementById('heightAdv').value) * 0.393701).toFixed(1);
+                document.getElementById('neck').value = (parseFloat(document.getElementById('neck').value) * 0.393701).toFixed(1);
+                document.getElementById('waist').value = (parseFloat(document.getElementById('waist').value) * 0.393701).toFixed(1);
+                document.getElementById('hip').value = (parseFloat(document.getElementById('hip').value) * 0.393701).toFixed(1);
+            }
+            
+            calculateBodyFat();
+        }
+        
+        function getWeightInKg() {
+            let val = parseFloat(document.getElementById('weightSimple').value) || 70;
+            return currentUnit === 'metric' ? val : val / 2.205;
+        }
+        
+        function getHeightInCm(fieldId) {
+            let val = parseFloat(document.getElementById(fieldId).value) || 170;
+            return currentUnit === 'metric' ? val : val * 2.54;
+        }
+        
+        function getMeasureInCm(fieldId) {
+            let val = parseFloat(document.getElementById(fieldId).value) || 0;
+            return currentUnit === 'metric' ? val : val * 2.54;
+        }
+        
+        // ===== SAVE/LOAD =====
         function saveToLocalStorage() {
             const data = {
-                method: currentMethod,
-                athleteMode: athleteMode,
+                method: currentMethod, athleteMode, currentUnit, currentLang,
                 ageSimple: document.getElementById('ageSimple')?.value,
                 genderSimple: document.getElementById('genderSimple')?.value,
                 weightSimple: document.getElementById('weightSimple')?.value,
@@ -338,6 +660,8 @@
             if (saved) {
                 const data = JSON.parse(saved);
                 if (data.method) setMethod(data.method, null, true);
+                if (data.currentUnit) setUnit(data.currentUnit);
+                if (data.currentLang) setLanguage(data.currentLang);
                 if (data.athleteMode !== undefined) {
                     athleteMode = data.athleteMode;
                     document.getElementById('athleteMode').checked = athleteMode;
@@ -357,8 +681,6 @@
         
         function setMethod(method, btn, skipEvent) {
             currentMethod = method;
-            
-            // Update buttons
             if (!skipEvent) {
                 document.querySelectorAll('.method-btn').forEach(btnEl => btnEl.classList.remove('active'));
                 if (btn) btn.classList.add('active');
@@ -367,7 +689,6 @@
                 if (activeBtn) activeBtn.classList.add('active');
             }
             
-            // Show/hide fields
             if (method === 'simple') {
                 document.getElementById('simpleMethod').classList.add('active');
                 document.getElementById('advancedMethod').classList.remove('active');
@@ -393,16 +714,15 @@
         function resetForm() {
             document.getElementById('ageSimple').value = '30';
             document.getElementById('genderSimple').value = 'female';
-            document.getElementById('weightSimple').value = '70';
-            document.getElementById('heightSimple').value = '170';
+            document.getElementById('weightSimple').value = currentUnit === 'metric' ? '70' : '154';
+            document.getElementById('heightSimple').value = currentUnit === 'metric' ? '170' : '67';
             document.getElementById('genderAdv').value = 'female';
-            document.getElementById('heightAdv').value = '170';
-            document.getElementById('neck').value = '38';
-            document.getElementById('waist').value = '80';
-            document.getElementById('hip').value = '95';
+            document.getElementById('heightAdv').value = currentUnit === 'metric' ? '170' : '67';
+            document.getElementById('neck').value = currentUnit === 'metric' ? '38' : '15';
+            document.getElementById('waist').value = currentUnit === 'metric' ? '80' : '31';
+            document.getElementById('hip').value = currentUnit === 'metric' ? '95' : '37';
             document.getElementById('athleteMode').checked = false;
             athleteMode = false;
-            setMethod('simple', document.querySelector('.method-btn[data-method="simple"]'), false);
             calculateBodyFat();
         }
         
@@ -416,188 +736,155 @@
             if (currentMethod === 'simple') {
                 gender = document.getElementById('genderSimple').value;
                 age = parseFloat(document.getElementById('ageSimple').value) || 30;
-                weight = parseFloat(document.getElementById('weightSimple').value) || 70;
-                height = parseFloat(document.getElementById('heightSimple').value) || 170;
+                weight = getWeightInKg();
+                height = getHeightInCm('heightSimple');
                 
-                // Calculate BMI
                 const bmi = weight / ((height/100) * (height/100));
-                
-                // Deurenberg formula (most accurate for general population)
                 const genderFactor = gender === 'male' ? 1 : 0;
                 bodyFat = (1.20 * bmi) + (0.23 * age) - (10.8 * genderFactor) - 5.4;
-                
             } else {
                 gender = document.getElementById('genderAdv').value;
-                height = parseFloat(document.getElementById('heightAdv').value) || 170;
-                const neck = parseFloat(document.getElementById('neck').value) || 38;
-                const waist = parseFloat(document.getElementById('waist').value) || 80;
-                const hip = parseFloat(document.getElementById('hip').value) || 95;
+                height = getHeightInCm('heightAdv');
+                const neck = getMeasureInCm('neck');
+                const waist = getMeasureInCm('waist');
+                const hip = getMeasureInCm('hip');
                 
                 if (gender === 'male') {
-                    // US Navy Method for men
                     bodyFat = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
                 } else {
-                    // US Navy Method for women
                     bodyFat = 163.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) - 78.387;
                 }
+                weight = currentMethod === 'simple' ? getWeightInKg() : 70; // Estimate for advanced
             }
             
-            // Apply athlete mode adjustment
-            if (athleteMode) {
-                bodyFat = bodyFat * 0.92; // 8% reduction for athletes
-            }
-            
-            // Ensure realistic range
+            if (athleteMode) bodyFat = bodyFat * 0.92;
             bodyFat = Math.max(3, Math.min(55, bodyFat));
             bodyFat = Math.round(bodyFat * 10) / 10;
             
             // Update display
-            document.getElementById('bodyFat').textContent = bodyFat.toFixed(1);
+            document.getElementById('bodyFat').textContent = bodyFat.toFixed(1) + '%';
             
-            // Update fat layer visualization (scale to max 45%)
+            // Visual layer
             const fatLayer = document.getElementById('fatLayer');
             const fatPercentForVisual = Math.min(100, (bodyFat / 45) * 100);
             fatLayer.style.height = fatPercentForVisual + '%';
-            
-            // Update color based on fat percentage
             if (bodyFat < 15) fatLayer.style.background = 'rgba(46, 204, 113, 0.4)';
             else if (bodyFat < 25) fatLayer.style.background = 'rgba(46, 204, 113, 0.6)';
             else if (bodyFat < 35) fatLayer.style.background = 'rgba(241, 196, 15, 0.6)';
             else fatLayer.style.background = 'rgba(231, 76, 60, 0.6)';
             
-            // Calculate fat mass and lean mass
+            // Fat mass & Lean mass
             const fatMass = Math.round((bodyFat / 100) * weight * 10) / 10;
             const leanMass = Math.round((weight - fatMass) * 10) / 10;
+            const unitLabel = currentUnit === 'metric' ? 'kg' : 'lbs';
+            const massMultiplier = currentUnit === 'metric' ? 1 : 2.205;
             
-            document.getElementById('fatMass').textContent = fatMass;
-            document.getElementById('leanMass').textContent = leanMass;
+            document.getElementById('fatMass').textContent = (fatMass * massMultiplier).toFixed(1) + ' ' + unitLabel;
+            document.getElementById('leanMass').textContent = (leanMass * massMultiplier).toFixed(1) + ' ' + unitLabel;
             
-            // Determine category and ideal range
-            let category = '';
-            let idealRange = '';
-            let healthStatus = 'good';
+            // Category & Ideal Range (Indian adjusted)
+            let category = '', idealRange = '', healthStatus = 'good';
+            const isHindi = currentLang === 'hi';
             
             if (gender === 'male') {
-                idealRange = '8-19%';
-                if (bodyFat < 6) { category = 'Essential Fat'; healthStatus = 'danger'; }
-                else if (bodyFat < 14) { category = 'Athlete'; healthStatus = 'good'; }
-                else if (bodyFat < 18) { category = 'Fit'; healthStatus = 'good'; }
-                else if (bodyFat < 25) { category = 'Average'; healthStatus = 'warning'; }
-                else { category = 'Above Average'; healthStatus = 'danger'; }
+                idealRange = '12-25%';
+                if (bodyFat < 8) { category = isHindi ? 'आवश्यक वसा' : 'Essential'; healthStatus = 'danger'; }
+                else if (bodyFat < 15) { category = isHindi ? 'एथलीट' : 'Athlete'; healthStatus = 'good'; }
+                else if (bodyFat < 22) { category = isHindi ? 'फिट' : 'Fit'; healthStatus = 'good'; }
+                else if (bodyFat < 28) { category = isHindi ? 'औसत' : 'Average'; healthStatus = 'warning'; }
+                else { category = isHindi ? 'औसत से अधिक' : 'Above Avg'; healthStatus = 'danger'; }
             } else {
-                idealRange = '21-33%';
-                if (bodyFat < 14) { category = 'Essential Fat'; healthStatus = 'danger'; }
-                else if (bodyFat < 21) { category = 'Athlete'; healthStatus = 'good'; }
-                else if (bodyFat < 28) { category = 'Fit'; healthStatus = 'good'; }
-                else if (bodyFat < 35) { category = 'Average'; healthStatus = 'warning'; }
-                else { category = 'Above Average'; healthStatus = 'danger'; }
+                idealRange = '20-35%';
+                if (bodyFat < 15) { category = isHindi ? 'आवश्यक वसा' : 'Essential'; healthStatus = 'danger'; }
+                else if (bodyFat < 23) { category = isHindi ? 'एथलीट' : 'Athlete'; healthStatus = 'good'; }
+                else if (bodyFat < 30) { category = isHindi ? 'फिट' : 'Fit'; healthStatus = 'good'; }
+                else if (bodyFat < 37) { category = isHindi ? 'औसत' : 'Average'; healthStatus = 'warning'; }
+                else { category = isHindi ? 'औसत से अधिक' : 'Above Avg'; healthStatus = 'danger'; }
             }
             
             document.getElementById('category').textContent = category;
             document.getElementById('idealRange').textContent = idealRange;
             document.getElementById('currentFatTimeline').textContent = bodyFat.toFixed(1) + '%';
             
-            // Calculate target based on healthy range
-            let targetFat;
-            if (gender === 'male') {
-                targetFat = bodyFat > 19 ? 16 : Math.max(10, bodyFat - 3);
-            } else {
-                targetFat = bodyFat > 33 ? 28 : Math.max(21, bodyFat - 3);
-            }
+            // Target calculation
+            let targetFat = gender === 'male' ? Math.max(12, Math.min(22, bodyFat - 3)) : Math.max(20, Math.min(30, bodyFat - 3));
             targetFat = Math.round(targetFat * 10) / 10;
             document.getElementById('targetFat').textContent = targetFat + '%';
             
-            // Calculate timeline (0.5% loss per week safely)
+            // Timeline
             const fatToLose = bodyFat - targetFat;
-            let timelineText = '';
-            let progressPercent = 0;
-            
+            let timelineText = '', progressPercent = 0;
             if (fatToLose > 0) {
                 const weeksToTarget = Math.ceil(fatToLose / 0.5);
                 const monthsToTarget = Math.ceil(weeksToTarget / 4);
-                progressPercent = ((bodyFat - targetFat) / (bodyFat - targetFat + 5)) * 100;
-                timelineText = `📅 To reach ${targetFat}% body fat, you need to lose ${fatToLose.toFixed(1)}% fat. 
-                                At a safe rate of 0.5% per week, this will take approximately <strong>${weeksToTarget} weeks (${monthsToTarget} months)</strong>.
-                                Recommended: 30-45min cardio 4x/week + strength training 2x/week.`;
+                progressPercent = 100 - ((fatToLose / (bodyFat - (gender === 'male' ? 12 : 20))) * 100);
+                timelineText = isHindi 
+                    ? `📅 ${targetFat}% बॉडी फैट तक पहुंचने के लिए ${fatToLose.toFixed(1)}% फैट घटाना होगा। सुरक्षित दर (0.5% प्रति सप्ताह) से इसमें लगभग <strong>${weeksToTarget} सप्ताह (${monthsToTarget} महीने)</strong> लगेंगे।`
+                    : `📅 To reach ${targetFat}% body fat, lose ${fatToLose.toFixed(1)}% fat. At safe rate (0.5%/week): <strong>${weeksToTarget} weeks (${monthsToTarget} months)</strong>.`;
             } else {
                 progressPercent = 100;
-                timelineText = `✅ You're already in the healthy range! Maintain with regular exercise (150min/week moderate activity) 
-                                and balanced nutrition. Focus on strength training to preserve muscle mass.`;
+                timelineText = isHindi 
+                    ? '✅ आप पहले से ही स्वस्थ सीमा में हैं! नियमित व्यायाम और संतुलित आहार बनाए रखें।'
+                    : '✅ You\'re already in healthy range! Maintain with regular exercise and balanced nutrition.';
             }
             
             document.getElementById('timelineProgress').style.width = Math.min(100, Math.max(0, progressPercent)) + '%';
-            document.getElementById('timelineProgress').textContent = Math.min(100, Math.max(0, Math.round(progressPercent))) + '%';
+            document.getElementById('timelineProgress').textContent = Math.round(progressPercent) + '%';
             document.getElementById('timelineText').innerHTML = timelineText;
             
-            // Recommendation based on category
+            // Recommendation
             const recBox = document.getElementById('recommendationBox');
             recBox.className = 'recommendation-box';
             if (healthStatus === 'danger') recBox.classList.add('danger');
             else if (healthStatus === 'warning') recBox.classList.add('warning');
             
-            let recommendationText = '';
-            if (category === 'Essential Fat') {
-                recommendationText = '⚠️ Your body fat is in the essential range. Consider consulting a healthcare provider as very low body fat can affect hormone function and overall health.';
-            } else if (category === 'Athlete') {
-                recommendationText = '🏆 Excellent! Your body fat is at athlete level. Maintain with balanced nutrition and consistent training.';
-            } else if (category === 'Fit') {
-                recommendationText = '💪 Great job! You\'re in the fitness category. Maintain with 3-5 workouts per week and a balanced diet rich in protein and fiber.';
-            } else if (category === 'Average') {
-                recommendationText = '📊 You\'re in the average range. Small improvements like adding 30min daily walking and reducing processed foods can help reach fitness level.';
+            let recText = '';
+            if (category.includes('Essential') || category.includes('आवश्यक')) {
+                recText = isHindi ? '⚠️ बॉडी फैट बहुत कम है। हार्मोन स्वास्थ्य प्रभावित हो सकता है। डॉक्टर से सलाह लें।' : '⚠️ Very low body fat. May affect hormone health. Consult a doctor.';
+            } else if (category.includes('Athlete') || category.includes('एथलीट')) {
+                recText = isHindi ? '🏆 उत्कृष्ट! एथलीट स्तर का बॉडी फैट। संतुलित पोषण और नियमित ट्रेनिंग बनाए रखें।' : '🏆 Excellent! Athlete level. Maintain balanced nutrition and consistent training.';
+            } else if (category.includes('Fit') || category.includes('फिट')) {
+                recText = isHindi ? '💪 बहुत अच्छा! फिटनेस श्रेणी। सप्ताह में 3-5 बार व्यायाम जारी रखें।' : '💪 Great! Fitness category. Continue 3-5 workouts/week.';
+            } else if (category.includes('Average') || category.includes('औसत')) {
+                recText = isHindi ? '📊 औसत श्रेणी। रोज़ 30 मिनट वॉक और प्रोसेस्ड फूड कम करके फिटनेस स्तर तक पहुंच सकते हैं।' : '📊 Average range. Add 30min daily walk and reduce processed foods to reach fitness level.';
             } else {
-                recommendationText = '⚠️ Your body fat is above the healthy range. Start with: 10,000 steps daily, strength training 2x/week, reduce sugar intake, and consult a nutritionist for a personalized plan.';
+                recText = isHindi ? '⚠️ बॉडी फैट अधिक है। 10,000 कदम रोज़, स्ट्रेंथ ट्रेनिंग, चीनी कम करें। न्यूट्रिशनिस्ट से सलाह लें।' : '⚠️ Body fat is high. Start: 10k steps daily, strength training, reduce sugar. Consult a nutritionist.';
             }
+            document.getElementById('recommendationText').innerHTML = recText;
             
-            document.getElementById('recommendationText').innerHTML = recommendationText;
-            
-            // Save to localStorage
             saveToLocalStorage();
         }
         
-        function showVisual(range) {
-            document.querySelectorAll('.visual-item').forEach(item => item.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            
-            const fatLayer = document.getElementById('fatLayer');
-            if (range === '10') {
-                fatLayer.style.height = '20%';
-                fatLayer.style.background = 'rgba(46, 204, 113, 0.3)';
-            } else if (range === '15') {
-                fatLayer.style.height = '35%';
-                fatLayer.style.background = 'rgba(46, 204, 113, 0.5)';
-            } else if (range === '20') {
-                fatLayer.style.height = '50%';
-                fatLayer.style.background = 'rgba(241, 196, 15, 0.5)';
-            } else {
-                fatLayer.style.height = '75%';
-                fatLayer.style.background = 'rgba(231, 76, 60, 0.5)';
-            }
-        }
-        
         // Event listeners
-        document.getElementById('genderAdv')?.addEventListener('change', function() {
-            updateHipField();
-            calculateBodyFat();
-        });
+        document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
+        document.getElementById('langHI').addEventListener('click', () => setLanguage('hi'));
+        document.getElementById('genderAdv')?.addEventListener('change', () => { updateHipField(); calculateBodyFat(); });
         
         document.querySelectorAll('#simpleMethod input, #simpleMethod select').forEach(el => {
             el.addEventListener('input', () => calculateBodyFat());
         });
-        
         document.querySelectorAll('#advancedMethod input, #advancedMethod select').forEach(el => {
             el.addEventListener('input', () => calculateBodyFat());
         });
-        
         document.querySelectorAll('.visual-item').forEach(item => {
             item.addEventListener('click', function() {
-                showVisual(this.getAttribute('data-fat'));
+                document.querySelectorAll('.visual-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                const fat = parseInt(this.dataset.fat);
+                const layer = document.getElementById('fatLayer');
+                if (fat === 10) { layer.style.height = '20%'; layer.style.background = 'rgba(46, 204, 113, 0.3)'; }
+                else if (fat === 15) { layer.style.height = '35%'; layer.style.background = 'rgba(46, 204, 113, 0.5)'; }
+                else if (fat === 20) { layer.style.height = '50%'; layer.style.background = 'rgba(241, 196, 15, 0.5)'; }
+                else { layer.style.height = '75%'; layer.style.background = 'rgba(231, 76, 60, 0.5)'; }
             });
         });
         
-        // Initialize
-        window.onload = function() {
-            loadFromLocalStorage();
-        };
+        window.onload = loadFromLocalStorage;
+        window.setUnit = setUnit;
+        window.setMethod = setMethod;
+        window.toggleAthleteMode = toggleAthleteMode;
+        window.resetForm = resetForm;
+        window.calculateBodyFat = calculateBodyFat;
     </script>
 </body>
 </html>
