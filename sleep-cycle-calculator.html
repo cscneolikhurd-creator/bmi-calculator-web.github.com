@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
-<!-- SEO Meta -->
-<title>😴 Sleep Cycle Calculator: Optimal Wake-Up Times & Sleep Debt | HealthCalc</title>
-<meta name="description" content="Free sleep cycle calculator: Find the best time to wake up based on 90-minute cycles. Calculate sleep debt, get personalized recovery plans, and optimize your sleep schedule. 100% private.">
-<meta name="keywords" content="sleep cycle calculator, sleep debt calculator, best time to wake up, sleep cycles, 90 minute sleep cycle, REM sleep, deep sleep, circadian rhythm, sleep optimization, wake up refreshed">
+<!-- SEO Meta (Global + Indian) -->
+<title>😴 Sleep Cycle Calculator: Optimal Wake-Up Times & Ayurvedic Sleep Tips | HealthCalc</title>
+<meta name="description" content="Free sleep cycle calculator with 90-minute cycles. Find best wake-up times, calculate sleep debt, and get Ayurvedic sleep tips (Brahma Muhurta). 100% private.">
+<meta name="keywords" content="sleep cycle calculator, sleep debt, best time to wake up, 90 minute sleep cycle, REM sleep, Brahma Muhurta, Ayurvedic sleep, circadian rhythm, Hindi sleep calculator">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://healthcalc.in/sleep-cycle-calculator.html">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Sleep Cycle & Debt Calculator">
-<meta property="og:description" content="Wake up refreshed between sleep cycles. Calculate optimal bedtimes and recover sleep debt.">
+<meta property="og:title" content="Sleep Cycle & Debt Calculator (Ayurvedic Tips)">
+<meta property="og:description" content="Wake up refreshed between sleep cycles. Includes Brahma Muhurta guidance.">
 <meta property="og:image" content="https://healthcalc.in/images/sleep-cycle-og.jpg">
-<meta property="og:url" content="https://healthcalc.in/sleep-cycle-calculator">
+<meta property="og:url" content="https://healthcalc.in/sleep-cycle-calculator.html">
+<meta property="og:locale" content="en_IN">
 
 <!-- Schema.org -->
 <script type="application/ld+json">
@@ -23,12 +25,10 @@
 "@context": "https://schema.org",
 "@type": "MedicalWebPage",
 "name": "Sleep Cycle Calculator",
-"description": "Calculate optimal wake times based on 90-minute sleep cycles",
-"url": "https://healthcalc.in/sleep-cycle-calculator",
-"about": {
-"@type": "Thing",
-"name": "Sleep Medicine"
-}
+"description": "Calculate optimal wake times based on 90-minute sleep cycles with Ayurvedic sleep guidance",
+"url": "https://healthcalc.in/sleep-cycle-calculator.html",
+"inLanguage": ["en", "hi"],
+"about": {"@type": "Thing", "name": "Sleep Medicine"}
 }
 </script>
 
@@ -39,11 +39,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
 --primary: #1e3a8a;
@@ -56,6 +52,8 @@ box-sizing: border-box;
 --danger: #f87171;
 --dark: #0f172a;
 --light: #f8fafc;
+--indian-saffron: #FF9933;
+--indian-green: #138808;
 
 --gradient-night: linear-gradient(145deg, #0f172a, #1e293b, #334155);
 --gradient-sleep: linear-gradient(145deg, #1e3a8a, #3b82f6, #8b5cf6);
@@ -76,17 +74,10 @@ color: white;
 line-height: 1.6;
 }
 
-.container {
-max-width: 1300px;
-margin: 0 auto;
-}
+.container { max-width: 1300px; margin: 0 auto; }
 
 /* Header */
-.header {
-text-align: center;
-padding: 40px 20px;
-}
-
+.header { text-align: center; padding: 40px 20px; }
 .header h1 {
 font-size: clamp(2.5rem, 6vw, 3.5rem);
 font-weight: 800;
@@ -95,12 +86,40 @@ background: linear-gradient(135deg, #fff, #a5f3fc);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 }
+.header p { font-size: 1.2rem; max-width: 800px; margin: 0 auto; opacity: 0.9; }
 
-.header p {
-font-size: 1.2rem;
-max-width: 800px;
-margin: 0 auto;
-opacity: 0.9;
+/* Global Controls */
+.global-controls {
+display: flex;
+justify-content: center;
+gap: 15px;
+margin: 20px 0;
+flex-wrap: wrap;
+}
+
+.control-group {
+display: inline-flex;
+gap: 5px;
+background: rgba(255,255,255,0.1);
+padding: 5px;
+border-radius: 50px;
+backdrop-filter: blur(10px);
+}
+
+.control-btn {
+padding: 10px 20px;
+border: none;
+background: transparent;
+border-radius: 40px;
+color: white;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.control-btn.active {
+background: var(--gradient-sleep);
+box-shadow: 0 5px 15px rgba(59,130,246,0.3);
 }
 
 .badges {
@@ -123,6 +142,11 @@ align-items: center;
 gap: 8px;
 }
 
+.badge.indian {
+background: linear-gradient(135deg, #FF993320, #FF8C0020);
+border-left: 4px solid var(--indian-saffron);
+}
+
 /* Grid */
 .grid {
 display: grid;
@@ -131,11 +155,7 @@ gap: 30px;
 margin: 40px 0;
 }
 
-@media (max-width: 900px) {
-.grid {
-grid-template-columns: 1fr;
-}
-}
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
 /* Cards */
 .card {
@@ -147,10 +167,7 @@ padding: 30px;
 transition: transform 0.3s;
 }
 
-.card:hover {
-transform: translateY(-5px);
-border-color: rgba(255,255,255,0.2);
-}
+.card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
 
 .card-title {
 font-size: 1.5rem;
@@ -190,10 +207,7 @@ box-shadow: 0 10px 20px -5px rgba(59,130,246,0.5);
 }
 
 /* Input Groups */
-.input-group {
-margin-bottom: 25px;
-}
-
+.input-group { margin-bottom: 25px; }
 .input-label {
 display: flex;
 align-items: center;
@@ -214,9 +228,7 @@ font-size: 1rem;
 font-family: 'Inter';
 }
 
-input[type="time"]::-webkit-calendar-picker-indicator {
-filter: invert(1);
-}
+input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 
 .time-slider {
 display: flex;
@@ -251,11 +263,7 @@ margin-bottom: 30px;
 text-align: center;
 }
 
-.cycle-title {
-font-size: 1.1rem;
-color: #94a3b8;
-margin-bottom: 15px;
-}
+.cycle-title { font-size: 1.1rem; color: #94a3b8; margin-bottom: 15px; }
 
 .cycle-list {
 display: flex;
@@ -274,10 +282,7 @@ font-size: 1.3rem;
 box-shadow: 0 10px 20px -5px rgba(59,130,246,0.3);
 }
 
-.cycle-desc {
-color: #94a3b8;
-font-size: 0.95rem;
-}
+.cycle-desc { color: #94a3b8; font-size: 0.95rem; }
 
 /* Sleep Debt */
 .debt-card {
@@ -287,17 +292,8 @@ padding: 25px;
 margin: 30px 0;
 }
 
-.debt-number {
-font-size: 3rem;
-font-weight: 800;
-color: var(--warning);
-line-height: 1;
-}
-
-.debt-label {
-color: #94a3b8;
-margin: 10px 0;
-}
+.debt-number { font-size: 3rem; font-weight: 800; color: var(--warning); line-height: 1; }
+.debt-label { color: #94a3b8; margin: 10px 0; }
 
 .progress-bar {
 height: 12px;
@@ -314,7 +310,7 @@ width: 0%;
 transition: width 0.3s;
 }
 
-/* Chronotype */
+/* Chronotype & Ayurvedic Card */
 .chronotype-card {
 background: rgba(255,255,255,0.05);
 border-radius: 20px;
@@ -323,21 +319,19 @@ margin: 20px 0;
 border-left: 5px solid var(--secondary);
 }
 
-.chronotype-title {
-font-size: 1.2rem;
-font-weight: 700;
-margin-bottom: 5px;
+.ayurvedic-card {
+background: linear-gradient(135deg, #FFF8E120, #FFECB320);
+border-radius: 20px;
+padding: 20px;
+margin: 20px 0;
+border-left: 5px solid var(--indian-saffron);
 }
 
-.chronotype-desc {
-color: #94a3b8;
-font-size: 0.95rem;
-}
+.chronotype-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
+.chronotype-desc { color: #94a3b8; font-size: 0.95rem; }
 
 /* Tips */
-.tips-section {
-margin: 30px 0;
-}
+.tips-section { margin: 30px 0; }
 
 .tip-item {
 display: flex;
@@ -346,19 +340,10 @@ padding: 15px 0;
 border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.tip-icon {
-font-size: 1.8rem;
-}
+.tip-icon { font-size: 1.8rem; }
 
-.tip-content h4 {
-font-weight: 700;
-margin-bottom: 5px;
-}
-
-.tip-content p {
-color: #94a3b8;
-font-size: 0.9rem;
-}
+.tip-content h4 { font-weight: 700; margin-bottom: 5px; }
+.tip-content p { color: #94a3b8; font-size: 0.9rem; }
 
 /* Buttons */
 .btn-primary {
@@ -391,9 +376,7 @@ cursor: pointer;
 transition: all 0.3s;
 }
 
-.btn-outline:hover {
-background: rgba(255,255,255,0.1);
-}
+.btn-outline:hover { background: rgba(255,255,255,0.1); }
 
 .button-group {
 display: flex;
@@ -425,9 +408,7 @@ gap: 25px;
 margin-top: 30px;
 }
 
-@media (max-width:700px){
-.faq-grid{grid-template-columns:1fr;}
-}
+@media (max-width:700px){ .faq-grid{ grid-template-columns:1fr; } }
 
 .faq-item {
 background: rgba(255,255,255,0.05);
@@ -435,15 +416,43 @@ padding: 20px;
 border-radius: 20px;
 }
 
-.faq-question {
-font-weight: 700;
-margin-bottom: 10px;
-color: #a5f3fc;
+.faq-question { font-weight: 700; margin-bottom: 10px; color: #a5f3fc; }
+.faq-answer { color: #94a3b8; font-size: 0.95rem; }
+
+/* Future Plan */
+.future-plan {
+background: linear-gradient(135deg, #1e3a8a20, #3b82f620);
+border-radius: var(--border-radius);
+padding: 30px;
+margin: 40px 0;
+border: 1px dashed var(--secondary);
 }
 
-.faq-answer {
-color: #94a3b8;
-font-size: 0.95rem;
+.future-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 20px;
+margin-top: 20px;
+}
+
+.future-item {
+background: rgba(255,255,255,0.05);
+border-radius: 20px;
+padding: 20px;
+text-align: center;
+}
+
+.future-item i { font-size: 2rem; color: var(--secondary); margin-bottom: 10px; }
+
+.coming-soon {
+background: var(--warning);
+color: black;
+padding: 3px 10px;
+border-radius: 20px;
+font-size: 0.7rem;
+font-weight: 600;
+display: inline-block;
+margin-top: 10px;
 }
 
 /* Footer */
@@ -454,19 +463,38 @@ border-top: 1px solid rgba(255,255,255,0.1);
 text-align: center;
 color: #64748b;
 }
+
+/* RTL Support */
+[dir="rtl"] { text-align: right; }
+[dir="rtl"] .chronotype-card { border-left: none; border-right: 5px solid var(--secondary); }
+[dir="rtl"] .ayurvedic-card { border-left: none; border-right: 5px solid var(--indian-saffron); }
 </style>
 </head>
 <body>
 <div class="container">
 <!-- Header -->
 <div class="header">
-<h1>😴 Sleep Cycle Calculator</h1>
-<p>Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Calculate sleep debt and get personalized recovery plans.</p>
+<h1><span id="titleMain">😴 Sleep Cycle Calculator</span></h1>
+<p id="headerSub">Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Includes Ayurvedic Brahma Muhurta guidance.</p>
+
+<!-- Global Controls -->
+<div class="global-controls">
+<div class="control-group">
+<button class="control-btn active" data-timeformat="12" onclick="setTimeFormat('12')">🕐 12-Hour (AM/PM)</button>
+<button class="control-btn" data-timeformat="24" onclick="setTimeFormat('24')">🕐 24-Hour</button>
+</div>
+<div class="control-group">
+<button class="control-btn active" data-lang="en" onclick="setLanguage('en')">🇬🇧 English</button>
+<button class="control-btn" data-lang="hi" onclick="setLanguage('hi')">🇮🇳 हिंदी</button>
+</div>
+</div>
+
 <div class="badges">
 <span class="badge"><i class="fas fa-moon"></i> 90-min Cycles</span>
 <span class="badge"><i class="fas fa-clock"></i> Optimal Wake Times</span>
 <span class="badge"><i class="fas fa-chart-line"></i> Sleep Debt Tracker</span>
-<span class="badge"><i class="fas fa-brain"></i> REM & Deep Sleep</span>
+<span class="badge indian"><i class="fas fa-om"></i> Brahma Muhurta</span>
+<span class="badge indian"><i class="fas fa-leaf"></i> Ayurvedic Tips</span>
 </div>
 </div>
 
@@ -475,62 +503,72 @@ color: #64748b;
 <!-- Input Card -->
 <div class="card">
 <div class="card-title">
-<i class="fas fa-sliders-h"></i> Your Sleep Schedule
+<i class="fas fa-sliders-h"></i> <span id="scheduleTitle">Your Sleep Schedule</span>
 </div>
 
 <!-- Mode Toggle -->
 <div class="mode-toggle" id="modeToggle">
-<button class="mode-btn active" onclick="setMode('wake')">🌅 I want to wake at...</button>
-<button class="mode-btn" onclick="setMode('sleep')">🌙 I will sleep at...</button>
+<button class="mode-btn active" onclick="setMode('wake')">🌅 <span id="wakeModeBtn">I want to wake at...</span></button>
+<button class="mode-btn" onclick="setMode('sleep')">🌙 <span id="sleepModeBtn">I will sleep at...</span></button>
 </div>
 
-<!-- Wake Mode (default) -->
+<!-- Wake Mode -->
 <div id="wakeMode">
 <div class="input-group">
-<div class="input-label"><i class="fas fa-alarm-clock"></i> I need to wake up at</div>
+<div class="input-label"><i class="fas fa-alarm-clock"></i> <span id="wakeLabel">I need to wake up at</span></div>
 <input type="time" id="wakeTime" value="07:00">
 </div>
 </div>
 
-<!-- Sleep Mode (hidden by default) -->
+<!-- Sleep Mode -->
 <div id="sleepMode" style="display: none;">
 <div class="input-group">
-<div class="input-label"><i class="fas fa-bed"></i> I will go to bed at</div>
+<div class="input-label"><i class="fas fa-bed"></i> <span id="sleepLabel">I will go to bed at</span></div>
 <input type="time" id="sleepTime" value="23:00">
 </div>
 </div>
 
 <!-- Fall asleep time -->
 <div class="input-group">
-<div class="input-label"><i class="fas fa-hourglass-half"></i> Time to fall asleep</div>
+<div class="input-label"><i class="fas fa-hourglass-half"></i> <span id="fallAsleepLabel">Time to fall asleep</span></div>
 <select id="fallAsleep">
-<option value="5">5 minutes</option>
-<option value="10">10 minutes</option>
-<option value="15" selected>15 minutes</option>
-<option value="20">20 minutes</option>
-<option value="30">30 minutes</option>
-<option value="45">45 minutes</option>
-<option value="60">1 hour</option>
+<option value="5">5 <span id="minutes5">minutes</span></option>
+<option value="10">10 <span id="minutes10">minutes</span></option>
+<option value="15" selected>15 <span id="minutes15">minutes</span></option>
+<option value="20">20 <span id="minutes20">minutes</span></option>
+<option value="30">30 <span id="minutes30">minutes</span></option>
+<option value="45">45 <span id="minutes45">minutes</span></option>
+<option value="60">1 <span id="hour1">hour</span></option>
 </select>
 </div>
 
 <!-- Chronotype -->
 <div class="input-group">
-<div class="input-label"><i class="fas fa-owl"></i> Your chronotype</div>
+<div class="input-label"><i class="fas fa-owl"></i> <span id="chronotypeLabel">Your chronotype</span></div>
 <select id="chronotype">
-<option value="lion">🦁 Lion (Early bird - wake 5-6am, sleep 9-10pm)</option>
-<option value="bear" selected>🐻 Bear (Follows sun - wake 7-8am, sleep 11pm)</option>
-<option value="wolf">🐺 Wolf (Night owl - wake 9-10am, sleep 12-1am)</option>
-<option value="dolphin">🐬 Dolphin (Light sleeper - irregular)</option>
+<option value="lion">🦁 <span id="lionType">Lion (Early bird - wake 5-6am, sleep 9-10pm)</span></option>
+<option value="bear" selected>🐻 <span id="bearType">Bear (Follows sun - wake 7-8am, sleep 11pm)</span></option>
+<option value="wolf">🐺 <span id="wolfType">Wolf (Night owl - wake 9-10am, sleep 12-1am)</span></option>
+<option value="dolphin">🐬 <span id="dolphinType">Dolphin (Light sleeper - irregular)</span></option>
+</select>
+</div>
+
+<!-- Dosha (Ayurvedic) -->
+<div class="input-group">
+<div class="input-label"><i class="fas fa-om"></i> <span id="doshaLabel">Your Ayurvedic Dosha</span></div>
+<select id="dosha">
+<option value="vata">🌀 <span id="vataType">Vata (Light sleeper, irregular)</span></option>
+<option value="pitta" selected>🔥 <span id="pittaType">Pitta (Moderate sleeper, intense dreams)</span></option>
+<option value="kapha">🌍 <span id="kaphaType">Kapha (Deep sleeper, needs more sleep)</span></option>
 </select>
 </div>
 
 <!-- Sleep Debt Section -->
 <div style="margin-top: 40px;">
-<h3 style="margin-bottom: 20px; color: #a5f3fc;">📉 Sleep Debt Tracker</h3>
+<h3 style="margin-bottom: 20px; color: #a5f3fc;"><i class="fas fa-chart-bar"></i> <span id="debtTrackerTitle">Sleep Debt Tracker</span></h3>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-history"></i> Avg sleep last 7 days</div>
+<div class="input-label"><i class="fas fa-history"></i> <span id="avgSleepLabel">Avg sleep last 7 days</span></div>
 <div class="time-slider">
 <input type="range" id="avgSleep" min="3" max="12" value="6.5" step="0.5">
 <span id="avgSleepValue">6.5 hrs</span>
@@ -538,7 +576,7 @@ color: #64748b;
 </div>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-bullseye"></i> Target sleep (recommended)</div>
+<div class="input-label"><i class="fas fa-bullseye"></i> <span id="targetSleepLabel">Target sleep (recommended)</span></div>
 <div class="time-slider">
 <input type="range" id="targetSleep" min="6" max="10" value="8" step="0.5">
 <span id="targetSleepValue">8 hrs</span>
@@ -547,14 +585,14 @@ color: #64748b;
 </div>
 
 <button class="btn-primary" onclick="calculateSleep()">
-<i class="fas fa-calculator"></i> Calculate My Sleep Cycle
+<i class="fas fa-calculator"></i> <span id="calcBtn">Calculate My Sleep Cycle</span>
 </button>
 </div>
 
 <!-- Results Card -->
 <div class="card">
 <div class="card-title">
-<i class="fas fa-chart-line"></i> Your Sleep Analysis
+<i class="fas fa-chart-line"></i> <span id="analysisTitle">Your Sleep Analysis</span>
 </div>
 
 <!-- Cycle Times -->
@@ -568,7 +606,7 @@ color: #64748b;
 <span class="cycle-item">12:45 AM</span>
 <span class="cycle-item">2:15 AM</span>
 </div>
-<div class="cycle-desc">
+<div class="cycle-desc" id="cycleDesc">
 These times allow you to complete full 90-minute sleep cycles
 </div>
 </div>
@@ -578,7 +616,7 @@ These times allow you to complete full 90-minute sleep cycles
 <div style="display: flex; justify-content: space-between; align-items: center;">
 <div>
 <div class="debt-number" id="sleepDebt">10.5</div>
-<div class="debt-label">hours of sleep debt</div>
+<div class="debt-label" id="debtLabel">hours of sleep debt</div>
 </div>
 <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: var(--warning);"></i>
 </div>
@@ -592,125 +630,277 @@ To recover, add 1.5 hours of sleep for 7 nights
 </div>
 </div>
 
-<!-- Chronotype Recommendation -->
+<!-- Chronotype Card -->
 <div class="chronotype-card" id="chronotypeCard">
 <div class="chronotype-title">
-<i class="fas fa-bear"></i> Bear Chronotype
+<i class="fas fa-bear"></i> <span id="chronoTitle">Bear Chronotype</span>
 </div>
-<div class="chronotype-desc">
+<div class="chronotype-desc" id="chronoDesc">
 Your ideal bedtime: 11:00 PM - 11:30 PM<br>
 Your ideal wake time: 7:00 AM - 7:30 AM
 </div>
 </div>
 
+<!-- Ayurvedic Sleep Guidance -->
+<div class="ayurvedic-card" id="ayurvedicCard">
+<div class="chronotype-title">
+<i class="fas fa-om"></i> <span id="ayurvedicTitle">Ayurvedic Sleep Wisdom</span>
+</div>
+<div class="chronotype-desc" id="ayurvedicDesc">
+<strong>Brahma Muhurta:</strong> Best wake time is 4:30-5:30 AM (1.5 hrs before sunrise)<br>
+<strong>Pitta Dosha:</strong> Avoid spicy food before bed. Drink warm milk with turmeric.
+</div>
+</div>
+
 <!-- Sleep Tips -->
 <div class="tips-section">
-<h3 style="margin-bottom: 15px; color: #a5f3fc;">💡 Sleep Optimization Tips</h3>
+<h3 style="margin-bottom: 15px; color: #a5f3fc;">💡 <span id="tipsTitle">Sleep Optimization Tips</span></h3>
 <div id="sleepTips">
-<div class="tip-item">
-<div class="tip-icon">🌙</div>
-<div class="tip-content">
-<h4>Consistent schedule</h4>
-<p>Go to bed and wake up at the same time every day, even weekends</p>
-</div>
-</div>
-<div class="tip-item">
-<div class="tip-icon">📱</div>
-<div class="tip-content">
-<h4>No screens 1 hour before bed</h4>
-<p>Blue light disrupts melatonin production</p>
-</div>
-</div>
-<div class="tip-item">
-<div class="tip-icon">☕</div>
-<div class="tip-content">
-<h4>Limit caffeine after 2 PM</h4>
-<p>Caffeine can stay in your system for 8+ hours</p>
-</div>
-</div>
+<!-- Dynamic tips -->
 </div>
 </div>
 
 <!-- Action Buttons -->
 <div class="button-group">
 <button class="btn-primary" onclick="window.print()">
-<i class="fas fa-download"></i> PDF Report
+<i class="fas fa-download"></i> <span id="pdfBtn">PDF Report</span>
 </button>
 <button class="btn-outline" onclick="shareResults()">
-<i class="fas fa-share-alt"></i> Share
+<i class="fas fa-share-alt"></i> <span id="shareBtn">Share</span>
 </button>
 </div>
 
-<div class="disclaimer">
+<div class="disclaimer" id="disclaimerText">
 ⚕️ Sleep needs vary by individual. These are estimates based on sleep research.
+</div>
+</div>
+</div>
+
+<!-- Future Plan Section -->
+<div class="future-plan">
+<h2 style="text-align: center; margin-bottom: 20px;">🚀 <span id="futureTitle">Coming Soon: Future Features</span></h2>
+<div class="future-grid">
+<div class="future-item">
+<i class="fas fa-music"></i>
+<h4 id="future1">Sleep Sounds</h4>
+<p id="future1Desc">Indian classical & nature sounds</p>
+<span class="coming-soon">Jan 2027</span>
+</div>
+<div class="future-item">
+<i class="fas fa-yoga"></i>
+<h4 id="future2">Yoga Nidra</h4>
+<p id="future2Desc">Guided sleep meditation</p>
+<span class="coming-soon">Feb 2027</span>
+</div>
+<div class="future-item">
+<i class="fas fa-chart-pie"></i>
+<h4 id="future3">Sleep Analytics</h4>
+<p id="future3Desc">Weekly sleep patterns</p>
+<span class="coming-soon">Mar 2027</span>
+</div>
+<div class="future-item">
+<i class="fas fa-bell"></i>
+<h4 id="future4">Smart Alarm</h4>
+<p id="future4Desc">Wakes you in light sleep</p>
+<span class="coming-soon">Apr 2027</span>
 </div>
 </div>
 </div>
 
 <!-- FAQ Section -->
 <div class="faq-section">
-<h2 style="font-size: 2rem; text-align: center; margin-bottom: 20px;">❓ Frequently Asked Questions</h2>
+<h2 style="font-size: 2rem; text-align: center; margin-bottom: 20px;">❓ <span id="faqTitle">Frequently Asked Questions</span></h2>
 <div class="faq-grid">
 <div class="faq-item">
-<div class="faq-question">What is a sleep cycle?</div>
-<div class="faq-answer">A sleep cycle lasts about 90 minutes and includes light sleep, deep sleep, and REM sleep. Waking up between cycles helps you feel refreshed.</div>
+<div class="faq-question" id="faq1Q">What is a sleep cycle?</div>
+<div class="faq-answer" id="faq1A">A sleep cycle lasts about 90 minutes and includes light sleep, deep sleep, and REM sleep. Waking up between cycles helps you feel refreshed.</div>
 </div>
 <div class="faq-item">
-<div class="faq-question">How many cycles do I need?</div>
-<div class="faq-answer">Most adults need 5-6 complete cycles (7.5-9 hours). The calculator shows 4-6 cycle options.</div>
+<div class="faq-question" id="faq2Q">How many cycles do I need?</div>
+<div class="faq-answer" id="faq2A">Most adults need 5-6 complete cycles (7.5-9 hours). The calculator shows 4-6 cycle options.</div>
 </div>
 <div class="faq-item">
-<div class="faq-question">What is sleep debt?</div>
-<div class="faq-answer">Sleep debt is the cumulative effect of not getting enough sleep. A debt of 10+ hours requires a week of extended sleep to recover.</div>
+<div class="faq-question" id="faq3Q">What is Brahma Muhurta?</div>
+<div class="faq-answer" id="faq3A">Brahma Muhurta is the auspicious time 1.5 hours before sunrise (around 4:30-5:30 AM). Ayurveda recommends waking during this time for optimal health.</div>
 </div>
 <div class="faq-item">
-<div class="faq-question">What's my chronotype?</div>
-<div class="faq-answer">Chronotype is your natural preference for sleeping/waking times. Lions wake early, wolves wake late, bears follow the sun, dolphins are light sleepers.</div>
+<div class="faq-question" id="faq4Q">What's my Ayurvedic Dosha?</div>
+<div class="faq-answer" id="faq4A">Vata types sleep lightly, Pitta moderately, Kapha deeply. Knowing your dosha helps optimize sleep habits.</div>
 </div>
 </div>
 </div>
 
 <!-- Footer -->
 <footer>
-<p>© 2024 HealthCalc.in - Sleep Cycle Calculator | 100% Private | No Data Storage</p>
+<p>© 2026 HealthCalc.in - Sleep Cycle Calculator | 100% Private | No Data Storage</p>
 </footer>
 </div>
 
 <script>
+// ===== GLOBAL STATE =====
 let currentMode = 'wake';
+let currentLang = 'en';
+let timeFormat = '12';
 
+// ===== TRANSLATIONS =====
+const translations = {
+en: {
+titleMain: '😴 Sleep Cycle Calculator',
+headerSub: 'Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Includes Ayurvedic Brahma Muhurta guidance.',
+scheduleTitle: 'Your Sleep Schedule',
+wakeModeBtn: 'I want to wake at...',
+sleepModeBtn: 'I will sleep at...',
+wakeLabel: 'I need to wake up at',
+sleepLabel: 'I will go to bed at',
+fallAsleepLabel: 'Time to fall asleep',
+minutes5: 'minutes', minutes10: 'minutes', minutes15: 'minutes',
+minutes20: 'minutes', minutes30: 'minutes', minutes45: 'minutes', hour1: 'hour',
+chronotypeLabel: 'Your chronotype',
+lionType: 'Lion (Early bird - wake 5-6am, sleep 9-10pm)',
+bearType: 'Bear (Follows sun - wake 7-8am, sleep 11pm)',
+wolfType: 'Wolf (Night owl - wake 9-10am, sleep 12-1am)',
+dolphinType: 'Dolphin (Light sleeper - irregular)',
+doshaLabel: 'Your Ayurvedic Dosha',
+vataType: 'Vata (Light sleeper, irregular)',
+pittaType: 'Pitta (Moderate sleeper, intense dreams)',
+kaphaType: 'Kapha (Deep sleeper, needs more sleep)',
+debtTrackerTitle: 'Sleep Debt Tracker',
+avgSleepLabel: 'Avg sleep last 7 days',
+targetSleepLabel: 'Target sleep (recommended)',
+calcBtn: 'Calculate My Sleep Cycle',
+analysisTitle: 'Your Sleep Analysis',
+cycleDesc: 'These times allow you to complete full 90-minute sleep cycles',
+debtLabel: 'hours of sleep debt',
+tipsTitle: 'Sleep Optimization Tips',
+pdfBtn: 'PDF Report',
+shareBtn: 'Share',
+disclaimerText: '⚕️ Sleep needs vary by individual. These are estimates based on sleep research.',
+futureTitle: 'Coming Soon: Future Features',
+future1: 'Sleep Sounds', future1Desc: 'Indian classical & nature sounds',
+future2: 'Yoga Nidra', future2Desc: 'Guided sleep meditation',
+future3: 'Sleep Analytics', future3Desc: 'Weekly sleep patterns',
+future4: 'Smart Alarm', future4Desc: 'Wakes you in light sleep',
+faqTitle: 'Frequently Asked Questions',
+faq1Q: 'What is a sleep cycle?',
+faq1A: 'A sleep cycle lasts about 90 minutes and includes light sleep, deep sleep, and REM sleep.',
+faq2Q: 'How many cycles do I need?',
+faq2A: 'Most adults need 5-6 complete cycles (7.5-9 hours).',
+faq3Q: 'What is Brahma Muhurta?',
+faq3A: 'Brahma Muhurta is 1.5 hours before sunrise. Ayurveda recommends waking during this time.',
+faq4Q: 'What\'s my Ayurvedic Dosha?',
+faq4A: 'Vata types sleep lightly, Pitta moderately, Kapha deeply.'
+},
+hi: {
+titleMain: '😴 नींद चक्र कैलकुलेटर',
+headerSub: '90-मिनट के नींद चक्र के साथ अलार्म सेट करें। आयुर्वेदिक ब्रह्म मुहूर्त मार्गदर्शन शामिल है।',
+scheduleTitle: 'आपका नींद शेड्यूल',
+wakeModeBtn: 'मुझे जागना है...',
+sleepModeBtn: 'मैं सोऊंगा...',
+wakeLabel: 'मुझे जागने का समय',
+sleepLabel: 'मैं सोने जाऊंगा',
+fallAsleepLabel: 'सोने में लगने वाला समय',
+minutes5: 'मिनट', minutes10: 'मिनट', minutes15: 'मिनट',
+minutes20: 'मिनट', minutes30: 'मिनट', minutes45: 'मिनट', hour1: 'घंटा',
+chronotypeLabel: 'आपका क्रोनोटाइप',
+lionType: 'शेर (जल्दी उठने वाले - सुबह 5-6, रात 9-10)',
+bearType: 'भालू (सूर्य के अनुसार - सुबह 7-8, रात 11)',
+wolfType: 'भेड़िया (रात के उल्लू - सुबह 9-10, रात 12-1)',
+dolphinType: 'डॉल्फिन (हल्की नींद - अनियमित)',
+doshaLabel: 'आपका आयुर्वेदिक दोष',
+vataType: 'वात (हल्की नींद, अनियमित)',
+pittaType: 'पित्त (मध्यम नींद, तीव्र सपने)',
+kaphaType: 'कफ (गहरी नींद, अधिक नींद की जरूरत)',
+debtTrackerTitle: 'नींद ऋण ट्रैकर',
+avgSleepLabel: 'पिछले 7 दिनों की औसत नींद',
+targetSleepLabel: 'लक्षित नींद (अनुशंसित)',
+calcBtn: 'मेरा नींद चक्र कैलकुलेट करें',
+analysisTitle: 'आपका नींद विश्लेषण',
+cycleDesc: 'ये समय आपको पूरे 90-मिनट के नींद चक्र पूरे करने देते हैं',
+debtLabel: 'घंटे की नींद ऋण',
+tipsTitle: 'नींद अनुकूलन टिप्स',
+pdfBtn: 'PDF रिपोर्ट',
+shareBtn: 'शेयर करें',
+disclaimerText: '⚕️ नींद की जरूरतें व्यक्तिगत होती हैं। ये अनुमान नींद शोध पर आधारित हैं।',
+futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
+future1: 'नींद ध्वनियां', future1Desc: 'भारतीय शास्त्रीय और प्रकृति ध्वनियां',
+future2: 'योग निद्रा', future2Desc: 'निर्देशित नींद ध्यान',
+future3: 'नींद विश्लेषण', future3Desc: 'साप्ताहिक नींद पैटर्न',
+future4: 'स्मार्ट अलार्म', future4Desc: 'हल्की नींद में जगाएं',
+faqTitle: 'अक्सर पूछे जाने वाले प्रश्न',
+faq1Q: 'नींद चक्र क्या है?',
+faq1A: 'नींद चक्र लगभग 90 मिनट का होता है जिसमें हल्की नींद, गहरी नींद और REM नींद शामिल है।',
+faq2Q: 'मुझे कितने चक्र चाहिए?',
+faq2A: 'अधिकांश वयस्कों को 5-6 पूर्ण चक्र (7.5-9 घंटे) चाहिए।',
+faq3Q: 'ब्रह्म मुहूर्त क्या है?',
+faq3A: 'ब्रह्म मुहूर्त सूर्योदय से 1.5 घंटे पहले (लगभग 4:30-5:30 AM) का शुभ समय है। आयुर्वेद इसे जागने का सर्वोत्तम समय मानता है।',
+faq4Q: 'मेरा आयुर्वेदिक दोष क्या है?',
+faq4A: 'वात प्रकार हल्की नींद लेते हैं, पित्त मध्यम, कफ गहरी। अपना दोष जानकर नींद की आदतें सुधारें।'
+}
+};
+
+// ===== LANGUAGE SWITCHER =====
+function setLanguage(lang) {
+currentLang = lang;
+document.querySelectorAll('[data-lang]').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.lang === lang);
+});
+document.documentElement.lang = lang;
+document.documentElement.dir = 'ltr';
+
+const t = translations[lang] || translations.en;
+Object.keys(t).forEach(key => {
+const el = document.getElementById(key);
+if (el) el.textContent = t[key];
+});
+
+// Update select options text
+document.querySelector('#fallAsleep option[value="5"]').innerHTML = `5 ${t.minutes5}`;
+document.querySelector('#fallAsleep option[value="10"]').innerHTML = `10 ${t.minutes10}`;
+document.querySelector('#fallAsleep option[value="15"]').innerHTML = `15 ${t.minutes15}`;
+document.querySelector('#fallAsleep option[value="20"]').innerHTML = `20 ${t.minutes20}`;
+document.querySelector('#fallAsleep option[value="30"]').innerHTML = `30 ${t.minutes30}`;
+document.querySelector('#fallAsleep option[value="45"]').innerHTML = `45 ${t.minutes45}`;
+document.querySelector('#fallAsleep option[value="60"]').innerHTML = `1 ${t.hour1}`;
+
+calculateSleep();
+}
+
+// ===== TIME FORMAT SWITCHER =====
+function setTimeFormat(format) {
+timeFormat = format;
+document.querySelectorAll('[data-timeformat]').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.timeformat === format);
+});
+calculateSleep();
+}
+
+function formatTime(date) {
+if (timeFormat === '24') {
+return date.getHours().toString().padStart(2, '0') + ':' + date.getMinutes().toString().padStart(2, '0');
+} else {
+let hours = date.getHours();
+let minutes = date.getMinutes();
+let ampm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12 || 12;
+return hours + ':' + minutes.toString().padStart(2, '0') + ' ' + ampm;
+}
+}
+
+// ===== MODE SWITCHER =====
 function setMode(mode) {
 currentMode = mode;
-
-// Update buttons
 document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-if (mode === 'wake') {
 event.target.classList.add('active');
-document.getElementById('wakeMode').style.display = 'block';
-document.getElementById('sleepMode').style.display = 'none';
-} else {
-event.target.classList.add('active');
-document.getElementById('wakeMode').style.display = 'none';
-document.getElementById('sleepMode').style.display = 'block';
-}
-
+document.getElementById('wakeMode').style.display = mode === 'wake' ? 'block' : 'none';
+document.getElementById('sleepMode').style.display = mode === 'sleep' ? 'block' : 'none';
 calculateSleep();
 }
 
-// Update slider values
-document.getElementById('avgSleep').addEventListener('input', function(e) {
-document.getElementById('avgSleepValue').innerText = e.target.value + ' hrs';
-calculateSleep();
-});
-
-document.getElementById('targetSleep').addEventListener('input', function(e) {
-document.getElementById('targetSleepValue').innerText = e.target.value + ' hrs';
-calculateSleep();
-});
-
+// ===== MAIN CALCULATION =====
 function calculateSleep() {
-const cycleLength = 90; // minutes
+const cycleLength = 90;
 const fallAsleep = parseInt(document.getElementById('fallAsleep').value);
+const t = translations[currentLang] || translations.en;
 
 let baseTime;
 if (currentMode === 'wake') {
@@ -729,126 +919,176 @@ let cycleTimes = [];
 let displayText = '';
 
 if (currentMode === 'wake') {
-// Calculate bedtimes (subtract cycles + fall asleep time)
 for (let i = 1; i <= 6; i++) {
 let bedTime = new Date(baseDate.getTime() - (cycleLength * i + fallAsleep) * 60000);
 cycleTimes.push(bedTime);
 }
-displayText = 'If you wake at ' + baseTime + ', try sleeping at:';
+displayText = currentLang === 'hi' ? 
+`यदि आप ${formatTime(baseDate)} बजे जागते हैं, तो सोने का प्रयास करें:` :
+`If you wake at ${formatTime(baseDate)}, try sleeping at:`;
 } else {
-// Calculate wake times (add cycles + fall asleep time)
 let sleepDate = new Date(baseDate.getTime() + fallAsleep * 60000);
 for (let i = 1; i <= 6; i++) {
 let wakeTime = new Date(sleepDate.getTime() + cycleLength * i * 60000);
 cycleTimes.push(wakeTime);
 }
-displayText = 'If you sleep at ' + baseTime + ', try waking at:';
+displayText = currentLang === 'hi' ?
+`यदि आप ${formatTime(baseDate)} बजे सोते हैं, तो जागने का प्रयास करें:` :
+`If you sleep at ${formatTime(baseDate)}, try waking at:`;
 }
 
 // Display cycle times
 document.getElementById('modeDisplay').innerText = displayText;
-
 const cycleList = document.getElementById('cycleList');
-cycleList.innerHTML = cycleTimes.map(time => {
-let hours = time.getHours();
-let minutes = time.getMinutes();
-let ampm = hours >= 12 ? 'PM' : 'AM';
-hours = hours % 12 || 12;
-minutes = minutes.toString().padStart(2, '0');
-return `<span class="cycle-item">${hours}:${minutes} ${ampm}</span>`;
-}).join('');
+cycleList.innerHTML = cycleTimes.map(time => 
+`<span class="cycle-item">${formatTime(time)}</span>`
+).join('');
 
-// Calculate sleep debt
+// Sleep Debt
 const avgSleep = parseFloat(document.getElementById('avgSleep').value);
 const targetSleep = parseFloat(document.getElementById('targetSleep').value);
 const debt = (targetSleep - avgSleep) * 7;
 
 document.getElementById('sleepDebt').innerText = debt.toFixed(1);
-
-// Progress bar (0-20 hours debt)
 const debtPercent = Math.min(100, (debt / 20) * 100);
 document.getElementById('debtProgress').style.width = debtPercent + '%';
 
-// Recovery plan
+// Recovery Plan
 let recoveryText = '';
 if (debt <= 0) {
-recoveryText = '✨ No sleep debt! Great job maintaining healthy sleep.';
+recoveryText = currentLang === 'hi' ? '✨ कोई नींद ऋण नहीं! बढ़िया काम।' : '✨ No sleep debt! Great job.';
 } else if (debt < 5) {
-recoveryText = `Add ${(debt/7).toFixed(1)}h extra sleep for ${Math.ceil(debt)} nights to recover.`;
+recoveryText = currentLang === 'hi' ? 
+`${Math.ceil(debt)} रातों के लिए ${(debt/7).toFixed(1)} घंटे अतिरिक्त नींद लें।` :
+`Add ${(debt/7).toFixed(1)}h extra sleep for ${Math.ceil(debt)} nights.`;
 } else if (debt < 10) {
-recoveryText = `Add 1h extra sleep for 7 nights to recover.`;
+recoveryText = currentLang === 'hi' ? 
+'7 रातों के लिए 1 घंटा अतिरिक्त नींद लें।' :
+'Add 1h extra sleep for 7 nights.';
 } else {
-recoveryText = `Significant debt. Add 1.5h extra sleep for 10-14 nights.`;
+recoveryText = currentLang === 'hi' ?
+'10-14 रातों के लिए 1.5 घंटे अतिरिक्त नींद लें।' :
+'Add 1.5h extra sleep for 10-14 nights.';
 }
 document.getElementById('recoveryPlan').innerText = recoveryText;
 
-// Chronotype tips
+// Chronotype Card
 const chronotype = document.getElementById('chronotype').value;
 const chronotypeCard = document.getElementById('chronotypeCard');
-let chronoHtml = '';
+const chronoTitle = document.getElementById('chronoTitle');
+const chronoDesc = document.getElementById('chronoDesc');
 
-if (chronotype === 'lion') {
-chronoHtml = '<div class="chronotype-title">🦁 Lion Chronotype</div><div class="chronotype-desc">Best bedtime: 9:00-10:00 PM • Best wake time: 5:00-6:00 AM • Most productive before noon</div>';
-} else if (chronotype === 'bear') {
-chronoHtml = '<div class="chronotype-title">🐻 Bear Chronotype</div><div class="chronotype-desc">Best bedtime: 11:00-11:30 PM • Best wake time: 7:00-7:30 AM • Productive mid-morning</div>';
-} else if (chronotype === 'wolf') {
-chronoHtml = '<div class="chronotype-title">🐺 Wolf Chronotype</div><div class="chronotype-desc">Best bedtime: 12:00-1:00 AM • Best wake time: 9:00-10:00 AM • Most productive afternoon/evening</div>';
-} else {
-chronoHtml = '<div class="chronotype-title">🐬 Dolphin Chronotype</div><div class="chronotype-desc">Light sleeper. Need consistent routine. Avoid caffeine after noon. Try meditation before bed.</div>';
+const chronoData = {
+lion: { en: ['🦁 Lion Chronotype', 'Best bedtime: 9:00-10:00 PM • Best wake: 5:00-6:00 AM'], hi: ['🦁 शेर क्रोनोटाइप', 'सोने का समय: रात 9-10 • जागने का: सुबह 5-6'] },
+bear: { en: ['🐻 Bear Chronotype', 'Best bedtime: 11:00-11:30 PM • Best wake: 7:00-7:30 AM'], hi: ['🐻 भालू क्रोनोटाइप', 'सोने का समय: रात 11-11:30 • जागने का: सुबह 7-7:30'] },
+wolf: { en: ['🐺 Wolf Chronotype', 'Best bedtime: 12:00-1:00 AM • Best wake: 9:00-10:00 AM'], hi: ['🐺 भेड़िया क्रोनोटाइप', 'सोने का समय: रात 12-1 • जागने का: सुबह 9-10'] },
+dolphin: { en: ['🐬 Dolphin Chronotype', 'Light sleeper. Need consistent routine. Avoid caffeine after noon.'], hi: ['🐬 डॉल्फिन क्रोनोटाइप', 'हल्की नींद। नियमित दिनचर्या जरूरी। दोपहर बाद कैफीन से बचें।'] }
+};
+
+chronoTitle.innerHTML = `<i class="fas fa-${chronotype}"></i> ${chronoData[chronotype][currentLang][0]}`;
+chronoDesc.innerText = chronoData[chronotype][currentLang][1];
+
+// Ayurvedic Card
+const dosha = document.getElementById('dosha').value;
+const ayurvedicCard = document.getElementById('ayurvedicCard');
+const ayurvedicTitle = document.getElementById('ayurvedicTitle');
+const ayurvedicDesc = document.getElementById('ayurvedicDesc');
+
+const doshaData = {
+vata: { en: '🌀 Vata Sleep Guide', hi: '🌀 वात नींद गाइड', desc: { en: 'Warm oil massage before bed. Regular sleep schedule. Avoid cold drinks.', hi: 'सोने से पहले गर्म तेल मालिश। नियमित नींद समय। ठंडे पेय से बचें।' } },
+pitta: { en: '🔥 Pitta Sleep Guide', hi: '🔥 पित्त नींद गाइड', desc: { en: 'Avoid spicy food. Cool room temperature. Drink warm milk with turmeric.', hi: 'मसालेदार भोजन से बचें। ठंडा कमरा। हल्दी वाला गर्म दूध पिएं।' } },
+kapha: { en: '🌍 Kapha Sleep Guide', hi: '🌍 कफ नींद गाइड', desc: { en: 'Wake early (before 6 AM). Avoid daytime naps. Light dinner.', hi: 'सुबह 6 बजे से पहले उठें। दिन में न सोएं। हल्का रात्रि भोजन।' } }
+};
+
+ayurvedicTitle.innerHTML = `<i class="fas fa-om"></i> ${doshaData[dosha][currentLang]}`;
+ayurvedicDesc.innerHTML = `<strong>${currentLang === 'hi' ? 'ब्रह्म मुहूर्त' : 'Brahma Muhurta'}:</strong> ${currentLang === 'hi' ? 'सर्वोत्तम जागने का समय सूर्योदय से 1.5 घंटे पहले (4:30-5:30 AM)' : 'Best wake time is 1.5 hrs before sunrise (4:30-5:30 AM)'}<br>${doshaData[dosha].desc[currentLang]}`;
+
+// Tips
+updateTips(chronotype, dosha);
 }
-chronotypeCard.innerHTML = chronoHtml;
 
-// Update tips based on chronotype
+function updateTips(chronotype, dosha) {
+const t = translations[currentLang] || translations.en;
 const tipsDiv = document.getElementById('sleepTips');
 let tips = [];
 
-if (chronotype === 'lion') {
-tips = [
-{ icon: '🌅', title: 'Morning person', desc: 'Schedule important tasks before noon when you\'re most alert.' },
-{ icon: '🌙', title: 'Early bedtime', desc: 'Don\'t fight your natural rhythm. Aim for 9-10 PM bedtime.' },
-{ icon: '☀️', title: 'Get morning light', desc: 'Morning sunlight helps regulate your circadian rhythm.' }
-];
-} else if (chronotype === 'bear') {
-tips = [
-{ icon: '⏰', title: 'Consistency is key', desc: 'Stick to 11 PM - 7 AM schedule even on weekends.' },
-{ icon: '💪', title: 'Peak hours 10 AM - 2 PM', desc: 'Schedule important work during this window.' },
-{ icon: '🌆', title: 'Evening wind-down', desc: 'Start relaxing 1 hour before your target bedtime.' }
-];
-} else if (chronotype === 'wolf') {
-tips = [
-{ icon: '🌙', title: 'Night owl', desc: 'Your creativity peaks in evening. Schedule creative work then.' },
-{ icon: '🌅', title: 'Gentle mornings', desc: 'Don\'t force early wake-ups. Try 9 AM if possible.' },
-{ icon: '💡', title: 'Light management', desc: 'Use bright light in mornings, dim light in evenings.' }
-];
-} else {
-tips = [
-{ icon: '🧘', title: 'Relaxation routine', desc: 'Try meditation or deep breathing before bed.' },
-{ icon: '☕', title: 'No caffeine after 2 PM', desc: 'Dolphins are extra sensitive to stimulants.' },
-{ icon: '📝', title: 'Journal before bed', desc: 'Write down worries to clear your mind.' }
-];
-}
+const tipsData = {
+lion: { en: [
+{ icon: '🌅', title: 'Morning person', desc: 'Schedule important tasks before noon.' },
+{ icon: '🌙', title: 'Early bedtime', desc: 'Aim for 9-10 PM bedtime.' }
+], hi: [
+{ icon: '🌅', title: 'सुबह के व्यक्ति', desc: 'दोपहर से पहले महत्वपूर्ण कार्य करें।' },
+{ icon: '🌙', title: 'जल्दी सोएं', desc: 'रात 9-10 बजे सोने का लक्ष्य रखें।' }
+]},
+bear: { en: [
+{ icon: '⏰', title: 'Consistency is key', desc: 'Stick to 11 PM - 7 AM schedule.' },
+{ icon: '💪', title: 'Peak hours 10 AM - 2 PM', desc: 'Schedule important work then.' }
+], hi: [
+{ icon: '⏰', title: 'नियमितता जरूरी', desc: 'रात 11 - सुबह 7 के शेड्यूल पर रहें।' },
+{ icon: '💪', title: 'चरम समय सुबह 10 - दोपहर 2', desc: 'महत्वपूर्ण कार्य तब करें।' }
+]},
+wolf: { en: [
+{ icon: '🌙', title: 'Night owl', desc: 'Creativity peaks in evening.' },
+{ icon: '🌅', title: 'Gentle mornings', desc: 'Try 9 AM wake-up.' }
+], hi: [
+{ icon: '🌙', title: 'रात के उल्लू', desc: 'शाम को रचनात्मकता चरम पर।' },
+{ icon: '🌅', title: 'आरामदायक सुबह', desc: 'सुबह 9 बजे उठने का प्रयास करें।' }
+]},
+dolphin: { en: [
+{ icon: '🧘', title: 'Relaxation routine', desc: 'Try meditation before bed.' },
+{ icon: '☕', title: 'No caffeine after 2 PM', desc: 'Dolphins are extra sensitive.' }
+], hi: [
+{ icon: '🧘', title: 'विश्राम दिनचर्या', desc: 'सोने से पहले ध्यान करें।' },
+{ icon: '☕', title: 'दोपहर 2 के बाद कैफीन नहीं', desc: 'डॉल्फिन अतिरिक्त संवेदनशील होते हैं।' }
+]}
+};
 
-tipsDiv.innerHTML = tips.map(t => `
+const doshaTips = {
+vata: { en: { icon: '🛁', title: 'Warm bath', desc: 'Take warm bath before bed.' }, hi: { icon: '🛁', title: 'गर्म स्नान', desc: 'सोने से पहले गर्म स्नान करें।' } },
+pitta: { en: { icon: '🥛', title: 'Turmeric milk', desc: 'Drink warm turmeric milk.' }, hi: { icon: '🥛', title: 'हल्दी दूध', desc: 'गर्म हल्दी वाला दूध पिएं।' } },
+kapha: { en: { icon: '🌄', title: 'Wake early', desc: 'Wake before 6 AM daily.' }, hi: { icon: '🌄', title: 'जल्दी उठें', desc: 'रोज सुबह 6 बजे से पहले उठें।' } }
+};
+
+tips = [...(tipsData[chronotype]?.[currentLang] || tipsData.bear.en)];
+tips.push(doshaTips[dosha][currentLang]);
+
+tipsDiv.innerHTML = tips.map(tip => `
 <div class="tip-item">
-<div class="tip-icon">${t.icon}</div>
+<div class="tip-icon">${tip.icon}</div>
 <div class="tip-content">
-<h4>${t.title}</h4>
-<p>${t.desc}</p>
+<h4>${tip.title}</h4>
+<p>${tip.desc}</p>
 </div>
 </div>
 `).join('');
 }
 
 function shareResults() {
-navigator.clipboard.writeText(window.location.href);
-alert('Link copied to clipboard!');
+navigator.clipboard?.writeText(window.location.href);
+alert(currentLang === 'hi' ? 'लिंक कॉपी किया गया!' : 'Link copied!');
 }
 
-// Add event listeners
+// Event Listeners
+document.getElementById('avgSleep').addEventListener('input', function(e) {
+document.getElementById('avgSleepValue').innerText = e.target.value + ' hrs';
+calculateSleep();
+});
+document.getElementById('targetSleep').addEventListener('input', function(e) {
+document.getElementById('targetSleepValue').innerText = e.target.value + ' hrs';
+calculateSleep();
+});
 document.getElementById('wakeTime').addEventListener('change', calculateSleep);
 document.getElementById('sleepTime').addEventListener('change', calculateSleep);
 document.getElementById('fallAsleep').addEventListener('change', calculateSleep);
 document.getElementById('chronotype').addEventListener('change', calculateSleep);
+document.getElementById('dosha').addEventListener('change', calculateSleep);
+
+// Expose functions
+window.setMode = setMode;
+window.setLanguage = setLanguage;
+window.setTimeFormat = setTimeFormat;
+window.calculateSleep = calculateSleep;
+window.shareResults = shareResults;
 
 // Initialize
 window.onload = calculateSleep;
