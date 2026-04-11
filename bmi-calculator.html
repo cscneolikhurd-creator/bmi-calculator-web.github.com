@@ -1,65 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 
-<!-- Primary Meta Tags (SEO) -->
-<title>BMI Calculator with Visceral Fat Indicator | HealthCalc</title>
-<meta name="title" content="BMI Calculator with Visceral Fat Indicator | HealthCalc">
-<meta name="description" content="Free advanced BMI calculator with visceral fat indicator, age-based analysis & ethnicity adjustment. Get your complete body composition health score instantly.">
-<meta name="keywords" content="BMI calculator, body mass index, visceral fat calculator, BMI by age, BMI for men, BMI for women, body fat indicator, health calculator">
+<!-- Primary Meta Tags (SEO - Global + Indian) -->
+<title>BMI Calculator with Visceral Fat & Indian BMI Cutoff | HealthCalc</title>
+<meta name="title" content="BMI Calculator: Visceral Fat, Indian BMI (23+ Overweight) | HealthCalc">
+<meta name="description" content="Advanced BMI calculator with visceral fat indicator, Indian BMI cutoff (23+), age-based analysis & ethnicity adjustment. Get personalized health tips in Hindi & English.">
+<meta name="keywords" content="BMI calculator, Indian BMI, visceral fat, body mass index, BMI 23, obesity India, health calculator Hindi, मोटापा कैलकुलेटर">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://healthcalc.in/bmi-calculator">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://healthcalc.in/bmi-calculator">
-<meta property="og:title" content="BMI Calculator with Visceral Fat Indicator">
-<meta property="og:description" content="Most advanced BMI calculator: Know your visceral fat level and age-adjusted BMI score">
-<meta property="og:image" content="https://healthcalc.in/images/bmi-calculator-preview.jpg">
+<meta property="og:title" content="BMI Calculator with Indian BMI Cutoff (23+)">
+<meta property="og:description" content="Know your BMI with Indian standards. Visceral fat, age graph, and health tips in Hindi.">
+<meta property="og:image" content="https://healthcalc.in/images/bmi-calculator-india.jpg">
+<meta property="og:locale" content="en_IN">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://healthcalc.in/bmi-calculator">
-<meta property="twitter:title" content="BMI Calculator with Visceral Fat Indicator">
-<meta property="twitter:description" content="Most advanced BMI calculator: Know your visceral fat level and age-adjusted BMI score">
-<meta property="twitter:image" content="https://healthcalc.in/images/bmi-calculator-preview.jpg">
+<meta property="twitter:title" content="BMI Calculator with Indian Standards">
+<meta property="twitter:description" content="Advanced BMI calculator with Indian cutoff (23+ overweight)">
 
-<!-- Canonical URL -->
-<link rel="canonical" href="https://healthcalc.in/bmi-calculator">
-
-<!-- Schema Markup (JSON-LD) -->
+<!-- Schema Markup -->
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "HealthTopicContent",
 "url": "https://healthcalc.in/bmi-calculator",
-"name": "Advanced BMI Calculator with Visceral Fat Analysis",
-"description": "Free BMI calculator with ethnicity adjustment, age-based analysis, and visceral fat indicator",
-"about": {
-"@type": "Thing",
-"name": "Body Mass Index"
-},
-"audience": {
-"@type": "Audience",
-"audienceType": ["Adults", "Athletes", "Seniors"]
-},
-"creator": {
-"@type": "Organization",
-"name": "HealthCalc",
-"url": "https://healthcalc.in"
-}
+"name": "Advanced BMI Calculator with Indian Standards",
+"description": "BMI calculator with Indian cutoff (23+ overweight), visceral fat indicator, and age-adjusted analysis",
+"about": {"@type": "Thing", "name": "Body Mass Index"},
+"audience": {"@type": "Audience", "audienceType": ["Adults", "Indian Population", "Global"]},
+"inLanguage": ["en", "hi"],
+"creator": {"@type": "Organization", "name": "HealthCalc", "url": "https://healthcalc.in"}
 }
 </script>
 
-<!-- Styles -->
 <style>
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+--primary: #667eea;
+--primary-dark: #764ba2;
+--indian-saffron: #FF9933;
+--indian-green: #138808;
+--warning: #ff9800;
+--danger: #f44336;
+--success: #4caf50;
 }
 
 body {
@@ -72,7 +70,7 @@ padding: 20px;
 }
 
 .calculator-container {
-max-width: 1200px;
+max-width: 1300px;
 width: 100%;
 background: white;
 border-radius: 30px;
@@ -82,14 +80,8 @@ animation: slideIn 0.5s ease-out;
 }
 
 @keyframes slideIn {
-from {
-opacity: 0;
-transform: translateY(30px);
-}
-to {
-opacity: 1;
-transform: translateY(0);
-}
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
 }
 
 .header {
@@ -103,6 +95,18 @@ color: white;
 font-size: 2.5em;
 margin-bottom: 10px;
 font-weight: 700;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+}
+
+.header h1 span {
+background: rgba(255,255,255,0.2);
+padding: 5px 15px;
+border-radius: 50px;
+font-size: 0.5em;
 }
 
 .header p {
@@ -111,6 +115,37 @@ opacity: 0.95;
 max-width: 700px;
 margin: 0 auto;
 }
+
+/* Language Toggle */
+.lang-toggle {
+display: flex;
+justify-content: center;
+gap: 10px;
+margin: 20px 0 0;
+}
+
+.lang-btn {
+background: rgba(255,255,255,0.2);
+border: 1px solid rgba(255,255,255,0.3);
+padding: 10px 25px;
+border-radius: 50px;
+color: white;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s;
+font-size: 1em;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.lang-btn.active {
+background: white;
+color: var(--primary);
+box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.lang-btn i { font-size: 1.2em; }
 
 .badge-container {
 display: flex;
@@ -129,6 +164,11 @@ backdrop-filter: blur(5px);
 border: 1px solid rgba(255,255,255,0.3);
 }
 
+.badge.indian-badge {
+background: linear-gradient(135deg, var(--indian-saffron), #FFB74D);
+border-left: 3px solid white;
+}
+
 .main-content {
 display: grid;
 grid-template-columns: 1fr 1fr;
@@ -137,14 +177,8 @@ padding: 40px;
 }
 
 @media (max-width: 768px) {
-.main-content {
-grid-template-columns: 1fr;
-padding: 20px;
-}
-
-.header h1 {
-font-size: 1.8em;
-}
+.main-content { grid-template-columns: 1fr; padding: 20px; }
+.header h1 { font-size: 1.8em; }
 }
 
 /* Input Section */
@@ -260,6 +294,21 @@ transform: translateY(-2px);
 box-shadow: 0 15px 30px rgba(102,126,234,0.4);
 }
 
+/* Indian BMI Note */
+.indian-bmi-note {
+background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+padding: 15px;
+border-radius: 12px;
+margin: 20px 0;
+border-left: 4px solid var(--indian-saffron);
+font-size: 0.95em;
+}
+
+.indian-bmi-note i {
+color: var(--indian-saffron);
+margin-right: 8px;
+}
+
 /* Results Section */
 .results-section {
 background: white;
@@ -309,6 +358,16 @@ margin: 20px 0;
 position: relative;
 }
 
+/* Indian cutoff markers on scale */
+.scale-indian-marker {
+position: absolute;
+top: -25px;
+font-size: 0.7em;
+color: var(--indian-saffron);
+font-weight: bold;
+white-space: nowrap;
+}
+
 .bmi-marker {
 width: 10px;
 height: 30px;
@@ -328,6 +387,26 @@ color: #666;
 margin-bottom: 30px;
 }
 
+/* Indian BMI Categories Row */
+.indian-categories {
+display: flex;
+justify-content: space-around;
+margin: 15px 0;
+padding: 10px;
+background: #FFF8E1;
+border-radius: 10px;
+font-size: 0.85em;
+}
+
+.indian-cat-item {
+text-align: center;
+}
+
+.indian-cat-item .label {
+color: #E65100;
+font-weight: 600;
+}
+
 /* Health Cards */
 .health-cards {
 display: grid;
@@ -344,27 +423,43 @@ text-align: center;
 transition: transform 0.3s;
 }
 
-.health-card:hover {
-transform: translateY(-5px);
+.health-card:hover { transform: translateY(-5px); }
+
+.health-card .emoji { font-size: 2.5em; margin-bottom: 10px; display: block; }
+.health-card .value { font-size: 1.8em; font-weight: 700; color: #333; }
+.health-card .label { color: #666; font-size: 0.9em; margin-top: 5px; }
+
+/* Indian Health Tips Card */
+.indian-tips-card {
+background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+padding: 20px;
+border-radius: 15px;
+margin: 20px 0;
+border-left: 4px solid var(--indian-green);
 }
 
-.health-card .emoji {
-font-size: 2.5em;
+.indian-tips-card h4 {
+color: #1B5E20;
 margin-bottom: 10px;
-display: block;
+display: flex;
+align-items: center;
+gap: 8px;
 }
 
-.health-card .value {
-font-size: 1.8em;
-font-weight: 700;
-color: #333;
+.indian-tips-card ul {
+list-style: none;
+padding-left: 0;
 }
 
-.health-card .label {
-color: #666;
-font-size: 0.9em;
-margin-top: 5px;
+.indian-tips-card li {
+padding: 8px 0;
+border-bottom: 1px dashed #A5D6A7;
+display: flex;
+align-items: center;
+gap: 10px;
 }
+
+.indian-tips-card li i { color: var(--indian-green); width: 20px; }
 
 /* Graph Section */
 .graph-section {
@@ -376,16 +471,18 @@ border-radius: 15px;
 
 .graph-container {
 position: relative;
-height: 250px;
+min-height: 250px;
 margin: 20px 0;
-padding-left: 30px;
+padding-left: 10px;
+overflow-x: auto;
+white-space: nowrap;
 }
 
 .age-bar-container {
 position: relative;
 display: inline-block;
-width: 60px;
-margin-right: 20px;
+width: 70px;
+margin-right: 15px;
 vertical-align: bottom;
 height: 200px;
 }
@@ -397,12 +494,12 @@ width: 40px;
 background: linear-gradient(to top, #667eea, #764ba2);
 border-radius: 10px 10px 0 0;
 transition: height 0.3s;
-left: 10px;
+left: 15px;
 }
 
 .age-label {
 text-align: center;
-margin-top: 5px;
+margin-top: 185px;
 font-size: 0.8em;
 color: #666;
 }
@@ -427,6 +524,54 @@ color: white;
 font-weight: bold;
 }
 
+/* Future Plan Section */
+.future-plan-section {
+grid-column: span 2;
+background: linear-gradient(135deg, #E8EAF6, #C5CAE9);
+border-radius: 20px;
+padding: 25px;
+margin-top: 20px;
+border: 2px dashed var(--primary);
+}
+
+.future-plan-section h3 {
+color: #1A237E;
+margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.future-features-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 15px;
+}
+
+.future-feature {
+background: white;
+border-radius: 12px;
+padding: 20px;
+text-align: center;
+box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+transition: all 0.3s;
+}
+
+.future-feature:hover { transform: translateY(-5px); }
+
+.future-feature i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+.future-feature h5 { color: #1A237E; margin-bottom: 8px; font-size: 1rem; }
+.coming-soon {
+background: #FF9800;
+color: white;
+padding: 3px 10px;
+border-radius: 20px;
+font-size: 0.7rem;
+font-weight: 600;
+display: inline-block;
+margin-top: 10px;
+}
+
 /* Guide Section */
 .guide-section {
 grid-column: span 2;
@@ -436,11 +581,7 @@ border-radius: 20px;
 margin-top: 20px;
 }
 
-.guide-section h3 {
-color: #333;
-margin-bottom: 15px;
-font-size: 1.4em;
-}
+.guide-section h3 { color: #333; margin-bottom: 15px; font-size: 1.4em; }
 
 .guide-grid {
 display: grid;
@@ -455,11 +596,7 @@ border-radius: 10px;
 box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-.guide-item strong {
-color: #667eea;
-display: block;
-margin-bottom: 5px;
-}
+.guide-item strong { color: #667eea; display: block; margin-bottom: 5px; }
 
 .footer-note {
 grid-column: span 2;
@@ -470,14 +607,7 @@ padding: 20px;
 border-top: 1px solid #e0e4ff;
 }
 
-.footer-note a {
-color: #667eea;
-text-decoration: none;
-}
-
-.footer-note a:hover {
-text-decoration: underline;
-}
+.footer-note a { color: #667eea; text-decoration: none; }
 
 .recommendation-box {
 margin-top: 20px;
@@ -487,20 +617,10 @@ border-radius: 10px;
 border-left: 4px solid #4caf50;
 }
 
-.recommendation-box.warning {
-background: #fff3e0;
-border-left-color: #ff9800;
-}
+.recommendation-box.warning { background: #fff3e0; border-left-color: #ff9800; }
+.recommendation-box.danger { background: #ffebee; border-left-color: #f44336; }
 
-.recommendation-box.danger {
-background: #ffebee;
-border-left-color: #f44336;
-}
-
-.recommendation-text {
-font-size: 0.95em;
-color: #333;
-}
+.recommendation-text { font-size: 0.95em; color: #333; }
 
 .reset-btn {
 margin-top: 10px;
@@ -510,18 +630,33 @@ border: none;
 border-radius: 8px;
 cursor: pointer;
 font-size: 0.85em;
+width: 100%;
 }
 </style>
 </head>
 <body>
 <div class="calculator-container">
 <div class="header">
-<h1>⚖️ Advanced BMI Calculator</h1>
-<p>Know your complete body composition: BMI, Visceral Fat, and Age-Adjusted Health Score</p>
+<h1>
+⚖️ Advanced BMI Calculator
+<span id="headerSubtitle">Indian Standards</span>
+</h1>
+<p id="headerDesc">Know your complete body composition: BMI, Visceral Fat, and Indian BMI Cutoff (23+)</p>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+<button class="lang-btn active" data-lang="en" id="langEN">
+<i>🇬🇧</i> English
+</button>
+<button class="lang-btn" data-lang="hi" id="langHI">
+<i>🇮🇳</i> हिंदी
+</button>
+</div>
+
 <div class="badge-container">
-<span class="badge">🌟 Visceral Fat Indicator</span>
-<span class="badge">📊 BMI by Age Graph</span>
-<span class="badge">🌍 Ethnicity Adjusted</span>
+<span class="badge">🌟 Visceral Fat</span>
+<span class="badge indian-badge">🇮🇳 Indian BMI (23+)</span>
+<span class="badge">📊 Age Graph</span>
 <span class="badge">🔒 100% Private</span>
 </div>
 </div>
@@ -529,7 +664,7 @@ font-size: 0.85em;
 <div class="main-content">
 <!-- Input Column -->
 <div class="input-section">
-<h2>📝 Your Details</h2>
+<h2 id="detailsTitle">📝 Your Details</h2>
 
 <div class="unit-toggle">
 <button class="unit-btn active" onclick="setUnit('metric')">Metric (kg/cm)</button>
@@ -539,11 +674,11 @@ font-size: 0.85em;
 <!-- Metric Fields -->
 <div id="metric-fields" class="metric-fields active">
 <div class="input-group">
-<label>Weight (kg)</label>
+<label id="weightLabel">Weight (kg)</label>
 <input type="number" id="weight-kg" placeholder="e.g., 70" min="20" max="300" step="0.1" value="70">
 </div>
 <div class="input-group">
-<label>Height (cm)</label>
+<label id="heightLabel">Height (cm)</label>
 <input type="number" id="height-cm" placeholder="e.g., 170" min="100" max="250" step="0.1" value="170">
 </div>
 </div>
@@ -551,104 +686,144 @@ font-size: 0.85em;
 <!-- Imperial Fields -->
 <div id="imperial-fields" class="imperial-fields">
 <div class="input-group">
-<label>Weight (lbs)</label>
+<label id="weightLbsLabel">Weight (lbs)</label>
 <input type="number" id="weight-lbs" placeholder="e.g., 154" min="44" max="660" step="0.1" value="154">
 </div>
 <div class="input-group">
-<label>Height (inches)</label>
+<label id="heightInLabel">Height (inches)</label>
 <input type="number" id="height-in" placeholder="e.g., 67" min="39" max="98" step="0.1" value="67">
 </div>
 </div>
 
 <div class="age-gender-row">
 <div class="input-group">
-<label>Age (years)</label>
+<label id="ageLabel">Age (years)</label>
 <input type="number" id="age" placeholder="Years" min="18" max="120" value="30">
 </div>
 <div class="input-group">
-<label>Gender</label>
+<label id="genderLabel">Gender</label>
 <select id="gender">
-<option value="male">Male</option>
-<option value="female">Female</option>
+<option value="male" id="maleOpt">Male</option>
+<option value="female" id="femaleOpt" selected>Female</option>
 </select>
 </div>
 </div>
 
 <div class="input-group">
-<label>Ethnicity (for adjusted BMI)</label>
+<label id="ethnicityLabel">Ethnicity (for adjusted BMI)</label>
 <select id="ethnicity">
-<option value="caucasian">Caucasian</option>
-<option value="asian">Asian</option>
-<option value="african">African</option>
-<option value="hispanic">Hispanic</option>
+<option value="asian" selected id="asianOpt">Asian / Indian</option>
+<option value="caucasian" id="caucasianOpt">Caucasian</option>
+<option value="african" id="africanOpt">African</option>
+<option value="hispanic" id="hispanicOpt">Hispanic</option>
 </select>
-<small style="display: block; margin-top: 5px; color: #666;">Asian population has different healthy BMI ranges</small>
+</div>
+
+<!-- Indian BMI Note -->
+<div class="indian-bmi-note" id="indianNote">
+<i class="fas fa-info-circle"></i> 
+<span id="indianNoteText">⚠️ भारतीयों के लिए BMI 23+ से ही ओवरवेट और 25+ से ओबीज़ माना जाता है। (For Indians, Overweight starts at BMI 23, Obese at 25)</span>
 </div>
 
 <div class="input-group">
-<label>Activity Level (for health score)</label>
+<label id="activityLabel">Activity Level</label>
 <select id="activity">
-<option value="sedentary">Sedentary (little exercise)</option>
-<option value="light" selected>Light (1-3 days/week)</option>
-<option value="moderate">Moderate (3-5 days/week)</option>
-<option value="active">Active (daily exercise)</option>
-<option value="very-active">Very Active (athlete)</option>
+<option value="sedentary" id="sedentaryOpt">Sedentary (little exercise)</option>
+<option value="light" id="lightOpt" selected>Light (1-3 days/week)</option>
+<option value="moderate" id="moderateOpt">Moderate (3-5 days/week)</option>
+<option value="active" id="activeOpt">Active (daily exercise)</option>
+<option value="very-active" id="veryActiveOpt">Very Active (athlete)</option>
 </select>
 </div>
 
-<button class="calculate-btn" onclick="calculateBMI()">Calculate Your Health Score</button>
-<button class="reset-btn" onclick="resetForm()" style="margin-top: 10px; width: 100%;">Reset All Fields</button>
+<button class="calculate-btn" onclick="calculateBMI()" id="calculateBtn">Calculate Your Health Score</button>
+<button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
 </div>
 
 <!-- Results Column -->
 <div class="results-section" id="results">
-<h2>📊 Your Results</h2>
+<h2 id="resultsTitle">📊 Your Results</h2>
 
 <div class="bmi-circle">
 <div>
 <div class="bmi-value" id="bmi-display">--</div>
-<div class="bmi-label">Your BMI</div>
+<div class="bmi-label" id="bmiLabel">Your BMI</div>
 </div>
 </div>
 
 <div class="bmi-scale">
+<span class="scale-indian-marker" style="left: 46%;">🇮🇳 23 (Indian Overweight)</span>
 <div class="bmi-marker" id="bmi-marker" style="left: 0%"></div>
 </div>
 <div class="bmi-categories">
-<span>Underweight</span>
-<span>Normal</span>
-<span>Overweight</span>
-<span>Obese</span>
+<span id="underweightCat">Underweight</span>
+<span id="normalCat">Normal</span>
+<span id="overweightCat">Overweight</span>
+<span id="obeseCat">Obese</span>
+</div>
+
+<!-- Indian BMI Categories -->
+<div class="indian-categories" id="indianCategoriesBox">
+<div class="indian-cat-item">
+<div class="label">🇮🇳 Indian Standards</div>
+</div>
+<div class="indian-cat-item">
+<div>< 18.5</div>
+<div class="label">Underweight</div>
+</div>
+<div class="indian-cat-item">
+<div>18.5 - 22.9</div>
+<div class="label">Normal</div>
+</div>
+<div class="indian-cat-item">
+<div>23 - 24.9</div>
+<div class="label">Overweight</div>
+</div>
+<div class="indian-cat-item">
+<div>≥ 25</div>
+<div class="label">Obese</div>
+</div>
 </div>
 
 <div class="health-cards">
 <div class="health-card">
 <span class="emoji">⚠️</span>
 <div class="value" id="visceral-fat">--</div>
-<div class="label">Visceral Fat Risk</div>
+<div class="label" id="visceralLabel">Visceral Fat Risk</div>
 </div>
 <div class="health-card">
 <span class="emoji">📊</span>
 <div class="value" id="bmi-category">--</div>
-<div class="label">BMI Category</div>
+<div class="label" id="categoryLabel">BMI Category</div>
 </div>
 <div class="health-card">
-<span class="emoji">📈</span>
-<div class="value" id="adjusted-bmi">--</div>
-<div class="label">Ethnicity Adjusted</div>
+<span class="emoji">🇮🇳</span>
+<div class="value" id="indian-category">--</div>
+<div class="label" id="indianCatLabel">Indian Standard</div>
 </div>
 <div class="health-card">
 <span class="emoji">❤️</span>
 <div class="value" id="health-score">--</div>
-<div class="label">Health Score</div>
+<div class="label" id="healthScoreLabel">Health Score</div>
 </div>
+</div>
+
+<!-- Indian Health Tips -->
+<div class="indian-tips-card" id="indianTipsBox">
+<h4><i class="fas fa-heart"></i> <span id="tipsTitle">🇮🇳 Indian Health Recommendations</span></h4>
+<ul id="tipsList">
+<li id="tip1"><i class="fas fa-check-circle"></i> Maintain BMI below 23 for optimal health</li>
+<li id="tip2"><i class="fas fa-check-circle"></i> Include turmeric, ginger, and green tea daily</li>
+<li id="tip3"><i class="fas fa-check-circle"></i> Practice yoga or brisk walking 30 min/day</li>
+<li id="tip4"><i class="fas fa-check-circle"></i> Reduce refined carbs (white rice, maida)</li>
+</ul>
 </div>
 
 <!-- BMI by Age Graph -->
 <div class="graph-section">
-<h3 style="margin-bottom: 15px;">📈 Your BMI vs. Age Group Average</h3>
-<div id="graph-container" style="min-height: 250px;"></div>
-<p style="text-align: center; color: #666; margin-top: 20px;" id="graph-comparison">
+<h3 id="graphTitle">📈 Your BMI vs. Age Group Average</h3>
+<div id="graph-container" class="graph-container"></div>
+<p id="graph-comparison" style="text-align: center; color: #666; margin-top: 20px;">
 Enter your details to see comparison
 </p>
 </div>
@@ -661,403 +836,562 @@ Enter your details to get personalized recommendations
 </div>
 </div>
 
-<!-- Guide Section (Spans both columns) -->
+<!-- Future Plan Section -->
+<div class="future-plan-section">
+<h3><i class="fas fa-rocket"></i> 🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
+<div class="future-features-grid">
+<div class="future-feature">
+<i class="fas fa-calculator"></i>
+<h5 id="future1">Body Fat % Calculator</h5>
+<span class="coming-soon">Coming Jan 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-apple-alt"></i>
+<h5 id="future2">Indian Diet Planner</h5>
+<span class="coming-soon">Coming Feb 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-heartbeat"></i>
+<h5 id="future3">Heart Risk (Indian Data)</h5>
+<span class="coming-soon">Coming March 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-chart-line"></i>
+<h5 id="future4">Weight Loss Tracker</h5>
+<span class="coming-soon">Coming April 2027</span>
+</div>
+</div>
+</div>
+
+<!-- Guide Section -->
 <div class="guide-section">
-<h3>📘 Understanding Your Results</h3>
+<h3 id="guideTitle">📘 Understanding Your Results</h3>
 <div class="guide-grid">
 <div class="guide-item">
-<strong>BMI Range</strong>
-Underweight: &lt;18.5<br>
-Normal: 18.5-24.9<br>
-Overweight: 25-29.9<br>
-Obese: 30+
+<strong id="guide1Title">BMI Range (WHO)</strong>
+<span id="guide1Content">Underweight: <18.5<br>Normal: 18.5-24.9<br>Overweight: 25-29.9<br>Obese: 30+</span>
 </div>
 <div class="guide-item">
-<strong>Visceral Fat</strong>
-Low: Safe level<br>
-Moderate: Monitor diet<br>
-High: Take action now!<br>
-Affects heart & organs
+<strong id="guide2Title">Indian BMI Cutoff</strong>
+<span id="guide2Content">Normal: 18.5-22.9<br>Overweight: 23-24.9<br>Obese: 25+<br>Higher diabetes risk at 23+</span>
 </div>
 <div class="guide-item">
-<strong>Ethnicity Impact</strong>
-Asian: Lower threshold<br>
-Caucasian: Standard<br>
-African: Higher muscle mass<br>
-Adjusts health risk
+<strong id="guide3Title">Visceral Fat</strong>
+<span id="guide3Content">Low: Safe level<br>Moderate: Monitor diet<br>High: Take action now!<br>Affects heart & liver</span>
 </div>
 <div class="guide-item">
-<strong>Health Score</strong>
-90-100: Excellent<br>
-70-89: Good<br>
-50-69: Fair<br>
-Below 50: Needs attention
+<strong id="guide4Title">Health Score</strong>
+<span id="guide4Content">90-100: Excellent<br>70-89: Good<br>50-69: Fair<br>Below 50: Needs attention</span>
 </div>
 </div>
 </div>
 
 <div class="footer-note">
-<p>🏥 This calculator provides estimates. Always consult a healthcare professional for medical advice.</p>
-<p>⭐ 4.8/5 from 1,250+ reviews | Used in 45+ countries | <a href="/">More Health Tools →</a></p>
+<p id="disclaimerText">🏥 This calculator provides estimates. Always consult a healthcare professional for medical advice.</p>
+<p id="footerReviews">⭐ 4.8/5 from 1,250+ reviews | Used in 45+ countries | <a href="/">More Health Tools →</a></p>
 </div>
 </div>
 </div>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <script>
-// Global variables
+// ===== GLOBAL STATE =====
 let currentUnit = 'metric';
+let currentLang = 'en';
 
-// Unit Toggle Function
+// ===== TRANSLATIONS =====
+const translations = {
+en: {
+headerSubtitle: 'Indian Standards',
+headerDesc: 'Know your complete body composition: BMI, Visceral Fat, and Indian BMI Cutoff (23+)',
+detailsTitle: '📝 Your Details',
+weightLabel: 'Weight (kg)',
+heightLabel: 'Height (cm)',
+weightLbsLabel: 'Weight (lbs)',
+heightInLabel: 'Height (inches)',
+ageLabel: 'Age (years)',
+genderLabel: 'Gender',
+maleOpt: 'Male',
+femaleOpt: 'Female',
+ethnicityLabel: 'Ethnicity (for adjusted BMI)',
+asianOpt: 'Asian / Indian',
+caucasianOpt: 'Caucasian',
+africanOpt: 'African',
+hispanicOpt: 'Hispanic',
+indianNoteText: '⚠️ For Indians, Overweight starts at BMI 23, Obese at 25. Diabetes risk doubles above 23.',
+activityLabel: 'Activity Level',
+sedentaryOpt: 'Sedentary (little exercise)',
+lightOpt: 'Light (1-3 days/week)',
+moderateOpt: 'Moderate (3-5 days/week)',
+activeOpt: 'Active (daily exercise)',
+veryActiveOpt: 'Very Active (athlete)',
+calculateBtn: 'Calculate Your Health Score',
+resetBtn: 'Reset All Fields',
+resultsTitle: '📊 Your Results',
+bmiLabel: 'Your BMI',
+underweightCat: 'Underweight',
+normalCat: 'Normal',
+overweightCat: 'Overweight',
+obeseCat: 'Obese',
+visceralLabel: 'Visceral Fat Risk',
+categoryLabel: 'BMI Category (WHO)',
+indianCatLabel: 'Indian Standard',
+healthScoreLabel: 'Health Score',
+tipsTitle: '🇮🇳 Indian Health Recommendations',
+tip1: 'Maintain BMI below 23 for optimal health',
+tip2: 'Include turmeric, ginger, and green tea daily',
+tip3: 'Practice yoga or brisk walking 30 min/day',
+tip4: 'Reduce refined carbs (white rice, maida)',
+graphTitle: '📈 Your BMI vs. Age Group Average',
+futureTitle: 'Coming Soon: Future Features',
+future1: 'Body Fat % Calculator',
+future2: 'Indian Diet Planner',
+future3: 'Heart Risk (Indian Data)',
+future4: 'Weight Loss Tracker',
+guideTitle: '📘 Understanding Your Results',
+guide1Title: 'BMI Range (WHO)',
+guide1Content: 'Underweight: <18.5<br>Normal: 18.5-24.9<br>Overweight: 25-29.9<br>Obese: 30+',
+guide2Title: 'Indian BMI Cutoff',
+guide2Content: 'Normal: 18.5-22.9<br>Overweight: 23-24.9<br>Obese: 25+<br>Higher diabetes risk at 23+',
+guide3Title: 'Visceral Fat',
+guide3Content: 'Low: Safe level<br>Moderate: Monitor diet<br>High: Take action now!<br>Affects heart & liver',
+guide4Title: 'Health Score',
+guide4Content: '90-100: Excellent<br>70-89: Good<br>50-69: Fair<br>Below 50: Needs attention',
+disclaimerText: '🏥 This calculator provides estimates. Always consult a healthcare professional for medical advice.',
+footerReviews: '⭐ 4.8/5 from 1,250+ reviews | Used in 45+ countries | '
+},
+hi: {
+headerSubtitle: 'भारतीय मानक',
+headerDesc: 'अपना BMI, विसेरल फैट और भारतीय BMI कट-ऑफ (23+) जानें',
+detailsTitle: '📝 आपकी जानकारी',
+weightLabel: 'वज़न (किलो)',
+heightLabel: 'ऊंचाई (सेमी)',
+weightLbsLabel: 'वज़न (पाउंड)',
+heightInLabel: 'ऊंचाई (इंच)',
+ageLabel: 'उम्र (वर्ष)',
+genderLabel: 'लिंग',
+maleOpt: 'पुरुष',
+femaleOpt: 'महिला',
+ethnicityLabel: 'जातीयता (समायोजित BMI के लिए)',
+asianOpt: 'एशियाई / भारतीय',
+caucasianOpt: 'कोकेशियान',
+africanOpt: 'अफ्रीकी',
+hispanicOpt: 'हिस्पैनिक',
+indianNoteText: '⚠️ भारतीयों के लिए BMI 23+ से ओवरवेट और 25+ से ओबीज़। 23+ पर डायबिटीज़ का खतरा दोगुना।',
+activityLabel: 'गतिविधि स्तर',
+sedentaryOpt: 'निष्क्रिय (कम व्यायाम)',
+lightOpt: 'हल्का (सप्ताह में 1-3 दिन)',
+moderateOpt: 'मध्यम (सप्ताह में 3-5 दिन)',
+activeOpt: 'सक्रिय (रोज़ व्यायाम)',
+veryActiveOpt: 'बहुत सक्रिय (एथलीट)',
+calculateBtn: 'अपना हेल्थ स्कोर कैलकुलेट करें',
+resetBtn: 'सभी फ़ील्ड रीसेट करें',
+resultsTitle: '📊 आपके परिणाम',
+bmiLabel: 'आपका BMI',
+underweightCat: 'कम वज़न',
+normalCat: 'सामान्य',
+overweightCat: 'अधिक वज़न',
+obeseCat: 'मोटापा',
+visceralLabel: 'विसेरल फैट जोखिम',
+categoryLabel: 'BMI श्रेणी (WHO)',
+indianCatLabel: 'भारतीय मानक',
+healthScoreLabel: 'हेल्थ स्कोर',
+tipsTitle: '🇮🇳 भारतीय स्वास्थ्य सुझाव',
+tip1: 'BMI 23 से नीचे रखें',
+tip2: 'हल्दी, अदरक और ग्रीन टी रोज़ लें',
+tip3: 'योग या 30 मिनट वॉक करें',
+tip4: 'मैदा और सफेद चावल कम करें',
+graphTitle: '📈 आपका BMI बनाम आयु वर्ग औसत',
+futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
+future1: 'बॉडी फैट % कैलकुलेटर',
+future2: 'भारतीय डाइट प्लानर',
+future3: 'हार्ट रिस्क (भारतीय डेटा)',
+future4: 'वज़न घटाने का ट्रैकर',
+guideTitle: '📘 अपने परिणाम समझें',
+guide1Title: 'BMI रेंज (WHO)',
+guide1Content: 'कम वज़न: <18.5<br>सामान्य: 18.5-24.9<br>अधिक वज़न: 25-29.9<br>मोटापा: 30+',
+guide2Title: 'भारतीय BMI कट-ऑफ',
+guide2Content: 'सामान्य: 18.5-22.9<br>अधिक वज़न: 23-24.9<br>मोटापा: 25+<br>23+ पर डायबिटीज़ का खतरा',
+guide3Title: 'विसेरल फैट',
+guide3Content: 'कम: सुरक्षित<br>मध्यम: ध्यान दें<br>अधिक: तुरंत कदम उठाएं',
+guide4Title: 'हेल्थ स्कोर',
+guide4Content: '90-100: उत्कृष्ट<br>70-89: अच्छा<br>50-69: ठीक<br>50 से नीचे: ध्यान दें',
+disclaimerText: '🏥 यह कैलकुलेटर अनुमान प्रदान करता है। चिकित्सकीय सलाह के लिए डॉक्टर से संपर्क करें।',
+footerReviews: '⭐ 1,250+ समीक्षाओं से 4.8/5 | 45+ देशों में उपयोग | '
+}
+};
+
+// ===== LANGUAGE SWITCHER =====
+function setLanguage(lang) {
+currentLang = lang;
+document.querySelectorAll('.lang-btn').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.lang === lang);
+});
+document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+
+const t = translations[lang] || translations.en;
+Object.keys(t).forEach(id => {
+const el = document.getElementById(id);
+if (el) {
+if (id.includes('Content') || id.includes('Note') || id.includes('Tip')) {
+el.innerHTML = t[id];
+} else if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+// Skip
+} else {
+el.textContent = t[id];
+}
+}
+});
+
+// Update select options
+if (lang === 'hi') {
+document.querySelector('title').textContent = 'BMI कैलकुलेटर: विसेरल फैट और भारतीय मानक | HealthCalc';
+document.getElementById('graph-comparison').textContent = 'तुलना देखने के लिए अपनी जानकारी दर्ज करें';
+document.getElementById('recommendation-text').textContent = 'व्यक्तिगत सुझाव पाने के लिए अपनी जानकारी दर्ज करें';
+}
+calculateBMI();
+}
+
+// ===== UNIT TOGGLE =====
 function setUnit(unit) {
-    currentUnit = unit;
-    const metricBtn = document.querySelector('.unit-btn:first-child');
-    const imperialBtn = document.querySelector('.unit-btn:last-child');
-    const metricFields = document.getElementById('metric-fields');
-    const imperialFields = document.getElementById('imperial-fields');
-    
-    // Sync values between unit systems
-    if (unit === 'metric') {
-        // Convert imperial to metric if needed
-        const weightLbs = document.getElementById('weight-lbs').value;
-        const heightIn = document.getElementById('height-in').value;
-        if (weightLbs && weightLbs !== '154') {
-            document.getElementById('weight-kg').value = (parseFloat(weightLbs) / 2.205).toFixed(1);
-        }
-        if (heightIn && heightIn !== '67') {
-            document.getElementById('height-cm').value = (parseFloat(heightIn) * 2.54).toFixed(1);
-        }
-        metricBtn.classList.add('active');
-        imperialBtn.classList.remove('active');
-        metricFields.classList.add('active');
-        imperialFields.classList.remove('active');
-    } else {
-        // Convert metric to imperial
-        const weightKg = document.getElementById('weight-kg').value;
-        const heightCm = document.getElementById('height-cm').value;
-        if (weightKg && weightKg !== '70') {
-            document.getElementById('weight-lbs').value = (parseFloat(weightKg) * 2.205).toFixed(1);
-        }
-        if (heightCm && heightCm !== '170') {
-            document.getElementById('height-in').value = (parseFloat(heightCm) / 2.54).toFixed(1);
-        }
-        metricBtn.classList.remove('active');
-        imperialBtn.classList.add('active');
-        metricFields.classList.remove('active');
-        imperialFields.classList.add('active');
-    }
-    calculateBMI();
+currentUnit = unit;
+const metricBtn = document.querySelector('.unit-btn:first-child');
+const imperialBtn = document.querySelector('.unit-btn:last-child');
+const metricFields = document.getElementById('metric-fields');
+const imperialFields = document.getElementById('imperial-fields');
+
+if (unit === 'metric') {
+const weightLbs = document.getElementById('weight-lbs').value;
+const heightIn = document.getElementById('height-in').value;
+if (weightLbs && weightLbs !== '154') {
+document.getElementById('weight-kg').value = (parseFloat(weightLbs) / 2.205).toFixed(1);
+}
+if (heightIn && heightIn !== '67') {
+document.getElementById('height-cm').value = (parseFloat(heightIn) * 2.54).toFixed(1);
+}
+metricBtn.classList.add('active');
+imperialBtn.classList.remove('active');
+metricFields.classList.add('active');
+imperialFields.classList.remove('active');
+} else {
+const weightKg = document.getElementById('weight-kg').value;
+const heightCm = document.getElementById('height-cm').value;
+if (weightKg && weightKg !== '70') {
+document.getElementById('weight-lbs').value = (parseFloat(weightKg) * 2.205).toFixed(1);
+}
+if (heightCm && heightCm !== '170') {
+document.getElementById('height-in').value = (parseFloat(heightCm) / 2.54).toFixed(1);
+}
+metricBtn.classList.remove('active');
+imperialBtn.classList.add('active');
+metricFields.classList.remove('active');
+imperialFields.classList.add('active');
+}
+calculateBMI();
 }
 
-// Reset Form Function
+// ===== RESET =====
 function resetForm() {
-    document.getElementById('weight-kg').value = '70';
-    document.getElementById('height-cm').value = '170';
-    document.getElementById('weight-lbs').value = '154';
-    document.getElementById('height-in').value = '67';
-    document.getElementById('age').value = '30';
-    document.getElementById('gender').value = 'female';
-    document.getElementById('ethnicity').value = 'caucasian';
-    document.getElementById('activity').value = 'light';
-    setUnit(currentUnit);
-    calculateBMI();
+document.getElementById('weight-kg').value = '70';
+document.getElementById('height-cm').value = '170';
+document.getElementById('weight-lbs').value = '154';
+document.getElementById('height-in').value = '67';
+document.getElementById('age').value = '30';
+document.getElementById('gender').value = 'female';
+document.getElementById('ethnicity').value = 'asian';
+document.getElementById('activity').value = 'light';
+setUnit(currentUnit);
+calculateBMI();
 }
 
-// Get BMI Category
-function getBMICategory(bmi) {
-    if (bmi < 18.5) return 'Underweight';
-    if (bmi < 25) return 'Normal';
-    if (bmi < 30) return 'Overweight';
-    return 'Obese';
+// ===== INDIAN BMI CATEGORY =====
+function getIndianBMICategory(bmi) {
+if (bmi < 18.5) return 'Underweight';
+if (bmi < 23) return 'Normal';
+if (bmi < 25) return 'Overweight';
+return 'Obese';
 }
 
-// Get Visceral Fat Risk
-function getVisceralFat(bmi, gender, age) {
-    let risk;
-    if (bmi < 22) risk = 'Low';
-    else if (bmi < 27) risk = 'Moderate';
-    else if (bmi < 32) risk = 'High';
-    else risk = 'Very High';
-    
-    // Gender adjustment
-    if (gender === 'male' && bmi > 25) {
-        if (risk === 'Moderate') risk = 'Moderate-High';
-        else if (risk === 'High') risk = 'Very High';
-    }
-    
-    // Age adjustment
-    if (age > 50 && bmi > 25) {
-        if (risk === 'Moderate') risk = 'High';
-        else if (risk === 'High') risk = 'Very High';
-    }
-    
-    return risk;
+// ===== WHO BMI CATEGORY =====
+function getWHOBMICategory(bmi) {
+if (bmi < 18.5) return 'Underweight';
+if (bmi < 25) return 'Normal';
+if (bmi < 30) return 'Overweight';
+return 'Obese';
 }
 
-// Get Health Score
+// ===== VISCERAL FAT RISK (Indian adjusted) =====
+function getVisceralFat(bmi, gender, age, ethnicity) {
+let risk;
+const isIndian = ethnicity === 'asian';
+const threshold = isIndian ? 23 : 25;
+
+if (bmi < threshold - 3) risk = 'Low';
+else if (bmi < threshold) risk = 'Moderate';
+else if (bmi < threshold + 5) risk = 'High';
+else risk = 'Very High';
+
+if (gender === 'male' && bmi > threshold) {
+if (risk === 'Moderate') risk = 'Moderate-High';
+else if (risk === 'High') risk = 'Very High';
+}
+if (age > 45 && bmi > threshold) {
+if (risk === 'Moderate') risk = 'High';
+else if (risk === 'High') risk = 'Very High';
+}
+return risk;
+}
+
+// ===== HEALTH SCORE (Indian adjusted) =====
 function getHealthScore(bmi, age, gender, ethnicity, activity) {
-    let score = 100;
-    
-    // BMI impact
-    if (bmi < 18.5) score -= (18.5 - bmi) * 6;
-    else if (bmi < 22) score += 5;
-    else if (bmi < 25) score += 2;
-    else if (bmi < 27) score -= 10;
-    else if (bmi < 30) score -= 20;
-    else if (bmi < 35) score -= 35;
-    else score -= 50;
-    
-    // Age impact
-    if (age > 60) score -= 15;
-    else if (age > 50) score -= 10;
-    else if (age > 40) score -= 5;
-    else if (age < 30) score += 5;
-    
-    // Gender impact
-    if (gender === 'male' && bmi > 25) score -= 5;
-    
-    // Ethnicity adjustment
-    if (ethnicity === 'asian') {
-        if (bmi > 23) score -= 8;
-        else if (bmi < 23) score += 3;
-    }
-    
-    // Activity level impact
-    switch(activity) {
-        case 'very-active': score += 15; break;
-        case 'active': score += 10; break;
-        case 'moderate': score += 5; break;
-        case 'light': break;
-        case 'sedentary': score -= 10; break;
-    }
-    
-    return Math.max(0, Math.min(100, Math.round(score)));
+let score = 100;
+const isIndian = ethnicity === 'asian';
+
+if (isIndian) {
+if (bmi < 18.5) score -= (18.5 - bmi) * 6;
+else if (bmi < 23) score += 5;
+else if (bmi < 25) score -= 15;
+else if (bmi < 30) score -= 30;
+else score -= 45;
+} else {
+if (bmi < 18.5) score -= (18.5 - bmi) * 6;
+else if (bmi < 22) score += 5;
+else if (bmi < 25) score += 2;
+else if (bmi < 30) score -= 20;
+else score -= 40;
 }
 
-// Get Recommendation
-function getRecommendation(bmi, category, visceralFat, healthScore, age, activity) {
-    if (category === 'Underweight') {
-        return '⚠️ You are underweight. Consider consulting a nutritionist for healthy weight gain strategies. Focus on nutrient-rich foods and strength training.';
-    } else if (category === 'Overweight' || category === 'Obese') {
-        if (visceralFat.includes('High') || visceralFat.includes('Very')) {
-            return '⚠️ High visceral fat detected! This increases risk of heart disease and diabetes. Consider: 30min daily exercise, reduce sugar/processed foods, increase fiber intake, and consult a doctor.';
-        } else {
-            return '📉 Your BMI indicates excess weight. Start with: walking 10,000 steps daily, portion control, reducing sugary drinks, and strength training 2-3x/week.';
-        }
-    } else if (category === 'Normal') {
-        if (healthScore >= 85) {
-            return '✅ Excellent health! Maintain with: balanced diet, regular exercise, good sleep (7-8 hours), and stress management.';
-        } else {
-            return '👍 Good BMI! To improve health score: increase physical activity, eat more vegetables, reduce processed foods, and stay hydrated.';
-        }
-    }
-    return 'Maintain a healthy lifestyle with balanced diet and regular exercise.';
+if (age > 60) score -= 15;
+else if (age > 50) score -= 10;
+else if (age > 40) score -= 5;
+if (gender === 'male' && bmi > (isIndian ? 23 : 25)) score -= 5;
+
+switch(activity) {
+case 'very-active': score += 15; break;
+case 'active': score += 10; break;
+case 'moderate': score += 5; break;
+case 'sedentary': score -= 10; break;
+}
+return Math.max(0, Math.min(100, Math.round(score)));
 }
 
-// Generate BMI by Age Graph
+// ===== RECOMMENDATION (Bilingual) =====
+function getRecommendation(bmi, indianCat, visceralFat, healthScore) {
+const isHindi = currentLang === 'hi';
+
+if (indianCat === 'Underweight') {
+return isHindi 
+? '⚠️ आपका वज़न कम है। पौष्टिक आहार लें और डॉक्टर से सलाह लें।'
+: '⚠️ You are underweight. Consider consulting a nutritionist for healthy weight gain.';
+} else if (indianCat === 'Overweight' || indianCat === 'Obese') {
+if (visceralFat.includes('High') || visceralFat.includes('Very')) {
+return isHindi
+? '⚠️ विसेरल फैट अधिक! हृदय रोग और डायबिटीज़ का खतरा। रोज़ 30 मिनट व्यायाम करें, चीनी कम करें।'
+: '⚠️ High visceral fat! Risk of heart disease & diabetes. Exercise daily, reduce sugar.';
+} else {
+return isHindi
+? '📉 BMI अधिक है। रोज़ 10,000 कदम चलें, हिस्सा नियंत्रित करें, मीठा कम करें।'
+: '📉 BMI indicates excess weight. Walk 10,000 steps daily, portion control, reduce sugar.';
+}
+} else {
+if (healthScore >= 85) {
+return isHindi
+? '✅ बहुत अच्छा स्वास्थ्य! संतुलित आहार और नियमित व्यायाम जारी रखें।'
+: '✅ Excellent health! Maintain balanced diet and regular exercise.';
+} else {
+return isHindi
+? '👍 BMI अच्छा है। अधिक सब्ज़ियां खाएं, प्रोसेस्ड फूड कम करें।'
+: '👍 Good BMI! Eat more vegetables, reduce processed foods.';
+}
+}
+}
+
+// ===== GRAPH GENERATION =====
 function generateAgeGraph(userBMI, userAge) {
-    const container = document.getElementById('graph-container');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    // Age groups and their average BMIs
-    const ageGroups = [20, 30, 40, 50, 60, 70, 80];
-    const avgBMIs = [23.5, 24.5, 25.5, 26.5, 27.0, 27.2, 26.8];
-    
-    const maxHeight = 180;
-    const maxBMI = 35;
-    
-    ageGroups.forEach((age, index) => {
-        const barHeight = (avgBMIs[index] / maxBMI) * maxHeight;
-        
-        const barContainer = document.createElement('div');
-        barContainer.style.cssText = 'display: inline-block; width: 70px; margin-right: 15px; vertical-align: bottom; text-align: center; position: relative; height: 200px;';
-        
-        const bar = document.createElement('div');
-        bar.style.cssText = `width: 50px; background: linear-gradient(to top, #667eea, #764ba2); border-radius: 10px 10px 0 0; transition: height 0.3s; position: absolute; bottom: 25px; left: 10px; height: ${barHeight}px;`;
-        
-        const label = document.createElement('div');
-        label.style.cssText = 'margin-top: 185px; font-size: 0.8em; color: #666;';
-        label.textContent = age + 'y';
-        
-        barContainer.appendChild(bar);
-        barContainer.appendChild(label);
-        container.appendChild(barContainer);
-    });
-    
-    // Find closest age group for user
-    let closestIndex = 0;
-    let minDiff = Math.abs(userAge - ageGroups[0]);
-    for (let i = 1; i < ageGroups.length; i++) {
-        const diff = Math.abs(userAge - ageGroups[i]);
-        if (diff < minDiff) {
-            minDiff = diff;
-            closestIndex = i;
-        }
-    }
-    
-    const avgForAge = avgBMIs[closestIndex];
-    const userBarHeight = (userBMI / maxBMI) * maxHeight;
-    const userX = (closestIndex * 85) + 35;
-    const userY = 200 - userBarHeight;
-    
-    const userIndicator = document.createElement('div');
-    userIndicator.className = 'user-indicator';
-    userIndicator.style.left = userX + 'px';
-    userIndicator.style.bottom = (userBarHeight + 20) + 'px';
-    userIndicator.textContent = 'You';
-    container.appendChild(userIndicator);
-    
-    const comparison = document.getElementById('graph-comparison');
-    if (comparison) {
-        const diff = userBMI - avgForAge;
-        if (diff < -2) {
-            comparison.innerHTML = `✅ <strong>Excellent!</strong> Your BMI (${userBMI}) is significantly BELOW average (${avgForAge.toFixed(1)}) for age ${userAge}. Great job!`;
-        } else if (diff < 0) {
-            comparison.innerHTML = `📉 <strong>Good!</strong> Your BMI (${userBMI}) is below average (${avgForAge.toFixed(1)}) for age ${userAge}. Keep it up!`;
-        } else if (diff < 2) {
-            comparison.innerHTML = `📊 Your BMI (${userBMI}) is close to average (${avgForAge.toFixed(1)}) for age ${userAge}.`;
-        } else if (diff < 5) {
-            comparison.innerHTML = `⚠️ Your BMI (${userBMI}) is above average (${avgForAge.toFixed(1)}) for age ${userAge}. Consider lifestyle improvements.`;
-        } else {
-            comparison.innerHTML = `⚠️ <strong>Attention needed!</strong> Your BMI (${userBMI}) is significantly above average (${avgForAge.toFixed(1)}) for age ${userAge}. Please consult a healthcare provider.`;
-        }
-    }
+const container = document.getElementById('graph-container');
+if (!container) return;
+container.innerHTML = '';
+
+const ageGroups = [20, 30, 40, 50, 60, 70, 80];
+const avgBMIs = [23.5, 24.5, 25.5, 26.5, 27.0, 27.2, 26.8];
+const maxBMI = 35;
+
+ageGroups.forEach((age, index) => {
+const barHeight = (avgBMIs[index] / maxBMI) * 180;
+const barContainer = document.createElement('div');
+barContainer.className = 'age-bar-container';
+
+const bar = document.createElement('div');
+bar.className = 'age-bar';
+bar.style.height = barHeight + 'px';
+
+const label = document.createElement('div');
+label.className = 'age-label';
+label.textContent = age + 'y';
+
+barContainer.appendChild(bar);
+barContainer.appendChild(label);
+container.appendChild(barContainer);
+});
+
+let closestIndex = 0;
+let minDiff = Math.abs(userAge - ageGroups[0]);
+for (let i = 1; i < ageGroups.length; i++) {
+const diff = Math.abs(userAge - ageGroups[i]);
+if (diff < minDiff) { minDiff = diff; closestIndex = i; }
 }
 
-// Main Calculation Function
+const avgForAge = avgBMIs[closestIndex];
+const userBarHeight = (userBMI / maxBMI) * 180;
+const userX = (closestIndex * 85) + 35;
+
+const userIndicator = document.createElement('div');
+userIndicator.className = 'user-indicator';
+userIndicator.style.left = userX + 'px';
+userIndicator.style.bottom = (userBarHeight + 20) + 'px';
+userIndicator.textContent = currentLang === 'hi' ? 'आप' : 'You';
+container.appendChild(userIndicator);
+
+const comparison = document.getElementById('graph-comparison');
+const diff = userBMI - avgForAge;
+if (diff < -2) {
+comparison.innerHTML = currentLang === 'hi'
+? `✅ <strong>बहुत अच्छा!</strong> आपका BMI (${userBMI}) उम्र ${userAge} के औसत (${avgForAge.toFixed(1)}) से काफी कम है।`
+: `✅ <strong>Excellent!</strong> Your BMI (${userBMI}) is significantly BELOW average (${avgForAge.toFixed(1)}) for age ${userAge}.`;
+} else if (diff < 0) {
+comparison.innerHTML = currentLang === 'hi'
+? `📉 <strong>अच्छा!</strong> आपका BMI (${userBMI}) उम्र ${userAge} के औसत (${avgForAge.toFixed(1)}) से कम है।`
+: `📉 <strong>Good!</strong> Your BMI (${userBMI}) is below average (${avgForAge.toFixed(1)}) for age ${userAge}.`;
+} else if (diff < 2) {
+comparison.innerHTML = currentLang === 'hi'
+? `📊 आपका BMI (${userBMI}) उम्र ${userAge} के औसत (${avgForAge.toFixed(1)}) के करीब है।`
+: `📊 Your BMI (${userBMI}) is close to average (${avgForAge.toFixed(1)}) for age ${userAge}.`;
+} else if (diff < 5) {
+comparison.innerHTML = currentLang === 'hi'
+? `⚠️ आपका BMI (${userBMI}) उम्र ${userAge} के औसत (${avgForAge.toFixed(1)}) से अधिक है। जीवनशैली में सुधार करें।`
+: `⚠️ Your BMI (${userBMI}) is above average (${avgForAge.toFixed(1)}) for age ${userAge}.`;
+} else {
+comparison.innerHTML = currentLang === 'hi'
+? `⚠️ <strong>ध्यान दें!</strong> आपका BMI (${userBMI}) उम्र ${userAge} के औसत से बहुत अधिक है। डॉक्टर से सलाह लें।`
+: `⚠️ <strong>Attention needed!</strong> Your BMI (${userBMI}) is significantly above average. Consult a doctor.`;
+}
+}
+
+// ===== MAIN CALCULATION =====
 function calculateBMI() {
-    const unit = currentUnit;
-    const age = parseInt(document.getElementById('age').value) || 30;
-    const gender = document.getElementById('gender').value;
-    const ethnicity = document.getElementById('ethnicity').value;
-    const activity = document.getElementById('activity').value;
-    
-    let weight, height, bmi;
-    
-    if (unit === 'metric') {
-        weight = parseFloat(document.getElementById('weight-kg').value);
-        height = parseFloat(document.getElementById('height-cm').value) / 100;
-        
-        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-            alert('Please enter valid weight and height');
-            return;
-        }
-        bmi = weight / (height * height);
-    } else {
-        weight = parseFloat(document.getElementById('weight-lbs').value);
-        height = parseFloat(document.getElementById('height-in').value) * 0.0254;
-        
-        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-            alert('Please enter valid weight and height');
-            return;
-        }
-        bmi = (weight / 2.205) / (height * height);
-    }
-    
-    // Round BMI to 1 decimal
-    bmi = Math.round(bmi * 10) / 10;
-    
-    // Get category
-    const category = getBMICategory(bmi);
-    
-    // Get visceral fat risk
-    const visceralFat = getVisceralFat(bmi, gender, age);
-    
-    // Ethnicity adjusted BMI
-    let adjustedBMI = bmi;
-    let adjustmentText = '';
-    if (ethnicity === 'asian') {
-        adjustedBMI = bmi * 1.08;
-        adjustmentText = ' (Asian: +8% risk adjustment)';
-    } else if (ethnicity === 'african') {
-        adjustedBMI = bmi * 0.97;
-        adjustmentText = ' (African: -3% due to muscle mass)';
-    }
-    adjustedBMI = Math.round(adjustedBMI * 10) / 10;
-    
-    // Get health score
-    const healthScore = getHealthScore(bmi, age, gender, ethnicity, activity);
-    
-    // Get recommendation
-    const recommendation = getRecommendation(bmi, category, visceralFat, healthScore, age, activity);
-    
-    // Update DOM
-    document.getElementById('bmi-display').textContent = bmi.toFixed(1);
-    document.getElementById('bmi-category').textContent = category;
-    document.getElementById('visceral-fat').textContent = visceralFat;
-    document.getElementById('adjusted-bmi').textContent = adjustedBMI.toFixed(1) + adjustmentText;
-    document.getElementById('health-score').textContent = healthScore;
-    
-    // Update recommendation box style
-    const recBox = document.getElementById('recommendation-box');
-    recBox.className = 'recommendation-box';
-    if (category === 'Obese' || visceralFat.includes('Very')) {
-        recBox.classList.add('danger');
-    } else if (category === 'Overweight' || visceralFat.includes('High')) {
-        recBox.classList.add('warning');
-    }
-    document.getElementById('recommendation-text').textContent = recommendation;
-    
-    // Update BMI marker position
-    const marker = document.getElementById('bmi-marker');
-    let leftPosition;
-    if (bmi < 18.5) leftPosition = (bmi / 18.5) * 25;
-    else if (bmi < 25) leftPosition = 25 + ((bmi - 18.5) / 6.5) * 25;
-    else if (bmi < 30) leftPosition = 50 + ((bmi - 25) / 5) * 25;
-    else leftPosition = 75 + Math.min((bmi - 30) / 15, 1) * 25;
-    leftPosition = Math.min(98, Math.max(2, leftPosition));
-    marker.style.left = leftPosition + '%';
-    
-    // Generate graph
-    generateAgeGraph(bmi, age);
+const unit = currentUnit;
+const age = parseInt(document.getElementById('age').value) || 30;
+const gender = document.getElementById('gender').value;
+const ethnicity = document.getElementById('ethnicity').value;
+const activity = document.getElementById('activity').value;
+
+let weight, height, bmi;
+
+if (unit === 'metric') {
+weight = parseFloat(document.getElementById('weight-kg').value);
+height = parseFloat(document.getElementById('height-cm').value) / 100;
+if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+alert(currentLang === 'hi' ? 'कृपया सही वज़न और ऊंचाई दर्ज करें' : 'Please enter valid weight and height');
+return;
+}
+bmi = weight / (height * height);
+} else {
+weight = parseFloat(document.getElementById('weight-lbs').value);
+height = parseFloat(document.getElementById('height-in').value) * 0.0254;
+if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+alert(currentLang === 'hi' ? 'कृपया सही वज़न और ऊंचाई दर्ज करें' : 'Please enter valid weight and height');
+return;
+}
+bmi = (weight / 2.205) / (height * height);
 }
 
-// Auto-save to localStorage and load on page load
+bmi = Math.round(bmi * 10) / 10;
+
+const whoCategory = getWHOBMICategory(bmi);
+const indianCategory = getIndianBMICategory(bmi);
+const visceralFat = getVisceralFat(bmi, gender, age, ethnicity);
+const healthScore = getHealthScore(bmi, age, gender, ethnicity, activity);
+const recommendation = getRecommendation(bmi, indianCategory, visceralFat, healthScore);
+
+// Update DOM
+document.getElementById('bmi-display').textContent = bmi.toFixed(1);
+document.getElementById('bmi-category').textContent = whoCategory;
+document.getElementById('indian-category').textContent = indianCategory;
+document.getElementById('visceral-fat').textContent = visceralFat;
+document.getElementById('health-score').textContent = healthScore;
+
+// Update recommendation box
+const recBox = document.getElementById('recommendation-box');
+recBox.className = 'recommendation-box';
+if (indianCategory === 'Obese' || visceralFat.includes('Very')) {
+recBox.classList.add('danger');
+} else if (indianCategory === 'Overweight' || visceralFat.includes('High')) {
+recBox.classList.add('warning');
+}
+document.getElementById('recommendation-text').textContent = recommendation;
+
+// Update BMI marker
+const marker = document.getElementById('bmi-marker');
+let leftPosition;
+if (bmi < 18.5) leftPosition = (bmi / 18.5) * 25;
+else if (bmi < 25) leftPosition = 25 + ((bmi - 18.5) / 6.5) * 25;
+else if (bmi < 30) leftPosition = 50 + ((bmi - 25) / 5) * 25;
+else leftPosition = 75 + Math.min((bmi - 30) / 15, 1) * 25;
+leftPosition = Math.min(98, Math.max(2, leftPosition));
+marker.style.left = leftPosition + '%';
+
+generateAgeGraph(bmi, age);
+saveToLocalStorage();
+}
+
+// ===== LOCAL STORAGE =====
 function saveToLocalStorage() {
-    const data = {
-        weightKg: document.getElementById('weight-kg').value,
-        heightCm: document.getElementById('height-cm').value,
-        weightLbs: document.getElementById('weight-lbs').value,
-        heightIn: document.getElementById('height-in').value,
-        age: document.getElementById('age').value,
-        gender: document.getElementById('gender').value,
-        ethnicity: document.getElementById('ethnicity').value,
-        activity: document.getElementById('activity').value,
-        unit: currentUnit
-    };
-    localStorage.setItem('bmiCalculatorData', JSON.stringify(data));
+const data = {
+weightKg: document.getElementById('weight-kg').value,
+heightCm: document.getElementById('height-cm').value,
+weightLbs: document.getElementById('weight-lbs').value,
+heightIn: document.getElementById('height-in').value,
+age: document.getElementById('age').value,
+gender: document.getElementById('gender').value,
+ethnicity: document.getElementById('ethnicity').value,
+activity: document.getElementById('activity').value,
+unit: currentUnit,
+lang: currentLang
+};
+localStorage.setItem('bmiCalculatorData', JSON.stringify(data));
 }
 
 function loadFromLocalStorage() {
-    const saved = localStorage.getItem('bmiCalculatorData');
-    if (saved) {
-        const data = JSON.parse(saved);
-        document.getElementById('weight-kg').value = data.weightKg || '70';
-        document.getElementById('height-cm').value = data.heightCm || '170';
-        document.getElementById('weight-lbs').value = data.weightLbs || '154';
-        document.getElementById('height-in').value = data.heightIn || '67';
-        document.getElementById('age').value = data.age || '30';
-        document.getElementById('gender').value = data.gender || 'female';
-        document.getElementById('ethnicity').value = data.ethnicity || 'caucasian';
-        document.getElementById('activity').value = data.activity || 'light';
-        if (data.unit) setUnit(data.unit);
-        else setUnit('metric');
-    }
-    calculateBMI();
+const saved = localStorage.getItem('bmiCalculatorData');
+if (saved) {
+const data = JSON.parse(saved);
+document.getElementById('weight-kg').value = data.weightKg || '70';
+document.getElementById('height-cm').value = data.heightCm || '170';
+document.getElementById('weight-lbs').value = data.weightLbs || '154';
+document.getElementById('height-in').value = data.heightIn || '67';
+document.getElementById('age').value = data.age || '30';
+document.getElementById('gender').value = data.gender || 'female';
+document.getElementById('ethnicity').value = data.ethnicity || 'asian';
+document.getElementById('activity').value = data.activity || 'light';
+if (data.unit) setUnit(data.unit);
+if (data.lang) setLanguage(data.lang);
+}
+calculateBMI();
 }
 
-// Auto-save on input changes
+// Event Listeners
+document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
+document.getElementById('langHI').addEventListener('click', () => setLanguage('hi'));
+
 const inputs = ['weight-kg', 'height-cm', 'weight-lbs', 'height-in', 'age', 'gender', 'ethnicity', 'activity'];
 inputs.forEach(id => {
-    const element = document.getElementById(id);
-    if (element) element.addEventListener('change', () => { saveToLocalStorage(); calculateBMI(); });
+const el = document.getElementById(id);
+if (el) el.addEventListener('change', () => { saveToLocalStorage(); calculateBMI(); });
 });
 
-// Initialize on page load
-window.onload = function() {
-    loadFromLocalStorage();
-};
+window.onload = loadFromLocalStorage;
 </script>
 </body>
 </html>
