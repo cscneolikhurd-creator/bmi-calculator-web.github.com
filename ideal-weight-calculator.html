@@ -1,171 +1,545 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ideal Weight Calculator: Frame Size & Goal Projection · HealthCalc</title>
-<meta name="description" content="Most accurate ideal weight calculator with body frame size, Peterson formula, and 3-month goal projection. 100% private.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<!-- Primary SEO Meta (Global + Indian) -->
+<title>Ideal Weight Calculator: Frame Size & Indian Standards | HealthCalc</title>
+<meta name="description" content="Most accurate ideal weight calculator with body frame size, Peterson formula & Indian adjustments. 3-month goal projection. Hindi/English support.">
+<meta name="keywords" content="ideal weight calculator, body frame size, Indian ideal weight, Peterson formula, weight goal projection, आदर्श वज़न कैलकुलेटर">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://healthcalc.in/ideal-weight-calculator">
+<meta property="og:title" content="Ideal Weight Calculator with Indian Standards | HealthCalc">
+<meta property="og:description" content="Find your ideal weight with frame size and Indian body type adjustment.">
+<meta property="og:image" content="https://healthcalc.in/assets/ideal-weight-og.jpg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "HealthTopicContent",
+"name": "Ideal Weight Calculator with Indian Standards",
+"description": "Calculate ideal weight using Peterson formula with Indian body frame adjustments",
+"url": "https://healthcalc.in/ideal-weight-calculator",
+"inLanguage": ["en", "hi"]
+}
+</script>
+
+<!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+--primary: #1d3d5c;
+--primary-light: #2a5a7a;
+--indian-saffron: #FF9933;
+--indian-green: #138808;
+}
+
 body { font-family: 'Inter', sans-serif; background: #f9fbfd; color: #1a2e3f; padding: 1.5rem 1rem; }
-.container { max-width: 1200px; margin: 0 auto; }
+.container { max-width: 1300px; margin: 0 auto; }
+
+/* Language Toggle */
+.lang-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.lang-btn { background: white; border: 2px solid #e2eaf2; padding: 10px 25px; border-radius: 50px; color: #333; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+.lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 5px 15px rgba(29,61,92,0.3); }
+.lang-btn i { font-size: 1.2em; }
+
+/* Unit Toggle */
+.unit-toggle { display: flex; gap: 10px; background: #e7edf4; padding: 5px; border-radius: 50px; margin: 20px 0; }
+.unit-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; color: #555; }
+.unit-btn.active { background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(29,61,92,0.2); }
+
 .tool-header { text-align: center; margin-bottom: 2rem; }
-.tool-header h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(145deg, #0B2A4A 0%, #1B4A6B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.tool-header h1 { font-size: 2.2rem; font-weight: 700; background: linear-gradient(145deg, #0B2A4A 0%, #1B4A6B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.tool-header h1 span { background: var(--primary); color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; -webkit-text-fill-color: white; }
+
 .badge-container { display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
 .badge { background: #e7edf4; padding: 0.4rem 1rem; border-radius: 40px; font-size: 0.85rem; font-weight: 500; }
+.badge.indian-badge { background: linear-gradient(135deg, var(--indian-saffron), #FFB74D); color: #333; }
+
 .calculator-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 1.8rem; margin-top: 1.5rem; }
 @media (max-width:850px){ .calculator-grid { grid-template-columns: 1fr; } }
+
 .input-panel, .result-panel { background: white; border-radius: 32px; padding: 1.8rem 1.5rem; box-shadow: 0 15px 40px -12px rgba(0,32,64,0.12); border: 1px solid #eef3f8; }
 .panel-title { font-weight: 600; font-size: 1.3rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+
 .input-group { margin-bottom: 1.25rem; }
 .input-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
 .input-row label { font-weight: 500; display: flex; align-items: center; gap: 0.4rem; }
 .value-badge { background: #eaf1f9; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; color: #105e5a; }
+
 input[type=range] { width: 100%; height: 6px; background: #dbe4ed; border-radius: 10px; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: #1b8c87; border-radius: 20px; cursor: pointer; border: 2px solid white; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--primary); border-radius: 20px; cursor: pointer; border: 2px solid white; }
+
 select, .mini-input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #e2eaf2; border-radius: 20px; font-family: 'Inter'; }
 .double-input { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+.input-with-unit { display: flex; align-items: center; background: white; border: 1.5px solid #e2eaf2; border-radius: 20px; padding: 0 10px; }
+.input-with-unit input { border: none; padding: 0.7rem 0; flex: 1; outline: none; }
+.input-with-unit .unit-label { color: #666; padding-left: 10px; border-left: 1px solid #e2eaf2; }
+
+/* Indian Frame Note */
+.indian-note { background: linear-gradient(135deg, #FFF8E1, #FFECB3); padding: 15px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--indian-saffron); }
+.indian-note i { color: var(--indian-saffron); margin-right: 8px; }
+
+.frame-guide { display: flex; gap: 0.5rem; margin: 1rem 0; }
+.frame-option { flex: 1; padding: 0.7rem; border: 2px solid #d9e3ee; border-radius: 40px; text-align: center; cursor: pointer; }
+.frame-option.active { background: var(--primary); color: white; border-color: var(--primary); }
+
 .result-card { background: #f3f9fc; border-radius: 28px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
 .big-number { font-size: 3.5rem; font-weight: 800; color: #003153; }
 .range-badge { display: inline-block; background: #e2f0f2; padding: 0.4rem 1.2rem; border-radius: 40px; margin: 1rem 0; }
-.frame-guide { display: flex; gap: 0.5rem; margin: 1rem 0; }
-.frame-option { flex: 1; padding: 0.7rem; border: 2px solid #d9e3ee; border-radius: 40px; text-align: center; cursor: pointer; }
-.frame-option.active { background: #1d3d5c; color: white; border-color: #1d3d5c; }
-.btn-primary { background: #1d3d5c; border: none; padding: 1rem 2rem; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; width: 100%; }
+
+/* Indian Tips Card */
+.indian-tips-card { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); border-radius: 20px; padding: 1.5rem; margin: 1.5rem 0; border-left: 4px solid var(--indian-green); }
+.indian-tips-card h4 { color: #1B5E20; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.indian-tips-card ul { list-style: none; padding-left: 0; }
+.indian-tips-card li { padding: 8px 0; border-bottom: 1px dashed #A5D6A7; display: flex; align-items: center; gap: 10px; }
+.indian-tips-card li i { color: var(--indian-green); width: 20px; }
+
+/* Future Plan Section */
+.future-plan-section { grid-column: span 2; background: linear-gradient(135deg, #E8EAF6, #C5CAE9); border-radius: 20px; padding: 25px; margin: 20px 0; border: 2px dashed var(--primary); }
+.future-plan-section h3 { color: #1A237E; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+.future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
+.future-feature:hover { transform: translateY(-5px); }
+.future-feature i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+.future-feature h5 { color: #1A237E; margin-bottom: 8px; font-size: 1rem; }
+.coming-soon { background: #FF9800; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-top: 10px; }
+
+.btn-primary { background: var(--primary); border: none; padding: 1rem 2rem; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.3s; }
+.btn-primary:hover { background: var(--primary-light); transform: translateY(-2px); }
+.reset-btn { margin-top: 10px; padding: 10px; background: #e0e4ff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em; width: 100%; }
+
 .disclaimer { font-size:0.75rem; color:#6a7e94; margin-top:1rem; text-align:center; }
+
+/* FAQ Section */
+.faq-section { margin-top: 3rem; background: white; border-radius: 32px; padding: 2rem; }
+.faq-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 2rem; }
+@media (max-width:700px){ .faq-grid { grid-template-columns:1fr; } }
+.faq-item { background: #f3f9fc; border-radius: 24px; padding: 1.2rem; }
+.faq-question { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
 </style>
 </head>
 <body>
 <div class="container">
+<!-- Language Toggle -->
+<div class="lang-toggle">
+<button class="lang-btn active" data-lang="en" id="langEN"><i>🇬🇧</i> English</button>
+<button class="lang-btn" data-lang="hi" id="langHI"><i>🇮🇳</i> हिंदी</button>
+</div>
+
 <div class="tool-header">
-<h1>⚖️ Ideal Weight · Body Frame Calculator</h1>
-<p>Peterson formula + frame size adjustment — most accurate ideal weight range</p>
+<h1>
+⚖️ Ideal Weight Calculator
+<span id="headerSubtitle">Indian Frame Adjusted</span>
+</h1>
+<p id="headerDesc">Peterson formula + frame size adjustment — most accurate ideal weight range for Indian body types</p>
 <div class="badge-container">
-<span class="badge"><i class="fas fa-shield-alt"></i> 100% private</span>
-<span class="badge"><i class="fas fa-chart-line"></i> 3-month projection</span>
-<span class="badge"><i class="fas fa-arrows-alt"></i> body frame size</span>
+<span class="badge"><i class="fas fa-shield-alt"></i> 100% Private</span>
+<span class="badge indian-badge"><i class="fas fa-flag"></i> Indian Adjusted</span>
+<span class="badge"><i class="fas fa-chart-line"></i> 3-Month Projection</span>
+<span class="badge"><i class="fas fa-arrows-alt"></i> Body Frame Size</span>
 </div>
 </div>
 
 <div class="calculator-grid">
-<!-- Inputs -->
+<!-- Input Panel -->
 <div class="input-panel">
-<div class="panel-title"><i class="fas fa-sliders-h"></i> Your details</div>
+<div class="panel-title"><i class="fas fa-sliders-h"></i> <span id="detailsTitle">Your Details</span></div>
+
+<!-- Unit Toggle -->
+<div class="unit-toggle">
+<button class="unit-btn active" data-unit="metric" onclick="setUnit('metric')">🌏 Metric (cm/kg)</button>
+<button class="unit-btn" data-unit="imperial" onclick="setUnit('imperial')">🌎 Imperial (ft/lbs)</button>
+</div>
 
 <div class="input-group">
-<label>Gender</label>
+<label id="genderLabel">Gender</label>
 <select id="gender">
-<option value="male">Male</option>
-<option value="female" selected>Female</option>
+<option value="male" id="maleOpt">Male</option>
+<option value="female" id="femaleOpt" selected>Female</option>
 </select>
 </div>
 
 <div class="input-group">
 <div class="input-row">
-<label>Height</label>
+<label id="heightLabel">Height</label>
 <span class="value-badge" id="heightVal">170 cm</span>
 </div>
-<input type="range" id="height" min="140" max="210" value="170" step="1">
+<input type="range" id="heightSlider" min="140" max="210" value="170" step="1">
 <div style="display:flex; justify-content:space-between; margin-top:0.3rem;">
-<span>140 cm</span><span>210 cm</span>
+<span id="heightMin">140 cm</span><span id="heightMax">210 cm</span>
 </div>
 </div>
 
 <div class="input-group">
-<label>Current Weight (kg)</label>
-<input type="number" id="currentWeight" class="mini-input" value="75" min="30" max="200">
+<label id="weightLabel">Current Weight (<span id="weightUnit">kg</span>)</label>
+<div class="input-with-unit">
+<input type="number" id="currentWeight" value="75" min="30" max="200">
+<span class="unit-label" id="weightUnitDisplay">kg</span>
+</div>
 </div>
 
 <div class="input-group">
-<label>Body Frame Size</label>
+<label id="frameLabel">Body Frame Size</label>
 <div class="frame-guide" id="frameSelector">
-<div class="frame-option active" data-frame="small">Small</div>
-<div class="frame-option" data-frame="medium">Medium</div>
-<div class="frame-option" data-frame="large">Large</div>
+<div class="frame-option active" data-frame="small" id="smallFrame">Small</div>
+<div class="frame-option" data-frame="medium" id="mediumFrame">Medium</div>
+<div class="frame-option" data-frame="large" id="largeFrame">Large</div>
 </div>
-<small style="color:#6a7e94;">Measure wrist circumference or estimate</small>
+<small style="color:#6a7e94;" id="frameHint">Measure wrist circumference or use thumb-middle finger test</small>
+</div>
+
+<!-- Indian Frame Note -->
+<div class="indian-note" id="indianNote">
+<i class="fas fa-info-circle"></i> 
+<span id="indianNoteText">🇮🇳 Indians typically have smaller frames. For same height, ideal weight is 3-5% lower than Western standards.</span>
 </div>
 
 <div class="input-group">
 <div class="input-row">
-<label>Activity Level</label>
+<label id="activityLabel">Activity Level</label>
 <span class="value-badge" id="activityVal">Moderate</span>
 </div>
 <select id="activity">
-<option value="1.2">Sedentary (office job)</option>
-<option value="1.375">Light (1-3 days/week)</option>
-<option value="1.55" selected>Moderate (3-5 days/week)</option>
-<option value="1.725">Active (6-7 days/week)</option>
-<option value="1.9">Athlete (2x/day)</option>
+<option value="1.2" id="sedentary">Sedentary (office job)</option>
+<option value="1.375" id="light">Light (1-3 days/week)</option>
+<option value="1.55" id="moderate" selected>Moderate (3-5 days/week)</option>
+<option value="1.725" id="active">Active (6-7 days/week)</option>
+<option value="1.9" id="athlete">Athlete (2x/day)</option>
 </select>
 </div>
 
 <div class="input-group">
-<label>Goal Weight (optional)</label>
-<input type="number" id="goalWeight" class="mini-input" placeholder="kg" value="70">
+<label id="goalLabel">Goal Weight (<span id="goalWeightUnit">kg</span>)</label>
+<div class="input-with-unit">
+<input type="number" id="goalWeight" value="70">
+<span class="unit-label" id="goalWeightUnitDisplay">kg</span>
 </div>
 </div>
 
-<!-- Results -->
+<button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
+</div>
+
+<!-- Results Panel -->
 <div class="result-panel">
 <div class="result-card">
-<div style="font-size:1.1rem; color:#41647c;">Your ideal weight range</div>
+<div style="font-size:1.1rem; color:#41647c;" id="idealRangeLabel">Your ideal weight range</div>
 <div class="big-number" id="idealWeight">62.5 - 71.2</div>
 <div class="range-badge" id="frameText">Medium frame: 66.8 kg (ideal)</div>
 </div>
 
 <div style="background:#f0f6fd; border-radius:28px; padding:1.2rem; margin-bottom:1.5rem;">
-<h4>📊 Peterson formula estimate</h4>
+<h4 id="formulasTitle">📊 Peterson formula & comparisons</h4>
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
-<div>
-<div style="font-size:0.9rem;">Miller (1983)</div>
-<strong id="miller">68.2 kg</strong>
-</div>
-<div>
-<div style="font-size:0.9rem;">Robinson (1983)</div>
-<strong id="robinson">66.5 kg</strong>
-</div>
-<div>
-<div style="font-size:0.9rem;">Devine (1974)</div>
-<strong id="devine">67.8 kg</strong>
-</div>
-<div>
-<div style="font-size:0.9rem;">Peterson (2016)</div>
-<strong id="peterson">66.2 kg</strong>
+<div><div style="font-size:0.9rem;">Miller (1983)</div><strong id="miller">68.2 kg</strong></div>
+<div><div style="font-size:0.9rem;">Robinson (1983)</div><strong id="robinson">66.5 kg</strong></div>
+<div><div style="font-size:0.9rem;">Devine (1974)</div><strong id="devine">67.8 kg</strong></div>
+<div><div style="font-size:0.9rem;">Peterson (2016)</div><strong id="peterson">66.2 kg</strong></div>
 </div>
 </div>
+
+<!-- Indian Tips Card -->
+<div class="indian-tips-card" id="indianTipsBox">
+<h4><i class="fas fa-heart"></i> <span id="tipsTitle">🇮🇳 Indian Weight Management Tips</span></h4>
+<ul id="tipsList">
+<li id="tip1"><i class="fas fa-check-circle"></i> Aim for BMI 18.5-22.9 (Indian healthy range)</li>
+<li id="tip2"><i class="fas fa-check-circle"></i> Include protein in every meal (dal, sprouts, paneer)</li>
+<li id="tip3"><i class="fas fa-check-circle"></i> Practice Surya Namaskar for full-body workout</li>
+<li id="tip4"><i class="fas fa-check-circle"></i> Replace refined flour (maida) with whole wheat (atta)</li>
+</ul>
 </div>
 
 <div id="goalProjection" style="background:#dff2f0; border-radius:28px; padding:1.2rem; margin-bottom:1.5rem;">
-🎯 <strong>Goal projection:</strong> At your current activity, reaching 70 kg may take <span id="weeksToGoal">8.2 weeks</span>
+🎯 <span id="projectionText"><strong>Goal projection:</strong> At your current activity, reaching <span id="targetWeightDisplay">70 kg</span> may take <span id="weeksToGoal">8.2 weeks</span></span>
 </div>
 
-<div style="font-size:0.9rem; margin:1rem 0;">
+<div style="font-size:0.9rem; margin:1rem 0;" id="frameGuide">
 <i class="fas fa-ruler"></i> <strong>How to measure frame size:</strong> Wrap thumb & middle finger around opposite wrist. If they overlap = small, touch = medium, don't touch = large.
 </div>
 
-<button class="btn-primary" onclick="window.print()"><i class="fas fa-download"></i> Download PDF</button>
-<div class="disclaimer">Estimate based on multiple formulas. Always consult professional.</div>
+<button class="btn-primary" onclick="window.print()"><i class="fas fa-download"></i> <span id="pdfBtn">Download PDF</span></button>
+<div class="disclaimer" id="disclaimerText">Estimate based on multiple formulas. Always consult professional.</div>
+</div>
+
+<!-- Future Plan Section -->
+<div class="future-plan-section">
+<h3><i class="fas fa-rocket"></i> 🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
+<div class="future-features-grid">
+<div class="future-feature">
+<i class="fas fa-calculator"></i>
+<h5 id="future1">Wrist Measurement Input</h5>
+<span class="coming-soon">Coming Jan 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-utensils"></i>
+<h5 id="future2">Indian Meal Plan</h5>
+<span class="coming-soon">Coming Feb 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-chart-line"></i>
+<h5 id="future3">Weekly Progress Tracker</h5>
+<span class="coming-soon">Coming March 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-dumbbell"></i>
+<h5 id="future4">Workout Generator</h5>
+<span class="coming-soon">Coming April 2027</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+<h2 style="font-size:1.8rem;" id="faqTitle">Frequently Asked Questions</h2>
+<div class="faq-grid">
+<div class="faq-item">
+<div class="faq-question" id="faq1Q">What is Peterson formula?</div>
+<p id="faq1A">Most accurate ideal weight formula (2016), more precise than older Devine/Robinson formulas.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question" id="faq2Q">Why Indian adjustment?</div>
+<p id="faq2A">Indians have higher body fat % at same BMI. Ideal weight is 3-5% lower than Western standards.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question" id="faq3Q">How to measure frame size?</div>
+<p id="faq3A">Wrap thumb & middle finger around wrist. Overlap=small, touch=medium, gap=large.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question" id="faq4Q">How accurate is projection?</div>
+<p id="faq4A">Based on 7700 kcal = 1 kg. Actual results vary by metabolism and diet adherence.</p>
+</div>
 </div>
 </div>
 </div>
 
 <script>
 (function(){
+// ===== GLOBAL STATE =====
+let currentUnit = 'metric';
+let currentLang = 'en';
+let frame = 'medium';
+
+// ===== TRANSLATIONS =====
+const translations = {
+en: {
+headerSubtitle: 'Indian Frame Adjusted',
+headerDesc: 'Peterson formula + frame size adjustment — most accurate ideal weight range for Indian body types',
+detailsTitle: 'Your Details',
+genderLabel: 'Gender',
+maleOpt: 'Male',
+femaleOpt: 'Female',
+heightLabel: 'Height',
+heightMin: '140 cm',
+heightMax: '210 cm',
+weightLabel: 'Current Weight',
+frameLabel: 'Body Frame Size',
+smallFrame: 'Small',
+mediumFrame: 'Medium',
+largeFrame: 'Large',
+frameHint: 'Measure wrist circumference or use thumb-middle finger test',
+indianNoteText: '🇮🇳 Indians typically have smaller frames. For same height, ideal weight is 3-5% lower than Western standards.',
+activityLabel: 'Activity Level',
+sedentary: 'Sedentary (office job)',
+light: 'Light (1-3 days/week)',
+moderate: 'Moderate (3-5 days/week)',
+active: 'Active (6-7 days/week)',
+athlete: 'Athlete (2x/day)',
+goalLabel: 'Goal Weight',
+resetBtn: 'Reset All Fields',
+idealRangeLabel: 'Your ideal weight range',
+formulasTitle: '📊 Peterson formula & comparisons',
+tipsTitle: '🇮🇳 Indian Weight Management Tips',
+tip1: 'Aim for BMI 18.5-22.9 (Indian healthy range)',
+tip2: 'Include protein in every meal (dal, sprouts, paneer)',
+tip3: 'Practice Surya Namaskar for full-body workout',
+tip4: 'Replace refined flour (maida) with whole wheat (atta)',
+frameGuide: '<i class="fas fa-ruler"></i> <strong>How to measure frame size:</strong> Wrap thumb & middle finger around opposite wrist. If they overlap = small, touch = medium, don\'t touch = large.',
+pdfBtn: 'Download PDF',
+disclaimerText: 'Estimate based on multiple formulas. Always consult professional.',
+futureTitle: 'Coming Soon: Future Features',
+future1: 'Wrist Measurement Input',
+future2: 'Indian Meal Plan',
+future3: 'Weekly Progress Tracker',
+future4: 'Workout Generator',
+faqTitle: 'Frequently Asked Questions',
+faq1Q: 'What is Peterson formula?',
+faq1A: 'Most accurate ideal weight formula (2016), more precise than older Devine/Robinson formulas.',
+faq2Q: 'Why Indian adjustment?',
+faq2A: 'Indians have higher body fat % at same BMI. Ideal weight is 3-5% lower than Western standards.',
+faq3Q: 'How to measure frame size?',
+faq3A: 'Wrap thumb & middle finger around wrist. Overlap=small, touch=medium, gap=large.',
+faq4Q: 'How accurate is projection?',
+faq4A: 'Based on 7700 kcal = 1 kg. Actual results vary by metabolism and diet adherence.'
+},
+hi: {
+headerSubtitle: 'भारतीय फ्रेम समायोजित',
+headerDesc: 'पीटरसन फॉर्मूला + फ्रेम साइज समायोजन — भारतीय शरीर के लिए सबसे सटीक आदर्श वज़न',
+detailsTitle: 'आपकी जानकारी',
+genderLabel: 'लिंग',
+maleOpt: 'पुरुष',
+femaleOpt: 'महिला',
+heightLabel: 'ऊंचाई',
+heightMin: '140 सेमी',
+heightMax: '210 सेमी',
+weightLabel: 'वर्तमान वज़न',
+frameLabel: 'शारीरिक फ्रेम साइज',
+smallFrame: 'छोटा',
+mediumFrame: 'मध्यम',
+largeFrame: 'बड़ा',
+frameHint: 'कलाई की परिधि मापें या अंगूठा-मध्यमा उंगली परीक्षण करें',
+indianNoteText: '🇮🇳 भारतीयों का फ्रेम छोटा होता है। समान ऊंचाई के लिए आदर्श वज़न पश्चिमी मानकों से 3-5% कम होता है।',
+activityLabel: 'गतिविधि स्तर',
+sedentary: 'निष्क्रिय (ऑफिस जॉब)',
+light: 'हल्का (सप्ताह में 1-3 दिन)',
+moderate: 'मध्यम (सप्ताह में 3-5 दिन)',
+active: 'सक्रिय (सप्ताह में 6-7 दिन)',
+athlete: 'एथलीट (दिन में 2 बार)',
+goalLabel: 'लक्ष्य वज़न',
+resetBtn: 'सभी रीसेट करें',
+idealRangeLabel: 'आपका आदर्श वज़न सीमा',
+formulasTitle: '📊 पीटरसन फॉर्मूला और तुलना',
+tipsTitle: '🇮🇳 भारतीय वज़न प्रबंधन सुझाव',
+tip1: 'BMI 18.5-22.9 का लक्ष्य रखें (भारतीय स्वस्थ सीमा)',
+tip2: 'हर भोजन में प्रोटीन शामिल करें (दाल, स्प्राउट्स, पनीर)',
+tip3: 'पूरे शरीर की कसरत के लिए सूर्य नमस्कार करें',
+tip4: 'मैदा की जगह गेहूं का आटा उपयोग करें',
+frameGuide: '<i class="fas fa-ruler"></i> <strong>फ्रेम साइज कैसे मापें:</strong> अंगूठा और मध्यमा उंगली को दूसरी कलाई पर लपेटें। ओवरलैप = छोटा, स्पर्श = मध्यम, गैप = बड़ा।',
+pdfBtn: 'PDF डाउनलोड करें',
+disclaimerText: 'विभिन्न फॉर्मूलों पर आधारित अनुमान। हमेशा विशेषज्ञ से सलाह लें।',
+futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
+future1: 'कलाई माप इनपुट',
+future2: 'भारतीय भोजन योजना',
+future3: 'साप्ताहिक प्रगति ट्रैकर',
+future4: 'वर्कआउट जेनरेटर',
+faqTitle: 'अक्सर पूछे जाने वाले प्रश्न',
+faq1Q: 'पीटरसन फॉर्मूला क्या है?',
+faq1A: 'सबसे सटीक आदर्श वज़न फॉर्मूला (2016), पुराने डिवाइन/रॉबिन्सन से अधिक सटीक।',
+faq2Q: 'भारतीय समायोजन क्यों?',
+faq2A: 'भारतीयों में समान BMI पर बॉडी फैट % अधिक होता है। आदर्श वज़न पश्चिमी मानकों से 3-5% कम।',
+faq3Q: 'फ्रेम साइज कैसे मापें?',
+faq3A: 'अंगूठा और मध्यमा उंगली को कलाई पर लपेटें। ओवरलैप=छोटा, स्पर्श=मध्यम, गैप=बड़ा।',
+faq4Q: 'प्रोजेक्शन कितना सटीक है?',
+faq4A: '7700 kcal = 1 kg पर आधारित। वास्तविक परिणाम मेटाबॉलिज्म और डाइट पर निर्भर करते हैं।'
+}
+};
+
+// ===== DOM ELEMENTS =====
 const gender = document.getElementById('gender');
-const height = document.getElementById('height');
+const heightSlider = document.getElementById('heightSlider');
 const heightVal = document.getElementById('heightVal');
 const currentWeight = document.getElementById('currentWeight');
 const activity = document.getElementById('activity');
+const activityVal = document.getElementById('activityVal');
 const goalWeight = document.getElementById('goalWeight');
+const idealWeightSpan = document.getElementById('idealWeight');
+const frameText = document.getElementById('frameText');
+const millerSpan = document.getElementById('miller');
+const robinsonSpan = document.getElementById('robinson');
+const devineSpan = document.getElementById('devine');
+const petersonSpan = document.getElementById('peterson');
+const weeksToGoal = document.getElementById('weeksToGoal');
+const targetWeightDisplay = document.getElementById('targetWeightDisplay');
+const projectionTextSpan = document.getElementById('projectionText');
 
-// Frame selection
+// ===== LANGUAGE SWITCHER =====
+function setLanguage(lang) {
+currentLang = lang;
+document.querySelectorAll('.lang-btn').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.lang === lang);
+});
+document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+
+const t = translations[lang] || translations.en;
+Object.keys(t).forEach(id => {
+const el = document.getElementById(id);
+if (el) {
+if (id.startsWith('tip') || id.includes('Note') || id.includes('Text') || id.includes('Guide') || id === 'projectionText') {
+el.innerHTML = t[id];
+} else if (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'OPTION') {
+if (el.tagName === 'OPTION') el.textContent = t[id];
+} else {
+el.textContent = t[id];
+}
+}
+});
+
+// Update activity value badge
+activityVal.textContent = activity.options[activity.selectedIndex].text;
+
+document.querySelector('title').textContent = lang === 'hi' 
+? 'आदर्श वज़न कैलकुलेटर: फ्रेम साइज और भारतीय मानक | HealthCalc'
+: 'Ideal Weight Calculator: Frame Size & Indian Standards | HealthCalc';
+
+updateAll();
+}
+
+// ===== UNIT TOGGLE =====
+function setUnit(unit) {
+currentUnit = unit;
+document.querySelectorAll('.unit-btn').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.unit === unit);
+});
+
+const isMetric = unit === 'metric';
+document.getElementById('weightUnit').textContent = isMetric ? 'kg' : 'lbs';
+document.getElementById('weightUnitDisplay').textContent = isMetric ? 'kg' : 'lbs';
+document.getElementById('goalWeightUnit').textContent = isMetric ? 'kg' : 'lbs';
+document.getElementById('goalWeightUnitDisplay').textContent = isMetric ? 'kg' : 'lbs';
+
+// Update slider limits and display
+if (isMetric) {
+heightSlider.min = 140; heightSlider.max = 210; heightSlider.value = 170;
+document.getElementById('heightMin').textContent = currentLang === 'hi' ? '140 सेमी' : '140 cm';
+document.getElementById('heightMax').textContent = currentLang === 'hi' ? '210 सेमी' : '210 cm';
+} else {
+heightSlider.min = 55; heightSlider.max = 83; heightSlider.value = 67;
+document.getElementById('heightMin').textContent = '55 in';
+document.getElementById('heightMax').textContent = '83 in';
+}
+
+// Convert weight values
+const weightInput = document.getElementById('currentWeight');
+const goalInput = document.getElementById('goalWeight');
+if (!isMetric) {
+weightInput.value = (parseFloat(weightInput.value) * 2.205).toFixed(1);
+goalInput.value = (parseFloat(goalInput.value) * 2.205).toFixed(1);
+}
+
+updateAll();
+}
+
+function getHeightInCm() {
+let val = parseFloat(heightSlider.value);
+return currentUnit === 'metric' ? val : val * 2.54;
+}
+
+function getWeightInKg(inputId) {
+let val = parseFloat(document.getElementById(inputId).value) || 75;
+return currentUnit === 'metric' ? val : val / 2.205;
+}
+
+function formatWeight(kg) {
+if (currentUnit === 'metric') return kg.toFixed(1) + ' kg';
+return (kg * 2.205).toFixed(1) + ' lbs';
+}
+
+// ===== FRAME SELECTION =====
 const frameOptions = document.querySelectorAll('.frame-option');
-let frame = 'medium';
 frameOptions.forEach(opt => {
 opt.addEventListener('click', function(){
 frameOptions.forEach(o => o.classList.remove('active'));
@@ -175,76 +549,149 @@ updateAll();
 });
 });
 
-// Display elements
-const idealWeightSpan = document.getElementById('idealWeight');
-const frameText = document.getElementById('frameText');
-const millerSpan = document.getElementById('miller');
-const robinsonSpan = document.getElementById('robinson');
-const devineSpan = document.getElementById('devine');
-const petersonSpan = document.getElementById('peterson');
-const weeksToGoal = document.getElementById('weeksToGoal');
-
-function updateAll(){
-// Update height badge
-heightVal.innerText = height.value + ' cm';
-
-const h = parseFloat(height.value); // cm
-const isMale = gender.value === 'male';
-const wCurrent = parseFloat(currentWeight.value) || 75;
-const wGoal = parseFloat(goalWeight.value) || wCurrent;
-
-// Peterson formula (most accurate)
-let peterson;
-if(isMale){
-peterson = 50 + 0.91 * (h - 152.4);
-} else {
-peterson = 45.5 + 0.91 * (h - 152.4);
+// ===== RESET =====
+function resetForm() {
+document.getElementById('gender').value = 'female';
+heightSlider.value = currentUnit === 'metric' ? 170 : 67;
+document.getElementById('currentWeight').value = currentUnit === 'metric' ? '75' : '165';
+document.getElementById('activity').value = '1.55';
+document.getElementById('goalWeight').value = currentUnit === 'metric' ? '70' : '154';
+document.querySelector('.frame-option[data-frame="medium"]').click();
+updateAll();
 }
 
-// Frame adjustment (±5% based on frame)
+// ===== SAVE/LOAD =====
+function saveToLocalStorage() {
+const data = {
+currentUnit, currentLang, frame,
+gender: gender.value,
+height: heightSlider.value,
+currentWeight: currentWeight.value,
+activity: activity.value,
+goalWeight: goalWeight.value
+};
+localStorage.setItem('idealWeightData', JSON.stringify(data));
+}
+
+function loadFromLocalStorage() {
+const saved = localStorage.getItem('idealWeightData');
+if (saved) {
+const data = JSON.parse(saved);
+if (data.currentUnit) setUnit(data.currentUnit);
+if (data.currentLang) setLanguage(data.currentLang);
+if (data.frame) {
+frame = data.frame;
+document.querySelector(`.frame-option[data-frame="${frame}"]`).click();
+}
+if (data.gender) gender.value = data.gender;
+if (data.height) heightSlider.value = data.height;
+if (data.currentWeight) currentWeight.value = data.currentWeight;
+if (data.activity) activity.value = data.activity;
+if (data.goalWeight) goalWeight.value = data.goalWeight;
+}
+updateAll();
+}
+
+// ===== MAIN CALCULATION =====
+function updateAll() {
+const hCm = getHeightInCm();
+const isMetric = currentUnit === 'metric';
+const unitLabel = isMetric ? 'cm' : 'in';
+const displayHeight = isMetric ? hCm.toFixed(0) : (hCm / 2.54).toFixed(0);
+heightVal.textContent = displayHeight + ' ' + unitLabel;
+
+const isMale = gender.value === 'male';
+const wCurrent = getWeightInKg('currentWeight');
+const wGoal = getWeightInKg('goalWeight') || wCurrent;
+const activityMultiplier = parseFloat(activity.value);
+const isHindi = currentLang === 'hi';
+
+// Update activity badge
+activityVal.textContent = activity.options[activity.selectedIndex].text;
+
+// Peterson formula (base)
+let peterson;
+if(isMale){
+peterson = 50 + 0.91 * (hCm - 152.4);
+} else {
+peterson = 45.5 + 0.91 * (hCm - 152.4);
+}
+
+// Indian adjustment (-3.5% for typical Indian frame)
+peterson = peterson * 0.965;
+
+// Frame adjustment
 let frameAdjust = 1.0;
 if(frame === 'small') frameAdjust = 0.95;
 if(frame === 'large') frameAdjust = 1.05;
 
-const idealMin = (peterson * frameAdjust * 0.94).toFixed(1);
-const idealMax = (peterson * frameAdjust * 1.06).toFixed(1);
-const idealCenter = (peterson * frameAdjust).toFixed(1);
+const idealMin = (peterson * frameAdjust * 0.94);
+const idealMax = (peterson * frameAdjust * 1.06);
+const idealCenter = peterson * frameAdjust;
 
-idealWeightSpan.innerText = `${idealMin} – ${idealMax} kg`;
-frameText.innerText = `${frame.charAt(0).toUpperCase()+frame.slice(1)} frame: ${idealCenter} kg (ideal)`;
+idealWeightSpan.textContent = `${formatWeight(idealMin)} – ${formatWeight(idealMax)}`;
+frameText.textContent = isHindi 
+? `${frame === 'small' ? 'छोटा' : frame === 'medium' ? 'मध्यम' : 'बड़ा'} फ्रेम: ${formatWeight(idealCenter)} (आदर्श)`
+: `${frame.charAt(0).toUpperCase()+frame.slice(1)} frame: ${formatWeight(idealCenter)} (ideal)`;
 
-// Other formulas for comparison
-let miller = isMale ? 56.2 + 1.41*(h-152.4)/2.54 : 53.1 + 1.36*(h-152.4)/2.54;
-let robinson = isMale ? 52 + 1.9*(h-152.4)/2.54 : 49 + 1.7*(h-152.4)/2.54;
-let devine = isMale ? 50 + 2.3*(h-152.4)/2.54 : 45.5 + 2.3*(h-152.4)/2.54;
+// Other formulas
+let miller = isMale ? 56.2 + 1.41*(hCm-152.4)/2.54 : 53.1 + 1.36*(hCm-152.4)/2.54;
+let robinson = isMale ? 52 + 1.9*(hCm-152.4)/2.54 : 49 + 1.7*(hCm-152.4)/2.54;
+let devine = isMale ? 50 + 2.3*(hCm-152.4)/2.54 : 45.5 + 2.3*(hCm-152.4)/2.54;
 
-millerSpan.innerText = miller.toFixed(1) + ' kg';
-robinsonSpan.innerText = robinson.toFixed(1) + ' kg';
-devineSpan.innerText = devine.toFixed(1) + ' kg';
-petersonSpan.innerText = peterson.toFixed(1) + ' kg';
+// Apply Indian adjustment to all
+[miller, robinson, devine, peterson].forEach((v, i) => {
+const adjusted = v * 0.965;
+if (i === 0) millerSpan.textContent = formatWeight(adjusted);
+else if (i === 1) robinsonSpan.textContent = formatWeight(adjusted);
+else if (i === 2) devineSpan.textContent = formatWeight(adjusted);
+else petersonSpan.textContent = formatWeight(adjusted);
+});
 
-// Goal projection (simple CICO estimate)
+// Goal projection
+targetWeightDisplay.textContent = formatWeight(wGoal);
+
 if(wGoal < wCurrent){
-const diff = wCurrent - wGoal; // kg to lose
-const calorieDeficit = diff * 7700; // total kcal deficit needed
-const activityMultiplier = parseFloat(activity.value);
-const bmr = isMale ? (10*wCurrent + 6.25*h - 5*30 + 5) : (10*wCurrent + 6.25*h - 5*30 - 161);
+const diff = wCurrent - wGoal;
+const calorieDeficit = diff * 7700;
+const bmr = isMale ? (10*wCurrent + 6.25*hCm - 5*30 + 5) : (10*wCurrent + 6.25*hCm - 5*30 - 161);
 const tdee = bmr * activityMultiplier;
-const deficitPerDay = tdee - 2000; // assuming 2000 kcal intake
+const deficitPerDay = tdee - 2000;
+
 if(deficitPerDay > 0){
 const days = calorieDeficit / deficitPerDay;
-weeksToGoal.innerText = (days/7).toFixed(1) + ' weeks';
+const weeks = (days/7).toFixed(1);
+weeksToGoal.textContent = weeks + (isHindi ? ' सप्ताह' : ' weeks');
+projectionTextSpan.innerHTML = isHindi
+? `🎯 <strong>लक्ष्य अनुमान:</strong> आपकी गतिविधि के अनुसार ${formatWeight(wGoal)} तक पहुंचने में <span id="weeksToGoal">${weeks} सप्ताह</span> लग सकते हैं`
+: `🎯 <strong>Goal projection:</strong> At your current activity, reaching ${formatWeight(wGoal)} may take <span id="weeksToGoal">${weeks} weeks</span>`;
 } else {
-weeksToGoal.innerText = 'adjust diet';
+weeksToGoal.textContent = isHindi ? 'आहार समायोजित करें' : 'adjust diet';
 }
 } else {
-weeksToGoal.innerText = 'maintenance';
-}
+weeksToGoal.textContent = isHindi ? 'रखरखाव' : 'maintenance';
+projectionTextSpan.innerHTML = isHindi
+? `🎯 <strong>लक्ष्य:</strong> आप पहले से ही अपने लक्ष्य वज़न पर हैं या उससे ऊपर।`
+: `🎯 <strong>Goal:</strong> You are already at or above your goal weight.`;
 }
 
-// Add listeners
-[gender, height, currentWeight, activity, goalWeight].forEach(el => el.addEventListener('input', updateAll));
-updateAll();
+saveToLocalStorage();
+}
+
+// ===== EVENT LISTENERS =====
+document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
+document.getElementById('langHI').addEventListener('click', () => setLanguage('hi'));
+
+[gender, heightSlider, currentWeight, activity, goalWeight].forEach(el => {
+el.addEventListener('input', updateAll);
+el.addEventListener('change', updateAll);
+});
+
+window.setUnit = setUnit;
+window.setLanguage = setLanguage;
+window.resetForm = resetForm;
+
+window.onload = loadFromLocalStorage;
 })();
 </script>
 </body>
