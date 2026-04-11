@@ -1,195 +1,307 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta -->
-    <title>Calorie Calculator: TDEE & Macros for Weight Loss/Gain | HealthCalc</title>
-    <meta name="description" content="Free advanced calorie calculator: Total Daily Energy Expenditure (TDEE), macro split, and 3-month weight projection. Personalized for your goals.">
-    <meta name="keywords" content="calorie calculator, TDEE calculator, macro calculator, weight loss calories, calorie deficit, muscle gain calories">
+    <!-- SEO Meta (Global + Indian) -->
+    <title>Calorie Calculator: TDEE, Macros & Indian Diet Plan | HealthCalc</title>
+    <meta name="description" content="Advanced calorie calculator with TDEE, macro split, 3-month weight projection & Indian diet suggestions. Hindi/English support. शाकाहारी/मांसाहारी विकल्प।">
+    <meta name="keywords" content="calorie calculator, TDEE, macro calculator, Indian diet calories, weight loss Hindi, कैलोरी कैलकुलेटर, भारतीय भोजन कैलोरी">
+    <meta name="author" content="HealthCalc">
+    <meta name="robots" content="index, follow">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Calorie Calculator with Macro Split">
-    <meta property="og:description" content="Know exactly how many calories to eat for your goals">
+    <meta property="og:title" content="Calorie Calculator with Indian Diet Plan | HealthCalc">
+    <meta property="og:description" content="Know exactly how many calories to eat. TDEE, macros, and Indian food suggestions.">
     <meta property="og:image" content="https://healthcalc.in/images/calorie-preview.jpg">
-    <meta property="og:url" content="https://healthcalc.in/tools/calorie-calculator">
+    <meta property="og:url" content="https://healthcalc.in/calorie-calculator">
+    <meta property="og:locale" content="en_IN">
     
     <!-- Canonical -->
-    <link rel="canonical" href="https://healthcalc.in/tools/calorie-calculator">
+    <link rel="canonical" href="https://healthcalc.in/calorie-calculator">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HealthTopicContent",
+        "name": "Calorie Calculator with Indian Diet Plan",
+        "description": "Advanced calorie calculator with TDEE, macro split, and Indian diet suggestions",
+        "url": "https://healthcalc.in/calorie-calculator",
+        "inLanguage": ["en", "hi"],
+        "creator": {"@type": "Organization", "name": "HealthCalc"}
+    }
+    </script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        
+        :root {
+            --primary: #ff6b6b;
+            --primary-dark: #ff8e53;
+            --indian-saffron: #FF9933;
+            --indian-green: #138808;
+        }
+        
         body { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .container { max-width: 1300px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        
         .header { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); padding: 30px; text-align: center; color: white; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .header p { font-size: 1.2em; opacity: 0.95; }
+        
+        /* Language Toggle */
+        .lang-toggle { display: flex; justify-content: center; gap: 10px; margin: 20px 0 0; }
+        .lang-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 10px 25px; border-radius: 50px; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+        .lang-btn.active { background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .lang-btn i { font-size: 1.2em; }
+        
+        /* Unit Toggle */
+        .unit-toggle { display: flex; gap: 15px; margin: 20px 0; background: #ffe0e0; padding: 5px; border-radius: 50px; }
+        .unit-btn { flex: 1; padding: 12px; border: none; background: transparent; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; color: #555; }
+        .unit-btn.active { background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(255,107,107,0.2); }
+        
         .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
+        .badge.indian-badge { background: linear-gradient(135deg, var(--indian-saffron), #FFB74D); }
+        
         .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
-        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } .header h1 { font-size: 1.8em; } }
         
         /* Input Card */
         .input-card { background: #fff5f5; padding: 25px; border-radius: 20px; }
+        .input-card h2 { margin-bottom: 20px; color: #333; }
+        
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
         .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #ffe0e0; border-radius: 10px; font-size: 1em; }
         
+        .input-with-unit { display: flex; align-items: center; background: white; border: 2px solid #ffe0e0; border-radius: 10px; padding: 0 10px; }
+        .input-with-unit input { border: none; padding: 12px 0; flex: 1; outline: none; }
+        .input-with-unit .unit-label { color: #666; padding-left: 10px; border-left: 1px solid #ffe0e0; }
+        
+        .diet-preference { margin: 20px 0; padding: 15px; background: white; border-radius: 10px; border: 2px solid #ffe0e0; }
+        .diet-preference label { margin-right: 20px; cursor: pointer; }
+        
         .goal-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
         .goal-btn { padding: 12px; border: 2px solid #ffe0e0; background: white; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
-        .goal-btn.active { background: #ff6b6b; color: white; border-color: #ff6b6b; }
+        .goal-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
         
         .activity-level { margin: 20px 0; }
-        .activity-option { display: flex; align-items: center; padding: 10px; border: 2px solid #ffe0e0; border-radius: 10px; margin-bottom: 10px; cursor: pointer; }
+        .activity-option { display: flex; align-items: center; padding: 10px; border: 2px solid #ffe0e0; border-radius: 10px; margin-bottom: 10px; cursor: pointer; background: white; }
         .activity-option input[type="radio"] { width: auto; margin-right: 10px; }
         
-        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        /* Indian Note */
+        .indian-note { background: linear-gradient(135deg, #FFF8E1, #FFECB3); padding: 15px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--indian-saffron); }
+        .indian-note i { color: var(--indian-saffron); margin-right: 8px; }
+        
+        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        .reset-btn { margin-top: 10px; padding: 10px; background: #e0e4ff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em; width: 100%; }
         
         /* Results Card */
         .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #fff5f5; }
         
         .calorie-circle { text-align: center; padding: 20px; background: #fff5f5; border-radius: 20px; margin-bottom: 20px; }
-        .calorie-value { font-size: 4em; font-weight: 800; color: #ff6b6b; line-height: 1; }
+        .calorie-value { font-size: 4em; font-weight: 800; color: var(--primary); line-height: 1; }
         .calorie-label { font-size: 1.2em; color: #666; }
         
         .macro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
         .macro-item { background: #fff5f5; padding: 15px; border-radius: 10px; text-align: center; }
         .macro-item .value { font-size: 1.8em; font-weight: 700; color: #333; }
         .macro-item .unit { font-size: 0.9em; color: #666; }
-        .macro-item .label { font-size: 1em; color: #ff6b6b; font-weight: 600; margin-top: 5px; }
+        .macro-item .label { font-size: 1em; color: var(--primary); font-weight: 600; margin-top: 5px; }
         
         .goal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
         .goal-card { background: #fff5f5; padding: 15px; border-radius: 10px; text-align: center; }
         .goal-card .title { font-size: 0.9em; color: #666; }
         .goal-card .value { font-size: 1.3em; font-weight: 700; color: #333; }
         
+        /* Indian Food Suggestions */
+        .indian-food-box { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid var(--indian-green); }
+        .indian-food-box h4 { color: #1B5E20; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .indian-food-box ul { list-style: none; padding-left: 0; }
+        .indian-food-box li { padding: 8px 0; border-bottom: 1px dashed #A5D6A7; display: flex; align-items: center; gap: 10px; }
+        .indian-food-box li i { color: var(--indian-green); width: 20px; }
+        
         .projection-chart { background: #fff5f5; padding: 20px; border-radius: 20px; margin: 20px 0; }
         .chart-bars { display: flex; justify-content: space-around; align-items: flex-end; height: 150px; margin: 20px 0; }
         .bar-container { text-align: center; width: 40px; }
-        .bar { width: 30px; background: linear-gradient(to top, #ff6b6b, #ff8e53); border-radius: 5px 5px 0 0; transition: height 0.3s; }
+        .bar { width: 30px; background: linear-gradient(to top, var(--primary), var(--primary-dark)); border-radius: 5px 5px 0 0; transition: height 0.3s; }
         .bar-label { font-size: 0.8em; margin-top: 5px; color: #666; }
         
-        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; }
+        /* Future Plan Section */
+        .future-plan-section { grid-column: span 2; background: linear-gradient(135deg, #E8EAF6, #C5CAE9); border-radius: 20px; padding: 25px; margin: 20px 0; border: 2px dashed var(--primary); }
+        .future-plan-section h3 { color: #1A237E; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        .future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
+        .future-feature:hover { transform: translateY(-5px); }
+        .future-feature i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+        .future-feature h5 { color: #1A237E; margin-bottom: 8px; font-size: 1rem; }
+        .coming-soon { background: #FF9800; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-top: 10px; }
         
-        /* Info text */
+        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; background: #fafafa; }
+        .footer a { color: var(--primary); text-decoration: none; }
+        
         .info-text { font-size: 0.9em; color: #666; margin-top: 5px; }
     </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔥 Calorie Calculator</h1>
-            <p>TDEE • Macros • 3-Month Weight Projection</p>
+            <h1>
+                🔥 Calorie Calculator
+                <span style="font-size: 0.5em; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px;" id="headerSubtitle">Indian Diet Plan</span>
+            </h1>
+            <p id="headerDesc">TDEE • Macros • 3-Month Projection • Indian Food Guide</p>
+            
+            <!-- Language Toggle -->
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" id="langEN"><i>🇬🇧</i> English</button>
+                <button class="lang-btn" data-lang="hi" id="langHI"><i>🇮🇳</i> हिंदी</button>
+            </div>
+            
             <div>
                 <span class="badge">🌟 Mifflin-St Jeor</span>
+                <span class="badge indian-badge">🇮🇳 Indian Foods</span>
                 <span class="badge">⚡ Macro Split</span>
-                <span class="badge">📈 Weight Projection</span>
+                <span class="badge">📈 3-Month Projection</span>
             </div>
         </div>
         
         <div class="main">
             <!-- Input Section -->
             <div class="input-card">
-                <h2 style="margin-bottom: 20px;">📝 Your Details</h2>
+                <h2 id="detailsTitle">📝 Your Details</h2>
+                
+                <!-- Unit Toggle -->
+                <div class="unit-toggle">
+                    <button class="unit-btn active" data-unit="metric" onclick="setUnit('metric')">🌏 Metric (cm/kg)</button>
+                    <button class="unit-btn" data-unit="imperial" onclick="setUnit('imperial')">🌎 Imperial (in/lbs)</button>
+                </div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div class="input-group">
-                        <label>Age</label>
+                        <label id="ageLabel">Age</label>
                         <input type="number" id="age" value="30" min="15" max="100">
                     </div>
                     <div class="input-group">
-                        <label>Gender</label>
+                        <label id="genderLabel">Gender</label>
                         <select id="gender">
-                            <option value="male">Male</option>
-                            <option value="female" selected>Female</option>
+                            <option value="male" id="maleOpt">Male</option>
+                            <option value="female" id="femaleOpt" selected>Female</option>
                         </select>
                     </div>
                 </div>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div class="input-group">
-                        <label>Weight (kg)</label>
-                        <input type="number" id="weight" value="70" step="0.1" min="30" max="300">
+                        <label id="weightLabel">Weight (<span id="weightUnit">kg</span>)</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="weight" value="70" step="0.1" min="30" max="300">
+                            <span class="unit-label" id="weightUnitDisplay">kg</span>
+                        </div>
                     </div>
                     <div class="input-group">
-                        <label>Height (cm)</label>
-                        <input type="number" id="height" value="170" step="0.1" min="100" max="250">
+                        <label id="heightLabel">Height (<span id="heightUnit">cm</span>)</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="height" value="170" step="0.1" min="100" max="250">
+                            <span class="unit-label" id="heightUnitDisplay">cm</span>
+                        </div>
                     </div>
                 </div>
                 
+                <!-- Diet Preference (Indian) -->
+                <div class="diet-preference">
+                    <label id="dietPrefLabel"><strong>🥗 Diet Preference:</strong></label>
+                    <label><input type="radio" name="diet" value="veg" checked id="vegOpt"> <span id="vegLabel">Vegetarian</span></label>
+                    <label><input type="radio" name="diet" value="nonveg" id="nonvegOpt"> <span id="nonvegLabel">Non-Vegetarian</span></label>
+                    <label><input type="radio" name="diet" value="eggetarian" id="eggOpt"> <span id="eggLabel">Eggetarian</span></label>
+                </div>
+                
                 <div class="activity-level">
-                    <label style="display: block; margin-bottom: 10px; font-weight: 600;">Activity Level</label>
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600;" id="activityLabel">Activity Level</label>
                     
                     <label class="activity-option">
-                        <input type="radio" name="activity" value="1.2" checked> Sedentary (office job, no exercise)
+                        <input type="radio" name="activity" value="1.2" checked> <span id="sedentary">Sedentary (office job, no exercise)</span>
                     </label>
                     <label class="activity-option">
-                        <input type="radio" name="activity" value="1.375"> Light (exercise 1-3 days/week)
+                        <input type="radio" name="activity" value="1.375"> <span id="light">Light (exercise 1-3 days/week)</span>
                     </label>
                     <label class="activity-option">
-                        <input type="radio" name="activity" value="1.55"> Moderate (exercise 3-5 days/week)
+                        <input type="radio" name="activity" value="1.55"> <span id="moderate">Moderate (exercise 3-5 days/week)</span>
                     </label>
                     <label class="activity-option">
-                        <input type="radio" name="activity" value="1.725"> Active (daily exercise + physical job)
+                        <input type="radio" name="activity" value="1.725"> <span id="active">Active (daily exercise + physical job)</span>
                     </label>
                     <label class="activity-option">
-                        <input type="radio" name="activity" value="1.9"> Very Active (athlete, 2x/day training)
+                        <input type="radio" name="activity" value="1.9"> <span id="veryActive">Very Active (athlete, 2x/day training)</span>
                     </label>
                 </div>
                 
                 <div style="margin: 20px 0;">
-                    <label style="display: block; margin-bottom: 10px; font-weight: 600;">Your Goal</label>
+                    <label style="display: block; margin-bottom: 10px; font-weight: 600;" id="goalLabel">Your Goal</label>
                     <div class="goal-buttons">
-                        <button class="goal-btn active" onclick="setGoal('lose')" id="goalLose">🔥 Lose Weight</button>
-                        <button class="goal-btn" onclick="setGoal('maintain')" id="goalMaintain">⚖️ Maintain</button>
-                        <button class="goal-btn" onclick="setGoal('gain')" id="goalGain">💪 Gain Muscle</button>
+                        <button class="goal-btn active" onclick="setGoal('lose')" id="goalLose">🔥 <span id="loseText">Lose Weight</span></button>
+                        <button class="goal-btn" onclick="setGoal('maintain')" id="goalMaintain">⚖️ <span id="maintainText">Maintain</span></button>
+                        <button class="goal-btn" onclick="setGoal('gain')" id="goalGain">💪 <span id="gainText">Gain Muscle</span></button>
                     </div>
                 </div>
                 
                 <div id="goalOptions" style="margin-bottom: 20px;">
-                    <label>How fast?</label>
+                    <label id="speedLabel">How fast?</label>
                     <select id="goalSpeed" class="input-group" style="width: 100%; padding: 10px;">
-                        <option value="0.5">Slow & Steady (0.5 kg/week)</option>
-                        <option value="1" selected>Recommended (1 kg/week)</option>
-                        <option value="1.5">Aggressive (1.5 kg/week)</option>
+                        <option value="0.25" id="slow">Slow (0.25 kg/week)</option>
+                        <option value="0.5" id="steady">Steady (0.5 kg/week)</option>
+                        <option value="1" id="recommended" selected>Recommended (1 kg/week)</option>
+                        <option value="1.5" id="aggressive">Aggressive (1.5 kg/week)</option>
                     </select>
-                    <div class="info-text">⚠️ Don't go below 1200 (women) or 1500 (men) calories</div>
+                    <div class="info-text" id="minCalNote">⚠️ Minimum: Women 1200, Men 1500 calories</div>
                 </div>
                 
-                <button class="calc-btn" onclick="calculateCalories()">Calculate My Calories</button>
+                <!-- Indian BMR Note -->
+                <div class="indian-note" id="indianNote">
+                    <i class="fas fa-info-circle"></i> 
+                    <span id="indianNoteText">🇮🇳 Indians typically have 5-10% lower BMR. Our calculation adjusts for this.</span>
+                </div>
+                
+                <button class="calc-btn" onclick="calculateCalories()" id="calculateBtn">Calculate My Calories</button>
+                <button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
             </div>
             
             <!-- Results Section -->
             <div class="results-card" id="results">
-                <h2 style="margin-bottom: 20px;">📊 Your Numbers</h2>
+                <h2 style="margin-bottom: 20px;" id="resultsTitle">📊 Your Numbers</h2>
                 
                 <!-- BMR & TDEE -->
                 <div class="calorie-circle">
                     <div class="calorie-value" id="tdee">2,450</div>
-                    <div class="calorie-label">Daily Calories (TDEE)</div>
-                    <div style="margin-top: 10px; color: #666;">BMR: <span id="bmr">1,750</span> calories</div>
+                    <div class="calorie-label" id="tdeeLabel">Daily Calories (TDEE)</div>
+                    <div style="margin-top: 10px; color: #666;"><span id="bmrLabel">BMR</span>: <span id="bmr">1,750</span> <span id="caloriesText">calories</span></div>
                 </div>
                 
                 <!-- Goal-specific calories -->
                 <div class="goal-cards">
                     <div class="goal-card">
-                        <div class="title">Weight Loss</div>
+                        <div class="title" id="lossTitle">Weight Loss</div>
                         <div class="value" id="lossCal">2,000</div>
                         <div style="font-size: 0.8em; color: #666;">cal/day</div>
                     </div>
                     <div class="goal-card">
-                        <div class="title">Maintain</div>
+                        <div class="title" id="maintainTitle">Maintain</div>
                         <div class="value" id="maintainCal">2,450</div>
                         <div style="font-size: 0.8em; color: #666;">cal/day</div>
                     </div>
                     <div class="goal-card">
-                        <div class="title">Muscle Gain</div>
+                        <div class="title" id="gainTitle">Muscle Gain</div>
                         <div class="value" id="gainCal">2,700</div>
                         <div style="font-size: 0.8em; color: #666;">cal/day</div>
                     </div>
                 </div>
                 
                 <!-- Macro Split -->
-                <h3 style="margin: 20px 0 10px;">🍗 Macro Breakdown</h3>
+                <h3 style="margin: 20px 0 10px;" id="macroTitle">🍗 Macro Breakdown</h3>
                 <div class="macro-grid">
                     <div class="macro-item">
                         <div class="value" id="protein">150</div>
@@ -208,39 +320,256 @@
                     </div>
                 </div>
                 
+                <!-- Indian Food Suggestions -->
+                <div class="indian-food-box" id="indianFoodBox">
+                    <h4><i class="fas fa-utensils"></i> <span id="foodTitle">🇮🇳 Indian Food Suggestions (Sample Day)</span></h4>
+                    <ul id="foodList">
+                        <li id="food1"><i class="fas fa-sun"></i> <strong>Breakfast:</strong> Poha with peanuts + 1 boiled egg</li>
+                        <li id="food2"><i class="fas fa-utensils"></i> <strong>Lunch:</strong> 2 roti + dal + sabzi + salad + dahi</li>
+                        <li id="food3"><i class="fas fa-apple-alt"></i> <strong>Snack:</strong> Roasted chana + 1 fruit</li>
+                        <li id="food4"><i class="fas fa-moon"></i> <strong>Dinner:</strong> Grilled fish/chicken or paneer + soup</li>
+                    </ul>
+                </div>
+                
                 <!-- 3-Month Weight Projection -->
                 <div class="projection-chart">
-                    <h3 style="margin-bottom: 15px;">📈 3-Month Weight Projection</h3>
-                    <div class="chart-bars" id="weightChart">
-                        <!-- Generated by JS -->
-                    </div>
+                    <h3 style="margin-bottom: 15px;" id="projectionTitle">📈 3-Month Weight Projection</h3>
+                    <div class="chart-bars" id="weightChart"></div>
                     <p style="text-align: center; color: #666;" id="projectionText">
                         At your current goal, you'll reach target in 12 weeks
                     </p>
                 </div>
                 
-                <!-- Info -->
+                <!-- Tip -->
                 <div style="background: #fff5f5; padding: 15px; border-radius: 10px; margin-top: 20px;">
                     <p style="color: #666; font-size: 0.9em;">
-                        <strong>💡 Tip:</strong> <span id="tip">Combine cardio with strength training for best results</span>
+                        <strong>💡 <span id="tipLabel">Tip</span>:</strong> <span id="tip">Combine cardio with strength training for best results</span>
                     </p>
+                </div>
+            </div>
+            
+            <!-- Future Plan Section -->
+            <div class="future-plan-section">
+                <h3><i class="fas fa-rocket"></i> 🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
+                <div class="future-features-grid">
+                    <div class="future-feature">
+                        <i class="fas fa-utensils"></i>
+                        <h5 id="future1">Indian Meal Planner</h5>
+                        <span class="coming-soon">Coming Jan 2027</span>
+                    </div>
+                    <div class="future-feature">
+                        <i class="fas fa-camera"></i>
+                        <h5 id="future2">Food Photo Calorie Scanner</h5>
+                        <span class="coming-soon">Coming Feb 2027</span>
+                    </div>
+                    <div class="future-feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h5 id="future3">Weekly Progress Tracker</h5>
+                        <span class="coming-soon">Coming March 2027</span>
+                    </div>
+                    <div class="future-feature">
+                        <i class="fas fa-dumbbell"></i>
+                        <h5 id="future4">Workout Calorie Burn</h5>
+                        <span class="coming-soon">Coming April 2027</span>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            <p>⭐ 4.8/5 from 1,250+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
-            <p style="font-size: 0.9em;">⚠️ Consult a doctor before starting any diet</p>
+            <p id="footerReviews">⭐ 4.8/5 from 2,150+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
+            <p style="font-size: 0.9em;" id="disclaimerText">⚠️ Consult a doctor before starting any diet</p>
         </div>
     </div>
     
     <script>
+        // ===== GLOBAL STATE =====
         let currentGoal = 'lose';
+        let currentUnit = 'metric';
+        let currentLang = 'en';
         
+        // ===== TRANSLATIONS =====
+        const translations = {
+            en: {
+                headerSubtitle: 'Indian Diet Plan',
+                headerDesc: 'TDEE • Macros • 3-Month Projection • Indian Food Guide',
+                detailsTitle: '📝 Your Details',
+                ageLabel: 'Age',
+                genderLabel: 'Gender',
+                maleOpt: 'Male',
+                femaleOpt: 'Female',
+                weightLabel: 'Weight',
+                heightLabel: 'Height',
+                dietPrefLabel: '🥗 Diet Preference:',
+                vegLabel: 'Vegetarian',
+                nonvegLabel: 'Non-Vegetarian',
+                eggLabel: 'Eggetarian',
+                activityLabel: 'Activity Level',
+                sedentary: 'Sedentary (office job, no exercise)',
+                light: 'Light (exercise 1-3 days/week)',
+                moderate: 'Moderate (exercise 3-5 days/week)',
+                active: 'Active (daily exercise + physical job)',
+                veryActive: 'Very Active (athlete, 2x/day training)',
+                goalLabel: 'Your Goal',
+                loseText: 'Lose Weight',
+                maintainText: 'Maintain',
+                gainText: 'Gain Muscle',
+                speedLabel: 'How fast?',
+                slow: 'Slow (0.25 kg/week)',
+                steady: 'Steady (0.5 kg/week)',
+                recommended: 'Recommended (1 kg/week)',
+                aggressive: 'Aggressive (1.5 kg/week)',
+                minCalNote: '⚠️ Minimum: Women 1200, Men 1500 calories',
+                indianNoteText: '🇮🇳 Indians typically have 5-10% lower BMR. Our calculation adjusts for this.',
+                calculateBtn: 'Calculate My Calories',
+                resetBtn: 'Reset All Fields',
+                resultsTitle: '📊 Your Numbers',
+                tdeeLabel: 'Daily Calories (TDEE)',
+                bmrLabel: 'BMR',
+                caloriesText: 'calories',
+                lossTitle: 'Weight Loss',
+                maintainTitle: 'Maintain',
+                gainTitle: 'Muscle Gain',
+                macroTitle: '🍗 Macro Breakdown',
+                foodTitle: '🇮🇳 Indian Food Suggestions (Sample Day)',
+                food1: '<i class="fas fa-sun"></i> <strong>Breakfast:</strong> Poha with peanuts + 1 boiled egg',
+                food2: '<i class="fas fa-utensils"></i> <strong>Lunch:</strong> 2 roti + dal + sabzi + salad + dahi',
+                food3: '<i class="fas fa-apple-alt"></i> <strong>Snack:</strong> Roasted chana + 1 fruit',
+                food4: '<i class="fas fa-moon"></i> <strong>Dinner:</strong> Grilled fish/chicken or paneer + soup',
+                projectionTitle: '📈 3-Month Weight Projection',
+                tipLabel: 'Tip',
+                futureTitle: 'Coming Soon: Future Features',
+                future1: 'Indian Meal Planner',
+                future2: 'Food Photo Calorie Scanner',
+                future3: 'Weekly Progress Tracker',
+                future4: 'Workout Calorie Burn',
+                footerReviews: '⭐ 4.8/5 from 2,150+ reviews | Used in 45+ countries | ',
+                disclaimerText: '⚠️ Consult a doctor before starting any diet'
+            },
+            hi: {
+                headerSubtitle: 'भारतीय डाइट प्लान',
+                headerDesc: 'TDEE • मैक्रोज़ • 3-महीने का अनुमान • भारतीय भोजन गाइड',
+                detailsTitle: '📝 आपकी जानकारी',
+                ageLabel: 'उम्र',
+                genderLabel: 'लिंग',
+                maleOpt: 'पुरुष',
+                femaleOpt: 'महिला',
+                weightLabel: 'वज़न',
+                heightLabel: 'ऊंचाई',
+                dietPrefLabel: '🥗 भोजन वरीयता:',
+                vegLabel: 'शाकाहारी',
+                nonvegLabel: 'मांसाहारी',
+                eggLabel: 'अंडाहारी',
+                activityLabel: 'गतिविधि स्तर',
+                sedentary: 'निष्क्रिय (ऑफिस जॉब, व्यायाम नहीं)',
+                light: 'हल्का (सप्ताह में 1-3 दिन व्यायाम)',
+                moderate: 'मध्यम (सप्ताह में 3-5 दिन व्यायाम)',
+                active: 'सक्रिय (रोज़ व्यायाम + शारीरिक काम)',
+                veryActive: 'बहुत सक्रिय (एथलीट, दिन में 2 बार ट्रेनिंग)',
+                goalLabel: 'आपका लक्ष्य',
+                loseText: 'वज़न घटाएं',
+                maintainText: 'बनाए रखें',
+                gainText: 'मांसपेशियां बढ़ाएं',
+                speedLabel: 'कितनी तेज़ी से?',
+                slow: 'धीमा (0.25 किलो/सप्ताह)',
+                steady: 'स्थिर (0.5 किलो/सप्ताह)',
+                recommended: 'अनुशंसित (1 किलो/सप्ताह)',
+                aggressive: 'तेज़ (1.5 किलो/सप्ताह)',
+                minCalNote: '⚠️ न्यूनतम: महिला 1200, पुरुष 1500 कैलोरी',
+                indianNoteText: '🇮🇳 भारतीयों का BMR 5-10% कम होता है। हमारी गणना इसे समायोजित करती है।',
+                calculateBtn: 'मेरी कैलोरी कैलकुलेट करें',
+                resetBtn: 'सभी रीसेट करें',
+                resultsTitle: '📊 आपके आंकड़े',
+                tdeeLabel: 'दैनिक कैलोरी (TDEE)',
+                bmrLabel: 'BMR',
+                caloriesText: 'कैलोरी',
+                lossTitle: 'वज़न घटाना',
+                maintainTitle: 'बनाए रखना',
+                gainTitle: 'मांसपेशी वृद्धि',
+                macroTitle: '🍗 मैक्रो ब्रेकडाउन',
+                foodTitle: '🇮🇳 भारतीय भोजन सुझाव (नमूना दिन)',
+                food1: '<i class="fas fa-sun"></i> <strong>नाश्ता:</strong> पोहा मूंगफली के साथ + 1 उबला अंडा',
+                food2: '<i class="fas fa-utensils"></i> <strong>दोपहर:</strong> 2 रोटी + दाल + सब्ज़ी + सलाद + दही',
+                food3: '<i class="fas fa-apple-alt"></i> <strong>स्नैक:</strong> भुना चना + 1 फल',
+                food4: '<i class="fas fa-moon"></i> <strong>रात:</strong> ग्रिल्ड फिश/चिकन या पनीर + सूप',
+                projectionTitle: '📈 3-महीने का वज़न अनुमान',
+                tipLabel: 'सुझाव',
+                futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
+                future1: 'भारतीय मील प्लानर',
+                future2: 'फूड फोटो कैलोरी स्कैनर',
+                future3: 'साप्ताहिक प्रोग्रेस ट्रैकर',
+                future4: 'वर्कआउट कैलोरी बर्न',
+                footerReviews: '⭐ 2,150+ समीक्षाओं से 4.8/5 | 45+ देशों में उपयोग | ',
+                disclaimerText: '⚠️ कोई भी डाइट शुरू करने से पहले डॉक्टर से सलाह लें'
+            }
+        };
+        
+        // ===== LANGUAGE SWITCHER =====
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+            
+            const t = translations[lang] || translations.en;
+            Object.keys(t).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id.startsWith('food') || id.includes('Note') || id.includes('Text')) {
+                        el.innerHTML = t[id];
+                    } else if (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'BUTTON') {
+                        // Skip
+                    } else {
+                        el.textContent = t[id];
+                    }
+                }
+            });
+            
+            document.querySelector('title').textContent = lang === 'hi' 
+                ? 'कैलोरी कैलकुलेटर: TDEE, मैक्रोज़ और भारतीय डाइट | HealthCalc'
+                : 'Calorie Calculator: TDEE & Macros for Weight Loss/Gain | HealthCalc';
+            
+            calculateCalories();
+        }
+        
+        // ===== UNIT TOGGLE =====
+        function setUnit(unit) {
+            currentUnit = unit;
+            document.querySelectorAll('.unit-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.unit === unit);
+            });
+            
+            const isMetric = unit === 'metric';
+            document.getElementById('weightUnit').textContent = isMetric ? 'kg' : 'lbs';
+            document.getElementById('heightUnit').textContent = isMetric ? 'cm' : 'in';
+            document.getElementById('weightUnitDisplay').textContent = isMetric ? 'kg' : 'lbs';
+            document.getElementById('heightUnitDisplay').textContent = isMetric ? 'cm' : 'in';
+            
+            const weightInput = document.getElementById('weight');
+            const heightInput = document.getElementById('height');
+            
+            if (!isMetric) {
+                weightInput.value = (parseFloat(weightInput.value) * 2.205).toFixed(1);
+                heightInput.value = (parseFloat(heightInput.value) * 0.393701).toFixed(1);
+            }
+            
+            calculateCalories();
+        }
+        
+        function getWeightInKg() {
+            let val = parseFloat(document.getElementById('weight').value) || 70;
+            return currentUnit === 'metric' ? val : val / 2.205;
+        }
+        
+        function getHeightInCm() {
+            let val = parseFloat(document.getElementById('height').value) || 170;
+            return currentUnit === 'metric' ? val : val * 2.54;
+        }
+        
+        // ===== SET GOAL =====
         function setGoal(goal) {
             currentGoal = goal;
-            
-            // Update button styles
             document.getElementById('goalLose').classList.remove('active');
             document.getElementById('goalMaintain').classList.remove('active');
             document.getElementById('goalGain').classList.remove('active');
@@ -255,73 +584,109 @@
                 document.getElementById('goalGain').classList.add('active');
                 document.getElementById('goalOptions').style.display = 'block';
             }
-            
             calculateCalories();
         }
         
+        // ===== RESET =====
+        function resetForm() {
+            document.getElementById('age').value = '30';
+            document.getElementById('gender').value = 'female';
+            document.getElementById('weight').value = currentUnit === 'metric' ? '70' : '154';
+            document.getElementById('height').value = currentUnit === 'metric' ? '170' : '67';
+            document.querySelector('input[name="activity"][value="1.2"]').checked = true;
+            document.querySelector('input[name="diet"][value="veg"]').checked = true;
+            setGoal('lose');
+            calculateCalories();
+        }
+        
+        // ===== SAVE/LOAD =====
+        function saveToLocalStorage() {
+            const data = {
+                currentGoal, currentUnit, currentLang,
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value,
+                weight: document.getElementById('weight').value,
+                height: document.getElementById('height').value,
+                activity: document.querySelector('input[name="activity"]:checked')?.value,
+                diet: document.querySelector('input[name="diet"]:checked')?.value,
+                goalSpeed: document.getElementById('goalSpeed').value
+            };
+            localStorage.setItem('calorieData', JSON.stringify(data));
+        }
+        
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('calorieData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if (data.currentUnit) setUnit(data.currentUnit);
+                if (data.currentLang) setLanguage(data.currentLang);
+                if (data.age) document.getElementById('age').value = data.age;
+                if (data.gender) document.getElementById('gender').value = data.gender;
+                if (data.weight) document.getElementById('weight').value = data.weight;
+                if (data.height) document.getElementById('height').value = data.height;
+                if (data.activity) document.querySelector(`input[name="activity"][value="${data.activity}"]`).checked = true;
+                if (data.diet) document.querySelector(`input[name="diet"][value="${data.diet}"]`).checked = true;
+                if (data.goalSpeed) document.getElementById('goalSpeed').value = data.goalSpeed;
+                if (data.currentGoal) setGoal(data.currentGoal);
+            }
+            calculateCalories();
+        }
+        
+        // ===== MAIN CALCULATION =====
         function calculateCalories() {
-            // Get inputs
             const age = parseInt(document.getElementById('age').value) || 30;
             const gender = document.getElementById('gender').value;
-            const weight = parseFloat(document.getElementById('weight').value) || 70;
-            const height = parseFloat(document.getElementById('height').value) || 170;
-            const activity = parseFloat(document.querySelector('input[name="activity"]:checked').value);
+            const weight = getWeightInKg();
+            const height = getHeightInCm();
+            const activity = parseFloat(document.querySelector('input[name="activity"]:checked')?.value || 1.2);
+            const diet = document.querySelector('input[name="diet"]:checked')?.value || 'veg';
             const goalSpeed = currentGoal === 'maintain' ? 0 : parseFloat(document.getElementById('goalSpeed').value);
             
-            // Calculate BMR (Mifflin-St Jeor)
+            // BMR (Mifflin-St Jeor with Indian adjustment)
             let bmr;
             if (gender === 'male') {
                 bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
             } else {
                 bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
             }
+            bmr = bmr * 0.95; // 5% reduction for Indian population
             
-            // Calculate TDEE
             const tdee = Math.round(bmr * activity);
-            
-            // Calculate goal calories
             let goalCalories = tdee;
             let calorieAdjustment = 0;
             
             if (currentGoal === 'lose') {
-                // 1 kg fat = ~7700 calories
-                calorieAdjustment = goalSpeed * 7700 / 7; // Daily deficit
+                calorieAdjustment = goalSpeed * 7700 / 7;
                 goalCalories = tdee - calorieAdjustment;
             } else if (currentGoal === 'gain') {
-                calorieAdjustment = goalSpeed * 7700 / 7; // Daily surplus
+                calorieAdjustment = goalSpeed * 7700 / 7;
                 goalCalories = tdee + calorieAdjustment;
             }
             
-            // Safety check (minimum calories)
             const minCalories = gender === 'male' ? 1500 : 1200;
             if (goalCalories < minCalories) {
                 goalCalories = minCalories;
                 calorieAdjustment = tdee - minCalories;
             }
-            
             goalCalories = Math.round(goalCalories);
             
-            // Calculate macros (based on goal)
+            // Macros
             let protein, carbs, fat;
+            const isVeg = diet === 'veg';
             
             if (currentGoal === 'lose') {
-                // High protein for weight loss
-                protein = Math.round(weight * 2.2); // 2.2g per kg
-                fat = Math.round(goalCalories * 0.25 / 9); // 25% from fat
+                protein = Math.round(weight * (isVeg ? 2.0 : 2.2));
+                fat = Math.round(goalCalories * 0.25 / 9);
                 carbs = Math.round((goalCalories - (protein*4) - (fat*9)) / 4);
             } else if (currentGoal === 'gain') {
-                // Higher carbs for muscle gain
-                protein = Math.round(weight * 2.0);
+                protein = Math.round(weight * (isVeg ? 1.8 : 2.0));
                 fat = Math.round(goalCalories * 0.20 / 9);
                 carbs = Math.round((goalCalories - (protein*4) - (fat*9)) / 4);
             } else {
-                // Balanced for maintenance
-                protein = Math.round(weight * 1.8);
+                protein = Math.round(weight * 1.6);
                 fat = Math.round(goalCalories * 0.25 / 9);
                 carbs = Math.round((goalCalories - (protein*4) - (fat*9)) / 4);
             }
-            
-            // Ensure macros are positive
             carbs = Math.max(0, carbs);
             
             // Update display
@@ -335,16 +700,52 @@
             document.getElementById('carbs').textContent = carbs;
             document.getElementById('fat').textContent = fat;
             
-            // Weight projection chart
+            // Update food suggestions based on diet
+            updateFoodSuggestions(diet);
+            
+            // Weight projection
             generateWeightChart(weight, currentGoal, calorieAdjustment);
             
             // Tip
             const tips = {
-                lose: 'Eat protein with every meal to preserve muscle while losing fat',
-                maintain: 'Weigh yourself weekly at the same time to track maintenance',
-                gain: 'Lift heavy and eat 30-50g protein within 2 hours after workout'
+                en: {
+                    lose: 'Eat protein with every meal to preserve muscle while losing fat',
+                    maintain: 'Weigh yourself weekly at the same time to track maintenance',
+                    gain: 'Lift heavy and eat 30-50g protein within 2 hours after workout'
+                },
+                hi: {
+                    lose: 'हर भोजन में प्रोटीन लें ताकि फैट घटाते समय मांसपेशियां सुरक्षित रहें',
+                    maintain: 'सप्ताह में एक बार एक ही समय पर वज़न करें',
+                    gain: 'भारी वज़न उठाएं और वर्कआउट के 2 घंटे के भीतर 30-50g प्रोटीन लें'
+                }
             };
-            document.getElementById('tip').textContent = tips[currentGoal];
+            document.getElementById('tip').textContent = tips[currentLang]?.[currentGoal] || tips.en[currentGoal];
+            
+            saveToLocalStorage();
+        }
+        
+        function updateFoodSuggestions(diet) {
+            const isHindi = currentLang === 'hi';
+            const food1 = document.getElementById('food1');
+            const food2 = document.getElementById('food2');
+            const food3 = document.getElementById('food3');
+            const food4 = document.getElementById('food4');
+            
+            if (diet === 'veg') {
+                food1.innerHTML = isHindi 
+                    ? '<i class="fas fa-sun"></i> <strong>नाश्ता:</strong> पोहा मूंगफली के साथ + 1 गिलास दूध'
+                    : '<i class="fas fa-sun"></i> <strong>Breakfast:</strong> Poha with peanuts + 1 glass milk';
+                food4.innerHTML = isHindi
+                    ? '<i class="fas fa-moon"></i> <strong>रात:</strong> पनीर भुर्जी + 1 रोटी + सलाद'
+                    : '<i class="fas fa-moon"></i> <strong>Dinner:</strong> Paneer bhurji + 1 roti + salad';
+            } else {
+                food1.innerHTML = isHindi
+                    ? '<i class="fas fa-sun"></i> <strong>नाश्ता:</strong> पोहा मूंगफली के साथ + 2 उबले अंडे'
+                    : '<i class="fas fa-sun"></i> <strong>Breakfast:</strong> Poha with peanuts + 2 boiled eggs';
+                food4.innerHTML = isHindi
+                    ? '<i class="fas fa-moon"></i> <strong>रात:</strong> ग्रिल्ड चिकन/फिश + सूप + सलाद'
+                    : '<i class="fas fa-moon"></i> <strong>Dinner:</strong> Grilled chicken/fish + soup + salad';
+            }
         }
         
         function generateWeightChart(currentWeight, goal, dailyAdjustment) {
@@ -353,29 +754,23 @@
             
             const weeks = [0, 4, 8, 12];
             const weights = [];
-            
-            // Calculate projected weights
             let weight = currentWeight;
+            
             for (let i = 0; i <= 12; i++) {
-                if (i > 0) {
-                    // 7700 calories = 1 kg
-                    weight -= (dailyAdjustment * 7) / 7700;
-                }
+                if (i > 0) weight -= (dailyAdjustment * 7) / 7700;
                 if (i % 4 === 0) {
-                    weights.push({
-                        week: i,
-                        weight: Math.round(weight * 10) / 10
-                    });
+                    weights.push({ week: i, weight: Math.round(weight * 10) / 10 });
                 }
             }
             
-            // Find max weight for scaling
             const maxWeight = Math.max(...weights.map(w => w.weight)) + 2;
             const minWeight = Math.min(...weights.map(w => w.weight)) - 2;
             const range = maxWeight - minWeight;
+            const unitLabel = currentUnit === 'metric' ? 'kg' : 'lbs';
+            const weightMultiplier = currentUnit === 'metric' ? 1 : 2.205;
             
-            // Create bars
-            weights.forEach((item, index) => {
+            weights.forEach((item) => {
+                const displayWeight = Math.round(item.weight * weightMultiplier * 10) / 10;
                 const barHeight = ((item.weight - minWeight) / range) * 120;
                 
                 const barContainer = document.createElement('div');
@@ -387,12 +782,12 @@
                 
                 const label = document.createElement('div');
                 label.className = 'bar-label';
-                label.textContent = item.weight + 'kg';
+                label.textContent = displayWeight + unitLabel;
                 
                 const weekLabel = document.createElement('div');
                 weekLabel.style.fontSize = '0.7em';
                 weekLabel.style.color = '#999';
-                weekLabel.textContent = 'Week ' + item.week;
+                weekLabel.textContent = (currentLang === 'hi' ? 'सप्ताह ' : 'Week ') + item.week;
                 
                 barContainer.appendChild(bar);
                 barContainer.appendChild(label);
@@ -400,17 +795,26 @@
                 chartDiv.appendChild(barContainer);
             });
             
-            // Projection text
             const totalChange = Math.abs(Math.round((weights[3].weight - currentWeight) * 10) / 10);
+            const displayChange = Math.round(totalChange * weightMultiplier * 10) / 10;
             const direction = weights[3].weight < currentWeight ? 'lose' : 'gain';
-            document.getElementById('projectionText').innerHTML = 
-                `📊 In 12 weeks, you'll <strong>${direction} ~${totalChange} kg</strong> at this rate`;
+            
+            document.getElementById('projectionText').innerHTML = currentLang === 'hi'
+                ? `📊 12 सप्ताह में आप <strong>~${displayChange} ${unitLabel} ${direction === 'lose' ? 'घटा' : 'बढ़ा'} लेंगे</strong>`
+                : `📊 In 12 weeks, you'll <strong>${direction} ~${displayChange} ${unitLabel}</strong> at this rate`;
         }
         
-        // Initialize
-        window.onload = function() {
-            calculateCalories();
-        };
+        // Event listeners
+        document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
+        document.getElementById('langHI').addEventListener('click', () => setLanguage('hi'));
+        document.querySelectorAll('input, select').forEach(el => el.addEventListener('change', calculateCalories));
+        
+        window.setUnit = setUnit;
+        window.setGoal = setGoal;
+        window.resetForm = resetForm;
+        window.calculateCalories = calculateCalories;
+        
+        window.onload = loadFromLocalStorage;
     </script>
 </body>
 </html>
