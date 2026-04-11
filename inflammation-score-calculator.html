@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
-<!-- SEO Meta -->
-<title>🔥 Inflammation Score Calculator: Dietary Inflammatory Index & CRP Estimate | HealthCalc</title>
-<meta name="description" content="Free inflammation score calculator based on Dietary Inflammatory Index. Assess your inflammatory load from diet, lifestyle, and symptoms. Get personalized anti-inflammatory recommendations.">
-<meta name="keywords" content="inflammation test, chronic inflammation, dietary inflammatory index, anti-inflammatory diet, CRP levels, inflammatory foods, omega-6 omega-3 ratio, inflammaging">
+<!-- SEO Meta (Global + Indian) -->
+<title>🔥 Inflammation Score: Indian Diet & CRP Estimate | HealthCalc</title>
+<meta name="description" content="Inflammation score calculator based on Indian diet & Dietary Inflammatory Index. Get personalized anti-inflammatory tips with turmeric, ginger, tulsi. Hindi/English.">
+<meta name="keywords" content="inflammation test India, Indian anti-inflammatory diet, CRP levels Hindi, turmeric inflammation, हल्दी सूजन, आयुर्वेद सूजन">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Inflammation Score Calculator">
-<meta property="og:description" content="Assess your body's inflammatory load and get personalized anti-inflammatory recommendations.">
+<meta property="og:title" content="Inflammation Score: Indian Diet & CRP Estimate | HealthCalc">
+<meta property="og:description" content="Assess your inflammatory load with Indian diet adjustments. Turmeric, ginger, and Ayurvedic tips.">
 <meta property="og:image" content="https://healthcalc.in/images/inflammation-og.jpg">
 <meta property="og:url" content="https://healthcalc.in/inflammation-calculator">
+<meta property="og:locale" content="en_IN">
 
 <!-- Schema -->
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "MedicalWebPage",
-"name": "Inflammation Score Calculator",
-"description": "Dietary Inflammatory Index based inflammation assessment",
-"url": "https://healthcalc.in/inflammation-calculator"
+"name": "Inflammation Score Calculator with Indian Diet",
+"description": "Dietary Inflammatory Index based inflammation assessment with Indian food adjustments",
+"url": "https://healthcalc.in/inflammation-calculator",
+"inLanguage": ["en", "hi"]
 }
 </script>
 
@@ -44,6 +46,8 @@
 --success: #10b981;
 --warning: #f59e0b;
 --danger: #ef4444;
+--indian-saffron: #FF9933;
+--indian-green: #138808;
 --gradient: linear-gradient(145deg, #ef4444, #f97316);
 }
 body {
@@ -53,6 +57,12 @@ min-height: 100vh;
 padding: 20px;
 }
 .container { max-width: 1300px; margin: 0 auto; }
+
+/* Language Toggle */
+.lang-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+.lang-btn { background: white; border: 2px solid var(--primary-light); padding: 10px 25px; border-radius: 50px; color: #333; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+.lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 5px 15px rgba(239,68,68,0.3); }
+.lang-btn i { font-size: 1.2em; }
 
 /* Header */
 .header {
@@ -69,6 +79,19 @@ background: linear-gradient(145deg, #b91c1c, #ef4444);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 margin-bottom: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+}
+.header h1 span {
+background: var(--primary);
+color: white;
+padding: 5px 20px;
+border-radius: 50px;
+font-size: 1rem;
+-webkit-text-fill-color: white;
 }
 .badges {
 display: flex;
@@ -83,6 +106,10 @@ padding: 10px 25px;
 border-radius: 50px;
 font-weight: 600;
 color: var(--primary-dark);
+}
+.badge.indian-badge {
+background: linear-gradient(135deg, var(--indian-saffron), #FFB74D);
+color: #333;
 }
 
 /* Grid */
@@ -108,6 +135,16 @@ color: var(--primary-dark);
 border-bottom: 2px dashed var(--primary-light);
 padding-bottom: 15px;
 }
+
+/* Indian Note */
+.indian-note {
+background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+padding: 15px;
+border-radius: 12px;
+margin: 20px 0;
+border-left: 4px solid var(--indian-saffron);
+}
+.indian-note i { color: var(--indian-saffron); margin-right: 8px; }
 
 /* Score Box */
 .score-box {
@@ -177,6 +214,19 @@ border-radius: 15px;
 padding: 15px;
 }
 
+/* Indian Tips Card */
+.indian-tips-card {
+background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+border-radius: 20px;
+padding: 1.5rem;
+margin: 1.5rem 0;
+border-left: 4px solid var(--indian-green);
+}
+.indian-tips-card h4 { color: #1B5E20; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.indian-tips-card ul { list-style: none; padding-left: 0; }
+.indian-tips-card li { padding: 8px 0; border-bottom: 1px dashed #A5D6A7; display: flex; align-items: center; gap: 10px; }
+.indian-tips-card li i { color: var(--indian-green); width: 20px; }
+
 /* Input Styles */
 .input-group { margin-bottom: 20px; }
 .input-label {
@@ -192,13 +242,23 @@ padding: 12px;
 border: 2px solid #e5e7eb;
 border-radius: 12px;
 }
-.range-value {
-background: var(--primary-light);
-padding: 5px 15px;
-border-radius: 30px;
-font-weight: 600;
-color: var(--primary-dark);
+
+/* Future Plan Section */
+.future-plan-section {
+grid-column: span 2;
+background: linear-gradient(135deg, #E8EAF6, #C5CAE9);
+border-radius: 20px;
+padding: 25px;
+margin: 20px 0;
+border: 2px dashed var(--primary);
 }
+.future-plan-section h3 { color: #1A237E; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+.future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
+.future-feature:hover { transform: translateY(-5px); }
+.future-feature i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
+.future-feature h5 { color: #1A237E; margin-bottom: 8px; font-size: 1rem; }
+.coming-soon { background: #FF9800; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-top: 10px; }
 
 /* Recommendations */
 .rec-item {
@@ -230,6 +290,16 @@ border-radius: 50px;
 color: var(--primary-dark);
 cursor: pointer;
 }
+.reset-btn {
+margin-top: 10px;
+padding: 10px;
+background: #e0e4ff;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-size: 0.85em;
+width: 100%;
+}
 .button-group {
 display: flex;
 gap: 15px;
@@ -242,16 +312,33 @@ padding: 40px;
 color: #6b7280;
 margin-top: 60px;
 }
+
+/* FAQ Section */
+.faq-section { margin-top: 3rem; background: white; border-radius: 32px; padding: 2rem; }
+.faq-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 2rem; }
+@media (max-width:700px){ .faq-grid { grid-template-columns:1fr; } }
+.faq-item { background: #fef2f2; border-radius: 24px; padding: 1.2rem; }
+.faq-question { font-weight: 700; color: var(--primary-dark); margin-bottom: 0.5rem; }
 </style>
 </head>
 <body>
 <div class="container">
+<!-- Language Toggle -->
+<div class="lang-toggle">
+<button class="lang-btn active" data-lang="en" id="langEN"><i>🇬🇧</i> English</button>
+<button class="lang-btn" data-lang="hi" id="langHI"><i>🇮🇳</i> हिंदी</button>
+</div>
+
 <!-- Header -->
 <div class="header">
-<h1>🔥 Inflammation Score Calculator</h1>
-<p>Based on the Dietary Inflammatory Index (DII) from University of South Carolina</p>
+<h1>
+🔥 Inflammation Score Calculator
+<span id="headerSubtitle">Indian Diet Adjusted</span>
+</h1>
+<p id="headerDesc">Based on Dietary Inflammatory Index (DII) with Indian food adjustments</p>
 <div class="badges">
 <span class="badge"><i class="fas fa-fire"></i> Inflammatory Load</span>
+<span class="badge indian-badge"><i class="fas fa-leaf"></i> Indian Foods</span>
 <span class="badge"><i class="fas fa-dna"></i> Omega-6:3 Ratio</span>
 <span class="badge"><i class="fas fa-tint"></i> CRP Estimate</span>
 </div>
@@ -261,124 +348,151 @@ margin-top: 60px;
 <div class="grid">
 <!-- Input Card -->
 <div class="card">
-<div class="card-title"><i class="fas fa-clipboard-list"></i> Your Inflammatory Profile</div>
+<div class="card-title"><i class="fas fa-clipboard-list"></i> <span id="profileTitle">Your Inflammatory Profile</span></div>
+
+<!-- Indian Diet Note -->
+<div class="indian-note" id="indianNote">
+<i class="fas fa-info-circle"></i> 
+<span id="indianNoteText">🇮🇳 Indian diets are often high in inflammatory foods (refined oils, sugar, maida). Our calculator adjusts for this.</span>
+</div>
 
 <!-- Diet Section -->
-<h4 style="margin:20px 0 10px">🥗 Diet Factors</h4>
+<h4 style="margin:20px 0 10px" id="dietTitle">🥗 Diet Factors</h4>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-fish"></i> Omega-6: Omega-3 Ratio</div>
+<div class="input-label"><i class="fas fa-utensils"></i> <span id="cookingOilLabel">Cooking Oil Type</span></div>
+<select id="cookingOil">
+<option value="0" id="mustardOil">Mustard Oil / Olive Oil (Anti-inflammatory)</option>
+<option value="1" id="coconutOil">Coconut Oil / Ghee (Neutral)</option>
+<option value="2" id="refinedOil" selected>Refined Oil (Sunflower/Soybean/Canola)</option>
+<option value="3" id="vanaspati">Vanaspati / Dalda (Highly Inflammatory)</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-fish"></i> <span id="omegaLabel">Omega-6: Omega-3 Ratio</span></div>
 <select id="omegaRatio">
-<option value="0">Excellent (< 4:1)</option>
-<option value="1">Good (4:1 - 8:1)</option>
-<option value="2" selected>Average (8:1 - 12:1)</option>
-<option value="3">Poor (12:1 - 15:1)</option>
-<option value="4">Very Poor (> 15:1)</option>
+<option value="0" id="omegaExcellent">Excellent (< 4:1)</option>
+<option value="1" id="omegaGood">Good (4:1 - 8:1)</option>
+<option value="2" id="omegaAverage" selected>Average (8:1 - 12:1)</option>
+<option value="3" id="omegaPoor">Poor (12:1 - 15:1)</option>
+<option value="4" id="omegaVeryPoor">Very Poor (> 15:1)</option>
 </select>
 </div>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-candy-cane"></i> Added Sugar Intake</div>
+<div class="input-label"><i class="fas fa-candy-cane"></i> <span id="sugarLabel">Added Sugar / Mithai Intake</span></div>
 <select id="sugar">
-<option value="0">None / Very Low</option>
-<option value="1">Low (1-2 servings/week)</option>
-<option value="2" selected>Moderate (3-5 servings/week)</option>
-<option value="3">High (1-2 servings/day)</option>
-<option value="4">Very High (3+ servings/day)</option>
+<option value="0" id="sugarNone">None / Very Low</option>
+<option value="1" id="sugarLow">Low (1-2 servings/week)</option>
+<option value="2" id="sugarModerate" selected>Moderate (3-5 servings/week)</option>
+<option value="3" id="sugarHigh">High (1-2 servings/day)</option>
+<option value="4" id="sugarVeryHigh">Very High (3+ servings/day)</option>
 </select>
 </div>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-wine-bottle"></i> Alcohol</div>
-<select id="alcohol">
-<option value="0">None</option>
-<option value="1">1-2 drinks/week</option>
-<option value="2" selected>3-5 drinks/week</option>
-<option value="3">6-10 drinks/week</option>
-<option value="4">11+ drinks/week</option>
+<div class="input-label"><i class="fas fa-bread-slice"></i> <span id="maidaLabel">Maida / Refined Flour</span></div>
+<select id="maida">
+<option value="0" id="maidaNone">Never / Rarely</option>
+<option value="1" id="maidaWeekly">1-2 times/week</option>
+<option value="2" id="maidaDaily" selected>3-4 times/week</option>
+<option value="3" id="maidaVeryOften">Daily</option>
 </select>
 </div>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-carrot"></i> Vegetables & Fruits</div>
+<div class="input-label"><i class="fas fa-carrot"></i> <span id="veggiesLabel">Vegetables & Fruits</span></div>
 <select id="veggies">
-<option value="4">Less than 1 serving/day</option>
-<option value="3">1-2 servings/day</option>
-<option value="2">3-4 servings/day</option>
-<option value="1">5-6 servings/day</option>
-<option value="0">7+ servings/day</option>
+<option value="4" id="veggiesLow">Less than 1 serving/day</option>
+<option value="3" id="veggiesMed">1-2 servings/day</option>
+<option value="2" id="veggiesGood" selected>3-4 servings/day</option>
+<option value="1" id="veggiesHigh">5-6 servings/day</option>
+<option value="0" id="veggiesExcellent">7+ servings/day</option>
+</select>
+</div>
+
+<div class="input-group">
+<div class="input-label"><i class="fas fa-seedling"></i> <span id="spicesLabel">Anti-inflammatory Spices</span> (Turmeric, Ginger, Garlic)</div>
+<select id="spices">
+<option value="4" id="spicesNone">Rarely use</option>
+<option value="3" id="spicesSometimes">Sometimes</option>
+<option value="2" id="spicesDaily" selected>Daily in cooking</option>
+<option value="1" id="spicesGenerous">Generous amounts daily</option>
+<option value="0" id="spicesTherapeutic">Therapeutic doses (haldi doodh, etc.)</option>
 </select>
 </div>
 
 <!-- Lifestyle -->
-<h4 style="margin:20px 0 10px">💪 Lifestyle Factors</h4>
+<h4 style="margin:20px 0 10px" id="lifestyleTitle">💪 Lifestyle Factors</h4>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-running"></i> Exercise</div>
+<div class="input-label"><i class="fas fa-running"></i> <span id="exerciseLabel">Exercise / Yoga</span></div>
 <select id="exercise">
-<option value="0">Daily (60+ min)</option>
-<option value="1">4-6 days/week</option>
-<option value="2" selected>2-3 days/week</option>
-<option value="3">1 day/week</option>
-<option value="4">Sedentary</option>
+<option value="0" id="exerciseDaily">Daily (60+ min)</option>
+<option value="1" id="exercise4to6">4-6 days/week</option>
+<option value="2" id="exercise2to3" selected>2-3 days/week</option>
+<option value="3" id="exercise1">1 day/week</option>
+<option value="4" id="exerciseNone">Sedentary</option>
 </select>
 </div>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-weight-scale"></i> BMI Category</div>
+<div class="input-label"><i class="fas fa-weight-scale"></i> <span id="bmiLabel">BMI Category</span></div>
 <select id="bmi">
-<option value="0">Healthy (18.5-24.9)</option>
-<option value="1">Overweight (25-29.9)</option>
-<option value="2" selected>Obese Class I (30-34.9)</option>
-<option value="3">Obese Class II (35-39.9)</option>
-<option value="4">Obese Class III (40+)</option>
+<option value="0" id="bmiHealthy">Healthy (18.5-22.9 Indian)</option>
+<option value="1" id="bmiOverweight">Overweight (23-24.9)</option>
+<option value="2" id="bmiObese1" selected>Obese Class I (25-29.9)</option>
+<option value="3" id="bmiObese2">Obese Class II (30-34.9)</option>
+<option value="4" id="bmiObese3">Obese Class III (35+)</option>
 </select>
 </div>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-smoking"></i> Smoking</div>
+<div class="input-label"><i class="fas fa-smoking"></i> <span id="smokingLabel">Smoking / Tobacco</span></div>
 <select id="smoking">
-<option value="0">Never smoked</option>
-<option value="1">Former smoker</option>
-<option value="2" selected>Current smoker (<1 pack/day)</option>
-<option value="3">Current smoker (1+ packs/day)</option>
+<option value="0" id="smokingNever">Never</option>
+<option value="1" id="smokingFormer">Former user</option>
+<option value="2" id="smokingCurrent" selected>Current user (occasional)</option>
+<option value="3" id="smokingHeavy">Current user (daily/heavy)</option>
 </select>
 </div>
 
 <div class="input-group">
-<div class="input-label"><i class="fas fa-bed"></i> Sleep Quality</div>
+<div class="input-label"><i class="fas fa-bed"></i> <span id="sleepLabel">Sleep Quality</span></div>
 <select id="sleep">
-<option value="0">Excellent (7-9h, refreshed)</option>
-<option value="1">Good (7-8h)</option>
-<option value="2" selected>Fair (6-7h)</option>
-<option value="3">Poor (<6h)</option>
+<option value="0" id="sleepExcellent">Excellent (7-9h, refreshed)</option>
+<option value="1" id="sleepGood">Good (7-8h)</option>
+<option value="2" id="sleepFair" selected>Fair (6-7h)</option>
+<option value="3" id="sleepPoor">Poor (<6h or disturbed)</option>
 </select>
 </div>
 
 <!-- Symptoms -->
-<h4 style="margin:20px 0 10px">⚠️ Inflammation Symptoms</h4>
+<h4 style="margin:20px 0 10px" id="symptomsTitle">⚠️ Inflammation Symptoms</h4>
 
 <div style="display: grid; grid-template-columns: repeat(2,1fr); gap: 10px;">
-<label><input type="checkbox" id="symptom1"> Joint pain/stiffness</label>
-<label><input type="checkbox" id="symptom2"> Fatigue</label>
-<label><input type="checkbox" id="symptom3"> Skin issues</label>
-<label><input type="checkbox" id="symptom4"> Brain fog</label>
-<label><input type="checkbox" id="symptom5"> Digestive issues</label>
-<label><input type="checkbox" id="symptom6"> Allergies</label>
+<label><input type="checkbox" id="symptom1"> <span id="sym1">Joint pain/stiffness</span></label>
+<label><input type="checkbox" id="symptom2"> <span id="sym2">Fatigue / Low energy</span></label>
+<label><input type="checkbox" id="symptom3"> <span id="sym3">Skin issues (acne/eczema)</span></label>
+<label><input type="checkbox" id="symptom4"> <span id="sym4">Brain fog</span></label>
+<label><input type="checkbox" id="symptom5"> <span id="sym5">Digestive issues (bloating)</span></label>
+<label><input type="checkbox" id="symptom6"> <span id="sym6">Allergies / Sinusitis</span></label>
 </div>
 
 <button class="btn-primary" onclick="calculateInflammation()">
-<i class="fas fa-calculator"></i> Calculate Inflammation Score
+<i class="fas fa-calculator"></i> <span id="calculateBtn">Calculate Inflammation Score</span>
 </button>
+<button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
 </div>
 
 <!-- Results Card -->
 <div class="card">
-<div class="card-title"><i class="fas fa-chart-line"></i> Your Inflammation Analysis</div>
+<div class="card-title"><i class="fas fa-chart-line"></i> <span id="resultsTitle">Your Inflammation Analysis</span></div>
 
 <!-- Score -->
 <div class="score-box">
-<div class="score-label">Inflammation Score</div>
+<div class="score-label" id="scoreLabel">Inflammation Score</div>
 <div class="score-number" id="scoreNumber">45</div>
 <div class="score-category" id="scoreCategory">Moderate</div>
 </div>
@@ -391,11 +505,11 @@ margin-top: 60px;
 <!-- CRP Estimate -->
 <div class="crp-box">
 <div>
-<div style="color:#6b7280;">Estimated CRP Level</div>
+<div style="color:#6b7280;" id="crpLabel">Estimated CRP Level</div>
 <div class="crp-value" id="crpValue">2.8 mg/L</div>
 </div>
 <div>
-<div style="color:#6b7280;">Risk Level</div>
+<div style="color:#6b7280;" id="riskLabel">Risk Level</div>
 <div id="crpRisk" style="font-weight:700;">Moderate</div>
 </div>
 </div>
@@ -403,18 +517,29 @@ margin-top: 60px;
 <!-- Factors -->
 <div class="factors-grid">
 <div class="factor-item">
-<div style="font-weight:700;">Diet Score</div>
+<div style="font-weight:700;" id="dietScoreLabel">Diet Score</div>
 <div id="dietScore">32/60</div>
 </div>
 <div class="factor-item">
-<div style="font-weight:700;">Lifestyle Score</div>
+<div style="font-weight:700;" id="lifestyleScoreLabel">Lifestyle Score</div>
 <div id="lifestyleScore">18/40</div>
 </div>
 </div>
 
+<!-- Indian Tips Card -->
+<div class="indian-tips-card" id="indianTipsBox">
+<h4><i class="fas fa-leaf"></i> <span id="tipsTitle">🇮🇳 Indian Anti-Inflammatory Tips</span></h4>
+<ul id="tipsList">
+<li id="tip1"><i class="fas fa-check-circle"></i> Drink Haldi Doodh (turmeric milk) daily</li>
+<li id="tip2"><i class="fas fa-check-circle"></i> Use mustard oil or coconut oil for cooking</li>
+<li id="tip3"><i class="fas fa-check-circle"></i> Include ginger, garlic, and tulsi in diet</li>
+<li id="tip4"><i class="fas fa-check-circle"></i> Replace maida with whole wheat (atta) or jowar/bajra</li>
+</ul>
+</div>
+
 <!-- Recommendations -->
 <div style="margin:30px 0">
-<h4>📋 Anti-Inflammatory Recommendations</h4>
+<h4 id="recTitle">📋 Anti-Inflammatory Recommendations</h4>
 <div id="recommendations">
 <div class="rec-item">
 <div class="rec-icon">🐟</div>
@@ -428,24 +553,385 @@ margin-top: 60px;
 
 <!-- Buttons -->
 <div class="button-group">
-<button class="btn-primary" onclick="window.print()">📥 PDF Report</button>
-<button class="btn-outline" onclick="shareResults()">📤 Share</button>
+<button class="btn-primary" onclick="window.print()">📥 <span id="pdfBtn">PDF Report</span></button>
+<button class="btn-outline" onclick="shareResults()">📤 <span id="shareBtn">Share</span></button>
 </div>
 
-<div style="font-size:0.8rem; color:#6b7280; text-align:center; margin-top:20px;">
-Based on Dietary Inflammatory Index research
+<div style="font-size:0.8rem; color:#6b7280; text-align:center; margin-top:20px;" id="disclaimerText">
+Based on Dietary Inflammatory Index research with Indian adjustments
+</div>
+</div>
+
+<!-- Future Plan Section -->
+<div class="future-plan-section">
+<h3><i class="fas fa-rocket"></i> 🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
+<div class="future-features-grid">
+<div class="future-feature">
+<i class="fas fa-utensils"></i>
+<h5 id="future1">Indian Meal Plan</h5>
+<span class="coming-soon">Coming Jan 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-flask"></i>
+<h5 id="future2">CRP Blood Test Integration</h5>
+<span class="coming-soon">Coming Feb 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-calendar-week"></i>
+<h5 id="future3">Weekly Progress Tracker</h5>
+<span class="coming-soon">Coming March 2027</span>
+</div>
+<div class="future-feature">
+<i class="fas fa-user-md"></i>
+<h5 id="future4">Ayurvedic Consultation</h5>
+<span class="coming-soon">Coming April 2027</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FAQ Section -->
+<div class="faq-section">
+<h2 style="font-size:1.8rem;" id="faqTitle">Frequently Asked Questions</h2>
+<div class="faq-grid">
+<div class="faq-item">
+<div class="faq-question" id="faq1Q">What is Dietary Inflammatory Index?</div>
+<p id="faq1A">Scientific scoring system measuring how foods affect inflammation. Developed by University of South Carolina.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question" id="faq2Q">Why Indian diet adjustment?</div>
+<p id="faq2A">Indian diets often include inflammatory foods (refined oils, maida, sugar). Our calculator adjusts for this.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question" id="faq3Q">How to reduce inflammation naturally?</div>
+<p id="faq3A">Use turmeric, ginger, garlic. Replace refined oils with mustard/coconut oil. Practice yoga daily.</p>
+</div>
+<div class="faq-item">
+<div class="faq-question" id="faq4Q">What is CRP?</div>
+<p id="faq4A">C-Reactive Protein - a blood marker of inflammation. High CRP linked to heart disease, diabetes.</p>
 </div>
 </div>
 </div>
 </div>
 
 <script>
+// ===== GLOBAL STATE =====
+let currentLang = 'en';
+
+// ===== TRANSLATIONS =====
+const translations = {
+en: {
+headerSubtitle: 'Indian Diet Adjusted',
+headerDesc: 'Based on Dietary Inflammatory Index (DII) with Indian food adjustments',
+profileTitle: 'Your Inflammatory Profile',
+indianNoteText: '🇮🇳 Indian diets are often high in inflammatory foods (refined oils, sugar, maida). Our calculator adjusts for this.',
+dietTitle: '🥗 Diet Factors',
+cookingOilLabel: 'Cooking Oil Type',
+mustardOil: 'Mustard Oil / Olive Oil (Anti-inflammatory)',
+coconutOil: 'Coconut Oil / Ghee (Neutral)',
+refinedOil: 'Refined Oil (Sunflower/Soybean/Canola)',
+vanaspati: 'Vanaspati / Dalda (Highly Inflammatory)',
+omegaLabel: 'Omega-6: Omega-3 Ratio',
+omegaExcellent: 'Excellent (< 4:1)',
+omegaGood: 'Good (4:1 - 8:1)',
+omegaAverage: 'Average (8:1 - 12:1)',
+omegaPoor: 'Poor (12:1 - 15:1)',
+omegaVeryPoor: 'Very Poor (> 15:1)',
+sugarLabel: 'Added Sugar / Mithai Intake',
+sugarNone: 'None / Very Low',
+sugarLow: 'Low (1-2 servings/week)',
+sugarModerate: 'Moderate (3-5 servings/week)',
+sugarHigh: 'High (1-2 servings/day)',
+sugarVeryHigh: 'Very High (3+ servings/day)',
+maidaLabel: 'Maida / Refined Flour',
+maidaNone: 'Never / Rarely',
+maidaWeekly: '1-2 times/week',
+maidaDaily: '3-4 times/week',
+maidaVeryOften: 'Daily',
+veggiesLabel: 'Vegetables & Fruits',
+veggiesLow: 'Less than 1 serving/day',
+veggiesMed: '1-2 servings/day',
+veggiesGood: '3-4 servings/day',
+veggiesHigh: '5-6 servings/day',
+veggiesExcellent: '7+ servings/day',
+spicesLabel: 'Anti-inflammatory Spices (Turmeric, Ginger, Garlic)',
+spicesNone: 'Rarely use',
+spicesSometimes: 'Sometimes',
+spicesDaily: 'Daily in cooking',
+spicesGenerous: 'Generous amounts daily',
+spicesTherapeutic: 'Therapeutic doses (haldi doodh, etc.)',
+lifestyleTitle: '💪 Lifestyle Factors',
+exerciseLabel: 'Exercise / Yoga',
+exerciseDaily: 'Daily (60+ min)',
+exercise4to6: '4-6 days/week',
+exercise2to3: '2-3 days/week',
+exercise1: '1 day/week',
+exerciseNone: 'Sedentary',
+bmiLabel: 'BMI Category',
+bmiHealthy: 'Healthy (18.5-22.9 Indian)',
+bmiOverweight: 'Overweight (23-24.9)',
+bmiObese1: 'Obese Class I (25-29.9)',
+bmiObese2: 'Obese Class II (30-34.9)',
+bmiObese3: 'Obese Class III (35+)',
+smokingLabel: 'Smoking / Tobacco',
+smokingNever: 'Never',
+smokingFormer: 'Former user',
+smokingCurrent: 'Current user (occasional)',
+smokingHeavy: 'Current user (daily/heavy)',
+sleepLabel: 'Sleep Quality',
+sleepExcellent: 'Excellent (7-9h, refreshed)',
+sleepGood: 'Good (7-8h)',
+sleepFair: 'Fair (6-7h)',
+sleepPoor: 'Poor (<6h or disturbed)',
+symptomsTitle: '⚠️ Inflammation Symptoms',
+sym1: 'Joint pain/stiffness',
+sym2: 'Fatigue / Low energy',
+sym3: 'Skin issues (acne/eczema)',
+sym4: 'Brain fog',
+sym5: 'Digestive issues (bloating)',
+sym6: 'Allergies / Sinusitis',
+calculateBtn: 'Calculate Inflammation Score',
+resetBtn: 'Reset All Fields',
+resultsTitle: 'Your Inflammation Analysis',
+scoreLabel: 'Inflammation Score',
+crpLabel: 'Estimated CRP Level',
+riskLabel: 'Risk Level',
+dietScoreLabel: 'Diet Score',
+lifestyleScoreLabel: 'Lifestyle Score',
+tipsTitle: '🇮🇳 Indian Anti-Inflammatory Tips',
+tip1: 'Drink Haldi Doodh (turmeric milk) daily',
+tip2: 'Use mustard oil or coconut oil for cooking',
+tip3: 'Include ginger, garlic, and tulsi in diet',
+tip4: 'Replace maida with whole wheat (atta) or jowar/bajra',
+recTitle: '📋 Anti-Inflammatory Recommendations',
+pdfBtn: 'PDF Report',
+shareBtn: 'Share',
+disclaimerText: 'Based on Dietary Inflammatory Index research with Indian adjustments',
+futureTitle: 'Coming Soon: Future Features',
+future1: 'Indian Meal Plan',
+future2: 'CRP Blood Test Integration',
+future3: 'Weekly Progress Tracker',
+future4: 'Ayurvedic Consultation',
+faqTitle: 'Frequently Asked Questions',
+faq1Q: 'What is Dietary Inflammatory Index?',
+faq1A: 'Scientific scoring system measuring how foods affect inflammation. Developed by University of South Carolina.',
+faq2Q: 'Why Indian diet adjustment?',
+faq2A: 'Indian diets often include inflammatory foods (refined oils, maida, sugar). Our calculator adjusts for this.',
+faq3Q: 'How to reduce inflammation naturally?',
+faq3A: 'Use turmeric, ginger, garlic. Replace refined oils with mustard/coconut oil. Practice yoga daily.',
+faq4Q: 'What is CRP?',
+faq4A: 'C-Reactive Protein - a blood marker of inflammation. High CRP linked to heart disease, diabetes.'
+},
+hi: {
+headerSubtitle: 'भारतीय आहार समायोजित',
+headerDesc: 'भारतीय भोजन समायोजन के साथ आहार सूजन सूचकांक (DII) पर आधारित',
+profileTitle: 'आपकी सूजन प्रोफाइल',
+indianNoteText: '🇮🇳 भारतीय आहार में सूजन बढ़ाने वाले खाद्य पदार्थ (रिफाइंड तेल, चीनी, मैदा) अधिक होते हैं। हमारा कैलकुलेटर इसे समायोजित करता है।',
+dietTitle: '🥗 आहार कारक',
+cookingOilLabel: 'खाना पकाने का तेल',
+mustardOil: 'सरसों तेल / जैतून तेल (सूजन-रोधी)',
+coconutOil: 'नारियल तेल / घी (तटस्थ)',
+refinedOil: 'रिफाइंड तेल (सूरजमुखी/सोयाबीन/कैनोला)',
+vanaspati: 'वनस्पति / डालडा (अत्यधिक सूजनकारी)',
+omegaLabel: 'ओमेगा-6: ओमेगा-3 अनुपात',
+omegaExcellent: 'उत्कृष्ट (< 4:1)',
+omegaGood: 'अच्छा (4:1 - 8:1)',
+omegaAverage: 'औसत (8:1 - 12:1)',
+omegaPoor: 'खराब (12:1 - 15:1)',
+omegaVeryPoor: 'बहुत खराब (> 15:1)',
+sugarLabel: 'अतिरिक्त चीनी / मिठाई',
+sugarNone: 'नहीं / बहुत कम',
+sugarLow: 'कम (सप्ताह में 1-2 बार)',
+sugarModerate: 'मध्यम (सप्ताह में 3-5 बार)',
+sugarHigh: 'अधिक (दिन में 1-2 बार)',
+sugarVeryHigh: 'बहुत अधिक (दिन में 3+ बार)',
+maidaLabel: 'मैदा / रिफाइंड आटा',
+maidaNone: 'कभी नहीं / बहुत कम',
+maidaWeekly: 'सप्ताह में 1-2 बार',
+maidaDaily: 'सप्ताह में 3-4 बार',
+maidaVeryOften: 'रोज़',
+veggiesLabel: 'सब्जियां और फल',
+veggiesLow: '1 से कम सर्विंग/दिन',
+veggiesMed: '1-2 सर्विंग/दिन',
+veggiesGood: '3-4 सर्विंग/दिन',
+veggiesHigh: '5-6 सर्विंग/दिन',
+veggiesExcellent: '7+ सर्विंग/दिन',
+spicesLabel: 'सूजन-रोधी मसाले (हल्दी, अदरक, लहसुन)',
+spicesNone: 'बहुत कम उपयोग',
+spicesSometimes: 'कभी-कभी',
+spicesDaily: 'रोज़ खाने में',
+spicesGenerous: 'रोज़ भरपूर मात्रा में',
+spicesTherapeutic: 'चिकित्सीय मात्रा (हल्दी दूध आदि)',
+lifestyleTitle: '💪 जीवनशैली कारक',
+exerciseLabel: 'व्यायाम / योग',
+exerciseDaily: 'रोज़ (60+ मिनट)',
+exercise4to6: 'सप्ताह में 4-6 दिन',
+exercise2to3: 'सप्ताह में 2-3 दिन',
+exercise1: 'सप्ताह में 1 दिन',
+exerciseNone: 'निष्क्रिय',
+bmiLabel: 'BMI श्रेणी',
+bmiHealthy: 'स्वस्थ (18.5-22.9 भारतीय)',
+bmiOverweight: 'अधिक वज़न (23-24.9)',
+bmiObese1: 'मोटापा श्रेणी I (25-29.9)',
+bmiObese2: 'मोटापा श्रेणी II (30-34.9)',
+bmiObese3: 'मोटापा श्रेणी III (35+)',
+smokingLabel: 'धूम्रपान / तंबाकू',
+smokingNever: 'कभी नहीं',
+smokingFormer: 'पूर्व उपयोगकर्ता',
+smokingCurrent: 'वर्तमान (कभी-कभी)',
+smokingHeavy: 'वर्तमान (रोज़/भारी)',
+sleepLabel: 'नींद की गुणवत्ता',
+sleepExcellent: 'उत्कृष्ट (7-9 घंटे, तरोताज़ा)',
+sleepGood: 'अच्छी (7-8 घंटे)',
+sleepFair: 'ठीक (6-7 घंटे)',
+sleepPoor: 'खराब (<6 घंटे या बाधित)',
+symptomsTitle: '⚠️ सूजन के लक्षण',
+sym1: 'जोड़ों का दर्द/अकड़न',
+sym2: 'थकान / कम ऊर्जा',
+sym3: 'त्वचा समस्याएं (मुंहासे/एक्जिमा)',
+sym4: 'दिमागी धुंधलापन',
+sym5: 'पाचन समस्याएं (पेट फूलना)',
+sym6: 'एलर्जी / साइनसाइटिस',
+calculateBtn: 'सूजन स्कोर कैलकुलेट करें',
+resetBtn: 'सभी रीसेट करें',
+resultsTitle: 'आपका सूजन विश्लेषण',
+scoreLabel: 'सूजन स्कोर',
+crpLabel: 'अनुमानित CRP स्तर',
+riskLabel: 'जोखिम स्तर',
+dietScoreLabel: 'आहार स्कोर',
+lifestyleScoreLabel: 'जीवनशैली स्कोर',
+tipsTitle: '🇮🇳 भारतीय सूजन-रोधी सुझाव',
+tip1: 'रोज़ हल्दी वाला दूध पिएं',
+tip2: 'खाना बनाने में सरसों या नारियल तेल का प्रयोग करें',
+tip3: 'आहार में अदरक, लहसुन और तुलसी शामिल करें',
+tip4: 'मैदा की जगह गेहूं का आटा या ज्वार/बाजरा लें',
+recTitle: '📋 सूजन-रोधी सिफारिशें',
+pdfBtn: 'PDF रिपोर्ट',
+shareBtn: 'शेयर करें',
+disclaimerText: 'भारतीय समायोजन के साथ आहार सूजन सूचकांक अनुसंधान पर आधारित',
+futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
+future1: 'भारतीय भोजन योजना',
+future2: 'CRP रक्त परीक्षण एकीकरण',
+future3: 'साप्ताहिक प्रगति ट्रैकर',
+future4: 'आयुर्वेदिक परामर्श',
+faqTitle: 'अक्सर पूछे जाने वाले प्रश्न',
+faq1Q: 'आहार सूजन सूचकांक क्या है?',
+faq1A: 'खाद्य पदार्थ सूजन को कैसे प्रभावित करते हैं, इसे मापने वाली वैज्ञानिक स्कोरिंग प्रणाली। यूनिवर्सिटी ऑफ साउथ कैरोलिना द्वारा विकसित।',
+faq2Q: 'भारतीय आहार समायोजन क्यों?',
+faq2A: 'भारतीय आहार में सूजनकारी खाद्य पदार्थ (रिफाइंड तेल, मैदा, चीनी) अधिक होते हैं। हमारा कैलकुलेटर इसे समायोजित करता है।',
+faq3Q: 'प्राकृतिक रूप से सूजन कैसे कम करें?',
+faq3A: 'हल्दी, अदरक, लहसुन का प्रयोग करें। रिफाइंड तेल की जगह सरसों/नारियल तेल लें। रोज़ योग करें।',
+faq4Q: 'CRP क्या है?',
+faq4A: 'सी-रिएक्टिव प्रोटीन - सूजन का रक्त मार्कर। उच्च CRP हृदय रोग, मधुमेह से जुड़ा है।'
+}
+};
+
+// ===== LANGUAGE SWITCHER =====
+function setLanguage(lang) {
+currentLang = lang;
+document.querySelectorAll('.lang-btn').forEach(btn => {
+btn.classList.toggle('active', btn.dataset.lang === lang);
+});
+document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+
+const t = translations[lang] || translations.en;
+Object.keys(t).forEach(id => {
+const el = document.getElementById(id);
+if (el) {
+if (id.startsWith('tip') || id.includes('Note') || id.includes('Text')) {
+el.innerHTML = t[id];
+} else if (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'OPTION') {
+if (el.tagName === 'OPTION') el.textContent = t[id];
+} else {
+el.textContent = t[id];
+}
+}
+});
+
+// Update symptom labels
+document.querySelectorAll('[id^="sym"]').forEach((el, i) => {
+if (t['sym' + (i+1)]) el.textContent = t['sym' + (i+1)];
+});
+
+document.querySelector('title').textContent = lang === 'hi' 
+? '🔥 सूजन स्कोर: भारतीय आहार और CRP अनुमान | HealthCalc'
+: '🔥 Inflammation Score: Indian Diet & CRP Estimate | HealthCalc';
+
+calculateInflammation();
+}
+
+// ===== RESET =====
+function resetForm() {
+document.getElementById('cookingOil').value = '2';
+document.getElementById('omegaRatio').value = '2';
+document.getElementById('sugar').value = '2';
+document.getElementById('maida').value = '2';
+document.getElementById('veggies').value = '2';
+document.getElementById('spices').value = '2';
+document.getElementById('exercise').value = '2';
+document.getElementById('bmi').value = '2';
+document.getElementById('smoking').value = '2';
+document.getElementById('sleep').value = '2';
+for (let i = 1; i <= 6; i++) {
+document.getElementById(`symptom${i}`).checked = false;
+}
+calculateInflammation();
+}
+
+// ===== SAVE/LOAD =====
+function saveToLocalStorage() {
+const data = {
+currentLang,
+cookingOil: document.getElementById('cookingOil').value,
+omegaRatio: document.getElementById('omegaRatio').value,
+sugar: document.getElementById('sugar').value,
+maida: document.getElementById('maida').value,
+veggies: document.getElementById('veggies').value,
+spices: document.getElementById('spices').value,
+exercise: document.getElementById('exercise').value,
+bmi: document.getElementById('bmi').value,
+smoking: document.getElementById('smoking').value,
+sleep: document.getElementById('sleep').value,
+symptoms: [1,2,3,4,5,6].map(i => document.getElementById(`symptom${i}`).checked)
+};
+localStorage.setItem('inflammationData', JSON.stringify(data));
+}
+
+function loadFromLocalStorage() {
+const saved = localStorage.getItem('inflammationData');
+if (saved) {
+const data = JSON.parse(saved);
+if (data.currentLang) setLanguage(data.currentLang);
+if (data.cookingOil) document.getElementById('cookingOil').value = data.cookingOil;
+if (data.omegaRatio) document.getElementById('omegaRatio').value = data.omegaRatio;
+if (data.sugar) document.getElementById('sugar').value = data.sugar;
+if (data.maida) document.getElementById('maida').value = data.maida;
+if (data.veggies) document.getElementById('veggies').value = data.veggies;
+if (data.spices) document.getElementById('spices').value = data.spices;
+if (data.exercise) document.getElementById('exercise').value = data.exercise;
+if (data.bmi) document.getElementById('bmi').value = data.bmi;
+if (data.smoking) document.getElementById('smoking').value = data.smoking;
+if (data.sleep) document.getElementById('sleep').value = data.sleep;
+if (data.symptoms) {
+data.symptoms.forEach((checked, i) => {
+document.getElementById(`symptom${i+1}`).checked = checked;
+});
+}
+}
+calculateInflammation();
+}
+
+// ===== MAIN CALCULATION =====
 function calculateInflammation() {
-// Get all values
+const isHindi = currentLang === 'hi';
+
+// Get values
+const cookingOil = parseInt(document.getElementById('cookingOil').value);
 const omega = parseInt(document.getElementById('omegaRatio').value);
 const sugar = parseInt(document.getElementById('sugar').value);
-const alcohol = parseInt(document.getElementById('alcohol').value);
+const maida = parseInt(document.getElementById('maida').value);
 const veggies = parseInt(document.getElementById('veggies').value);
+const spices = parseInt(document.getElementById('spices').value);
 const exercise = parseInt(document.getElementById('exercise').value);
 const bmi = parseInt(document.getElementById('bmi').value);
 const smoking = parseInt(document.getElementById('smoking').value);
@@ -457,9 +943,9 @@ for (let i = 1; i <= 6; i++) {
 if (document.getElementById(`symptom${i}`).checked) symptoms++;
 }
 
-// Calculate scores
-let dietScore = (omega * 8) + (sugar * 6) + (alcohol * 5) + (veggies * 6);
-let lifestyleScore = (exercise * 6) + (bmi * 8) + (smoking * 8) + (sleep * 5) + (symptoms * 4);
+// Calculate scores with Indian adjustments
+let dietScore = (cookingOil * 6) + (omega * 7) + (sugar * 6) + (maida * 5) + (veggies * 6) + (spices * 5);
+let lifestyleScore = (exercise * 6) + (bmi * 8) + (smoking * 7) + (sleep * 5) + (symptoms * 4);
 
 let totalScore = dietScore + lifestyleScore;
 let maxScore = 240;
@@ -471,10 +957,10 @@ document.getElementById('scoreMeter').style.width = percentage + '%';
 
 // Category
 let category = '';
-if (percentage < 25) category = 'Low Inflammation';
-else if (percentage < 50) category = 'Moderate Inflammation';
-else if (percentage < 75) category = 'High Inflammation';
-else category = 'Severe Inflammation';
+if (percentage < 25) category = isHindi ? 'कम सूजन' : 'Low Inflammation';
+else if (percentage < 50) category = isHindi ? 'मध्यम सूजन' : 'Moderate Inflammation';
+else if (percentage < 75) category = isHindi ? 'उच्च सूजन' : 'High Inflammation';
+else category = isHindi ? 'गंभीर सूजन' : 'Severe Inflammation';
 document.getElementById('scoreCategory').innerText = category;
 
 // CRP estimate
@@ -482,39 +968,57 @@ let crp = (percentage / 20).toFixed(1);
 document.getElementById('crpValue').innerText = crp + ' mg/L';
 
 let crpRisk = '';
-if (crp < 1) crpRisk = 'Low Risk';
-else if (crp < 3) crpRisk = 'Moderate Risk';
-else crpRisk = 'High Risk';
+if (crp < 1) crpRisk = isHindi ? 'कम जोखिम' : 'Low Risk';
+else if (crp < 3) crpRisk = isHindi ? 'मध्यम जोखिम' : 'Moderate Risk';
+else crpRisk = isHindi ? 'उच्च जोखिम' : 'High Risk';
 document.getElementById('crpRisk').innerText = crpRisk;
 
-// Diet/Lifestyle scores
+// Scores
 document.getElementById('dietScore').innerText = dietScore + '/100';
 document.getElementById('lifestyleScore').innerText = lifestyleScore + '/140';
 
 // Recommendations
 let recs = [];
-if (omega > 1) recs.push({icon:'🐟', title:'Improve Omega-3:6 Ratio', desc:'Eat fatty fish 2x/week, add flaxseeds, reduce vegetable oils'});
-if (sugar > 2) recs.push({icon:'🍬', title:'Reduce Added Sugar', desc:'Cut sugary drinks, desserts, and processed foods'});
-if (veggies < 2) recs.push({icon:'🥗', title:'Eat More Vegetables', desc:'Aim for 7+ servings of colorful veggies daily'});
-if (exercise > 1) recs.push({icon:'🏃', title:'Increase Exercise', desc:'150 minutes moderate exercise weekly reduces inflammation'});
-if (bmi > 1) recs.push({icon:'⚖️', title:'Healthy Weight', desc:'Losing 5-10% body weight reduces inflammatory markers'});
-if (smoking > 1) recs.push({icon:'🚭', title:'Quit Smoking', desc:'Smoking increases CRP by 30-50%'});
-if (sleep > 2) recs.push({icon:'😴', title:'Improve Sleep', desc:'Poor sleep increases inflammatory cytokines'});
+if (cookingOil > 1) recs.push({icon:'🫒', title: isHindi ? 'तेल बदलें' : 'Change Cooking Oil', desc: isHindi ? 'रिफाइंड तेल की जगह सरसों या नारियल तेल उपयोग करें' : 'Switch to mustard or coconut oil instead of refined oils'});
+if (omega > 1) recs.push({icon:'🐟', title: isHindi ? 'ओमेगा-3 बढ़ाएं' : 'Increase Omega-3', desc: isHindi ? 'अलसी, अखरोट, मछली खाएं' : 'Eat flaxseeds, walnuts, fatty fish'});
+if (sugar > 2) recs.push({icon:'🍬', title: isHindi ? 'चीनी कम करें' : 'Reduce Sugar', desc: isHindi ? 'मिठाई, शक्कर वाले पेय कम करें' : 'Cut sugary drinks and sweets'});
+if (maida > 1) recs.push({icon:'🌾', title: isHindi ? 'मैदा छोड़ें' : 'Avoid Maida', desc: isHindi ? 'गेहूं का आटा या ज्वार/बाजरा लें' : 'Use whole wheat or millets'});
+if (veggies < 2) recs.push({icon:'🥗', title: isHindi ? 'सब्जियां बढ़ाएं' : 'Eat More Vegetables', desc: isHindi ? 'रोज़ 5+ सर्विंग रंगीन सब्जियां खाएं' : 'Aim for 5+ servings of colorful veggies daily'});
+if (spices > 2) recs.push({icon:'🧡', title: isHindi ? 'हल्दी-अदरक बढ़ाएं' : 'More Turmeric & Ginger', desc: isHindi ? 'रोज़ हल्दी वाला दूध पिएं' : 'Drink turmeric milk daily'});
+if (exercise > 1) recs.push({icon:'🧘', title: isHindi ? 'योग/व्यायाम करें' : 'Exercise/Yoga', desc: isHindi ? 'रोज़ 30 मिनट योग या वॉक करें' : '30 min yoga or walk daily'});
+if (bmi > 1) recs.push({icon:'⚖️', title: isHindi ? 'स्वस्थ वज़न' : 'Healthy Weight', desc: isHindi ? '5-10% वज़न घटाने से सूजन कम होती है' : 'Losing 5-10% weight reduces inflammation'});
+if (smoking > 1) recs.push({icon:'🚭', title: isHindi ? 'धूम्रपान छोड़ें' : 'Quit Tobacco', desc: isHindi ? 'तंबाकू CRP 30-50% बढ़ाता है' : 'Tobacco increases CRP by 30-50%'});
+if (sleep > 2) recs.push({icon:'😴', title: isHindi ? 'नींद सुधारें' : 'Improve Sleep', desc: isHindi ? '7-8 घंटे की अच्छी नींद लें' : 'Get 7-8 hours of quality sleep'});
 
 document.getElementById('recommendations').innerHTML = recs.slice(0,4).map(r => `
 <div class="rec-item">
 <div class="rec-icon">${r.icon}</div>
 <div><div class="rec-title">${r.title}</div><div class="rec-desc">${r.desc}</div></div>
 </div>
-`).join('');
+`).join('') || (isHindi ? '<p>कोई सिफारिश नहीं। आपका स्कोर अच्छा है!</p>' : '<p>No recommendations. Your score is good!</p>');
+
+saveToLocalStorage();
 }
 
 function shareResults() {
-navigator.clipboard.writeText(window.location.href);
-alert('Link copied!');
+navigator.clipboard?.writeText(window.location.href);
+alert(currentLang === 'hi' ? 'लिंक कॉपी किया गया!' : 'Link copied!');
 }
 
-window.onload = calculateInflammation;
+// Event listeners
+document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
+document.getElementById('langHI').addEventListener('click', () => setLanguage('hi'));
+
+document.querySelectorAll('select, input[type="checkbox"]').forEach(el => {
+el.addEventListener('change', calculateInflammation);
+});
+
+window.setLanguage = setLanguage;
+window.resetForm = resetForm;
+window.calculateInflammation = calculateInflammation;
+window.shareResults = shareResults;
+
+window.onload = loadFromLocalStorage;
 </script>
 </body>
 </html>
