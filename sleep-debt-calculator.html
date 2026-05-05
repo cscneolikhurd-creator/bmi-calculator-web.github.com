@@ -1,356 +1,825 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
-    <!-- SEO Meta -->
-    <title>Sleep Debt Calculator: Recovery Plan & Chronotype | HealthCalc</title>
-    <meta name="description" content="Free sleep debt calculator: Calculate your sleep debt, get personalized recovery schedule, and discover your chronotype (owl or lark). Improve your sleep quality.">
-    <meta name="keywords" content="sleep debt calculator, sleep recovery, chronotype test, sleep deprivation, sleep cycle, bedtime calculator">
+    <!-- Primary SEO Meta -->
+    <title>😴 Sleep Debt Calculator: Recovery Plan & Chronotype Quiz | HealthCalc</title>
+    <meta name="title" content="Sleep Debt Calculator: Recovery Schedule, Chronotype Test (Owl/Lark) | Free">
+    <meta name="description" content="Calculate your sleep debt, get a personalized 7-day recovery plan, and discover your chronotype (Morning Lark, Night Owl, or Intermediate). Free sleep quality assessment with AI tips. Hindi/English. 100% private.">
+    <meta name="keywords" content="sleep debt calculator, sleep recovery plan, chronotype test, sleep deprivation calculator, sleep quality score, owl or lark quiz, bedtime calculator, sleep cycle, insomnia help, neend calculator, nidra calculator">
+    <meta name="author" content="HealthCalc">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://healthcalc.in/sleep-debt-calculator.html">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Sleep Debt Calculator with Recovery Plan">
-    <meta property="og:description" content="Know your sleep debt and get a personalized recovery schedule">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://healthcalc.in/sleep-debt-calculator.html">
+    <meta property="og:title" content="Sleep Debt Calculator with Recovery Plan & Chronotype Quiz">
+    <meta property="og:description" content="Know your sleep debt and get a personalized 7-day recovery schedule. Free chronotype test.">
     <meta property="og:image" content="https://healthcalc.in/images/sleep-preview.jpg">
-    <meta property="og:url" content="https://healthcalc.in/tools/sleep-debt">
+    <meta property="og:locale" content="en_IN">
     
-    <!-- Canonical -->
-    <link rel="canonical" href="https://healthcalc.in/tools/sleep-debt">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://healthcalc.in/sleep-debt-calculator.html">
+    <meta property="twitter:title" content="Sleep Debt Calculator">
+    <meta property="twitter:description" content="Calculate sleep debt & get recovery plan">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "name": "Sleep Debt Calculator",
+        "description": "Calculate sleep debt, get personalized recovery schedule, and discover your chronotype. Free sleep quality assessment.",
+        "url": "https://healthcalc.in/sleep-debt-calculator.html",
+        "author": {"@type": "Organization", "name": "HealthCalc"},
+        "about": {"@type": "MedicalCondition", "name": "Sleep Deprivation"},
+        "inLanguage": ["en", "hi"]
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is sleep debt?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sleep debt is the cumulative effect of not getting enough sleep. If you need 8 hours but sleep only 6, you accumulate 2 hours of sleep debt daily."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How to recover from sleep debt?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Recover by adding 1-2 extra hours of sleep each night. A structured 7-day recovery plan helps restore your sleep balance gradually."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is a chronotype?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Chronotype is your natural sleep-wake preference. Morning Larks wake early naturally, Night Owls are most alert in evenings, and Intermediates can adapt flexibly."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+            {"@type": "ListItem", "position": 2, "name": "Health Tools", "item": "https://healthcalc.in/#tools"},
+            {"@type": "ListItem", "position": 3, "name": "Sleep Debt Calculator", "item": "https://healthcalc.in/sleep-debt-calculator.html"}
+        ]
+    }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        body { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
-        .header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); padding: 30px; text-align: center; color: white; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
-        .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --surface: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.1);
+            --card-bg: rgba(30,41,59,0.9);
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--text);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+            margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--secondary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb .sep { color: #64748b; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #6366f1, #4f46e5, #3b82f6);
+            padding: 40px 30px; text-align: center; color: white;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+            position: relative; overflow: hidden;
+        }
+        .header::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+        .header h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 10px; position: relative; }
+        .header p { font-size: 1.1rem; opacity: 0.9; position: relative; }
+        .badge-container { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px; position: relative; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.2); padding: 8px 18px;
+            border-radius: 50px; font-size: 0.85rem; font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex; justify-content: center; gap: 8px; margin: 20px 0;
+        }
+        .lang-btn {
+            padding: 10px 22px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.3);
+            background: transparent; color: white; cursor: pointer; font-weight: 600;
+            transition: all 0.3s; font-size: 0.9rem;
+        }
+        .lang-btn.active { background: white; color: var(--primary-dark); border-color: white; }
+
+        /* Main Grid */
+        .main {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 30px; padding: 30px;
+            background: rgba(15,23,42,0.8); backdrop-filter: blur(10px);
+        }
         @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
-        
-        /* Input Card */
-        .input-card { background: #f0f2f5; padding: 25px; border-radius: 20px; }
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
-        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #d1d5db; border-radius: 10px; font-size: 1em; }
-        
-        .slider-container { margin: 20px 0; }
-        .slider-label { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        input[type=range] { width: 100%; height: 8px; border-radius: 4px; background: #d1d5db; outline: none; }
-        
-        .chronotype-quiz { background: white; padding: 20px; border-radius: 20px; margin: 20px 0; }
-        .quiz-question { margin-bottom: 15px; }
-        
-        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
-        
-        /* Results Card */
-        .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #f0f2f5; }
-        
-        .debt-circle { text-align: center; padding: 20px; background: #f0f2f5; border-radius: 20px; margin-bottom: 20px; }
-        .debt-value { font-size: 4em; font-weight: 800; color: #1e293b; line-height: 1; }
-        .debt-label { font-size: 1.2em; color: #666; }
-        
-        .recovery-timeline { background: #f0f2f5; padding: 20px; border-radius: 20px; margin: 20px 0; }
-        .timeline-item { display: flex; align-items: center; margin-bottom: 15px; }
-        .timeline-day { width: 80px; font-weight: 600; }
-        .timeline-bar { flex: 1; height: 30px; background: #d1d5db; border-radius: 15px; margin: 0 15px; overflow: hidden; }
-        .timeline-fill { height: 100%; background: #1e293b; width: 0%; }
-        .timeline-hours { width: 80px; text-align: right; }
-        
-        .chronotype-result { display: flex; align-items: center; gap: 20px; padding: 20px; background: #f0f2f5; border-radius: 20px; margin: 20px 0; }
-        .chronotype-icon { font-size: 3em; }
+
+        /* Cards */
+        .input-card, .results-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+            padding-bottom: 15px; border-bottom: 1px solid var(--border);
+        }
+        .section-title i { color: var(--primary); }
+
+        /* Form */
+        .input-group { margin-bottom: 18px; }
+        .input-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem; color: #cbd5e1; }
+        .input-group input, .input-group select {
+            width: 100%; padding: 12px 16px; border: 2px solid #475569;
+            border-radius: var(--radius-md); font-size: 1rem;
+            background: #1e293b; color: var(--text); outline: none;
+            transition: all 0.3s;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+        }
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .slider-value { text-align: right; color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+
+        /* Chronotype Quiz */
+        .quiz-box {
+            background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);
+            border-radius: var(--radius-lg); padding: 20px; margin: 20px 0;
+        }
+        .quiz-box h3 { margin-bottom: 15px; display: flex; align-items: center; gap: 8px; color: var(--secondary); }
+
+        /* Button */
+        .calc-btn {
+            width: 100%; padding: 16px; background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white; border: none; border-radius: var(--radius-md);
+            font-size: 1.15rem; font-weight: 700; cursor: pointer;
+            transition: all 0.3s; margin-top: 10px; display: flex;
+            align-items: center; justify-content: center; gap: 10px;
+        }
+        .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(99,102,241,0.4); }
+
+        /* Results */
+        .debt-circle {
+            text-align: center; padding: 24px;
+            background: rgba(99,102,241,0.1); border-radius: var(--radius-lg);
+            margin-bottom: 20px; border: 1px solid rgba(99,102,241,0.2);
+        }
+        .debt-value { font-size: 4em; font-weight: 900; color: #818cf8; line-height: 1; }
+        .debt-label { font-size: 1.1rem; color: var(--text-muted); margin-top: 5px; }
+
+        .chronotype-result {
+            display: flex; align-items: center; gap: 18px;
+            padding: 18px; background: rgba(14,165,233,0.1);
+            border-radius: var(--radius-lg); margin: 20px 0;
+            border: 1px solid rgba(14,165,233,0.2);
+        }
+        .chronotype-icon { font-size: 3rem; }
         .chronotype-desc { flex: 1; }
-        
-        .tips-list { background: #f0f2f5; padding: 20px; border-radius: 20px; }
-        .tip-item { display: flex; align-items: center; gap: 15px; padding: 10px; border-bottom: 1px solid #d1d5db; }
-        
-        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; }
+
+        .recovery-timeline {
+            background: rgba(30,41,59,0.6); padding: 20px;
+            border-radius: var(--radius-lg); margin: 20px 0;
+        }
+        .timeline-item { display: flex; align-items: center; margin-bottom: 14px; gap: 12px; }
+        .timeline-day { width: 60px; font-weight: 600; font-size: 0.9rem; }
+        .timeline-bar { flex: 1; height: 24px; background: #334155; border-radius: 12px; overflow: hidden; }
+        .timeline-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #818cf8); border-radius: 12px; transition: width 0.8s ease; }
+        .timeline-hours { width: 90px; text-align: right; font-size: 0.85rem; color: var(--text-muted); }
+
+        .tips-list { background: rgba(30,41,59,0.6); padding: 20px; border-radius: var(--radius-lg); }
+        .tip-item {
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 0; border-bottom: 1px solid var(--border);
+        }
+        .tip-item:last-child { border-bottom: none; }
+
+        .score-box {
+            background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2);
+            padding: 18px; border-radius: var(--radius-lg); text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Future Plan Section */
+        .future-plan-section {
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(14,165,233,0.1));
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+            padding: 30px; border: 1px solid var(--border);
+            border-top: none;
+        }
+        .future-plan-section h3 {
+            color: var(--text); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .future-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .future-feature {
+            background: rgba(30,41,59,0.6); padding: 18px;
+            border-radius: var(--radius-lg); text-align: center;
+            border: 1px solid var(--border); transition: all 0.3s;
+        }
+        .future-feature:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .future-feature i { font-size: 1.6rem; color: var(--secondary); margin-bottom: 8px; }
+        .future-feature h5 { font-size: 0.9rem; margin-bottom: 5px; }
+        .future-feature p { font-size: 0.78rem; color: var(--text-muted); }
+        .coming-soon-tag {
+            display: inline-block; background: #f59e0b; color: white;
+            padding: 2px 10px; border-radius: 20px; font-size: 0.7rem;
+            font-weight: 600; margin-top: 8px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center; padding: 20px; color: var(--text-muted);
+            border-top: 1px solid var(--border); font-size: 0.85rem;
+        }
+        .footer a { color: var(--secondary); text-decoration: none; }
+
+        /* Disclaimer */
+        .disclaimer {
+            text-align: center; padding: 12px; color: var(--text-muted);
+            font-size: 0.78rem; border-top: 1px solid var(--border);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>😴 Sleep Debt Calculator</h1>
-            <p>Recovery Plan • Chronotype • Sleep Quality</p>
-            <div>
-                <span class="badge">🌟 Recovery Schedule</span>
-                <span class="badge">🦉 Owl or Lark?</span>
-                <span class="badge">📊 Sleep Score</span>
-            </div>
+<div class="container">
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/"><i class="fas fa-home"></i> Home</a>
+        <span class="sep">›</span>
+        <a href="/#tools">Health Tools</a>
+        <span class="sep">›</span>
+        <span>Sleep Debt Calculator</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>😴 Sleep Debt Calculator</h1>
+        <p id="headerSubtitle">Recovery Plan • Chronotype Quiz • Sleep Quality Score</p>
+        <div class="badge-container">
+            <span class="badge"><i class="fas fa-calendar-check"></i> <span id="badge1">7-Day Recovery</span></span>
+            <span class="badge"><i class="fas fa-owl"></i> <span id="badge2">Chronotype Quiz</span></span>
+            <span class="badge"><i class="fas fa-star"></i> <span id="badge3">Sleep Score</span></span>
+            <span class="badge"><i class="fas fa-shield-alt"></i> <span id="badge4">100% Private</span></span>
         </div>
         
-        <div class="main">
-            <!-- Input Section -->
-            <div class="input-card">
-                <h2 style="margin-bottom: 20px;">📝 Your Sleep Patterns</h2>
-                
-                <div class="input-group">
-                    <label>Age</label>
-                    <input type="number" id="age" value="30" min="1" max="120">
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div class="input-group">
-                        <label>Bedtime</label>
-                        <input type="time" id="bedtime" value="23:00">
-                    </div>
-                    <div class="input-group">
-                        <label>Wake time</label>
-                        <input type="time" id="waketime" value="07:00">
-                    </div>
-                </div>
-                
-                <div class="input-group">
-                    <label>How many days of insufficient sleep?</label>
-                    <input type="number" id="badDays" value="5" min="0" max="30" step="1">
-                </div>
-                
-                <div class="input-group">
-                    <label>Sleep quality (1-10)</label>
-                    <input type="range" id="quality" min="1" max="10" value="6" step="1" oninput="updateQualityLabel(this.value)">
-                    <div style="text-align: right;" id="qualityLabel">6/10 - Average</div>
-                </div>
-                
-                <!-- Quick Chronotype Quiz -->
-                <div class="chronotype-quiz">
-                    <h3 style="margin-bottom: 15px;">🦉 Quick Chronotype Quiz</h3>
-                    
-                    <div class="quiz-question">
-                        <label>When do you feel most energetic?</label>
-                        <select id="energy">
-                            <option value="morning">Morning (6am-12pm)</option>
-                            <option value="afternoon">Afternoon (12pm-6pm)</option>
-                            <option value="evening">Evening (6pm-12am)</option>
-                            <option value="night">Night (after 12am)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="quiz-question">
-                        <label>If free, when would you wake up?</label>
-                        <select id="wakePref">
-                            <option value="early">Before 7am</option>
-                            <option value="normal">7am-9am</option>
-                            <option value="late">After 9am</option>
-                        </select>
-                    </div>
-                    
-                    <div class="quiz-question">
-                        <label>Morning coffee/tea?</label>
-                        <select id="coffee">
-                            <option value="yes">Need it to function</option>
-                            <option value="sometimes">Sometimes</option>
-                            <option value="no">No, I'm alert naturally</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <button class="calc-btn" onclick="calculateSleep()">Calculate Sleep Debt</button>
-            </div>
-            
-            <!-- Results Section -->
-            <div class="results-card" id="results">
-                <h2 style="margin-bottom: 20px;">📊 Your Sleep Analysis</h2>
-                
-                <!-- Debt Circle -->
-                <div class="debt-circle">
-                    <div class="debt-value" id="debtHours">12.5</div>
-                    <div class="debt-label">Total Sleep Debt (hours)</div>
-                    <div style="margin-top: 10px; color: #666;" id="debtDays">5 days of debt</div>
-                </div>
-                
-                <!-- Chronotype -->
-                <div class="chronotype-result" id="chronotype">
-                    <div class="chronotype-icon">🦉</div>
-                    <div class="chronotype-desc">
-                        <strong id="chronoName">Night Owl</strong>
-                        <p style="color: #666; font-size: 0.9rem;" id="chronoDesc">You're most active in evening/night hours</p>
-                    </div>
-                </div>
-                
-                <!-- Recovery Timeline -->
-                <div class="recovery-timeline">
-                    <h3 style="margin-bottom: 15px;">📅 Recovery Plan</h3>
-                    <div id="timeline">
-                        <!-- Generated by JS -->
-                    </div>
-                </div>
-                
-                <!-- Sleep Tips -->
-                <div class="tips-list">
-                    <h3 style="margin-bottom: 15px;">💡 Personalized Tips</h3>
-                    <div id="tips">
-                        <!-- Generated by JS -->
-                    </div>
-                </div>
-                
-                <!-- Next Check -->
-                <div style="background: #f0f2f5; padding: 15px; border-radius: 10px; text-align: center; margin-top: 20px;">
-                    <p style="color: #666;">📊 Sleep Score: <strong id="sleepScore">72</strong>/100 - <span id="scoreGrade">Fair</span></p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>⭐ 4.7/5 from 920+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
-            <p style="font-size: 0.9em;">⚠️ Consult a doctor if you have chronic sleep issues</p>
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('en')" id="langEN"><i class="fas fa-globe"></i> English</button>
+            <button class="lang-btn" onclick="setLang('hi')" id="langHI"><i class="fas fa-language"></i> हिंदी</button>
         </div>
     </div>
-    
-    <script>
-        function updateQualityLabel(val) {
-            const labels = ['Very Poor', 'Poor', 'Below Avg', 'Average', 'Good', 'Excellent'];
-            const idx = Math.floor(val / 2);
-            document.getElementById('qualityLabel').textContent = val + '/10 - ' + labels[idx];
-        }
-        
-        function calculateSleep() {
-            // Get inputs
-            const age = parseInt(document.getElementById('age').value) || 30;
-            const bedtime = document.getElementById('bedtime').value;
-            const waketime = document.getElementById('waketime').value;
-            const badDays = parseInt(document.getElementById('badDays').value) || 0;
-            const quality = parseInt(document.getElementById('quality').value) || 6;
+
+    <!-- Main Grid -->
+    <div class="main">
+        <!-- Input Section -->
+        <div class="input-card">
+            <div class="section-title">
+                <i class="fas fa-moon"></i> <span id="inputTitle">Your Sleep Patterns</span>
+            </div>
             
-            // Calculate sleep hours
-            const bedHour = parseInt(bedtime.split(':')[0]);
-            const bedMin = parseInt(bedtime.split(':')[1]);
-            const wakeHour = parseInt(waketime.split(':')[0]);
-            const wakeMin = parseInt(waketime.split(':')[1]);
+            <div class="input-group">
+                <label id="ageLabel"><i class="fas fa-user"></i> Age</label>
+                <input type="number" id="age" value="30" min="1" max="120">
+            </div>
             
-            let sleepHours = (wakeHour + wakeMin/60) - (bedHour + bedMin/60);
-            if (sleepHours < 0) sleepHours += 24;
-            sleepHours = Math.round(sleepHours * 10) / 10;
-            
-            // Required sleep by age
-            let required = 7.5;
-            if (age < 18) required = 9;
-            else if (age < 30) required = 8;
-            else if (age < 60) required = 7.5;
-            else required = 7;
-            
-            // Calculate daily debt
-            const dailyDebt = Math.max(0, required - sleepHours);
-            const totalDebt = Math.round((dailyDebt * badDays + (required * (7 - quality/10))) * 10) / 10;
-            
-            // Determine chronotype
-            const energy = document.getElementById('energy').value;
-            const wakePref = document.getElementById('wakePref').value;
-            const coffee = document.getElementById('coffee').value;
-            
-            let chronoType = '';
-            let chronoIcon = '';
-            let chronoDesc = '';
-            
-            if (energy === 'morning' || wakePref === 'early') {
-                chronoType = 'Morning Lark';
-                chronoIcon = '🐦';
-                chronoDesc = 'You're most energetic in mornings - best to wake up early';
-            } else if (energy === 'night' || (energy === 'evening' && coffee === 'yes')) {
-                chronoType = 'Night Owl';
-                chronoIcon = '🦉';
-                chronoDesc = 'You're most active at night - try to align work with peak hours';
-            } else {
-                chronoType = 'Intermediate';
-                chronoIcon = '🐧';
-                chronoDesc = 'You're flexible - can adapt to any schedule';
-            }
-            
-            document.getElementById('chronoName').textContent = chronoType;
-            document.getElementById('chronoIcon').textContent = chronoIcon;
-            document.getElementById('chronoDesc').textContent = chronoDesc;
-            
-            // Update debt display
-            document.getElementById('debtHours').textContent = totalDebt.toFixed(1);
-            document.getElementById('debtDays').textContent = badDays + ' days of debt';
-            
-            // Generate recovery timeline
-            const timeline = document.getElementById('timeline');
-            timeline.innerHTML = '';
-            
-            let remainingDebt = totalDebt;
-            for (let day = 1; day <= 7; day++) {
-                if (remainingDebt <= 0) {
-                    timeline.innerHTML += `
-                        <div class="timeline-item">
-                            <span class="timeline-day">Day ${day}</span>
-                            <div class="timeline-bar"><div class="timeline-fill" style="width: 100%"></div></div>
-                            <span class="timeline-hours">✅ Recovered</span>
-                        </div>
-                    `;
-                    continue;
-                }
-                
-                const recoverToday = Math.min(1.5, remainingDebt);
-                remainingDebt -= recoverToday;
-                const percent = (recoverToday / 1.5) * 100;
-                
-                timeline.innerHTML += `
-                    <div class="timeline-item">
-                        <span class="timeline-day">Day ${day}</span>
-                        <div class="timeline-bar"><div class="timeline-fill" style="width: ${percent}%"></div></div>
-                        <span class="timeline-hours">+${recoverToday.toFixed(1)}h</span>
-                    </div>
-                `;
-            }
-            
-            // Generate personalized tips
-            const tips = document.getElementById('tips');
-            let tipsList = [];
-            
-            if (totalDebt > 10) {
-                tipsList.push({ icon: '⏰', title: 'Major sleep debt', desc: 'Add 1 hour extra for next 2 weeks' });
-            }
-            
-            if (sleepHours < 6) {
-                tipsList.push({ icon: '🌙', title: 'Too little sleep', desc: 'Try to go to bed 30min earlier each night' });
-            }
-            
-            if (quality < 5) {
-                tipsList.push({ icon: '📱', title: 'Poor quality', desc: 'No screens 1 hour before bed' });
-            }
-            
-            if (chronoType === 'Night Owl' && wakePref !== 'late') {
-                tipsList.push({ icon: '⏲️', title: 'Chronotype mismatch', desc: 'Try to start work later if possible' });
-            }
-            
-            // Add standard tips
-            tipsList.push(
-                { icon: '☕', title: 'No caffeine after 2pm', desc: 'Caffeine stays in system for 6+ hours' },
-                { icon: '🌡️', title: 'Cool room', desc: '18-20°C is optimal for sleep' },
-                { icon: '🧘', title: 'Wind-down routine', desc: 'Same routine 30min before bed' }
-            );
-            
-            // Remove duplicates and limit
-            tipsList = tipsList.slice(0, 4);
-            
-            tips.innerHTML = tipsList.map(t => `
-                <div class="tip-item">
-                    <span style="font-size: 1.5rem;">${t.icon}</span>
-                    <div>
-                        <strong>${t.title}</strong>
-                        <p style="color: #666; font-size: 0.9rem;">${t.desc}</p>
-                    </div>
+            <div class="input-row">
+                <div class="input-group">
+                    <label id="bedtimeLabel"><i class="fas fa-bed"></i> Bedtime</label>
+                    <input type="time" id="bedtime" value="23:00">
                 </div>
-            `).join('');
+                <div class="input-group">
+                    <label id="waketimeLabel"><i class="fas fa-sun"></i> Wake time</label>
+                    <input type="time" id="waketime" value="07:00">
+                </div>
+            </div>
             
-            // Sleep score
-            let score = 100;
-            score -= dailyDebt * 10;
-            score -= (10 - quality) * 5;
-            score = Math.max(0, Math.min(100, Math.round(score)));
+            <div class="input-group">
+                <label id="badDaysLabel"><i class="fas fa-calendar-xmark"></i> Days of insufficient sleep</label>
+                <input type="number" id="badDays" value="5" min="0" max="30" step="1">
+            </div>
             
-            let grade = '';
-            if (score >= 90) grade = 'Excellent';
-            else if (score >= 70) grade = 'Good';
-            else if (score >= 50) grade = 'Fair';
-            else grade = 'Poor';
+            <div class="input-group">
+                <label id="qualityLabel"><i class="fas fa-star-half-alt"></i> Sleep quality (1-10)</label>
+                <input type="range" id="quality" min="1" max="10" value="6" step="1" oninput="updateQualityLabel(this.value)">
+                <div class="slider-value" id="qualityValue">6/10 - Average</div>
+            </div>
             
-            document.getElementById('sleepScore').textContent = score;
-            document.getElementById('scoreGrade').textContent = grade;
+            <!-- Chronotype Quiz -->
+            <div class="quiz-box">
+                <h3><i class="fas fa-brain"></i> <span id="quizTitle">Quick Chronotype Quiz</span></h3>
+                
+                <div class="input-group">
+                    <label id="energyLabel">When do you feel most energetic?</label>
+                    <select id="energy">
+                        <option value="morning" id="energyMorning">Morning (6am-12pm)</option>
+                        <option value="afternoon" id="energyAfternoon">Afternoon (12pm-6pm)</option>
+                        <option value="evening" id="energyEvening">Evening (6pm-12am)</option>
+                        <option value="night" id="energyNight">Night (after 12am)</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label id="wakePrefLabel">If free, when would you wake up?</label>
+                    <select id="wakePref">
+                        <option value="early" id="wakeEarly">Before 7am</option>
+                        <option value="normal" id="wakeNormal">7am-9am</option>
+                        <option value="late" id="wakeLate">After 9am</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label id="coffeeLabel">Morning coffee/tea needed?</label>
+                    <select id="coffee">
+                        <option value="yes" id="coffeeYes">Need it to function</option>
+                        <option value="sometimes" id="coffeeSometimes">Sometimes</option>
+                        <option value="no" id="coffeeNo">No, I'm alert naturally</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button class="calc-btn" onclick="calculateSleep()">
+                <i class="fas fa-calculator"></i> <span id="calcBtnText">Calculate Sleep Debt</span>
+            </button>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-card" id="results">
+            <div class="section-title">
+                <i class="fas fa-chart-bar"></i> <span id="resultsTitle">Your Sleep Analysis</span>
+            </div>
+            
+            <!-- Debt Circle -->
+            <div class="debt-circle">
+                <div class="debt-value" id="debtHours">12.5</div>
+                <div class="debt-label" id="debtLabel">Total Sleep Debt (hours)</div>
+                <div style="margin-top: 8px; color: #94a3b8; font-size: 0.9rem;" id="debtDays">5 days of accumulated debt</div>
+            </div>
+            
+            <!-- Chronotype -->
+            <div class="chronotype-result" id="chronotypeBox">
+                <div class="chronotype-icon" id="chronotypeIcon">🦉</div>
+                <div class="chronotype-desc">
+                    <strong id="chronoName" style="font-size:1.2rem;">Night Owl</strong>
+                    <p style="color:#94a3b8; font-size:0.9rem; margin-top:3px;" id="chronoDesc">Most active in evening/night hours</p>
+                </div>
+            </div>
+            
+            <!-- Recovery Timeline -->
+            <div class="recovery-timeline">
+                <h3 style="margin-bottom: 15px; display:flex;align-items:center;gap:8px;">
+                    <i class="fas fa-calendar-alt"></i> <span id="timelineTitle">7-Day Recovery Plan</span>
+                </h3>
+                <div id="timeline"></div>
+            </div>
+            
+            <!-- Personalized Tips -->
+            <div class="tips-list">
+                <h3 style="margin-bottom: 15px; display:flex;align-items:center;gap:8px;">
+                    <i class="fas fa-lightbulb"></i> <span id="tipsTitle">Personalized Sleep Tips</span>
+                </h3>
+                <div id="tips"></div>
+            </div>
+            
+            <!-- Sleep Score -->
+            <div class="score-box">
+                <p style="font-size:1.1rem; color:#cbd5e1;">
+                    <span id="scoreLabel">Sleep Score</span>: 
+                    <strong style="font-size:1.5rem; color:#818cf8;" id="sleepScore">72</strong>/100 
+                    — <span style="font-weight:600; color:#10b981;" id="scoreGrade">Fair</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Plan Section -->
+    <div class="future-plan-section">
+        <h3><i class="fas fa-rocket"></i> <span id="futureTitle">Coming Soon: Advanced Sleep Features</span></h3>
+        <div class="future-features-grid">
+            <div class="future-feature">
+                <i class="fas fa-moon"></i>
+                <h5>Sleep Cycle Visualizer</h5>
+                <p>Visual REM/NREM cycle graph</p>
+                <span class="coming-soon-tag">Coming Soon</span>
+            </div>
+            <div class="future-feature">
+                <i class="fas fa-bell"></i>
+                <h5>Smart Alarm</h5>
+                <p>Wake up at optimal sleep stage</p>
+                <span class="coming-soon-tag">Coming Soon</span>
+            </div>
+            <div class="future-feature">
+                <i class="fas fa-chart-line"></i>
+                <h5>Sleep Trend Tracker</h5>
+                <p>30-day sleep pattern analysis</p>
+                <span class="coming-soon-tag">Coming Soon</span>
+            </div>
+            <div class="future-feature">
+                <i class="fas fa-music"></i>
+                <h5>Sleep Music Player</h5>
+                <p>Binaural beats & white noise</p>
+                <span class="coming-soon-tag">Coming Soon</span>
+            </div>
+            <div class="future-feature">
+                <i class="fas fa-apple-alt"></i>
+                <h5>Sleep Diet Guide</h5>
+                <p>Indian foods that improve sleep</p>
+                <span class="coming-soon-tag">Coming Soon</span>
+            </div>
+            <div class="future-feature">
+                <i class="fas fa-yoga"></i>
+                <h5>Bedtime Yoga Nidra</h5>
+                <p>Guided meditation for deep sleep</p>
+                <span class="coming-soon-tag">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="disclaimer" id="disclaimerText">
+        ⚕️ This calculator provides educational estimates. Consult a sleep specialist for chronic insomnia or sleep disorders. No data is stored.
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>⭐ 4.7/5 from 920+ reviews | Used in 45+ countries | <a href="/">More Free Tools →</a></p>
+        <p style="font-size: 0.8rem; margin-top: 4px;">100% Private Browser-Based | <a href="/privacy-policy.html">Privacy Policy</a></p>
+    </div>
+</div>
+
+<script>
+// ===== GLOBAL STATE =====
+let currentLang = 'en';
+
+// ===== TRANSLATIONS =====
+const translations = {
+    en: {
+        headerSubtitle: 'Recovery Plan • Chronotype Quiz • Sleep Quality Score',
+        badge1: '7-Day Recovery',
+        badge2: 'Chronotype Quiz',
+        badge3: 'Sleep Score',
+        badge4: '100% Private',
+        inputTitle: 'Your Sleep Patterns',
+        ageLabel: 'Age',
+        bedtimeLabel: 'Bedtime',
+        waketimeLabel: 'Wake time',
+        badDaysLabel: 'Days of insufficient sleep',
+        qualityLabel: 'Sleep quality (1-10)',
+        quizTitle: 'Quick Chronotype Quiz',
+        energyLabel: 'When do you feel most energetic?',
+        energyMorning: 'Morning (6am-12pm)',
+        energyAfternoon: 'Afternoon (12pm-6pm)',
+        energyEvening: 'Evening (6pm-12am)',
+        energyNight: 'Night (after 12am)',
+        wakePrefLabel: 'If free, when would you wake up?',
+        wakeEarly: 'Before 7am',
+        wakeNormal: '7am-9am',
+        wakeLate: 'After 9am',
+        coffeeLabel: 'Morning coffee/tea needed?',
+        coffeeYes: 'Need it to function',
+        coffeeSometimes: 'Sometimes',
+        coffeeNo: "No, I'm alert naturally",
+        calcBtnText: 'Calculate Sleep Debt',
+        resultsTitle: 'Your Sleep Analysis',
+        debtLabel: 'Total Sleep Debt (hours)',
+        timelineTitle: '7-Day Recovery Plan',
+        tipsTitle: 'Personalized Sleep Tips',
+        scoreLabel: 'Sleep Score',
+        futureTitle: 'Coming Soon: Advanced Sleep Features',
+        disclaimerText: '⚕️ This calculator provides educational estimates. Consult a sleep specialist for chronic insomnia or sleep disorders. No data is stored.',
+        qualityLabels: ['Very Poor', 'Poor', 'Below Avg', 'Average', 'Good', 'Very Good', 'Excellent', 'Excellent', 'Excellent', 'Excellent'],
+        gradeLabels: ['Poor', 'Poor', 'Fair', 'Fair', 'Good', 'Good', 'Good', 'Very Good', 'Very Good', 'Excellent', 'Excellent']
+    },
+    hi: {
+        headerSubtitle: 'रिकवरी प्लान • क्रोनोटाइप क्विज़ • नींद गुणवत्ता स्कोर',
+        badge1: '7-दिन रिकवरी',
+        badge2: 'क्रोनोटाइप क्विज़',
+        badge3: 'नींद स्कोर',
+        badge4: '100% निजी',
+        inputTitle: 'आपकी नींद की आदतें',
+        ageLabel: 'आयु',
+        bedtimeLabel: 'सोने का समय',
+        waketimeLabel: 'जागने का समय',
+        badDaysLabel: 'अपर्याप्त नींद के दिन',
+        qualityLabel: 'नींद की गुणवत्ता (1-10)',
+        quizTitle: 'त्वरित क्रोनोटाइप क्विज़',
+        energyLabel: 'आप सबसे अधिक ऊर्जावान कब महसूस करते हैं?',
+        energyMorning: 'सुबह (6-12 बजे)',
+        energyAfternoon: 'दोपहर (12-6 बजे)',
+        energyEvening: 'शाम (6-12 बजे)',
+        energyNight: 'रात (12 बजे के बाद)',
+        wakePrefLabel: 'अगर छुट्टी हो, तो कब जागेंगे?',
+        wakeEarly: 'सुबह 7 बजे से पहले',
+        wakeNormal: 'सुबह 7-9 बजे',
+        wakeLate: 'सुबह 9 बजे के बाद',
+        coffeeLabel: 'सुबह चाय/कॉफी की ज़रूरत?',
+        coffeeYes: 'बिना पिए काम नहीं चलता',
+        coffeeSometimes: 'कभी-कभी',
+        coffeeNo: 'नहीं, मैं प्राकृतिक रूप से सतर्क रहता हूं',
+        calcBtnText: 'नींद का कर्ज़ कैलकुलेट करें',
+        resultsTitle: 'आपकी नींद का विश्लेषण',
+        debtLabel: 'कुल नींद का कर्ज़ (घंटे)',
+        timelineTitle: '7-दिन रिकवरी प्लान',
+        tipsTitle: 'व्यक्तिगत नींद सुझाव',
+        scoreLabel: 'नींद स्कोर',
+        futureTitle: 'जल्द आ रहा है: उन्नत नींद सुविधाएं',
+        disclaimerText: '⚕️ यह कैलकुलेटर शैक्षिक अनुमान प्रदान करता है। क्रोनिक अनिद्रा या नींद विकारों के लिए नींद विशेषज्ञ से परामर्श लें। कोई डेटा स्टोर नहीं किया जाता।',
+        qualityLabels: ['बहुत खराब', 'खराब', 'औसत से कम', 'औसत', 'अच्छी', 'बहुत अच्छी', 'उत्कृष्ट', 'उत्कृष्ट', 'उत्कृष्ट', 'उत्कृष्ट'],
+        gradeLabels: ['खराब', 'खराब', 'ठीक', 'ठीक', 'अच्छा', 'अच्छा', 'अच्छा', 'बहुत अच्छा', 'बहुत अच्छा', 'उत्कृष्ट', 'उत्कृष्ट']
+    }
+};
+
+// ===== SET LANGUAGE =====
+function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('lang' + lang.toUpperCase()).classList.add('active');
+    document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+    
+    const t = translations[lang];
+    // Update all translatable elements
+    document.querySelectorAll('[id]').forEach(el => {
+        if (t[el.id]) {
+            if (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'OPTION') {
+                // Skip inputs
+            } else if (el.id.startsWith('energy') || el.id.startsWith('wake') || el.id.startsWith('coffee')) {
+                if (el.tagName === 'OPTION') el.textContent = t[el.id];
+            } else {
+                el.textContent = t[el.id];
+            }
+        }
+    });
+    
+    // Update option texts
+    ['energyMorning','energyAfternoon','energyEvening','energyNight',
+     'wakeEarly','wakeNormal','wakeLate',
+     'coffeeYes','coffeeSometimes','coffeeNo'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && t[id]) el.textContent = t[id];
+    });
+    
+    document.title = lang === 'hi' 
+        ? '😴 नींद कर्ज़ कैलकुलेटर: रिकवरी प्लान और क्रोनोटाइप क्विज़ | HealthCalc'
+        : '😴 Sleep Debt Calculator: Recovery Plan & Chronotype Quiz | HealthCalc';
+    
+    calculateSleep();
+}
+
+// ===== QUALITY LABEL =====
+function updateQualityLabel(val) {
+    const t = translations[currentLang];
+    const labels = t.qualityLabels;
+    const idx = Math.min(Math.floor(val / 1), 9);
+    document.getElementById('qualityValue').textContent = val + '/10 - ' + labels[idx];
+}
+
+// ===== MAIN CALCULATION =====
+function calculateSleep() {
+    const t = translations[currentLang];
+    
+    // Get inputs
+    const age = parseInt(document.getElementById('age').value) || 30;
+    const bedtime = document.getElementById('bedtime').value;
+    const waketime = document.getElementById('waketime').value;
+    const badDays = parseInt(document.getElementById('badDays').value) || 0;
+    const quality = parseInt(document.getElementById('quality').value) || 6;
+    
+    // Calculate sleep hours
+    const bedHour = parseInt(bedtime.split(':')[0]);
+    const bedMin = parseInt(bedtime.split(':')[1]);
+    const wakeHour = parseInt(waketime.split(':')[0]);
+    const wakeMin = parseInt(waketime.split(':')[1]);
+    
+    let sleepHours = (wakeHour + wakeMin/60) - (bedHour + bedMin/60);
+    if (sleepHours < 0) sleepHours += 24;
+    sleepHours = Math.round(sleepHours * 10) / 10;
+    
+    // Required sleep by age
+    let required = 7.5;
+    if (age < 18) required = 9;
+    else if (age < 30) required = 8;
+    else if (age < 60) required = 7.5;
+    else required = 7;
+    
+    // Calculate daily debt
+    const dailyDebt = Math.max(0, required - sleepHours);
+    const totalDebt = Math.round((dailyDebt * badDays + (required * (7 - quality/10))) * 10) / 10;
+    
+    // Determine chronotype
+    const energy = document.getElementById('energy').value;
+    const wakePref = document.getElementById('wakePref').value;
+    const coffee = document.getElementById('coffee').value;
+    
+    let chronoType, chronoIcon, chronoDesc;
+    
+    if (currentLang === 'hi') {
+        if (energy === 'morning' || wakePref === 'early') {
+            chronoType = 'सुबह का पक्षी (Morning Lark)';
+            chronoIcon = '🐦';
+            chronoDesc = 'आप सुबह सबसे अधिक ऊर्जावान रहते हैं - जल्दी उठना सबसे अच्छा';
+        } else if (energy === 'night' || (energy === 'evening' && coffee === 'yes')) {
+            chronoType = 'रात का उल्लू (Night Owl)';
+            chronoIcon = '🦉';
+            chronoDesc = 'आप रात में सबसे अधिक सक्रिय रहते हैं - काम को पीक घंटों के अनुसार करें';
+        } else {
+            chronoType = 'मध्यम (Intermediate)';
+            chronoIcon = '🐧';
+            chronoDesc = 'आप लचीले हैं - किसी भी शेड्यूल में ढल सकते हैं';
+        }
+    } else {
+        if (energy === 'morning' || wakePref === 'early') {
+            chronoType = 'Morning Lark';
+            chronoIcon = '🐦';
+            chronoDesc = "You're most energetic in mornings - best to wake up early";
+        } else if (energy === 'night' || (energy === 'evening' && coffee === 'yes')) {
+            chronoType = 'Night Owl';
+            chronoIcon = '🦉';
+            chronoDesc = "You're most active at night - try to align work with peak hours";
+        } else {
+            chronoType = 'Intermediate';
+            chronoIcon = '🐧';
+            chronoDesc = "You're flexible - can adapt to any schedule";
+        }
+    }
+    
+    // Update chronotype display
+    document.getElementById('chronoName').textContent = chronoType;
+    document.getElementById('chronotypeIcon').textContent = chronoIcon;
+    document.getElementById('chronoDesc').textContent = chronoDesc;
+    
+    // Update debt display
+    document.getElementById('debtHours').textContent = totalDebt.toFixed(1);
+    document.getElementById('debtDays').textContent = currentLang === 'hi' 
+        ? badDays + ' दिन का जमा कर्ज़'
+        : badDays + ' days of accumulated debt';
+    
+    // Generate recovery timeline
+    const timeline = document.getElementById('timeline');
+    timeline.innerHTML = '';
+    
+    let remainingDebt = totalDebt;
+    const recoveredText = currentLang === 'hi' ? '✅ ठीक' : '✅ Recovered';
+    
+    for (let day = 1; day <= 7; day++) {
+        if (remainingDebt <= 0) {
+            timeline.innerHTML += `
+                <div class="timeline-item">
+                    <span class="timeline-day">${currentLang === 'hi' ? 'दिन' : 'Day'} ${day}</span>
+                    <div class="timeline-bar"><div class="timeline-fill" style="width: 100%"></div></div>
+                    <span class="timeline-hours">${recoveredText}</span>
+                </div>
+            `;
+            continue;
         }
         
-        // Initialize
-        window.onload = calculateSleep;
-    </script>
+        const recoverToday = Math.min(1.5, remainingDebt);
+        remainingDebt -= recoverToday;
+        const percent = (recoverToday / 1.5) * 100;
+        const hourText = currentLang === 'hi' ? 'घंटे' : 'h';
+        
+        timeline.innerHTML += `
+            <div class="timeline-item">
+                <span class="timeline-day">${currentLang === 'hi' ? 'दिन' : 'Day'} ${day}</span>
+                <div class="timeline-bar"><div class="timeline-fill" style="width: ${percent}%"></div></div>
+                <span class="timeline-hours">+${recoverToday.toFixed(1)}${hourText}</span>
+            </div>
+        `;
+    }
+    
+    // Generate personalized tips
+    const tips = document.getElementById('tips');
+    let tipsList = [];
+    
+    if (totalDebt > 10) {
+        tipsList.push({ icon: '⏰', title: currentLang === 'hi' ? 'बड़ा नींद कर्ज़' : 'Major sleep debt', 
+            desc: currentLang === 'hi' ? 'अगले 2 सप्ताह तक रोज़ 1 घंटा अतिरिक्त सोएं' : 'Add 1 hour extra for next 2 weeks' });
+    }
+    
+    if (sleepHours < 6) {
+        tipsList.push({ icon: '🌙', title: currentLang === 'hi' ? 'बहुत कम नींद' : 'Too little sleep', 
+            desc: currentLang === 'hi' ? 'हर रात 30 मिनट पहले सोने की कोशिश करें' : 'Try to go to bed 30min earlier each night' });
+    }
+    
+    if (quality < 5) {
+        tipsList.push({ icon: '📱', title: currentLang === 'hi' ? 'खराब गुणवत्ता' : 'Poor quality', 
+            desc: currentLang === 'hi' ? 'सोने से 1 घंटा पहले स्क्रीन बंद करें' : 'No screens 1 hour before bed' });
+    }
+    
+    if (chronoType.includes('Owl') || chronoType.includes('उल्लू')) {
+        tipsList.push({ icon: '⏲️', title: currentLang === 'hi' ? 'क्रोनोटाइप मिसमैच' : 'Chronotype mismatch', 
+            desc: currentLang === 'hi' ? 'हो सके तो काम देर से शुरू करें' : 'Try to start work later if possible' });
+    }
+    
+    // Standard tips
+    tipsList.push(
+        { icon: '☕', title: currentLang === 'hi' ? 'दोपहर 2 बजे के बाद कैफीन नहीं' : 'No caffeine after 2pm', 
+            desc: currentLang === 'hi' ? 'कैफीन 6+ घंटे तक शरीर में रहता है' : 'Caffeine stays in system for 6+ hours' },
+        { icon: '🌡️', title: currentLang === 'hi' ? 'ठंडा कमरा' : 'Cool room', 
+            desc: currentLang === 'hi' ? '18-20°C नींद के लिए सबसे अच्छा है' : '18-20°C is optimal for sleep' },
+        { icon: '🧘', title: currentLang === 'hi' ? 'विंड-डाउन रूटीन' : 'Wind-down routine', 
+            desc: currentLang === 'hi' ? 'सोने से 30 मिनट पहले एक जैसी रूटीन अपनाएं' : 'Same routine 30min before bed' }
+    );
+    
+    tipsList = tipsList.slice(0, 4);
+    
+    tips.innerHTML = tipsList.map(tip => `
+        <div class="tip-item">
+            <span style="font-size: 1.5rem;">${tip.icon}</span>
+            <div>
+                <strong>${tip.title}</strong>
+                <p style="color: #94a3b8; font-size: 0.85rem; margin-top: 2px;">${tip.desc}</p>
+            </div>
+        </div>
+    `).join('');
+    
+    // Sleep score
+    let score = 100;
+    score -= dailyDebt * 10;
+    score -= (10 - quality) * 5;
+    score = Math.max(0, Math.min(100, Math.round(score)));
+    
+    const gradeLabels = t.gradeLabels;
+    const gradeIdx = Math.min(Math.floor(score / 10), 10);
+    const grade = gradeLabels[Math.max(0, gradeIdx - 1)] || gradeLabels[0];
+    
+    document.getElementById('sleepScore').textContent = score;
+    document.getElementById('scoreGrade').textContent = grade;
+}
+
+// ===== INITIALIZE =====
+window.onload = function() {
+    updateQualityLabel(6);
+    calculateSleep();
+};
+</script>
 </body>
 </html>
