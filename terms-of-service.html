@@ -2,216 +2,501 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <!-- ========== SEO META ========== -->
-    <title>Terms of Service | HealthCalc.in - Free Health Calculators</title>
-    <meta name="description" content="Terms of service for HealthCalc.in. By using our free health calculators, you agree to these terms. Informational purposes only, not medical advice.">
-    <meta name="keywords" content="terms of service, terms of use, health calculator disclaimer, medical disclaimer">
+    <title>Terms of Service | HealthCalc.in — Free Health Calculators</title>
+    <meta name="title" content="Terms of Service — HealthCalc.in | Medical Disclaimer">
+    <meta name="description" content="Terms of service for HealthCalc.in. All calculators are for informational purposes only and not medical advice. No data stored. Read our full disclaimer and terms of use.">
+    <meta name="keywords" content="terms of service, terms of use, health calculator disclaimer, medical disclaimer, no medical advice, HealthCalc terms">
+    <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://healthcalc.in/terms-of-service.html">
     
-    <!-- ========== CANONICAL ========== -->
-    <link rel="canonical" href="https://healthcalc.in/terms-of-service">
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Terms of Service | HealthCalc.in">
+    <meta property="og:description" content="Read the terms of service and medical disclaimer for HealthCalc.in free health calculators.">
+    <meta property="og:url" content="https://healthcalc.in/terms-of-service.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="HealthCalc">
     
-    <!-- Tailwind & Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Terms of Service | HealthCalc.in">
+    <meta name="twitter:description" content="Terms and medical disclaimer for HealthCalc health calculators.">
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- SCHEMA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Terms of Service — HealthCalc.in",
+        "description": "Terms of service and medical disclaimer for HealthCalc free health calculators.",
+        "url": "https://healthcalc.in/terms-of-service.html",
+        "author": {"@type": "Organization", "name": "HealthCalc"},
+        "dateModified": "2026-05-05"
+    }
+    </script>
+    
+    <!-- BREADCRUMB SCHEMA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+            {"@type": "ListItem", "position": 2, "name": "Terms of Service", "item": "https://healthcalc.in/terms-of-service.html"}
+        ]
+    }
+    </script>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-orange { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        :root {
+            --primary: #f97316;
+            --primary-dark: #ea580c;
+            --primary-light: #fff7ed;
+            --secondary: #059669;
+            --dark: #1e293b;
+            --text: #334155;
+            --text-muted: #64748b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* NAV */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        .logo .green { color: var(--secondary); }
+        .logo .dot { color: var(--primary); font-size: 0.6rem; vertical-align: super; }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+        .nav-links a.active { color: var(--primary); font-weight: 600; }
+
+        /* HEADER */
+        .page-header {
+            background: linear-gradient(135deg, #f97316, #ea580c, #c2410c);
+            padding: 60px 24px;
+            text-align: center;
+            color: white;
+        }
+        .page-header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 10px; }
+        .page-header p { font-size: 1.1rem; opacity: 0.9; }
+        .page-header .date { font-size: 0.85rem; opacity: 0.75; margin-top: 8px; }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            max-width: 900px;
+            margin: 0 auto 0;
+            padding: 16px 24px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* CONTENT */
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        /* WARNING BOX */
+        .warning-box {
+            background: var(--warning-light);
+            border: 2px solid #fcd34d;
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .warning-box .icon {
+            width: 60px;
+            height: 60px;
+            background: var(--warning);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        .warning-box h2 { font-size: 1.5rem; font-weight: 700; color: #92400e; margin-bottom: 8px; }
+        .warning-box p { color: #78350f; }
+
+        /* TERM CARD */
+        .term-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+        }
+        .term-card:hover { box-shadow: var(--shadow-md); }
+        .term-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .term-card h3 .num {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .term-card p { color: var(--text-muted); }
+        .term-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .term-card ul li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-muted);
+        }
+        .term-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 4px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* CONTACT BUTTON */
+        .contact-box {
+            background: linear-gradient(135deg, #fff7ed, #fffbeb);
+            border: 2px dashed #fcd34d;
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .btn-contact {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 16px;
+        }
+        .btn-contact:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(249,115,22,0.4); }
+
+        /* BACK LINK */
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link a:hover { text-decoration: underline; }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 24px 24px;
+            text-align: center;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+        .footer-col h4 { font-size: 1rem; margin-bottom: 14px; color: #f97316; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+        .footer-bottom a { color: #f97316; text-decoration: none; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- Same Navigation as Privacy Policy -->
-    <nav class="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="text-2xl font-bold">
-                    <span class="text-emerald-700">Health</span><span class="text-emerald-500">Calc</span><span class="text-gray-600 text-sm ml-1">.in</span>
-                </a>
-                <div class="hidden md:flex space-x-8 text-gray-600 font-medium">
-                    <a href="index.html" class="hover:text-emerald-600">Home</a>
-                    <a href="about.html" class="hover:text-emerald-600">About</a>
-                    <a href="privacy-policy.html" class="hover:text-emerald-600">Privacy</a>
-                    <a href="terms-of-service.html" class="text-emerald-600 border-b-2 border-emerald-500 pb-1">Terms</a>
-                    <a href="contact.html" class="hover:text-emerald-600">Contact</a>
-                </div>
-                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            <div class="md:hidden hidden mt-4 space-y-2" id="mobileMenu">
-                <a href="index.html" class="block py-2">Home</a>
-                <a href="about.html" class="block py-2">About</a>
-                <a href="privacy-policy.html" class="block py-2">Privacy</a>
-                <a href="terms-of-service.html" class="block py-2 text-emerald-600">Terms</a>
-                <a href="contact.html" class="block py-2">Contact</a>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">🧬 HealthCalc<span class="dot">.in</span></a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+                <a href="privacy-policy.html"><i class="fas fa-lock"></i> Privacy</a>
+                <a href="terms-of-service.html" class="active"><i class="fas fa-file-contract"></i> Terms</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Header -->
-    <section class="gradient-orange py-16">
-        <div class="container mx-auto px-6 max-w-4xl text-center text-white">
-            <span class="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold inline-block mb-4">
-                <i class="fas fa-file-contract mr-2"></i> Please Read Carefully
-            </span>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Terms of Service</h1>
-            <p class="text-xl text-white text-opacity-90">By using HealthCalc, you agree to these terms.</p>
-            <p class="text-sm text-white text-opacity-75 mt-4">Last Updated: March 19, 2026</p>
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> <span>/</span> <span>Terms of Service</span>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <span class="badge"><i class="fas fa-file-contract"></i> Legal Document</span>
+        <h1>Terms of Service</h1>
+        <p>Please read these terms carefully before using HealthCalc.in</p>
+        <p class="date">Last Updated: May 5, 2026</p>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="content-section">
+        
+        <!-- Medical Disclaimer Warning -->
+        <div class="warning-box">
+            <div class="icon">⚠️</div>
+            <div>
+                <h2>Important Medical Disclaimer</h2>
+                <p>HealthCalc.in provides <strong>informational and educational tools only</strong>. We are <strong>NOT</strong> a healthcare provider, doctor, or medical service. Our calculators are not intended to diagnose, treat, cure, or prevent any disease. <strong>Always consult a qualified medical professional</strong> for personal health advice, diagnosis, or treatment. Never ignore professional medical advice or delay seeking it because of something you read or calculated on HealthCalc.in.</p>
+            </div>
+        </div>
+
+        <!-- Terms Cards -->
+        <div class="term-card">
+            <h3><span class="num">1</span> Acceptance of Terms</h3>
+            <p>By accessing or using HealthCalc.in ("the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must discontinue use of the Service immediately. These terms apply to all visitors, users, and others who access or use the Service.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">2</span> Informational & Educational Purpose Only</h3>
+            <p>All calculators, tools, AI-generated tips, content, and materials on HealthCalc.in are provided for <strong>general informational and educational purposes only</strong>. They are NOT:</p>
+            <ul>
+                <li>Medical advice, diagnosis, or treatment recommendations</li>
+                <li>A substitute for professional medical consultation, examination, or care</li>
+                <li>Emergency medical services — if you have a medical emergency, call your local emergency number immediately</li>
+            </ul>
+            <p style="margin-top:10px;"><strong>Reliance on any information provided by HealthCalc.in is solely at your own risk.</strong></p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">3</span> No Doctor-Patient Relationship</h3>
+            <p>Use of HealthCalc.in does NOT create a doctor-patient relationship. No health professional-client relationship is established between you and HealthCalc.in or its operators. Any communication through our contact form does not constitute medical consultation.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">4</span> Accuracy and No Warranties</h3>
+            <p>The Service is provided on an <strong>"AS IS" and "AS AVAILABLE"</strong> basis without any warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement. While we strive for accuracy:</p>
+            <ul>
+                <li>Calculations may contain errors or inaccuracies</li>
+                <li>Formulas and algorithms may not apply to every individual</li>
+                <li>AI-generated tips are experimental and not medically verified</li>
+                <li>Results are estimates, not definitive health assessments</li>
+            </ul>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">5</span> Your Responsibility & Assumption of Risk</h3>
+            <p>You assume full responsibility for your use of the Service and any decisions or actions taken based on the information provided. You acknowledge that:
+            </p>
+            <ul>
+                <li>You are responsible for verifying any information with a qualified professional</li>
+                <li>You will not hold HealthCalc.in liable for any consequences of using our tools</li>
+                <li>You understand that health information changes over time and may not reflect the latest research</li>
+            </ul>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">6</span> Privacy & Data Collection</h3>
+            <p>We do <strong>NOT</strong> collect, store, or transmit any personal health data. All calculations are performed locally in your browser. Please read our <a href="privacy-policy.html" style="color:var(--primary);">Privacy Policy</a> for complete details on how we handle any information.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">7</span> Intellectual Property Rights</h3>
+            <p>All content, code, design, text, graphics, logos, tools, and calculator logic on HealthCalc.in are the intellectual property of HealthCalc.in and are protected by applicable copyright and intellectual property laws. You may not copy, reproduce, distribute, modify, or create derivative works without prior written permission, except for your personal, non-commercial use.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">8</span> Third-Party Links & Services</h3>
+            <p>Our Service may contain links to third-party websites or services that are not owned or controlled by HealthCalc.in. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites. We do not endorse or make any representations about third-party sites.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">9</span> Limitation of Liability</h3>
+            <p>To the fullest extent permitted by applicable law, HealthCalc.in, its owners, operators, affiliates, and contributors shall NOT be liable for any direct, indirect, incidental, special, consequential, or punitive damages, including but not limited to personal injury, health complications, emotional distress, loss of data, or any other damages arising from:</p>
+            <ul>
+                <li>Your use or inability to use the Service</li>
+                <li>Any errors, inaccuracies, or omissions in the content</li>
+                <li>Decisions or actions taken based on the Service outputs</li>
+                <li>Any third-party content or links</li>
+            </ul>
+            <p style="margin-top:10px;">This limitation applies even if HealthCalc.in has been advised of the possibility of such damages. Some jurisdictions do not allow the exclusion of certain warranties or limitations of liability, so some of these limitations may not apply to you.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">10</span> Indemnification</h3>
+            <p>You agree to indemnify, defend, and hold harmless HealthCalc.in, its owners, operators, and affiliates from any claims, liabilities, damages, losses, costs, or expenses (including reasonable attorneys' fees) arising from your use of the Service, your violation of these Terms, or your violation of any third-party rights.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">11</span> Changes to These Terms</h3>
+            <p>We reserve the right to modify or update these Terms of Service at any time without prior notice. Changes will be effective immediately upon posting on this page. Your continued use of the Service after any changes constitutes your acceptance of the revised terms. We recommend reviewing this page periodically.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">12</span> Governing Law & Jurisdiction</h3>
+            <p>These Terms shall be governed by and construed in accordance with the laws of India. Any disputes arising from or relating to these Terms shall be subject to the exclusive jurisdiction of the courts located in India.</p>
+        </div>
+
+        <div class="term-card">
+            <h3><span class="num">13</span> Contact & Questions</h3>
+            <p>If you have any questions, concerns, or feedback about these Terms of Service, please contact us. We aim to respond within 48 hours.</p>
+        </div>
+
+        <!-- Contact Box -->
+        <div class="contact-box">
+            <h3 style="color:#92400e;">Still have questions about our terms?</h3>
+            <p style="color:#78350f;">Feel free to reach out. We're here to help clarify.</p>
+            <a href="contact.html" class="btn-contact">
+                <i class="fas fa-envelope"></i> Go to Contact Page
+            </a>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="index.html">← Back to HealthCalc Home</a>
         </div>
     </section>
 
-    <!-- Terms Content -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6 max-w-4xl">
-            
-            <!-- Important Disclaimer -->
-            <div class="bg-amber-50 border border-amber-200 rounded-2xl p-8 mb-12">
-                <div class="flex items-start gap-4">
-                    <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-white text-xl flex-shrink-0">⚠️</div>
-                    <div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Medical Disclaimer</h2>
-                        <p class="text-gray-600">HealthCalc provides informational tools only. We are not a healthcare provider. Always consult a qualified medical professional for health advice.</p>
-                    </div>
-                </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>HealthCalc.in</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#tools">All Tools</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
             </div>
-            
-            <!-- Terms List -->
-            <div class="space-y-8">
-                <!-- 1. Acceptance -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">1</span>
-                        Acceptance of Terms
-                    </h2>
-                    <p>By accessing or using HealthCalc.in, you agree to be bound by these Terms. If you disagree, please don't use our services.</p>
-                </div>
-                
-                <!-- 2. Informational Purpose -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">2</span>
-                        Informational Purpose Only
-                    </h2>
-                    <p>All calculators and content are for <strong>informational and educational purposes only</strong>. They are not:</p>
-                    <ul class="list-disc pl-6 mt-4 space-y-2">
-                        <li>Medical advice</li>
-                        <li>Diagnosis or treatment</li>
-                        <li>Substitute for professional consultation</li>
-                    </ul>
-                    <p class="mt-4 font-semibold">Always seek the advice of your physician or qualified health provider.</p>
-                </div>
-                
-                <!-- 3. No Warranties -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">3</span>
-                        No Warranties
-                    </h2>
-                    <p>HealthCalc is provided "as is" without warranties of any kind. We strive for accuracy but:</p>
-                    <ul class="list-disc pl-6 mt-4 space-y-2">
-                        <li>Calculations may have errors</li>
-                        <li>Formulas may not apply to everyone</li>
-                        <li>We don't guarantee specific results</li>
-                    </ul>
-                </div>
-                
-                <!-- 4. User Responsibility -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">4</span>
-                        User Responsibility
-                    </h2>
-                    <p>You are solely responsible for how you use the information from our calculators. We are not liable for any decisions you make based on our tools.</p>
-                </div>
-                
-                <!-- 5. Intellectual Property -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">5</span>
-                        Intellectual Property
-                    </h2>
-                    <p>All content, code, and design are the property of HealthCalc. You may not copy, reproduce, or redistribute without permission.</p>
-                </div>
-                
-                <!-- 6. Third-Party Links -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">6</span>
-                        Third-Party Links
-                    </h2>
-                    <p>Our site may link to external sites. We don't endorse or control them and aren't responsible for their content.</p>
-                </div>
-                
-                <!-- 7. Limitation of Liability -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">7</span>
-                        Limitation of Liability
-                    </h2>
-                    <p>To the fullest extent permitted by law, HealthCalc shall not be liable for any indirect, incidental, or consequential damages arising from your use of our services.</p>
-                </div>
-                
-                <!-- 8. Changes to Terms -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">8</span>
-                        Changes to Terms
-                    </h2>
-                    <p>We may update these terms. Continued use after changes constitutes acceptance.</p>
-                </div>
-                
-                <!-- 9. Contact -->
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                        <span class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mr-3">9</span>
-                        Contact
-                    </h2>
-                    <p>For questions about these terms:</p>
-                    <a href="contact.html" class="inline-block mt-4 bg-orange-600 text-white px-6 py-3 rounded-full hover:bg-orange-700 transition">
-                        <i class="fas fa-envelope mr-2"></i> Contact Page
-                    </a>
-                </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html" style="color:#f97316;">Terms of Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
-            
-            <!-- Back to Home -->
-            <div class="text-center mt-12">
-                <a href="index.html" class="text-orange-600 hover:underline">← Back to Home</a>
+            <div class="footer-col">
+                <h4>Popular Tools</h4>
+                <ul>
+                    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+                    <li><a href="ascvd-risk-calculator.html">ASCVD Risk</a></li>
+                    <li><a href="pregnancy-calculator.html">Pregnancy</a></li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- Footer (same as privacy) -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-4 gap-10">
-                <div>
-                    <h3 class="text-2xl font-bold text-emerald-400 mb-4">HealthCalc.in</h3>
-                    <p class="text-gray-400 text-sm">Free health tools for everyone.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="index.html" class="hover:text-emerald-400">Home</a></li>
-                        <li><a href="privacy-policy.html" class="hover:text-emerald-400">Privacy</a></li>
-                        <li><a href="terms-of-service.html" class="text-emerald-400">Terms</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                © 2024 HealthCalc.in
-            </div>
+        <div class="footer-bottom">
+            <p>© 2024-2026 <a href="/">HealthCalc.in</a> — Free Health Calculators. All Rights Reserved.</p>
+            <p style="margin-top:4px;">100% Private Browser-Based Tools. No Signup Required.</p>
         </div>
     </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        }
-    </script>
 </body>
 </html>
