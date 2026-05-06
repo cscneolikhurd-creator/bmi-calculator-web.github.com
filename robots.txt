@@ -1,12 +1,13 @@
 # ============================================
 # ROBOTS.TXT for HealthCalc.in
-# Last Updated: 2026-03-19
-# Total Tools: 15 Health Calculators
+# Last Updated: 2026-05-05
+# Total Tools: 25 Health Calculators
 # ============================================
 
 # Allow all crawlers full access
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
 # ============================================
 # SITEMAP LOCATION
@@ -14,43 +15,46 @@ Allow: /
 Sitemap: https://healthcalc.in/sitemap.xml
 
 # ============================================
-# MAIN CALCULATOR TOOLS - ALL INDEXED
+# MAIN CALCULATOR TOOLS — ALL INDEXED (25 Tools)
 # ============================================
 
-# Body Composition Tools
+# Heart & Vascular (4 Tools)
+Allow: /ascvd-risk-calculator.html
+Allow: /heart-risk-calculator.html
+Allow: /vascular-age-calculator.html
+Allow: /heart-rate-calculator.html
+
+# Body Composition (6 Tools)
 Allow: /bmi-calculator.html
 Allow: /body-fat-calculator.html
 Allow: /ideal-weight-calculator.html
 Allow: /metabolic-age.html
 Allow: /metabolic-age-pro.html
 
-# Nutrition Tools
+# Nutrition (2 Tools)
 Allow: /calorie-calculator.html
 Allow: /water-intake-calculator.html
 
-# Fitness Tools
-Allow: /heart-rate-zones-calculator.html
-Allow: /heart-risk-calculator.html
+# Fitness (1 Tool)
 Allow: /met-calculator.html
 
-# Women's Health Tools
-Allow: /menstrual-cycle-calculator.html
+# Women's Health (3 Tools)
 Allow: /pregnancy-calculator.html
-
-# Sleep & Recovery Tools
-Allow: /sleep-debt-calculator.html
-Allow: /sleep-cycle-calculator.html
-
-# Longevity & Health Tools
-Allow: /life-expectancy-calculator.html
-Allow: /gut-microbiome-calculator.html
-Allow: /circadian-rhythm-calculator.html
-Allow: /inflammation-calculator.html
-Allow: /vascular-age-calculator.html
+Allow: /menstrual-cycle-calculator.html
 Allow: /hormone-health-calculator.html
 
+# Sleep & Recovery (3 Tools)
+Allow: /sleep-cycle-calculator.html
+Allow: /sleep-debt-calculator.html
+Allow: /circadian-rhythm-calculator.html
+
+# Advanced Health (3 Tools)
+Allow: /gut-microbiome-calculator.html
+Allow: /inflammation-score-calculator.html
+Allow: /life-expectancy-calculator.html
+
 # ============================================
-# STATIC PAGES - ALL INDEXED
+# STATIC PAGES — ALL INDEXED (4 Pages)
 # ============================================
 Allow: /about.html
 Allow: /contact.html
@@ -58,39 +62,48 @@ Allow: /privacy-policy.html
 Allow: /terms-of-service.html
 
 # ============================================
+# MULTILINGUAL PAGES
+# ============================================
+Allow: /hi/
+Allow: /es/
+Allow: /fr/
+Allow: /de/
+Allow: /ja/
+Allow: /ar/
+
+# ============================================
+# CSS, JS, IMAGES — ALLOW
+# ============================================
+Allow: /style.css
+Allow: /script.js
+Allow: /ai-health-tips.js
+Allow: /assets/
+Allow: /images/
+Allow: /favicon.ico
+Allow: /favicon-32x32.png
+Allow: /apple-touch-icon.png
+
+# ============================================
 # DISALLOW RULES
 # ============================================
 
-# Disallow any admin or private directories (if they exist)
-# Disallow: /admin/
-# Disallow: /private/
-# Disallow: /temp/
-# Disallow: /backup/
-
-# Disallow temporary or duplicate files
-Disallow: /*.tmp$
-Disallow: /*.temp$
-Disallow: /*.bak$
-Disallow: /*.old$
-
-# Disallow URL parameters that create duplicate content
+# URL parameters that create duplicate content
 Disallow: /*?utm_source=
 Disallow: /*?utm_medium=
 Disallow: /*?utm_campaign=
 Disallow: /*?fbclid=
 Disallow: /*?ref=
+Disallow: /*?gclid=
+Disallow: /*?msclkid=
+Disallow: /*?lang=*
 
-# ============================================
-# CRAWL DELAY (Optional - for slower servers)
-# ============================================
-# Crawl-delay: 1
-
-# ============================================
-# HOST (Optional - specifies canonical domain)
-# ============================================
-Host: https://healthcalc.in
+# Temporary/backup files
+Disallow: /*.tmp$
+Disallow: /*.temp$
+Disallow: /*.bak$
+Disallow: /*.old$
 
 # ============================================
 # END OF ROBOTS.TXT
-# Total URLs to Index: 15 Calculators + 4 Static = 19 Pages
+# Total Indexed: 25 Tools + 4 Static + Multilingual = 29+ Pages
 # ============================================
