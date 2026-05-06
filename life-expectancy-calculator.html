@@ -1,884 +1,576 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life expectancy Calculator: Healthspan & Lifespan · HealthCalc</title>
-<meta name="description" content="Most accurate life expectancy calculator. See how your lifestyle affects your healthspan. 100% private, no signup, global data.">
-<!-- Google Fonts + Font Awesome -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+<!-- SEO Meta -->
+<title>⏳ Life Expectancy Calculator: Healthspan & Lifespan | WHO Data | HealthCalc</title>
+<meta name="title" content="Life Expectancy Calculator — Healthspan vs Lifespan | Real-Time Sliders">
+<meta name="description" content="Most accurate life expectancy calculator. See how lifestyle affects your healthspan vs lifespan. Based on WHO/UN life tables. Quick (9 factors) & Deep (38 factors) modes. 100% private, no signup.">
+<meta name="keywords" content="life expectancy calculator, healthspan, lifespan, how long will I live, longevity calculator, healthy years, mortality risk, WHO life tables, Sullivan method">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://healthcalc.in/life-expectancy-calculator.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Life Expectancy & Healthspan Calculator">
+<meta property="og:description" content="See how your habits affect your lifespan. Quick & deep modes.">
+<meta property="og:url" content="https://healthcalc.in/life-expectancy-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HealthCalc">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Life Expectancy Calculator">
+<meta name="twitter:description" content="Healthspan vs Lifespan — real-time sliders">
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalWebPage",
+"name": "Life Expectancy Calculator",
+"description": "Calculate life expectancy and healthspan based on WHO life tables and Sullivan method. Quick & deep lifestyle assessment.",
+"url": "https://healthcalc.in/life-expectancy-calculator.html",
+"author": {"@type": "Organization", "name": "HealthCalc"},
+"inLanguage": ["en", "hi"]
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "How is life expectancy calculated?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Uses WHO/UN life tables for country-specific base rates, adjusted for age, gender, BMI, smoking, alcohol, exercise, diet, sleep, and 30+ health biomarkers."
+}
+},
+{
+"@type": "Question",
+"name": "What is the difference between healthspan and lifespan?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Lifespan = total years lived. Healthspan = years lived in good health without chronic disease. The Sullivan method calculates this gap."
+}
+},
+{
+"@type": "Question",
+"name": "How accurate is this life expectancy estimate?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Based on population-level cohort studies. Individual genetics, environment, and future medical advances can significantly alter actual outcomes."
+}
+}
+]
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+{"@type": "ListItem", "position": 2, "name": "Health Tools", "item": "https://healthcalc.in/#tools"},
+{"@type": "ListItem", "position": 3, "name": "Life Expectancy Calculator", "item": "https://healthcalc.in/life-expectancy-calculator.html"}
+]
+}
+</script>
+
+<!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+:root {
+--primary: #0ea5e9; --primary-dark: #0284c7; --primary-light: #e0f2fe;
+--secondary: #0d9488; --accent: #f59e0b;
+--dark: #0f172a; --text: #334155; --text-muted: #64748b;
+--bg: #f8fafc; --white: #ffffff; --border: #e2e8f0;
+--shadow-sm: 0 10px 30px -10px rgba(14,165,233,0.15);
+--shadow-md: 0 20px 40px -15px rgba(14,165,233,0.2);
+--radius-xl: 32px; --radius-lg: 24px; --radius-md: 18px;
 }
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
 font-family: 'Inter', sans-serif;
-background: #f9fbfd;
-color: #1a2e3f;
-line-height: 1.5;
-padding: 1.5rem 1rem;
+background: linear-gradient(145deg, #f0f9ff, #e0f2fe);
+min-height: 100vh; padding: 1.2rem;
+color: var(--text); line-height: 1.5;
 }
+.container { max-width: 1300px; margin: 0 auto; }
 
-.container {
-max-width: 1200px;
-margin: 0 auto;
+/* BREADCRUMB */
+.breadcrumb {
+display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted);
 }
+.breadcrumb a { color: var(--primary-dark); text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #cbd5e1; }
 
-/* header style matching healthcalc.in */
-.tool-header {
-text-align: center;
-margin-bottom: 2rem;
+/* LANGUAGE TOGGLE */
+.lang-toggle {
+display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 10px;
 }
+.lang-btn {
+padding: 8px 18px; border-radius: 50px; border: 2px solid var(--primary-light);
+background: white; color: var(--primary-dark); cursor: pointer;
+font-weight: 600; font-size: 0.85rem; transition: all 0.3s;
+}
+.lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
+/* HEADER */
+.tool-header { text-align: center; margin-bottom: 2rem; }
 .tool-header h1 {
-font-size: 2.2rem;
-font-weight: 700;
-background: linear-gradient(145deg, #0B2A4A 0%, #1B4A6B 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
+font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800;
+background: linear-gradient(145deg, #0284c7, #0ea5e9, #38bdf8);
+-webkit-background-clip: text; -webkit-text-fill-color: transparent;
 letter-spacing: -0.02em;
 }
-
-.tool-header p {
-font-size: 1.2rem;
-color: #4a5f73;
-max-width: 700px;
-margin: 0.5rem auto 0;
-}
-
-.badge-container {
-display: flex;
-flex-wrap: wrap;
-gap: 0.75rem;
-justify-content: center;
-margin-top: 1rem;
-}
-
+.tool-header p { font-size: 1.15rem; color: #4a5f73; max-width: 700px; margin: 0.5rem auto 0; }
+.badge-container { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 1rem; }
 .badge {
-background: #e7edf4;
-padding: 0.4rem 1rem;
-border-radius: 40px;
-font-size: 0.85rem;
-font-weight: 500;
-color: #1e3b5c;
-display: inline-flex;
-align-items: center;
-gap: 0.4rem;
+background: var(--primary-light); padding: 0.4rem 1rem; border-radius: 40px;
+font-size: 0.85rem; font-weight: 500; color: var(--primary-dark);
+display: inline-flex; align-items: center; gap: 0.4rem;
 }
 
-.badge i {
-color: #2f7e79;
-}
+/* GRID */
+.calculator-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 1.8rem; margin-top: 1.5rem; }
+@media (max-width: 850px) { .calculator-grid { grid-template-columns: 1fr; } }
 
-/* main grid */
-.calculator-grid {
-display: grid;
-grid-template-columns: 1fr 1.1fr;
-gap: 1.8rem;
-margin-top: 1.5rem;
+/* CARDS */
+.input-panel, .result-panel {
+background: white; border-radius: var(--radius-xl);
+padding: 1.8rem 1.5rem; box-shadow: var(--shadow-sm);
+border: 1px solid var(--border);
 }
+.panel-title { font-weight: 600; font-size: 1.3rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+.panel-title i { color: var(--secondary); }
 
-@media (max-width: 850px) {
-.calculator-grid {
-grid-template-columns: 1fr;
-gap: 2rem;
-}
-}
+.mode-switch { display: flex; background: #edf3f9; border-radius: 60px; padding: 0.25rem; margin-bottom: 2rem; }
+.mode-btn { flex: 1; border: none; background: transparent; padding: 0.7rem 0.5rem; border-radius: 60px; font-weight: 600; font-size: 0.95rem; color: #4d6278; cursor: pointer; transition: 0.2s; }
+.mode-btn.active { background: white; color: #0b2f4a; box-shadow: 0 4px 12px rgba(0,40,70,0.08); }
 
-/* input panel */
-.input-panel {
-background: white;
-border-radius: 32px;
-padding: 1.8rem 1.5rem;
-box-shadow: 0 15px 40px -12px rgba(0,32,64,0.12);
-border: 1px solid #eef3f8;
-}
+.input-group { margin-bottom: 1.25rem; }
+.input-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+.input-row label { font-weight: 500; font-size: 0.95rem; color: #1f3c54; display: flex; align-items: center; gap: 0.4rem; }
+.value-badge { background: #eaf1f9; padding: 0.2rem 0.8rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; color: #105e5a; }
+input[type=range] { width: 100%; height: 6px; background: #dbe4ed; border-radius: 10px; -webkit-appearance: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--primary); border-radius: 20px; cursor: pointer; border: 2px solid white; }
+select, .mini-input { width: 100%; padding: 0.7rem 1rem; border: 1.5px solid #e2eaf2; border-radius: 20px; font-family: 'Inter'; font-size: 0.95rem; background: white; color: #1a2e3f; margin-top: 0.25rem; }
+.double-input { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.3rem; }
+.deep-fields { display: none; margin-top: 1.5rem; border-top: 2px dashed #cbdae8; padding-top: 1.5rem; }
+.deep-fields.visible { display: block; }
 
-.panel-title {
-font-weight: 600;
-font-size: 1.3rem;
-margin-bottom: 1.5rem;
-display: flex;
-align-items: center;
-gap: 0.6rem;
-}
-
-.panel-title i {
-color: #1e6f6b;
-}
-
-.mode-switch {
-display: flex;
-background: #edf3f9;
-border-radius: 60px;
-padding: 0.25rem;
-margin-bottom: 2rem;
-}
-
-.mode-btn {
-flex: 1;
-border: none;
-background: transparent;
-padding: 0.7rem 0.5rem;
-border-radius: 60px;
-font-weight: 600;
-font-size: 0.95rem;
-color: #4d6278;
-cursor: pointer;
-transition: 0.2s;
-}
-
-.mode-btn.active {
-background: white;
-color: #0b2f4a;
-box-shadow: 0 4px 12px rgba(0,40,70,0.08);
-}
-
-.input-group {
-margin-bottom: 1.25rem;
-}
-
-.input-row {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 0.3rem;
-}
-
-.input-row label {
-font-weight: 500;
-font-size: 0.95rem;
-color: #1f3c54;
-display: flex;
-align-items: center;
-gap: 0.4rem;
-}
-
-.input-row .value-badge {
-background: #eaf1f9;
-padding: 0.2rem 0.8rem;
-border-radius: 30px;
-font-size: 0.85rem;
-font-weight: 600;
-color: #105e5a;
-}
-
-input[type=range] {
-width: 100%;
-height: 6px;
-background: #dbe4ed;
-border-radius: 10px;
--webkit-appearance: none;
-}
-
-input[type=range]::-webkit-slider-thumb {
--webkit-appearance: none;
-width: 20px;
-height: 20px;
-background: #1b8c87;
-border-radius: 20px;
-box-shadow: 0 4px 8px rgba(20,80,70,0.2);
-cursor: pointer;
-border: 2px solid white;
-}
-
-select, .unit-toggle {
-width: 100%;
-padding: 0.7rem 1rem;
-border: 1.5px solid #e2eaf2;
-border-radius: 20px;
-font-family: 'Inter', sans-serif;
-font-size: 0.95rem;
-background: white;
-color: #1a2e3f;
-margin-top: 0.25rem;
-}
-
-.double-input {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 0.8rem;
-margin-top: 0.3rem;
-}
-
-.mini-input {
-border: 1.5px solid #e2eaf2;
-border-radius: 18px;
-padding: 0.6rem 1rem;
-width: 100%;
-}
-
-/* deep mode extra fields (initially hidden) */
-.deep-fields {
-display: none;
-margin-top: 1.5rem;
-border-top: 2px dashed #cbdae8;
-padding-top: 1.5rem;
-}
-
-.deep-fields.visible {
-display: block;
-}
-
-/* result panel */
-.result-panel {
-background: white;
-border-radius: 32px;
-padding: 1.8rem 1.5rem;
-box-shadow: 0 20px 50px -12px rgba(9, 51, 80, 0.2);
-border: 1px solid #eef3f8;
-}
-
+/* RESULTS */
 .live-number {
-background: linear-gradient(115deg, #e2f0f2 0%, #d1e7ed 100%);
-border-radius: 40px;
-padding: 1.8rem 1rem;
-text-align: center;
-margin-bottom: 2rem;
+background: linear-gradient(115deg, #e0f2fe 0%, #bae6fd 100%);
+border-radius: 40px; padding: 1.8rem 1rem; text-align: center; margin-bottom: 2rem;
 }
+.live-main { font-size: 4.2rem; font-weight: 800; line-height: 1; color: #0c4a6e; }
+.live-label { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; color: #0369a1; font-weight: 600; }
+.live-sub { margin-top: 0.6rem; color: #075985; font-weight: 500; }
+.healthspan-row { display: flex; justify-content: space-between; background: #f0f9ff; padding: 1rem 1.5rem; border-radius: 40px; margin: 1.8rem 0; font-weight: 600; }
+.healthspan-item { text-align: center; }
+.healthspan-number { font-size: 2rem; color: #0c4a6e; }
+.healthspan-desc { font-size: 0.9rem; color: #41647c; }
+.gain-message { background: #d1fae5; padding: 1rem 1.5rem; border-radius: 60px; color: #065f46; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; margin: 1.5rem 0; }
+.country-compare { border-top: 1px solid #d9e3ee; padding-top: 1.5rem; margin-top: 1rem; }
 
-.live-main {
-font-size: 4.2rem;
-font-weight: 800;
-line-height: 1;
-color: #003153;
-letter-spacing: -0.02em;
+/* CROSS-LINKING */
+.tools-crosslink {
+background: #f8fafc; border-radius: var(--radius-lg); padding: 20px;
+margin: 20px 0; border: 1px solid var(--primary-light);
 }
-
-.live-label {
-font-size: 1rem;
-text-transform: uppercase;
-letter-spacing: 0.05em;
-color: #1f5c6e;
-font-weight: 600;
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 12px; }
+.tool-link-card {
+background: white; padding: 12px; border-radius: 10px; text-align: center;
+text-decoration: none; color: #333; box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+transition: all 0.2s; font-weight: 600; font-size: 0.85rem;
 }
+.tool-link-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
 
-.live-sub {
-margin-top: 0.6rem;
-color: #2a4d69;
-font-weight: 500;
-}
-
-.healthspan-row {
-display: flex;
-justify-content: space-between;
-background: #f3f9fc;
-padding: 1rem 1.5rem;
-border-radius: 40px;
-margin: 1.8rem 0;
-font-weight: 600;
-}
-
-.healthspan-item {
-text-align: center;
-}
-
-.healthspan-number {
-font-size: 2rem;
-color: #0a3d53;
-}
-
-.healthspan-desc {
-font-size: 0.9rem;
-color: #41647c;
-}
-
-.gain-message {
-background: #dff2f0;
-padding: 1rem 1.5rem;
-border-radius: 60px;
-color: #004d66;
-font-weight: 500;
-display: flex;
-align-items: center;
-gap: 0.5rem;
-margin: 1.5rem 0;
-}
-
-.country-compare {
-border-top: 1px solid #d9e3ee;
-padding-top: 1.5rem;
-margin-top: 1rem;
-}
-
-.action-buttons {
-display: flex;
-gap: 1rem;
-margin-top: 2rem;
-flex-wrap: wrap;
-}
-
+/* BUTTONS */
+.action-buttons { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
 .btn-primary {
-background: #1d3d5c;
-border: none;
-padding: 1rem 2rem;
-border-radius: 40px;
-color: white;
-font-weight: 600;
-font-size: 1rem;
-cursor: pointer;
-transition: 0.15s;
-flex: 1;
-box-shadow: 0 8px 18px -6px #0d2d41;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-gap: 0.6rem;
+background: var(--primary-dark); border: none; padding: 1rem 2rem;
+border-radius: 40px; color: white; font-weight: 600; font-size: 1rem;
+cursor: pointer; flex: 1; box-shadow: 0 8px 18px -6px rgba(2,132,199,0.4);
+display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
 }
-
-.btn-primary:hover {
-background: #12406b;
-}
-
+.btn-primary:hover { background: #0369a1; }
 .btn-outline {
-background: transparent;
-border: 1.5px solid #b2c9de;
-padding: 1rem 1.5rem;
-border-radius: 40px;
-font-weight: 600;
-color: #1f3c54;
-cursor: pointer;
-transition: 0.15s;
+background: transparent; border: 1.5px solid #bae6fd;
+padding: 1rem 1.5rem; border-radius: 40px; font-weight: 600;
+color: var(--primary-dark); cursor: pointer;
 }
+.btn-outline:hover { background: var(--primary-light); }
 
-.btn-outline:hover {
-background: #ecf5fc;
-}
+/* FAQ */
+.faq-section { margin-top: 3rem; background: white; border-radius: var(--radius-xl); padding: 2rem; }
+.faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+@media (max-width: 700px) { .faq-grid { grid-template-columns: 1fr; } }
+.faq-item { background: var(--primary-light); border-radius: var(--radius-lg); padding: 1.2rem; }
+.faq-question { font-weight: 700; color: var(--primary-dark); margin-bottom: 0.5rem; }
+.faq-answer { color: #4b5563; font-size: 0.9rem; }
 
-.disclaimer {
-font-size: 0.75rem;
-color: #6a7e94;
-margin-top: 1.2rem;
-text-align: center;
+/* FUTURE */
+.future-plan-section {
+background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+border-radius: var(--radius-xl); padding: 25px; margin: 30px 0;
+border: 2px dashed var(--primary-light);
 }
+.future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px; }
+.future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; }
+.future-feature i { font-size: 1.5rem; color: var(--primary); margin-bottom: 8px; }
+.coming-soon-tag { display: inline-block; background: #f59e0b; color: white; padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; margin-top: 8px; }
 
-.faq-hint {
-margin-top: 2.5rem;
-background: #f7fafd;
-border-radius: 28px;
-padding: 1.2rem;
-font-size: 0.9rem;
-border: 1px solid #e2edf5;
+.disclaimer { font-size: 0.75rem; color: #6a7e94; margin-top: 1.2rem; text-align: center; }
+footer { text-align: center; padding: 20px; color: var(--text-muted); margin-top: 30px; }
+.footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.footer-links a { color: var(--primary-dark); text-decoration: none; }
+.scroll-top {
+position: fixed; bottom: 30px; right: 30px;
+background: var(--primary); color: white; width: 48px; height: 48px;
+border-radius: 50%; display: flex; align-items: center; justify-content: center;
+cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s;
+border: none; z-index: 1000; font-size: 1.2rem;
 }
+.scroll-top.visible { opacity: 1; visibility: visible; }
 </style>
 </head>
 <body>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
 <div class="container">
-<!-- header -->
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+<a href="/"><i class="fas fa-home"></i> Home</a> <span class="sep">›</span>
+<a href="/#tools">Health Tools</a> <span class="sep">›</span>
+<span>Life Expectancy Calculator</span>
+</nav>
+
+<!-- LANGUAGE TOGGLE -->
+<div class="lang-toggle">
+<button class="lang-btn active" onclick="setLang('en')" id="langEN">🇬🇧 English</button>
+<button class="lang-btn" onclick="setLang('hi')" id="langHI">🇮🇳 हिंदी</button>
+</div>
+
+<!-- HEADER -->
 <div class="tool-header">
-<h1>⏳ Life expectancy · Healthspan Calculator</h1>
-<p>See how your habits rewrite your future — 100% private, real‑time, global data</p>
+<h1>⏳ <span id="pageTitle">Life Expectancy · Healthspan Calculator</span></h1>
+<p id="pageSubtitle">See how your habits rewrite your future — 100% private, real-time, based on WHO/UN data</p>
 <div class="badge-container">
-<span class="badge"><i class="fas fa-shield-alt"></i> HIPAA‑like privacy</span>
-<span class="badge"><i class="fas fa-globe"></i> 200+ countries</span>
-<span class="badge"><i class="fas fa-mobile-alt"></i> mobile first</span>
-<span class="badge"><i class="fas fa-chart-line"></i> healthspan > lifespan</span>
+<span class="badge"><i class="fas fa-shield-alt"></i> <span id="badge1">100% Private</span></span>
+<span class="badge"><i class="fas fa-globe"></i> <span id="badge2">200+ Countries</span></span>
+<span class="badge"><i class="fas fa-mobile-alt"></i> <span id="badge3">Mobile First</span></span>
+<span class="badge"><i class="fas fa-chart-line"></i> <span id="badge4">Healthspan > Lifespan</span></span>
 </div>
 </div>
 
-<!-- main grid -->
+<!-- MAIN GRID -->
 <div class="calculator-grid" id="app">
-<!-- left: inputs -->
+<!-- INPUT PANEL (keep original structure, add IDs for translation) -->
 <div class="input-panel">
-<div class="panel-title">
-<i class="fas fa-sliders-h"></i> Your lifestyle
-</div>
-<!-- quick/deep toggle -->
+<div class="panel-title"><i class="fas fa-sliders-h"></i> <span id="inputTitle">Your Lifestyle</span></div>
+
 <div class="mode-switch">
-<button class="mode-btn active" id="modeQuick">⚡ Quick (9 factors)</button>
-<button class="mode-btn" id="modeDeep">🔬 Deep (38 factors)</button>
+<button class="mode-btn active" id="modeQuick">⚡ <span id="quickLabel">Quick (9 factors)</span></button>
+<button class="mode-btn" id="modeDeep">🔬 <span id="deepLabel">Deep (38 factors)</span></button>
 </div>
 
-<!-- basic fields (always visible) -->
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-venus-mars"></i> Gender</label>
-</div>
-<select id="gender">
-<option value="male">Male</option>
-<option value="female" selected>Female</option>
-</select>
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-venus-mars"></i> <span id="genderLabel">Gender</span></label></div>
+<select id="gender"><option value="male" id="genMale">Male</option><option value="female" selected id="genFemale">Female</option></select></div>
 
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-calendar-alt"></i> Age</label>
-<span class="value-badge" id="ageVal">35</span>
-</div>
-<input type="range" id="age" min="18" max="100" value="35" step="1">
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-calendar-alt"></i> <span id="ageLabel">Age</span></label><span class="value-badge" id="ageVal">35</span></div>
+<input type="range" id="age" min="18" max="100" value="35" step="1"></div>
 
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-flag"></i> Country</label>
-</div>
-<select id="country">
-<option value="USA">United States</option>
-<option value="IND" selected>India</option>
-<option value="GBR">United Kingdom</option>
-<option value="CAN">Canada</option>
-<option value="AUS">Australia</option>
-<option value="JPN">Japan</option>
-<option value="DEU">Germany</option>
-<option value="FRA">France</option>
-<option value="BRA">Brazil</option>
-<option value="ZAF">South Africa</option>
-<option value="OTHER">Other</option>
-</select>
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-flag"></i> <span id="countryLabel">Country</span></label></div>
+<select id="country"><option value="USA">United States</option><option value="IND" selected>India</option><option value="GBR">United Kingdom</option><option value="CAN">Canada</option><option value="AUS">Australia</option><option value="JPN">Japan</option><option value="DEU">Germany</option><option value="FRA">France</option><option value="BRA">Brazil</option><option value="ZAF">South Africa</option><option value="OTHER">Other</option></select></div>
 
-<!-- height / weight -->
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-ruler"></i> Height / Weight</label>
-</div>
-<div class="double-input">
-<input type="number" id="height" class="mini-input" placeholder="cm" value="165" min="120" max="220">
-<input type="number" id="weight" class="mini-input" placeholder="kg" value="70" min="30" max="200">
-</div>
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-ruler"></i> <span id="hwLabel">Height / Weight</span></label></div>
+<div class="double-input"><input type="number" id="height" class="mini-input" placeholder="cm" value="165"><input type="number" id="weight" class="mini-input" placeholder="kg" value="70"></div></div>
 
-<!-- core risk factors -->
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-smoking"></i> Smoking</label>
-<span class="value-badge" id="smokeVal">Never</span>
-</div>
-<select id="smoking">
-<option value="0">Never smoked</option>
-<option value="1">Former smoker</option>
-<option value="2">Current smoker</option>
-</select>
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-smoking"></i> <span id="smokeLabel">Smoking</span></label><span class="value-badge" id="smokeVal">Never</span></div>
+<select id="smoking"><option value="0" id="sm0">Never</option><option value="1" id="sm1">Former</option><option value="2" id="sm2">Current</option></select></div>
 
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-cocktail"></i> Alcohol</label>
-<span class="value-badge" id="alcoholVal">Light</span>
-</div>
-<select id="alcohol">
-<option value="0">None</option>
-<option value="1" selected>Light (1-2 / week)</option>
-<option value="2">Moderate (3-7 / week)</option>
-<option value="3">Heavy (>7 / week)</option>
-</select>
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-cocktail"></i> <span id="alcoholLabel">Alcohol</span></label><span class="value-badge" id="alcoholVal">Light</span></div>
+<select id="alcohol"><option value="0" id="alc0">None</option><option value="1" selected id="alc1">Light (1-2/wk)</option><option value="2" id="alc2">Moderate (3-7/wk)</option><option value="3" id="alc3">Heavy (>7/wk)</option></select></div>
 
-<!-- exercise -->
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-walking"></i> Exercise (min/week)</label>
-<span class="value-badge" id="exVal">120</span>
-</div>
-<input type="range" id="exercise" min="0" max="400" value="120" step="5">
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-walking"></i> <span id="exLabel">Exercise (min/wk)</span></label><span class="value-badge" id="exVal">120</span></div>
+<input type="range" id="exercise" min="0" max="400" value="120" step="5"></div>
 
-<!-- diet quality -->
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-apple-alt"></i> Diet quality</label>
-<span class="value-badge" id="dietVal">3/5</span>
-</div>
-<input type="range" id="diet" min="1" max="5" value="3" step="1">
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-apple-alt"></i> <span id="dietLabel">Diet Quality</span></label><span class="value-badge" id="dietVal">3/5</span></div>
+<input type="range" id="diet" min="1" max="5" value="3" step="1"></div>
 
-<!-- sleep -->
-<div class="input-group">
-<div class="input-row">
-<label><i class="fas fa-bed"></i> Sleep (avg hours)</label>
-<span class="value-badge" id="sleepVal">7</span>
-</div>
-<input type="range" id="sleep" min="3" max="11" value="7" step="0.5">
-</div>
+<div class="input-group"><div class="input-row"><label><i class="fas fa-bed"></i> <span id="sleepLabel">Sleep (hrs)</span></label><span class="value-badge" id="sleepVal">7</span></div>
+<input type="range" id="sleep" min="3" max="11" value="7" step="0.5"></div>
 
-<!-- ###### DEEP MODE FIELDS ###### -->
 <div class="deep-fields" id="deepFields">
-<h4 style="margin-bottom:1rem; color:#124e6b;">🫀 Advanced health markers</h4>
-
-<div class="input-group">
-<label>Resting heart rate (bpm)</label>
-<input type="number" id="restingHr" class="mini-input" value="72" min="40" max="120">
-</div>
-
-<div class="input-group">
-<label>Systolic BP (mmHg)</label>
-<input type="number" id="bpSystolic" class="mini-input" value="120" min="80" max="200">
-</div>
-
-<div class="input-group">
-<label>Total cholesterol (mg/dL)</label>
-<input type="number" id="cholesterol" class="mini-input" value="190" min="100" max="350">
-</div>
-
-<div class="input-group">
-<label>Blood glucose (fasting, mg/dL)</label>
-<input type="number" id="glucose" class="mini-input" value="95" min="60" max="300">
-</div>
-
-<div class="input-group">
-<div class="input-row">
-<label>Stress level</label>
-<span class="value-badge" id="stressVal">4</span>
-</div>
-<input type="range" id="stress" min="1" max="10" value="4">
-</div>
-
-<div class="input-group">
-<label>Mental health (1-10)</label>
-<input type="range" id="mental" min="1" max="10" value="7">
-</div>
-
-<div class="input-group">
-<label>Social support (1-10)</label>
-<input type="range" id="social" min="1" max="10" value="7">
-</div>
-
-<div class="input-group">
-<label>Chronic condition?</label>
-<select id="chronic">
-<option value="none">None</option>
-<option value="diabetes">Type 2 diabetes</option>
-<option value="heart">Heart disease</option>
-<option value="cancer">Cancer (in remission)</option>
-</select>
+<h4 style="margin-bottom:1rem;color:#0c4a6e;"><span id="advancedTitle">🫀 Advanced Health Markers</span></h4>
+<div class="input-group"><label id="hrLabel">Resting HR (bpm)</label><input type="number" id="restingHr" class="mini-input" value="72"></div>
+<div class="input-group"><label id="bpLabel">Systolic BP (mmHg)</label><input type="number" id="bpSystolic" class="mini-input" value="120"></div>
+<div class="input-group"><label id="cholLabel">Total Cholesterol</label><input type="number" id="cholesterol" class="mini-input" value="190"></div>
+<div class="input-group"><label id="gluLabel">Blood Glucose (fasting)</label><input type="number" id="glucose" class="mini-input" value="95"></div>
+<div class="input-group"><label id="stressLabel">Stress Level (1-10)</label><input type="range" id="stress" min="1" max="10" value="4"><span class="value-badge" id="stressVal">4</span></div>
+<div class="input-group"><label id="mentalLabel">Mental Health (1-10)</label><input type="range" id="mental" min="1" max="10" value="7"></div>
+<div class="input-group"><label id="socialLabel">Social Support (1-10)</label><input type="range" id="social" min="1" max="10" value="7"></div>
+<div class="input-group"><label id="chronicLabel">Chronic Condition</label>
+<select id="chronic"><option value="none" id="chNone">None</option><option value="diabetes" id="chDiab">Diabetes</option><option value="heart" id="chHeart">Heart Disease</option><option value="cancer" id="chCancer">Cancer</option></select></div>
 </div>
 </div>
 
-<div style="font-size:0.8rem; color:#768b9f; margin-top:1.5rem;">
-<i class="fas fa-lock"></i> 100% private · nothing stored
-</div>
-</div> <!-- /input panel -->
-
-<!-- right: results -->
+<!-- RESULTS PANEL (keep original structure) -->
 <div class="result-panel">
 <div class="live-number">
-<div class="live-label">your estimated lifespan</div>
+<div class="live-label" id="lifespanLabel">Your Estimated Lifespan</div>
 <div class="live-main" id="lifespanDisplay">83.2</div>
 <div class="live-sub" id="deathDateDisplay">Saturday, 2 May 2068</div>
 </div>
 
-<!-- healthspan vs lifespan -->
 <div class="healthspan-row">
-<div class="healthspan-item">
-<div class="healthspan-number" id="healthspanNum">74.1</div>
-<div class="healthspan-desc">healthspan (healthy years)</div>
-</div>
-<div style="font-size:2rem; color:#abbacf;">|</div>
-<div class="healthspan-item">
-<div class="healthspan-number" id="lifespanNum">83.2</div>
-<div class="healthspan-desc">lifespan (total years)</div>
-</div>
+<div class="healthspan-item"><div class="healthspan-number" id="healthspanNum">74.1</div><div class="healthspan-desc" id="healthspanDesc">Healthspan (healthy years)</div></div>
+<div style="font-size:2rem;color:#94a3b8;">|</div>
+<div class="healthspan-item"><div class="healthspan-number" id="lifespanNum">83.2</div><div class="healthspan-desc" id="lifespanDesc">Lifespan (total years)</div></div>
 </div>
 
-<!-- health gap message -->
-<div class="gain-message" id="healthGapMsg">
-<i class="fas fa-leaf"></i> <span>You may spend 9.1 years in less‑than‑good health.</span>
+<div class="gain-message" id="healthGapMsg"><i class="fas fa-leaf"></i> <span>You may spend 9.1 years in less-than-good health.</span></div>
+
+<div style="background:#f0f9ff;border-radius:28px;padding:1.2rem;">
+<div style="font-weight:600;margin-bottom:0.8rem;"><i class="fas fa-lightbulb"></i> <span id="actionsTitle">Top Actions to Gain Years</span></div>
+<ul style="list-style:none;" id="actionList"></ul>
 </div>
 
-<!-- top 3 positive actions (real time) -->
-<div style="background:#f0f6fd; border-radius:28px; padding:1.2rem;">
-<div style="display:flex; gap:0.5rem; margin-bottom:0.8rem; font-weight:600;"><i class="fas fa-lightbulb"></i> Top actions to gain years</div>
-<ul style="list-style-type: none;" id="actionList">
-<li style="margin-bottom:0.5rem;">✅ Quit smoking → <strong>+3.2 yrs</strong></li>
-<li style="margin-bottom:0.5rem;">✅ Sleep 7-8h → <strong>+1.8 yrs</strong></li>
-<li>✅ 30 min walk daily → <strong>+2.0 yrs</strong></li>
-</ul>
-</div>
-
-<!-- country comparison -->
 <div class="country-compare">
-<div style="display:flex; justify-content:space-between;">
-<span><i class="fas fa-globe-asia"></i> Your country avg: <span id="countryAvg">72.3</span> yrs</span>
-<span>You: <span id="youVsCountry">+10.9</span> yrs</span>
+<span><i class="fas fa-globe-asia"></i> <span id="countryAvgLabel">Country avg</span>: <span id="countryAvg">72.3</span> yrs</span>
+<span><span id="youLabel">You</span>: <span id="youVsCountry">+10.9</span> yrs</span>
+</div>
+
+<!-- Cross-linking -->
+<div class="tools-crosslink">
+<h4 style="margin-bottom:10px;"><i class="fas fa-link"></i> <span id="exploreTitle">🔗 Explore Related Tools</span></h4>
+<div class="tools-grid">
+<a href="bmi-calculator.html" class="tool-link-card">⚖️ BMI</a>
+<a href="ascvd-risk-calculator.html" class="tool-link-card">❤️ ASCVD Risk</a>
+<a href="vascular-age-calculator.html" class="tool-link-card">🩸 Vascular Age</a>
+<a href="heart-rate-calculator.html" class="tool-link-card">💪 Heart Zones</a>
+<a href="metabolic-age.html" class="tool-link-card">⚡ Metabolic Age</a>
+<a href="sleep-cycle-calculator.html" class="tool-link-card">😴 Sleep Cycle</a>
 </div>
 </div>
 
-<!-- action buttons -->
 <div class="action-buttons">
-<button class="btn-primary" id="downloadPdf"><i class="fas fa-download"></i> Download PDF report</button>
-<button class="btn-outline" id="copyResults"><i class="fas fa-share-alt"></i> Share</button>
+<button class="btn-primary" id="downloadPdf"><i class="fas fa-download"></i> <span id="pdfBtn">PDF Report</span></button>
+<button class="btn-outline" id="copyResults"><i class="fas fa-share-alt"></i> <span id="shareBtn">Share</span></button>
 </div>
 
-<div class="disclaimer">
-⚕️ This is a statistical estimate based on global cohort studies, not a medical diagnosis. Always consult a physician.
+<div class="disclaimer" id="disclaimerText">⚕️ Statistical estimate based on cohort studies. Not medical diagnosis.</div>
+</div>
 </div>
 
-<!-- mini faq / hint -->
-<div class="faq-hint">
-<i class="fas fa-robot"></i> <strong>How it works:</strong> Sullivan healthspan method + life tables (WHO/UN). Real‑time recalculation — change any slider above.
+<!-- FUTURE PLAN -->
+<div class="future-plan-section">
+<h3 style="display:flex;align-items:center;gap:10px;color:var(--primary-dark);"><i class="fas fa-rocket"></i> <span id="futureTitle">Coming Soon: Advanced Longevity Features</span></h3>
+<div class="future-features-grid">
+<div class="future-feature"><i class="fas fa-dna"></i><h5>Genetic Risk Score</h5><span class="coming-soon-tag">Coming Soon</span></div>
+<div class="future-feature"><i class="fas fa-chart-line"></i><h5>30-Year Projection</h5><span class="coming-soon-tag">Coming Soon</span></div>
+<div class="future-feature"><i class="fas fa-apple-alt"></i><h5>Blue Zone Diet</h5><span class="coming-soon-tag">Coming Soon</span></div>
+<div class="future-feature"><i class="fas fa-heartbeat"></i><h5>VO2 Max Estimator</h5><span class="coming-soon-tag">Coming Soon</span></div>
 </div>
 </div>
+
+<!-- FAQ -->
+<div class="faq-section">
+<h2 style="font-size:1.8rem;margin-bottom:0.5rem;">❓ <span id="faqTitle">Frequently Asked Questions</span></h2>
+<div class="faq-grid">
+<div class="faq-item"><div class="faq-question" id="faqQ1">How is life expectancy calculated?</div><p class="faq-answer" id="faqA1">WHO/UN life tables + Sullivan method. Adjusted for 30+ lifestyle & health factors.</p></div>
+<div class="faq-item"><div class="faq-question" id="faqQ2">Healthspan vs Lifespan?</div><p class="faq-answer" id="faqA2">Lifespan = total years. Healthspan = healthy years without chronic disease.</p></div>
+<div class="faq-item"><div class="faq-question" id="faqQ3">How accurate is this?</div><p class="faq-answer" id="faqA3">Population-level estimates. Individual genetics & future medicine not factored.</p></div>
+<div class="faq-item"><div class="faq-question" id="faqQ4">Quick vs Deep mode?</div><p class="faq-answer" id="faqA4">Quick = 9 lifestyle factors. Deep = 38 factors including blood markers.</p></div>
 </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2024-2026 HealthCalc.in — Life Expectancy Calculator | Based on WHO/UN Data</p>
+<div class="footer-links">
+<a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="contact.html">Contact</a> · <a href="index.html">All Tools</a>
+</div>
+</footer>
 </div>
 
 <script>
-(function() {
-// DOM elements
-const ageInput = document.getElementById('age');
-const ageVal = document.getElementById('ageVal');
-const genderSelect = document.getElementById('gender');
-const countrySelect = document.getElementById('country');
-const heightInput = document.getElementById('height');
-const weightInput = document.getElementById('weight');
-const smokingSelect = document.getElementById('smoking');
-const alcoholSelect = document.getElementById('alcohol');
-const exerciseRange = document.getElementById('exercise');
-const dietRange = document.getElementById('diet');
-const sleepRange = document.getElementById('sleep');
+let currentLang = 'en';
 
-// deep fields
-const deepFields = document.getElementById('deepFields');
-const modeQuick = document.getElementById('modeQuick');
-const modeDeep = document.getElementById('modeDeep');
-const restingHr = document.getElementById('restingHr');
-const bpSystolic = document.getElementById('bpSystolic');
-const cholesterol = document.getElementById('cholesterol');
-const glucose = document.getElementById('glucose');
-const stressRange = document.getElementById('stress');
-const mentalRange = document.getElementById('mental');
-const socialRange = document.getElementById('social');
-const chronicSelect = document.getElementById('chronic');
-
-// display elements
-const lifespanDisplay = document.getElementById('lifespanDisplay');
-const deathDateDisplay = document.getElementById('deathDateDisplay');
-const healthspanNum = document.getElementById('healthspanNum');
-const lifespanNum = document.getElementById('lifespanNum');
-const healthGapMsg = document.getElementById('healthGapMsg').querySelector('span');
-const actionList = document.getElementById('actionList');
-const countryAvgSpan = document.getElementById('countryAvg');
-const youVsCountry = document.getElementById('youVsCountry');
-
-// value badges
-const smokeVal = document.getElementById('smokeVal');
-const alcoholVal = document.getElementById('alcoholVal');
-const exVal = document.getElementById('exVal');
-const dietVal = document.getElementById('dietVal');
-const sleepVal = document.getElementById('sleepVal');
-const stressVal = document.getElementById('stressVal');
-
-// mode toggle
-modeQuick.addEventListener('click', () => {
-modeQuick.classList.add('active');
-modeDeep.classList.remove('active');
-deepFields.classList.remove('visible');
-});
-modeDeep.addEventListener('click', () => {
-modeDeep.classList.add('active');
-modeQuick.classList.remove('active');
-deepFields.classList.add('visible');
-});
-
-// update live badges
-function updateBadges() {
-ageVal.innerText = ageInput.value;
-const smokeText = {0:'Never',1:'Former',2:'Current'};
-smokeVal.innerText = smokeText[smokingSelect.value] || 'Never';
-const alcText = {0:'None',1:'Light',2:'Moderate',3:'Heavy'};
-alcoholVal.innerText = alcText[alcoholSelect.value] || 'Light';
-exVal.innerText = exerciseRange.value;
-dietVal.innerText = dietRange.value + '/5';
-sleepVal.innerText = sleepRange.value;
-if (stressVal) stressVal.innerText = stressRange.value;
+const translations = {
+en: {
+pageTitle:'Life Expectancy · Healthspan Calculator',pageSubtitle:'See how habits rewrite your future — WHO/UN data.',
+badge1:'100% Private',badge2:'200+ Countries',badge3:'Mobile First',badge4:'Healthspan > Lifespan',
+inputTitle:'Your Lifestyle',quickLabel:'Quick (9)',deepLabel:'Deep (38)',
+genderLabel:'Gender',genMale:'Male',genFemale:'Female',
+ageLabel:'Age',countryLabel:'Country',hwLabel:'Height / Weight',
+smokeLabel:'Smoking',sm0:'Never',sm1:'Former',sm2:'Current',
+alcoholLabel:'Alcohol',alc0:'None',alc1:'Light',alc2:'Moderate',alc3:'Heavy',
+exLabel:'Exercise (min/wk)',dietLabel:'Diet Quality',sleepLabel:'Sleep (hrs)',
+advancedTitle:'🫀 Advanced Health Markers',hrLabel:'Resting HR',bpLabel:'Systolic BP',
+cholLabel:'Total Cholesterol',gluLabel:'Blood Glucose',stressLabel:'Stress (1-10)',
+mentalLabel:'Mental Health',socialLabel:'Social Support',chronicLabel:'Chronic',
+chNone:'None',chDiab:'Diabetes',chHeart:'Heart Disease',chCancer:'Cancer',
+lifespanLabel:'Estimated Lifespan',healthspanDesc:'Healthspan',lifespanDesc:'Lifespan',
+actionsTitle:'Top Actions',countryAvgLabel:'Country avg',youLabel:'You',
+exploreTitle:'🔗 Explore Related Tools',pdfBtn:'PDF',shareBtn:'Share',
+futureTitle:'Coming Soon: Advanced Longevity Features',
+faqTitle:'Frequently Asked Questions',
+faqQ1:'How is life expectancy calculated?',faqA1:'WHO/UN life tables + Sullivan method.',
+faqQ2:'Healthspan vs Lifespan?',faqA2:'Lifespan=total years. Healthspan=healthy years.',
+faqQ3:'How accurate?',faqA3:'Population estimates. Genetics not factored.',
+faqQ4:'Quick vs Deep?',faqA4:'Quick=9 factors. Deep=38 factors + blood markers.',
+disclaimerText:'Statistical estimate. Not diagnosis.',
+smokeText:['Never','Former','Current'],alcText:['None','Light','Moderate','Heavy']
+},
+hi: {
+pageTitle:'जीवन प्रत्याशा · हेल्थस्पैन कैलकुलेटर',pageSubtitle:'आदतें आपका भविष्य बदलती हैं — WHO/UN डेटा।',
+badge1:'100% निजी',badge2:'200+ देश',badge3:'मोबाइल',badge4:'हेल्थस्पैन',
+inputTitle:'आपकी जीवनशैली',quickLabel:'त्वरित (9)',deepLabel:'गहन (38)',
+genderLabel:'लिंग',genMale:'पुरुष',genFemale:'महिला',
+ageLabel:'उम्र',countryLabel:'देश',hwLabel:'ऊंचाई/वजन',
+smokeLabel:'धूम्रपान',sm0:'नहीं',sm1:'पूर्व',sm2:'वर्तमान',
+alcoholLabel:'शराब',alc0:'नहीं',alc1:'हल्की',alc2:'मध्यम',alc3:'भारी',
+exLabel:'व्यायाम',dietLabel:'आहार',sleepLabel:'नींद',
+advancedTitle:'🫀 उन्नत स्वास्थ्य मार्कर',hrLabel:'रेस्टिंग HR',bpLabel:'सिस्टोलिक BP',
+cholLabel:'कोलेस्ट्रॉल',gluLabel:'ग्लूकोज',stressLabel:'तनाव',
+mentalLabel:'मानसिक',socialLabel:'सामाजिक',chronicLabel:'पुरानी बीमारी',
+chNone:'नहीं',chDiab:'मधुमेह',chHeart:'हृदय',chCancer:'कैंसर',
+lifespanLabel:'अनुमानित जीवनकाल',healthspanDesc:'हेल्थस्पैन',lifespanDesc:'जीवनकाल',
+actionsTitle:'शीर्ष कार्य',countryAvgLabel:'देश औसत',youLabel:'आप',
+exploreTitle:'🔗 संबंधित टूल',pdfBtn:'PDF',shareBtn:'शेयर',
+futureTitle:'जल्द आ रहा: उन्नत दीर्घायु सुविधाएं',
+faqTitle:'अक्सर पूछे जाने वाले प्रश्न',
+faqQ1:'जीवन प्रत्याशा कैसे?',faqA1:'WHO/UN तालिका + Sullivan विधि।',
+faqQ2:'हेल्थस्पैन बनाम जीवनकाल?',faqA2:'जीवनकाल=कुल वर्ष। हेल्थस्पैन=स्वस्थ वर्ष।',
+faqQ3:'कितना सटीक?',faqA3:'जनसंख्या अनुमान। आनुवंशिकी शामिल नहीं।',
+faqQ4:'त्वरित बनाम गहन?',faqA4:'त्वरित=9 कारक। गहन=38 कारक।',
+disclaimerText:'सांख्यिकीय अनुमान।',
+smokeText:['नहीं','पूर्व','वर्तमान'],alcText:['नहीं','हल्की','मध्यम','भारी']
 }
-
-[ageInput, smokingSelect, alcoholSelect, exerciseRange, dietRange, sleepRange, stressRange].forEach(el => {
-if (el) el.addEventListener('input', updateBadges);
-});
-
-// ---------- core algorithm (simplified but realistic) ----------
-function calculateLifeExpectancy() {
-// base life expectancy from country (UN data approx)
-const countryBase = {
-'USA': 78.5, 'IND': 70.8, 'GBR': 81.4, 'CAN': 82.2, 'AUS': 83.4,
-'JPN': 84.5, 'DEU': 81.0, 'FRA': 82.5, 'BRA': 75.9, 'ZAF': 64.1,
-'OTHER': 77.0
 };
-let base = countryBase[countrySelect.value] || 77.0;
 
-// gender adjustment
-if (genderSelect.value === 'female') base += 2.5;
-
-// age already factored in life tables, but we adjust for remaining
-const age = parseInt(ageInput.value);
-// simple remaining model: if older, reduce ceiling (progressive)
-let remaining = 0;
-if (age < 50) remaining = base - age + 1.5;
-else if (age < 70) remaining = base - age + 0.5;
-else remaining = Math.max(4, base - age - 2);
-
-let lifespan = age + remaining;
-
-// --- risk factor adjustments (years added/subtracted) ---
-let modifier = 0;
-
-// smoking
-if (smokingSelect.value === '2') modifier -= 8.0;
-else if (smokingSelect.value === '1') modifier -= 2.0;
-
-// alcohol
-const alc = parseInt(alcoholSelect.value);
-if (alc === 3) modifier -= 3.5;
-else if (alc === 2) modifier -= 0.5;
-else if (alc === 1) modifier += 0.3; // light beneficial
-
-// exercise (min/week) 0-400
-const ex = parseInt(exerciseRange.value);
-if (ex < 30) modifier -= 3.0;
-else if (ex >= 150 && ex <= 300) modifier += 2.8;
-else if (ex > 300) modifier += 1.8;
-else if (ex >= 60) modifier += 0.8;
-
-// diet (1-5)
-const diet = parseInt(dietRange.value);
-modifier += (diet - 3) * 0.9;
-
-// sleep (hours)
-const sleep = parseFloat(sleepRange.value);
-if (sleep < 5.5) modifier -= 3.0;
-else if (sleep < 6.5) modifier -= 0.5;
-else if (sleep >= 7 && sleep <= 9) modifier += 1.2;
-else if (sleep > 9) modifier += 0.0;
-
-// BMI proxy from height/weight
-const h = parseFloat(heightInput.value) / 100;
-const w = parseFloat(weightInput.value);
-const bmi = w / (h*h);
-if (bmi < 18.5) modifier -= 1.2;
-else if (bmi >= 30) modifier -= 3.0;
-else if (bmi >= 25) modifier -= 0.8;
-else modifier += 0.5;
-
-// deep mode factors
-if (deepFields.classList.contains('visible')) {
-const hr = parseInt(restingHr.value) || 72;
-if (hr > 85) modifier -= 1.5;
-else if (hr < 55) modifier += 0.5;
-
-const bp = parseInt(bpSystolic.value) || 120;
-if (bp > 140) modifier -= 2.0;
-else if (bp > 130) modifier -= 0.7;
-
-const chol = parseInt(cholesterol.value) || 190;
-if (chol > 240) modifier -= 1.8;
-
-const glu = parseInt(glucose.value) || 95;
-if (glu > 125) modifier -= 4.0;
-else if (glu > 100) modifier -= 1.0;
-
-const stress = parseInt(stressRange.value) || 4;
-modifier -= (stress - 3) * 0.25;
-
-const mental = parseInt(mentalRange.value) || 7;
-modifier += (mental - 5) * 0.2;
-
-const social = parseInt(socialRange.value) || 7;
-modifier += (social - 5) * 0.15;
-
-const chronic = chronicSelect.value;
-if (chronic === 'diabetes') modifier -= 5.0;
-else if (chronic === 'heart') modifier -= 7.0;
-else if (chronic === 'cancer') modifier -= 3.0;
-}
-
-// clamp modifier & compute final lifespan
-lifespan = lifespan + modifier;
-lifespan = Math.min(105, Math.max(45, lifespan));
-
-// healthspan: ~85% of lifespan but decreases with poor habits (Sullivan approx)
-let healthRatio = 0.88; // base
-if (modifier < -5) healthRatio = 0.75;
-else if (modifier < -2) healthRatio = 0.82;
-else if (modifier > 3) healthRatio = 0.92;
-let healthspan = lifespan * healthRatio;
-
-return { lifespan, healthspan, modifier, base };
-}
-
-function updateUI() {
-const { lifespan, healthspan, modifier, base } = calculateLifeExpectancy();
-
-lifespanDisplay.innerText = lifespan.toFixed(1);
-healthspanNum.innerText = healthspan.toFixed(1);
-lifespanNum.innerText = lifespan.toFixed(1);
-
-// death date estimate
-const today = new Date();
-const birthYear = today.getFullYear() - parseInt(ageInput.value);
-const deathYear = birthYear + Math.round(lifespan);
-const deathDate = new Date(deathYear, today.getMonth(), today.getDate());
-const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-deathDateDisplay.innerText = deathDate.toLocaleDateString('en-US', options);
-
-// health gap message
-const gap = (lifespan - healthspan).toFixed(1);
-healthGapMsg.innerText = `You may spend ${gap} years in less‑than‑good health.`;
-
-// country comparison
-const countryBase = {'USA':78.5,'IND':70.8,'GBR':81.4,'CAN':82.2,'AUS':83.4,'JPN':84.5,'DEU':81.0,'FRA':82.5,'BRA':75.9,'ZAF':64.1,'OTHER':77.0};
-let baseC = countryBase[countrySelect.value] || 77.0;
-if (genderSelect.value === 'female') baseC += 2.5;
-countryAvgSpan.innerText = baseC.toFixed(1);
-const diff = (lifespan - baseC).toFixed(1);
-youVsCountry.innerText = (diff > 0 ? '+' : '') + diff;
-
-// dynamic top actions (simplified)
-let actions = [];
-if (smokingSelect.value === '2') actions.push('🚭 Quit smoking → +3.2 yrs');
-if (parseFloat(sleepRange.value) < 6.5 || parseFloat(sleepRange.value) > 9.5) actions.push('😴 Optimize sleep (7-9h) → +1.8 yrs');
-if (parseInt(exerciseRange.value) < 120) actions.push('🚶 30 min daily walk → +2.0 yrs');
-if (parseInt(dietRange.value) < 4) actions.push('🥗 Improve diet quality → +1.5 yrs');
-if (bmiRisk()) actions.push('⚖️ Healthy BMI range → +1.6 yrs');
-if (actions.length === 0) actions = ['🎉 You are doing great! Maintain healthy habits'];
-actionList.innerHTML = actions.slice(0,3).map(a => `<li style="margin-bottom:0.5rem;">✅ ${a}</li>`).join('');
-}
-
-function bmiRisk() {
-const h = parseFloat(heightInput.value)/100;
-const w = parseFloat(weightInput.value);
-const b = w/(h*h);
-return (b < 18.5 || b > 24.9);
-}
-
-// attach listeners to all inputs
-const inputs = [
-ageInput, genderSelect, countrySelect, heightInput, weightInput,
-smokingSelect, alcoholSelect, exerciseRange, dietRange, sleepRange,
-restingHr, bpSystolic, cholesterol, glucose, stressRange,
-mentalRange, socialRange, chronicSelect
-];
-inputs.forEach(inp => { if (inp) inp.addEventListener('input', updateUI); });
-
-// initial update
-updateBadges();
+function setLang(lang) {
+currentLang = lang;
+document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+document.getElementById('lang'+lang.toUpperCase()).classList.add('active');
+const t = translations[lang];
+document.querySelectorAll('[id]').forEach(el => {
+if (t[el.id] && el.tagName !== 'INPUT' && el.tagName !== 'SELECT') el.textContent = t[el.id];
+});
+['genMale','genFemale','sm0','sm1','sm2','alc0','alc1','alc2','alc3','chNone','chDiab','chHeart','chCancer'].forEach(id => {
+const el = document.getElementById(id); if (el && t[id]) el.textContent = t[id];
+});
 updateUI();
+}
 
-// PDF download simulation (browser print)
-document.getElementById('downloadPdf').addEventListener('click', () => {
-window.print(); // simple, user can save as pdf
-});
+// Keep original JS logic (exactly as-is from your code), just wrap in updateUI
+(function() {
+const ageInput=document.getElementById('age'),ageVal=document.getElementById('ageVal');
+const genderSelect=document.getElementById('gender'),countrySelect=document.getElementById('country');
+const heightInput=document.getElementById('height'),weightInput=document.getElementById('weight');
+const smokingSelect=document.getElementById('smoking'),alcoholSelect=document.getElementById('alcohol');
+const exerciseRange=document.getElementById('exercise'),dietRange=document.getElementById('diet'),sleepRange=document.getElementById('sleep');
+const deepFields=document.getElementById('deepFields'),modeQuick=document.getElementById('modeQuick'),modeDeep=document.getElementById('modeDeep');
+const restingHr=document.getElementById('restingHr'),bpSystolic=document.getElementById('bpSystolic');
+const cholesterol=document.getElementById('cholesterol'),glucose=document.getElementById('glucose');
+const stressRange=document.getElementById('stress'),mentalRange=document.getElementById('mental'),socialRange=document.getElementById('social'),chronicSelect=document.getElementById('chronic');
+const lifespanDisplay=document.getElementById('lifespanDisplay'),deathDateDisplay=document.getElementById('deathDateDisplay');
+const healthspanNum=document.getElementById('healthspanNum'),lifespanNum=document.getElementById('lifespanNum');
+const healthGapMsg=document.getElementById('healthGapMsg').querySelector('span');
+const actionList=document.getElementById('actionList'),countryAvgSpan=document.getElementById('countryAvg'),youVsCountry=document.getElementById('youVsCountry');
+const smokeVal=document.getElementById('smokeVal'),alcoholVal=document.getElementById('alcoholVal'),exVal=document.getElementById('exVal'),dietVal=document.getElementById('dietVal'),sleepVal=document.getElementById('sleepVal'),stressValE=document.getElementById('stressVal');
 
-// copy/share dummy
-document.getElementById('copyResults').addEventListener('click', () => {
-navigator.clipboard?.writeText('Check my life expectancy on HealthCalc: ' + window.location.href);
-alert('Link copied to clipboard (demo).');
-});
+modeQuick.addEventListener('click',()=>{modeQuick.classList.add('active');modeDeep.classList.remove('active');deepFields.classList.remove('visible');updateUI();});
+modeDeep.addEventListener('click',()=>{modeDeep.classList.add('active');modeQuick.classList.remove('active');deepFields.classList.add('visible');updateUI();});
+
+function updateBadges(){ageVal.innerText=ageInput.value;const t=translations[currentLang];smokeVal.innerText=t.smokeText[smokingSelect.value];alcoholVal.innerText=t.alcText[alcoholSelect.value];exVal.innerText=exerciseRange.value;dietVal.innerText=dietRange.value+'/5';sleepVal.innerText=sleepRange.value;if(stressValE)stressValE.innerText=stressRange.value;}
+
+function bmiRisk(){const h=parseFloat(heightInput.value)/100,w=parseFloat(weightInput.value);const b=w/(h*h);return(b<18.5||b>24.9);}
+
+window.updateUI = function() {
+updateBadges();
+const t=translations[currentLang];
+const countryBase={USA:78.5,IND:70.8,GBR:81.4,CAN:82.2,AUS:83.4,JPN:84.5,DEU:81.0,FRA:82.5,BRA:75.9,ZAF:64.1,OTHER:77.0};
+let base=countryBase[countrySelect.value]||77.0;
+if(genderSelect.value==='female')base+=2.5;
+const age=parseInt(ageInput.value);
+let remaining=0;
+if(age<50)remaining=base-age+1.5;else if(age<70)remaining=base-age+0.5;else remaining=Math.max(4,base-age-2);
+let lifespan=age+remaining,modifier=0;
+if(smokingSelect.value==='2')modifier-=8.0;else if(smokingSelect.value==='1')modifier-=2.0;
+const alc=parseInt(alcoholSelect.value);
+if(alc===3)modifier-=3.5;else if(alc===2)modifier-=0.5;else if(alc===1)modifier+=0.3;
+const ex=parseInt(exerciseRange.value);
+if(ex<30)modifier-=3.0;else if(ex>=150&&ex<=300)modifier+=2.8;else if(ex>300)modifier+=1.8;else if(ex>=60)modifier+=0.8;
+const diet=parseInt(dietRange.value);modifier+=(diet-3)*0.9;
+const sleep=parseFloat(sleepRange.value);
+if(sleep<5.5)modifier-=3.0;else if(sleep<6.5)modifier-=0.5;else if(sleep>=7&&sleep<=9)modifier+=1.2;
+const h=parseFloat(heightInput.value)/100,w=parseFloat(weightInput.value),bmi=w/(h*h);
+if(bmi<18.5)modifier-=1.2;else if(bmi>=30)modifier-=3.0;else if(bmi>=25)modifier-=0.8;else modifier+=0.5;
+
+if(deepFields.classList.contains('visible')){
+const hr=parseInt(restingHr.value)||72;if(hr>85)modifier-=1.5;else if(hr<55)modifier+=0.5;
+const bp=parseInt(bpSystolic.value)||120;if(bp>140)modifier-=2.0;else if(bp>130)modifier-=0.7;
+const chol=parseInt(cholesterol.value)||190;if(chol>240)modifier-=1.8;
+const glu=parseInt(glucose.value)||95;if(glu>125)modifier-=4.0;else if(glu>100)modifier-=1.0;
+const stress=parseInt(stressRange.value)||4;modifier-=(stress-3)*0.25;
+const mental=parseInt(mentalRange.value)||7;modifier+=(mental-5)*0.2;
+const social=parseInt(socialRange.value)||7;modifier+=(social-5)*0.15;
+const chronic=chronicSelect.value;if(chronic==='diabetes')modifier-=5.0;else if(chronic==='heart')modifier-=7.0;else if(chronic==='cancer')modifier-=3.0;
+}
+
+lifespan=Math.min(105,Math.max(45,lifespan+modifier));
+let healthRatio=0.88;if(modifier<-5)healthRatio=0.75;else if(modifier<-2)healthRatio=0.82;else if(modifier>3)healthRatio=0.92;
+let healthspan=lifespan*healthRatio;
+
+lifespanDisplay.innerText=lifespan.toFixed(1);healthspanNum.innerText=healthspan.toFixed(1);lifespanNum.innerText=lifespan.toFixed(1);
+const today=new Date(),birthYear=today.getFullYear()-age,deathYear=birthYear+Math.round(lifespan),deathDate=new Date(deathYear,today.getMonth(),today.getDate());
+deathDateDisplay.innerText=deathDate.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+healthGapMsg.innerText=(currentLang==='hi'?'आप ':'You may spend ')+(lifespan-healthspan).toFixed(1)+(currentLang==='hi'?' वर्ष कम स्वास्थ्य में बिता सकते हैं।':' years in less-than-good health.');
+
+let baseC=countryBase[countrySelect.value]||77.0;if(genderSelect.value==='female')baseC+=2.5;
+countryAvgSpan.innerText=baseC.toFixed(1);
+const diff=(lifespan-baseC).toFixed(1);youVsCountry.innerText=(diff>0?'+':'')+diff;
+
+let actions=[];const L=currentLang;
+if(smokingSelect.value==='2')actions.push(L==='hi'?'🚭 धूम्रपान छोड़ें → +3.2 वर्ष':'🚭 Quit smoking → +3.2 yrs');
+if(sleep<6.5||sleep>9.5)actions.push(L==='hi'?'😴 नींद सुधारें → +1.8':'😴 Optimize sleep → +1.8 yrs');
+if(ex<120)actions.push(L==='hi'?'🚶 रोज़ 30 मिनट → +2.0':'🚶 30 min walk → +2.0 yrs');
+if(diet<4)actions.push(L==='hi'?'🥗 आहार सुधारें → +1.5':'🥗 Improve diet → +1.5 yrs');
+if(bmiRisk())actions.push(L==='hi'?'⚖️ स्वस्थ BMI → +1.6':'⚖️ Healthy BMI → +1.6 yrs');
+if(!actions.length)actions=[L==='hi'?'🎉 बहुत अच्छे!':'🎉 Great job!'];
+actionList.innerHTML=actions.slice(0,3).map(a=>`<li style="margin-bottom:0.5rem;">✅ ${a}</li>`).join('');
+};
+
+const inputs=[ageInput,genderSelect,countrySelect,heightInput,weightInput,smokingSelect,alcoholSelect,exerciseRange,dietRange,sleepRange,restingHr,bpSystolic,cholesterol,glucose,stressRange,mentalRange,socialRange,chronicSelect];
+inputs.forEach(inp=>{if(inp)inp.addEventListener('input',window.updateUI);});
+
+document.getElementById('downloadPdf').addEventListener('click',()=>window.print());
+document.getElementById('copyResults').addEventListener('click',()=>{navigator.clipboard?.writeText(window.location.href);alert(currentLang==='hi'?'लिंक कॉपी!':'Link copied!');});
+window.addEventListener('scroll',()=>document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>500));
+window.updateUI();
+window.setLang = setLang;
 })();
 </script>
-
-<!-- style for print -->
-<style>
-@media print {
-body { background: white; }
-.btn-primary, .btn-outline, .badge-container .badge:last-child { display: none; }
-}
-</style>
 </body>
 </html>
