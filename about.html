@@ -2,522 +2,535 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <!-- ========== SEO META ========== -->
-    <title>About Us | HealthCalc.in - 15+ Free Health Calculators | No Signup</title>
-    <meta name="description" content="HealthCalc.in provides 15+ free, accurate health calculators including BMI, Calorie, Body Fat, Water Intake, Pregnancy Due Date, Life Expectancy, and more. 100% private, no signup, used in 45+ countries.">
-    <meta name="keywords" content="about healthcalc, free health calculators, BMI calculator, calorie counter, pregnancy due date, life expectancy, gut microbiome, circadian rhythm, inflammation score, vascular age, hormone health">
-    <meta name="author" content="HealthCalc Team">
+    <title>About Us | HealthCalc.in — 25 Free Health Calculators | 100% Private</title>
+    <meta name="title" content="About HealthCalc — Free Health Tools for Everyone | 45+ Countries">
+    <meta name="description" content="HealthCalc.in provides 25 free, accurate health calculators including BMI, ASCVD Risk, Calorie, Body Fat, Pregnancy Due Date, Gut Microbiome, Sleep Cycle & more. 100% private, no signup, used in 45+ countries.">
+    <meta name="keywords" content="about healthcalc, free health calculators, BMI calculator, ASCVD risk, calorie counter, pregnancy due date, gut microbiome, sleep cycle, vascular age, hormone health, inflammation score">
+    <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://healthcalc.in/about.html">
     
-    <!-- ========== OPEN GRAPH ========== -->
-    <meta property="og:title" content="About HealthCalc.in - Free Health Tools for Everyone">
-    <meta property="og:description" content="Learn about our mission to provide free, accurate health calculators to users in 45+ countries. 100% private, no signup.">
-    <meta property="og:image" content="https://healthcalc.in/images/about-og.jpg">
-    <meta property="og:url" content="https://healthcalc.in/about">
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="About HealthCalc.in — Free Health Tools for Everyone">
+    <meta property="og:description" content="Learn about our mission to provide free, private health calculators to users worldwide. 25 tools, 7 languages.">
+    <meta property="og:url" content="https://healthcalc.in/about.html">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="HealthCalc">
     
-    <!-- ========== TWITTER CARD ========== -->
+    <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About HealthCalc.in">
-    <meta name="twitter:description" content="Free health calculators trusted by 10,000+ monthly users">
-    <meta name="twitter:image" content="https://healthcalc.in/images/about-twitter.jpg">
+    <meta name="twitter:description" content="Free health calculators trusted worldwide">
     
-    <!-- ========== CANONICAL ========== -->
-    <link rel="canonical" href="https://healthcalc.in/about">
+    <!-- SCHEMA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About HealthCalc.in",
+        "description": "HealthCalc provides 25 free, private health calculators to users worldwide. No signup, no ads, 100% browser-based.",
+        "url": "https://healthcalc.in/about.html",
+        "author": {"@type": "Organization", "name": "HealthCalc"}
+    }
+    </script>
     
-    <!-- ========== FONTS & TAILWIND ========== -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- BREADCRUMB SCHEMA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+            {"@type": "ListItem", "position": 2, "name": "About Us", "item": "https://healthcalc.in/about.html"}
+        ]
+    }
+    </script>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        
-        .hover-card {
-            transition: all 0.3s ease;
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #ede9fe;
+            --secondary: #059669;
+            --dark: #1f2937;
+            --text: #334155;
+            --text-muted: #64748b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
         }
-        .hover-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 25px 30px -12px rgba(0,0,0,0.15);
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        /* NAV */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
         }
-        
-        .gradient-green {
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
-        
-        .gradient-orange {
-            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--dark);
         }
-        
-        .gradient-purple {
-            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+        .logo .dot { color: var(--secondary); font-size: 0.6rem; vertical-align: super; }
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
         }
-        
-        .gradient-red {
-            background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+        .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+        .nav-links a.active { color: var(--primary); font-weight: 600; }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
-        
-        .gradient-blue {
-            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #667eea, #764ba2, #5b21b6);
+            padding: 70px 24px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .gradient-pink {
-            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
         }
-        
-        .gradient-indigo {
-            background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            position: relative;
         }
-        
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; position: relative; }
+        .hero h1 span { color: #fbbf24; }
+        .hero p { font-size: 1.15rem; opacity: 0.9; max-width: 700px; margin: 0 auto 30px; position: relative; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+        .btn-white {
+            background: white; color: var(--dark); padding: 14px 32px;
+            border-radius: 50px; font-weight: 700; text-decoration: none;
+            transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
         }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .btn-outline-white {
+            background: transparent; border: 2px solid white; color: white;
+            padding: 14px 32px; border-radius: 50px; font-weight: 700;
+            text-decoration: none; transition: all 0.3s;
         }
+        .btn-outline-white:hover { background: white; color: var(--dark); }
+
+        /* SECTION */
+        .section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title .tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 5px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .section-title h2 { font-size: 2rem; font-weight: 800; color: var(--dark); }
+        .section-title h2 span { color: var(--primary); }
+        .section-title p { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; }
+
+        /* MISSION CARDS */
+        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        @media (max-width: 700px) { .mission-grid { grid-template-columns: 1fr; } }
+        .mission-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+        .mission-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .mission-card .icon-circle {
+            width: 64px; height: 64px;
+            border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; margin-bottom: 20px;
+        }
+        .mission-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
+        .mission-card p { color: var(--text-muted); font-size: 1.05rem; }
+        .bg-purple { background: #ede9fe; }
+        .bg-blue { background: #dbeafe; }
+        .bg-green { background: #d1fae5; }
+
+        /* STATS BAR */
+        .stats-bar {
+            background: linear-gradient(135deg, #059669, #10b981);
+            padding: 40px 24px;
+            color: white;
+        }
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+        @media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .stat-number { font-size: 2.2rem; font-weight: 800; }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; margin-top: 4px; }
+
+        /* WHY CHOOSE GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .feature-card .icon-lg { font-size: 2.2rem; margin-bottom: 14px; }
+        .feature-card h4 { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; color: var(--dark); }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* TOOLS SHOWCASE */
+        .tools-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .tool-pill {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .tool-pill:hover { border-color: var(--primary); background: var(--primary-light); transform: translateY(-2px); }
+        .tool-pill .emoji { font-size: 1.3rem; }
+
+        /* VALUES */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
+        .value-item .value-icon {
+            width: 80px; height: 80px;
+            background: var(--primary-light);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; margin: 0 auto 16px;
+        }
+        .value-item h4 { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            padding: 60px 24px;
+            text-align: center;
+            color: white;
+        }
+        .cta-section h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+        .cta-section p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 24px 24px;
+            text-align: center;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+        .footer-col h4 { font-size: 1rem; margin-bottom: 14px; color: #a78bfa; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+        .footer-bottom a { color: #a78bfa; text-decoration: none; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- ========== NAVIGATION ========== -->
-    <nav class="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="text-2xl font-bold">
-                    <span class="text-emerald-700">Health</span><span class="text-emerald-500">Calc</span><span class="text-gray-600 text-sm ml-1">.in</span>
-                </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 text-gray-600 font-medium">
-                    <a href="index.html" class="hover:text-emerald-600 transition">Home</a>
-                    <a href="index.html#tools" class="hover:text-emerald-600 transition">Tools</a>
-                    <a href="about.html" class="text-emerald-600 border-b-2 border-emerald-500 pb-1">About</a>
-                    <a href="contact.html" class="hover:text-emerald-600 transition">Contact</a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu (Hidden by default) -->
-            <div class="md:hidden hidden mt-4 space-y-2" id="mobileMenu">
-                <a href="index.html" class="block py-2 text-gray-600 hover:text-emerald-600">Home</a>
-                <a href="index.html#tools" class="block py-2 text-gray-600 hover:text-emerald-600">Tools</a>
-                <a href="about.html" class="block py-2 text-emerald-600 font-medium">About</a>
-                <a href="contact.html" class="block py-2 text-gray-600 hover:text-emerald-600">Contact</a>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">🧬 HealthCalc<span class="dot">.in</span></a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+                <a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a>
+                <a href="privacy-policy.html"><i class="fas fa-lock"></i> Privacy</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- ========== HERO SECTION ========== -->
-    <section class="gradient-bg py-20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-white opacity-10"></div>
-        <div class="absolute -top-24 -right-24 w-64 h-64 bg-white rounded-full opacity-10 animate-float"></div>
-        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-white rounded-full opacity-10 animate-float" style="animation-delay: 1s;"></div>
-        
-        <div class="container mx-auto px-6 max-w-5xl relative z-10">
-            <div class="text-center text-white">
-                <span class="bg-white bg-opacity-20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-semibold inline-block mb-6">
-                    <i class="fas fa-heart mr-2"></i> Since 2024
-                </span>
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-                    Free health tools for<br><span class="text-yellow-300">everyone, everywhere.</span>
-                </h1>
-                <p class="text-xl text-white text-opacity-90 max-w-3xl mx-auto mb-10">
-                    No signup. No hidden costs. Just accurate, instant health calculators trusted by users in 45+ countries.
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#mission" class="bg-white text-gray-800 px-8 py-3 rounded-full font-semibold hover:shadow-xl transition transform hover:-translate-y-1">
-                        <i class="fas fa-chevron-down mr-2"></i> Our Mission
-                    </a>
-                    <a href="index.html#tools" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-gray-800 transition transform hover:-translate-y-1">
-                        <i class="fas fa-calculator mr-2"></i> Explore Tools
-                    </a>
-                </div>
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> <span>/</span> <span>About Us</span>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <span class="badge"><i class="fas fa-heart"></i> Since 2024</span>
+        <h1>Free health tools for<br><span>everyone, everywhere.</span></h1>
+        <p>No signup. No hidden costs. Just accurate, instant health calculators trusted by users in 45+ countries. 25 tools, 7 languages, 100% private.</p>
+        <div class="hero-buttons">
+            <a href="#mission" class="btn-outline-white"><i class="fas fa-chevron-down"></i> Our Mission</a>
+            <a href="index.html#tools" class="btn-white"><i class="fas fa-calculator"></i> Explore Tools</a>
+        </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section id="mission" class="section">
+        <div class="section-title">
+            <span class="tag">Why We Exist</span>
+            <h2>Our <span>Mission & Vision</span></h2>
+            <p>Making health awareness accessible to all, one calculator at a time.</p>
+        </div>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <div class="icon-circle bg-green">🎯</div>
+                <h3>Our Mission</h3>
+                <p>To provide <strong>free, accurate, and easy-to-use health tools</strong> for everyone. We believe health awareness should be accessible without barriers. No paywalls. No signups. Just pure, science-based calculations that run entirely in your browser.</p>
+            </div>
+            <div class="mission-card">
+                <div class="icon-circle bg-blue">🔭</div>
+                <h3>Our Vision</h3>
+                <p>To become the <strong>most trusted platform for free online health calculators</strong>, helping millions understand their bodies better. We envision a world where everyone — regardless of country or income — can make informed health decisions.</p>
             </div>
         </div>
     </section>
 
-    <!-- ========== MISSION & VISION SECTION ========== -->
-    <section id="mission" class="py-20 bg-white">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center mb-16">
-                <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold">Why We Exist</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-6">Our <span class="text-emerald-600">Mission & Vision</span></h2>
-                <p class="text-gray-500 text-lg mt-4 max-w-2xl mx-auto">Making health awareness accessible to all, one calculator at a time.</p>
-            </div>
+    <!-- STATS -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-number">25+</div><div class="stat-label">Health Tools</div></div>
+            <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Free Forever</div></div>
+            <div class="stat-item"><div class="stat-number">2,150+</div><div class="stat-label">★★★★★ Reviews</div></div>
+            <div class="stat-item"><div class="stat-number">45+</div><div class="stat-label">Countries</div></div>
+        </div>
+    </section>
 
-            <div class="grid md:grid-cols-2 gap-10">
-                <!-- Mission Card -->
-                <div class="bg-gradient-to-br from-emerald-50 to-white p-10 rounded-3xl shadow-xl border border-emerald-100 hover-card">
-                    <div class="w-20 h-20 bg-emerald-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg">
-                        <span class="text-4xl">🎯</span>
-                    </div>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Mission</h2>
-                    <p class="text-gray-600 leading-relaxed text-lg">
-                        To provide <span class="font-semibold text-emerald-600">free, accurate, and easy-to-use health tools</span> for everyone. 
-                        We believe that health awareness should be accessible to all without any cost or barriers. 
-                        No paywalls. No signups. Just pure, science-based calculations.
-                    </p>
-                    <div class="mt-8 flex items-center text-emerald-600">
-                        <i class="fas fa-check-circle text-2xl mr-3"></i>
-                        <span class="font-semibold">15+ free calculators and counting</span>
-                    </div>
-                </div>
-                
-                <!-- Vision Card -->
-                <div class="bg-gradient-to-br from-blue-50 to-white p-10 rounded-3xl shadow-xl border border-blue-100 hover-card">
-                    <div class="w-20 h-20 bg-blue-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg">
-                        <span class="text-4xl">🔭</span>
-                    </div>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Vision</h2>
-                    <p class="text-gray-600 leading-relaxed text-lg">
-                        To become the <span class="font-semibold text-blue-600">most trusted platform for free online health calculators</span>, 
-                        helping millions make informed decisions about their health and wellness. 
-                        We envision a world where everyone can understand their body better.
-                    </p>
-                    <div class="mt-8 flex items-center text-blue-600">
-                        <i class="fas fa-globe text-2xl mr-3"></i>
-                        <span class="font-semibold">Serving users in 45+ countries</span>
-                    </div>
-                </div>
+    <!-- WHY CHOOSE US -->
+    <section class="section">
+        <div class="section-title">
+            <span class="tag">What Makes Us Different</span>
+            <h2>Why Choose <span>HealthCalc</span>?</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="icon-lg">💰</div><h4>100% Free</h4><p>No hidden charges, premium tiers, or signup. Always free, forever.</p></div>
+            <div class="feature-card"><div class="icon-lg">🔐</div><h4>Privacy First</h4><p>All calculations happen in your browser. Zero data leaves your device. <a href="privacy-policy.html">See privacy policy.</a></p></div>
+            <div class="feature-card"><div class="icon-lg">📊</div><h4>Scientifically Accurate</h4><p>Based on WHO guidelines, Framingham studies, ACC/AHA, and peer-reviewed research.</p></div>
+            <div class="feature-card"><div class="icon-lg">🚫</div><h4>No Ads, No Tracking</h4><p>Clean experience. Just you and your health data — no popups, no analytics.</p></div>
+            <div class="feature-card"><div class="icon-lg">🌍</div><h4>7 Languages</h4><p>English, हिंदी, Español, Français, Deutsch, 日本語, العربية — and expanding.</p></div>
+            <div class="feature-card"><div class="icon-lg">📱</div><h4>Mobile First</h4><p>Works perfectly on phones, tablets, and desktops. Responsive design.</p></div>
+        </div>
+    </section>
+
+    <!-- OUR TOOLS -->
+    <section class="section">
+        <div class="section-title">
+            <span class="tag">Our Calculators</span>
+            <h2>25+ <span>Free Health Tools</span></h2>
+            <p>From basic BMI to advanced ASCVD Risk — we've got you covered.</p>
+        </div>
+        <div class="tools-showcase">
+            <a href="ascvd-risk-calculator.html" class="tool-pill"><span class="emoji">❤️</span> ASCVD Risk <span style="font-size:0.7rem;color:#10b981;">NEW</span></a>
+            <a href="bmi-calculator.html" class="tool-pill"><span class="emoji">⚖️</span> BMI Calculator</a>
+            <a href="calorie-calculator.html" class="tool-pill"><span class="emoji">🔥</span> Calorie Calculator</a>
+            <a href="body-fat-calculator.html" class="tool-pill"><span class="emoji">🧬</span> Body Fat %</a>
+            <a href="pregnancy-calculator.html" class="tool-pill"><span class="emoji">🤰</span> Pregnancy Due Date</a>
+            <a href="sleep-cycle-calculator.html" class="tool-pill"><span class="emoji">😴</span> Sleep Cycle</a>
+            <a href="gut-microbiome-calculator.html" class="tool-pill"><span class="emoji">🦠</span> Gut Microbiome</a>
+            <a href="hormone-health-calculator.html" class="tool-pill"><span class="emoji">🔬</span> Hormone Health <span style="font-size:0.7rem;color:#10b981;">NEW</span></a>
+            <a href="vascular-age-calculator.html" class="tool-pill"><span class="emoji">🩸</span> Vascular Age</a>
+            <a href="heart-risk-calculator.html" class="tool-pill"><span class="emoji">🫀</span> Heart Risk (CVD)</a>
+            <a href="sleep-debt-calculator.html" class="tool-pill"><span class="emoji">⏰</span> Sleep Debt</a>
+            <a href="ideal-weight-calculator.html" class="tool-pill"><span class="emoji">⚖️</span> Ideal Weight</a>
+            <a href="metabolic-age.html" class="tool-pill"><span class="emoji">⚡</span> Metabolic Age</a>
+            <a href="water-intake-calculator.html" class="tool-pill"><span class="emoji">💧</span> Water Intake</a>
+            <a href="life-expectancy-calculator.html" class="tool-pill"><span class="emoji">⏳</span> Life Expectancy</a>
+            <a href="inflammation-score-calculator.html" class="tool-pill"><span class="emoji">🔥</span> Inflammation Score</a>
+            <a href="circadian-rhythm-calculator.html" class="tool-pill"><span class="emoji">🌙</span> Circadian Rhythm</a>
+            <a href="menstrual-cycle-calculator.html" class="tool-pill"><span class="emoji">🌸</span> Menstrual Cycle</a>
+            <a href="heart-rate-calculator.html" class="tool-pill"><span class="emoji">💪</span> Heart Rate Zones</a>
+            <a href="met-calculator.html" class="tool-pill"><span class="emoji">🏃</span> MET Activity</a>
+        </div>
+        <div style="text-align:center; margin-top:30px;">
+            <a href="index.html#tools" class="btn-white" style="background:var(--primary);color:white;">
+                <i class="fas fa-calculator"></i> Try All 25 Tools
+            </a>
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section">
+        <div class="section-title">
+            <span class="tag">Our Values</span>
+            <h2>What <span>Drives Us</span></h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-icon">❤️</div>
+                <h4>Health for All</h4>
+                <p class="text-muted">Health awareness shouldn't have a price tag. Everyone deserves to understand their body.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">🔬</div>
+                <h4>Science First</h4>
+                <p class="text-muted">Every calculator is based on peer-reviewed research and medical guidelines — not fads.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">🤝</div>
+                <h4>Trust & Privacy</h4>
+                <p class="text-muted">Your data stays with you. We don't track, store, or sell your information. <a href="privacy-policy.html">Read policy.</a></p>
             </div>
         </div>
     </section>
 
-    <!-- ========== STATS / TRUST BAR ========== -->
-    <section class="gradient-green py-16">
-        <div class="container mx-auto px-6 max-w-5xl">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6">
-                    <div class="text-4xl font-bold">15+</div>
-                    <div class="text-emerald-100 mt-2 font-medium">Health Tools</div>
-                </div>
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6">
-                    <div class="text-4xl font-bold">100%</div>
-                    <div class="text-emerald-100 mt-2 font-medium">Free Forever</div>
-                </div>
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6">
-                    <div class="text-4xl font-bold">10k+</div>
-                    <div class="text-emerald-100 mt-2 font-medium">Monthly Users</div>
-                </div>
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6">
-                    <div class="text-4xl font-bold">4.9★</div>
-                    <div class="text-emerald-100 mt-2 font-medium">2,150+ Reviews</div>
-                </div>
-            </div>
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to check your health?</h2>
+        <p>Join thousands worldwide who track their health with our free, private calculators.</p>
+        <div class="cta-buttons">
+            <a href="index.html#tools" class="btn-white"><i class="fas fa-calculator"></i> Explore All Tools</a>
+            <a href="contact.html" class="btn-outline-white"><i class="fas fa-envelope"></i> Contact Us</a>
         </div>
     </section>
 
-    <!-- ========== WHY CHOOSE US SECTION ========== -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center mb-16">
-                <span class="bg-purple-100 text-purple-700 px-4 py-1.5 rounded-full text-sm font-semibold">What Makes Us Different</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-6">Why Choose <span class="text-purple-600">HealthCalc</span>?</h2>
-                <p class="text-gray-500 text-lg mt-4 max-w-2xl mx-auto">Simple, private, and built for you — not for advertisers.</p>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>HealthCalc.in</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="index.html#tools">All Tools</a></li>
+                </ul>
             </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 100% Free -->
-                <div class="p-8 bg-gradient-to-br from-emerald-50 to-white rounded-2xl border border-emerald-100 hover-card">
-                    <div class="w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-md">💰</div>
-                    <h3 class="font-bold text-xl mb-3 text-gray-800">100% Free</h3>
-                    <p class="text-gray-600">No hidden charges, no premium tiers, no signup required. Always free, forever.</p>
-                </div>
-                
-                <!-- Privacy First -->
-                <div class="p-8 bg-gradient-to-br from-blue-50 to-white rounded-2xl border border-blue-100 hover-card">
-                    <div class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-md">🔐</div>
-                    <h3 class="font-bold text-xl mb-3 text-gray-800">Privacy First</h3>
-                    <p class="text-gray-600">We don't store your personal data. All calculations happen in your browser - zero data leaves your device.</p>
-                </div>
-                
-                <!-- Accurate Results -->
-                <div class="p-8 bg-gradient-to-br from-purple-50 to-white rounded-2xl border border-purple-100 hover-card">
-                    <div class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-md">📊</div>
-                    <h3 class="font-bold text-xl mb-3 text-gray-800">Scientifically Accurate</h3>
-                    <p class="text-gray-600">Based on medical standards, WHO guidelines, Framingham studies, and peer-reviewed research.</p>
-                </div>
-                
-                <!-- No Ads -->
-                <div class="p-8 bg-gradient-to-br from-amber-50 to-white rounded-2xl border border-amber-100 hover-card">
-                    <div class="w-16 h-16 bg-amber-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-md">🚫</div>
-                    <h3 class="font-bold text-xl mb-3 text-gray-800">No Ads</h3>
-                    <p class="text-gray-600">Clean, distraction-free experience. Just you and your health data — no popups, no banners.</p>
-                </div>
-
-                <!-- Mobile Friendly -->
-                <div class="p-8 bg-gradient-to-br from-indigo-50 to-white rounded-2xl border border-indigo-100 hover-card">
-                    <div class="w-16 h-16 bg-indigo-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-md">📱</div>
-                    <h3 class="font-bold text-xl mb-3 text-gray-800">Mobile First</h3>
-                    <p class="text-gray-600">Works perfectly on all devices — phones, tablets, and desktops. Responsive by design.</p>
-                </div>
-                
-                <!-- Global -->
-                <div class="p-8 bg-gradient-to-br from-pink-50 to-white rounded-2xl border border-pink-100 hover-card">
-                    <div class="w-16 h-16 bg-pink-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-md">🌍</div>
-                    <h3 class="font-bold text-xl mb-3 text-gray-800">Global Reach</h3>
-                    <p class="text-gray-600">Used in 45+ countries. Metric and imperial units supported for everyone.</p>
-                </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Popular Tools</h4>
+                <ul>
+                    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+                    <li><a href="ascvd-risk-calculator.html">ASCVD Risk</a></li>
+                    <li><a href="pregnancy-calculator.html">Pregnancy</a></li>
+                </ul>
             </div>
         </div>
-    </section>
-
-    <!-- ========== OUR TOOLS SHOWCASE ========== -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="text-center mb-16">
-                <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold">Our Calculators</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-6">15+ <span class="text-emerald-600">Free Health Tools</span></h2>
-                <p class="text-gray-500 text-lg mt-4 max-w-2xl mx-auto">From basic BMI to advanced Gut Microbiome — we've got you covered.</p>
-            </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Tool Categories -->
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-emerald-500">
-                    <span class="text-2xl mr-3">⚖️</span>
-                    <span class="font-semibold">BMI Calculator</span>
-                    <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full ml-2">Visceral Fat</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-red-500">
-                    <span class="text-2xl mr-3">🔥</span>
-                    <span class="font-semibold">Calorie Calculator</span>
-                    <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full ml-2">Macros</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-blue-500">
-                    <span class="text-2xl mr-3">🧬</span>
-                    <span class="font-semibold">Body Fat %</span>
-                    <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full ml-2">Athlete Mode</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-cyan-500">
-                    <span class="text-2xl mr-3">💧</span>
-                    <span class="font-semibold">Water Intake</span>
-                    <span class="text-xs bg-cyan-100 text-cyan-700 px-2 py-1 rounded-full ml-2">Sweat Rate</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-purple-500">
-                    <span class="text-2xl mr-3">⚡</span>
-                    <span class="font-semibold">Metabolic Age</span>
-                    <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full ml-2">BMR</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-pink-500">
-                    <span class="text-2xl mr-3">🌸</span>
-                    <span class="font-semibold">Menstrual Cycle</span>
-                    <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded-full ml-2">Ovulation</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-gray-700">
-                    <span class="text-2xl mr-3">😴</span>
-                    <span class="font-semibold">Sleep Debt</span>
-                    <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full ml-2">Recovery</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-red-600">
-                    <span class="text-2xl mr-3">❤️</span>
-                    <span class="font-semibold">Heart Rate Zones</span>
-                    <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full ml-2">Karvonen</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-green-600">
-                    <span class="text-2xl mr-3">🏃</span>
-                    <span class="font-semibold">MET Activity</span>
-                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full ml-2">500+ Activities</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-rose-500">
-                    <span class="text-2xl mr-3">🤰</span>
-                    <span class="font-semibold">Pregnancy Due Date</span>
-                    <span class="text-xs bg-rose-100 text-rose-700 px-2 py-1 rounded-full ml-2">Fruit Size</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-indigo-600">
-                    <span class="text-2xl mr-3">⏳</span>
-                    <span class="font-semibold">Life Expectancy</span>
-                    <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full ml-2">Healthspan</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-orange-500">
-                    <span class="text-2xl mr-3">⚖️</span>
-                    <span class="font-semibold">Ideal Weight</span>
-                    <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full ml-2">Frame Size</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-red-700">
-                    <span class="text-2xl mr-3">❤️</span>
-                    <span class="font-semibold">Heart Risk (CVD)</span>
-                    <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full ml-2">Framingham</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-blue-800">
-                    <span class="text-2xl mr-3">🌙</span>
-                    <span class="font-semibold">Sleep Cycle</span>
-                    <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full ml-2">90-min Cycles</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-emerald-600">
-                    <span class="text-2xl mr-3">🦠</span>
-                    <span class="font-semibold">Gut Microbiome</span>
-                    <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full ml-2">NEW</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-amber-600">
-                    <span class="text-2xl mr-3">🔥</span>
-                    <span class="font-semibold">Inflammation Score</span>
-                    <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full ml-2">NEW</span>
-                </div>
-                <div class="bg-white rounded-xl p-5 shadow-md border-l-4 border-purple-700">
-                    <span class="text-2xl mr-3">🌙</span>
-                    <span class="font-semibold">Circadian Rhythm</span>
-                    <span class="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full ml-2">NEW</span>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="index.html#tools" class="inline-flex items-center bg-emerald-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-emerald-700 transition shadow-lg">
-                    <i class="fas fa-calculator mr-2"></i> Try All Tools
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== TEAM / VALUES SECTION ========== -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6 max-w-5xl">
-            <div class="text-center mb-16">
-                <span class="bg-indigo-100 text-indigo-700 px-4 py-1.5 rounded-full text-sm font-semibold">Our Values</span>
-                <h2 class="text-4xl font-bold text-gray-800 mt-6">What Drives <span class="text-indigo-600">Us</span></h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center p-6">
-                    <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">❤️</div>
-                    <h3 class="font-bold text-xl mb-2">Health for All</h3>
-                    <p class="text-gray-500">Health awareness shouldn't have a price tag. Everyone deserves to understand their body.</p>
-                </div>
-                <div class="text-center p-6">
-                    <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">🔬</div>
-                    <h3 class="font-bold text-xl mb-2">Science First</h3>
-                    <p class="text-gray-500">Every calculator is based on peer-reviewed research and medical guidelines.</p>
-                </div>
-                <div class="text-center p-6">
-                    <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">🤝</div>
-                    <h3 class="font-bold text-xl mb-2">Trust & Privacy</h3>
-                    <p class="text-gray-500">Your data stays with you. We don't track, store, or sell your information.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== CTA SECTION ========== -->
-    <section class="gradient-purple py-20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-white opacity-10"></div>
-        <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full opacity-10 animate-float"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full opacity-10 animate-float" style="animation-delay: 2s;"></div>
-        
-        <div class="container mx-auto px-6 max-w-4xl text-center text-white relative z-10">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to check your health?</h2>
-            <p class="text-xl text-white text-opacity-90 mb-10 max-w-2xl mx-auto">
-                Join 10,000+ users who track their health with our free calculators.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="index.html#tools" class="bg-white text-gray-800 px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition transform hover:-translate-y-1">
-                    <i class="fas fa-calculator mr-2"></i> Explore All Tools
-                </a>
-                <a href="contact.html" class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-gray-800 transition transform hover:-translate-y-1">
-                    <i class="fas fa-envelope mr-2"></i> Contact Us
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-4 gap-10">
-                <!-- Brand -->
-                <div>
-                    <h3 class="text-2xl font-bold text-emerald-400 mb-4">HealthCalc<span class="text-gray-400">.in</span></h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                        Free health tools for everyone. No signup, no ads, just science-based calculations.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="index.html" class="hover:text-emerald-400 transition">Home</a></li>
-                        <li><a href="about.html" class="hover:text-emerald-400 transition">About Us</a></li>
-                        <li><a href="privacy-policy.html" class="hover:text-emerald-400 transition">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html" class="hover:text-emerald-400 transition">Terms of Use</a></li>
-                        <li><a href="contact.html" class="hover:text-emerald-400 transition">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Popular Tools -->
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Popular Tools</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="bmi-calculator.html" class="hover:text-emerald-400 transition">BMI Calculator</a></li>
-                        <li><a href="calorie-calculator.html" class="hover:text-emerald-400 transition">Calorie Calculator</a></li>
-                        <li><a href="pregnancy-calculator.html" class="hover:text-emerald-400 transition">Pregnancy Due Date</a></li>
-                        <li><a href="life-expectancy-calculator.html" class="hover:text-emerald-400 transition">Life Expectancy</a></li>
-                        <li><a href="gut-microbiome-calculator.html" class="hover:text-emerald-400 transition">Gut Microbiome</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Trust Badges -->
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Trusted By</h4>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-2 text-gray-400 text-sm">
-                            <i class="fas fa-check-circle text-emerald-400"></i> 10,000+ monthly users
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-400 text-sm">
-                            <i class="fas fa-check-circle text-emerald-400"></i> 45+ countries
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-400 text-sm">
-                            <i class="fas fa-check-circle text-emerald-400"></i> 4.9★ (2,150+ reviews)
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-400 text-sm">
-                            <i class="fas fa-check-circle text-emerald-400"></i> HIPAA-style privacy
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Copyright -->
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2024 HealthCalc.in. All rights reserved. | Made with ❤️ for global health</p>
-                <p class="mt-2 text-xs">All calculators are 100% free, run in your browser, and never store your data.</p>
-            </div>
+        <div class="footer-bottom">
+            <p>© 2024-2026 <a href="/">HealthCalc.in</a> — Free Health Calculators. Made with ❤️ for global health.</p>
+            <p style="margin-top:4px;">All calculators are 100% free, run in your browser, and never store your data.</p>
         </div>
     </footer>
 
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
