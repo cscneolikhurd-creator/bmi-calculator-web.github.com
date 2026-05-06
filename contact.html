@@ -2,194 +2,471 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <!-- ========== SEO META ========== -->
-    <title>Contact Us | HealthCalc.in - Get in Touch</title>
-    <meta name="description" content="Contact the HealthCalc team. Questions, suggestions, or feedback? We'd love to hear from you.">
-    <meta name="keywords" content="contact healthcalc, feedback, suggest tool, health calculator support">
+    <title>Contact Us | HealthCalc.in — Get in Touch</title>
+    <meta name="title" content="Contact HealthCalc — Questions, Suggestions, Feedback">
+    <meta name="description" content="Contact the HealthCalc team. Questions about our 25 free health calculators? Tool suggestions? Technical support? We respond within 24-48 hours. 100% private.">
+    <meta name="keywords" content="contact healthcalc, health calculator feedback, suggest health tool, health calculator support, contact form">
+    <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://healthcalc.in/contact.html">
     
-    <!-- ========== CANONICAL ========== -->
-    <link rel="canonical" href="https://healthcalc.in/contact">
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Contact HealthCalc.in — Get in Touch">
+    <meta property="og:description" content="Questions? Suggestions? We'd love to hear from you. Response within 24-48 hours.">
+    <meta property="og:url" content="https://healthcalc.in/contact.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="HealthCalc">
     
-    <!-- Tailwind & Fonts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Contact HealthCalc.in">
+    <meta name="twitter:description" content="Get in touch with the HealthCalc team">
+    
+    <!-- SCHEMA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact HealthCalc.in",
+        "description": "Contact the HealthCalc team for questions, suggestions, or support regarding our 25 free health calculators.",
+        "url": "https://healthcalc.in/contact.html",
+        "author": {"@type": "Organization", "name": "HealthCalc", "email": "hello@healthcalc.in"}
+    }
+    </script>
+    
+    <!-- BREADCRUMB SCHEMA -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+            {"@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://healthcalc.in/contact.html"}
+        ]
+    }
+    </script>
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-green { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
-        .hover-card {
-            transition: all 0.3s ease;
+        :root {
+            --primary: #059669;
+            --primary-dark: #047857;
+            --primary-light: #d1fae5;
+            --secondary: #3b82f6;
+            --accent: #8b5cf6;
+            --dark: #1f2937;
+            --text: #334155;
+            --text-muted: #64748b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
         }
-        .hover-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
         }
+
+        /* NAV */
+        nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        .logo .dot { color: var(--primary); font-size: 0.6rem; vertical-align: super; }
+        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+        .nav-links a.active { color: var(--primary); font-weight: 600; }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .breadcrumb a { color: var(--primary); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* HEADER */
+        .page-header {
+            background: linear-gradient(135deg, #059669, #047857, #065f46);
+            padding: 60px 24px;
+            text-align: center;
+            color: white;
+        }
+        .page-header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .page-header h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 10px; }
+        .page-header p { font-size: 1.1rem; opacity: 0.9; }
+
+        /* CONTENT */
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 24px 60px;
+        }
+
+        /* CONTACT CARDS */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+        @media (max-width: 700px) { .contact-cards { grid-template-columns: 1fr; } }
+        .contact-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+        .contact-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .contact-card .icon-circle {
+            width: 64px; height: 64px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; margin: 0 auto 16px; color: white;
+        }
+        .bg-green { background: var(--primary); }
+        .bg-blue { background: var(--secondary); }
+        .bg-purple { background: var(--accent); }
+        .contact-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+        .contact-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; }
+        .contact-card a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .contact-card a:hover { text-decoration: underline; }
+
+        /* FORM */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .form-card h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius-md);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f9fafb;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+            background: white;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #059669, #047857);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px -5px rgba(5,150,105,0.3);
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -5px rgba(5,150,105,0.4);
+        }
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        /* RESPONSE TIME */
+        .response-box {
+            background: var(--primary-light);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            border: 1px solid #6ee7b7;
+        }
+        .response-box i { color: var(--primary); margin-right: 8px; }
+
+        /* BACK LINK */
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link a:hover { text-decoration: underline; }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 24px 24px;
+            text-align: center;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+        .footer-col h4 { font-size: 1rem; margin-bottom: 14px; color: #34d399; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: white; }
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+        .footer-bottom a { color: #34d399; text-decoration: none; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- Navigation (same as others) -->
-    <nav class="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="text-2xl font-bold">
-                    <span class="text-emerald-700">Health</span><span class="text-emerald-500">Calc</span><span class="text-gray-600 text-sm ml-1">.in</span>
-                </a>
-                <div class="hidden md:flex space-x-8 text-gray-600 font-medium">
-                    <a href="index.html" class="hover:text-emerald-600">Home</a>
-                    <a href="about.html" class="hover:text-emerald-600">About</a>
-                    <a href="privacy-policy.html" class="hover:text-emerald-600">Privacy</a>
-                    <a href="terms-of-service.html" class="hover:text-emerald-600">Terms</a>
-                    <a href="contact.html" class="text-emerald-600 border-b-2 border-emerald-500 pb-1">Contact</a>
-                </div>
-                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            <div class="md:hidden hidden mt-4 space-y-2" id="mobileMenu">
-                <a href="index.html" class="block py-2">Home</a>
-                <a href="about.html" class="block py-2">About</a>
-                <a href="privacy-policy.html" class="block py-2">Privacy</a>
-                <a href="terms-of-service.html" class="block py-2">Terms</a>
-                <a href="contact.html" class="block py-2 text-emerald-600">Contact</a>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo">🧬 HealthCalc<span class="dot">.in</span></a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="privacy-policy.html"><i class="fas fa-lock"></i> Privacy</a>
+                <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Header -->
-    <section class="gradient-green py-16">
-        <div class="container mx-auto px-6 max-w-4xl text-center text-white">
-            <span class="bg-white bg-opacity-20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold inline-block mb-4">
-                <i class="fas fa-headset mr-2"></i> We're Here to Help
-            </span>
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-            <p class="text-xl text-white text-opacity-90">Have questions? Suggestions? We'd love to hear from you.</p>
-        </div>
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> <span>/</span> <span>Contact Us</span>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <span class="badge"><i class="fas fa-headset"></i> We're Here to Help</span>
+        <h1>Contact Us</h1>
+        <p>Questions? Suggestions? Feedback? We'd love to hear from you.</p>
     </section>
 
-    <!-- Contact Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-3 gap-8 mb-12">
-                <!-- Email Card -->
-                <div class="bg-emerald-50 p-8 rounded-2xl border border-emerald-200 text-center hover-card">
-                    <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Email Us</h3>
-                    <p class="text-gray-500 mb-4">General inquiries</p>
-                    <a href="mailto:hello@healthcalc.in" class="text-emerald-600 font-semibold hover:underline">hello@healthcalc.in</a>
-                </div>
-                
-                <!-- Support Card -->
-                <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200 text-center hover-card">
-                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                        <i class="fas fa-life-ring"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Technical Support</h3>
-                    <p class="text-gray-500 mb-4">Issues with calculators</p>
-                    <a href="mailto:support@healthcalc.in" class="text-blue-600 font-semibold hover:underline">support@healthcalc.in</a>
-                </div>
-                
-                <!-- Suggestions Card -->
-                <div class="bg-purple-50 p-8 rounded-2xl border border-purple-200 text-center hover-card">
-                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="font-bold text-xl mb-2">Suggest a Tool</h3>
-                    <p class="text-gray-500 mb-4">New calculator ideas</p>
-                    <a href="mailto:ideas@healthcalc.in" class="text-purple-600 font-semibold hover:underline">ideas@healthcalc.in</a>
-                </div>
+    <!-- CONTENT -->
+    <section class="content-section">
+        
+        <!-- Contact Cards -->
+        <div class="contact-cards">
+            <div class="contact-card">
+                <div class="icon-circle bg-green"><i class="fas fa-envelope"></i></div>
+                <h3>General Inquiries</h3>
+                <p>Questions about our tools, partnerships, or anything else.</p>
+                <a href="mailto:hello@healthcalc.in">hello@healthcalc.in</a>
             </div>
+            <div class="contact-card">
+                <div class="icon-circle bg-blue"><i class="fas fa-life-ring"></i></div>
+                <h3>Technical Support</h3>
+                <p>Issues with calculators, bugs, or website problems.</p>
+                <a href="mailto:support@healthcalc.in">support@healthcalc.in</a>
+            </div>
+            <div class="contact-card">
+                <div class="icon-circle bg-purple"><i class="fas fa-lightbulb"></i></div>
+                <h3>Suggest a Tool</h3>
+                <p>Ideas for new health calculators or features you'd like.</p>
+                <a href="mailto:ideas@healthcalc.in">ideas@healthcalc.in</a>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="form-card">
+            <h2><i class="fas fa-paper-plane" style="color:var(--primary);"></i> Send us a Message</h2>
             
-            <!-- Contact Form -->
-            <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-3xl border border-gray-200">
-                <h2 class="text-2xl font-bold text-center mb-6">Send us a Message</h2>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Your Name *</label>
+                        <input type="text" name="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required placeholder="john@example.com">
+                    </div>
+                </div>
                 
-                <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                            <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500">
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                        <select name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500">
-                            <option>General Question</option>
-                            <option>Technical Support</option>
-                            <option>Tool Suggestion</option>
-                            <option>Feedback</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                        <textarea name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-emerald-600 text-white py-4 rounded-xl font-semibold hover:bg-emerald-700 transition transform hover:-translate-y-1">
-                        <i class="fas fa-paper-plane mr-2"></i> Send Message
-                    </button>
-                </form>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select name="subject">
+                        <option>General Question</option>
+                        <option>Technical Support</option>
+                        <option>Tool Suggestion</option>
+                        <option>Feedback / Improvement</option>
+                        <option>Partnership / Collaboration</option>
+                        <option>Other</option>
+                    </select>
+                </div>
                 
-                <p class="text-xs text-gray-400 text-center mt-4">
-                    We'll respond within 24-48 hours. No spam, ever.
+                <div class="form-group">
+                    <label>Your Message *</label>
+                    <textarea name="message" rows="5" required placeholder="Tell us how we can help..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+                
+                <p class="form-note">
+                    <i class="fas fa-lock"></i> Your email is only used to reply. No spam, ever.
                 </p>
-            </div>
-            
-            <!-- FAQ Link -->
-            <div class="text-center mt-12">
-                <p class="text-gray-600">Prefer self-help? Check our <a href="#faq" class="text-emerald-600 font-semibold hover:underline">FAQ section</a> or <a href="about.html" class="text-emerald-600 font-semibold hover:underline">About page</a>.</p>
-            </div>
+            </form>
+        </div>
+
+        <!-- Response Time -->
+        <div class="response-box">
+            <i class="fas fa-clock"></i>
+            <strong>Response Time:</strong> We typically respond within <strong>24-48 hours</strong>. For urgent medical concerns, please contact your healthcare provider directly.
+        </div>
+
+        <!-- Other Links -->
+        <div class="back-link">
+            <p>Prefer self-help? Check our <a href="index.html#tools">Health Tools</a>, <a href="about.html">About Page</a>, or <a href="privacy-policy.html">Privacy Policy</a>.</p>
+            <p style="margin-top:12px;"><a href="index.html">← Back to HealthCalc Home</a></p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="grid md:grid-cols-4 gap-10">
-                <div>
-                    <h3 class="text-2xl font-bold text-emerald-400 mb-4">HealthCalc.in</h3>
-                    <p class="text-gray-400 text-sm">Free health tools for everyone.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="index.html" class="hover:text-emerald-400">Home</a></li>
-                        <li><a href="about.html" class="hover:text-emerald-400">About</a></li>
-                        <li><a href="privacy-policy.html" class="hover:text-emerald-400">Privacy</a></li>
-                        <li><a href="terms-of-service.html" class="hover:text-emerald-400">Terms</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Contact</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="mailto:hello@healthcalc.in" class="hover:text-emerald-400">hello@healthcalc.in</a></li>
-                        <li><a href="mailto:support@healthcalc.in" class="hover:text-emerald-400">support@healthcalc.in</a></li>
-                    </ul>
-                </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>HealthCalc.in</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="index.html#tools">All Tools</a></li>
+                </ul>
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-                © 2024 HealthCalc.in
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h4>Reach Us</h4>
+                <ul>
+                    <li><a href="mailto:hello@healthcalc.in">hello@healthcalc.in</a></li>
+                    <li><a href="mailto:support@healthcalc.in">support@healthcalc.in</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024-2026 <a href="/">HealthCalc.in</a> — Free Health Calculators. All Rights Reserved.</p>
+            <p style="margin-top:4px;">100% Private Browser-Based Tools. No Signup Required.</p>
         </div>
     </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        }
-    </script>
 </body>
 </html>
