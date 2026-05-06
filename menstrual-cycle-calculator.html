@@ -3,39 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta (Global + Indian) -->
+
+    <!-- SEO Meta (Enhanced) -->
     <title>🌸 Menstrual Cycle Calculator: PMS Predictor & Ayurvedic Tips | HealthCalc</title>
     <meta name="description" content="Free menstrual cycle calculator with PMS predictor, fertility window & Ayurvedic period care tips. Track periods in Hindi/English. 100% private.">
-    <meta name="keywords" content="menstrual cycle calculator, period tracker Hindi, ovulation calculator, PMS symptoms, Ayurvedic period care, मासिक धर्म कैलकुलेटर, पीरियड ट्रैकर">
+    <meta name="keywords" content="menstrual cycle calculator, period tracker Hindi, ovulation calculator, PMS symptoms, Ayurvedic period care, मासिक धर्म कैलकुलेटर, पीरियड ट्रैकर, fertility window, period forecast">
     <meta name="author" content="HealthCalc">
-    <meta name="robots" content="index, follow">
-    
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
     <!-- Open Graph -->
     <meta property="og:title" content="Menstrual Cycle Calculator with Ayurvedic Tips | HealthCalc">
     <meta property="og:description" content="Track periods, predict ovulation, and get Ayurvedic period care tips.">
     <meta property="og:image" content="https://healthcalc.in/images/period-preview.jpg">
     <meta property="og:url" content="https://healthcalc.in/menstrual-cycle-calculator">
     <meta property="og:locale" content="en_IN">
-    
-    <!-- Canonical -->
+    <meta property="og:type" content="website">
+
+    <!-- Canonical (Enhanced) -->
     <link rel="canonical" href="https://healthcalc.in/menstrual-cycle-calculator">
-    
-    <!-- Schema -->
+
+    <!-- FAQ Schema (4 questions) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "MedicalWebPage",
-        "name": "Menstrual Cycle Calculator with Ayurvedic Tips",
-        "description": "Period tracker with PMS predictor, fertility window, and Ayurvedic care recommendations",
-        "url": "https://healthcalc.in/menstrual-cycle-calculator",
-        "inLanguage": ["en", "hi"]
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How is ovulation calculated in this tracker?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ovulation typically occurs 14 days before your next period. For a 28-day cycle, ovulation is on day 14. Our calculator uses your cycle length to predict it."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are Ayurvedic period care tips?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ayurveda recommends warm foods, ginger tea, sesame oil massage on the lower abdomen, and rest during periods to balance Vata dosha."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How accurate is the PMS symptom prediction?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Predictions are based on cycle phase and common symptoms reported by users of similar age groups. Individual experiences may vary."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can this calculator be used for contraception?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. This tool is for cycle tracking and awareness only. It should not be used as a contraception method. Consult a doctor for medical advice."
+                }
+            }
+        ]
     }
     </script>
-    
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://healthcalc.in"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Health Tools",
+                "item": "https://healthcalc.in/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Menstrual Cycle Calculator",
+                "item": "https://healthcalc.in/menstrual-cycle-calculator"
+            }
+        ]
+    }
+    </script>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        
+
         :root {
             --primary: #f43f5e;
             --primary-dark: #e11d48;
@@ -46,721 +105,525 @@
             --ovulation: #fbbf24;
             --pms: #c084fc;
         }
-        
-        body { background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%); min-height: 100vh; padding: 20px; }
+
+        body { background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%); min-height: 100vh; padding: 20px; scroll-behavior: smooth; }
         .container { max-width: 1300px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
-        
+
+        /* Breadcrumb (Added) */
+        .breadcrumb {
+            padding: 15px 30px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9em;
+            color: #4b5563;
+        }
+        .breadcrumb a {
+            color: #f43f5e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .breadcrumb span { margin: 0 8px; color: #9ca3af; }
+
         .header { background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%); padding: 30px; text-align: center; color: white; }
         .header h1 { font-size: 2.5em; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .header h1 span { background: rgba(255,255,255,0.2); padding: 5px 20px; border-radius: 50px; font-size: 0.5em; }
-        
-        /* Language Toggle */
+
+        /* Cross-linking (6 tools) */
+        .cross-links {
+            padding: 15px 30px;
+            background: #fff5f7;
+            border-bottom: 1px solid #ffd0d9;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+        .cross-links span { font-weight: 600; color: #be185d; margin-right: 5px; }
+        .cross-links a {
+            background: white;
+            padding: 8px 18px;
+            border-radius: 30px;
+            color: #f43f5e;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .cross-links a:hover { background: #f43f5e; color: white; }
+
         .lang-toggle { display: flex; justify-content: center; gap: 10px; margin: 20px 0 0; }
         .lang-btn { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 10px 25px; border-radius: 50px; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
         .lang-btn.active { background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-        .lang-btn i { font-size: 1.2em; }
-        
+
         .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; margin: 5px; font-size: 0.9em; }
         .badge.indian-badge { background: linear-gradient(135deg, var(--indian-saffron), #FFB74D); color: #333; }
-        
+
         .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
-        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } .header h1 { font-size: 1.8em; } }
-        
-        /* Input Card */
+        @media (max-width: 768px) { .main { grid-template-columns: 1fr; } }
+
         .input-card { background: #fff0f3; padding: 25px; border-radius: 20px; }
-        .input-card h2 { margin-bottom: 20px; color: #333; }
         .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
         .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #ffd0d9; border-radius: 10px; font-size: 1em; }
-        
+
         .date-input { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px; }
-        
         .symptom-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0; }
         .symptom-item { display: flex; align-items: center; gap: 8px; padding: 10px; background: white; border-radius: 10px; border: 1px solid #ffd0d9; cursor: pointer; }
-        
-        /* Indian Ayurvedic Note */
+
         .ayurveda-note { background: linear-gradient(135deg, #FFF8E1, #FFECB3); padding: 15px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--indian-saffron); }
-        .ayurveda-note i { color: var(--indian-saffron); margin-right: 8px; }
-        
+
         .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
         .reset-btn { margin-top: 10px; padding: 10px; background: #e0e4ff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em; width: 100%; }
-        
-        /* Results Card */
+
         .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #fff0f3; }
-        
         .next-period { text-align: center; padding: 20px; background: #fff0f3; border-radius: 20px; margin-bottom: 20px; }
         .period-date { font-size: 2.5em; font-weight: 800; color: var(--primary); }
-        .period-label { font-size: 1.1em; color: #666; }
-        
         .countdown { display: flex; justify-content: space-around; margin: 20px 0; }
         .countdown-item { text-align: center; }
         .countdown-number { font-size: 2em; font-weight: 700; color: var(--primary); }
-        .countdown-label { color: #666; font-size: 0.9em; }
-        
+
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 20px 0; }
         .calendar-day { text-align: center; padding: 8px; border-radius: 8px; font-size: 0.9em; }
         .calendar-day.period { background: var(--primary); color: white; }
         .calendar-day.fertile { background: var(--fertile); color: white; }
         .calendar-day.ovulation { background: var(--ovulation); color: white; }
         .calendar-day.pms { background: var(--pms); color: white; }
-        
-        .pms-predictor { background: #fff0f3; padding: 20px; border-radius: 20px; margin: 20px 0; }
-        .pms-symptoms { display: flex; flex-wrap: wrap; gap: 10px; }
-        .symptom-tag { padding: 5px 15px; background: white; border-radius: 20px; font-size: 0.9em; border: 1px solid #ffd0d9; }
-        .symptom-tag.high { background: var(--primary); color: white; }
-        
-        /* Ayurvedic Tips Card */
-        .ayurveda-tips-card { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid var(--indian-green); }
-        .ayurveda-tips-card h4 { color: #1B5E20; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .ayurveda-tips-card ul { list-style: none; padding-left: 0; }
-        .ayurveda-tips-card li { padding: 8px 0; border-bottom: 1px dashed #A5D6A7; display: flex; align-items: center; gap: 10px; }
-        .ayurveda-tips-card li i { color: var(--indian-green); width: 20px; }
-        
+
         .fertility-window { background: #fff0f3; padding: 20px; border-radius: 20px; }
         .fertility-bar { height: 30px; background: #ffd0d9; border-radius: 15px; margin: 10px 0; overflow: hidden; }
         .fertility-fill { height: 100%; background: var(--fertile); width: 0%; transition: width 0.3s; }
-        
-        /* Future Plan Section */
-        .future-plan-section { grid-column: span 2; background: linear-gradient(135deg, #E8EAF6, #C5CAE9); border-radius: 20px; padding: 25px; margin: 20px 0; border: 2px dashed var(--primary); }
-        .future-plan-section h3 { color: #1A237E; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+
+        .ayurveda-tips-card { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid var(--indian-green); }
+        .ayurveda-tips-card ul { list-style: none; padding-left: 0; }
+        .ayurveda-tips-card li { padding: 8px 0; border-bottom: 1px dashed #A5D6A7; display: flex; align-items: center; gap: 10px; }
+
+        .pms-predictor { background: #fff0f3; padding: 20px; border-radius: 20px; margin: 20px 0; }
+        .symptom-tag { padding: 5px 15px; background: white; border-radius: 20px; font-size: 0.9em; border: 1px solid #ffd0d9; }
+        .symptom-tag.high { background: var(--primary); color: white; }
+
+        /* Future Features */
+        .future-plan-section {
+            background: linear-gradient(135deg, #E8EAF6, #C5CAE9);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px dashed var(--primary);
+        }
         .future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
-        .future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s; }
-        .future-feature:hover { transform: translateY(-5px); }
-        .future-feature i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
-        .future-feature h5 { color: #1A237E; margin-bottom: 8px; font-size: 1rem; }
+        .future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; }
         .coming-soon { background: #FF9800; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-top: 10px; }
-        
-        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; background: #fafafa; }
-        .footer a { color: var(--primary); text-decoration: none; }
-        
-        /* FAQ Section */
+
         .faq-section { margin-top: 3rem; background: white; border-radius: 32px; padding: 2rem; }
         .faq-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; margin-top: 2rem; }
         @media (max-width:700px){ .faq-grid { grid-template-columns:1fr; } }
         .faq-item { background: #fff0f3; border-radius: 24px; padding: 1.2rem; }
-        .faq-question { font-weight: 700; color: var(--primary-dark); margin-bottom: 0.5rem; }
+
+        .footer { text-align: center; padding: 25px 20px; color: #666; border-top: 1px solid #eee; background: #fafafa; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 15px; }
+        .footer-links a { color: #f43f5e; text-decoration: none; font-weight: 500; }
+        .footer-links a:hover { text-decoration: underline; }
+
+        #scrollTopBtn {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
+            background: #f43f5e; color: white; border: none; border-radius: 50%;
+            width: 50px; height: 50px; font-size: 24px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        #scrollTopBtn:hover { background: #e11d48; }
     </style>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>
-                🌸 Menstrual Cycle Calculator
-                <span id="headerSubtitle">Ayurvedic Tips</span>
-            </h1>
-            <p id="headerDesc">PMS Predictor • Fertility Window • Ayurvedic Period Care</p>
-            
-            <!-- Language Toggle -->
-            <div class="lang-toggle">
-                <button class="lang-btn active" data-lang="en" id="langEN"><i>🇬🇧</i> English</button>
-                <button class="lang-btn" data-lang="hi" id="langHI"><i>🇮🇳</i> हिंदी</button>
-            </div>
-            
-            <div>
-                <span class="badge">🌟 PMS Predictor</span>
-                <span class="badge indian-badge">🌿 Ayurvedic Tips</span>
-                <span class="badge">🤰 Fertility Window</span>
-                <span class="badge">📅 3-Month Forecast</span>
-            </div>
+
+<button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
+
+<div class="container">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> <span>›</span>
+        <a href="/tools">Health Tools</a> <span>›</span>
+        <strong>Menstrual Cycle Calculator</strong>
+    </div>
+
+    <!-- Cross-linking -->
+    <div class="cross-links">
+        <span>🔗 Related Tools:</span>
+        <a href="/tools/gut-health">Gut Health</a>
+        <a href="/tools/bmi-calculator">BMI</a>
+        <a href="/tools/ascvd-risk">ASCVD Risk</a>
+        <a href="/tools/vascular-age">Vascular Age</a>
+        <a href="/tools/hormones">Hormones</a>
+        <a href="/tools/sleep">Sleep</a>
+    </div>
+
+    <div class="header">
+        <h1>🌸 Menstrual Cycle Calculator <span id="headerSubtitle">Ayurvedic Tips</span></h1>
+        <p id="headerDesc">PMS Predictor • Fertility Window • Ayurvedic Period Care</p>
+        <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" id="langEN"><i>🇬🇧</i> English</button>
+            <button class="lang-btn" data-lang="hi" id="langHI"><i>🇮🇳</i> हिंदी</button>
         </div>
-        
-        <div class="main">
-            <!-- Input Section -->
-            <div class="input-card">
-                <h2 id="detailsTitle">📝 Your Cycle Details</h2>
-                
-                <div class="input-group">
-                    <label id="lastPeriodLabel">Last Period Start Date</label>
-                    <div class="date-input">
-                        <select id="lastMonth">
-                            <option value="3">March</option><option value="2">February</option>
-                            <option value="1">January</option><option value="12">December</option>
-                            <option value="11">November</option>
-                        </select>
-                        <select id="lastDay"></select>
-                        <select id="lastYear">
-                            <option value="2026" selected>2026</option><option value="2025">2025</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="input-group">
-                    <label id="cycleLengthLabel">Average Cycle Length (days)</label>
-                    <input type="number" id="cycleLength" value="28" min="21" max="40" step="1">
-                    <small style="color: #666;" id="cycleHint">21-35 days is normal</small>
-                </div>
-                
-                <div class="input-group">
-                    <label id="periodLengthLabel">Period Duration (days)</label>
-                    <input type="number" id="periodLength" value="5" min="2" max="10" step="1">
-                </div>
-                
-                <div class="input-group">
-                    <label id="ageLabel">Age</label>
-                    <input type="number" id="age" value="30" min="18" max="55">
-                </div>
-                
-                <!-- Ayurvedic Note -->
-                <div class="ayurveda-note" id="ayurvedaNote">
-                    <i class="fas fa-leaf"></i> 
-                    <span id="ayurvedaNoteText">🌿 According to Ayurveda, balance your Vata dosha during periods with warm foods and rest.</span>
-                </div>
-                
-                <!-- Common Symptoms -->
-                <h3 style="margin: 20px 0 10px;" id="symptomsTitle">😣 Common PMS Symptoms</h3>
-                <div class="symptom-grid" id="symptomGrid">
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="bloating"> 😖 <span id="symBloating">Bloating</span></label>
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="headache"> 🤕 <span id="symHeadache">Headaches</span></label>
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="cramps"> 😣 <span id="symCramps">Cramps</span></label>
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="fatigue"> 😴 <span id="symFatigue">Fatigue</span></label>
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="mood"> 🎭 <span id="symMood">Mood swings</span></label>
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="cravings"> 🍫 <span id="symCravings">Food cravings</span></label>
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="acne"> 🔴 <span id="symAcne">Acne</span></label>
-                    <label class="symptom-item"><input type="checkbox" class="symptom" value="tender"> 😫 <span id="symTender">Breast tenderness</span></label>
-                </div>
-                
-                <button class="calc-btn" onclick="calculateCycle()" id="calculateBtn">Calculate My Cycle</button>
-                <button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
-            </div>
-            
-            <!-- Results Section -->
-            <div class="results-card" id="results">
-                <h2 style="margin-bottom: 20px;" id="resultsTitle">📊 Your Cycle Forecast</h2>
-                
-                <!-- Next Period -->
-                <div class="next-period">
-                    <div class="period-date" id="nextPeriod">April 2, 2026</div>
-                    <div class="period-label" id="nextPeriodLabel">Next Period Start</div>
-                </div>
-                
-                <!-- Countdown -->
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="daysUntil">7</div>
-                        <div class="countdown-label" id="daysUntilLabel">Days Until</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="cycleDay">21</div>
-                        <div class="countdown-label" id="cycleDayLabel">Cycle Day</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="phase">Luteal</div>
-                        <div class="countdown-label" id="phaseLabel">Phase</div>
-                    </div>
-                </div>
-                
-                <!-- Calendar Preview -->
-                <h3 style="margin: 20px 0 10px;" id="calendarTitle">📅 Next 14 Days</h3>
-                <div class="calendar-grid" id="calendar"></div>
-                <div style="display: flex; gap: 10px; justify-content: center; font-size: 0.8em; margin: 10px 0;">
-                    <span><span style="background:var(--primary); padding:2px 8px; border-radius:4px; color:white;">🔴</span> <span id="periodLegend">Period</span></span>
-                    <span><span style="background:var(--fertile); padding:2px 8px; border-radius:4px; color:white;">🟢</span> <span id="fertileLegend">Fertile</span></span>
-                    <span><span style="background:var(--pms); padding:2px 8px; border-radius:4px; color:white;">🟣</span> <span id="pmsLegend">PMS</span></span>
-                </div>
-                
-                <!-- Fertility Window -->
-                <div class="fertility-window">
-                    <h3 style="margin-bottom: 15px;" id="fertilityTitle">🤰 Fertility Window</h3>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span id="fertileRangeLabel">Fertile Window:</span>
-                        <span id="fertileRange">March 24 - March 30</span>
-                    </div>
-                    <div class="fertility-bar">
-                        <div class="fertility-fill" id="fertilityFill" style="width: 60%"></div>
-                    </div>
-                    <div style="margin-top: 10px;" id="fertilityAdvice">
-                        ⚡ Ovulation on Day 14 (March 28)
-                    </div>
-                </div>
-                
-                <!-- Ayurvedic Tips Card -->
-                <div class="ayurveda-tips-card" id="ayurvedaTipsBox">
-                    <h4><i class="fas fa-leaf"></i> <span id="tipsTitle">🌿 Ayurvedic Period Care Tips</span></h4>
-                    <ul id="tipsList">
-                        <li id="tip1"><i class="fas fa-check-circle"></i> Drink warm water with ginger and jaggery</li>
-                        <li id="tip2"><i class="fas fa-check-circle"></i> Apply warm sesame oil massage on lower abdomen</li>
-                        <li id="tip3"><i class="fas fa-check-circle"></i> Eat light, warm foods (khichdi, soups)</li>
-                        <li id="tip4"><i class="fas fa-check-circle"></i> Practice gentle yoga (Child's pose, Cat-Cow)</li>
-                    </ul>
-                </div>
-                
-                <!-- PMS Predictor -->
-                <div class="pms-predictor">
-                    <h3 style="margin-bottom: 15px;" id="pmsTitle">😣 PMS Symptom Predictor</h3>
-                    <div id="pmsTiming">
-                        <p style="margin-bottom: 10px;"><span id="symptomsLikely">Symptoms likely:</span> <strong id="pmsDays">3-5 days before period</strong></p>
-                    </div>
-                    <div class="pms-symptoms" id="predictedSymptoms">
-                        <span class="symptom-tag high">😖 Bloating</span>
-                        <span class="symptom-tag high">😣 Cramps</span>
-                        <span class="symptom-tag">🤕 Headaches</span>
-                    </div>
-                </div>
-                
-                <!-- 3-Month Forecast -->
-                <details style="margin-top: 20px;">
-                    <summary style="cursor: pointer; color: var(--primary); font-weight: 600;" id="forecastSummary">📅 View 3-Month Forecast</summary>
-                    <div id="forecast" style="margin-top: 15px;"></div>
-                </details>
-            </div>
-            
-            <!-- Future Plan Section -->
-            <div class="future-plan-section">
-                <h3><i class="fas fa-rocket"></i> 🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
-                <div class="future-features-grid">
-                    <div class="future-feature">
-                        <i class="fas fa-bell"></i>
-                        <h5 id="future1">Period Reminders</h5>
-                        <span class="coming-soon">Coming Jan 2027</span>
-                    </div>
-                    <div class="future-feature">
-                        <i class="fas fa-calendar-alt"></i>
-                        <h5 id="future2">Indian Festival Calendar</h5>
-                        <span class="coming-soon">Coming Feb 2027</span>
-                    </div>
-                    <div class="future-feature">
-                        <i class="fas fa-utensils"></i>
-                        <h5 id="future3">Ayurvedic Diet Plan</h5>
-                        <span class="coming-soon">Coming March 2027</span>
-                    </div>
-                    <div class="future-feature">
-                        <i class="fas fa-user-md"></i>
-                        <h5 id="future4">Doctor Consultation</h5>
-                        <span class="coming-soon">Coming April 2027</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- FAQ Section -->
-        <div class="faq-section">
-            <h2 style="font-size:1.8rem;" id="faqTitle">Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question" id="faq1Q">How is ovulation calculated?</div>
-                    <p id="faq1A">Ovulation typically occurs 14 days before your next period. For a 28-day cycle, ovulation is on day 14.</p>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" id="faq2Q">What are Ayurvedic period tips?</div>
-                    <p id="faq2A">Ayurveda recommends warm foods, ginger tea, sesame oil massage, and rest during periods to balance Vata dosha.</p>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" id="faq3Q">How accurate is PMS prediction?</div>
-                    <p id="faq3A">Based on cycle phase and common symptoms. Individual experiences may vary.</p>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" id="faq4Q">Can I use this for contraception?</div>
-                    <p id="faq4A">No. This is for tracking only. Consult a doctor for contraception methods.</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p id="footerReviews">⭐ 4.9/5 from 1,450+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
-            <p style="font-size: 0.9em;" id="disclaimerText">⚠️ Not for contraception - consult doctor for medical advice</p>
+        <div>
+            <span class="badge">🌟 PMS Predictor</span>
+            <span class="badge indian-badge">🌿 Ayurvedic Tips</span>
+            <span class="badge">🤰 Fertility Window</span>
+            <span class="badge">📅 3-Month Forecast</span>
         </div>
     </div>
-    
-    <script>
-        // ===== GLOBAL STATE =====
-        let currentLang = 'en';
-        
-        // ===== TRANSLATIONS =====
-        const translations = {
-            en: {
-                headerSubtitle: 'Ayurvedic Tips',
-                headerDesc: 'PMS Predictor • Fertility Window • Ayurvedic Period Care',
-                detailsTitle: '📝 Your Cycle Details',
-                lastPeriodLabel: 'Last Period Start Date',
-                cycleLengthLabel: 'Average Cycle Length (days)',
-                cycleHint: '21-35 days is normal',
-                periodLengthLabel: 'Period Duration (days)',
-                ageLabel: 'Age',
-                ayurvedaNoteText: '🌿 According to Ayurveda, balance your Vata dosha during periods with warm foods and rest.',
-                symptomsTitle: '😣 Common PMS Symptoms',
-                symBloating: 'Bloating',
-                symHeadache: 'Headaches',
-                symCramps: 'Cramps',
-                symFatigue: 'Fatigue',
-                symMood: 'Mood swings',
-                symCravings: 'Food cravings',
-                symAcne: 'Acne',
-                symTender: 'Breast tenderness',
-                calculateBtn: 'Calculate My Cycle',
-                resetBtn: 'Reset All Fields',
-                resultsTitle: '📊 Your Cycle Forecast',
-                nextPeriodLabel: 'Next Period Start',
-                daysUntilLabel: 'Days Until',
-                cycleDayLabel: 'Cycle Day',
-                phaseLabel: 'Phase',
-                calendarTitle: '📅 Next 14 Days',
-                periodLegend: 'Period',
-                fertileLegend: 'Fertile',
-                pmsLegend: 'PMS',
-                fertilityTitle: '🤰 Fertility Window',
-                fertileRangeLabel: 'Fertile Window:',
-                tipsTitle: '🌿 Ayurvedic Period Care Tips',
-                tip1: 'Drink warm water with ginger and jaggery',
-                tip2: 'Apply warm sesame oil massage on lower abdomen',
-                tip3: 'Eat light, warm foods (khichdi, soups)',
-                tip4: 'Practice gentle yoga (Child\'s pose, Cat-Cow)',
-                pmsTitle: '😣 PMS Symptom Predictor',
-                symptomsLikely: 'Symptoms likely:',
-                forecastSummary: '📅 View 3-Month Forecast',
-                futureTitle: 'Coming Soon: Future Features',
-                future1: 'Period Reminders',
-                future2: 'Indian Festival Calendar',
-                future3: 'Ayurvedic Diet Plan',
-                future4: 'Doctor Consultation',
-                faqTitle: 'Frequently Asked Questions',
-                faq1Q: 'How is ovulation calculated?',
-                faq1A: 'Ovulation typically occurs 14 days before your next period. For a 28-day cycle, ovulation is on day 14.',
-                faq2Q: 'What are Ayurvedic period tips?',
-                faq2A: 'Ayurveda recommends warm foods, ginger tea, sesame oil massage, and rest during periods.',
-                faq3Q: 'How accurate is PMS prediction?',
-                faq3A: 'Based on cycle phase and common symptoms. Individual experiences may vary.',
-                faq4Q: 'Can I use this for contraception?',
-                faq4A: 'No. This is for tracking only. Consult a doctor for contraception methods.',
-                footerReviews: '⭐ 4.9/5 from 1,450+ reviews | Used in 45+ countries | ',
-                disclaimerText: '⚠️ Not for contraception - consult doctor for medical advice',
-                months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                phases: { menstrual: 'Menstrual', follicular: 'Follicular', ovulation: 'Ovulation', luteal: 'Luteal' }
-            },
-            hi: {
-                headerSubtitle: 'आयुर्वेदिक सुझाव',
-                headerDesc: 'PMS प्रेडिक्टर • फर्टिलिटी विंडो • आयुर्वेदिक पीरियड केयर',
-                detailsTitle: '📝 आपके चक्र की जानकारी',
-                lastPeriodLabel: 'पिछले पीरियड की शुरुआत',
-                cycleLengthLabel: 'औसत चक्र अवधि (दिन)',
-                cycleHint: '21-35 दिन सामान्य है',
-                periodLengthLabel: 'पीरियड अवधि (दिन)',
-                ageLabel: 'उम्र',
-                ayurvedaNoteText: '🌿 आयुर्वेद के अनुसार, पीरियड्स के दौरान गर्म भोजन और आराम से वात दोष संतुलित रखें।',
-                symptomsTitle: '😣 सामान्य PMS लक्षण',
-                symBloating: 'पेट फूलना',
-                symHeadache: 'सिरदर्द',
-                symCramps: 'ऐंठन',
-                symFatigue: 'थकान',
-                symMood: 'मूड स्विंग',
-                symCravings: 'खाने की इच्छा',
-                symAcne: 'मुंहासे',
-                symTender: 'स्तन कोमलता',
-                calculateBtn: 'मेरा चक्र कैलकुलेट करें',
-                resetBtn: 'सभी रीसेट करें',
-                resultsTitle: '📊 आपका चक्र पूर्वानुमान',
-                nextPeriodLabel: 'अगला पीरियड',
-                daysUntilLabel: 'दिन शेष',
-                cycleDayLabel: 'चक्र दिवस',
-                phaseLabel: 'अवस्था',
-                calendarTitle: '📅 अगले 14 दिन',
-                periodLegend: 'पीरियड',
-                fertileLegend: 'फर्टाइल',
-                pmsLegend: 'PMS',
-                fertilityTitle: '🤰 फर्टिलिटी विंडो',
-                fertileRangeLabel: 'फर्टाइल विंडो:',
-                tipsTitle: '🌿 आयुर्वेदिक पीरियड केयर सुझाव',
-                tip1: 'अदरक और गुड़ के साथ गर्म पानी पिएं',
-                tip2: 'पेट के निचले हिस्से पर गर्म तिल के तेल की मालिश करें',
-                tip3: 'हल्का, गर्म भोजन करें (खिचड़ी, सूप)',
-                tip4: 'हल्का योग करें (चाइल्ड पोज़, कैट-काउ)',
-                pmsTitle: '😣 PMS लक्षण प्रेडिक्टर',
-                symptomsLikely: 'लक्षण संभावित:',
-                forecastSummary: '📅 3-महीने का पूर्वानुमान देखें',
-                futureTitle: 'जल्द आ रहा है: नई सुविधाएं',
-                future1: 'पीरियड रिमाइंडर',
-                future2: 'भारतीय त्योहार कैलेंडर',
-                future3: 'आयुर्वेदिक डाइट प्लान',
-                future4: 'डॉक्टर परामर्श',
-                faqTitle: 'अक्सर पूछे जाने वाले प्रश्न',
-                faq1Q: 'ओवुलेशन कैसे कैलकुलेट होता है?',
-                faq1A: 'ओवुलेशन आमतौर पर अगले पीरियड से 14 दिन पहले होता है। 28-दिन के चक्र में यह दिन 14 पर होता है।',
-                faq2Q: 'आयुर्वेदिक पीरियड टिप्स क्या हैं?',
-                faq2A: 'आयुर्वेद गर्म भोजन, अदरक की चाय, तिल के तेल की मालिश और आराम की सलाह देता है।',
-                faq3Q: 'PMS भविष्यवाणी कितनी सटीक है?',
-                faq3A: 'चक्र अवस्था और सामान्य लक्षणों पर आधारित। व्यक्तिगत अनुभव भिन्न हो सकते हैं।',
-                faq4Q: 'क्या इसका उपयोग गर्भनिरोधक के लिए कर सकते हैं?',
-                faq4A: 'नहीं। यह केवल ट्रैकिंग के लिए है। गर्भनिरोधक के लिए डॉक्टर से सलाह लें।',
-                footerReviews: '⭐ 1,450+ समीक्षाओं से 4.9/5 | 45+ देशों में उपयोग | ',
-                disclaimerText: '⚠️ गर्भनिरोधक के लिए नहीं - चिकित्सकीय सलाह के लिए डॉक्टर से संपर्क करें',
-                months: ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
-                weekdays: ['सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि', 'रवि'],
-                phases: { menstrual: 'मासिक', follicular: 'फॉलिक्युलर', ovulation: 'ओवुलेशन', luteal: 'ल्यूटियल' }
-            }
-        };
-        
-        // ===== POPULATE DAY SELECT =====
-        function populateDays() {
-            const daySelect = document.getElementById('lastDay');
-            daySelect.innerHTML = '';
-            for (let i = 1; i <= 31; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.textContent = i;
-                if (i === 5) option.selected = true;
-                daySelect.appendChild(option);
-            }
+
+    <div class="main">
+        <div class="input-card">
+            <h2 id="detailsTitle">📝 Your Cycle Details</h2>
+
+            <div class="input-group">
+                <label id="lastPeriodLabel">Last Period Start Date</label>
+                <div class="date-input">
+                    <select id="lastMonth"><option value="3">March</option><option value="2">February</option><option value="1">January</option><option value="12">December</option><option value="11">November</option></select>
+                    <select id="lastDay"></select>
+                    <select id="lastYear"><option value="2026" selected>2026</option><option value="2025">2025</option></select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label id="cycleLengthLabel">Average Cycle Length (days)</label>
+                <input type="number" id="cycleLength" value="28" min="21" max="40" step="1">
+                <small style="color: #666;" id="cycleHint">21-35 days is normal</small>
+            </div>
+
+            <div class="input-group">
+                <label id="periodLengthLabel">Period Duration (days)</label>
+                <input type="number" id="periodLength" value="5" min="2" max="10" step="1">
+            </div>
+
+            <div class="input-group">
+                <label id="ageLabel">Age</label>
+                <input type="number" id="age" value="30" min="18" max="55">
+            </div>
+
+            <div class="ayurveda-note" id="ayurvedaNote">
+                <i class="fas fa-leaf"></i> <span id="ayurvedaNoteText">🌿 According to Ayurveda, balance your Vata dosha during periods with warm foods and rest.</span>
+            </div>
+
+            <h3 style="margin: 20px 0 10px;" id="symptomsTitle">😣 Common PMS Symptoms</h3>
+            <div class="symptom-grid" id="symptomGrid">
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="bloating"> 😖 <span id="symBloating">Bloating</span></label>
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="headache"> 🤕 <span id="symHeadache">Headaches</span></label>
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="cramps"> 😣 <span id="symCramps">Cramps</span></label>
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="fatigue"> 😴 <span id="symFatigue">Fatigue</span></label>
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="mood"> 🎭 <span id="symMood">Mood swings</span></label>
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="cravings"> 🍫 <span id="symCravings">Food cravings</span></label>
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="acne"> 🔴 <span id="symAcne">Acne</span></label>
+                <label class="symptom-item"><input type="checkbox" class="symptom" value="tender"> 😫 <span id="symTender">Breast tenderness</span></label>
+            </div>
+
+            <button class="calc-btn" onclick="calculateCycle()" id="calculateBtn">Calculate My Cycle</button>
+            <button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
+        </div>
+
+        <div class="results-card" id="results">
+            <h2 style="margin-bottom: 20px;" id="resultsTitle">📊 Your Cycle Forecast</h2>
+
+            <div class="next-period">
+                <div class="period-date" id="nextPeriod">April 2, 2026</div>
+                <div class="period-label" id="nextPeriodLabel">Next Period Start</div>
+            </div>
+
+            <div class="countdown">
+                <div class="countdown-item"><div class="countdown-number" id="daysUntil">7</div><div id="daysUntilLabel">Days Until</div></div>
+                <div class="countdown-item"><div class="countdown-number" id="cycleDay">21</div><div id="cycleDayLabel">Cycle Day</div></div>
+                <div class="countdown-item"><div class="countdown-number" id="phase">Luteal</div><div id="phaseLabel">Phase</div></div>
+            </div>
+
+            <h3 style="margin: 20px 0 10px;" id="calendarTitle">📅 Next 14 Days</h3>
+            <div class="calendar-grid" id="calendar"></div>
+
+            <div class="fertility-window">
+                <h3 id="fertilityTitle">🤰 Fertility Window</h3>
+                <div style="display: flex; justify-content: space-between;"><span id="fertileRangeLabel">Fertile Window:</span><span id="fertileRange">March 24 - March 30</span></div>
+                <div class="fertility-bar"><div class="fertility-fill" id="fertilityFill" style="width: 60%"></div></div>
+                <div id="fertilityAdvice">⚡ Ovulation on Day 14 (March 28)</div>
+            </div>
+
+            <div class="ayurveda-tips-card" id="ayurvedaTipsBox">
+                <h4><i class="fas fa-leaf"></i> <span id="tipsTitle">🌿 Ayurvedic Period Care Tips</span></h4>
+                <ul id="tipsList">
+                    <li id="tip1"><i class="fas fa-check-circle"></i> Drink warm water with ginger and jaggery</li>
+                    <li id="tip2"><i class="fas fa-check-circle"></i> Apply warm sesame oil massage on lower abdomen</li>
+                    <li id="tip3"><i class="fas fa-check-circle"></i> Eat light, warm foods (khichdi, soups)</li>
+                    <li id="tip4"><i class="fas fa-check-circle"></i> Practice gentle yoga (Child's pose, Cat-Cow)</li>
+                </ul>
+            </div>
+
+            <div class="pms-predictor">
+                <h3 id="pmsTitle">😣 PMS Symptom Predictor</h3>
+                <p><span id="symptomsLikely">Symptoms likely:</span> <strong id="pmsDays">3-5 days before period</strong></p>
+                <div class="pms-symptoms" id="predictedSymptoms"></div>
+            </div>
+
+            <details style="margin-top: 20px;">
+                <summary style="cursor: pointer; color: var(--primary); font-weight: 600;" id="forecastSummary">📅 View 3-Month Forecast</summary>
+                <div id="forecast" style="margin-top: 15px;"></div>
+            </details>
+        </div>
+
+        <!-- Future Features -->
+        <div class="future-plan-section" style="grid-column: span 2;">
+            <h3><i class="fas fa-rocket"></i> 🚀 <span id="futureTitle">Coming Soon: Future Features</span></h3>
+            <div class="future-features-grid">
+                <div class="future-feature"><i class="fas fa-bell"></i><h5 id="future1">Period Reminders</h5><span class="coming-soon">Coming Jan 2027</span></div>
+                <div class="future-feature"><i class="fas fa-calendar-alt"></i><h5 id="future2">Indian Festival Calendar</h5><span class="coming-soon">Coming Feb 2027</span></div>
+                <div class="future-feature"><i class="fas fa-utensils"></i><h5 id="future3">Ayurvedic Diet Plan</h5><span class="coming-soon">Coming Mar 2027</span></div>
+                <div class="future-feature"><i class="fas fa-user-md"></i><h5 id="future4">Doctor Consultation</h5><span class="coming-soon">Coming Apr 2027</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <h2 style="font-size:1.8rem;" id="faqTitle">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question" id="faq1Q">How is ovulation calculated?</div><p id="faq1A">Ovulation typically occurs 14 days before your next period.</p></div>
+            <div class="faq-item"><div class="faq-question" id="faq2Q">What are Ayurvedic period tips?</div><p id="faq2A">Ayurveda recommends warm foods, ginger tea, and rest during periods.</p></div>
+            <div class="faq-item"><div class="faq-question" id="faq3Q">How accurate is PMS prediction?</div><p id="faq3A">Based on cycle phase and common symptoms. Individual experiences vary.</p></div>
+            <div class="faq-item"><div class="faq-question" id="faq4Q">Can I use this for contraception?</div><p id="faq4A">No. This is for tracking only. Consult a doctor for contraception.</p></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-links">
+            <a href="/about">About Us</a> <a href="/privacy">Privacy Policy</a> <a href="/terms">Terms of Service</a> <a href="/contact">Contact</a> <a href="/blog">Health Blog</a>
+        </div>
+        <p id="footerReviews">⭐ 4.9/5 from 1,450+ reviews | Used in 45+ countries | <a href="/">More Tools →</a></p>
+        <p style="font-size: 0.9em;" id="disclaimerText">⚠️ Not for contraception - consult doctor for medical advice</p>
+    </div>
+</div>
+
+<script>
+    let currentLang = 'en';
+
+    window.onscroll = function() {
+        document.getElementById("scrollTopBtn").style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
+    };
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+    const translations = {
+        en: {
+            headerSubtitle:'Ayurvedic Tips',headerDesc:'PMS Predictor • Fertility Window • Ayurvedic Period Care',
+            detailsTitle:'📝 Your Cycle Details',lastPeriodLabel:'Last Period Start Date',cycleLengthLabel:'Average Cycle Length (days)',
+            cycleHint:'21-35 days is normal',periodLengthLabel:'Period Duration (days)',ageLabel:'Age',
+            ayurvedaNoteText:'🌿 According to Ayurveda, balance your Vata dosha during periods with warm foods and rest.',
+            symptomsTitle:'😣 Common PMS Symptoms',symBloating:'Bloating',symHeadache:'Headaches',symCramps:'Cramps',
+            symFatigue:'Fatigue',symMood:'Mood swings',symCravings:'Food cravings',symAcne:'Acne',symTender:'Breast tenderness',
+            calculateBtn:'Calculate My Cycle',resetBtn:'Reset All Fields',resultsTitle:'📊 Your Cycle Forecast',
+            nextPeriodLabel:'Next Period Start',daysUntilLabel:'Days Until',cycleDayLabel:'Cycle Day',phaseLabel:'Phase',
+            calendarTitle:'📅 Next 14 Days',fertilityTitle:'🤰 Fertility Window',fertileRangeLabel:'Fertile Window:',
+            tipsTitle:'🌿 Ayurvedic Period Care Tips',tip1:'Drink warm water with ginger and jaggery',
+            tip2:'Apply warm sesame oil massage on lower abdomen',tip3:'Eat light, warm foods (khichdi, soups)',
+            tip4:'Practice gentle yoga (Child\'s pose, Cat-Cow)',pmsTitle:'😣 PMS Symptom Predictor',
+            symptomsLikely:'Symptoms likely:',forecastSummary:'📅 View 3-Month Forecast',
+            futureTitle:'Coming Soon: Future Features',future1:'Period Reminders',future2:'Indian Festival Calendar',
+            future3:'Ayurvedic Diet Plan',future4:'Doctor Consultation',faqTitle:'Frequently Asked Questions',
+            faq1Q:'How is ovulation calculated?',faq1A:'Ovulation typically occurs 14 days before your next period.',
+            faq2Q:'What are Ayurvedic period tips?',faq2A:'Ayurveda recommends warm foods, ginger tea, and rest.',
+            faq3Q:'How accurate is PMS prediction?',faq3A:'Based on cycle phase and common symptoms.',
+            faq4Q:'Can I use this for contraception?',faq4A:'No. This is for tracking only.',
+            footerReviews:'⭐ 4.9/5 from 1,450+ reviews | Used in 45+ countries | ',
+            disclaimerText:'⚠️ Not for contraception - consult doctor for medical advice',
+            months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+            weekdays:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+            phases:{menstrual:'Menstrual',follicular:'Follicular',ovulation:'Ovulation',luteal:'Luteal'}
+        },
+        hi: {
+            headerSubtitle:'आयुर्वेदिक सुझाव',headerDesc:'PMS प्रेडिक्टर • फर्टिलिटी विंडो • आयुर्वेदिक पीरियड केयर',
+            detailsTitle:'📝 आपके चक्र की जानकारी',lastPeriodLabel:'पिछले पीरियड की शुरुआत',cycleLengthLabel:'औसत चक्र अवधि (दिन)',
+            cycleHint:'21-35 दिन सामान्य है',periodLengthLabel:'पीरियड अवधि (दिन)',ageLabel:'उम्र',
+            ayurvedaNoteText:'🌿 आयुर्वेद के अनुसार, पीरियड्स के दौरान गर्म भोजन और आराम से वात दोष संतुलित रखें।',
+            symptomsTitle:'😣 सामान्य PMS लक्षण',symBloating:'पेट फूलना',symHeadache:'सिरदर्द',symCramps:'ऐंठन',
+            symFatigue:'थकान',symMood:'मूड स्विंग',symCravings:'खाने की इच्छा',symAcne:'मुंहासे',symTender:'स्तन कोमलता',
+            calculateBtn:'मेरा चक्र कैलकुलेट करें',resetBtn:'सभी रीसेट करें',resultsTitle:'📊 आपका चक्र पूर्वानुमान',
+            nextPeriodLabel:'अगला पीरियड',daysUntilLabel:'दिन शेष',cycleDayLabel:'चक्र दिवस',phaseLabel:'अवस्था',
+            calendarTitle:'📅 अगले 14 दिन',fertilityTitle:'🤰 फर्टिलिटी विंडो',fertileRangeLabel:'फर्टाइल विंडो:',
+            tipsTitle:'🌿 आयुर्वेदिक पीरियड केयर सुझाव',tip1:'अदरक और गुड़ के साथ गर्म पानी पिएं',
+            tip2:'पेट के निचले हिस्से पर गर्म तिल के तेल की मालिश करें',tip3:'हल्का, गर्म भोजन करें (खिचड़ी, सूप)',
+            tip4:'हल्का योग करें (चाइल्ड पोज़, कैट-काउ)',pmsTitle:'😣 PMS लक्षण प्रेडिक्टर',
+            symptomsLikely:'लक्षण संभावित:',forecastSummary:'📅 3-महीने का पूर्वानुमान देखें',
+            futureTitle:'जल्द आ रहा है: नई सुविधाएं',future1:'पीरियड रिमाइंडर',future2:'भारतीय त्योहार कैलेंडर',
+            future3:'आयुर्वेदिक डाइट प्लान',future4:'डॉक्टर परामर्श',faqTitle:'अक्सर पूछे जाने वाले प्रश्न',
+            faq1Q:'ओवुलेशन कैसे कैलकुलेट होता है?',faq1A:'ओवुलेशन आमतौर पर अगले पीरियड से 14 दिन पहले होता है।',
+            faq2Q:'आयुर्वेदिक पीरियड टिप्स क्या हैं?',faq2A:'आयुर्वेद गर्म भोजन, अदरक की चाय और आराम की सलाह देता है।',
+            faq3Q:'PMS भविष्यवाणी कितनी सटीक है?',faq3A:'चक्र अवस्था और सामान्य लक्षणों पर आधारित।',
+            faq4Q:'क्या इसका उपयोग गर्भनिरोधक के लिए कर सकते हैं?',faq4A:'नहीं। यह केवल ट्रैकिंग के लिए है।',
+            footerReviews:'⭐ 1,450+ समीक्षाओं से 4.9/5 | 45+ देशों में उपयोग | ',
+            disclaimerText:'⚠️ गर्भनिरोधक के लिए नहीं - चिकित्सकीय सलाह के लिए डॉक्टर से संपर्क करें',
+            months:['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितंबर','अक्टूबर','नवंबर','दिसंबर'],
+            weekdays:['सोम','मंगल','बुध','गुरु','शुक्र','शनि','रवि'],
+            phases:{menstrual:'मासिक',follicular:'फॉलिक्युलर',ovulation:'ओवुलेशन',luteal:'ल्यूटियल'}
         }
-        
-        // ===== LANGUAGE SWITCHER =====
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-            document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
-            
-            const t = translations[lang] || translations.en;
-            
-            // Update month select
-            const monthSelect = document.getElementById('lastMonth');
-            const tMonths = t.months;
-            for (let i = 0; i < monthSelect.options.length; i++) {
-                const val = parseInt(monthSelect.options[i].value);
-                monthSelect.options[i].textContent = tMonths[val - 1] || monthSelect.options[i].textContent;
-            }
-            
-            // Update text elements
-            Object.keys(t).forEach(id => {
-                const el = document.getElementById(id);
-                if (el) {
-                    if (id.startsWith('tip') || id.includes('Note') || id.includes('Text')) {
-                        el.innerHTML = t[id];
-                    } else if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
-                        // Skip
-                    } else {
-                        el.textContent = t[id];
-                    }
-                }
-            });
-            
-            // Update symptom labels
-            document.querySelectorAll('[id^="sym"]').forEach(el => {
-                const key = el.id;
-                if (t[key]) el.textContent = t[key];
-            });
-            
-            document.querySelector('title').textContent = lang === 'hi' 
-                ? '🌸 मासिक धर्म कैलकुलेटर: PMS प्रेडिक्टर और आयुर्वेदिक टिप्स | HealthCalc'
-                : '🌸 Menstrual Cycle Calculator: PMS Predictor & Ayurvedic Tips | HealthCalc';
-            
-            calculateCycle();
+    };
+
+    function populateDays() {
+        const daySelect = document.getElementById('lastDay');
+        daySelect.innerHTML = '';
+        for (let i = 1; i <= 31; i++) {
+            const option = document.createElement('option');
+            option.value = i; option.textContent = i;
+            if (i === 5) option.selected = true;
+            daySelect.appendChild(option);
         }
-        
-        // ===== RESET =====
-        function resetForm() {
-            document.getElementById('lastMonth').value = '3';
-            populateDays();
-            document.getElementById('lastDay').value = '5';
-            document.getElementById('lastYear').value = '2026';
-            document.getElementById('cycleLength').value = '28';
-            document.getElementById('periodLength').value = '5';
-            document.getElementById('age').value = '30';
-            document.querySelectorAll('.symptom').forEach(cb => cb.checked = false);
-            calculateCycle();
+    }
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+        document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+        const t = translations[lang] || translations.en;
+        const monthSelect = document.getElementById('lastMonth');
+        for (let i = 0; i < monthSelect.options.length; i++) {
+            const val = parseInt(monthSelect.options[i].value);
+            monthSelect.options[i].textContent = t.months[val - 1] || monthSelect.options[i].textContent;
         }
-        
-        // ===== SAVE/LOAD =====
-        function saveToLocalStorage() {
-            const data = {
-                currentLang,
-                lastMonth: document.getElementById('lastMonth').value,
-                lastDay: document.getElementById('lastDay').value,
-                lastYear: document.getElementById('lastYear').value,
-                cycleLength: document.getElementById('cycleLength').value,
-                periodLength: document.getElementById('periodLength').value,
-                age: document.getElementById('age').value,
-                symptoms: Array.from(document.querySelectorAll('.symptom:checked')).map(cb => cb.value)
-            };
-            localStorage.setItem('menstrualData', JSON.stringify(data));
-        }
-        
-        function loadFromLocalStorage() {
-            const saved = localStorage.getItem('menstrualData');
-            if (saved) {
-                const data = JSON.parse(saved);
-                if (data.currentLang) setLanguage(data.currentLang);
-                if (data.lastMonth) document.getElementById('lastMonth').value = data.lastMonth;
-                if (data.lastDay) document.getElementById('lastDay').value = data.lastDay;
-                if (data.lastYear) document.getElementById('lastYear').value = data.lastYear;
-                if (data.cycleLength) document.getElementById('cycleLength').value = data.cycleLength;
-                if (data.periodLength) document.getElementById('periodLength').value = data.periodLength;
-                if (data.age) document.getElementById('age').value = data.age;
-                if (data.symptoms) {
-                    document.querySelectorAll('.symptom').forEach(cb => {
-                        cb.checked = data.symptoms.includes(cb.value);
-                    });
-                }
+        Object.keys(t).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                if (id.startsWith('tip') || id.includes('Note') || id.includes('Text')) el.innerHTML = t[id];
+                else if (el.tagName !== 'INPUT' && el.tagName !== 'SELECT') el.textContent = t[id];
             }
-            calculateCycle();
-        }
-        
-        // ===== MAIN CALCULATION =====
-        function calculateCycle() {
-            const isHindi = currentLang === 'hi';
-            const t = translations[currentLang] || translations.en;
-            
-            const lastMonth = parseInt(document.getElementById('lastMonth').value);
-            const lastDay = parseInt(document.getElementById('lastDay').value);
-            const lastYear = parseInt(document.getElementById('lastYear').value);
-            const cycleLength = parseInt(document.getElementById('cycleLength').value) || 28;
-            const periodLength = parseInt(document.getElementById('periodLength').value) || 5;
-            const age = parseInt(document.getElementById('age').value) || 30;
-            
-            const symptoms = Array.from(document.querySelectorAll('.symptom:checked')).map(s => s.value);
-            
-            const lastPeriod = new Date(lastYear, lastMonth - 1, lastDay);
-            const nextPeriod = new Date(lastPeriod);
-            nextPeriod.setDate(lastPeriod.getDate() + cycleLength);
-            
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const locale = isHindi ? 'hi-IN' : 'en-US';
-            
-            document.getElementById('nextPeriod').textContent = nextPeriod.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
-            
-            const diffDays = Math.ceil((nextPeriod - today) / (1000 * 60 * 60 * 24));
-            document.getElementById('daysUntil').textContent = diffDays > 0 ? diffDays : (isHindi ? 'आज' : 'Today');
-            
-            const cycleDay = Math.ceil((today - lastPeriod) / (1000 * 60 * 60 * 24)) + 1;
-            document.getElementById('cycleDay').textContent = cycleDay > 0 ? cycleDay : 1;
-            
-            let phase = '';
-            if (cycleDay <= periodLength) phase = t.phases.menstrual;
-            else if (cycleDay <= 13) phase = t.phases.follicular;
-            else if (cycleDay <= 16) phase = t.phases.ovulation;
-            else phase = t.phases.luteal;
-            document.getElementById('phase').textContent = phase;
-            
-            const ovulationDay = cycleLength - 14;
-            const fertileStart = ovulationDay - 5;
-            const fertileEnd = ovulationDay + 1;
-            
-            const fertileStartDate = new Date(lastPeriod);
-            fertileStartDate.setDate(lastPeriod.getDate() + fertileStart - 1);
-            const fertileEndDate = new Date(lastPeriod);
-            fertileEndDate.setDate(lastPeriod.getDate() + fertileEnd - 1);
-            const ovulationDate = new Date(lastPeriod);
-            ovulationDate.setDate(lastPeriod.getDate() + ovulationDay - 1);
-            
-            document.getElementById('fertileRange').textContent = 
-                fertileStartDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' }) + ' - ' +
-                fertileEndDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' });
-            
-            document.getElementById('fertilityAdvice').innerHTML = isHindi
-                ? `⚡ ओवुलेशन दिन ${ovulationDay} (${ovulationDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' })})`
-                : `⚡ Ovulation on Day ${ovulationDay} (${ovulationDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })})`;
-            
-            let fertilityFill = 0;
-            if (cycleDay >= fertileStart && cycleDay <= fertileEnd) fertilityFill = 100;
-            else if (cycleDay < fertileStart) fertilityFill = Math.round((cycleDay / fertileStart) * 100);
-            else fertilityFill = Math.max(0, 100 - ((cycleDay - fertileEnd) * 10));
-            document.getElementById('fertilityFill').style.width = Math.min(100, fertilityFill) + '%';
-            
-            // Calendar
-            const calendar = document.getElementById('calendar');
-            calendar.innerHTML = '';
-            
-            t.weekdays.forEach(day => {
-                calendar.innerHTML += `<div style="font-weight: 600; color: #666;">${day}</div>`;
-            });
-            
-            const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-            let startDay = firstDay.getDay();
-            startDay = startDay === 0 ? 6 : startDay - 1;
-            
-            for (let i = 0; i < startDay; i++) calendar.innerHTML += '<div></div>';
-            
-            const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-            
-            for (let d = 1; d <= daysInMonth; d++) {
-                const cellDate = new Date(today.getFullYear(), today.getMonth(), d);
-                const cycleDayForDate = Math.ceil((cellDate - lastPeriod) / (1000 * 60 * 60 * 24)) + 1;
-                
-                let cellClass = 'calendar-day';
-                let title = '';
-                
-                if (cycleDayForDate >= 1 && cycleDayForDate <= periodLength) {
-                    cellClass += ' period';
-                    title = isHindi ? 'पीरियड' : 'Period';
-                } else if (cycleDayForDate >= fertileStart && cycleDayForDate <= fertileEnd) {
-                    cellClass += cycleDayForDate === ovulationDay ? ' ovulation' : ' fertile';
-                    title = cycleDayForDate === ovulationDay ? (isHindi ? 'ओवुलेशन' : 'Ovulation') : (isHindi ? 'फर्टाइल' : 'Fertile');
-                } else if (cycleDayForDate > (cycleLength - 5) && cycleDayForDate <= cycleLength) {
-                    cellClass += ' pms';
-                    title = isHindi ? 'PMS संभव' : 'PMS possible';
-                }
-                
-                calendar.innerHTML += `<div class="${cellClass}" title="${title}">${d}</div>`;
-            }
-            
-            // PMS Predictor
-            const pmsStart = cycleLength - 7;
-            document.getElementById('pmsDays').innerHTML = isHindi 
-                ? `दिन ${pmsStart}-${cycleLength}`
-                : `Days ${pmsStart}-${cycleLength}`;
-            
-            let predictedSymptoms = [];
-            if (age < 30) {
-                predictedSymptoms = ['😖 ' + t.symBloating, '😣 ' + t.symCramps, '🎭 ' + t.symMood, '🍫 ' + t.symCravings];
-            } else if (age < 40) {
-                predictedSymptoms = ['🤕 ' + t.symHeadache, '😴 ' + t.symFatigue, '😣 ' + t.symCramps, '😖 ' + t.symBloating];
-            } else {
-                predictedSymptoms = ['😴 ' + t.symFatigue, '🤕 ' + t.symHeadache, '🎭 ' + t.symMood, '🔴 ' + t.symAcne];
-            }
-            
-            const symptomMap = {
-                'bloating': '😖 ' + t.symBloating, 'headache': '🤕 ' + t.symHeadache,
-                'cramps': '😣 ' + t.symCramps, 'fatigue': '😴 ' + t.symFatigue,
-                'mood': '🎭 ' + t.symMood, 'cravings': '🍫 ' + t.symCravings,
-                'acne': '🔴 ' + t.symAcne, 'tender': '😫 ' + t.symTender
-            };
-            
-            const userSymptoms = symptoms.map(s => symptomMap[s]).filter(s => s);
-            predictedSymptoms = [...new Set([...predictedSymptoms, ...userSymptoms])].slice(0, 6);
-            
-            const symptomDiv = document.getElementById('predictedSymptoms');
-            symptomDiv.innerHTML = predictedSymptoms.map(s => 
-                `<span class="symptom-tag ${userSymptoms.includes(s) ? 'high' : ''}">${s}</span>`
-            ).join('');
-            
-            // 3-Month Forecast
-            let forecastHtml = '<div style="display: grid; gap: 10px; margin-top: 10px;">';
-            for (let i = 1; i <= 3; i++) {
-                const forecastDate = new Date(nextPeriod);
-                forecastDate.setMonth(nextPeriod.getMonth() + i - 1);
-                const ovDate = new Date(forecastDate.getTime() - (14 * 24 * 60 * 60 * 1000));
-                
-                forecastHtml += `
-                    <div style="display: flex; justify-content: space-between; padding: 8px; background: #fff0f3; border-radius: 8px;">
-                        <span><strong>${isHindi ? 'चक्र' : 'Cycle'} ${i + 1}</strong></span>
-                        <span>${isHindi ? 'पीरियड' : 'Period'}: ${forecastDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' })}</span>
-                        <span>${isHindi ? 'ओवुलेशन' : 'Ovulation'}: ${ovDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' })}</span>
-                    </div>
-                `;
-            }
-            forecastHtml += '</div>';
-            document.getElementById('forecast').innerHTML = forecastHtml;
-            
-            saveToLocalStorage();
-        }
-        
-        // Event listeners
-        document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
-        document.getElementById('langHI').addEventListener('click', () => setLanguage('hi'));
-        
-        document.querySelectorAll('input, select').forEach(el => {
-            el.addEventListener('change', calculateCycle);
         });
-        
-        window.setLanguage = setLanguage;
-        window.resetForm = resetForm;
-        window.calculateCycle = calculateCycle;
-        
+        document.querySelector('title').textContent = lang === 'hi' ? '🌸 मासिक धर्म कैलकुलेटर: PMS प्रेडिक्टर और आयुर्वेदिक टिप्स | HealthCalc' : '🌸 Menstrual Cycle Calculator: PMS Predictor & Ayurvedic Tips | HealthCalc';
+        calculateCycle();
+    }
+
+    function resetForm() {
+        document.getElementById('lastMonth').value = '3';
         populateDays();
-        window.onload = loadFromLocalStorage;
-    </script>
+        document.getElementById('lastDay').value = '5';
+        document.getElementById('lastYear').value = '2026';
+        document.getElementById('cycleLength').value = '28';
+        document.getElementById('periodLength').value = '5';
+        document.getElementById('age').value = '30';
+        document.querySelectorAll('.symptom').forEach(cb => cb.checked = false);
+        calculateCycle();
+    }
+
+    function saveToLocalStorage() {
+        localStorage.setItem('menstrualData', JSON.stringify({
+            currentLang, lastMonth: document.getElementById('lastMonth').value,
+            lastDay: document.getElementById('lastDay').value, lastYear: document.getElementById('lastYear').value,
+            cycleLength: document.getElementById('cycleLength').value, periodLength: document.getElementById('periodLength').value,
+            age: document.getElementById('age').value,
+            symptoms: Array.from(document.querySelectorAll('.symptom:checked')).map(cb => cb.value)
+        }));
+    }
+
+    function loadFromLocalStorage() {
+        const saved = localStorage.getItem('menstrualData');
+        if (saved) {
+            const data = JSON.parse(saved);
+            if (data.currentLang) setLanguage(data.currentLang);
+            if (data.lastMonth) document.getElementById('lastMonth').value = data.lastMonth;
+            if (data.lastDay) document.getElementById('lastDay').value = data.lastDay;
+            if (data.lastYear) document.getElementById('lastYear').value = data.lastYear;
+            if (data.cycleLength) document.getElementById('cycleLength').value = data.cycleLength;
+            if (data.periodLength) document.getElementById('periodLength').value = data.periodLength;
+            if (data.age) document.getElementById('age').value = data.age;
+            if (data.symptoms) document.querySelectorAll('.symptom').forEach(cb => { cb.checked = data.symptoms.includes(cb.value); });
+        }
+        calculateCycle();
+    }
+
+    function calculateCycle() {
+        const isHindi = currentLang === 'hi';
+        const t = translations[currentLang] || translations.en;
+        const lastMonth = parseInt(document.getElementById('lastMonth').value);
+        const lastDay = parseInt(document.getElementById('lastDay').value);
+        const lastYear = parseInt(document.getElementById('lastYear').value);
+        const cycleLength = parseInt(document.getElementById('cycleLength').value) || 28;
+        const periodLength = parseInt(document.getElementById('periodLength').value) || 5;
+        const age = parseInt(document.getElementById('age').value) || 30;
+        const symptoms = Array.from(document.querySelectorAll('.symptom:checked')).map(s => s.value);
+
+        const lastPeriod = new Date(lastYear, lastMonth - 1, lastDay);
+        const nextPeriod = new Date(lastPeriod); nextPeriod.setDate(lastPeriod.getDate() + cycleLength);
+        const today = new Date();
+        const locale = isHindi ? 'hi-IN' : 'en-US';
+
+        document.getElementById('nextPeriod').textContent = nextPeriod.toLocaleDateString(locale, { year:'numeric', month:'long', day:'numeric' });
+        const diffDays = Math.ceil((nextPeriod - today) / (1000*60*60*24));
+        document.getElementById('daysUntil').textContent = diffDays > 0 ? diffDays : (isHindi ? 'आज' : 'Today');
+        const cycleDay = Math.ceil((today - lastPeriod) / (1000*60*60*24)) + 1;
+        document.getElementById('cycleDay').textContent = cycleDay > 0 ? cycleDay : 1;
+
+        let phase = '';
+        if (cycleDay <= periodLength) phase = t.phases.menstrual;
+        else if (cycleDay <= 13) phase = t.phases.follicular;
+        else if (cycleDay <= 16) phase = t.phases.ovulation;
+        else phase = t.phases.luteal;
+        document.getElementById('phase').textContent = phase;
+
+        const ovulationDay = cycleLength - 14;
+        const fertileStart = ovulationDay - 5, fertileEnd = ovulationDay + 1;
+        const fertileStartDate = new Date(lastPeriod); fertileStartDate.setDate(lastPeriod.getDate() + fertileStart - 1);
+        const fertileEndDate = new Date(lastPeriod); fertileEndDate.setDate(lastPeriod.getDate() + fertileEnd - 1);
+        const ovulationDate = new Date(lastPeriod); ovulationDate.setDate(lastPeriod.getDate() + ovulationDay - 1);
+
+        document.getElementById('fertileRange').textContent = fertileStartDate.toLocaleDateString(locale, { month:'short', day:'numeric' }) + ' - ' + fertileEndDate.toLocaleDateString(locale, { month:'short', day:'numeric' });
+        document.getElementById('fertilityAdvice').innerHTML = isHindi ? `⚡ ओवुलेशन दिन ${ovulationDay} (${ovulationDate.toLocaleDateString(locale, { month:'short', day:'numeric' })})` : `⚡ Ovulation on Day ${ovulationDay} (${ovulationDate.toLocaleDateString('en-US', { month:'short', day:'numeric' })})`;
+
+        let fertilityFill = 0;
+        if (cycleDay >= fertileStart && cycleDay <= fertileEnd) fertilityFill = 100;
+        else if (cycleDay < fertileStart) fertilityFill = Math.round((cycleDay / fertileStart) * 100);
+        else fertilityFill = Math.max(0, 100 - ((cycleDay - fertileEnd) * 10));
+        document.getElementById('fertilityFill').style.width = Math.min(100, fertilityFill) + '%';
+
+        // Calendar
+        const calendar = document.getElementById('calendar');
+        calendar.innerHTML = '';
+        t.weekdays.forEach(day => { calendar.innerHTML += `<div style="font-weight:600;color:#666;">${day}</div>`; });
+        const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+        let startDay = firstDay.getDay(); startDay = startDay === 0 ? 6 : startDay - 1;
+        for (let i = 0; i < startDay; i++) calendar.innerHTML += '<div></div>';
+        const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+        for (let d = 1; d <= daysInMonth; d++) {
+            const cellDate = new Date(today.getFullYear(), today.getMonth(), d);
+            const cDay = Math.ceil((cellDate - lastPeriod) / (1000*60*60*24)) + 1;
+            let cls = 'calendar-day';
+            if (cDay >= 1 && cDay <= periodLength) cls += ' period';
+            else if (cDay >= fertileStart && cDay <= fertileEnd) cls += cDay === ovulationDay ? ' ovulation' : ' fertile';
+            else if (cDay > (cycleLength - 5) && cDay <= cycleLength) cls += ' pms';
+            calendar.innerHTML += `<div class="${cls}">${d}</div>`;
+        }
+
+        // PMS
+        const pmsStart = cycleLength - 7;
+        document.getElementById('pmsDays').innerHTML = isHindi ? `दिन ${pmsStart}-${cycleLength}` : `Days ${pmsStart}-${cycleLength}`;
+        let predicted = age < 30 ? ['bloating','cramps','mood','cravings'] : (age < 40 ? ['headache','fatigue','cramps','bloating'] : ['fatigue','headache','mood','acne']);
+        const symMap = { bloating:'😖 '+t.symBloating, headache:'🤕 '+t.symHeadache, cramps:'😣 '+t.symCramps, fatigue:'😴 '+t.symFatigue, mood:'🎭 '+t.symMood, cravings:'🍫 '+t.symCravings, acne:'🔴 '+t.symAcne, tender:'😫 '+t.symTender };
+        const userSym = symptoms.map(s => symMap[s]).filter(s => s);
+        predicted = [...new Set([...predicted.map(s => symMap[s]), ...userSym])].slice(0,6);
+        document.getElementById('predictedSymptoms').innerHTML = predicted.map(s => `<span class="symptom-tag ${userSym.includes(s)?'high':''}">${s}</span>`).join('');
+
+        // Forecast
+        let forecastHtml = '<div style="display:grid;gap:10px;">';
+        for (let i = 1; i <= 3; i++) {
+            const fd = new Date(nextPeriod); fd.setMonth(nextPeriod.getMonth() + i - 1);
+            const od = new Date(fd.getTime() - (14*24*60*60*1000));
+            forecastHtml += `<div style="display:flex;justify-content:space-between;padding:8px;background:#fff0f3;border-radius:8px;"><span><strong>${isHindi?'चक्र':'Cycle'} ${i+1}</strong></span><span>${isHindi?'पीरियड':'Period'}: ${fd.toLocaleDateString(locale,{month:'short',day:'numeric'})}</span><span>${isHindi?'ओवुलेशन':'Ovulation'}: ${od.toLocaleDateString(locale,{month:'short',day:'numeric'})}</span></div>`;
+        }
+        document.getElementById('forecast').innerHTML = forecastHtml + '</div>';
+        saveToLocalStorage();
+    }
+
+    document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
+    document.getElementById('langHI').addEventListener('click', () => setLanguage('hi'));
+    document.querySelectorAll('input, select').forEach(el => el.addEventListener('change', calculateCycle));
+
+    window.setLanguage = setLanguage;
+    window.resetForm = resetForm;
+    window.calculateCycle = calculateCycle;
+
+    populateDays();
+    window.onload = loadFromLocalStorage;
+</script>
 </body>
 </html>
