@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WHR Calculator | Waist-to-Hip Ratio | WHO Metabolic Risk Tool</title>
+<meta name="description" content="Calculate Waist-to-Hip Ratio (WHR) — WHO approved predictor of heart disease, diabetes & visceral fat. Better than BMI for central obesity.">
+<meta name="keywords" content="WHR, waist-to-hip ratio, central obesity, metabolic syndrome, WHO, health risk calculator">
+<link rel="canonical" href="https://healthcalc.in/whr-calculator.html">
+<meta property="og:title" content="WHR Calculator | Health Risk Assessment">
+<meta property="og:description" content="Measure your body fat distribution. Higher risk if apple-shaped.">
+
+<style>
+* {
+box-sizing: border-box;
+font-family: system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+body {
+background: #f0f4f8;
+margin: 0;
+padding: 2rem 1rem;
+}
+.wrapper {
+max-width: 700px;
+margin: 0 auto;
+}
+.card {
+background: white;
+border-radius: 2rem;
+padding: 1.8rem;
+box-shadow: 0 20px 30px -10px rgba(0,0,0,0.08);
+}
+h1 {
+font-size: 2rem;
+background: linear-gradient(145deg, #1f4870, #1b6d8a);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+.badge {
+background: #d9eaf5;
+display: inline-block;
+padding: 0.2rem 1rem;
+border-radius: 30px;
+font-size: 0.8rem;
+font-weight: bold;
+margin-bottom: 1rem;
+}
+.unit-row {
+display: flex;
+gap: 12px;
+background: #eef2f5;
+border-radius: 50px;
+padding: 6px;
+margin: 20px 0;
+}
+.unit-opt {
+flex: 1;
+text-align: center;
+padding: 8px;
+cursor: pointer;
+border-radius: 40px;
+font-weight: 600;
+}
+.unit-opt.active {
+background: white;
+box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+color: #116b8c;
+}
+.form-grid {
+display: flex;
+flex-direction: column;
+gap: 1.2rem;
+margin: 1.8rem 0;
+}
+.field {
+display: flex;
+flex-direction: column;
+}
+label {
+font-weight: 600;
+margin-bottom: 6px;
+color: #1e4663;
+}
+input {
+padding: 12px 16px;
+border: 1px solid #cbdae9;
+border-radius: 48px;
+font-size: 1rem;
+}
+button {
+background: #22668d;
+color: white;
+border: none;
+padding: 14px;
+width: 100%;
+border-radius: 48px;
+font-weight: bold;
+font-size: 1.05rem;
+cursor: pointer;
+transition: all 0.2s;
+}
+.result-card {
+background: #e8f0fe;
+border-radius: 1.5rem;
+padding: 1.4rem;
+margin-top: 1.8rem;
+text-align: center;
+}
+.whr-number {
+font-size: 3rem;
+font-weight: 800;
+color: #134b6b;
+}
+.risk-level {
+font-size: 1.3rem;
+font-weight: bold;
+margin: 6px 0;
+}
+.interlinks {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 12px;
+margin-top: 28px;
+border-top: 1px solid #cbdadf;
+padding-top: 24px;
+}
+.interlinks a {
+text-decoration: none;
+background: #edf2f7;
+padding: 6px 16px;
+border-radius: 40px;
+font-size: 0.85rem;
+color: #1e5a7a;
+}
+footer {
+text-align: center;
+margin-top: 2rem;
+font-size: 0.75rem;
+color: #5e7e9c;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<div class="card">
+<span class="badge">📏 WHO Recommended • Better than BMI for central obesity</span>
+<h1>Waist-to-Hip Ratio (WHR)</h1>
+<p>Measures fat distribution. Apple shape (high WHR) = higher metabolic risk. Used globally by WHO & cardiologists.</p>
+
+<div class="unit-row" id="unitSelectorWHR">
+<div class="unit-opt active" data-unitwhr="cm">📏 cm (metric)</div>
+<div class="unit-opt" data-unitwhr="inch">🇺🇸 inches (imperial)</div>
+</div>
+
+<div class="form-grid">
+<div class="field">
+<label>📐 Waist circumference</label>
+<input type="number" id="waist" step="any" placeholder="e.g., 82 cm or 32 inches" value="82">
+</div>
+<div class="field">
+<label>🦵 Hip circumference (widest part)</label>
+<input type="number" id="hip" step="any" placeholder="e.g., 98 cm or 38.5 inches" value="98">
+</div>
+</div>
+
+<button id="calcWHR">Calculate WHR & Risk</button>
+
+<div class="result-card" id="whrResult">
+<div>Your Waist-to-Hip Ratio</div>
+<div class="whr-number" id="whrValue">—</div>
+<div class="risk-level" id="riskCategory"></div>
+<div id="whrAdvice" style="font-size:0.9rem; margin-top: 8px;"></div>
+</div>
+
+<div class="interlinks">
+<a href="https://healthcalc.in/bmi-calculator.html">📊 BMI</a>
+<a href="https://healthcalc.in/body-fat-calculator.html">🧬 Body Fat %</a>
+<a href="https://healthcalc.in/ffmi-calculator.html">💪 FFMI (Muscle)</a>
+<a href="https://healthcalc.in/ascvd-risk-calculator.html">❤️ Heart Risk (ASCVD)</a>
+<a href="https://healthcalc.in/vascular-age-calculator.html">🩸 Vascular Age</a>
+</div>
+</div>
+<footer>WHR thresholds based on WHO & NIH guidelines. For adults 18+. Consult doctor for medical advice.</footer>
+</div>
+
+<script>
+let currentUnitWHR = 'cm'; // cm or inch
+const waistInput = document.getElementById('waist');
+const hipInput = document.getElementById('hip');
+
+document.querySelectorAll('.unit-opt').forEach(opt => {
+opt.addEventListener('click', (e) => {
+document.querySelectorAll('.unit-opt').forEach(u => u.classList.remove('active'));
+opt.classList.add('active');
+currentUnitWHR = opt.getAttribute('data-unitwhr');
+// update placeholders
+if(currentUnitWHR === 'cm') {
+waistInput.placeholder = "e.g., 82 cm";
+hipInput.placeholder = "e.g., 98 cm";
+if(waistInput.value && !isNaN(waistInput.value)) {
+// convert inch to cm if needed
+}
+} else {
+waistInput.placeholder = "e.g., 32 inches";
+hipInput.placeholder = "e.g., 38.5 inches";
+}
+computeWHR(); // auto refresh
+});
+});
+
+function computeWHR() {
+let waistVal = parseFloat(waistInput.value);
+let hipVal = parseFloat(hipInput.value);
+if(isNaN(waistVal) || isNaN(hipVal) || waistVal <= 0 || hipVal <= 0) return;
+
+let waistCm = waistVal, hipCm = hipVal;
+if(currentUnitWHR === 'inch') {
+waistCm = waistVal * 2.54;
+hipCm = hipVal * 2.54;
+}
+let ratio = waistCm / hipCm;
+if(ratio > 2 || ratio < 0.4) return;
+
+document.getElementById('whrValue').innerHTML = ratio.toFixed(3);
+
+// Gender optional? But general population thresholds (WHO)
+// For simplicity: women >0.85 high risk, men >0.9 high risk. We'll ask via optional selector?
+// We'll add interactive gender selector to improve accuracy:
+let genderRisk = document.getElementById('genderSelect') ? document.getElementById('genderSelect').value : 'female';
+let riskText = '', colorClass = '';
+
+if(genderRisk === 'female') {
+if(ratio < 0.75) riskText = "🟢 Low health risk (optimal)";
+else if(ratio < 0.85) riskText = "🟡 Moderate risk — increased metabolic issues";
+else riskText = "🔴 High Risk — cardiovascular & diabetes risk elevated";
+} else {
+if(ratio < 0.85) riskText = "🟢 Low health risk (optimal)";
+else if(ratio < 0.95) riskText = "🟡 Moderate risk — consider lifestyle changes";
+else riskText = "🔴 High Risk — visceral fat risk high";
+}
+
+let advice = `WHR ${ratio.toFixed(3)}. `;
+if( (genderRisk === 'female' && ratio >= 0.85) || (genderRisk === 'male' && ratio >= 0.95) )
+advice += "Focus on waist reduction: aerobic exercise, reduce refined carbs, stress management.";
+else if( (genderRisk === 'female' && ratio >= 0.75) || (genderRisk === 'male' && ratio >= 0.85) )
+advice += "Maintaining healthy diet & physical activity will reduce future risk.";
+else
+advice += "Great! Keep up balanced nutrition & regular movement.";
+
+document.getElementById('riskCategory').innerHTML = riskText;
+document.getElementById('whrAdvice').innerHTML = advice;
+}
+
+// add gender selector elegantly without breaking layout
+const resultDiv = document.getElementById('whrResult');
+const genderDiv = document.createElement('div');
+genderDiv.style.marginBottom = '12px';
+genderDiv.innerHTML = `<label style="font-size:0.85rem;">⚥ Gender for risk threshold:</label>
+<select id="genderSelect" style="margin-left: 10px; padding: 6px 12px; border-radius: 40px; border:1px solid #bbb;">
+<option value="female">♀️ Female (WHR >0.85 high risk)</option>
+<option value="male">♂️ Male (WHR >0.90 high risk)</option>
+</select>`;
+const firstChild = resultDiv.firstChild;
+resultDiv.insertBefore(genderDiv, firstChild);
+
+document.getElementById('calcWHR').addEventListener('click', computeWHR);
+document.getElementById('genderSelect')?.addEventListener('change', computeWHR);
+waistInput.addEventListener('input', computeWHR);
+hipInput.addEventListener('input', computeWHR);
+window.addEventListener('load', () => { computeWHR(); });
+</script>
+</body>
+</html>

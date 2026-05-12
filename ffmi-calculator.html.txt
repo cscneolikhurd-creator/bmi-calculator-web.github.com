@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>FFMI Calculator | Fat-Free Mass Index | Natural vs Enhanced Lifters</title>
+<meta name="description" content="Calculate your Fat-Free Mass Index (FFMI) – the gold standard for muscle mass assessment. Separate classification for natural vs enhanced lifters. Metric/Imperial units.">
+<meta name="keywords" content="FFMI, Fat-Free Mass Index, muscle mass calculator, natural bodybuilding, enhanced lifter, gym fitness tool">
+<meta name="author" content="HealthCalc">
+<link rel="canonical" href="https://healthcalc.in/ffmi-calculator.html">
+
+<!-- Open Graph for social sharing -->
+<meta property="og:title" content="FFMI Calculator | HealthCalc">
+<meta property="og:description" content="Know your muscle mass index. Natural vs Enhanced classification.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://healthcalc.in/ffmi-calculator.html">
+
+<!-- Schema.org markup for Google -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "WebApplication",
+"name": "FFMI Calculator",
+"description": "Fat-Free Mass Index calculator for muscle assessment",
+"applicationCategory": "Health & Fitness",
+"operatingSystem": "All",
+"offers": {
+"@type": "Offer",
+"price": "0",
+"priceCurrency": "USD"
+}
+}
+</script>
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+padding: 2rem 1rem;
+color: #1e2a3e;
+}
+.container {
+max-width: 650px;
+margin: 0 auto;
+}
+.calculator-card {
+background: rgba(255,255,255,0.95);
+backdrop-filter: blur(2px);
+border-radius: 32px;
+box-shadow: 0 20px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+padding: 1.8rem;
+transition: transform 0.2s;
+}
+h1 {
+font-size: 1.9rem;
+background: linear-gradient(120deg, #0f2b3d, #1b4f6e);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+margin-bottom: 0.5rem;
+}
+.sub {
+color: #4a627a;
+border-left: 4px solid #2c7da0;
+padding-left: 1rem;
+margin-bottom: 1.8rem;
+font-weight: 500;
+}
+.unit-toggle {
+display: flex;
+gap: 1rem;
+background: #eef2f7;
+padding: 0.5rem;
+border-radius: 60px;
+margin-bottom: 1.8rem;
+}
+.unit-btn {
+flex: 1;
+text-align: center;
+padding: 0.6rem;
+border-radius: 40px;
+cursor: pointer;
+font-weight: 600;
+transition: 0.2s;
+background: transparent;
+color: #2c3e50;
+}
+.unit-btn.active {
+background: white;
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+color: #1f6392;
+}
+.input-group {
+margin-bottom: 1.5rem;
+}
+label {
+display: block;
+font-weight: 600;
+margin-bottom: 0.4rem;
+color: #1f3b4c;
+}
+input, select {
+width: 100%;
+padding: 14px 16px;
+font-size: 1rem;
+border: 1px solid #cbd5e1;
+border-radius: 20px;
+background: white;
+transition: 0.2s;
+}
+input:focus {
+outline: none;
+border-color: #2c7da0;
+box-shadow: 0 0 0 3px rgba(44,125,160,0.2);
+}
+.row-2col {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+}
+button {
+background: #1f6392;
+color: white;
+border: none;
+width: 100%;
+padding: 14px;
+font-size: 1.1rem;
+font-weight: bold;
+border-radius: 40px;
+cursor: pointer;
+transition: 0.2s;
+margin-top: 0.8rem;
+}
+button:hover {
+background: #0e4b70;
+transform: scale(1.01);
+}
+.result-area {
+background: #eef2fa;
+border-radius: 24px;
+padding: 1.4rem;
+margin: 1.8rem 0 1.2rem;
+text-align: center;
+}
+.ffmi-value {
+font-size: 3rem;
+font-weight: 800;
+color: #0f3b4f;
+}
+.status {
+font-size: 1.3rem;
+font-weight: bold;
+margin: 0.5rem 0;
+}
+.interlink {
+margin-top: 2rem;
+padding-top: 1rem;
+border-top: 1px solid #cbd5e1;
+display: flex;
+flex-wrap: wrap;
+gap: 0.8rem;
+justify-content: center;
+}
+.interlink a {
+background: #e4e9f0;
+padding: 0.4rem 1rem;
+border-radius: 40px;
+text-decoration: none;
+color: #1e4a6e;
+font-size: 0.85rem;
+font-weight: 500;
+}
+footer {
+text-align: center;
+margin-top: 2rem;
+font-size: 0.8rem;
+color: #5a6e7c;
+}
+@media (max-width: 500px) {
+.calculator-card {
+padding: 1.2rem;
+}
+.row-2col {
+grid-template-columns: 1fr;
+gap: 0.8rem;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="calculator-card">
+<h1>💪 FFMI Calculator</h1>
+<div class="sub">Fat-Free Mass Index – The real muscle gauge (Natural vs Enhanced)</div>
+
+<div class="unit-toggle" id="unitToggle">
+<div class="unit-btn active" data-unit="metric">📏 Metric (kg/cm)</div>
+<div class="unit-btn" data-unit="imperial">🇺🇸 Imperial (lbs/in)</div>
+</div>
+
+<div id="metricFields">
+<div class="input-group">
+<label>💪 Weight (kg)</label>
+<input type="number" id="weightMetric" placeholder="e.g., 75" step="any" value="75">
+</div>
+<div class="input-group">
+<label>📏 Height (cm)</label>
+<input type="number" id="heightMetric" placeholder="e.g., 175" step="any" value="175">
+</div>
+<div class="input-group">
+<label>🧘 Body Fat % (approx)</label>
+<input type="number" id="bodyfat" placeholder="e.g., 15" step="any" value="15">
+</div>
+</div>
+
+<div id="imperialFields" style="display: none;">
+<div class="input-group">
+<label>🏋️ Weight (lbs)</label>
+<input type="number" id="weightImp" placeholder="e.g., 165" step="any" value="165">
+</div>
+<div class="input-group">
+<label>📏 Height (inches)</label>
+<input type="number" id="heightImp" placeholder="e.g., 69" step="any" value="69">
+</div>
+<div class="input-group">
+<label>🧘 Body Fat %</label>
+<input type="number" id="bodyfatImp" placeholder="e.g., 15" step="any" value="15">
+</div>
+</div>
+
+<div class="input-group">
+<label>⚙️ Lifter Type (for perspective)</label>
+<select id="lifterType">
+<option value="natural">🌱 Natural (no PEDs)</option>
+<option value="enhanced">⚡ Enhanced / Open category</option>
+</select>
+</div>
+
+<button id="calcBtn">📊 Calculate FFMI</button>
+
+<div class="result-area" id="resultBox">
+<div style="font-weight:500;">Your FFMI Score</div>
+<div class="ffmi-value" id="ffmiNumber">—</div>
+<div class="status" id="ffmiInterpret">Enter values above</div>
+<div id="ffmiDetail" style="font-size:0.9rem; margin-top:8px;"></div>
+</div>
+
+<div class="interlink">
+<a href="https://healthcalc.in/bmi-calculator.html">📊 BMI Calculator</a>
+<a href="https://healthcalc.in/body-fat-calculator.html">🧬 Body Fat %</a>
+<a href="https://healthcalc.in/ideal-weight-calculator.html">⚖️ Ideal Weight</a>
+<a href="https://healthcalc.in/calorie-calculator.html">🔥 Calorie Needs</a>
+<a href="https://healthcalc.in/whr-calculator.html">📏 WHR (New)</a>
+</div>
+<div style="margin-top: 1rem; font-size:0.8rem; text-align:center;">⭐ Trusted by fitness enthusiasts in USA, UK, Germany, Australia</div>
+</div>
+<footer>© 2025 HealthCalc — Science-based tools. Not medical advice.</footer>
+</div>
+
+<script>
+// unit toggling
+const metricDiv = document.getElementById('metricFields');
+const imperialDiv = document.getElementById('imperialFields');
+const unitBtns = document.querySelectorAll('.unit-btn');
+let currentUnit = 'metric';
+
+unitBtns.forEach(btn => {
+btn.addEventListener('click', () => {
+unitBtns.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+currentUnit = btn.getAttribute('data-unit');
+if(currentUnit === 'metric') {
+metricDiv.style.display = 'block';
+imperialDiv.style.display = 'none';
+} else {
+metricDiv.style.display = 'none';
+imperialDiv.style.display = 'block';
+}
+// recalc if needed? user will click button.
+});
+});
+
+function calculateFFMI() {
+let weightKg, heightM, bodyfatPct;
+
+if(currentUnit === 'metric') {
+let weight = parseFloat(document.getElementById('weightMetric').value);
+let heightCm = parseFloat(document.getElementById('heightMetric').value);
+let bf = parseFloat(document.getElementById('bodyfat').value);
+if(isNaN(weight) || isNaN(heightCm) || isNaN(bf)) return;
+weightKg = weight;
+heightM = heightCm / 100;
+bodyfatPct = bf;
+} else {
+let weightLbs = parseFloat(document.getElementById('weightImp').value);
+let heightIn = parseFloat(document.getElementById('heightImp').value);
+let bf = parseFloat(document.getElementById('bodyfatImp').value);
+if(isNaN(weightLbs) || isNaN(heightIn) || isNaN(bf)) return;
+weightKg = weightLbs * 0.453592;
+heightM = heightIn * 0.0254;
+bodyfatPct = bf;
+}
+
+if(weightKg <= 0 || heightM <= 0 || bodyfatPct < 0 || bodyfatPct >= 70) return;
+
+let fatMass = weightKg * (bodyfatPct / 100);
+let leanMass = weightKg - fatMass; // kg
+
+let ffmi = leanMass / (heightM * heightM);
+// adjusted FFMI (for height deviation, Kouri et al.)
+let referenceHeight = 1.8; // 180cm reference
+let adjustedFFMI = ffmi + (6.1 * (referenceHeight - heightM));
+
+let displayFFMI = adjustedFFMI.toFixed(1);
+let rawFFMI = ffmi.toFixed(1);
+
+let lifter = document.getElementById('lifterType').value;
+let interpretation = "";
+let extraNote = "";
+
+// Descriptive ranges (common in literature)
+if(adjustedFFMI < 17) interpretation = "⚠️ Low muscle mass — focus on resistance training & protein.";
+else if(adjustedFFMI < 19) interpretation = "📉 Below average muscle mass. Consistent strength training helps.";
+else if(adjustedFFMI < 21) interpretation = "✅ Average / Healthy muscle mass.";
+else if(adjustedFFMI < 23) interpretation = "💪 Above average — good lean mass!";
+else if(adjustedFFMI < 25) interpretation = "🏆 Excellent muscle development. Natural elite range.";
+else if(adjustedFFMI < 27) interpretation = "🔥 Exceptional FFMI. For naturals, this is very rare (possible with genetics).";
+else interpretation = "⚡ Extremely high FFMI — typical range for enhanced athletes.";
+
+if(lifter === 'natural' && adjustedFFMI > 25.5) {
+extraNote = "⚠️ Natural lifter threshold: above 25-26 is uncommon without performance enhancers. Consider honest evaluation.";
+} else if(lifter === 'enhanced' && adjustedFFMI < 20) {
+extraNote = "ℹ️ Even for enhanced, building foundation first is key. Focus on progressive overload.";
+} else {
+extraNote = "📊 FFMI is height-adjusted (reference 1.8m). Gold standard for muscle research.";
+}
+
+document.getElementById('ffmiNumber').innerText = displayFFMI;
+document.getElementById('ffmiInterpret').innerHTML = interpretation;
+document.getElementById('ffmiDetail').innerHTML = `Raw FFMI: ${rawFFMI} kg/m² | Lean Mass: ${leanMass.toFixed(1)} kg | ${extraNote}`;
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculateFFMI);
+window.addEventListener('load', () => {
+// set default calculation
+calculateFFMI();
+});
+</script>
+</body>
+</html>
