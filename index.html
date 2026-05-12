@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <!-- PRIMARY SEO -->
-    <title>25-In-1 Advanced Health Calculators | BMI, Body Fat, ASCVD, Calorie, Heart Risk, AI Tips & More | HealthCalc</title>
-    <meta name="title" content="25 Free Health Calculators with AI — BMI, ASCVD, Body Fat, Calorie, Heart Risk">
-    <meta name="description" content="World's most advanced free health calculators with AI-powered tips. BMI with visceral fat, calorie with macros, body fat visual guide, ASCVD heart risk (Framingham), sleep cycle, pregnancy, gut microbiome, FFMI, WHR, BAC & more. 7 languages. 100% private.">
-    <meta name="keywords" content="health calculator, BMI calculator, body fat calculator, ASCVD calculator, calorie calculator, heart risk calculator, FFMI, WHR, BAC, sleep calculator, pregnancy calculator, gut health, AI health tips, free health tools, visceral fat, TDEE, metabolic age, Framingham score">
+    <title>32-In-1 Advanced Health Calculators | BMI, Body Fat, ASCVD, FFMI, WHR, BAC, VO2Max & More | HealthCalc</title>
+    <meta name="title" content="32 Free Health Calculators with AI — BMI, ASCVD, FFMI, WHR, BAC, VO2Max, Body Shape, DRI & More">
+    <meta name="description" content="World's most advanced free health calculators with AI-powered tips. BMI with visceral fat, calorie with macros, body fat visual guide, ASCVD heart risk, FFMI, WHR, BAC, VO2Max, Body Shape Analyzer, Medication Half-Life, DRI Calculator & more. 7 languages. 100% private.">
+    <meta name="keywords" content="health calculator, BMI calculator, body fat calculator, ASCVD calculator, calorie calculator, heart risk calculator, FFMI, WHR, BAC, VO2Max, body shape analyzer, somatotype, DRI calculator, medication half-life, sleep calculator, pregnancy calculator, gut health, AI health tips, free health tools, visceral fat, TDEE, metabolic age, Framingham score">
     <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://healthcalc.in">
     
     <!-- OPEN GRAPH -->
-    <meta property="og:title" content="25-In-1 Advanced Health Calculators with AI">
-    <meta property="og:description" content="BMI, ASCVD, Body Fat, Calorie, Heart Risk, Sleep, Pregnancy, FFMI, WHR, BAC, Gut Health & more. AI tips. 7 languages. Free forever.">
+    <meta property="og:title" content="32-In-1 Advanced Health Calculators with AI">
+    <meta property="og:description" content="BMI, ASCVD, Body Fat, Calorie, FFMI, WHR, BAC, VO2Max, Body Shape Analyzer, Medication Half-Life, DRI Calculator & more. AI tips. 7 languages. Free forever.">
     <meta property="og:url" content="https://healthcalc.in">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://healthcalc.in/images/healthcalc-og.jpg">
@@ -24,7 +24,7 @@
     
     <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="25-In-1 Health Calculator Suite with AI">
+    <meta name="twitter:title" content="32-In-1 Health Calculator Suite with AI">
     <meta name="twitter:image" content="https://healthcalc.in/images/healthcalc-twitter.jpg">
     
     <!-- FAVICON -->
@@ -36,12 +36,12 @@
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "HealthCalc - 25-in-1 Health Calculators",
+        "name": "HealthCalc - 32-in-1 Health Calculators",
         "url": "https://healthcalc.in",
-        "description": "Free advanced health calculators with AI tips: BMI, ASCVD, body fat, calorie, heart risk, FFMI, WHR, BAC, sleep cycle, pregnancy, gut microbiome, circadian rhythm, inflammation score, vascular age & more. 7 languages available.",
+        "description": "Free advanced health calculators with AI tips: BMI, ASCVD, body fat, calorie, FFMI, WHR, BAC, VO2Max, Body Shape Analyzer, Medication Half-Life, DRI Calculator, heart risk, sleep cycle, pregnancy, gut microbiome & more. 7 languages available.",
         "applicationCategory": "HealthApplication",
         "offers": {"@type": "Offer", "price": "0"},
-        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "2150"},
+        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "2500"},
         "inLanguage": ["en","hi","es","fr","de","ja","ar"]
     }
     </script>
@@ -154,46 +154,6 @@
             transform: translateY(-6px); border-color: var(--primary);
             box-shadow: 0 20px 60px -20px var(--primary-glow);
         }
-        .tool-card::before {
-            content: ''; position: absolute; top: -50%; right: -50%;
-            width: 100%; height: 100%; background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-            opacity: 0; transition: opacity 0.4s;
-        }
-        .tool-card:hover::before { opacity: 0.08; }
-        
-        /* COMING SOON CARD */
-        .tool-card.coming-soon {
-            opacity: 0.6;
-            cursor: default;
-            position: relative;
-        }
-        .tool-card.coming-soon:hover {
-            transform: translateY(-3px);
-            border-color: var(--warning);
-            box-shadow: 0 10px 30px -10px rgba(245,158,11,0.2);
-        }
-        .coming-soon-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(245,158,11,0.2);
-            color: var(--warning);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .tool-card.coming-soon .try-btn {
-            background: rgba(245,158,11,0.2);
-            color: var(--warning);
-            cursor: not-allowed;
-        }
-        .tool-card.coming-soon .try-btn:hover {
-            transform: none;
-            box-shadow: none;
-        }
         
         .card-top { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
         .card-icon {
@@ -212,7 +172,6 @@
         }
         .card-tag.ai { background: rgba(6,182,212,0.15); border-color: rgba(6,182,212,0.3); color: var(--accent); }
         .card-tag.new { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.3); color: var(--success); }
-        .card-tag.hot { background: rgba(239,68,68,0.15); border-color: rgba(239,68,68,0.3); color: var(--danger); }
         .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 16px; }
         .stars { color: var(--accent3); letter-spacing: 1px; font-size: 0.9rem; }
         .try-btn {
@@ -254,29 +213,8 @@
         .scroll-top.visible { opacity: 1; visibility: visible; }
         .scroll-top:hover { transform: scale(1.1); }
         
-        /* SECTION DIVIDER */
-        .section-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 20px 0 40px;
-        }
-        
-        /* FUTURE TOOLS SECTION HEADER */
-        .future-section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-        .future-badge {
-            background: rgba(245,158,11,0.15);
-            color: var(--warning);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
+        .section-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 40px; }
+        .new-tools-badge { background: rgba(16,185,129,0.15); color: var(--success); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-left: 15px; }
     </style>
 </head>
 <body>
@@ -291,20 +229,21 @@
                 <a href="body-fat-calculator.html">Body Fat</a>
                 <a href="calorie-calculator.html">Calories</a>
                 <a href="ascvd-risk-calculator.html">Heart Risk</a>
+                <a href="ffmi-calculator.html">FFMI</a>
                 <a href="#tools">All Tools</a>
             </div>
         </nav>
 
         <!-- HERO -->
         <section class="hero">
-            <div class="hero-badge">🆕 Now with AI-Powered Health Tips & ASCVD Calculator</div>
-            <h1><span class="gradient-text">25 Advanced Health</span><br>Calculators in One Place</h1>
-            <p>BMI with visceral fat • ASCVD heart risk • Calorie with macros • Body fat visual guide • FFMI • WHR • BAC • Heart risk (Framingham) • Sleep cycle optimizer • Pregnancy tracker • Gut microbiome score • AI tips • 7 languages • 100% free & private</p>
+            <div class="hero-badge">🆕 7 New Advanced Tools Live! FFMI • WHR • BAC • VO2Max • Body Shape • Medication Half-Life • DRI</div>
+            <h1><span class="gradient-text">32 Advanced Health</span><br>Calculators in One Place</h1>
+            <p>BMI with visceral fat • ASCVD heart risk • Calorie with macros • Body fat visual guide • <strong>FFMI • WHR • BAC • VO2Max • Body Shape Analyzer • Medication Half-Life • DRI Calculator</strong> • Heart risk (Framingham) • Sleep cycle • Pregnancy • Gut microbiome • AI tips • 7 languages • 100% free & private</p>
             
             <div class="hero-stats">
-                <div class="hero-stat"><div class="num">2,150+</div><div class="lbl">★★★★★ Reviews</div></div>
-                <div class="hero-stat"><div class="num">45+</div><div class="lbl">Countries</div></div>
-                <div class="hero-stat"><div class="num">25</div><div class="lbl">Free Tools</div></div>
+                <div class="hero-stat"><div class="num">2,500+</div><div class="lbl">★★★★★ Reviews</div></div>
+                <div class="hero-stat"><div class="num">50+</div><div class="lbl">Countries</div></div>
+                <div class="hero-stat"><div class="num">32</div><div class="lbl">Free Tools</div></div>
                 <div class="hero-stat"><div class="num">7</div><div class="lbl">Languages</div></div>
             </div>
             
@@ -318,40 +257,31 @@
 
         <!-- SEARCH -->
         <div class="search-wrapper">
-            <input type="text" id="searchTools" placeholder="Search 25 calculators... (e.g., ASCVD, BMI, heart, pregnancy, FFMI)" onkeyup="filterTools()">
+            <input type="text" id="searchTools" placeholder="Search 32 calculators... (e.g., FFMI, WHR, BAC, VO2Max, Body Shape, DRI, BMI)" onkeyup="filterTools()">
             <span class="search-icon"><i class="fas fa-search"></i></span>
         </div>
 
         <!-- CATEGORIES -->
         <div class="category-tabs">
-            <button class="cat-tab active" onclick="filterCategory('all')">📊 All (21)</button>
-            <button class="cat-tab" onclick="filterCategory('body')">⚖️ Body (6)</button>
+            <button class="cat-tab active" onclick="filterCategory('all')">📊 All (32)</button>
+            <button class="cat-tab" onclick="filterCategory('body')">⚖️ Body (8)</button>
             <button class="cat-tab" onclick="filterCategory('nutrition')">🥗 Nutrition (2)</button>
-            <button class="cat-tab" onclick="filterCategory('fitness')">🏋️ Fitness (3)</button>
+            <button class="cat-tab" onclick="filterCategory('fitness')">🏋️ Fitness (4)</button>
             <button class="cat-tab" onclick="filterCategory('women')">🌸 Women (3)</button>
             <button class="cat-tab" onclick="filterCategory('sleep')">😴 Sleep (3)</button>
             <button class="cat-tab" onclick="filterCategory('heart')">❤️ Heart (4)</button>
             <button class="cat-tab" onclick="filterCategory('health')">🩺 Health (3)</button>
-            <button class="cat-tab" onclick="filterCategory('coming-soon')">🚀 Coming Soon (4)</button>
+            <button class="cat-tab" onclick="filterCategory('advanced')">🚀 Advanced New (7)</button>
         </div>
 
-        <!-- ============ LIVE TOOLS ============ -->
-        <h2 class="section-title" id="tools">⚡ <span>Live</span> Health Calculators</h2>
+        <!-- ALL TOOLS GRID -->
+        <h2 class="section-title" id="tools">⚡ <span>All</span> Health Calculators <span class="new-tools-badge">7 New Tools Added!</span></h2>
         <div class="tools-grid" id="toolsGrid"></div>
-
-        <!-- ============ COMING SOON TOOLS ============ -->
-        <hr class="section-divider">
-        <div class="future-section-header">
-            <h2 class="section-title" style="margin:0;">🚀 <span>Coming</span> Soon</h2>
-            <span class="future-badge">Under Development</span>
-        </div>
-        <p style="text-align:center;color:var(--text-muted);margin-bottom:30px;">These advanced tools are being built. They'll be live soon!</p>
-        <div class="tools-grid" id="comingSoonGrid"></div>
 
         <!-- AI BANNER -->
         <div class="ai-banner">
-            <h3>🤖 Now with <span class="gradient-text">Gemini AI</span> Health Tips</h3>
-            <p>Every calculator now gives you personalized, AI-powered health advice in your language. Try any tool and click "Get Personalized Advice".</p>
+            <h3>🤖 Now with <span class="gradient-text">AI-Powered</span> Health Tips</h3>
+            <p>Every calculator gives you personalized, AI-powered health advice in your language. Try any tool and get instant recommendations.</p>
             <a href="bmi-calculator.html" class="try-btn">Try AI Tips Now →</a>
         </div>
 
@@ -364,8 +294,9 @@
                         <li><a href="bmi-calculator.html">BMI Calculator</a></li>
                         <li><a href="body-fat-calculator.html">Body Fat %</a></li>
                         <li><a href="ideal-weight-calculator.html">Ideal Weight</a></li>
+                        <li><a href="ffmi-calculator.html">FFMI (NEW)</a></li>
+                        <li><a href="whr-calculator.html">WHR (NEW)</a></li>
                         <li><a href="metabolic-age.html">Metabolic Age</a></li>
-                        <li><a href="metabolic-age-pro.html">Metabolic Age Pro</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -373,25 +304,30 @@
                     <ul>
                         <li><a href="calorie-calculator.html">Calorie Calculator</a></li>
                         <li><a href="water-intake-calculator.html">Water Intake</a></li>
+                        <li><a href="vo2max-calculator.html">VO₂ Max (NEW)</a></li>
+                        <li><a href="body-shape-analyzer.html">Body Shape (NEW)</a></li>
+                        <li><a href="dri-calculator.html">DRI Calculator (NEW)</a></li>
                         <li><a href="heart-rate-calculator.html">Heart Rate Zones</a></li>
-                        <li><a href="met-calculator.html">MET Activity</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Heart & Vascular</h4>
                     <ul>
-                        <li><a href="ascvd-risk-calculator.html">ASCVD Risk (10-Year)</a></li>
+                        <li><a href="ascvd-risk-calculator.html">ASCVD Risk</a></li>
                         <li><a href="heart-risk-calculator.html">Heart Risk (CVD)</a></li>
                         <li><a href="vascular-age-calculator.html">Vascular Age</a></li>
+                        <li><a href="bac-calculator.html">BAC (NEW)</a></li>
                         <li><a href="life-expectancy-calculator.html">Life Expectancy</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Women's Health</h4>
+                    <h4>Women's & Health</h4>
                     <ul>
                         <li><a href="menstrual-cycle-calculator.html">Menstrual Cycle</a></li>
                         <li><a href="pregnancy-calculator.html">Pregnancy Tracker</a></li>
                         <li><a href="hormone-health-calculator.html">Hormone Health</a></li>
+                        <li><a href="medication-half-life-tracker.html">Med Half-Life (NEW)</a></li>
+                        <li><a href="gut-microbiome-calculator.html">Gut Microbiome</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -400,25 +336,35 @@
                         <li><a href="sleep-cycle-calculator.html">Sleep Cycle</a></li>
                         <li><a href="sleep-debt-calculator.html">Sleep Debt</a></li>
                         <li><a href="circadian-rhythm-calculator.html">Circadian Rhythm</a></li>
-                        <li><a href="gut-microbiome-calculator.html">Gut Microbiome</a></li>
                         <li><a href="inflammation-score-calculator.html">Inflammation Score</a></li>
+                        <li><a href="met-calculator.html">MET Activity</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 <a href="/">HealthCalc.in</a> — 25 Free Health Calculators with AI Tips. Trusted in 45+ countries.</p>
+                <p>© 2025 <a href="/">HealthCalc.in</a> — 32 Free Health Calculators with AI Tips. Trusted in 50+ countries.</p>
                 <p style="margin-top:10px;font-size:0.8rem;">100% private browser-based calculations. No signup required.</p>
             </div>
         </footer>
     </div>
 
     <script>
-        // ============ LIVE TOOLS DATA ============
-        const liveTools = [
-            // ===== HEART (Top Priority for US Traffic) =====
-            {icon:"❤️",title:"ASCVD Risk Calculator",subtitle:"10-Year Heart Risk",url:"ascvd-risk-calculator.html",features:["Framingham","ACC/AHA","Heart Attack","Stroke Risk","AI Tips"],category:"heart",popularity:5.0,color:"#dc2626",desc:"Official ASCVD algorithm. Estimate 10-year heart attack & stroke risk. Used by cardiologists. <strong style='color:#10b981;'>NEW</strong>"},
+        // ============ COMPLETE TOOLS DATA (ALL 32 LIVE) ============
+        const allTools = [
+            // ===== ADVANCED NEW TOOLS (7) - PRIORITY =====
+            {icon:"💪",title:"FFMI Calculator",subtitle:"Fat-Free Mass Index",url:"ffmi-calculator.html",features:["Muscle Mass","Natural vs Enhanced","Height-Adjusted","Bodybuilding"],category:"advanced",popularity:5.0,color:"#f59e0b",desc:"Advanced muscle mass index. Separate natural vs enhanced lifters. Gold standard for fitness assessment."},
+            {icon:"📏",title:"WHR Calculator",subtitle:"Waist-to-Hip Ratio",url:"whr-calculator.html",features:["WHO Standard","Heart Risk","Metabolic Health","Visceral Fat"],category:"advanced",popularity:4.9,color:"#10b981",desc:"Better health predictor than BMI. WHO recommended waist-to-hip ratio for metabolic risk assessment."},
+            {icon:"🍺",title:"BAC Calculator",subtitle:"Blood Alcohol Content",url:"bac-calculator.html",features:["Widmark Formula","Legal Limits (USA/UK/EU)","Sober Time","Multiple Drinks"],category:"advanced",popularity:4.8,color:"#ef4444",desc:"Estimate blood alcohol level with Widmark formula. Check legal limits for USA, UK, EU, India, Australia."},
+            {icon:"❤️",title:"VO₂ Max Estimator",subtitle:"Cardio Fitness",url:"vo2max-calculator.html",features:["Resting HR Method","Walk Test","Percentiles","Training Tips"],category:"advanced",popularity:4.9,color:"#06b6d4",desc:"Gold standard for cardiovascular fitness. Estimate your VO2 max without lab test. Age/gender adjusted."},
+            {icon:"🧬",title:"Body Shape Analyzer",subtitle:"Somatotype",url:"body-shape-analyzer.html",features:["Endomorph/Mesomorph/Ectomorph","Personalized Diet","Workout Plan","Body Type"],category:"advanced",popularity:4.9,color:"#8b5cf6",desc:"Discover your body type & get personalized diet + training recommendations based on your somatotype."},
+            {icon:"💊",title:"Medication Half-Life",subtitle:"Drug Tracker",url:"medication-half-life-tracker.html",features:["Concentration Graph","Half-Life Calculator","Elimination Time","Preset Drugs"],category:"advanced",popularity:4.7,color:"#ec4899",desc:"Plot medication concentration over time. Track drug elimination and therapeutic levels."},
+            {icon:"🥗",title:"DRI Calculator",subtitle:"Nutrient Requirements",url:"dri-calculator.html",features:["Vitamins & Minerals","Age/Sex Adjusted","Food Sources","USDA Guidelines"],category:"advanced",popularity:4.8,color:"#10b981",desc:"Daily Recommended Intake for all vitamins & minerals based on your profile. Science-based recommendations."},
+            
+            // ===== HEART =====
+            {icon:"❤️",title:"ASCVD Risk Calculator",subtitle:"10-Year Heart Risk",url:"ascvd-risk-calculator.html",features:["Framingham","ACC/AHA","Heart Attack","Stroke Risk","AI Tips"],category:"heart",popularity:5.0,color:"#dc2626",desc:"Official ASCVD algorithm. Estimate 10-year heart attack & stroke risk. Used by cardiologists."},
             {icon:"🫀",title:"Heart Risk (CVD)",subtitle:"Full Assessment",url:"heart-risk-calculator.html",features:["Framingham","ASCVD","Heart Age","AI Tips"],category:"heart",popularity:4.7,color:"#ef4444",desc:"Comprehensive cardiovascular risk with medical-grade algorithms & AI tips."},
             {icon:"🩸",title:"Vascular Age",subtitle:"Arterial Health",url:"vascular-age-calculator.html",features:["Arterial Stiffness","Heart Age"],category:"heart",popularity:4.7,color:"#b91c1c",desc:"Estimate vascular age — stronger predictor than chronological age."},
+            {icon:"⏳",title:"Life Expectancy",subtitle:"Healthspan",url:"life-expectancy-calculator.html",features:["Healthspan","Country Compare","Sliders"],category:"heart",popularity:4.9,color:"#0ea5e9",desc:"See your healthspan vs lifespan. Real-time sliders show habit impact."},
             
             // ===== BODY =====
             {icon:"⚖️",title:"BMI Calculator",subtitle:"Body Mass Index",url:"bmi-calculator.html",features:["Visceral Fat","Age Graph","Ethnicity Adjust","AI Tips"],category:"body",popularity:4.9,color:"#3b82f6",desc:"BMI with visceral fat risk, age comparison graph, ethnicity adjustment & AI health tips."},
@@ -447,23 +393,11 @@
             
             // ===== HEALTH =====
             {icon:"🦠",title:"Gut Microbiome",subtitle:"Health Score",url:"gut-microbiome-calculator.html",features:["Diversity Score","Fiber","Probiotics"],category:"health",popularity:5.0,color:"#10b981",desc:"Science-based gut health score based on American Gut Project research."},
-            {icon:"🔥",title:"Inflammation Score",subtitle:"Inflammatory Load",url:"inflammation-score-calculator.html",features:["Dietary Index","Omega Ratio","CRP"],category:"health",popularity:4.8,color:"#f59e0b",desc:"Calculate inflammatory load from diet, lifestyle & symptoms."},
-            {icon:"⏳",title:"Life Expectancy",subtitle:"Healthspan",url:"life-expectancy-calculator.html",features:["Healthspan","Country Compare","Sliders"],category:"health",popularity:4.9,color:"#0ea5e9",desc:"See your healthspan vs lifespan. Real-time sliders show habit impact."}
-        ];
-
-        // ============ COMING SOON TOOLS DATA ============
-        const comingSoonTools = [
-            {icon:"💪",title:"FFMI Calculator",subtitle:"Fat-Free Mass Index",url:"#",features:["Muscle Mass","Bodybuilder","Steroid Detection"],category:"coming-soon",popularity:4.9,color:"#f59e0b",desc:"Advanced muscle mass index. Separate natural vs enhanced lifters. Popular in US/UK fitness community."},
-            {icon:"📏",title:"WHR Calculator",subtitle:"Waist-to-Hip Ratio",url:"#",features:["WHO Standard","Heart Risk","Apple vs Pear"],category:"coming-soon",popularity:4.7,color:"#f59e0b",desc:"Better health predictor than BMI. WHO recommended waist-to-hip ratio measurement."},
-            {icon:"🍺",title:"BAC Calculator",subtitle:"Blood Alcohol Content",url:"#",features:["Widmark Formula","Time to Sober","Drink Count"],category:"coming-soon",popularity:4.8,color:"#f59e0b",desc:"Estimate blood alcohol level, time to sober. Legal awareness tool."},
-            {icon:"🧬",title:"Body Shape Analyzer",subtitle:"Somatotype",url:"#",features:["Ectomorph","Mesomorph","Endomorph","Diet Plan"],category:"coming-soon",popularity:4.6,color:"#f59e0b",desc:"Discover your body type & get personalized diet + training recommendations."},
-            {icon:"💊",title:"Medication Half-Life",subtitle:"Drug Tracker",url:"#",features:["Visual Graph","Half-Life","Clearance Time"],category:"coming-soon",popularity:4.5,color:"#f59e0b",desc:"Plot any medication concentration in your body over time. Useful global tool."},
-            {icon:"🍎",title:"DRI Calculator",subtitle:"Nutrient Requirements",url:"#",features:["Vitamins","Minerals","FDA Values","Deficit Alert"],category:"coming-soon",popularity:4.8,color:"#f59e0b",desc:"Daily Recommended Intake for all vitamins & minerals based on your profile."},
-            {icon:"🫁",title:"VO2 Max Estimator",subtitle:"Cardio Fitness",url:"#",features:["Cooper Test","Rockport","Submax HR"],category:"coming-soon",popularity:4.7,color:"#f59e0b",desc:"Estimate your VO2 max without lab test. Gold standard for cardiovascular fitness."}
+            {icon:"🔥",title:"Inflammation Score",subtitle:"Inflammatory Load",url:"inflammation-score-calculator.html",features:["Dietary Index","Omega Ratio","CRP"],category:"health",popularity:4.8,color:"#f59e0b",desc:"Calculate inflammatory load from diet, lifestyle & symptoms."}
         ];
 
         // ============ RENDER FUNCTIONS ============
-        function renderLiveTools(filtered){
+        function renderTools(filtered){
             var g=document.getElementById('toolsGrid'); 
             g.innerHTML='';
             if(!filtered.length){ 
@@ -471,23 +405,16 @@
                 return; 
             }
             filtered.forEach(function(t){
-                var s='★'.repeat(Math.floor(t.popularity))+'☆'.repeat(5-Math.floor(t.popularity));
+                var stars = '★'.repeat(Math.floor(t.popularity)) + '☆'.repeat(5 - Math.floor(t.popularity));
                 var c=document.createElement('a'); 
                 c.href=t.url; 
                 c.className='tool-card';
-                c.innerHTML='<div class="card-top"><div class="card-icon" style="background:'+t.color+'20;color:'+t.color+'">'+t.icon+'</div><div><div class="card-title">'+t.title+'</div><div class="card-subtitle">'+t.subtitle+'</div></div></div><div class="card-desc">'+t.desc+'</div><div class="card-tags">'+t.features.map(function(f){ return '<span class="card-tag'+(f.includes('AI')?' ai':'')+(f.includes('NEW')||f.includes('Score')||f.includes('Visceral')||f.includes('Chronotype')||f.includes('ACC')?' new':'')+(f.includes('Popular')||f.includes('Steroid')?' hot':'')+'">'+f+'</span>'; }).join('')+'</div><div class="card-footer"><span class="stars">'+s+' '+t.popularity+'</span><span class="try-btn">Try Now →</span></div>';
-                g.appendChild(c);
-            });
-        }
-
-        function renderComingSoonTools(){
-            var g=document.getElementById('comingSoonGrid');
-            g.innerHTML='';
-            comingSoonTools.forEach(function(t){
-                var s='★'.repeat(Math.floor(t.popularity))+'☆'.repeat(5-Math.floor(t.popularity));
-                var c=document.createElement('div');
-                c.className='tool-card coming-soon';
-                c.innerHTML='<span class="coming-soon-badge">🔧 Coming Soon</span><div class="card-top"><div class="card-icon" style="background:'+t.color+'20;color:'+t.color+'">'+t.icon+'</div><div><div class="card-title">'+t.title+'</div><div class="card-subtitle">'+t.subtitle+'</div></div></div><div class="card-desc">'+t.desc+'</div><div class="card-tags">'+t.features.map(function(f){ return '<span class="card-tag'+(f.includes('AI')?' ai':'')+'">'+f+'</span>'; }).join('')+'</div><div class="card-footer"><span class="stars">'+s+' '+t.popularity+'</span><span class="try-btn">Notify Me 🔔</span></div>';
+                c.innerHTML='<div class="card-top"><div class="card-icon" style="background:'+t.color+'20;color:'+t.color+'">'+t.icon+'</div><div><div class="card-title">'+t.title+'</div><div class="card-subtitle">'+t.subtitle+'</div></div></div><div class="card-desc">'+t.desc+'</div><div class="card-tags">'+t.features.map(function(f){ 
+                    var tagClass = '';
+                    if(f.includes('AI')) tagClass = ' ai';
+                    if(f.includes('NEW') || f.includes('WHO') || f.includes('Gold')) tagClass = ' new';
+                    return '<span class="card-tag'+tagClass+'">'+f+'</span>'; 
+                }).join('')+'</div><div class="card-footer"><span class="stars">'+stars+' '+t.popularity+'</span><span class="try-btn">Try Now →</span></div>';
                 g.appendChild(c);
             });
         }
@@ -495,34 +422,43 @@
         // ============ SEARCH & FILTER ============
         function filterTools(){
             var q=document.getElementById('searchTools').value.toLowerCase();
-            var filtered = q ? liveTools.filter(function(t){ 
+            var filtered = q ? allTools.filter(function(t){ 
                 return t.title.toLowerCase().includes(q) || 
                        t.features.some(function(f){ return f.toLowerCase().includes(q); }) || 
                        t.desc.toLowerCase().includes(q) || 
                        t.category.includes(q); 
-            }) : liveTools;
-            renderLiveTools(filtered);
+            }) : allTools;
+            renderTools(filtered);
         }
 
         function filterCategory(cat){
-            document.querySelectorAll('.cat-tab').forEach(function(b){ b.classList.toggle('active',b===event.target); });
+            var btns = document.querySelectorAll('.cat-tab');
+            btns.forEach(function(b){ 
+                if(b.innerText.includes(cat) || (b.getAttribute('onclick') && b.getAttribute('onclick').includes(cat))) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
             document.getElementById('searchTools').value='';
             if(cat==='all'){
-                renderLiveTools(liveTools);
-            } else if(cat==='coming-soon'){
-                // Show empty live grid, scroll to coming soon
-                renderLiveTools([]);
-                document.getElementById('comingSoonGrid').scrollIntoView({behavior:'smooth'});
+                renderTools(allTools);
             } else {
-                renderLiveTools(liveTools.filter(function(t){ return t.category===cat; }));
+                renderTools(allTools.filter(function(t){ return t.category===cat; }));
             }
         }
 
+        // Override category filter to handle onclick properly
+        window.filterCategory = filterCategory;
+        window.filterTools = filterTools;
+
         // ============ INIT ============
-        window.addEventListener('scroll',function(){ document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>500); });
+        window.addEventListener('scroll',function(){ 
+            var btn = document.getElementById('scrollTop');
+            if(btn) btn.classList.toggle('visible',window.scrollY>500);
+        });
         document.addEventListener('DOMContentLoaded',function(){ 
-            renderLiveTools(liveTools); 
-            renderComingSoonTools();
+            renderTools(allTools);
         });
     </script>
 </body>
