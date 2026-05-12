@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Body Shape Analyzer | Somatotype | Endomorph Mesomorph Ectomorph</title>
+<meta name="description" content="Discover your body type (Somatotype) - Endomorph, Mesomorph, or Ectomorph. Get personalized diet and training recommendations based on your unique body shape.">
+<meta name="keywords" content="body shape analyzer, somatotype, endomorph, mesomorph, ectomorph, body type calculator, fitness body type">
+<meta name="author" content="HealthCalc">
+<link rel="canonical" href="https://healthcalc.in/body-shape-analyzer.html">
+
+<meta property="og:title" content="Body Shape Analyzer | Find Your Somatotype">
+<meta property="og:description" content="Personalized diet and workout plans based on your body type.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://healthcalc.in/body-shape-analyzer.html">
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "WebApplication",
+"name": "Body Shape Analyzer",
+"description": "Somatotype calculator for body type classification",
+"applicationCategory": "Health & Fitness",
+"operatingSystem": "All"
+}
+</script>
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+padding: 2rem 1rem;
+min-height: 100vh;
+}
+
+.container {
+max-width: 750px;
+margin: 0 auto;
+}
+
+.card {
+background: white;
+border-radius: 48px;
+padding: 2rem;
+box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+}
+
+h1 {
+font-size: 2rem;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+margin-bottom: 0.5rem;
+}
+
+.subtitle {
+color: #64748b;
+margin-bottom: 1.5rem;
+border-left: 3px solid #667eea;
+padding-left: 1rem;
+}
+
+.question-section {
+background: #f8fafc;
+border-radius: 24px;
+padding: 1.5rem;
+margin-bottom: 1.5rem;
+}
+
+.question {
+margin-bottom: 1.5rem;
+}
+
+.question label {
+display: block;
+font-weight: 600;
+margin-bottom: 0.8rem;
+color: #1e293b;
+}
+
+.options {
+display: flex;
+gap: 1rem;
+flex-wrap: wrap;
+}
+
+.option-btn {
+flex: 1;
+min-width: 100px;
+padding: 12px;
+background: white;
+border: 2px solid #e2e8f0;
+border-radius: 60px;
+cursor: pointer;
+text-align: center;
+transition: all 0.2s;
+font-weight: 500;
+}
+
+.option-btn.selected {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+border-color: transparent;
+}
+
+.range-input {
+width: 100%;
+padding: 8px;
+}
+
+input[type="range"] {
+width: 100%;
+margin: 10px 0;
+}
+
+.value-display {
+text-align: center;
+font-weight: bold;
+color: #667eea;
+}
+
+.calc-btn {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+border: none;
+padding: 16px;
+width: 100%;
+border-radius: 60px;
+font-size: 1.1rem;
+font-weight: bold;
+cursor: pointer;
+margin: 1rem 0;
+}
+
+.result-box {
+background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+border-radius: 32px;
+padding: 1.8rem;
+margin-top: 1.5rem;
+text-align: center;
+}
+
+.somatype {
+font-size: 2rem;
+font-weight: 800;
+margin: 0.5rem 0;
+}
+
+.somatype.endomorph { color: #dc2626; }
+.somatype.mesomorph { color: #16a34a; }
+.somatype.ectomorph { color: #2563eb; }
+
+.recommendation {
+background: white;
+border-radius: 20px;
+padding: 1rem;
+margin-top: 1rem;
+text-align: left;
+}
+
+.interlinks {
+display: flex;
+flex-wrap: wrap;
+gap: 0.6rem;
+justify-content: center;
+margin-top: 2rem;
+padding-top: 1.5rem;
+border-top: 2px solid #e2e8f0;
+}
+
+.interlinks a {
+background: #f1f5f9;
+padding: 0.5rem 1rem;
+border-radius: 40px;
+text-decoration: none;
+font-size: 0.8rem;
+color: #475569;
+font-weight: 500;
+}
+
+footer {
+text-align: center;
+margin-top: 2rem;
+color: #cbd5e1;
+font-size: 0.7rem;
+}
+
+@media (max-width: 600px) {
+.card { padding: 1.2rem; }
+.options { flex-direction: column; }
+.option-btn { min-width: auto; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>🧬 Body Shape Analyzer</h1>
+<div class="subtitle">Discover your somatotype — Endomorph, Mesomorph, or Ectomorph</div>
+
+<div class="question-section">
+<div class="question">
+<label>1️⃣ Body Frame & Bone Structure</label>
+<div class="options" id="frameOptions">
+<div class="option-btn" data-frame="small">Small frame (narrow shoulders/wrists)</div>
+<div class="option-btn" data-frame="medium">Medium frame</div>
+<div class="option-btn" data-frame="large">Large frame (broad shoulders)</div>
+</div>
+</div>
+
+<div class="question">
+<label>2️⃣ Body Fat Tendency</label>
+<div class="options" id="fatOptions">
+<div class="option-btn" data-fat="low">Low (difficult to gain fat)</div>
+<div class="option-btn" data-fat="moderate">Moderate (gain/loss balanced)</div>
+<div class="option-btn" data-fat="high">High (easy to gain, hard to lose)</div>
+</div>
+</div>
+
+<div class="question">
+<label>3️⃣ Muscle Building Ability</label>
+<div class="options" id="muscleOptions">
+<div class="option-btn" data-muscle="low">Low (slow muscle growth)</div>
+<div class="option-btn" data-muscle="medium">Medium (steady progress)</div>
+<div class="option-btn" data-muscle="high">High (quick muscle gains)</div>
+</div>
+</div>
+
+<div class="question">
+<label>4️⃣ Metabolism Speed</label>
+<div class="options" id="metabolismOptions">
+<div class="option-btn" data-metab="fast">Fast (eat anything, stay lean)</div>
+<div class="option-btn" data-metab="normal">Normal (moderate metabolism)</div>
+<div class="option-btn" data-metab="slow">Slow (gain weight easily)</div>
+</div>
+</div>
+
+<div class="question">
+<label>5️⃣ Wrist Circumference (optional, cm)</label>
+<input type="number" id="wristSize" step="0.1" placeholder="e.g., 17.5 cm" style="padding: 12px; border-radius: 60px; border: 2px solid #e2e8f0;">
+</div>
+</div>
+
+<button class="calc-btn" id="analyzeBtn">🔍 Analyze My Body Type</button>
+
+<div class="result-box" id="resultBox" style="display: none;">
+<div>Your Body Type (Somatotype)</div>
+<div class="somatype" id="somatype">—</div>
+<div id="scores" style="font-size: 0.85rem; margin: 0.5rem 0;"></div>
+<div class="recommendation" id="recommendation"></div>
+</div>
+
+<div class="interlinks">
+<a href="https://healthcalc.in/ffmi-calculator.html">💪 FFMI</a>
+<a href="https://healthcalc.in/whr-calculator.html">📏 WHR</a>
+<a href="https://healthcalc.in/bac-calculator.html">🍺 BAC</a>
+<a href="https://healthcalc.in/vo2max-calculator.html">❤️ VO₂ Max</a>
+<a href="https://healthcalc.in/bmi-calculator.html">⚖️ BMI</a>
+<a href="https://healthcalc.in/body-fat-calculator.html">🧬 Body Fat</a>
+</div>
+</div>
+<footer>Based on Heath-Carter somatotype methodology. Personalized recommendations for diet & training.</footer>
+</div>
+
+<script>
+let selectedFrame = null;
+let selectedFat = null;
+let selectedMuscle = null;
+let selectedMetab = null;
+
+// Option selection handlers
+function setupOptionButtons(className, storageVar, optionsId) {
+document.querySelectorAll(optionsId + ' .option-btn').forEach(btn => {
+btn.addEventListener('click', () => {
+document.querySelectorAll(optionsId + ' .option-btn').forEach(b => b.classList.remove('selected'));
+btn.classList.add('selected');
+if(optionsId === '#frameOptions') selectedFrame = btn.getAttribute('data-frame');
+if(optionsId === '#fatOptions') selectedFat = btn.getAttribute('data-fat');
+if(optionsId === '#muscleOptions') selectedMuscle = btn.getAttribute('data-muscle');
+if(optionsId === '#metabolismOptions') selectedMetab = btn.getAttribute('data-metab');
+});
+});
+}
+
+setupOptionButtons('frame', 'selectedFrame', '#frameOptions');
+setupOptionButtons('fat', 'selectedFat', '#fatOptions');
+setupOptionButtons('muscle', 'selectedMuscle', '#muscleOptions');
+setupOptionButtons('metab', 'selectedMetab', '#metabolismOptions');
+
+function calculateSomatotype() {
+let endo = 0, meso = 0, ecto = 0;
+
+// Body fat tendency -> Endomorph
+if(selectedFat === 'high') endo += 4;
+else if(selectedFat === 'moderate') endo += 2;
+else endo += 0;
+
+// Metabolism -> Endomorph
+if(selectedMetab === 'slow') endo += 3;
+else if(selectedMetab === 'normal') endo += 1;
+else endo += 0;
+
+// Frame -> Mesomorph
+if(selectedFrame === 'large') meso += 4;
+else if(selectedFrame === 'medium') meso += 2;
+else meso += 0;
+
+// Muscle building -> Mesomorph
+if(selectedMuscle === 'high') meso += 4;
+else if(selectedMuscle === 'medium') meso += 2;
+else meso += 0;
+
+// Frame small -> Ectomorph
+if(selectedFrame === 'small') ecto += 4;
+
+// Metabolism fast -> Ectomorph
+if(selectedMetab === 'fast') ecto += 4;
+else if(selectedMetab === 'normal') ecto += 1;
+
+// Muscle low -> Ectomorph
+if(selectedMuscle === 'low') ecto += 3;
+
+// Wrist size adjustment
+let wrist = parseFloat(document.getElementById('wristSize').value);
+if(!isNaN(wrist) && wrist > 0) {
+if(wrist < 16) ecto += 2;
+else if(wrist > 19) endo += 2;
+else meso += 1;
+}
+
+// Normalize to 1-7 scale
+let total = endo + meso + ecto;
+if(total > 0) {
+endo = (endo / total) * 7;
+meso = (meso / total) * 7;
+ecto = (ecto / total) * 7;
+}
+
+// Determine dominant type
+let maxVal = Math.max(endo, meso, ecto);
+let somaType = '';
+if(maxVal === endo && endo > meso && endo > ecto) somaType = 'Endomorph';
+else if(maxVal === meso && meso > endo && meso > ecto) somaType = 'Mesomorph';
+else if(maxVal === ecto && ecto > endo && ecto > meso) somaType = 'Ectomorph';
+else if(endo > 4 && meso > 3) somaType = 'Endo-Mesomorph';
+else if(ecto > 4 && meso > 3) somaType = 'Ecto-Mesomorph';
+else somaType = 'Mixed Type';
+
+return { endo, meso, ecto, somaType };
+}
+
+function getRecommendations(somaType) {
+const recommendations = {
+'Endomorph': {
+diet: '🥗 **Diet:** Lower carb, higher protein & healthy fats. Focus on portion control. Intermittent fasting works well.',
+workout: '🏋️ **Workout:** Prioritize strength training (3-4x/week). HIIT cardio. Avoid overtraining.',
+tips: '💡 Consistency is key. Your body responds well to routine. Track calories carefully.'
+},
+'Mesomorph': {
+diet: '🥩 **Diet:** Balanced macros (40% protein, 30% carbs, 30% fats). Your body responds well to various diets.',
+workout: '💪 **Workout:** Mix of strength (3x/week) and cardio (2x/week). Progressive overload works great.',
+tips: '💡 You\'re genetically gifted! Vary your routine every 6-8 weeks to avoid plateaus.'
+},
+'Ectomorph': {
+diet: '🍚 **Diet:** Higher calorie surplus (300-500 above maintenance). Focus on complex carbs and protein.',
+workout: '🏋️ **Workout:** Heavy compound lifts, low volume but high intensity. Limit cardio to 2x/week.',
+tips: '💡 Eat frequently (5-6 meals/day). Don\'t skip carbs! Recovery is very important.'
+},
+'Endo-Mesomorph': {
+diet: '🥩 **Diet:** High protein, moderate fat, lower carbs. Cyclical keto may work well.',
+workout: '🏋️ **Workout:** Strength training + HIIT combination. Focus on body recomposition.',
+tips: '💡 You can build muscle easily but also store fat. Monitor nutrition closely.'
+},
+'Ecto-Mesomorph': {
+diet: '🍗 **Diet:** High protein and moderate-high carbs. Lean bulk approach works best.',
+workout: '💪 **Workout:** Push-pull-legs split. Focus on progressive overload.',
+tips: '💡 Best of both worlds! Build muscle while staying lean. Perfect for bodybuilding.'
+},
+'Mixed Type': {
+diet: '🥑 **Diet:** Balanced Mediterranean-style diet. Listen to hunger cues.',
+workout: '🏃 **Workout:** Varied routine - strength, cardio, flexibility all important.',
+tips: '💡 You have versatility! Experiment to find what works best for your goals.'
+}
+};
+
+return recommendations[somaType] || recommendations['Mixed Type'];
+}
+
+document.getElementById('analyzeBtn').addEventListener('click', () => {
+if(!selectedFrame || !selectedFat || !selectedMuscle || !selectedMetab) {
+alert('Please answer all questions to analyze your body type.');
+return;
+}
+
+const result = calculateSomatotype();
+const rec = getRecommendations(result.somaType);
+
+document.getElementById('resultBox').style.display = 'block';
+const somaElement = document.getElementById('somatype');
+somaElement.textContent = result.somaType;
+somaElement.className = 'somatype';
+
+if(result.somaType.includes('Endomorph')) somaElement.classList.add('endomorph');
+else if(result.somaType.includes('Mesomorph')) somaElement.classList.add('mesomorph');
+else if(result.somaType.includes('Ectomorph')) somaElement.classList.add('ectomorph');
+
+document.getElementById('scores').innerHTML = `Endomorph: ${result.endo.toFixed(1)} | Mesomorph: ${result.meso.toFixed(1)} | Ectomorph: ${result.ecto.toFixed(1)}`;
+
+document.getElementById('recommendation').innerHTML = `
+${rec.diet}<br><br>
+${rec.workout}<br><br>
+${rec.tips}
+`;
+
+// Scroll to result
+document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
