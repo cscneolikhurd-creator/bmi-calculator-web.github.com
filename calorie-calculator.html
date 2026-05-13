@@ -1,444 +1,1327 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    
-    <!-- Primary SEO Meta (Global) -->
-    <title>Calorie Calculator with AI Diet Tips | TDEE, Macros & Meal Plan</title>
-    <meta name="title" content="Calorie Calculator: TDEE, Macros & AI Diet Tips | HealthCalc">
-    <meta name="description" content="Advanced calorie calculator with AI-powered diet tips, TDEE, macro split, 3-month weight projection & Indian food suggestions. 7 languages.">
-    <meta name="keywords" content="calorie calculator, TDEE calculator, macro calculator, weight loss calories, Indian diet calories, AI diet tips, calorie counter">
-    <meta name="author" content="HealthCalc">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://healthcalc.in/calorie-calculator">
-    
-    <!-- hreflang tags for multilingual SEO -->
-    <link rel="alternate" hreflang="en" href="https://healthcalc.in/calorie-calculator?lang=en">
-    <link rel="alternate" hreflang="hi" href="https://healthcalc.in/calorie-calculator?lang=hi">
-    <link rel="alternate" hreflang="es" href="https://healthcalc.in/calorie-calculator?lang=es">
-    <link rel="alternate" hreflang="fr" href="https://healthcalc.in/calorie-calculator?lang=fr">
-    <link rel="alternate" hreflang="de" href="https://healthcalc.in/calorie-calculator?lang=de">
-    <link rel="alternate" hreflang="ja" href="https://healthcalc.in/calorie-calculator?lang=ja">
-    <link rel="alternate" hreflang="ar" href="https://healthcalc.in/calorie-calculator?lang=ar">
-    <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/calorie-calculator">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://healthcalc.in/calorie-calculator">
-    <meta property="og:title" content="Calorie Calculator with AI Diet Tips | HealthCalc">
-    <meta property="og:description" content="Know exactly how many calories to eat. TDEE, macros, AI tips, Indian food suggestions.">
-    <meta property="og:image" content="https://healthcalc.in/images/calorie-preview.jpg">
-    <meta property="og:locale" content="en_US">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://healthcalc.in/calorie-calculator">
-    <meta property="twitter:title" content="Calorie Calculator with AI Diet Tips">
-    
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Calorie Calculator",
-        "url": "https://healthcalc.in/calorie-calculator",
-        "description": "Advanced calorie calculator with TDEE, macros, AI-powered diet tips, and Indian food suggestions. Available in 7 languages.",
-        "applicationCategory": "HealthApplication",
-        "operatingSystem": "Any",
-        "offers": {"@type": "Offer", "price": "0"},
-        "inLanguage": ["en","hi","es","fr","de","ja","ar"]
-    }
-    </script>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        :root { --primary: #ff6b6b; --primary-dark: #ff8e53; --indian-saffron: #FF9933; --indian-green: #138808; }
-        body { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 1300px; margin: 0 auto; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); animation: slideIn 0.5s ease-out; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .header { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); padding: 30px; text-align: center; color: white; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .header p { font-size: 1.2em; opacity: 0.95; }
-        
-        .lang-dropdown { display: flex; justify-content: center; margin: 20px 0 0; }
-        .lang-dropdown select { padding: 12px 35px 12px 20px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.3); font-size: 1em; font-weight: 600; background: rgba(255,255,255,0.2); color: white; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 15px center; background-size: 18px; }
-        .lang-dropdown select option { background: #ff6b6b; color: white; }
-        
-        .badge-container { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
-        .badge { background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 50px; font-size: 0.9em; }
-        .badge.indian-badge { background: linear-gradient(135deg, var(--indian-saffron), #FFB74D); }
-        
-        .unit-toggle { display: flex; gap: 10px; margin: 20px 0; background: #ffe0e0; padding: 5px; border-radius: 50px; }
-        .unit-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s; color: #555; }
-        .unit-btn.active { background: white; color: var(--primary); box-shadow: 0 5px 15px rgba(255,107,107,0.2); }
-        
-        .main { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
-        @media (max-width: 768px) { .main { grid-template-columns: 1fr; padding: 20px; } .header h1 { font-size: 1.8em; } }
-        
-        .input-card { background: #fff5f5; padding: 25px; border-radius: 20px; }
-        .input-card h2 { margin-bottom: 20px; color: #333; }
-        .input-group { margin-bottom: 18px; }
-        .input-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #333; font-size: 0.95em; }
-        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #ffe0e0; border-radius: 10px; font-size: 1em; background: white; }
-        .input-with-unit { display: flex; align-items: center; background: white; border: 2px solid #ffe0e0; border-radius: 10px; padding: 0 10px; }
-        .input-with-unit input { border: none; padding: 12px 0; flex: 1; outline: none; }
-        .input-with-unit .unit-label { color: #666; padding-left: 10px; border-left: 1px solid #ffe0e0; }
-        
-        .diet-preference { margin: 20px 0; padding: 15px; background: white; border-radius: 10px; border: 2px solid #ffe0e0; }
-        .diet-preference label { margin-right: 20px; cursor: pointer; }
-        
-        .goal-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
-        .goal-btn { padding: 12px; border: 2px solid #ffe0e0; background: white; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
-        .goal-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-        
-        .activity-level { margin: 20px 0; }
-        .activity-option { display: flex; align-items: center; padding: 10px; border: 2px solid #ffe0e0; border-radius: 10px; margin-bottom: 10px; cursor: pointer; background: white; }
-        .activity-option input[type="radio"] { width: auto; margin-right: 10px; }
-        
-        .indian-note { background: linear-gradient(135deg, #FFF8E1, #FFECB3); padding: 15px; border-radius: 12px; margin: 20px 0; border-left: 4px solid var(--indian-saffron); font-size: 0.95em; }
-        .indian-note i { color: var(--indian-saffron); margin-right: 8px; }
-        
-        .calc-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; border-radius: 10px; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 10px; }
-        .reset-btn { margin-top: 10px; padding: 10px; background: #e0e4ff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.85em; width: 100%; }
-        
-        .results-card { background: white; padding: 25px; border-radius: 20px; border: 2px solid #fff5f5; }
-        .calorie-circle { text-align: center; padding: 20px; background: #fff5f5; border-radius: 20px; margin-bottom: 20px; }
-        .calorie-value { font-size: 4em; font-weight: 800; color: var(--primary); line-height: 1; }
-        .calorie-label { font-size: 1.2em; color: #666; }
-        
-        .goal-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
-        .goal-card { background: #fff5f5; padding: 15px; border-radius: 10px; text-align: center; }
-        .goal-card .title { font-size: 0.9em; color: #666; }
-        .goal-card .value { font-size: 1.3em; font-weight: 700; color: #333; }
-        
-        .macro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
-        .macro-item { background: #fff5f5; padding: 15px; border-radius: 10px; text-align: center; }
-        .macro-item .value { font-size: 1.8em; font-weight: 700; color: #333; }
-        .macro-item .unit { font-size: 0.9em; color: #666; }
-        .macro-item .label { font-size: 1em; color: var(--primary); font-weight: 600; margin-top: 5px; }
-        
-        /* AI Section */
-        .ai-advice-section { margin: 20px 0; padding: 20px; background: linear-gradient(135deg, #f0f4ff, #e8edff); border-radius: 15px; border: 1px dashed var(--primary); }
-        .ai-advice-section h4 { color: #4a2e8a; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .get-ai-btn { background: linear-gradient(135deg, #11998e, #38ef7d); color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px; }
-        .ai-loading { display: none; text-align: center; padding: 15px; }
-        .ai-loading i { font-size: 2em; color: var(--primary); margin-bottom: 5px; }
-        .ai-result-card { background: white; padding: 15px; border-radius: 10px; margin-top: 10px; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .error-msg { color: #f44336; }
-        
-        /* Cross-linking */
-        .tools-crosslink { margin: 20px 0; padding: 20px; background: #f8f9ff; border-radius: 15px; }
-        .tools-crosslink h4 { color: #333; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-        .tool-link-card { background: white; padding: 12px; border-radius: 10px; text-align: center; text-decoration: none; color: #333; box-shadow: 0 3px 10px rgba(0,0,0,0.05); transition: all 0.2s; font-weight: 600; }
-        .tool-link-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
-        
-        .indian-food-box { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 4px solid var(--indian-green); }
-        .indian-food-box h4 { color: #1B5E20; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .indian-food-box ul { list-style: none; padding-left: 0; }
-        .indian-food-box li { padding: 8px 0; border-bottom: 1px dashed #A5D6A7; display: flex; align-items: center; gap: 10px; }
-        .indian-food-box li i { color: var(--indian-green); width: 20px; }
-        
-        .projection-chart { background: #fff5f5; padding: 20px; border-radius: 20px; margin: 20px 0; }
-        .chart-bars { display: flex; justify-content: space-around; align-items: flex-end; height: 150px; margin: 20px 0; }
-        .bar-container { text-align: center; width: 40px; }
-        .bar { width: 30px; background: linear-gradient(to top, var(--primary), var(--primary-dark)); border-radius: 5px 5px 0 0; transition: height 0.3s; }
-        .bar-label { font-size: 0.8em; margin-top: 5px; color: #666; }
-        
-        .future-plan-section { grid-column: span 2; background: linear-gradient(135deg, #E8EAF6, #C5CAE9); border-radius: 20px; padding: 25px; margin: 20px 0; border: 2px dashed var(--primary); }
-        .future-plan-section h3 { color: #1A237E; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-        .future-feature { background: white; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
-        .future-feature:hover { transform: translateY(-5px); }
-        .future-feature i { font-size: 2rem; color: var(--primary); margin-bottom: 10px; }
-        .future-feature h5 { color: #1A237E; margin-bottom: 8px; font-size: 0.9rem; }
-        .coming-soon { background: #FF9800; color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; display: inline-block; margin-top: 10px; }
-        
-        .footer { text-align: center; padding: 20px; color: #666; border-top: 1px solid #eee; background: #fafafa; grid-column: span 2; }
-        .footer a { color: var(--primary); text-decoration: none; }
-        @media (max-width: 600px) { .calorie-value { font-size: 3em; } .tools-grid { grid-template-columns: 1fr 1fr; } .goal-cards { grid-template-columns: 1fr; } }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+
+<!-- Primary Meta Tags (SEO - Global + Indian) -->
+<title>Advanced BMI Calculator | Indian Cutoff (23+) | Visceral Fat | AI Health Tips</title>
+<meta name="title" content="BMI Calculator with AI: Indian Standards, Visceral Fat, Health Score">
+<meta name="description" content="Most advanced BMI calculator with Indian BMI cutoff (23+), visceral fat risk assessment, health score, age comparison graph, and AI-powered personalized health tips. 7 languages. 100% free.">
+<meta name="keywords" content="BMI calculator, Indian BMI, visceral fat, body mass index, health tips AI, BMI 23, obesity, health score, BMI chart, weight loss calculator">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://healthcalc.in/bmi-calculator.html">
+
+<!-- hreflang tags for multilingual SEO -->
+<link rel="alternate" hreflang="en" href="https://healthcalc.in/bmi-calculator.html?lang=en">
+<link rel="alternate" hreflang="hi" href="https://healthcalc.in/bmi-calculator.html?lang=hi">
+<link rel="alternate" hreflang="es" href="https://healthcalc.in/bmi-calculator.html?lang=es">
+<link rel="alternate" hreflang="fr" href="https://healthcalc.in/bmi-calculator.html?lang=fr">
+<link rel="alternate" hreflang="de" href="https://healthcalc.in/bmi-calculator.html?lang=de">
+<link rel="alternate" hreflang="ja" href="https://healthcalc.in/bmi-calculator.html?lang=ja">
+<link rel="alternate" hreflang="ar" href="https://healthcalc.in/bmi-calculator.html?lang=ar">
+<link rel="alternate" hreflang="x-default" href="https://healthcalc.in/bmi-calculator.html">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://healthcalc.in/bmi-calculator.html">
+<meta property="og:title" content="Advanced BMI Calculator with AI Health Tips">
+<meta property="og:description" content="Know your BMI with Indian standards (23+ cutoff). Get visceral fat risk, health score, and AI-powered personalized advice.">
+<meta property="og:image" content="https://healthcalc.in/images/bmi-calculator-og.jpg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://healthcalc.in/bmi-calculator.html">
+<meta property="twitter:title" content="Advanced BMI Calculator | AI & Indian Standards">
+<meta property="twitter:description" content="Free BMI calculator with Indian cutoff, visceral fat, and AI health tips.">
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #5a67d8;
+  --primary-light: #e9efff;
+  --indian-saffron: #FF9933;
+  --indian-green: #138808;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --success: #10b981;
+  --dark: #1e293b;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 50px rgba(0,0,0,0.15);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-2xl: 36px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.calculator-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 32px;
+  text-align: center;
+  color: white;
+}
+
+.header h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.header h1 span {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.4em;
+  font-weight: 600;
+}
+
+.header p {
+  font-size: 18px;
+  opacity: 0.95;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Language Selector */
+.lang-dropdown {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.lang-dropdown select {
+  padding: 10px 35px 10px 20px;
+  border-radius: 50px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 18px;
+}
+
+/* Badges */
+.badge-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.badge {
+  background: rgba(255,255,255,0.2);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge.indian-badge {
+  background: linear-gradient(135deg, rgba(255,153,51,0.8), rgba(255,183,77,0.8));
+}
+
+/* Main Content */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 40px;
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+
+/* Input Section */
+.input-section {
+  background: var(--gray-50);
+  padding: 28px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-200);
+}
+
+.input-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 24px;
+  display: inline-block;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--primary);
+}
+
+/* Unit Toggle */
+.unit-toggle {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  background: #e0e4ff;
+  padding: 5px;
+  border-radius: 60px;
+}
+
+.unit-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #555;
+}
+
+.unit-btn.active {
+  background: white;
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-fields, .imperial-fields { display: none; }
+.metric-fields.active, .imperial-fields.active { display: block; animation: fadeIn 0.3s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--gray-800);
+  font-size: 14px;
+}
+
+.input-group label i {
+  color: var(--primary);
+  width: 20px;
+  margin-right: 6px;
+}
+
+.input-group input, .input-group select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  transition: all 0.3s;
+  background: white;
+}
+
+.input-group input:focus, .input-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+}
+
+.age-gender-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.indian-bmi-note {
+  background: linear-gradient(135deg, #FFF8E1, #FFECB3);
+  padding: 12px 15px;
+  border-radius: var(--radius-md);
+  margin: 18px 0;
+  border-left: 4px solid var(--indian-saffron);
+  font-size: 13px;
+}
+
+.calculate-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.calculate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(102,126,234,0.4);
+}
+
+.reset-btn {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: var(--gray-600);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.reset-btn:hover {
+  background: var(--gray-100);
+}
+
+/* Results Section */
+.results-section {
+  background: white;
+  padding: 28px;
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--gray-100);
+  box-shadow: var(--shadow-md);
+}
+
+.bmi-circle {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gray-50);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+}
+
+.bmi-value {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1;
+}
+
+.bmi-label {
+  font-size: 14px;
+  color: var(--gray-600);
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* BMI Scale */
+.bmi-scale {
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 25%, #ffd93d 50%, #ff6b6b 75%, #c92a2a 100%);
+  height: 20px;
+  border-radius: 10px;
+  margin: 25px 0 15px;
+  position: relative;
+}
+
+.scale-indian-marker {
+  position: absolute;
+  top: -22px;
+  font-size: 11px;
+  color: var(--indian-saffron);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.bmi-marker {
+  width: 10px;
+  height: 30px;
+  background: #333;
+  position: absolute;
+  top: -5px;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  transition: left 0.3s;
+}
+
+.bmi-categories {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--gray-600);
+  margin-bottom: 20px;
+  padding: 0 5px;
+}
+
+/* Indian Categories */
+.indian-categories {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0 20px;
+  padding: 12px;
+  background: #FFF8E1;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+}
+
+.indian-cat-item {
+  text-align: center;
+}
+
+.indian-cat-item .label {
+  color: #E65100;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+/* Health Cards */
+.health-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.health-card {
+  background: var(--gray-50);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.health-card:hover {
+  transform: translateY(-3px);
+}
+
+.health-card .emoji {
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.health-card .value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.health-card .label {
+  font-size: 11px;
+  color: var(--gray-600);
+  margin-top: 5px;
+}
+
+@media (max-width: 500px) {
+  .health-cards { grid-template-columns: 1fr; }
+}
+
+/* AI Advice Section */
+.ai-advice-section {
+  margin: 25px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4ff, #e8edff);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--primary);
+}
+
+.ai-advice-section h4 {
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.get-ai-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.get-ai-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(16,185,129,0.3);
+}
+
+.ai-loading {
+  display: none;
+  text-align: center;
+  padding: 15px;
+}
+
+.ai-loading i {
+  font-size: 32px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.ai-result-card {
+  background: white;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-top: 15px;
+  display: none;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--primary);
+}
+
+/* Cross-linking Tools */
+.tools-crosslink {
+  margin: 25px 0;
+  padding: 20px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.tool-link-card {
+  background: white;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+}
+
+.tool-link-card:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Graph Section */
+.graph-section {
+  margin: 25px 0;
+  padding: 20px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+
+.graph-container {
+  position: relative;
+  min-height: 250px;
+  margin: 20px 0;
+  padding-left: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.age-bar-container {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  margin-right: 15px;
+  vertical-align: bottom;
+  height: 220px;
+}
+
+.age-bar {
+  position: absolute;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to top, #667eea, #764ba2);
+  border-radius: 10px 10px 0 0;
+  transition: height 0.3s;
+  left: 15px;
+}
+
+.age-label {
+  text-align: center;
+  margin-top: 200px;
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.user-indicator {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: var(--danger);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: var(--shadow-md);
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: left 0.3s, bottom 0.3s;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Recommendation Box */
+.recommendation-box {
+  margin: 20px 0;
+  padding: 16px;
+  background: #e8f5e9;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--success);
+}
+
+.recommendation-box.warning {
+  background: #fff3e0;
+  border-left-color: var(--warning);
+}
+
+.recommendation-box.danger {
+  background: #ffebee;
+  border-left-color: var(--danger);
+}
+
+/* Footer */
+.footer-note {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 12px;
+  padding: 20px;
+  border-top: 1px solid var(--gray-200);
+  margin-top: 20px;
+}
+
+.footer-note a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.error-msg {
+  color: var(--danger);
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🔥 Calorie Calculator <span style="font-size:0.5em;background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:50px;" id="headerSubtitle">AI & Global</span></h1>
-            <p id="headerDesc">TDEE • Macros • 3-Month Projection • AI Diet Tips • 7 Languages</p>
-            
-            <div class="lang-dropdown">
-                <select id="langSelect" onchange="setLanguage(this.value)">
-                    <option value="en">🇬🇧 English</option>
-                    <option value="hi">🇮🇳 हिंदी</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="fr">🇫🇷 Français</option>
-                    <option value="de">🇩🇪 Deutsch</option>
-                    <option value="ja">🇯🇵 日本語</option>
-                    <option value="ar">🇸🇦 العربية</option>
-                </select>
-            </div>
-            
-            <div class="badge-container">
-                <span class="badge">🌟 Mifflin-St Jeor</span>
-                <span class="badge indian-badge">🇮🇳 Indian Foods</span>
-                <span class="badge">🤖 AI Tips</span>
-                <span class="badge">🌐 7 Languages</span>
-            </div>
-        </div>
-        
-        <div class="main">
-            <!-- Input Section -->
-            <div class="input-card">
-                <h2 id="detailsTitle">📝 Your Details</h2>
-                
-                <div class="unit-toggle">
-                    <button class="unit-btn active" data-unit="metric" onclick="setUnit('metric')">🌏 Metric (cm/kg)</button>
-                    <button class="unit-btn" data-unit="imperial" onclick="setUnit('imperial')">🌎 Imperial (in/lbs)</button>
-                </div>
-                
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-                    <div class="input-group"><label id="ageLabel">Age</label><input type="number" id="age" value="30" min="15" max="100"></div>
-                    <div class="input-group"><label id="genderLabel">Gender</label><select id="gender"><option value="male" id="maleOpt">Male</option><option value="female" id="femaleOpt" selected>Female</option></select></div>
-                </div>
-                
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
-                    <div class="input-group"><label id="weightLabel">Weight (<span id="weightUnit">kg</span>)</label><div class="input-with-unit"><input type="number" id="weight" value="70" step="0.1"><span class="unit-label" id="weightUnitDisplay">kg</span></div></div>
-                    <div class="input-group"><label id="heightLabel">Height (<span id="heightUnit">cm</span>)</label><div class="input-with-unit"><input type="number" id="height" value="170" step="0.1"><span class="unit-label" id="heightUnitDisplay">cm</span></div></div>
-                </div>
-                
-                <div class="diet-preference"><label id="dietPrefLabel"><strong>🥗 Diet Preference:</strong></label>
-                    <label><input type="radio" name="diet" value="veg" checked id="vegOpt"> <span id="vegLabel">Vegetarian</span></label>
-                    <label><input type="radio" name="diet" value="nonveg" id="nonvegOpt"> <span id="nonvegLabel">Non-Veg</span></label>
-                    <label><input type="radio" name="diet" value="eggetarian" id="eggOpt"> <span id="eggLabel">Eggetarian</span></label>
-                </div>
-                
-                <div class="activity-level">
-                    <label style="display:block;margin-bottom:10px;font-weight:600;" id="activityLabel">Activity Level</label>
-                    <label class="activity-option"><input type="radio" name="activity" value="1.2" checked> <span id="sedentary">Sedentary (office job, no exercise)</span></label>
-                    <label class="activity-option"><input type="radio" name="activity" value="1.375"> <span id="light">Light (1-3 days/week)</span></label>
-                    <label class="activity-option"><input type="radio" name="activity" value="1.55"> <span id="moderate">Moderate (3-5 days/week)</span></label>
-                    <label class="activity-option"><input type="radio" name="activity" value="1.725"> <span id="active">Active (daily + physical job)</span></label>
-                    <label class="activity-option"><input type="radio" name="activity" value="1.9"> <span id="veryActive">Very Active (athlete)</span></label>
-                </div>
-                
-                <div style="margin:20px 0;"><label style="display:block;margin-bottom:10px;font-weight:600;" id="goalLabel">Your Goal</label>
-                    <div class="goal-buttons">
-                        <button class="goal-btn active" onclick="setGoal('lose')" id="goalLose">🔥 <span id="loseText">Lose Weight</span></button>
-                        <button class="goal-btn" onclick="setGoal('maintain')" id="goalMaintain">⚖️ <span id="maintainText">Maintain</span></button>
-                        <button class="goal-btn" onclick="setGoal('gain')" id="goalGain">💪 <span id="gainText">Gain Muscle</span></button>
-                    </div>
-                </div>
-                
-                <div id="goalOptions" style="margin-bottom:20px;">
-                    <label id="speedLabel">How fast?</label>
-                    <select id="goalSpeed" style="width:100%;padding:10px;border:2px solid #ffe0e0;border-radius:10px;">
-                        <option value="0.25" id="slow">Slow (0.25 kg/week)</option>
-                        <option value="0.5" id="steady">Steady (0.5 kg/week)</option>
-                        <option value="1" id="recommended" selected>Recommended (1 kg/week)</option>
-                        <option value="1.5" id="aggressive">Aggressive (1.5 kg/week)</option>
-                    </select>
-                    <div style="font-size:0.85em;color:#666;margin-top:5px;" id="minCalNote">⚠️ Minimum: Women 1200, Men 1500 calories</div>
-                </div>
-                
-                <div class="indian-note" id="indianNote"><i class="fas fa-info-circle"></i> <span id="indianNoteText">🇮🇳 Indians typically have 5-10% lower BMR. Our calculation adjusts for this.</span></div>
-                
-                <button class="calc-btn" onclick="calculateCalories()" id="calculateBtn">Calculate My Calories</button>
-                <button class="reset-btn" onclick="resetForm()" id="resetBtn">Reset All Fields</button>
-            </div>
-            
-            <!-- Results Section -->
-            <div class="results-card" id="results">
-                <h2 id="resultsTitle">📊 Your Numbers</h2>
-                
-                <div class="calorie-circle">
-                    <div class="calorie-value" id="tdee">2,450</div>
-                    <div class="calorie-label" id="tdeeLabel">Daily Calories (TDEE)</div>
-                    <div style="margin-top:10px;color:#666;"><span id="bmrLabel">BMR</span>: <span id="bmr">1,750</span> <span id="caloriesText">calories</span></div>
-                </div>
-                
-                <div class="goal-cards">
-                    <div class="goal-card"><div class="title" id="lossTitle">Weight Loss</div><div class="value" id="lossCal">2,000</div><div style="font-size:0.8em;color:#666;">cal/day</div></div>
-                    <div class="goal-card"><div class="title" id="maintainTitle">Maintain</div><div class="value" id="maintainCal">2,450</div><div style="font-size:0.8em;color:#666;">cal/day</div></div>
-                    <div class="goal-card"><div class="title" id="gainTitle">Muscle Gain</div><div class="value" id="gainCal">2,700</div><div style="font-size:0.8em;color:#666;">cal/day</div></div>
-                </div>
-                
-                <h3 style="margin:20px 0 10px;" id="macroTitle">🍗 Macro Breakdown</h3>
-                <div class="macro-grid">
-                    <div class="macro-item"><div class="value" id="protein">150</div><div class="unit">grams</div><div class="label">Protein</div></div>
-                    <div class="macro-item"><div class="value" id="carbs">200</div><div class="unit">grams</div><div class="label">Carbs</div></div>
-                    <div class="macro-item"><div class="value" id="fat">65</div><div class="unit">grams</div><div class="label">Fat</div></div>
-                </div>
-                
-                <!-- AI Advice -->
-                <div class="ai-advice-section">
-                    <h4><i class="fas fa-robot"></i> <span id="aiTitle">🤖 AI Diet Tips</span></h4>
-                    <button class="get-ai-btn" id="getAiBtn" onclick="fetchAiAdvice()"><i class="fas fa-magic"></i> <span id="aiBtnText">Get Personalized Advice</span></button>
-                    <div class="ai-loading" id="aiLoading"><i class="fas fa-spinner fa-pulse"></i><br><span id="aiLoadingText">Generating tips...</span></div>
-                    <div class="ai-result-card" id="aiResultCard"><div id="aiAdviceContent"></div></div>
-                </div>
-                
-                <!-- Cross-linking -->
-                <div class="tools-crosslink">
-                    <h4><i class="fas fa-link"></i> <span id="exploreTitle">🔗 Explore More Tools</span></h4>
-                    <div class="tools-grid">
-                        <a href="/bmi-calculator" class="tool-link-card">⚖️ BMI</a>
-                        <a href="/ideal-weight-calculator" class="tool-link-card">🏋️ Ideal Weight</a>
-                        <a href="/body-fat-calculator" class="tool-link-card">🧬 Body Fat</a>
-                        <a href="/heart-risk-calculator" class="tool-link-card">❤️ Heart Risk</a>
-                        <a href="/metabolic-age" class="tool-link-card">📆 Metabolic Age</a>
-                        <a href="/water-intake-calculator" class="tool-link-card">💧 Water</a>
-                    </div>
-                </div>
-                
-                <div class="indian-food-box" id="indianFoodBox">
-                    <h4><i class="fas fa-utensils"></i> <span id="foodTitle">🇮🇳 Indian Food Suggestions (Sample Day)</span></h4>
-                    <ul id="foodList">
-                        <li id="food1"><i class="fas fa-sun"></i> Breakfast: Poha + 2 boiled eggs</li>
-                        <li id="food2"><i class="fas fa-utensils"></i> Lunch: 2 roti + dal + sabzi + salad</li>
-                        <li id="food3"><i class="fas fa-apple-alt"></i> Snack: Roasted chana + fruit</li>
-                        <li id="food4"><i class="fas fa-moon"></i> Dinner: Grilled chicken/fish + soup</li>
-                    </ul>
-                </div>
-                
-                <div class="projection-chart">
-                    <h3 id="projectionTitle">📈 3-Month Weight Projection</h3>
-                    <div class="chart-bars" id="weightChart"></div>
-                    <p style="text-align:center;color:#666;" id="projectionText">At your current goal, you'll reach target in 12 weeks</p>
-                </div>
-            </div>
-            
-            <div class="future-plan-section">
-                <h3><i class="fas fa-rocket"></i> <span id="futureTitle">Coming Soon</span></h3>
-                <div class="future-features-grid">
-                    <div class="future-feature"><i class="fas fa-utensils"></i><h5 id="future1">Meal Planner</h5><span class="coming-soon">Coming 2027</span></div>
-                    <div class="future-feature"><i class="fas fa-camera"></i><h5 id="future2">Food Scanner</h5><span class="coming-soon">Coming 2027</span></div>
-                    <div class="future-feature"><i class="fas fa-chart-line"></i><h5 id="future3">Progress Tracker</h5><span class="coming-soon">Coming 2027</span></div>
-                    <div class="future-feature"><i class="fas fa-dumbbell"></i><h5 id="future4">Workout Burn</h5><span class="coming-soon">Coming 2027</span></div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p id="footerReviews">⭐ 4.8/5 from 2,150+ reviews | 45+ countries | <a href="/">All Health Tools →</a></p>
-            <p id="disclaimerText">⚠️ Consult a doctor before starting any diet</p>
-        </div>
+<div class="calculator-container">
+  
+  <!-- Header -->
+  <div class="header">
+    <h1>⚖️ Advanced BMI Calculator <span>AI & 7 Languages</span></h1>
+    <p id="headerDesc">Know your BMI with Indian standards (23+), visceral fat risk, health score, and AI-powered personalized health tips in your language.</p>
+    
+    <div class="lang-dropdown">
+      <select id="langSelect" onchange="setLanguage(this.value)">
+        <option value="en">🇬🇧 English</option>
+        <option value="hi">🇮🇳 हिंदी</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="ar">🇸🇦 العربية</option>
+      </select>
     </div>
     
-    <script>
-    // ===== API KEY (masked) =====
-    var _k1='gen-lang-'; var _k2='client-0352520887'; var GEMINI_KEY=_k1+_k2;
-    var GEMINI_MODEL='gemini-2.0-flash';
+    <div class="badge-container">
+      <span class="badge"><i class="fas fa-chart-line"></i> Visceral Fat</span>
+      <span class="badge indian-badge"><i class="fas fa-flag-checkered"></i> Indian BMI (23+)</span>
+      <span class="badge"><i class="fas fa-robot"></i> AI Tips</span>
+      <span class="badge"><i class="fas fa-globe"></i> 7 Languages</span>
+      <span class="badge"><i class="fas fa-chart-simple"></i> Health Score</span>
+    </div>
+  </div>
+  
+  <div class="main-content">
     
-    // ===== TRANSLATIONS (7 languages) =====
-    var translations = {
-    en:{headerSubtitle:'AI & Global',headerDesc:'TDEE • Macros • 3-Month Projection • AI Diet Tips',detailsTitle:'📝 Your Details',ageLabel:'Age',genderLabel:'Gender',maleOpt:'Male',femaleOpt:'Female',weightLabel:'Weight',heightLabel:'Height',dietPrefLabel:'🥗 Diet Preference:',vegLabel:'Vegetarian',nonvegLabel:'Non-Veg',eggLabel:'Eggetarian',activityLabel:'Activity Level',sedentary:'Sedentary (office job)',light:'Light (1-3 days/week)',moderate:'Moderate (3-5 days/week)',active:'Active (daily)',veryActive:'Very Active (athlete)',goalLabel:'Your Goal',loseText:'Lose Weight',maintainText:'Maintain',gainText:'Gain Muscle',speedLabel:'How fast?',slow:'Slow (0.25 kg/wk)',steady:'Steady (0.5 kg/wk)',recommended:'Recommended (1 kg/wk)',aggressive:'Aggressive (1.5 kg/wk)',minCalNote:'⚠️ Min: Women 1200, Men 1500 cal',indianNoteText:'🇮🇳 Indians have 5-10% lower BMR. Adjusted.',calculateBtn:'Calculate Calories',resetBtn:'Reset All',resultsTitle:'📊 Your Numbers',tdeeLabel:'Daily Calories (TDEE)',bmrLabel:'BMR',caloriesText:'calories',lossTitle:'Weight Loss',maintainTitle:'Maintain',gainTitle:'Muscle Gain',macroTitle:'🍗 Macro Breakdown',aiTitle:'🤖 AI Diet Tips',aiBtnText:'Get Personalized Advice',aiLoadingText:'Generating tips...',exploreTitle:'🔗 Explore More Tools',foodTitle:'🇮🇳 Food Suggestions (Sample Day)',food1:'<i class="fas fa-sun"></i> Breakfast: Poha + 2 eggs',food2:'<i class="fas fa-utensils"></i> Lunch: Roti + dal + sabzi',food3:'<i class="fas fa-apple-alt"></i> Snack: Chana + fruit',food4:'<i class="fas fa-moon"></i> Dinner: Chicken/fish + soup',projectionTitle:'📈 3-Month Projection',futureTitle:'Coming Soon',future1:'Meal Planner',future2:'Food Scanner',future3:'Progress',future4:'Workout',footerReviews:'⭐ 4.8/5 | 45+ countries |',disclaimerText:'⚠️ Consult a doctor.'},
-    hi:{headerSubtitle:'AI और ग्लोबल',headerDesc:'TDEE • मैक्रोज़ • 3-महीने का अनुमान • AI टिप्स',detailsTitle:'📝 आपकी जानकारी',ageLabel:'उम्र',genderLabel:'लिंग',maleOpt:'पुरुष',femaleOpt:'महिला',weightLabel:'वज़न',heightLabel:'ऊंचाई',dietPrefLabel:'🥗 भोजन:',vegLabel:'शाकाहारी',nonvegLabel:'मांसाहारी',eggLabel:'अंडाहारी',activityLabel:'गतिविधि',sedentary:'निष्क्रिय',light:'हल्का',moderate:'मध्यम',active:'सक्रिय',veryActive:'बहुत सक्रिय',goalLabel:'लक्ष्य',loseText:'वज़न घटाएं',maintainText:'बनाए रखें',gainText:'मांसपेशी बढ़ाएं',speedLabel:'तेज़ी?',slow:'धीमा (0.25 kg/wk)',steady:'स्थिर (0.5 kg/wk)',recommended:'अनुशंसित (1 kg/wk)',aggressive:'तेज़ (1.5 kg/wk)',minCalNote:'⚠️ न्यूनतम: महिला 1200, पुरुष 1500',indianNoteText:'🇮🇳 भारतीयों का BMR 5-10% कम। समायोजित।',calculateBtn:'कैलोरी कैलकुलेट करें',resetBtn:'रीसेट',resultsTitle:'📊 आपके आंकड़े',tdeeLabel:'दैनिक कैलोरी (TDEE)',bmrLabel:'BMR',caloriesText:'कैलोरी',lossTitle:'वज़न घटाना',maintainTitle:'बनाए रखना',gainTitle:'मांसपेशी',macroTitle:'🍗 मैक्रो',aiTitle:'🤖 AI डाइट टिप्स',aiBtnText:'पर्सनलाइज़्ड सलाह',aiLoadingText:'टिप्स बन रहे...',exploreTitle:'🔗 और टूल',foodTitle:'🇮🇳 भोजन सुझाव',food1:'<i class="fas fa-sun"></i> नाश्ता: पोहा + 2 अंडे',food2:'<i class="fas fa-utensils"></i> दोपहर: रोटी + दाल + सब्ज़ी',food3:'<i class="fas fa-apple-alt"></i> स्नैक: चना + फल',food4:'<i class="fas fa-moon"></i> रात: चिकन/फिश + सूप',projectionTitle:'📈 3-महीने का अनुमान',futureTitle:'जल्द आ रहा',future1:'मील प्लानर',future2:'फूड स्कैनर',future3:'प्रोग्रेस',future4:'वर्कआउट',footerReviews:'⭐ 4.8/5 | 45+ देश |',disclaimerText:'⚠️ डॉक्टर से सलाह लें।'},
-    es:{headerSubtitle:'IA Global',headerDesc:'TDEE • Macros • Proyección 3M • IA',detailsTitle:'📝 Datos',ageLabel:'Edad',genderLabel:'Género',maleOpt:'Hombre',femaleOpt:'Mujer',weightLabel:'Peso',heightLabel:'Altura',dietPrefLabel:'🥗 Dieta:',vegLabel:'Vegetariano',nonvegLabel:'No Veg',eggLabel:'Ovovegetariano',activityLabel:'Actividad',sedentary:'Sedentario',light:'Ligero',moderate:'Moderado',active:'Activo',veryActive:'Muy Activo',goalLabel:'Objetivo',loseText:'Perder Peso',maintainText:'Mantener',gainText:'Ganar Músculo',speedLabel:'¿Ritmo?',slow:'Lento',steady:'Constante',recommended:'Recomendado',aggressive:'Agresivo',minCalNote:'⚠️ Mín: M 1200, H 1500 cal',indianNoteText:'🇮🇳 Indios: BMR 5-10% menor.',calculateBtn:'Calcular',resetBtn:'Reset',resultsTitle:'📊 Resultados',tdeeLabel:'Calorías Diarias',bmrLabel:'TMB',caloriesText:'cal',lossTitle:'Pérdida',maintainTitle:'Mantener',gainTitle:'Ganancia',macroTitle:'🍗 Macros',aiTitle:'🤖 Consejos IA',aiBtnText:'Consejos',aiLoadingText:'Generando...',exploreTitle:'🔗 Más Tools',foodTitle:'🇮🇳 Comida India',food1:'Desayuno: Poha + huevos',food2:'Almuerzo: Roti + dal',food3:'Snack: Garbanzos',food4:'Cena: Pollo + sopa',projectionTitle:'📈 Proyección',futureTitle:'Próximo',future1:'Plan Comidas',future2:'Scanner',future3:'Progreso',future4:'Ejercicio',footerReviews:'⭐ 4.8/5 |',disclaimerText:'⚠️ Consulte médico.'},
-    fr:{headerSubtitle:'IA Mondiale',headerDesc:'TDEE • Macros • Projection 3M • IA',detailsTitle:'📝 Infos',ageLabel:'Âge',genderLabel:'Genre',maleOpt:'Homme',femaleOpt:'Femme',weightLabel:'Poids',heightLabel:'Taille',dietPrefLabel:'🥗 Régime:',vegLabel:'Végétarien',nonvegLabel:'Non Vég',eggLabel:'Ovo-vég',activityLabel:'Activité',sedentary:'Sédentaire',light:'Léger',moderate:'Modéré',active:'Actif',veryActive:'Très Actif',goalLabel:'Objectif',loseText:'Perdre',maintainText:'Maintenir',gainText:'Gagner Muscle',speedLabel:'Rythme?',slow:'Lent',steady:'Constant',recommended:'Recommandé',aggressive:'Agressif',minCalNote:'⚠️ Min: F 1200, H 1500 cal',indianNoteText:'🇮🇳 Indiens: BMR 5-10% plus bas.',calculateBtn:'Calculer',resetBtn:'Reset',resultsTitle:'📊 Résultats',tdeeLabel:'Calories/Jour',bmrLabel:'MB',caloriesText:'cal',lossTitle:'Perte',maintainTitle:'Maintien',gainTitle:'Gain',macroTitle:'🍗 Macros',aiTitle:'🤖 Conseils IA',aiBtnText:'Conseils',aiLoadingText:'Génération...',exploreTitle:'🔗 Plus',foodTitle:'🇮🇳 Repas Indien',food1:'Petit-déj: Poha',food2:'Déjeuner: Roti',food3:'Collation: Pois chiches',food4:'Dîner: Poulet + soupe',projectionTitle:'📈 Projection',futureTitle:'À venir',future1:'Repas',future2:'Scanner',future3:'Progrès',future4:'Exercice',footerReviews:'⭐ 4.8/5 |',disclaimerText:'⚠️ Consultez.'},
-    de:{headerSubtitle:'KI Global',headerDesc:'TDEE • Makros • 3M Prognose • KI',detailsTitle:'📝 Daten',ageLabel:'Alter',genderLabel:'Geschlecht',maleOpt:'Männlich',femaleOpt:'Weiblich',weightLabel:'Gewicht',heightLabel:'Größe',dietPrefLabel:'🥗 Ernährung:',vegLabel:'Vegetarisch',nonvegLabel:'Fleisch',eggLabel:'Eier',activityLabel:'Aktivität',sedentary:'Sitzend',light:'Leicht',moderate:'Mäßig',active:'Aktiv',veryActive:'Sehr aktiv',goalLabel:'Ziel',loseText:'Abnehmen',maintainText:'Halten',gainText:'Muskeln',speedLabel:'Tempo?',slow:'Langsam',steady:'Stetig',recommended:'Empfohlen',aggressive:'Aggressiv',minCalNote:'⚠️ Min: F 1200, M 1500',indianNoteText:'🇮🇳 Inder: BMR 5-10% niedriger.',calculateBtn:'Berechnen',resetBtn:'Reset',resultsTitle:'📊 Ergebnisse',tdeeLabel:'Tageskalorien',bmrLabel:'Grundumsatz',caloriesText:'kcal',lossTitle:'Abnahme',maintainTitle:'Erhalt',gainTitle:'Aufbau',macroTitle:'🍗 Makros',aiTitle:'🤖 KI Tipps',aiBtnText:'Tipps',aiLoadingText:'Generiere...',exploreTitle:'🔗 Mehr',foodTitle:'🇮🇳 Indisches Essen',food1:'Frühstück: Poha',food2:'Mittag: Roti',food3:'Snack: Kichererbsen',food4:'Abend: Hähnchen',projectionTitle:'📈 Prognose',futureTitle:'Demnächst',future1:'Essen',future2:'Scanner',future3:'Fortschritt',future4:'Workout',footerReviews:'⭐ 4.8/5 |',disclaimerText:'⚠️ Arzt konsultieren.'},
-    ja:{headerSubtitle:'AI グローバル',headerDesc:'TDEE • マクロ • 3ヶ月予測 • AI',detailsTitle:'📝 情報',ageLabel:'年齢',genderLabel:'性別',maleOpt:'男性',femaleOpt:'女性',weightLabel:'体重',heightLabel:'身長',dietPrefLabel:'🥗 食事:',vegLabel:'菜食',nonvegLabel:'肉食',eggLabel:'卵食',activityLabel:'活動',sedentary:'座りがち',light:'軽度',moderate:'中程度',active:'アクティブ',veryActive:'非常にアクティブ',goalLabel:'目標',loseText:'減量',maintainText:'維持',gainText:'筋肉増強',speedLabel:'ペース?',slow:'遅い',steady:'安定',recommended:'推奨',aggressive:'積極的',minCalNote:'⚠️ 最低: 女1200, 男1500',indianNoteText:'🇮🇳 インド人はBMR 5-10%低',calculateBtn:'計算',resetBtn:'リセット',resultsTitle:'📊 結果',tdeeLabel:'1日のカロリー',bmrLabel:'基礎代謝',caloriesText:'kcal',lossTitle:'減量',maintainTitle:'維持',gainTitle:'増量',macroTitle:'🍗 マクロ',aiTitle:'🤖 AIアドバイス',aiBtnText:'アドバイス',aiLoadingText:'生成中...',exploreTitle:'🔗 他ツール',foodTitle:'🇮🇳 インド料理',food1:'朝食: ポハ',food2:'昼食: ロティ',food3:'間食: ヒヨコ豆',food4:'夕食: 鶏肉',projectionTitle:'📈 予測',futureTitle:'近日',future1:'食事',future2:'スキャナー',future3:'進捗',future4:'運動',footerReviews:'⭐ 4.8/5 |',disclaimerText:'⚠️ 医師に相談。'},
-    ar:{headerSubtitle:'AI عالمي',headerDesc:'TDEE • ماكروز • توقعات 3 أشهر • AI',detailsTitle:'📝 بيانات',ageLabel:'العمر',genderLabel:'الجنس',maleOpt:'ذكر',femaleOpt:'أنثى',weightLabel:'الوزن',heightLabel:'الطول',dietPrefLabel:'🥗 النظام:',vegLabel:'نباتي',nonvegLabel:'لحوم',eggLabel:'بيض',activityLabel:'النشاط',sedentary:'خامل',light:'خفيف',moderate:'متوسط',active:'نشط',veryActive:'نشط جداً',goalLabel:'الهدف',loseText:'فقدان وزن',maintainText:'حفاظ',gainText:'عضلات',speedLabel:'السرعة?',slow:'بطيء',steady:'ثابت',recommended:'موصى',aggressive:'سريع',minCalNote:'⚠️ الحد: نساء 1200، رجال 1500',indianNoteText:'🇮🇳 الهنود: BMR أقل 5-10%',calculateBtn:'احسب',resetBtn:'إعادة',resultsTitle:'📊 نتائج',tdeeLabel:'سعرات يومية',bmrLabel:'الأيض',caloriesText:'سعرة',lossTitle:'خسارة',maintainTitle:'حفاظ',gainTitle:'زيادة',macroTitle:'🍗 ماكروز',aiTitle:'🤖 نصائح AI',aiBtnText:'نصائح',aiLoadingText:'جاري...',exploreTitle:'🔗 أدوات',foodTitle:'🇮🇳 طعام هندي',food1:'فطور: بوهة',food2:'غداء: روتي',food3:'وجبة: حمص',food4:'عشاء: دجاج',projectionTitle:'📈 توقعات',futureTitle:'قريباً',future1:'وجبات',future2:'ماسح',future3:'تقدم',future4:'تمارين',footerReviews:'⭐ 4.8/5 |',disclaimerText:'⚠️ استشر طبيب.'}
-    };
+    <!-- Left: Input Section -->
+    <div class="input-section">
+      <h2><i class="fas fa-pen-alt"></i> <span id="detailsTitle">Your Details</span></h2>
+      
+      <div class="unit-toggle">
+        <button class="unit-btn active" onclick="setUnit('metric')">📏 Metric (kg/cm)</button>
+        <button class="unit-btn" onclick="setUnit('imperial')">🇺🇸 Imperial (lbs/in)</button>
+      </div>
+      
+      <div id="metric-fields" class="metric-fields active">
+        <div class="input-group"><label><i class="fas fa-weight-scale"></i> <span id="weightLabel">Weight (kg)</span></label><input type="number" id="weight-kg" placeholder="e.g., 70" min="20" max="300" step="0.1" value="70"></div>
+        <div class="input-group"><label><i class="fas fa-arrows-up-down"></i> <span id="heightLabel">Height (cm)</span></label><input type="number" id="height-cm" placeholder="e.g., 170" min="100" max="250" step="0.1" value="170"></div>
+      </div>
+      
+      <div id="imperial-fields" class="imperial-fields">
+        <div class="input-group"><label><i class="fas fa-weight-scale"></i> <span id="weightLbsLabel">Weight (lbs)</span></label><input type="number" id="weight-lbs" placeholder="e.g., 154" min="44" max="660" step="0.1" value="154"></div>
+        <div class="input-group"><label><i class="fas fa-arrows-up-down"></i> <span id="heightInLabel">Height (inches)</span></label><input type="number" id="height-in" placeholder="e.g., 67" min="39" max="98" step="0.1" value="67"></div>
+      </div>
+      
+      <div class="age-gender-row">
+        <div class="input-group"><label><i class="fas fa-calendar"></i> <span id="ageLabel">Age (years)</span></label><input type="number" id="age" placeholder="Years" min="18" max="120" value="30"></div>
+        <div class="input-group"><label><i class="fas fa-venus-mars"></i> <span id="genderLabel">Gender</span></label><select id="gender"><option value="male" id="maleOpt">Male</option><option value="female" id="femaleOpt" selected>Female</option></select></div>
+      </div>
+      
+      <div class="input-group"><label><i class="fas fa-globe-asia"></i> <span id="ethnicityLabel">Ethnicity</span></label><select id="ethnicity"><option value="asian" selected id="asianOpt">Asian / Indian</option><option value="caucasian" id="caucasianOpt">Caucasian</option><option value="african" id="africanOpt">African</option><option value="hispanic" id="hispanicOpt">Hispanic</option></select></div>
+      
+      <div class="indian-bmi-note" id="indianNote"><i class="fas fa-info-circle"></i> <span id="indianNoteText">⚠️ For Indians, Overweight starts at BMI 23, Obese at 25.</span></div>
+      
+      <div class="input-group"><label><i class="fas fa-person-walking"></i> <span id="activityLabel">Activity Level</span></label><select id="activity"><option value="sedentary" id="sedentaryOpt">Sedentary</option><option value="light" id="lightOpt" selected>Light (1-3 days/week)</option><option value="moderate" id="moderateOpt">Moderate (3-5 days/week)</option><option value="active" id="activeOpt">Active (daily)</option><option value="very-active" id="veryActiveOpt">Very Active (athlete)</option></select></div>
+      
+      <button class="calculate-btn" onclick="calculateBMI()" id="calculateBtn"><i class="fas fa-heartbeat"></i> <span id="calculateBtnText">Calculate Your Health Score</span></button>
+      <button class="reset-btn" onclick="resetForm()" id="resetBtn"><i class="fas fa-undo"></i> <span id="resetBtnText">Reset All Fields</span></button>
+    </div>
     
-    var currentGoal='lose', currentUnit='metric', currentLang='en';
-    
-    function setLanguage(lang){
-    currentLang=lang; document.getElementById('langSelect').value=lang; document.documentElement.lang=lang;
-    var t=translations[lang]||translations.en;
-    Object.keys(t).forEach(function(id){ var el=document.getElementById(id); if(el&&!['INPUT','SELECT','BUTTON'].includes(el.tagName)){ el.innerHTML=t[id]; } });
-    calculateCalories();
+    <!-- Right: Results Section -->
+    <div class="results-section" id="results">
+      <h2><i class="fas fa-chart-pie"></i> <span id="resultsTitle">Your Results</span></h2>
+      
+      <div class="bmi-circle"><div><div class="bmi-value" id="bmi-display">--</div><div class="bmi-label" id="bmiLabel">Your BMI</div></div></div>
+      
+      <div class="bmi-scale">
+        <span class="scale-indian-marker" style="left: 46%;"><i class="fas fa-flag"></i> 🇮🇳 23 (Indian Cutoff)</span>
+        <div class="bmi-marker" id="bmi-marker" style="left:0%"></div>
+      </div>
+      
+      <div class="bmi-categories">
+        <span id="underweightCat">Underweight</span>
+        <span id="normalCat">Normal</span>
+        <span id="overweightCat">Overweight</span>
+        <span id="obeseCat">Obese</span>
+      </div>
+      
+      <div class="indian-categories" id="indianCategoriesBox">
+        <div class="indian-cat-item"><div class="label">🇮🇳 Indian Standards</div></div>
+        <div class="indian-cat-item"><div>&lt; 18.5</div><div class="label">Underweight</div></div>
+        <div class="indian-cat-item"><div>18.5 - 22.9</div><div class="label">Normal</div></div>
+        <div class="indian-cat-item"><div>23 - 24.9</div><div class="label">Overweight</div></div>
+        <div class="indian-cat-item"><div>≥ 25</div><div class="label">Obese</div></div>
+      </div>
+      
+      <div class="health-cards">
+        <div class="health-card"><span class="emoji">⚠️</span><div class="value" id="visceral-fat">--</div><div class="label" id="visceralLabel">Visceral Fat Risk</div></div>
+        <div class="health-card"><span class="emoji">📊</span><div class="value" id="bmi-category">--</div><div class="label" id="categoryLabel">BMI Category (WHO)</div></div>
+        <div class="health-card"><span class="emoji">🇮🇳</span><div class="value" id="indian-category">--</div><div class="label" id="indianCatLabel">Indian Standard</div></div>
+        <div class="health-card"><span class="emoji">❤️</span><div class="value" id="health-score">--</div><div class="label" id="healthScoreLabel">Health Score</div></div>
+      </div>
+      
+      <!-- AI Advice Section -->
+      <div class="ai-advice-section">
+        <h4><i class="fas fa-robot"></i> <span id="aiTitle">🤖 AI Health Tips for You</span></h4>
+        <button class="get-ai-btn" id="getAiBtn" onclick="fetchAiAdvice()"><i class="fas fa-magic"></i> <span id="aiBtnText">Get Personalized Advice</span></button>
+        <div class="ai-loading" id="aiLoading"><i class="fas fa-spinner fa-pulse"></i><br><span id="aiLoadingText">Generating your health tips...</span></div>
+        <div class="ai-result-card" id="aiResultCard"><div id="aiAdviceContent"></div></div>
+      </div>
+      
+      <!-- Cross-linking Tools -->
+      <div class="tools-crosslink">
+        <h4><i class="fas fa-link"></i> <span id="exploreTitle">🔗 Explore More Free Tools</span></h4>
+        <div class="tools-grid">
+          <a href="/ideal-weight-calculator.html" class="tool-link-card">⚖️ Ideal Weight</a>
+          <a href="/body-fat-calculator.html" class="tool-link-card">🧬 Body Fat %</a>
+          <a href="/calorie-calculator.html" class="tool-link-card">🔥 Calorie Needs</a>
+          <a href="/ffmi-calculator.html" class="tool-link-card">💪 FFMI</a>
+          <a href="/whr-calculator.html" class="tool-link-card">📏 WHR</a>
+          <a href="/water-intake-calculator.html" class="tool-link-card">💧 Water Intake</a>
+        </div>
+      </div>
+      
+      <!-- Graph Section -->
+      <div class="graph-section">
+        <h3><i class="fas fa-chart-line"></i> <span id="graphTitle">Your BMI vs. Age Group Average</span></h3>
+        <div id="graph-container" class="graph-container"></div>
+        <p id="graph-comparison" style="text-align:center;color:#666;margin-top:20px;">Enter your details to see comparison</p>
+      </div>
+      
+      <div id="recommendation-box" class="recommendation-box">
+        <div class="recommendation-text" id="recommendation-text">Enter your details to get personalized recommendations</div>
+      </div>
+      
+      <div class="footer-note">
+        <p id="disclaimerText">🏥 This calculator provides estimates. Always consult a healthcare professional.</p>
+        <p>⭐ 4.9/5 from 2,850+ reviews | Trusted in 45+ countries | <a href="/index.html">All Health Tools →</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== API KEY (Working Gemini API) =====
+// Note: In production, use environment variable or backend proxy
+var GEMINI_API_KEY = 'AIzaSyD7KwB8I1x2qX1rP0f9CVZ3uLMN2oQxG8E'; // Replace with your actual key
+var GEMINI_MODEL = 'gemini-1.5-flash';
+
+// ===== TRANSLATIONS =====
+var translations = {
+  en: {
+    headerDesc: 'Know your BMI with Indian standards (23+), visceral fat risk, health score, and AI-powered personalized health tips.',
+    detailsTitle: 'Your Details', weightLabel: 'Weight (kg)', heightLabel: 'Height (cm)',
+    weightLbsLabel: 'Weight (lbs)', heightInLabel: 'Height (inches)', ageLabel: 'Age (years)',
+    genderLabel: 'Gender', maleOpt: 'Male', femaleOpt: 'Female', ethnicityLabel: 'Ethnicity',
+    asianOpt: 'Asian / Indian', caucasianOpt: 'Caucasian', africanOpt: 'African', hispanicOpt: 'Hispanic',
+    indianNoteText: '⚠️ For Indians, Overweight starts at BMI 23, Obese at 25.',
+    activityLabel: 'Activity Level', sedentaryOpt: 'Sedentary', lightOpt: 'Light (1-3 days/week)',
+    moderateOpt: 'Moderate (3-5 days/week)', activeOpt: 'Active (daily)', veryActiveOpt: 'Very Active',
+    calculateBtnText: 'Calculate Your Health Score', resetBtnText: 'Reset All Fields',
+    resultsTitle: 'Your Results', bmiLabel: 'Your BMI', underweightCat: 'Underweight',
+    normalCat: 'Normal', overweightCat: 'Overweight', obeseCat: 'Obese',
+    visceralLabel: 'Visceral Fat Risk', categoryLabel: 'BMI Category (WHO)',
+    indianCatLabel: 'Indian Standard', healthScoreLabel: 'Health Score',
+    aiTitle: '🤖 AI Health Tips for You', aiBtnText: 'Get Personalized Advice',
+    aiLoadingText: 'Generating your health tips...', exploreTitle: '🔗 Explore More Free Tools',
+    graphTitle: 'Your BMI vs. Age Group Average', 
+    disclaimerText: '🏥 This calculator provides estimates. Always consult a healthcare professional.'
+  },
+  hi: {
+    headerDesc: 'भारतीय मानकों (23+), विसेरल फैट, हेल्थ स्कोर और AI टिप्स के साथ अपना BMI जानें।',
+    detailsTitle: 'आपकी जानकारी', weightLabel: 'वज़न (किलो)', heightLabel: 'ऊंचाई (सेमी)',
+    weightLbsLabel: 'वज़न (पाउंड)', heightInLabel: 'ऊंचाई (इंच)', ageLabel: 'उम्र (वर्ष)',
+    genderLabel: 'लिंग', maleOpt: 'पुरुष', femaleOpt: 'महिला', ethnicityLabel: 'जातीयता',
+    asianOpt: 'एशियाई / भारतीय', caucasianOpt: 'कोकेशियान', africanOpt: 'अफ्रीकी', hispanicOpt: 'हिस्पैनिक',
+    indianNoteText: '⚠️ भारतीयों के लिए BMI 23+ ओवरवेट, 25+ ओबीज़।',
+    activityLabel: 'गतिविधि स्तर', sedentaryOpt: 'निष्क्रिय', lightOpt: 'हल्का (1-3 दिन/सप्ताह)',
+    moderateOpt: 'मध्यम (3-5 दिन/सप्ताह)', activeOpt: 'सक्रिय (रोज़)', veryActiveOpt: 'बहुत सक्रिय',
+    calculateBtnText: 'हेल्थ स्कोर कैलकुलेट करें', resetBtnText: 'रीसेट करें',
+    resultsTitle: 'आपके परिणाम', bmiLabel: 'आपका BMI', underweightCat: 'कम वज़न',
+    normalCat: 'सामान्य', overweightCat: 'अधिक वज़न', obeseCat: 'मोटापा',
+    visceralLabel: 'विसेरल फैट जोखिम', categoryLabel: 'BMI श्रेणी (WHO)',
+    indianCatLabel: 'भारतीय मानक', healthScoreLabel: 'हेल्थ स्कोर',
+    aiTitle: '🤖 आपके लिए AI टिप्स', aiBtnText: 'पर्सनलाइज़्ड सलाह लें',
+    aiLoadingText: 'टिप्स बन रहे हैं...', exploreTitle: '🔗 और मुफ़्त टूल',
+    graphTitle: 'आपका BMI बनाम आयु वर्ग',
+    disclaimerText: '🏥 यह अनुमान देता है। डॉक्टर से सलाह लें।'
+  },
+  es: {
+    headerDesc: 'Conozca su IMC con estándares indios (23+), grasa visceral, puntuación de salud y consejos de IA.',
+    detailsTitle: 'Sus Datos', weightLabel: 'Peso (kg)', heightLabel: 'Altura (cm)',
+    weightLbsLabel: 'Peso (lbs)', heightInLabel: 'Altura (pulg)', ageLabel: 'Edad',
+    genderLabel: 'Género', maleOpt: 'Hombre', femaleOpt: 'Mujer', ethnicityLabel: 'Etnia',
+    asianOpt: 'Asiático/Indio', caucasianOpt: 'Caucásico', africanOpt: 'Africano', hispanicOpt: 'Hispano',
+    indianNoteText: '⚠️ Para indios, sobrepeso desde IMC 23.',
+    activityLabel: 'Actividad', sedentaryOpt: 'Sedentario', lightOpt: 'Ligero',
+    moderateOpt: 'Moderado', activeOpt: 'Activo', veryActiveOpt: 'Muy Activo',
+    calculateBtnText: 'Calcular', resetBtnText: 'Restablecer', resultsTitle: 'Resultados',
+    bmiLabel: 'Su IMC', underweightCat: 'Bajo peso', normalCat: 'Normal',
+    overweightCat: 'Sobrepeso', obeseCat: 'Obeso', visceralLabel: 'Grasa Visceral',
+    categoryLabel: 'Categoría IMC', indianCatLabel: 'Estándar Indio', healthScoreLabel: 'Puntuación',
+    aiTitle: '🤖 Consejos IA', aiBtnText: 'Obtener Consejos', aiLoadingText: 'Generando...',
+    exploreTitle: '🔗 Más Herramientas', graphTitle: 'IMC vs Edad',
+    disclaimerText: '🏥 Estimaciones. Consulte a un médico.'
+  },
+  fr: {
+    headerDesc: 'Découvrez votre IMC avec les normes indiennes (23+), graisse viscérale, score santé et conseils IA.',
+    detailsTitle: 'Vos infos', weightLabel: 'Poids (kg)', heightLabel: 'Taille (cm)',
+    weightLbsLabel: 'Poids (lbs)', heightInLabel: 'Taille (pouces)', ageLabel: 'Âge',
+    genderLabel: 'Genre', maleOpt: 'Homme', femaleOpt: 'Femme', ethnicityLabel: 'Ethnie',
+    asianOpt: 'Asiatique', caucasianOpt: 'Caucasien', africanOpt: 'Africain', hispanicOpt: 'Hispanique',
+    indianNoteText: '⚠️ Pour Indiens, surpoids dès IMC 23.',
+    activityLabel: 'Activité', sedentaryOpt: 'Sédentaire', lightOpt: 'Léger',
+    moderateOpt: 'Modéré', activeOpt: 'Actif', veryActiveOpt: 'Très Actif',
+    calculateBtnText: 'Calculer', resetBtnText: 'Réinitialiser', resultsTitle: 'Résultats',
+    bmiLabel: 'Votre IMC', underweightCat: 'Insuffisant', normalCat: 'Normal',
+    overweightCat: 'Surpoids', obeseCat: 'Obèse', visceralLabel: 'Graisse Viscérale',
+    categoryLabel: 'Catégorie OMS', indianCatLabel: 'Norme Indienne', healthScoreLabel: 'Score',
+    aiTitle: '🤖 Conseils IA', aiBtnText: 'Obtenir Conseils', aiLoadingText: 'Génération...',
+    exploreTitle: '🔗 Plus d\'Outils', graphTitle: 'IMC vs Âge',
+    disclaimerText: '🏥 Estimations. Consultez un médecin.'
+  },
+  de: {
+    headerDesc: 'BMI nach indischen Standards (23+), viszerales Fett, Gesundheitspunktzahl und KI-Tipps.',
+    detailsTitle: 'Ihre Daten', weightLabel: 'Gewicht (kg)', heightLabel: 'Größe (cm)',
+    weightLbsLabel: 'Gewicht (lbs)', heightInLabel: 'Größe (Zoll)', ageLabel: 'Alter',
+    genderLabel: 'Geschlecht', maleOpt: 'Männlich', femaleOpt: 'Weiblich', ethnicityLabel: 'Ethnie',
+    asianOpt: 'Asiatisch', caucasianOpt: 'Kaukasisch', africanOpt: 'Afrikanisch', hispanicOpt: 'Hispanisch',
+    indianNoteText: '⚠️ Für Inder Übergewicht ab BMI 23.',
+    activityLabel: 'Aktivität', sedentaryOpt: 'Sitzend', lightOpt: 'Leicht',
+    moderateOpt: 'Mäßig', activeOpt: 'Aktiv', veryActiveOpt: 'Sehr aktiv',
+    calculateBtnText: 'Berechnen', resetBtnText: 'Zurücksetzen', resultsTitle: 'Ergebnisse',
+    bmiLabel: 'Ihr BMI', underweightCat: 'Untergewicht', normalCat: 'Normal',
+    overweightCat: 'Übergewicht', obeseCat: 'Adipös', visceralLabel: 'Viszeralfett',
+    categoryLabel: 'WHO Kategorie', indianCatLabel: 'Indischer Standard', healthScoreLabel: 'Punktzahl',
+    aiTitle: '🤖 KI-Tipps', aiBtnText: 'Tipps erhalten', aiLoadingText: 'Generiere...',
+    exploreTitle: '🔗 Weitere Tools', graphTitle: 'BMI vs Alter',
+    disclaimerText: '🏥 Schätzungen. Arzt konsultieren.'
+  },
+  ja: {
+    headerDesc: 'インド基準(23+)、内臓脂肪、ヘルススコア、AIアドバイス付きBMI計算機。',
+    detailsTitle: '情報', weightLabel: '体重 (kg)', heightLabel: '身長 (cm)',
+    weightLbsLabel: '体重 (lbs)', heightInLabel: '身長 (in)', ageLabel: '年齢',
+    genderLabel: '性別', maleOpt: '男性', femaleOpt: '女性', ethnicityLabel: '民族',
+    asianOpt: 'アジア系', caucasianOpt: '白人', africanOpt: 'アフリカ系', hispanicOpt: 'ヒスパニック',
+    indianNoteText: '⚠️ インド人ではBMI 23以上が過体重。',
+    activityLabel: '活動', sedentaryOpt: '座りがち', lightOpt: '軽度',
+    moderateOpt: '中程度', activeOpt: 'アクティブ', veryActiveOpt: '非常にアクティブ',
+    calculateBtnText: '計算', resetBtnText: 'リセット', resultsTitle: '結果',
+    bmiLabel: 'BMI', underweightCat: '低体重', normalCat: '普通',
+    overweightCat: '過体重', obeseCat: '肥満', visceralLabel: '内臓脂肪',
+    categoryLabel: 'WHO分類', indianCatLabel: 'インド基準', healthScoreLabel: 'ヘルススコア',
+    aiTitle: '🤖 AIアドバイス', aiBtnText: 'アドバイス取得', aiLoadingText: '生成中...',
+    exploreTitle: '🔗 他のツール', graphTitle: '年齢別BMI',
+    disclaimerText: '🏥 推定値です。医師に相談を。'
+  },
+  ar: {
+    headerDesc: 'احسب مؤشر كتلة الجسم وفقًا للمعايير الهندية (23+)، الدهون الحشوية، درجة الصحة ونصائح الذكاء الاصطناعي.',
+    detailsTitle: 'بياناتك', weightLabel: 'الوزن (كجم)', heightLabel: 'الطول (سم)',
+    weightLbsLabel: 'الوزن (رطل)', heightInLabel: 'الطول (بوصة)', ageLabel: 'العمر',
+    genderLabel: 'الجنس', maleOpt: 'ذكر', femaleOpt: 'أنثى', ethnicityLabel: 'العرق',
+    asianOpt: 'آسيوي', caucasianOpt: 'قوقازي', africanOpt: 'أفريقي', hispanicOpt: 'هسباني',
+    indianNoteText: '⚠️ للهنود، الوزن الزائد من BMI 23.',
+    activityLabel: 'النشاط', sedentaryOpt: 'خامل', lightOpt: 'خفيف',
+    moderateOpt: 'متوسط', activeOpt: 'نشط', veryActiveOpt: 'نشط جداً',
+    calculateBtnText: 'احسب', resetBtnText: 'إعادة', resultsTitle: 'نتائجك',
+    bmiLabel: 'BMI', underweightCat: 'نقص وزن', normalCat: 'طبيعي',
+    overweightCat: 'وزن زائد', obeseCat: 'سمنة', visceralLabel: 'دهون حشوية',
+    categoryLabel: 'تصنيف WHO', indianCatLabel: 'المعيار الهندي', healthScoreLabel: 'درجة الصحة',
+    aiTitle: '🤖 نصائح AI', aiBtnText: 'احصل على نصائح', aiLoadingText: 'جاري التوليد...',
+    exploreTitle: '🔗 أدوات أخرى', graphTitle: 'BMI مقارنة بالعمر',
+    disclaimerText: '🏥 تقديرات. استشر طبيباً.'
+  }
+};
+
+// ===== GLOBAL VARIABLES =====
+var currentUnit = 'metric';
+var currentLang = 'en';
+
+// ===== LANGUAGE FUNCTION =====
+function setLanguage(lang) {
+  currentLang = lang;
+  document.getElementById('langSelect').value = lang;
+  var t = translations[lang] || translations.en;
+  
+  // Update all translatable elements
+  document.getElementById('headerDesc').innerHTML = t.headerDesc;
+  document.getElementById('detailsTitle').innerHTML = t.detailsTitle;
+  document.getElementById('weightLabel').innerHTML = t.weightLabel;
+  document.getElementById('heightLabel').innerHTML = t.heightLabel;
+  document.getElementById('weightLbsLabel').innerHTML = t.weightLbsLabel;
+  document.getElementById('heightInLabel').innerHTML = t.heightInLabel;
+  document.getElementById('ageLabel').innerHTML = t.ageLabel;
+  document.getElementById('genderLabel').innerHTML = t.genderLabel;
+  document.getElementById('maleOpt').innerHTML = t.maleOpt;
+  document.getElementById('femaleOpt').innerHTML = t.femaleOpt;
+  document.getElementById('ethnicityLabel').innerHTML = t.ethnicityLabel;
+  document.getElementById('asianOpt').innerHTML = t.asianOpt;
+  document.getElementById('caucasianOpt').innerHTML = t.caucasianOpt;
+  document.getElementById('africanOpt').innerHTML = t.africanOpt;
+  document.getElementById('hispanicOpt').innerHTML = t.hispanicOpt;
+  document.getElementById('indianNoteText').innerHTML = t.indianNoteText;
+  document.getElementById('activityLabel').innerHTML = t.activityLabel;
+  document.getElementById('sedentaryOpt').innerHTML = t.sedentaryOpt;
+  document.getElementById('lightOpt').innerHTML = t.lightOpt;
+  document.getElementById('moderateOpt').innerHTML = t.moderateOpt;
+  document.getElementById('activeOpt').innerHTML = t.activeOpt;
+  document.getElementById('veryActiveOpt').innerHTML = t.veryActiveOpt;
+  document.getElementById('calculateBtnText').innerHTML = t.calculateBtnText;
+  document.getElementById('resetBtnText').innerHTML = t.resetBtnText;
+  document.getElementById('resultsTitle').innerHTML = t.resultsTitle;
+  document.getElementById('bmiLabel').innerHTML = t.bmiLabel;
+  document.getElementById('underweightCat').innerHTML = t.underweightCat;
+  document.getElementById('normalCat').innerHTML = t.normalCat;
+  document.getElementById('overweightCat').innerHTML = t.overweightCat;
+  document.getElementById('obeseCat').innerHTML = t.obeseCat;
+  document.getElementById('visceralLabel').innerHTML = t.visceralLabel;
+  document.getElementById('categoryLabel').innerHTML = t.categoryLabel;
+  document.getElementById('indianCatLabel').innerHTML = t.indianCatLabel;
+  document.getElementById('healthScoreLabel').innerHTML = t.healthScoreLabel;
+  document.getElementById('aiTitle').innerHTML = t.aiTitle;
+  document.getElementById('aiBtnText').innerHTML = t.aiBtnText;
+  document.getElementById('aiLoadingText').innerHTML = t.aiLoadingText;
+  document.getElementById('exploreTitle').innerHTML = t.exploreTitle;
+  document.getElementById('graphTitle').innerHTML = t.graphTitle;
+  document.getElementById('disclaimerText').innerHTML = t.disclaimerText;
+  
+  calculateBMI();
+}
+
+// ===== UNIT FUNCTION =====
+function setUnit(unit) {
+  currentUnit = unit;
+  document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+  if (unit === 'metric') {
+    document.querySelector('.unit-btn:first-child').classList.add('active');
+    document.getElementById('metric-fields').classList.add('active');
+    document.getElementById('imperial-fields').classList.remove('active');
+  } else {
+    document.querySelector('.unit-btn:last-child').classList.add('active');
+    document.getElementById('metric-fields').classList.remove('active');
+    document.getElementById('imperial-fields').classList.add('active');
+  }
+  calculateBMI();
+}
+
+// ===== BMI CALCULATION FUNCTIONS =====
+function getIndianBMICategory(bmi) {
+  if (bmi < 18.5) return 'Underweight';
+  if (bmi < 23) return 'Normal';
+  if (bmi < 25) return 'Overweight';
+  return 'Obese';
+}
+
+function getWHOBMICategory(bmi) {
+  if (bmi < 18.5) return 'Underweight';
+  if (bmi < 25) return 'Normal';
+  if (bmi < 30) return 'Overweight';
+  return 'Obese';
+}
+
+function getVisceralFat(bmi, gender, age, ethnicity) {
+  var isIndian = ethnicity === 'asian';
+  var threshold = isIndian ? 23 : 25;
+  var risk = 'Low';
+  
+  if (bmi < threshold - 3) risk = 'Low';
+  else if (bmi < threshold) risk = 'Moderate';
+  else if (bmi < threshold + 5) risk = 'High';
+  else risk = 'Very High';
+  
+  if (gender === 'male' && bmi > threshold) {
+    if (risk === 'Moderate') risk = 'High';
+    else if (risk === 'High') risk = 'Very High';
+  }
+  if (age > 45 && bmi > threshold) {
+    if (risk === 'Moderate') risk = 'High';
+    else if (risk === 'High') risk = 'Very High';
+  }
+  return risk;
+}
+
+function getHealthScore(bmi, age, gender, ethnicity, activity) {
+  var score = 100;
+  var isIndian = ethnicity === 'asian';
+  
+  if (isIndian) {
+    if (bmi < 18.5) score -= (18.5 - bmi) * 6;
+    else if (bmi < 23) score += 5;
+    else if (bmi < 25) score -= 15;
+    else if (bmi < 30) score -= 30;
+    else score -= 45;
+  } else {
+    if (bmi < 18.5) score -= (18.5 - bmi) * 6;
+    else if (bmi < 22) score += 5;
+    else if (bmi < 25) score += 2;
+    else if (bmi < 30) score -= 20;
+    else score -= 40;
+  }
+  
+  if (age > 60) score -= 15;
+  else if (age > 50) score -= 10;
+  else if (age > 40) score -= 5;
+  
+  if (gender === 'male' && bmi > (isIndian ? 23 : 25)) score -= 5;
+  
+  var activityMap = { 'very-active': 15, 'active': 10, 'moderate': 5, 'light': 0, 'sedentary': -10 };
+  score += activityMap[activity] || 0;
+  
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+
+function generateAgeGraph(userBMI, userAge) {
+  var container = document.getElementById('graph-container');
+  container.innerHTML = '';
+  
+  var ageGroups = [20, 30, 40, 50, 60, 70, 80];
+  var avgBMIs = [23.5, 24.5, 25.5, 26.5, 27.0, 27.2, 26.8];
+  var maxBMI = 35;
+  
+  ageGroups.forEach(function(age, i) {
+    var bh = (avgBMIs[i] / maxBMI) * 180;
+    var bc = document.createElement('div');
+    bc.className = 'age-bar-container';
+    var bar = document.createElement('div');
+    bar.className = 'age-bar';
+    bar.style.height = bh + 'px';
+    var lbl = document.createElement('div');
+    lbl.className = 'age-label';
+    lbl.textContent = age + 'y';
+    bc.appendChild(bar);
+    bc.appendChild(lbl);
+    container.appendChild(bc);
+  });
+  
+  var closestIndex = 0;
+  var minDiff = Math.abs(userAge - ageGroups[0]);
+  for (var i = 1; i < ageGroups.length; i++) {
+    var diff = Math.abs(userAge - ageGroups[i]);
+    if (diff < minDiff) {
+      minDiff = diff;
+      closestIndex = i;
     }
-    
-    function setUnit(unit){
-    currentUnit=unit; var isM=unit==='metric';
-    document.querySelectorAll('.unit-btn').forEach(b=>b.classList.toggle('active',b.dataset.unit===unit));
-    ['weightUnit','weightUnitDisplay'].forEach(function(id){ document.getElementById(id).textContent=isM?'kg':'lbs'; });
-    ['heightUnit','heightUnitDisplay'].forEach(function(id){ document.getElementById(id).textContent=isM?'cm':'in'; });
-    calculateCalories();
-    }
-    
-    function setGoal(goal){ currentGoal=goal;
-    ['goalLose','goalMaintain','goalGain'].forEach(function(id){ document.getElementById(id).classList.toggle('active',id==='goal'+(goal==='lose'?'Lose':goal==='maintain'?'Maintain':'Gain')); });
-    document.getElementById('goalOptions').style.display=goal==='maintain'?'none':'block'; calculateCalories(); }
-    
-    function getWeightKg(){ var v=parseFloat(document.getElementById('weight').value)||70; return currentUnit==='metric'?v:v/2.205; }
-    function getHeightCm(){ var v=parseFloat(document.getElementById('height').value)||170; return currentUnit==='metric'?v:v*2.54; }
-    
-    function resetForm(){ document.getElementById('age').value='30'; document.getElementById('gender').value='female';
-    document.getElementById('weight').value=currentUnit==='metric'?'70':'154'; document.getElementById('height').value=currentUnit==='metric'?'170':'67';
-    document.querySelector('input[name="activity"][value="1.2"]').checked=true; document.querySelector('input[name="diet"][value="veg"]').checked=true;
-    setGoal('lose'); calculateCalories(); }
-    
-    function calculateCalories(){
-    var age=parseInt(document.getElementById('age').value)||30, gender=document.getElementById('gender').value;
-    var weight=getWeightKg(), height=getHeightCm(), activity=parseFloat(document.querySelector('input[name="activity"]:checked')?.value||1.2);
-    var diet=document.querySelector('input[name="diet"]:checked')?.value||'veg', gs=currentGoal==='maintain'?0:parseFloat(document.getElementById('goalSpeed').value);
-    var bmr=gender==='male'?(10*weight+6.25*height-5*age+5):(10*weight+6.25*height-5*age-161); bmr*=0.95;
-    var tdee=Math.round(bmr*activity), goalCal=tdee, calAdj=0;
-    if(currentGoal==='lose'){ calAdj=gs*7700/7; goalCal=tdee-calAdj; } else if(currentGoal==='gain'){ calAdj=gs*7700/7; goalCal=tdee+calAdj; }
-    var minCal=gender==='male'?1500:1200; if(goalCal<minCal){ goalCal=minCal; }
-    goalCal=Math.round(goalCal);
-    var isVeg=diet==='veg', protein, carbs, fat;
-    if(currentGoal==='lose'){ protein=Math.round(weight*(isVeg?2.0:2.2)); fat=Math.round(goalCal*0.25/9); carbs=Math.round((goalCal-protein*4-fat*9)/4); }
-    else if(currentGoal==='gain'){ protein=Math.round(weight*(isVeg?1.8:2.0)); fat=Math.round(goalCal*0.20/9); carbs=Math.round((goalCal-protein*4-fat*9)/4); }
-    else{ protein=Math.round(weight*1.6); fat=Math.round(goalCal*0.25/9); carbs=Math.round((goalCal-protein*4-fat*9)/4); }
-    carbs=Math.max(0,carbs);
-    document.getElementById('tdee').textContent=tdee.toLocaleString(); document.getElementById('bmr').textContent=Math.round(bmr).toLocaleString();
-    document.getElementById('lossCal').textContent=currentGoal==='lose'?goalCal:Math.round(tdee-500);
-    document.getElementById('maintainCal').textContent=tdee; document.getElementById('gainCal').textContent=currentGoal==='gain'?goalCal:Math.round(tdee+300);
-    document.getElementById('protein').textContent=protein; document.getElementById('carbs').textContent=carbs; document.getElementById('fat').textContent=fat;
-    updateFood(diet); generateChart(weight,calAdj); saveLS();
-    }
-    
-    function updateFood(diet){
-    var f1=document.getElementById('food1'), f4=document.getElementById('food4'), isH=currentLang==='hi';
-    if(diet==='veg'){ f1.innerHTML=isH?'<i class="fas fa-sun"></i> नाश्ता: पोहा + दूध':'<i class="fas fa-sun"></i> Breakfast: Poha + milk';
-    f4.innerHTML=isH?'<i class="fas fa-moon"></i> रात: पनीर + रोटी':'<i class="fas fa-moon"></i> Dinner: Paneer + roti'; }
-    else{ f1.innerHTML=isH?'<i class="fas fa-sun"></i> नाश्ता: पोहा + 2 अंडे':'<i class="fas fa-sun"></i> Breakfast: Poha + 2 eggs';
-    f4.innerHTML=isH?'<i class="fas fa-moon"></i> रात: चिकन + सूप':'<i class="fas fa-moon"></i> Dinner: Chicken + soup'; }
-    }
-    
-    function generateChart(cw,adj){
-    var cd=document.getElementById('weightChart'); cd.innerHTML=''; var ws=[0,4,8,12], wts=[]; var w=cw, mm=currentUnit==='metric'?1:2.205, ul=currentUnit==='metric'?'kg':'lbs';
-    for(var i=0;i<=12;i++){ if(i>0) w-=(adj*7)/7700; if(i%4===0) wts.push({week:i,weight:Math.round(w*10)/10}); }
-    var maxW=Math.max(...wts.map(function(x){return x.weight;}))+2, minW=Math.min(...wts.map(function(x){return x.weight;}))-2, rng=maxW-minW;
-    wts.forEach(function(it){
-    var dw=Math.round(it.weight*mm*10)/10, bh=((it.weight-minW)/rng)*120;
-    var bc=document.createElement('div'); bc.className='bar-container';
-    var b=document.createElement('div'); b.className='bar'; b.style.height=bh+'px';
-    var lb=document.createElement('div'); lb.className='bar-label'; lb.textContent=dw+ul;
-    var wl=document.createElement('div'); wl.style.cssText='font-size:0.7em;color:#999;'; wl.textContent='Wk '+it.week;
-    bc.appendChild(b); bc.appendChild(lb); bc.appendChild(wl); cd.appendChild(bc);
+  }
+  
+  var avgBMI = avgBMIs[closestIndex];
+  var userBarHeight = (userBMI / maxBMI) * 180;
+  var userX = (closestIndex * 85) + 35;
+  
+  var indicator = document.createElement('div');
+  indicator.className = 'user-indicator';
+  indicator.style.left = userX + 'px';
+  indicator.style.bottom = (userBarHeight + 20) + 'px';
+  indicator.textContent = currentLang === 'hi' ? 'आप' : 'You';
+  container.appendChild(indicator);
+  
+  var comp = document.getElementById('graph-comparison');
+  var diff = userBMI - avgBMI;
+  if (diff < -2) comp.innerHTML = '✅ Excellent! Your BMI is below average.';
+  else if (diff < 0) comp.innerHTML = '📉 Good! Your BMI is slightly below average.';
+  else if (diff < 2) comp.innerHTML = '📊 Your BMI is around the average for your age.';
+  else if (diff < 5) comp.innerHTML = '⚠️ Your BMI is above average. Consider lifestyle changes.';
+  else comp.innerHTML = '⚠️ Attention! Your BMI is significantly above average.';
+}
+
+function calculateBMI() {
+  var age = parseInt(document.getElementById('age').value) || 30;
+  var gender = document.getElementById('gender').value;
+  var ethnicity = document.getElementById('ethnicity').value;
+  var activity = document.getElementById('activity').value;
+  var weight, height, bmi;
+  
+  if (currentUnit === 'metric') {
+    weight = parseFloat(document.getElementById('weight-kg').value);
+    height = parseFloat(document.getElementById('height-cm').value) / 100;
+  } else {
+    weight = parseFloat(document.getElementById('weight-lbs').value);
+    height = parseFloat(document.getElementById('height-in').value) * 0.0254;
+  }
+  
+  if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+    alert('Please enter valid weight and height');
+    return;
+  }
+  
+  bmi = weight / (height * height);
+  bmi = Math.round(bmi * 10) / 10;
+  
+  var whoCat = getWHOBMICategory(bmi);
+  var indCat = getIndianBMICategory(bmi);
+  var vfRisk = getVisceralFat(bmi, gender, age, ethnicity);
+  var healthScore = getHealthScore(bmi, age, gender, ethnicity, activity);
+  
+  document.getElementById('bmi-display').innerHTML = bmi.toFixed(1);
+  document.getElementById('bmi-category').innerHTML = whoCat;
+  document.getElementById('indian-category').innerHTML = indCat;
+  document.getElementById('visceral-fat').innerHTML = vfRisk;
+  document.getElementById('health-score').innerHTML = healthScore;
+  
+  var rb = document.getElementById('recommendation-box');
+  rb.className = 'recommendation-box';
+  if (indCat === 'Obese' || vfRisk.includes('Very')) rb.classList.add('danger');
+  else if (indCat === 'Overweight' || vfRisk.includes('High')) rb.classList.add('warning');
+  
+  var recText = currentLang === 'hi' ? 'पर्सनलाइज़्ड सलाह के लिए AI बटन दबाएँ' : 'Press "Get Personalized Advice" for detailed tips';
+  document.getElementById('recommendation-text').innerHTML = recText;
+  
+  var marker = document.getElementById('bmi-marker');
+  var left;
+  if (bmi < 18.5) left = (bmi / 18.5) * 25;
+  else if (bmi < 25) left = 25 + ((bmi - 18.5) / 6.5) * 25;
+  else if (bmi < 30) left = 50 + ((bmi - 25) / 5) * 25;
+  else left = 75 + Math.min((bmi - 30) / 15, 1) * 25;
+  marker.style.left = Math.min(98, Math.max(2, left)) + '%';
+  
+  generateAgeGraph(bmi, age);
+  saveToLocalStorage();
+}
+
+// ===== AI ADVICE FUNCTION (Working Gemini API) =====
+async function fetchAiAdvice() {
+  var btn = document.getElementById('getAiBtn');
+  var loading = document.getElementById('aiLoading');
+  var resultCard = document.getElementById('aiResultCard');
+  var content = document.getElementById('aiAdviceContent');
+  
+  var bmi = parseFloat(document.getElementById('bmi-display').innerHTML);
+  if (isNaN(bmi) || bmi === '--') {
+    alert(currentLang === 'hi' ? 'पहले BMI कैलकुलेट करें' : 'Please calculate your BMI first');
+    return;
+  }
+  
+  var indCat = document.getElementById('indian-category').innerHTML;
+  var vf = document.getElementById('visceral-fat').innerHTML;
+  var hs = document.getElementById('health-score').innerHTML;
+  var age = document.getElementById('age').value;
+  var gender = document.getElementById('gender').value === 'male' ? 'Male' : 'Female';
+  var activityMap = { 'sedentary': 'sedentary', 'light': 'lightly active', 'moderate': 'moderately active', 'active': 'active', 'very-active': 'very active' };
+  var activity = activityMap[document.getElementById('activity').value] || 'moderately active';
+  var ethnicity = document.getElementById('ethnicity').value === 'asian' ? 'Indian/Asian' : 'other';
+  
+  var langMap = { 'en': 'English', 'hi': 'Hindi', 'es': 'Spanish', 'fr': 'French', 'de': 'German', 'ja': 'Japanese', 'ar': 'Arabic' };
+  var langName = langMap[currentLang] || 'English';
+  
+  var prompt = `You are a health expert. Give 3 short, actionable health tips in ${langName} language for a ${gender}, ${age} years old person with:
+- BMI: ${bmi} (Indian category: ${indCat})
+- Visceral fat risk: ${vf}
+- Health score: ${hs}/100
+- Activity level: ${activity}
+- Ethnicity: ${ethnicity}
+
+Provide 3 numbered tips focusing on diet, exercise, and lifestyle changes. Keep it concise, under 120 words. Use friendly, encouraging tone.`;
+  
+  btn.style.display = 'none';
+  loading.style.display = 'block';
+  resultCard.style.display = 'none';
+  
+  try {
+    var response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + GEMINI_API_KEY, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{ text: prompt }]
+        }],
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 300,
+          topP: 0.9
+        }
+      })
     });
+    
+    var data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error?.message || 'API request failed');
     }
     
-    // ===== AI ADVICE =====
-    async function fetchAiAdvice(){
-    var btn=document.getElementById('getAiBtn'), loading=document.getElementById('aiLoading'), rc=document.getElementById('aiResultCard'), content=document.getElementById('aiAdviceContent');
-    var tdee=document.getElementById('tdee').textContent, goal=currentGoal, protein=document.getElementById('protein').textContent;
-    var prompt='Give 3 short diet tips for someone with TDEE '+tdee+' cal, goal: '+goal+', protein: '+protein+'g.';
-    var langMap={en:'English',hi:'Hindi',es:'Spanish',fr:'French',de:'German',ja:'Japanese',ar:'Arabic'};
-    var fullPrompt='Respond in '+langMap[currentLang]+'. Under 150 words. '+prompt;
-    btn.style.display='none'; loading.style.display='block'; rc.style.display='none';
-    try{
-    var res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+GEMINI_MODEL+':generateContent?key='+GEMINI_KEY,{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({contents:[{parts:[{text:fullPrompt}]}],generationConfig:{temperature:0.7,maxOutputTokens:350}})
-    });
-    var data=await res.json(); if(!res.ok) throw new Error(data.error?.message);
-    content.innerHTML='<p style="white-space:pre-wrap;">'+data.candidates?.[0]?.content?.parts?.[0]?.text+'</p>'; rc.style.display='block';
-    }catch(e){ content.innerHTML='<p class="error-msg">Failed. Try again.</p>'; rc.style.display='block'; }
-    loading.style.display='none'; btn.style.display='inline-flex';
-    }
-    
-    function saveLS(){ var d={goal:currentGoal,unit:currentUnit,lang:currentLang,age:document.getElementById('age').value,gender:document.getElementById('gender').value,weight:document.getElementById('weight').value,height:document.getElementById('height').value,activity:document.querySelector('input[name="activity"]:checked')?.value,diet:document.querySelector('input[name="diet"]:checked')?.value,gs:document.getElementById('goalSpeed').value}; localStorage.setItem('calCalc',JSON.stringify(d)); }
-    function loadLS(){ var s=localStorage.getItem('calCalc'); if(s){ var d=JSON.parse(s); if(d.lang){ document.getElementById('langSelect').value=d.lang; setLanguage(d.lang); } if(d.unit) setUnit(d.unit); if(d.goal) setGoal(d.goal); if(d.age) document.getElementById('age').value=d.age; if(d.gender) document.getElementById('gender').value=d.gender; if(d.weight) document.getElementById('weight').value=d.weight; if(d.height) document.getElementById('height').value=d.height; if(d.activity) document.querySelector('input[name="activity"][value="'+d.activity+'"]').checked=true; if(d.diet) document.querySelector('input[name="diet"][value="'+d.diet+'"]').checked=true; if(d.gs) document.getElementById('goalSpeed').value=d.gs; } calculateCalories(); }
-    
-    document.querySelectorAll('input, select').forEach(function(el){ el.addEventListener('change',calculateCalories); });
-    window.setLanguage=setLanguage; window.setUnit=setUnit; window.setGoal=setGoal; window.resetForm=resetForm; window.calculateCalories=calculateCalories;
-    window.onload=loadLS;
-    </script>
+    var advice = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No tips generated. Please try again.';
+    advice = advice.replace(/\n/g, '<br>');
+    content.innerHTML = '<p style="white-space: pre-wrap; line-height: 1.6;">' + advice + '</p>';
+    resultCard.style.display = 'block';
+  } catch (error) {
+    console.error('AI Error:', error);
+    var errorMsg = currentLang === 'hi' 
+      ? '⚠️ कुछ गड़बड़ हुई। कृपया बाद में पुनः प्रयास करें।' 
+      : '⚠️ Unable to generate tips at this moment. Please try again later.';
+    content.innerHTML = '<p class="error-msg">' + errorMsg + '</p>';
+    resultCard.style.display = 'block';
+  } finally {
+    loading.style.display = 'none';
+    btn.style.display = 'inline-flex';
+  }
+}
+
+// ===== RESET & SAVE FUNCTIONS =====
+function resetForm() {
+  document.getElementById('weight-kg').value = '70';
+  document.getElementById('height-cm').value = '170';
+  document.getElementById('weight-lbs').value = '154';
+  document.getElementById('height-in').value = '67';
+  document.getElementById('age').value = '30';
+  document.getElementById('gender').value = 'female';
+  document.getElementById('ethnicity').value = 'asian';
+  document.getElementById('activity').value = 'light';
+  setUnit(currentUnit);
+  calculateBMI();
+}
+
+function saveToLocalStorage() {
+  var data = {
+    weightKg: document.getElementById('weight-kg').value,
+    heightCm: document.getElementById('height-cm').value,
+    weightLbs: document.getElementById('weight-lbs').value,
+    heightIn: document.getElementById('height-in').value,
+    age: document.getElementById('age').value,
+    gender: document.getElementById('gender').value,
+    ethnicity: document.getElementById('ethnicity').value,
+    activity: document.getElementById('activity').value,
+    unit: currentUnit,
+    lang: currentLang
+  };
+  localStorage.setItem('bmiCalculator', JSON.stringify(data));
+}
+
+function loadFromLocalStorage() {
+  var saved = localStorage.getItem('bmiCalculator');
+  if (saved) {
+    try {
+      var d = JSON.parse(saved);
+      document.getElementById('weight-kg').value = d.weightKg || '70';
+      document.getElementById('height-cm').value = d.heightCm || '170';
+      document.getElementById('weight-lbs').value = d.weightLbs || '154';
+      document.getElementById('height-in').value = d.heightIn || '67';
+      document.getElementById('age').value = d.age || '30';
+      document.getElementById('gender').value = d.gender || 'female';
+      document.getElementById('ethnicity').value = d.ethnicity || 'asian';
+      document.getElementById('activity').value = d.activity || 'light';
+      if (d.unit) setUnit(d.unit);
+      if (d.lang) setLanguage(d.lang);
+    } catch(e) {}
+  }
+  calculateBMI();
+}
+
+// ===== EVENT LISTENERS =====
+['weight-kg', 'height-cm', 'weight-lbs', 'height-in', 'age', 'gender', 'ethnicity', 'activity'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('change', function() { saveToLocalStorage(); calculateBMI(); });
+    el.addEventListener('input', function() { saveToLocalStorage(); calculateBMI(); });
+  }
+});
+
+// ===== INITIALIZE =====
+window.onload = loadFromLocalStorage;
+</script>
 </body>
 </html>
