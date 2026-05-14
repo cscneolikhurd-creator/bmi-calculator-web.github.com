@@ -3,22 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Medication Half-Life Tracker | Drug Concentration Calculator</title>
-<meta name="description" content="Track medication concentration in your body over time. Calculate drug half-life, time to elimination, and plot concentration curves for any medication.">
-<meta name="keywords" content="medication half-life, drug tracker, pharmacology, drug concentration, medicine elimination, dosing schedule">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+
+<title>Advanced Medication Half-Life Tracker | Drug Concentration Calculator | Multi-Dose Support</title>
+<meta name="description" content="Professional medication half-life tracker with multi-dose support. Track drug concentration over time, calculate elimination time, and visualize concentration curves for any medication. Ideal for pharmacology students and healthcare professionals.">
+<meta name="keywords" content="medication half-life, drug tracker, pharmacology, drug concentration, medicine elimination, dosing schedule, multiple doses, steady state, AUC calculation">
 <meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/medication-half-life-tracker.html">
 
-<meta property="og:title" content="Medication Half-Life Tracker | Drug Concentration">
-<meta property="og:description" content="Visualize how medications build up and leave your system.">
+<!-- Open Graph -->
+<meta property="og:title" content="Advanced Medication Half-Life Tracker | Multi-Dose Drug Concentration Calculator">
+<meta property="og:description" content="Track drug concentration with multiple dosing schedules. Visualize accumulation and elimination curves.">
+<meta property="og:url" content="https://healthcalc.in/medication-half-life-tracker.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://healthcalc.in/images/medication-half-life-og.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Advanced Medication Half-Life Tracker">
+<meta name="twitter:description" content="Professional drug concentration calculator with multi-dose support">
+
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Advanced Medication Half-Life Tracker",
+  "description": "Professional medication half-life calculator with multi-dose support and concentration visualization",
+  "url": "https://healthcalc.in/medication-half-life-tracker.html",
+  "author": {"@type": "Organization", "name": "HealthCalc"},
+  "about": {"@type": "MedicalCondition", "name": "Medication Monitoring"},
+  "inLanguage": ["en"],
+  "dateModified": "2026-05-14"
+}
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 
 <style>
 * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
+}
+
+:root {
+  --primary: #667eea;
+  --primary-dark: #5a67d8;
+  --primary-light: #e9efff;
+  --secondary: #10b981;
+  --accent: #f59e0b;
+  --danger: #ef4444;
+  --dark: #1e293b;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-600: #475569;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 }
 
 body {
@@ -29,13 +78,13 @@ min-height: 100vh;
 }
 
 .container {
-max-width: 850px;
+max-width: 1200px;
 margin: 0 auto;
 }
 
 .card {
 background: white;
-border-radius: 48px;
+border-radius: var(--radius-xl);
 padding: 2rem;
 box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
 }
@@ -47,8 +96,68 @@ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 background-clip: text;
 color: transparent;
 margin-bottom: 0.5rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+flex-wrap: wrap;
 }
 
+h1 .badge-new {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  -webkit-text-fill-color: white;
+}
+
+.subtitle {
+color: var(--gray-600);
+margin-bottom: 1.5rem;
+font-size: 0.95rem;
+}
+
+/* Tabs */
+.tab-container {
+display: flex;
+gap: 0.5rem;
+margin-bottom: 1.5rem;
+border-bottom: 2px solid var(--gray-200);
+padding-bottom: 0.5rem;
+}
+
+.tab-btn {
+background: transparent;
+border: none;
+padding: 0.7rem 1.5rem;
+font-size: 0.95rem;
+font-weight: 600;
+color: var(--gray-600);
+cursor: pointer;
+border-radius: var(--radius-md);
+transition: all 0.2s;
+}
+
+.tab-btn.active {
+background: var(--primary);
+color: white;
+}
+
+.tab-pane {
+display: none;
+}
+
+.tab-pane.active {
+display: block;
+animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form */
 .form-group {
 margin-bottom: 1.2rem;
 }
@@ -57,15 +166,28 @@ label {
 display: block;
 font-weight: 600;
 margin-bottom: 0.5rem;
-color: #1e293b;
+color: var(--dark);
+font-size: 0.9rem;
+}
+
+label i {
+color: var(--primary);
+margin-right: 0.3rem;
 }
 
 input, select {
 width: 100%;
 padding: 12px 16px;
-border: 2px solid #e2e8f0;
-border-radius: 20px;
+border: 2px solid var(--gray-200);
+border-radius: var(--radius-md);
 font-size: 1rem;
+transition: all 0.2s;
+}
+
+input:focus, select:focus {
+outline: none;
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
 }
 
 .row-2 {
@@ -74,22 +196,100 @@ grid-template-columns: 1fr 1fr;
 gap: 1rem;
 }
 
+.row-3 {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1rem;
+}
+
+@media (max-width: 700px) {
+.row-2, .row-3 { grid-template-columns: 1fr; }
+}
+
+/* Preset Drugs */
 .preset-meds {
 display: flex;
 flex-wrap: wrap;
-gap: 0.5rem;
+gap: 0.6rem;
 margin: 1rem 0;
 }
 
 .preset-btn {
-background: #f1f5f9;
-padding: 0.4rem 1rem;
+background: var(--gray-100);
+padding: 0.5rem 1.2rem;
 border-radius: 40px;
-font-size: 0.8rem;
+font-size: 0.85rem;
 cursor: pointer;
-border: none;
+border: 1px solid var(--gray-200);
+transition: all 0.2s;
+font-weight: 500;
 }
 
+.preset-btn:hover {
+background: var(--primary-light);
+border-color: var(--primary);
+}
+
+/* Dose List */
+.dose-item {
+display: flex;
+gap: 0.8rem;
+margin-bottom: 0.8rem;
+align-items: center;
+background: var(--gray-50);
+padding: 0.8rem;
+border-radius: var(--radius-md);
+}
+
+.dose-item input {
+flex: 1;
+margin-bottom: 0;
+}
+
+.dose-item .remove-dose {
+background: var(--danger);
+color: white;
+border: none;
+padding: 0.5rem 1rem;
+border-radius: var(--radius-sm);
+cursor: pointer;
+font-size: 0.8rem;
+}
+
+.add-dose-btn {
+background: var(--secondary);
+color: white;
+border: none;
+padding: 0.6rem 1rem;
+border-radius: var(--radius-md);
+cursor: pointer;
+font-size: 0.9rem;
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+margin-top: 0.5rem;
+}
+
+/* Calculation Methods */
+.method-selector {
+display: flex;
+gap: 1rem;
+margin-bottom: 1rem;
+}
+
+.method-option {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+cursor: pointer;
+}
+
+.method-option input {
+width: auto;
+margin: 0;
+}
+
+/* Buttons */
 .calc-btn {
 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 color: white;
@@ -101,18 +301,43 @@ font-size: 1rem;
 font-weight: bold;
 cursor: pointer;
 margin: 1rem 0;
+transition: all 0.2s;
 }
 
+.calc-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 25px -5px rgba(102,126,234,0.4);
+}
+
+.reset-btn {
+background: transparent;
+border: 2px solid var(--gray-200);
+color: var(--gray-600);
+padding: 10px;
+width: 100%;
+border-radius: 60px;
+font-size: 0.9rem;
+font-weight: 600;
+cursor: pointer;
+margin-top: 0.5rem;
+transition: all 0.2s;
+}
+
+.reset-btn:hover {
+background: var(--gray-100);
+}
+
+/* Results */
 .result-box {
-background: #f8fafc;
-border-radius: 24px;
+background: var(--gray-50);
+border-radius: var(--radius-lg);
 padding: 1.5rem;
 margin-top: 1.5rem;
 }
 
 .concentration-info {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 gap: 1rem;
 margin-bottom: 1.5rem;
 }
@@ -120,21 +345,48 @@ margin-bottom: 1.5rem;
 .info-card {
 background: white;
 padding: 1rem;
-border-radius: 16px;
+border-radius: var(--radius-md);
 text-align: center;
+box-shadow: var(--shadow-sm);
 }
 
 .info-card .value {
 font-size: 1.5rem;
 font-weight: bold;
-color: #667eea;
+color: var(--primary);
+}
+
+.info-card .label-sm {
+font-size: 0.7rem;
+color: var(--gray-600);
+margin-top: 0.2rem;
 }
 
 canvas {
-max-height: 300px;
+max-height: 350px;
 margin: 1rem 0;
 }
 
+.interpretation {
+margin-top: 1rem;
+padding: 0.8rem;
+background: #e0f2fe;
+border-radius: var(--radius-md);
+font-size: 0.85rem;
+border-left: 4px solid var(--primary);
+}
+
+.peak-trough {
+display: flex;
+justify-content: space-between;
+margin-top: 1rem;
+padding: 0.8rem;
+background: var(--gray-100);
+border-radius: var(--radius-md);
+font-size: 0.85rem;
+}
+
+/* Interlinks */
 .interlinks {
 display: flex;
 flex-wrap: wrap;
@@ -142,189 +394,412 @@ gap: 0.6rem;
 justify-content: center;
 margin-top: 2rem;
 padding-top: 1.5rem;
-border-top: 2px solid #e2e8f0;
+border-top: 2px solid var(--gray-200);
 }
 
 .interlinks a {
-background: #f1f5f9;
+background: var(--gray-100);
 padding: 0.5rem 1rem;
 border-radius: 40px;
 text-decoration: none;
 font-size: 0.8rem;
-color: #475569;
+color: var(--gray-600);
+transition: all 0.2s;
 }
 
+.interlinks a:hover {
+background: var(--primary);
+color: white;
+}
+
+/* Footer */
 footer {
 text-align: center;
 margin-top: 2rem;
 color: #cbd5e1;
 font-size: 0.7rem;
 }
-
-@media (max-width: 600px) {
-.card { padding: 1.2rem; }
-.row-2 { grid-template-columns: 1fr; }
-}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="card">
-<h1>💊 Medication Half-Life Tracker</h1>
-<p style="color: #64748b; margin-bottom: 1rem;">Track drug concentration in your body over time</p>
+<h1>💊 Advanced Medication Half-Life Tracker <span class="badge-new">Multi-Dose Support</span></h1>
+<p class="subtitle">Track drug concentration with single or multiple doses. Visualize accumulation and elimination curves.</p>
 
+<!-- Tabs -->
+<div class="tab-container">
+<button class="tab-btn active" data-tab="single">Single Dose</button>
+<button class="tab-btn" data-tab="multi">Multiple Doses</button>
+<button class="tab-btn" data-tab="info">Drug Database</button>
+</div>
+
+<!-- Single Dose Tab -->
+<div class="tab-pane active" id="singleTab">
 <div class="preset-meds">
-<button class="preset-btn" data-drug="ibuprofen" data-half="2" data-dose="400">💊 Ibuprofen (2h)</button>
-<button class="preset-btn" data-drug="caffeine" data-half="5" data-dose="200">☕ Caffeine (5h)</button>
-<button class="preset-btn" data-drug="loratadine" data-half="8" data-dose="10">🤧 Loratadine (8h)</button>
-<button class="preset-btn" data-drug="omeprazole" data-half="1.5" data-dose="20">🔥 Omeprazole (1.5h)</button>
-<button class="preset-btn" data-drug="diazepam" data-half="48" data-dose="10">💙 Diazepam (48h)</button>
+<button class="preset-btn" data-half="2" data-dose="400" data-name="Ibuprofen">💊 Ibuprofen (2h)</button>
+<button class="preset-btn" data-half="5" data-dose="200" data-name="Caffeine">☕ Caffeine (5h)</button>
+<button class="preset-btn" data-half="8" data-dose="10" data-name="Loratadine">🤧 Loratadine (8h)</button>
+<button class="preset-btn" data-half="1.5" data-dose="20" data-name="Omeprazole">🔥 Omeprazole (1.5h)</button>
+<button class="preset-btn" data-half="48" data-dose="10" data-name="Diazepam">💙 Diazepam (48h)</button>
+<button class="preset-btn" data-half="12" data-dose="500" data-name="Paracetamol">💊 Paracetamol (12h)</button>
+<button class="preset-btn" data-half="36" data-dose="50" data-name="Sertraline">🧠 Sertraline (36h)</button>
 </div>
 
 <div class="row-2">
 <div class="form-group">
-<label>💊 Medication Name</label>
-<input type="text" id="medName" placeholder="e.g., Ibuprofen" value="Ibuprofen">
+<label><i class="fas fa-capsules"></i> Medication Name</label>
+<input type="text" id="medNameSingle" placeholder="e.g., Ibuprofen" value="Ibuprofen">
 </div>
 <div class="form-group">
-<label>⚡ Half-Life (hours)</label>
-<input type="number" id="halfLife" step="0.1" value="2" placeholder="hours">
+<label><i class="fas fa-chart-line"></i> Half-Life (hours)</label>
+<input type="number" id="halfLifeSingle" step="0.1" value="2" placeholder="hours">
 </div>
 </div>
 
 <div class="row-2">
 <div class="form-group">
-<label>💊 Single Dose (mg)</label>
-<input type="number" id="dose" step="any" value="400" placeholder="mg">
+<label><i class="fas fa-weight-hanging"></i> Dose (mg)</label>
+<input type="number" id="doseSingle" step="any" value="400" placeholder="mg">
 </div>
 <div class="form-group">
-<label>🕐 Hours Since Dose</label>
-<input type="number" id="hoursSince" step="0.5" value="1" placeholder="hours">
+<label><i class="fas fa-clock"></i> Hours Since Dose</label>
+<input type="number" id="hoursSinceSingle" step="0.5" value="1" placeholder="hours">
 </div>
+</div>
+
+<div class="form-group">
+<div class="method-selector">
+<label class="method-option">
+<input type="radio" name="calcMethodSingle" value="standard" checked> Standard (One-compartment)
+</label>
+<label class="method-option">
+<input type="radio" name="calcMethodSingle" value="bioavailability"> With Bioavailability
+</label>
+</div>
+</div>
+
+<div id="bioavailabilityFields" style="display: none;">
+<div class="row-2">
+<div class="form-group">
+<label>Bioavailability (%)</label>
+<input type="number" id="bioavailability" step="1" value="100" min="1" max="100">
+</div>
+<div class="form-group">
+<label>Volume of Distribution (L)</label>
+<input type="number" id="volumeDist" step="1" value="50" placeholder="optional">
+</div>
+</div>
+</div>
+</div>
+
+<!-- Multiple Doses Tab -->
+<div class="tab-pane" id="multiTab">
+<div class="form-group">
+<label><i class="fas fa-capsules"></i> Medication Name</label>
+<input type="text" id="medNameMulti" placeholder="e.g., Amoxicillin" value="Amoxicillin">
+</div>
+
+<div class="row-2">
+<div class="form-group">
+<label><i class="fas fa-chart-line"></i> Half-Life (hours)</label>
+<input type="number" id="halfLifeMulti" step="0.1" value="8" placeholder="hours">
+</div>
+<div class="form-group">
+<label><i class="fas fa-weight-hanging"></i> Dose per administration (mg)</label>
+<input type="number" id="doseMulti" step="any" value="500" placeholder="mg">
+</div>
+</div>
+
+<div class="row-2">
+<div class="form-group">
+<label><i class="fas fa-hourglass-half"></i> Dosing Interval (hours)</label>
+<input type="number" id="dosingInterval" step="0.5" value="12" placeholder="hours">
+</div>
+<div class="form-group">
+<label><i class="fas fa-chart-simple"></i> Number of Doses</label>
+<input type="number" id="numDoses" step="1" value="5" min="1" max="30">
+</div>
+</div>
+
+<div class="form-group">
+<label><i class="fas fa-clock"></i> Hours since last dose</label>
+<input type="number" id="hoursSinceMulti" step="0.5" value="2" placeholder="hours">
+</div>
+</div>
+
+<!-- Drug Database Tab -->
+<div class="tab-pane" id="infoTab">
+<h3 style="margin-bottom: 1rem;">📚 Common Drug Half-Lives</h3>
+<div style="overflow-x: auto;">
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr style="background: var(--gray-100);">
+<th style="padding: 10px; text-align: left;">Drug</th>
+<th style="padding: 10px; text-align: left;">Half-Life</th>
+<th style="padding: 10px; text-align: left;">Typical Dose</th>
+<th style="padding: 10px; text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Paracetamol (Acetaminophen)</td><td>1.5-2.5h</td><td>500-1000mg</td><td>Every 4-6h</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Ibuprofen</td><td>1.5-2.5h</td><td>200-400mg</td><td>Every 6-8h</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Amoxicillin</td><td>1-1.5h</td><td>250-500mg</td><td>Every 8-12h</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Caffeine</td><td>3-5h</td><td>100-200mg</td><td>Varies by metabolism</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Loratadine</td><td>8-12h</td><td>10mg</td><td>Once daily</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Sertraline (Zoloft)</td><td>24-26h</td><td>50-200mg</td><td>Steady state ~7 days</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Fluoxetine (Prozac)</td><td>4-6 days</td><td>20-80mg</td><td>Very long half-life</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Diazepam (Valium)</td><td>20-50h</td><td>2-10mg</td><td>Active metabolites</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Warfarin</td><td>20-60h</td><td>2-10mg</td><td>Monitor INR</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid var(--gray-200);">Levothyroxine</td><td>6-7 days</td><td>25-200mcg</td><td>Thyroid hormone</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin-top: 1rem; font-size: 0.8rem; color: var(--gray-600);"><i class="fas fa-info-circle"></i> Click any drug to load into calculator</p>
 </div>
 
 <button class="calc-btn" id="calculateBtn">📊 Calculate & Plot Concentration</button>
+<button class="reset-btn" id="resetBtn">⟳ Reset All Fields</button>
 
+<!-- Results -->
 <div class="result-box" id="resultBox">
 <div class="concentration-info">
 <div class="info-card">
-<div>Initial Concentration</div>
+<div>Initial/Dose Concentration</div>
 <div class="value" id="initialConc">— mg</div>
+<div class="label-sm" id="initialLabel">Peak concentration</div>
 </div>
 <div class="info-card">
 <div>Current Concentration</div>
 <div class="value" id="currentConc">— mg</div>
+<div class="label-sm" id="currentLabel">At selected time</div>
 </div>
 <div class="info-card">
 <div>Remaining</div>
 <div class="value" id="remainingPct">—%</div>
+<div class="label-sm">Of peak level</div>
 </div>
 <div class="info-card">
 <div>Time to 95% Elimination</div>
 <div class="value" id="elimTime">— h</div>
+<div class="label-sm">From last dose</div>
 </div>
 </div>
 
 <canvas id="concentrationChart"></canvas>
 
-<div id="interpretation" style="margin-top: 1rem; padding: 0.8rem; background: #e0f2fe; border-radius: 16px; font-size: 0.85rem;"></div>
+<div id="interpretation" class="interpretation"></div>
+
+<div id="steadyStateInfo" class="peak-trough" style="display: none;"></div>
 </div>
 
 <div class="interlinks">
-<a href="https://healthcalc.in/body-shape-analyzer.html">🧬 Body Shape</a>
-<a href="https://healthcalc.in/ffmi-calculator.html">💪 FFMI</a>
-<a href="https://healthcalc.in/whr-calculator.html">📏 WHR</a>
-<a href="https://healthcalc.in/bac-calculator.html">🍺 BAC</a>
-<a href="https://healthcalc.in/vo2max-calculator.html">❤️ VO₂ Max</a>
+<a href="body-shape-analyzer.html">🧬 Body Shape</a>
+<a href="ffmi-calculator.html">💪 FFMI</a>
+<a href="whr-calculator.html">📏 WHR</a>
+<a href="bac-calculator.html">🍺 BAC</a>
+<a href="vo2max-calculator.html">❤️ VO₂ Max</a>
+<a href="bmi-calculator.html">⚖️ BMI</a>
+<a href="calorie-calculator.html">🔥 Calories</a>
 </div>
 </div>
-<footer>⚠️ For educational purposes only. Always follow your doctor's prescription. Not medical advice.</footer>
+<footer>⚠️ For educational and informational purposes only. Always follow your doctor's prescription. This tool does not provide medical advice. Individual metabolism varies.</footer>
 </div>
 
 <script>
 let chart = null;
+let currentTab = 'single';
 
-const presetDrugs = {
-ibuprofen: { half: 2, dose: 400 },
-caffeine: { half: 5, dose: 200 },
-loratadine: { half: 8, dose: 10 },
-omeprazole: { half: 1.5, dose: 20 },
-diazepam: { half: 48, dose: 10 }
-};
+// ========== TAB SWITCHING ==========
+document.querySelectorAll('.tab-btn').forEach(btn => {
+btn.addEventListener('click', () => {
+document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+currentTab = btn.dataset.tab;
+document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+document.getElementById(currentTab + 'Tab').classList.add('active');
+calculate();
+});
+});
 
+// ========== BIOAVAILABILITY TOGGLE ==========
+document.querySelectorAll('input[name="calcMethodSingle"]').forEach(radio => {
+radio.addEventListener('change', () => {
+const showBioavail = document.querySelector('input[name="calcMethodSingle"]:checked').value === 'bioavailability';
+document.getElementById('bioavailabilityFields').style.display = showBioavail ? 'block' : 'none';
+calculate();
+});
+});
+
+// ========== PRESET DRUGS ==========
 document.querySelectorAll('.preset-btn').forEach(btn => {
 btn.addEventListener('click', () => {
-const drug = btn.getAttribute('data-drug');
-const data = presetDrugs[drug];
-if(data) {
-document.getElementById('medName').value = btn.getAttribute('data-drug') || drug;
-document.getElementById('halfLife').value = data.half;
-document.getElementById('dose').value = data.dose;
+const halfLife = btn.dataset.half;
+const dose = btn.dataset.dose;
+const name = btn.dataset.name;
+if (currentTab === 'single') {
+document.getElementById('halfLifeSingle').value = halfLife;
+document.getElementById('doseSingle').value = dose;
+document.getElementById('medNameSingle').value = name;
+} else {
+document.getElementById('halfLifeMulti').value = halfLife;
+document.getElementById('doseMulti').value = dose;
+document.getElementById('medNameMulti').value = name;
+}
+calculate();
+});
+});
+
+// Add click handler for drug database rows
+document.querySelectorAll('#infoTab table tbody tr').forEach(row => {
+row.addEventListener('click', () => {
+const cells = row.querySelectorAll('td');
+if (cells.length >= 2) {
+const drugName = cells[0].innerText.split('(')[0].trim();
+let halfLife = parseFloat(cells[1].innerText.split('-')[0]) || 4;
+let dose = parseInt(cells[2].innerText.split('-')[0]) || 100;
+if (currentTab === 'single') {
+document.getElementById('medNameSingle').value = drugName;
+document.getElementById('halfLifeSingle').value = halfLife;
+document.getElementById('doseSingle').value = dose;
+} else {
+document.getElementById('medNameMulti').value = drugName;
+document.getElementById('halfLifeMulti').value = halfLife;
+document.getElementById('doseMulti').value = dose;
+}
 calculate();
 }
 });
 });
 
-function calculate() {
-let halfLife = parseFloat(document.getElementById('halfLife').value);
-let dose = parseFloat(document.getElementById('dose').value);
-let hoursSince = parseFloat(document.getElementById('hoursSince').value);
-let medName = document.getElementById('medName').value || 'Medication';
+// ========== SINGLE DOSE CALCULATION ==========
+function calculateSingleDose() {
+let halfLife = parseFloat(document.getElementById('halfLifeSingle').value);
+let dose = parseFloat(document.getElementById('doseSingle').value);
+let hoursSince = parseFloat(document.getElementById('hoursSinceSingle').value);
+let medName = document.getElementById('medNameSingle').value || 'Medication';
+let bioavailability = 100;
+let volumeDist = null;
 
-if(isNaN(halfLife) || halfLife <= 0 || isNaN(dose) || dose <= 0 || isNaN(hoursSince) || hoursSince < 0) {
-return;
+const calcMethod = document.querySelector('input[name="calcMethodSingle"]:checked').value;
+if (calcMethod === 'bioavailability') {
+bioavailability = parseFloat(document.getElementById('bioavailability').value) || 100;
+volumeDist = parseFloat(document.getElementById('volumeDist').value) || null;
 }
 
-// Elimination constant k = ln(2)/halfLife
+if (isNaN(halfLife) || halfLife <= 0 || isNaN(dose) || dose <= 0 || isNaN(hoursSince) || hoursSince < 0) {
+return null;
+}
+
 let k = Math.LN2 / halfLife;
-let initialConc = dose;
-let currentConc = dose * Math.exp(-k * hoursSince);
-let remainingPct = (currentConc / dose) * 100;
+let bioFactor = bioavailability / 100;
+let effectiveDose = dose * bioFactor;
+let initialConc = effectiveDose;
+let currentConc = effectiveDose * Math.exp(-k * hoursSince);
+let remainingPct = (currentConc / effectiveDose) * 100;
+let elimTime95 = halfLife * 4.32;
 
-// Time to 95% elimination (3.3 half-lives)
-let elimTime95 = halfLife * 4.32; // 95% elimination = 4.32 half-lives
+// If volume of distribution is provided, calculate concentration in mg/L
+let concUnit = 'mg';
+let initialConcDisplay = initialConc.toFixed(2) + ' mg';
+let currentConcDisplay = currentConc.toFixed(2) + ' mg';
 
-document.getElementById('initialConc').innerHTML = initialConc + ' mg';
-document.getElementById('currentConc').innerHTML = currentConc.toFixed(2) + ' mg';
-document.getElementById('remainingPct').innerHTML = remainingPct.toFixed(1) + '%';
-document.getElementById('elimTime').innerHTML = elimTime95.toFixed(1) + ' hours';
-
-// Interpretation
-let interpretation = '';
-if(remainingPct > 50) {
-interpretation = `⚠️ ${Math.round(remainingPct)}% of ${medName} remains in your system. Peak effects still present.`;
-} else if(remainingPct > 25) {
-interpretation = `ℹ️ ${Math.round(remainingPct)}% remains. Therapeutic effects are decreasing.`;
-} else if(remainingPct > 10) {
-interpretation = `✅ ${Math.round(remainingPct)}% remains. Most of the drug has been eliminated.`;
-} else {
-interpretation = `✅ Less than 10% remains. ${medName} is mostly cleared from your system.`;
+if (volumeDist && volumeDist > 0) {
+let initialConcMgL = (effectiveDose / volumeDist);
+let currentConcMgL = initialConcMgL * Math.exp(-k * hoursSince);
+initialConcDisplay = initialConcMgL.toFixed(2) + ' mg/L';
+currentConcDisplay = currentConcMgL.toFixed(2) + ' mg/L';
+concUnit = 'mg/L';
 }
 
-interpretation += `<br><br>📊 ${medName} has a half-life of ${halfLife} hours. It takes about ${(halfLife * 4.32).toFixed(1)} hours (${(halfLife * 4.32 / 24).toFixed(1)} days) for 95% elimination.`;
+return {
+medName, halfLife, dose, hoursSince, k, effectiveDose,
+initialConc, currentConc, remainingPct, elimTime95,
+initialConcDisplay, currentConcDisplay, concUnit,
+bioavailability, volumeDist
+};
+}
 
-document.getElementById('interpretation').innerHTML = interpretation;
+// ========== MULTIPLE DOSES CALCULATION ==========
+function calculateMultiDose() {
+let halfLife = parseFloat(document.getElementById('halfLifeMulti').value);
+let dose = parseFloat(document.getElementById('doseMulti').value);
+let dosingInterval = parseFloat(document.getElementById('dosingInterval').value);
+let numDoses = parseInt(document.getElementById('numDoses').value);
+let hoursSinceLast = parseFloat(document.getElementById('hoursSinceMulti').value);
+let medName = document.getElementById('medNameMulti').value || 'Medication';
 
-// Generate chart data (48 hours or 4 half-lives)
-let maxHours = Math.max(48, halfLife * 5);
+if (isNaN(halfLife) || halfLife <= 0 || isNaN(dose) || dose <= 0 || 
+isNaN(dosingInterval) || dosingInterval <= 0 || isNaN(numDoses) || numDoses < 1) {
+return null;
+}
+
+let k = Math.LN2 / halfLife;
+let accumulationFactor = 1 / (1 - Math.exp(-k * dosingInterval));
+let steadyStatePeak = dose * accumulationFactor;
+let steadyStateTrough = steadyStatePeak * Math.exp(-k * dosingInterval);
+
+// Calculate current concentration
+let lastDoseTime = hoursSinceLast;
+let currentConc = dose * Math.exp(-k * lastDoseTime);
+
+// Add contribution from previous doses
+for (let i = 1; i < Math.min(numDoses, 20); i++) {
+let timeSincePrev = lastDoseTime + (i * dosingInterval);
+currentConc += dose * Math.exp(-k * timeSincePrev);
+}
+
+let elimTime95 = halfLife * 4.32;
+let timeToSteadyState = halfLife * 4.32; // ~4-5 half-lives
+let remainingPct = (currentConc / (steadyStatePeak)) * 100;
+
+return {
+medName, halfLife, dose, dosingInterval, numDoses, hoursSinceLast,
+k, steadyStatePeak, steadyStateTrough, currentConc,
+elimTime95, timeToSteadyState, remainingPct
+};
+}
+
+// ========== GENERATE CHART DATA ==========
+function generateChartData(params, isMulti) {
 let points = [];
-let timePoints = [];
-
-for(let i = 0; i <= 100; i++) {
-let t = (i / 100) * maxHours;
-let conc = dose * Math.exp(-k * t);
-points.push(conc);
-if(i % 10 === 0) timePoints.push(t.toFixed(1) + 'h');
-else timePoints.push('');
-}
-
 let labels = [];
-for(let i = 0; i <= 100; i++) {
-if(i % 10 === 0) labels.push(((i / 100) * maxHours).toFixed(1) + 'h');
+let maxHours;
+
+if (!isMulti) {
+let { halfLife, effectiveDose, k, hoursSince } = params;
+maxHours = Math.max(48, halfLife * 6);
+for (let i = 0; i <= 200; i++) {
+let t = (i / 200) * maxHours;
+let conc = effectiveDose * Math.exp(-k * t);
+points.push(conc);
+if (i % 20 === 0) labels.push(t.toFixed(1) + 'h');
 else labels.push('');
 }
+return { points, labels, maxHours, datasetLabel: `${params.medName} Concentration (${params.concUnit || 'mg'})` };
+} else {
+let { halfLife, dose, dosingInterval, numDoses, k, hoursSinceLast } = params;
+maxHours = Math.max(72, halfLife * 6, dosingInterval * numDoses + 24);
+for (let i = 0; i <= 300; i++) {
+let t = (i / 300) * maxHours;
+let conc = 0;
+for (let d = 0; d < numDoses; d++) {
+let doseTime = d * dosingInterval;
+if (t >= doseTime) {
+conc += dose * Math.exp(-k * (t - doseTime));
+}
+}
+points.push(conc);
+if (i % 30 === 0) labels.push(t.toFixed(1) + 'h');
+else labels.push('');
+}
+return { points, labels, maxHours, datasetLabel: `${params.medName} Concentration (mg/L equivalent)` };
+}
+}
 
-if(chart) {
+// ========== UPDATE CHART ==========
+function updateChart(chartData) {
+if (chart) {
 chart.destroy();
 }
 
@@ -332,60 +807,167 @@ const ctx = document.getElementById('concentrationChart').getContext('2d');
 chart = new Chart(ctx, {
 type: 'line',
 data: {
-labels: labels,
+labels: chartData.labels,
 datasets: [{
-label: `${medName} Concentration (mg)`,
-data: points,
+label: chartData.datasetLabel,
+data: chartData.points,
 borderColor: '#667eea',
 backgroundColor: 'rgba(102, 126, 234, 0.1)',
 borderWidth: 3,
 fill: true,
-tension: 0.4,
+tension: 0.3,
 pointRadius: 0,
-pointHoverRadius: 5
+pointHoverRadius: 4
 }]
 },
 options: {
 responsive: true,
 maintainAspectRatio: true,
 plugins: {
-legend: {
-position: 'top',
-},
+legend: { position: 'top' },
 tooltip: {
 callbacks: {
 label: function(context) {
-return `Concentration: ${context.raw.toFixed(2)} mg`;
+return `Concentration: ${context.raw.toFixed(2)} ${chartData.datasetLabel.includes('mg/L') ? 'mg/L' : 'mg'}`;
 }
 }
 }
 },
 scales: {
 y: {
-title: {
-display: true,
-text: 'Concentration (mg)'
-},
-beginAtZero: true
+title: { display: true, text: 'Concentration' },
+beginAtZero: true,
+grid: { color: '#e2e8f0' }
 },
 x: {
-title: {
-display: true,
-text: 'Time (hours)'
+title: { display: true, text: 'Time (hours)' },
+grid: { display: false }
 }
 }
 }
+});
+}
+
+// ========== UPDATE INTERPRETATION ==========
+function updateInterpretation(isMulti, params) {
+const interpretationDiv = document.getElementById('interpretation');
+const steadyStateDiv = document.getElementById('steadyStateInfo');
+
+if (!isMulti) {
+let { medName, halfLife, hoursSince, remainingPct, elimTime95, currentConcDisplay, initialConcDisplay } = params;
+let interpretation = '';
+
+if (remainingPct > 50) {
+interpretation = `⚠️ <strong>${Math.round(remainingPct)}% of ${medName}</strong> remains in your system. Peak effects still present.`;
+} else if (remainingPct > 25) {
+interpretation = `ℹ️ <strong>${Math.round(remainingPct)}%</strong> remains. Therapeutic effects are decreasing.`;
+} else if (remainingPct > 10) {
+interpretation = `✅ <strong>${Math.round(remainingPct)}%</strong> remains. Most of the drug has been eliminated.`;
+} else {
+interpretation = `✅ <strong>Less than 10%</strong> remains. ${medName} is mostly cleared from your system.`;
+}
+
+interpretation += `<br><br>📊 <strong>${medName}</strong> has a half-life of <strong>${halfLife} hours</strong>.`;
+interpretation += `<br>🕐 Current concentration: <strong>${currentConcDisplay}</strong> (was ${initialConcDisplay} at peak)`;
+interpretation += `<br>⏰ Time to 95% elimination: <strong>${elimTime95.toFixed(1)} hours</strong> (${(elimTime95 / 24).toFixed(1)} days)`;
+
+interpretationDiv.innerHTML = interpretation;
+steadyStateDiv.style.display = 'none';
+} else {
+let { medName, halfLife, dosingInterval, steadyStatePeak, steadyStateTrough, currentConc, remainingPct, elimTime95, timeToSteadyState, hoursSinceLast } = params;
+
+let interpretation = `📊 <strong>${medName}</strong> half-life: <strong>${halfLife} hours</strong> | Dosing: every ${dosingInterval} hours<br>`;
+interpretation += `🔄 Steady state reached after ~<strong>${timeToSteadyState.toFixed(1)} hours</strong> (${(timeToSteadyState / 24).toFixed(1)} days)<br>`;
+interpretation += `📈 Peak concentration at steady state: <strong>${steadyStatePeak.toFixed(1)} mg/L equivalent</strong><br>`;
+interpretation += `📉 Trough concentration: <strong>${steadyStateTrough.toFixed(1)} mg/L equivalent</strong><br>`;
+interpretation += `⏰ Current concentration: <strong>${currentConc.toFixed(1)} mg/L equivalent</strong> (${remainingPct.toFixed(1)}% of peak)<br>`;
+interpretation += `⚠️ Time to 95% elimination after last dose: <strong>${elimTime95.toFixed(1)} hours</strong>`;
+
+interpretationDiv.innerHTML = interpretation;
+
+steadyStateDiv.style.display = 'flex';
+steadyStateDiv.innerHTML = `
+<span><i class="fas fa-chart-line"></i> Steady State Peak: ${steadyStatePeak.toFixed(1)}</span>
+<span><i class="fas fa-chart-line"></i> Trough: ${steadyStateTrough.toFixed(1)}</span>
+<span><i class="fas fa-clock"></i> Accumulation factor: ${(1/(1-Math.exp(-Math.LN2/halfLife*dosingInterval))).toFixed(2)}x</span>
+`;
+}
+}
+
+// ========== MAIN CALCULATE FUNCTION ==========
+function calculate() {
+if (currentTab === 'single') {
+let params = calculateSingleDose();
+if (!params) return;
+
+// Update UI
+document.getElementById('initialConc').innerHTML = params.initialConcDisplay;
+document.getElementById('currentConc').innerHTML = params.currentConcDisplay;
+document.getElementById('remainingPct').innerHTML = params.remainingPct.toFixed(1) + '%';
+document.getElementById('elimTime').innerHTML = params.elimTime95.toFixed(1) + ' h';
+document.getElementById('initialLabel').innerHTML = 'Peak concentration';
+document.getElementById('currentLabel').innerHTML = 'At selected time';
+
+let chartData = generateChartData(params, false);
+updateChart(chartData);
+updateInterpretation(false, params);
+} else {
+let params = calculateMultiDose();
+if (!params) return;
+
+document.getElementById('initialConc').innerHTML = params.steadyStatePeak.toFixed(1) + ' mg/L';
+document.getElementById('currentConc').innerHTML = params.currentConc.toFixed(1) + ' mg/L';
+document.getElementById('remainingPct').innerHTML = params.remainingPct.toFixed(1) + '%';
+document.getElementById('elimTime').innerHTML = params.elimTime95.toFixed(1) + ' h';
+document.getElementById('initialLabel').innerHTML = 'Steady State Peak';
+document.getElementById('currentLabel').innerHTML = 'Current concentration';
+
+let chartData = generateChartData(params, true);
+updateChart(chartData);
+updateInterpretation(true, params);
+}
+}
+
+// ========== RESET FUNCTION ==========
+function resetForm() {
+if (currentTab === 'single') {
+document.getElementById('medNameSingle').value = 'Ibuprofen';
+document.getElementById('halfLifeSingle').value = '2';
+document.getElementById('doseSingle').value = '400';
+document.getElementById('hoursSinceSingle').value = '1';
+document.querySelector('input[name="calcMethodSingle"][value="standard"]').checked = true;
+document.getElementById('bioavailabilityFields').style.display = 'none';
+} else {
+document.getElementById('medNameMulti').value = 'Amoxicillin';
+document.getElementById('halfLifeMulti').value = '8';
+document.getElementById('doseMulti').value = '500';
+document.getElementById('dosingInterval').value = '12';
+document.getElementById('numDoses').value = '5';
+document.getElementById('hoursSinceMulti').value = '2';
+}
+calculate();
+}
+
+// ========== EVENT LISTENERS ==========
+function attachInputListeners() {
+const inputs = [
+'medNameSingle', 'halfLifeSingle', 'doseSingle', 'hoursSinceSingle',
+'medNameMulti', 'halfLifeMulti', 'doseMulti', 'dosingInterval', 'numDoses', 'hoursSinceMulti',
+'bioavailability', 'volumeDist'
+];
+inputs.forEach(id => {
+const el = document.getElementById(id);
+if (el) {
+el.addEventListener('input', calculate);
+el.addEventListener('change', calculate);
 }
 });
 }
 
 document.getElementById('calculateBtn').addEventListener('click', calculate);
+document.getElementById('resetBtn').addEventListener('click', resetForm);
 
-// Auto-calculate on input changes
-['halfLife', 'dose', 'hoursSince'].forEach(id => {
-document.getElementById(id).addEventListener('input', calculate);
-});
-
+attachInputListeners();
 calculate();
 </script>
 </body>
