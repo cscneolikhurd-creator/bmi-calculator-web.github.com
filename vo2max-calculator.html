@@ -1,372 +1,760 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VO2 Max Estimator | Cardio Fitness Level | Aerobic Capacity</title>
-<meta name="description" content="Estimate your VO2 Max without lab test. Gold standard for cardiovascular fitness. Age/gender adjusted percentiles and training recommendations.">
-<meta name="keywords" content="VO2 max calculator, cardio fitness, aerobic capacity, endurance training, heart rate fitness">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+
+<title>Advanced VO₂ Max Estimator | Cardio Fitness Level | Aerobic Capacity | HealthCalc</title>
+<meta name="title" content="VO2 Max Estimator — Professional Cardio Fitness Assessment | HealthCalc">
+<meta name="description" content="Professional VO2 Max calculator using Resting HR and 1-Mile Walk Test methods. Estimate your aerobic capacity, compare with age/gender norms, get personalized training recommendations. Based on ACSM guidelines. 100% free & private.">
+<meta name="keywords" content="VO2 max calculator, cardio fitness, aerobic capacity, endurance training, heart rate fitness, VO2max test, fitness age, cardiovascular endurance, Cooper test">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/vo2max-calculator.html">
 
-<meta property="og:title" content="VO2 Max Estimator | Cardio Fitness">
-<meta property="og:description" content="Know your aerobic fitness level. Compare with age/gender norms.">
+<!-- Open Graph -->
+<meta property="og:title" content="Advanced VO₂ Max Estimator | Cardio Fitness Assessment">
+<meta property="og:description" content="Estimate your VO2 Max without lab test. Age/gender adjusted percentiles and training recommendations.">
+<meta property="og:url" content="https://healthcalc.in/vo2max-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://healthcalc.in/images/vo2max-og.jpg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Advanced VO₂ Max Estimator">
+<meta name="twitter:description" content="Know your aerobic fitness level. Compare with age/gender norms.">
+
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Advanced VO₂ Max Estimator",
+  "description": "Estimate VO2 Max using Resting HR and 1-Mile Walk Test methods. Based on ACSM guidelines.",
+  "url": "https://healthcalc.in/vo2max-calculator.html",
+  "author": {"@type": "Organization", "name": "HealthCalc"},
+  "about": {"@type": "MedicalCondition", "name": "Cardiovascular Fitness"},
+  "inLanguage": ["en"],
+  "dateModified": "2026-05-14"
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is VO2 Max?",
+      "acceptedAnswer": {"@type": "Answer", "text": "VO2 Max is the maximum rate of oxygen your body can use during intense exercise. It's the gold standard measure of cardiovascular fitness."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good VO2 Max score?",
+      "acceptedAnswer": {"@type": "Answer", "text": "For men 40-49, average VO2 Max is 35-45 mL/kg/min. For women same age, 30-38 is average. Elite athletes can exceed 60-70."}
+    },
+    {
+      "@type": "Question",
+      "name": "How can I improve my VO2 Max?",
+      "acceptedAnswer": {"@type": "Answer", "text": "High-intensity interval training (HIIT), tempo runs, and consistent aerobic training (3-5x/week) are most effective for improving VO2 Max."}
+    }
+  ]
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+    {"@type": "ListItem", "position": 2, "name": "Fitness Tools", "item": "https://healthcalc.in/#tools"},
+    {"@type": "ListItem", "position": 3, "name": "VO₂ Max Estimator", "item": "https://healthcalc.in/vo2max-calculator.html"}
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #2c5364;
+  --primary-dark: #1a3a47;
+  --primary-light: #d4e6f1;
+  --secondary: #3b82f6;
+  --accent: #f59e0b;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  --dark: #1e293b;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-600: #475569;
+  --gradient-bg: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  --gradient-card: linear-gradient(145deg, #e0f0ff, #f0f8ff);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 }
+
 body {
-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
-padding: 2rem 1rem;
-min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background: var(--gradient-bg);
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
 }
+
 .container {
-max-width: 700px;
-margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
 .card {
-background: white;
-border-radius: 40px;
-padding: 2rem;
-box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  color: var(--dark);
 }
+
 h1 {
-font-size: 2rem;
-background: linear-gradient(145deg, #0f2027, #2c5364);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
+  font-size: 28px;
+  background: linear-gradient(145deg, #0f2027, #2c5364);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+.subtitle {
+  color: var(--gray-600);
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Method Selector */
 .method-selector {
-display: flex;
-gap: 1rem;
-margin: 1.5rem 0;
-background: #eef2f5;
-padding: 0.5rem;
-border-radius: 60px;
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+  background: var(--gray-100);
+  padding: 6px;
+  border-radius: 60px;
 }
 .method-btn {
-flex: 1;
-text-align: center;
-padding: 0.7rem;
-border-radius: 40px;
-cursor: pointer;
-font-weight: 600;
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--gray-600);
 }
 .method-btn.active {
-background: white;
-box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-color: #1f6392;
+  background: white;
+  box-shadow: var(--shadow-sm);
+  color: var(--primary);
 }
+
+/* Form */
 .form-group {
-margin-bottom: 1.2rem;
+  margin-bottom: 18px;
 }
 label {
-font-weight: 600;
-display: block;
-margin-bottom: 0.4rem;
-color: #2c3e50;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--dark);
+  font-size: 14px;
+}
+label i {
+  color: var(--primary);
+  margin-right: 6px;
 }
 input, select {
-width: 100%;
-padding: 12px 16px;
-border: 2px solid #d1d9e8;
-border-radius: 24px;
-font-size: 1rem;
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(44,83,100,0.1);
 }
 .row-2col {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
-button {
-background: #2c5364;
-color: white;
-width: 100%;
-padding: 14px;
-border: none;
-border-radius: 60px;
-font-size: 1.1rem;
-font-weight: bold;
-cursor: pointer;
-margin: 1rem 0;
+@media (max-width: 500px) {
+  .row-2col { grid-template-columns: 1fr; }
 }
+
+/* Buttons */
+.calc-btn {
+  background: var(--primary);
+  color: white;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 60px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: all 0.2s;
+}
+.calc-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(44,83,100,0.4);
+}
+
+/* Results */
 .result {
-background: linear-gradient(145deg, #e0f0ff, #f0f8ff);
-border-radius: 24px;
-padding: 1.5rem;
-text-align: center;
+  background: var(--gradient-card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  text-align: center;
 }
 .vo2-value {
-font-size: 3rem;
-font-weight: 800;
-color: #1a4d6b;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  line-height: 1;
 }
 .fitness-level {
-font-size: 1.2rem;
-font-weight: bold;
-margin: 0.5rem 0;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0;
 }
 .percentile {
-background: #d4e6f1;
-display: inline-block;
-padding: 0.2rem 1rem;
-border-radius: 60px;
-font-size: 0.85rem;
+  background: #d4e6f1;
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 60px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-dark);
 }
+
+/* Fitness Meter */
+.fitness-meter {
+  margin: 20px 0;
+}
+.meter-bar {
+  height: 10px;
+  background: var(--gray-200);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.meter-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 10px;
+  transition: width 0.3s;
+}
+.meter-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--gray-600);
+  margin-top: 6px;
+}
+
+/* VO2 Scale */
+.vo2-scale {
+  margin: 20px 0;
+  padding: 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+.scale-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.scale-bars {
+  display: flex;
+  height: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.scale-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+}
+.scale-bar.poor { background: #ef4444; }
+.scale-bar.fair { background: #f59e0b; }
+.scale-bar.average { background: #fbbf24; color: #333; }
+.scale-bar.good { background: #10b981; }
+.scale-bar.excellent { background: #059669; }
+.scale-bar.superior { background: #047857; }
+.scale-indicator {
+  position: relative;
+  height: 20px;
+  margin-top: 5px;
+}
+.scale-marker {
+  position: absolute;
+  width: 4px;
+  height: 20px;
+  background: var(--dark);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Tips */
+.training-tip {
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-top: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-left: 4px solid var(--primary);
+}
+
+/* Comparison */
+.comparison-box {
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-top: 20px;
+}
+.comparison-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.comparison-label { font-weight: 600; }
+.comparison-value { font-weight: 700; color: var(--primary-dark); }
+
+/* Interlinks */
 .interlinks {
-display: flex;
-flex-wrap: wrap;
-gap: 0.7rem;
-justify-content: center;
-margin-top: 2rem;
-padding-top: 1rem;
-border-top: 1px solid #cbd5e1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
 }
 .interlinks a {
-background: #e2e8f0;
-padding: 0.4rem 1rem;
-border-radius: 40px;
-text-decoration: none;
-font-size: 0.8rem;
-color: #2d3748;
+  background: var(--gray-100);
+  padding: 6px 16px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--gray-600);
+  transition: all 0.2s;
 }
+.interlinks a:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Footer */
 footer {
-text-align: center;
-color: #cbd5e1;
-margin-top: 2rem;
-font-size: 0.7rem;
+  text-align: center;
+  color: #cbd5e1;
+  margin-top: 24px;
+  font-size: 11px;
 }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="card">
-<h1>❤️‍🔥 VO₂ Max Estimator</h1>
-<p>Gold standard for cardiovascular endurance. Estimate without lab test.</p>
+  <div class="card">
+    <h1><i class="fas fa-heartbeat"></i> Advanced VO₂ Max Estimator</h1>
+    <p class="subtitle">Gold standard for cardiovascular fitness. Estimate your aerobic capacity without a lab test.</p>
 
-<div class="method-selector">
-<div class="method-btn active" data-method="resting">🩺 Resting HR Method</div>
-<div class="method-btn" data-method="walk">🚶 1-Mile Walk Test</div>
-</div>
+    <!-- Method Selector -->
+    <div class="method-selector">
+      <div class="method-btn active" data-method="resting">🩺 Resting HR Method</div>
+      <div class="method-btn" data-method="walk">🚶 1-Mile Walk Test</div>
+    </div>
 
-<div id="restingMethod">
-<div class="row-2col">
-<div class="form-group">
-<label>⚧ Gender</label>
-<select id="genderRest">
-<option value="male">Male</option>
-<option value="female">Female</option>
-</select>
-</div>
-<div class="form-group">
-<label>📅 Age (years)</label>
-<input type="number" id="ageRest" value="30" step="1">
-</div>
-</div>
-<div class="form-group">
-<label>💓 Resting Heart Rate (bpm)</label>
-<input type="number" id="restingHR" value="70" step="1" placeholder="60-100">
-</div>
-<div class="form-group">
-<label>🏃‍♂️ Physical Activity Level</label>
-<select id="activityLevel">
-<option value="sedentary">🛋️ Sedentary (little to no exercise)</option>
-<option value="light">🚶 Light (1-2 days/week)</option>
-<option value="moderate">🏃 Moderate (3-4 days/week)</option>
-<option value="active">🏋️ Active (5-6 days/week)</option>
-<option value="very">⚡ Very Active (daily intense training)</option>
-</select>
-</div>
-</div>
+    <!-- Resting HR Method -->
+    <div id="restingMethod">
+      <div class="row-2col">
+        <div class="form-group">
+          <label><i class="fas fa-venus-mars"></i> Gender</label>
+          <select id="genderRest">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> Age (years)</label>
+          <input type="number" id="ageRest" value="30" step="1" min="18" max="80">
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-heart"></i> Resting Heart Rate (bpm)</label>
+        <input type="number" id="restingHR" value="70" step="1" placeholder="60-100">
+        <small style="color: var(--gray-600); font-size: 11px;">Measure first thing in the morning</small>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-running"></i> Physical Activity Level</label>
+        <select id="activityLevel">
+          <option value="sedentary">🛋️ Sedentary (little to no exercise)</option>
+          <option value="light">🚶 Light (1-2 days/week)</option>
+          <option value="moderate">🏃 Moderate (3-4 days/week)</option>
+          <option value="active">🏋️ Active (5-6 days/week)</option>
+          <option value="very">⚡ Very Active (daily intense training)</option>
+        </select>
+      </div>
+    </div>
 
-<div id="walkMethod" style="display:none;">
-<div class="row-2col">
-<div class="form-group">
-<label>⚧ Gender</label>
-<select id="genderWalk">
-<option value="male">Male</option>
-<option value="female">Female</option>
-</select>
-</div>
-<div class="form-group">
-<label>📅 Age</label>
-<input type="number" id="ageWalk" value="35" step="1">
-</div>
-</div>
-<div class="form-group">
-<label>⚖️ Weight (kg or lbs)</label>
-<input type="number" id="weightWalk" placeholder="kg" value="70" step="any">
-</div>
-<div class="form-group">
-<label>⏱️ 1-Mile Walk Time (minutes)</label>
-<input type="number" id="walkTime" step="0.1" value="15" placeholder="e.g., 14.5">
-</div>
-<div class="form-group">
-<label>💓 Heart Rate after walk (bpm)</label>
-<input type="number" id="walkHR" value="130" step="1">
-</div>
-</div>
+    <!-- Walk Test Method -->
+    <div id="walkMethod" style="display:none;">
+      <div class="row-2col">
+        <div class="form-group">
+          <label><i class="fas fa-venus-mars"></i> Gender</label>
+          <select id="genderWalk">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-calendar-alt"></i> Age (years)</label>
+          <input type="number" id="ageWalk" value="35" step="1" min="18" max="80">
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-weight-scale"></i> Weight</label>
+        <div class="row-2col" style="gap: 10px;">
+          <input type="number" id="weightWalk" placeholder="Weight" value="70" step="any">
+          <select id="weightUnit">
+            <option value="kg">kg</option>
+            <option value="lbs">lbs</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-clock"></i> 1-Mile Walk Time (minutes)</label>
+        <input type="number" id="walkTime" step="0.1" value="15" placeholder="e.g., 14.5">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-heart"></i> Heart Rate after walk (bpm)</label>
+        <input type="number" id="walkHR" value="130" step="1">
+      </div>
+    </div>
 
-<button id="calcVO2">📈 Calculate VO₂ Max</button>
+    <button class="calc-btn" id="calcVO2"><i class="fas fa-chart-line"></i> Calculate VO₂ Max</button>
 
-<div class="result" id="resultArea">
-<div>Your Estimated VO₂ Max</div>
-<div class="vo2-value" id="vo2Number">--</div>
-<div class="fitness-level" id="fitnessCategory"></div>
-<div id="percentileInfo" class="percentile"></div>
-<div id="trainingTip" style="margin-top: 0.8rem; font-size: 0.85rem;"></div>
-</div>
+    <!-- Results Area -->
+    <div class="result" id="resultArea">
+      <div>Your Estimated VO₂ Max</div>
+      <div class="vo2-value" id="vo2Number">--</div>
+      <div class="fitness-level" id="fitnessCategory">--</div>
+      <div id="percentileInfo" class="percentile">--</div>
 
-<div class="interlinks">
-<a href="https://healthcalc.in/bac-calculator.html">🍺 BAC</a>
-<a href="https://healthcalc.in/ffmi-calculator.html">💪 FFMI</a>
-<a href="https://healthcalc.in/whr-calculator.html">📏 WHR</a>
-<a href="https://healthcalc.in/heart-rate-calculator.html">💓 Heart Rate Zones</a>
-<a href="https://healthcalc.in/met-calculator.html">🏃 Activity Burn</a>
-</div>
-</div>
-<footer>VO2 max estimation formulas: Resting HR method (Uth et al.) • Walk test (Kline et al.) • Percentiles from ACSM data.</footer>
+      <!-- Fitness Meter -->
+      <div class="fitness-meter">
+        <div class="meter-bar">
+          <div class="meter-fill" id="fitnessMeter" style="width: 0%; background: #10b981;"></div>
+        </div>
+        <div class="meter-labels">
+          <span>Poor</span><span>Fair</span><span>Average</span><span>Good</span><span>Excellent</span><span>Superior</span>
+        </div>
+      </div>
+
+      <!-- VO2 Scale -->
+      <div class="vo2-scale">
+        <div class="scale-title">📊 VO₂ Max Percentile Range by Age</div>
+        <div class="scale-bars">
+          <div class="scale-bar poor">Poor</div>
+          <div class="scale-bar fair">Fair</div>
+          <div class="scale-bar average">Avg</div>
+          <div class="scale-bar good">Good</div>
+          <div class="scale-bar excellent">Exc</div>
+          <div class="scale-bar superior">Sup</div>
+        </div>
+        <div class="scale-indicator">
+          <div class="scale-marker" id="scaleMarker" style="left: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Comparison -->
+      <div class="comparison-box">
+        <div class="comparison-item">
+          <span class="comparison-label">📊 Your VO₂ Max</span>
+          <span class="comparison-value" id="yourVO2">-- mL/kg/min</span>
+        </div>
+        <div class="comparison-item">
+          <span class="comparison-label">👥 Age Group Average</span>
+          <span class="comparison-value" id="avgVO2">-- mL/kg/min</span>
+        </div>
+        <div class="comparison-item">
+          <span class="comparison-label">🏆 Elite Athlete Range</span>
+          <span class="comparison-value">55-70+ mL/kg/min</span>
+        </div>
+      </div>
+
+      <div id="trainingTip" class="training-tip"></div>
+    </div>
+
+    <!-- Interlinks -->
+    <div class="interlinks">
+      <a href="bac-calculator.html">🍺 BAC</a>
+      <a href="ffmi-calculator.html">💪 FFMI</a>
+      <a href="whr-calculator.html">📏 WHR</a>
+      <a href="heart-rate-calculator.html">💓 Heart Rate Zones</a>
+      <a href="met-calculator.html">🏃 Activity Burn</a>
+      <a href="ascvd-risk-calculator.html">❤️ ASCVD Risk</a>
+    </div>
+  </div>
+  <footer>Formulas: Resting HR (Uth et al.) • 1-Mile Walk (Kline et al.) • Percentiles from ACSM & Cooper Institute data.</footer>
 </div>
 
 <script>
 let currentMethod = 'resting';
 
+// ===== METHOD SELECTOR =====
 document.querySelectorAll('.method-btn').forEach(btn => {
-btn.addEventListener('click', () => {
-document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
-btn.classList.add('active');
-currentMethod = btn.getAttribute('data-method');
-if(currentMethod === 'resting') {
-document.getElementById('restingMethod').style.display = 'block';
-document.getElementById('walkMethod').style.display = 'none';
-} else {
-document.getElementById('restingMethod').style.display = 'none';
-document.getElementById('walkMethod').style.display = 'block';
-}
-});
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.method-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMethod = btn.getAttribute('data-method');
+    if (currentMethod === 'resting') {
+      document.getElementById('restingMethod').style.display = 'block';
+      document.getElementById('walkMethod').style.display = 'none';
+    } else {
+      document.getElementById('restingMethod').style.display = 'none';
+      document.getElementById('walkMethod').style.display = 'block';
+    }
+    calculateVO2();
+  });
 });
 
+// ===== FITNESS LEVEL =====
 function getFitnessLevel(vo2, gender, age) {
-// Simplified ACSM categories (mL/kg/min)
-let level = '';
-if(gender === 'male') {
-if(vo2 < 35) level = '🔴 Poor';
-else if(vo2 < 42) level = '🟠 Fair';
-else if(vo2 < 48) level = '🟡 Average';
-else if(vo2 < 54) level = '🟢 Good';
-else if(vo2 < 60) level = '💪 Excellent';
-else level = '🏆 Superior (Athlete)';
-} else {
-if(vo2 < 29) level = '🔴 Poor';
-else if(vo2 < 35) level = '🟠 Fair';
-else if(vo2 < 40) level = '🟡 Average';
-else if(vo2 < 46) level = '🟢 Good';
-else if(vo2 < 52) level = '💪 Excellent';
-else level = '🏆 Superior (Athlete)';
-}
-return level;
+  if (gender === 'male') {
+    if (vo2 < 35) return '🔴 Poor';
+    if (vo2 < 42) return '🟠 Fair';
+    if (vo2 < 48) return '🟡 Average';
+    if (vo2 < 54) return '🟢 Good';
+    if (vo2 < 60) return '💪 Excellent';
+    return '🏆 Superior (Athlete)';
+  } else {
+    if (vo2 < 29) return '🔴 Poor';
+    if (vo2 < 35) return '🟠 Fair';
+    if (vo2 < 40) return '🟡 Average';
+    if (vo2 < 46) return '🟢 Good';
+    if (vo2 < 52) return '💪 Excellent';
+    return '🏆 Superior (Athlete)';
+  }
 }
 
+// ===== GET PERCENTILE =====
 function getPercentile(vo2, gender, age) {
-if(age < 30) {
-if(gender === 'male') {
-if(vo2 > 55) return 'Top 5%';
-if(vo2 > 48) return 'Top 25%';
-if(vo2 > 42) return 'Average (50th)';
-return 'Below average';
-} else {
-if(vo2 > 48) return 'Top 5%';
-if(vo2 > 42) return 'Top 25%';
-if(vo2 > 36) return 'Average (50th)';
-return 'Below average';
-}
-} else if(age < 45) {
-if(gender === 'male') {
-if(vo2 > 52) return 'Top 5%';
-if(vo2 > 45) return 'Top 25%';
-if(vo2 > 39) return 'Average';
-return 'Below avg';
-} else {
-if(vo2 > 45) return 'Top 5%';
-if(vo2 > 39) return 'Top 25%';
-if(vo2 > 34) return 'Average';
-return 'Below avg';
-}
-} else {
-if(gender === 'male') {
-if(vo2 > 48) return 'Top 5%';
-if(vo2 > 40) return 'Top 25%';
-if(vo2 > 34) return 'Average';
-return 'Below avg';
-} else {
-if(vo2 > 42) return 'Top 5%';
-if(vo2 > 36) return 'Top 25%';
-if(vo2 > 30) return 'Average';
-return 'Below avg';
-}
-}
-}
-
-document.getElementById('calcVO2').addEventListener('click', () => {
-let vo2 = 0;
-
-if(currentMethod === 'resting') {
-let gender = document.getElementById('genderRest').value;
-let age = parseFloat(document.getElementById('ageRest').value);
-let hr = parseFloat(document.getElementById('restingHR').value);
-let activity = document.getElementById('activityLevel').value;
-
-if(isNaN(age) || isNaN(hr)) return;
-
-// Base formula: 15.3 * (HRmax/HRrest) adjustment
-let hrMax = 208 - (0.7 * age);
-let hrRatio = hrMax / hr;
-let baseVO2 = 45 * hrRatio;
-
-// Activity modifier
-let actMod = {sedentary: 0.85, light: 0.92, moderate: 1.0, active: 1.08, very: 1.15};
-vo2 = baseVO2 * (actMod[activity] || 1.0);
-vo2 = Math.min(85, Math.max(20, vo2));
-
-} else { // Walk test method
-let gender = document.getElementById('genderWalk').value;
-let age = parseFloat(document.getElementById('ageWalk').value);
-let weight = parseFloat(document.getElementById('weightWalk').value);
-let time = parseFloat(document.getElementById('walkTime').value);
-let hrWalk = parseFloat(document.getElementById('walkHR').value);
-
-if(isNaN(age) || isNaN(weight) || isNaN(time) || isNaN(hrWalk)) return;
-
-// Kline et al. formula for 1-mile walk
-let genderVal = (gender === 'male') ? 1 : 0;
-vo2 = 132.853 - (0.0769 * weight) - (0.3877 * age) + (6.315 * genderVal) - (3.2649 * time) - (0.1565 * hrWalk);
-vo2 = Math.min(75, Math.max(18, vo2));
+  if (age < 30) {
+    if (gender === 'male') {
+      if (vo2 > 55) return 'Top 5%';
+      if (vo2 > 48) return 'Top 25%';
+      if (vo2 > 42) return 'Average (50th)';
+      return 'Below average';
+    } else {
+      if (vo2 > 48) return 'Top 5%';
+      if (vo2 > 42) return 'Top 25%';
+      if (vo2 > 36) return 'Average (50th)';
+      return 'Below average';
+    }
+  } else if (age < 45) {
+    if (gender === 'male') {
+      if (vo2 > 52) return 'Top 5%';
+      if (vo2 > 45) return 'Top 25%';
+      if (vo2 > 39) return 'Average';
+      return 'Below avg';
+    } else {
+      if (vo2 > 45) return 'Top 5%';
+      if (vo2 > 39) return 'Top 25%';
+      if (vo2 > 34) return 'Average';
+      return 'Below avg';
+    }
+  } else {
+    if (gender === 'male') {
+      if (vo2 > 48) return 'Top 5%';
+      if (vo2 > 40) return 'Top 25%';
+      if (vo2 > 34) return 'Average';
+      return 'Below avg';
+    } else {
+      if (vo2 > 42) return 'Top 5%';
+      if (vo2 > 36) return 'Top 25%';
+      if (vo2 > 30) return 'Average';
+      return 'Below avg';
+    }
+  }
 }
 
-vo2 = Math.round(vo2 * 10) / 10;
-document.getElementById('vo2Number').innerHTML = vo2 + ' mL/kg/min';
+// ===== GET AVERAGE VO2 BY AGE/GENDER =====
+function getAverageVO2(gender, age) {
+  if (gender === 'male') {
+    if (age < 30) return 45;
+    if (age < 40) return 42;
+    if (age < 50) return 39;
+    if (age < 60) return 35;
+    return 32;
+  } else {
+    if (age < 30) return 38;
+    if (age < 40) return 36;
+    if (age < 50) return 33;
+    if (age < 60) return 30;
+    return 27;
+  }
+}
 
-let genderCurr = currentMethod === 'resting' ? document.getElementById('genderRest').value : document.getElementById('genderWalk').value;
-let ageCurr = currentMethod === 'resting' ? parseFloat(document.getElementById('ageRest').value) : parseFloat(document.getElementById('ageWalk').value);
+// ===== GET METER COLOR =====
+function getMeterColor(vo2, gender) {
+  let percent;
+  if (gender === 'male') {
+    if (vo2 >= 60) percent = 100;
+    else if (vo2 >= 54) percent = 85;
+    else if (vo2 >= 48) percent = 70;
+    else if (vo2 >= 42) percent = 55;
+    else if (vo2 >= 35) percent = 40;
+    else percent = 25;
+  } else {
+    if (vo2 >= 55) percent = 100;
+    else if (vo2 >= 50) percent = 85;
+    else if (vo2 >= 44) percent = 70;
+    else if (vo2 >= 38) percent = 55;
+    else if (vo2 >= 32) percent = 40;
+    else percent = 25;
+  }
+  return Math.min(100, Math.max(0, percent));
+}
 
-let fitness = getFitnessLevel(vo2, genderCurr, ageCurr);
-let percentile = getPercentile(vo2, genderCurr, ageCurr);
+// ===== GET TRAINING TIP =====
+function getTrainingTip(vo2, gender, age) {
+  if (vo2 < 35) {
+    return '💡 <strong>Beginner Recommendation:</strong> Start with brisk walking 30 minutes/day, 3-4 times weekly. Gradually increase intensity over 4-6 weeks. Consider interval walking (2 min fast, 1 min slow).';
+  } else if (vo2 < 45) {
+    return '💡 <strong>Intermediate Recommendation:</strong> Add interval training (e.g., 1 min fast jog, 2 min recovery walk). Consistency is key — aim for 150-200 minutes of moderate cardio weekly.';
+  } else if (vo2 < 55) {
+    return '💡 <strong>Advanced Recommendation:</strong> Great base! Incorporate tempo runs (20-30 min at threshold pace) and HIIT sessions (1-2x/week). Consider periodized training for continued improvement.';
+  } else {
+    return '🏅 <strong>Elite Recommendation:</strong> Excellent endurance! Focus on VO2 max specific intervals (3-5 min hard efforts at 90-95% max HR with equal recovery). Maintain strength training 2x/week for injury prevention.';
+  }
+}
 
-document.getElementById('fitnessCategory').innerHTML = fitness;
-document.getElementById('percentileInfo').innerHTML = `📊 ${percentile} for age ${Math.round(ageCurr)}`;
+// ===== MAIN CALCULATION =====
+function calculateVO2() {
+  let vo2 = 0;
+  let gender, age;
 
-let tip = '';
-if(vo2 < 35) tip = '💡 Start with brisk walking 30min/day, 3-4 times weekly. Gradually increase intensity.';
-else if(vo2 < 45) tip = '💡 Add interval training (e.g., 1 min fast, 2 min slow). Consistency is key.';
-else if(vo2 < 55) tip = '💡 Great base! Try tempo runs or HIIT to break plateau.';
-else tip = '🏅 Excellent endurance! Consider periodized training & VO2 max specific intervals (3-5 min hard efforts).';
+  if (currentMethod === 'resting') {
+    gender = document.getElementById('genderRest').value;
+    age = parseFloat(document.getElementById('ageRest').value);
+    let hr = parseFloat(document.getElementById('restingHR').value);
+    let activity = document.getElementById('activityLevel').value;
 
-document.getElementById('trainingTip').innerHTML = tip;
+    if (isNaN(age) || isNaN(hr) || age < 18 || age > 80) return;
+
+    let hrMax = 208 - (0.7 * age);
+    let hrRatio = hrMax / hr;
+    let baseVO2 = 45 * hrRatio;
+
+    let actMod = { sedentary: 0.85, light: 0.92, moderate: 1.0, active: 1.08, very: 1.15 };
+    vo2 = baseVO2 * (actMod[activity] || 1.0);
+    vo2 = Math.min(85, Math.max(18, vo2));
+  } else {
+    gender = document.getElementById('genderWalk').value;
+    age = parseFloat(document.getElementById('ageWalk').value);
+    let weight = parseFloat(document.getElementById('weightWalk').value);
+    let weightUnit = document.getElementById('weightUnit').value;
+    let time = parseFloat(document.getElementById('walkTime').value);
+    let hrWalk = parseFloat(document.getElementById('walkHR').value);
+
+    if (isNaN(age) || isNaN(weight) || isNaN(time) || isNaN(hrWalk)) return;
+
+    if (weightUnit === 'lbs') weight = weight / 2.20462;
+
+    let genderVal = (gender === 'male') ? 1 : 0;
+    vo2 = 132.853 - (0.0769 * weight) - (0.3877 * age) + (6.315 * genderVal) - (3.2649 * time) - (0.1565 * hrWalk);
+    vo2 = Math.min(75, Math.max(18, vo2));
+  }
+
+  vo2 = Math.round(vo2 * 10) / 10;
+  document.getElementById('vo2Number').innerHTML = vo2 + ' mL/kg/min';
+  document.getElementById('yourVO2').innerHTML = vo2 + ' mL/kg/min';
+
+  let fitness = getFitnessLevel(vo2, gender, age);
+  let percentile = getPercentile(vo2, gender, age);
+  let avgVO2 = getAverageVO2(gender, age);
+  let meterPercent = getMeterColor(vo2, gender);
+
+  document.getElementById('fitnessCategory').innerHTML = fitness;
+  document.getElementById('percentileInfo').innerHTML = `📊 ${percentile} for age ${Math.round(age)}`;
+  document.getElementById('fitnessMeter').style.width = meterPercent + '%';
+  document.getElementById('avgVO2').innerHTML = avgVO2 + ' mL/kg/min';
+
+  // Color the meter based on fitness level
+  let meterColor;
+  if (vo2 < 35) meterColor = '#ef4444';
+  else if (vo2 < 42) meterColor = '#f59e0b';
+  else if (vo2 < 48) meterColor = '#fbbf24';
+  else if (vo2 < 54) meterColor = '#10b981';
+  else if (vo2 < 60) meterColor = '#059669';
+  else meterColor = '#047857';
+  document.getElementById('fitnessMeter').style.background = meterColor;
+
+  // Scale marker position
+  let maxVO2 = gender === 'male' ? 65 : 58;
+  let markerPos = Math.min(95, Math.max(5, (vo2 / maxVO2) * 95));
+  document.getElementById('scaleMarker').style.left = markerPos + '%';
+
+  let tip = getTrainingTip(vo2, gender, age);
+  document.getElementById('trainingTip').innerHTML = tip;
+}
+
+// ===== EVENT LISTENERS =====
+document.getElementById('calcVO2').addEventListener('click', calculateVO2);
+
+// Add input listeners for real-time calculation
+const inputs = ['genderRest', 'ageRest', 'restingHR', 'activityLevel', 'genderWalk', 'ageWalk', 'weightWalk', 'weightUnit', 'walkTime', 'walkHR'];
+inputs.forEach(id => {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener('input', calculateVO2);
+    el.addEventListener('change', calculateVO2);
+  }
 });
+
+// ===== INITIALIZE =====
+calculateVO2();
 </script>
 </body>
 </html>
