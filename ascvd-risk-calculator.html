@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
 <!-- ========== SEO META TAGS ========== -->
-<title>ASCVD Risk Calculator | 10-Year Heart Attack Risk | ACC/AHA 2025 Guidelines | Free</title>
+<title>Professional ASCVD Risk Calculator | 10-Year Heart Attack Risk | ACC/AHA 2025 | Free</title>
 <meta name="description" content="Professional ASCVD Risk Calculator using ACC/AHA Pooled Cohort Equations. Estimate your 10-year heart attack & stroke risk. Interactive sliders, risk factor breakdown, lifetime risk. Free, private, no signup. Used by 45+ countries.">
-<meta name="keywords" content="ASCVD risk calculator, heart attack risk, cardiovascular risk, pooled cohort equations, ACC AHA guidelines, coronary heart disease risk, stroke risk calculator, 10-year risk, Framingham risk score, cardiac risk assessment">
+<meta name="keywords" content="ASCVD risk calculator, heart attack risk, cardiovascular risk, pooled cohort equations, ACC AHA guidelines, coronary heart disease risk, stroke risk calculator, 10-year risk, Framingham risk score, cardiac risk assessment, ASCVD risk estimator">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/ascvd-risk-calculator.html">
@@ -29,7 +30,7 @@
 <meta name="twitter:title" content="ASCVD Risk Calculator - Professional Heart Risk Tool">
 <meta name="twitter:description" content="Estimate your 10-year heart attack and stroke risk using ACC/AHA guidelines.">
 
-<!-- ========== SCHEMA MARKUP (Enhanced) ========== -->
+<!-- ========== SCHEMA MARKUP ========== -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,7 +42,7 @@
   "about": {"@type": "MedicalCondition", "name": "Atherosclerotic Cardiovascular Disease"},
   "audience": {"@type": "Audience", "audienceType": "Adults aged 40-79"},
   "inLanguage": ["en", "hi"],
-  "dateModified": "2026-05-12"
+  "dateModified": "2026-05-14"
 }
 </script>
 
@@ -59,7 +60,7 @@
 }
 </script>
 
-<!-- ========== FONTS ========== -->
+<!-- ========== FONTS & ICONS ========== -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -887,10 +888,6 @@ function calculateASCVD() {
   let lnAge = Math.log(age);
   let lnTotal = Math.log(totalChol);
   let lnHDL = Math.log(hdl);
-  let ageSBP = 0;
-  let ageSmoker = 0;
-  let ageDiabetes = 0;
-
   let sbpTerm = bpMeds === 'yes' ? Math.log(sbp) * 1.9 : Math.log(sbp);
 
   let baseRisk = 0;
@@ -930,7 +927,6 @@ function calculateASCVD() {
 }
 
 function calculateLifetimeRisk(age, gender) {
-  // Simplified lifetime risk estimate
   if (age < 45) return '45-50%';
   if (age < 55) return '35-45%';
   if (age < 65) return '25-35%';
@@ -1061,6 +1057,7 @@ function setupSliders() {
       const val = parseInt(slider.value);
       valueSpan.textContent = val;
       hidden.value = val;
+      updateAll();
     });
   });
 }
