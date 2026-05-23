@@ -2,317 +2,613 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>DRI Calculator | Daily Recommended Intake | Vitamins & Minerals</title>
-<meta name="description" content="Calculate your personalized Daily Recommended Intake (DRI) for all essential vitamins and minerals based on age, gender, and life stage. Science-based USDA/WHO guidelines.">
-<meta name="keywords" content="DRI calculator, daily recommended intake, vitamins, minerals, RDA, nutrient requirements, dietary guidelines">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+
+<title>Advanced DRI Calculator | Daily Recommended Intake | Vitamins & Minerals | HealthCalc</title>
+<meta name="description" content="Professional DRI (Daily Recommended Intake) calculator for vitamins and minerals. Based on USDA and WHO guidelines. Get personalized nutrient requirements based on age, gender, and life stage.">
+<meta name="keywords" content="DRI calculator, daily recommended intake, vitamins, minerals, RDA, nutrient requirements, dietary guidelines, USDA, WHO, dietary reference intake, essential nutrients">
 <meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/dri-calculator.html">
 
-<meta property="og:title" content="DRI Calculator | Personalized Vitamin & Mineral Needs">
+<!-- Open Graph -->
+<meta property="og:title" content="Advanced DRI Calculator | Personalized Vitamin & Mineral Needs">
 <meta property="og:description" content="Get your daily recommended intake for all essential nutrients based on your profile.">
+<meta property="og:url" content="https://healthcalc.in/dri-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://healthcalc.in/images/dri-calculator-og.jpg">
+<meta property="og:locale" content="en_IN">
 
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Advanced DRI Calculator">
+<meta name="twitter:description" content="Personalized daily nutrient recommendations based on USDA/WHO guidelines">
+
+<!-- Schema Markup -->
 <script type="application/ld+json">
 {
-"@context": "https://schema.org",
-"@type": "WebApplication",
-"name": "DRI Calculator",
-"description": "Daily Recommended Intake calculator for vitamins and minerals",
-"applicationCategory": "Health & Nutrition",
-"operatingSystem": "All"
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Advanced DRI Calculator",
+  "description": "Daily Recommended Intake calculator for vitamins and minerals based on age, gender, and life stage",
+  "url": "https://healthcalc.in/dri-calculator.html",
+  "author": {"@type": "Organization", "name": "HealthCalc"},
+  "about": {"@type": "MedicalCondition", "name": "Nutritional Requirements"},
+  "inLanguage": ["en"],
+  "dateModified": "2026-05-14"
 }
 </script>
 
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is DRI?",
+      "acceptedAnswer": {"@type": "Answer", "text": "DRI (Dietary Reference Intake) is a set of reference values for vitamins and minerals based on age, gender, and life stage. It helps you understand how much of each nutrient you need daily."}
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between RDA and DRI?",
+      "acceptedAnswer": {"@type": "Answer", "text": "RDA (Recommended Dietary Allowance) is the average daily level sufficient for most healthy people. DRI is a broader term that includes RDA, AI (Adequate Intake), and UL (Tolerable Upper Intake Level)."}
+    },
+    {
+      "@type": "Question",
+      "name": "Why do pregnant women need more nutrients?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Pregnancy increases demand for nutrients to support fetal development. Iron requirements increase to support blood volume expansion, folate prevents neural tube defects, and calcium supports fetal bone development."}
+    }
+  ]
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+    {"@type": "ListItem", "position": 2, "name": "Nutrition Tools", "item": "https://healthcalc.in/#tools"},
+    {"@type": "ListItem", "position": 3, "name": "DRI Calculator", "item": "https://healthcalc.in/dri-calculator.html"}
+  ]
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #11998e;
+  --primary-dark: #0e7a6e;
+  --primary-light: #d1fae5;
+  --secondary: #38ef7d;
+  --accent: #f59e0b;
+  --success: #10b981;
+  --info: #3b82f6;
+  --dark: #1e293b;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-600: #475569;
+  --gradient-1: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 }
 
 body {
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-padding: 2rem 1rem;
-min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: var(--dark);
 }
 
 .container {
-max-width: 900px;
-margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: white;
+  padding: 10px 0;
+}
+.breadcrumb a { color: white; text-decoration: none; font-weight: 500; opacity: 0.8; }
+.breadcrumb a:hover { opacity: 1; text-decoration: underline; }
+
+/* Card */
 .card {
-background: white;
-border-radius: 48px;
-padding: 2rem;
-box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
 }
 
 h1 {
-font-size: 1.8rem;
-background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
-margin-bottom: 0.5rem;
+  font-size: 32px;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.subtitle {
+  color: var(--gray-600);
+  margin-bottom: 24px;
+  font-size: 14px;
 }
 
+/* Form */
 .form-row {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-gap: 1rem;
-margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
 }
-
 .form-group {
-margin-bottom: 1rem;
+  margin-bottom: 0;
 }
-
 label {
-display: block;
-font-weight: 600;
-margin-bottom: 0.5rem;
-color: #1e293b;
-font-size: 0.85rem;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--dark);
+  font-size: 13px;
 }
-
+label i {
+  color: var(--primary);
+  margin-right: 6px;
+}
 input, select {
-width: 100%;
-padding: 10px 14px;
-border: 2px solid #e2e8f0;
-border-radius: 16px;
-font-size: 0.95rem;
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(17,153,142,0.1);
 }
 
+/* Buttons */
 .calc-btn {
-background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-color: white;
-border: none;
-padding: 14px;
-width: 100%;
-border-radius: 60px;
-font-size: 1rem;
-font-weight: bold;
-cursor: pointer;
-margin: 1rem 0;
+  background: var(--gradient-1);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  width: 100%;
+  border-radius: 60px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.calc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(17,153,142,0.4);
 }
 
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 24px;
+}
+.summary-card {
+  background: var(--primary-light);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  text-align: center;
+}
+.summary-card .value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+.summary-card .label {
+  font-size: 11px;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+
+/* Table */
 .nutrient-table {
-overflow-x: auto;
-margin-top: 1.5rem;
+  overflow-x: auto;
+  margin-top: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
 }
-
 table {
-width: 100%;
-border-collapse: collapse;
-font-size: 0.85rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
 }
-
 th, td {
-padding: 10px 8px;
-text-align: left;
-border-bottom: 1px solid #e2e8f0;
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
 }
-
 th {
-background: #f1f5f9;
-font-weight: 600;
-color: #1e293b;
-position: sticky;
-top: 0;
+  background: var(--gray-100);
+  font-weight: 700;
+  color: var(--dark);
+  position: sticky;
+  top: 0;
 }
-
 tr:hover {
-background: #f8fafc;
+  background: var(--gray-50);
+}
+.category-row {
+  background: var(--primary-light);
+  font-weight: 700;
+}
+.category-row td {
+  background: var(--primary-light);
+  color: var(--primary-dark);
 }
 
-.category-title {
-background: #e0f2fe;
-font-weight: bold;
-margin-top: 1rem;
+/* Search */
+.search-box {
+  margin-bottom: 20px;
+  position: relative;
+}
+.search-box input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+}
+.search-box i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-600);
 }
 
+/* Interlinks */
 .interlinks {
-display: flex;
-flex-wrap: wrap;
-gap: 0.6rem;
-justify-content: center;
-margin-top: 2rem;
-padding-top: 1.5rem;
-border-top: 2px solid #e2e8f0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
 }
-
 .interlinks a {
-background: #f1f5f9;
-padding: 0.5rem 1rem;
-border-radius: 40px;
-text-decoration: none;
-font-size: 0.8rem;
-color: #475569;
+  background: var(--gray-100);
+  padding: 6px 16px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 12px;
+  color: var(--gray-600);
+  transition: all 0.2s;
+}
+.interlinks a:hover {
+  background: var(--primary);
+  color: white;
 }
 
+/* Footer */
 footer {
-text-align: center;
-margin-top: 2rem;
-color: white;
-font-size: 0.7rem;
-opacity: 0.9;
-}
-
-@media (max-width: 600px) {
-.card { padding: 1.2rem; }
-th, td { font-size: 0.7rem; padding: 6px 4px; }
+  text-align: center;
+  margin-top: 24px;
+  font-size: 11px;
+  color: white;
+  opacity: 0.8;
 }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="card">
-<h1>🥗 DRI Calculator</h1>
-<p style="color: #64748b; margin-bottom: 1rem;">Daily Recommended Intake for Vitamins & Minerals (USDA/WHO Guidelines)</p>
 
-<div class="form-row">
-<div class="form-group">
-<label>⚧ Gender</label>
-<select id="gender">
-<option value="male">Male</option>
-<option value="female">Female</option>
-</select>
-</div>
-<div class="form-group">
-<label>📅 Age (years)</label>
-<input type="number" id="age" value="30" step="1" min="1" max="120">
-</div>
-<div class="form-group">
-<label>🤰 Life Stage</label>
-<select id="lifeStage">
-<option value="normal">Standard Adult</option>
-<option value="pregnant">Pregnant</option>
-<option value="lactating">Lactating</option>
-<option value="elderly">Elderly (65+)</option>
-</select>
-</div>
-</div>
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
+    <span>›</span>
+    <a href="/index.html#tools">Nutrition Tools</a>
+    <span>›</span>
+    <span>DRI Calculator</span>
+  </div>
 
-<button class="calc-btn" id="calculateDRI">📊 Calculate My DRI</button>
+  <div class="card">
+    <h1><i class="fas fa-apple-alt"></i> Advanced DRI Calculator</h1>
+    <p class="subtitle">Daily Recommended Intake for Vitamins & Minerals — Based on USDA/WHO Guidelines</p>
 
-<div class="nutrient-table" id="resultsTable">
-<table id="driTable">
-<thead>
-<tr><th>Nutrient</th><th>Daily Recommendation</th><th>Key Food Sources</th></tr>
-</thead>
-<tbody id="driBody">
-<tr><td colspan="3">Enter your details above</td></tr>
-</tbody>
-</table>
-</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label><i class="fas fa-venus-mars"></i> Gender</label>
+        <select id="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-calendar-alt"></i> Age (years)</label>
+        <input type="number" id="age" value="30" step="1" min="1" max="120">
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-female"></i> Life Stage</label>
+        <select id="lifeStage">
+          <option value="normal">Standard Adult</option>
+          <option value="pregnant">Pregnant</option>
+          <option value="lactating">Lactating</option>
+          <option value="elderly">Elderly (65+)</option>
+        </select>
+      </div>
+    </div>
 
-<div class="interlinks">
-<a href="https://healthcalc.in/body-shape-analyzer.html">🧬 Body Shape</a>
-<a href="https://healthcalc.in/medication-half-life-tracker.html">💊 Half-Life</a>
-<a href="https://healthcalc.in/calorie-calculator.html">🔥 Calorie</a>
-<a href="https://healthcalc.in/water-intake-calculator.html">💧 Water Intake</a>
-</div>
-</div>
-<footer>Based on USDA Dietary Reference Intakes (DRI) and WHO recommendations. Individual needs may vary.</footer>
+    <button class="calc-btn" id="calculateDRI">
+      <i class="fas fa-calculator"></i> Calculate My DRI
+    </button>
+
+    <!-- Summary Cards -->
+    <div class="summary-cards" id="summaryCards">
+      <div class="summary-card">
+        <div class="value" id="calciumValue">1000</div>
+        <div class="label">Calcium (mg)</div>
+      </div>
+      <div class="summary-card">
+        <div class="value" id="ironValue">18</div>
+        <div class="label">Iron (mg)</div>
+      </div>
+      <div class="summary-card">
+        <div class="value" id="vitaminCValue">75</div>
+        <div class="label">Vitamin C (mg)</div>
+      </div>
+      <div class="summary-card">
+        <div class="value" id="vitaminDValue">600</div>
+        <div class="label">Vitamin D (IU)</div>
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchNutrient" placeholder="Search nutrients (e.g., Vitamin C, Iron, Calcium...)">
+    </div>
+
+    <!-- Nutrient Table -->
+    <div class="nutrient-table">
+      <table id="driTable">
+        <thead>
+          <tr>
+            <th>Nutrient</th>
+            <th>Daily Recommendation</th>
+            <th>Key Food Sources</th>
+          </tr>
+        </thead>
+        <tbody id="driBody"></tbody>
+      </table>
+    </div>
+
+    <div class="interlinks">
+      <a href="body-fat-calculator.html">🧬 Body Fat</a>
+      <a href="calorie-calculator.html">🔥 Calories</a>
+      <a href="water-intake-calculator.html">💧 Water</a>
+      <a href="bmi-calculator.html">⚖️ BMI</a>
+      <a href="ideal-weight-calculator.html">⚖️ Ideal Weight</a>
+      <a href="gut-microbiome-calculator.html">🦠 Gut Health</a>
+    </div>
+  </div>
+  <footer>Based on USDA Dietary Reference Intakes (DRI) and WHO recommendations. Individual needs may vary. Not medical advice.</footer>
 </div>
 
 <script>
-function getDRI(gender, age, lifeStage) {
-const isFemale = gender === 'female';
-const isPregnant = lifeStage === 'pregnant';
-const isLactating = lifeStage === 'lactating';
-const isElderly = lifeStage === 'elderly' || age >= 65;
+// ===== COMPLETE NUTRIENT DATABASE =====
+function getNutrientDatabase(gender, age, lifeStage) {
+  const isFemale = gender === 'female';
+  const isPregnant = lifeStage === 'pregnant';
+  const isLactating = lifeStage === 'lactating';
+  const isElderly = lifeStage === 'elderly' || age >= 65;
 
-// Base values (adult 19-50)
-let nutrients = {
-'Vitamin A (mcg RAE)': { male: 900, female: 700, unit: 'mcg', sources: 'Sweet potatoes, carrots, spinach, eggs' },
-'Vitamin C (mg)': { male: 90, female: 75, unit: 'mg', sources: 'Citrus fruits, bell peppers, strawberries, broccoli' },
-'Vitamin D (IU)': { male: 600, female: 600, unit: 'IU', sources: 'Sunlight, fatty fish, fortified milk, eggs' },
-'Vitamin E (mg)': { male: 15, female: 15, unit: 'mg', sources: 'Nuts, seeds, vegetable oils, spinach' },
-'Vitamin K (mcg)': { male: 120, female: 90, unit: 'mcg', sources: 'Leafy greens, broccoli, Brussels sprouts' },
-'Vitamin B1 - Thiamin (mg)': { male: 1.2, female: 1.1, unit: 'mg', sources: 'Whole grains, pork, legumes, nuts' },
-'Vitamin B2 - Riboflavin (mg)': { male: 1.3, female: 1.1, unit: 'mg', sources: 'Dairy, eggs, lean meats, almonds' },
-'Vitamin B3 - Niacin (mg)': { male: 16, female: 14, unit: 'mg', sources: 'Poultry, fish, whole grains, mushrooms' },
-'Vitamin B6 (mg)': { male: 1.3, female: 1.3, unit: 'mg', sources: 'Chickpeas, poultry, fish, potatoes, bananas' },
-'Vitamin B12 (mcg)': { male: 2.4, female: 2.4, unit: 'mcg', sources: 'Meat, fish, dairy, eggs, fortified cereals' },
-'Folate (mcg DFE)': { male: 400, female: 400, unit: 'mcg', sources: 'Leafy greens, legumes, asparagus, oranges' },
-'Calcium (mg)': { male: 1000, female: 1000, unit: 'mg', sources: 'Dairy, fortified plant milks, leafy greens, sardines' },
-'Iron (mg)': { male: 8, female: 18, unit: 'mg', sources: 'Red meat, spinach, beans, fortified cereals' },
-'Magnesium (mg)': { male: 420, female: 320, unit: 'mg', sources: 'Nuts, seeds, whole grains, leafy greens, dark chocolate' },
-'Potassium (mg)': { male: 3400, female: 2600, unit: 'mg', sources: 'Bananas, potatoes, avocados, beans, leafy greens' },
-'Zinc (mg)': { male: 11, female: 8, unit: 'mg', sources: 'Oysters, red meat, poultry, beans, nuts' },
-'Selenium (mcg)': { male: 55, female: 55, unit: 'mcg', sources: 'Brazil nuts, tuna, sardines, eggs, brown rice' },
-'Iodine (mcg)': { male: 150, female: 150, unit: 'mcg', sources: 'Iodized salt, seafood, dairy, eggs' },
-'Copper (mcg)': { male: 900, female: 900, unit: 'mcg', sources: 'Shellfish, seeds, nuts, organ meats' },
-'Manganese (mg)': { male: 2.3, female: 1.8, unit: 'mg', sources: 'Whole grains, nuts, leafy vegetables, tea' },
-'Chromium (mcg)': { male: 35, female: 25, unit: 'mcg', sources: 'Broccoli, whole grains, meat, nuts' },
-'Molybdenum (mcg)': { male: 45, female: 45, unit: 'mcg', sources: 'Legumes, grains, nuts, leafy vegetables' },
-'Choline (mg)': { male: 550, female: 425, unit: 'mg', sources: 'Eggs, liver, beef, chicken, fish' }
-};
+  let nutrients = {
+    // Fat-Soluble Vitamins
+    'Vitamin A (mcg RAE)': { male: 900, female: 700, unit: 'mcg', sources: 'Sweet potatoes, carrots, spinach, eggs, liver' },
+    'Vitamin D (IU)': { male: 600, female: 600, unit: 'IU', sources: 'Sunlight, fatty fish, fortified milk, eggs, mushrooms' },
+    'Vitamin E (mg)': { male: 15, female: 15, unit: 'mg', sources: 'Nuts, seeds, vegetable oils, spinach, avocado' },
+    'Vitamin K (mcg)': { male: 120, female: 90, unit: 'mcg', sources: 'Leafy greens, broccoli, Brussels sprouts, kale' },
 
-// Age adjustments
-if(age >= 71) {
-nutrients['Vitamin D (IU)'].male = 800;
-nutrients['Vitamin D (IU)'].female = 800;
-nutrients['Calcium (mg)'].male = 1200;
-nutrients['Calcium (mg)'].female = 1200;
-} else if(age >= 51) {
-nutrients['Calcium (mg)'].female = 1200;
+    // Water-Soluble Vitamins
+    'Vitamin C (mg)': { male: 90, female: 75, unit: 'mg', sources: 'Citrus fruits, bell peppers, strawberries, kiwi, broccoli' },
+    'Vitamin B1 - Thiamin (mg)': { male: 1.2, female: 1.1, unit: 'mg', sources: 'Whole grains, pork, legumes, nuts, seeds' },
+    'Vitamin B2 - Riboflavin (mg)': { male: 1.3, female: 1.1, unit: 'mg', sources: 'Dairy, eggs, lean meats, almonds, mushrooms' },
+    'Vitamin B3 - Niacin (mg)': { male: 16, female: 14, unit: 'mg', sources: 'Poultry, fish, whole grains, mushrooms, peanuts' },
+    'Vitamin B6 (mg)': { male: 1.3, female: 1.3, unit: 'mg', sources: 'Chickpeas, poultry, fish, potatoes, bananas' },
+    'Vitamin B12 (mcg)': { male: 2.4, female: 2.4, unit: 'mcg', sources: 'Meat, fish, dairy, eggs, fortified cereals' },
+    'Folate (mcg DFE)': { male: 400, female: 400, unit: 'mcg', sources: 'Leafy greens, legumes, asparagus, oranges, beets' },
+    'Biotin (mcg)': { male: 30, female: 30, unit: 'mcg', sources: 'Eggs, nuts, seeds, salmon, avocado' },
+    'Pantothenic Acid (mg)': { male: 5, female: 5, unit: 'mg', sources: 'Meat, whole grains, broccoli, avocados' },
+
+    // Minerals
+    'Calcium (mg)': { male: 1000, female: 1000, unit: 'mg', sources: 'Dairy, fortified plant milks, leafy greens, sardines, tofu' },
+    'Iron (mg)': { male: 8, female: 18, unit: 'mg', sources: 'Red meat, spinach, beans, lentils, fortified cereals' },
+    'Magnesium (mg)': { male: 420, female: 320, unit: 'mg', sources: 'Nuts, seeds, whole grains, leafy greens, dark chocolate' },
+    'Potassium (mg)': { male: 3400, female: 2600, unit: 'mg', sources: 'Bananas, potatoes, avocados, beans, coconut water' },
+    'Zinc (mg)': { male: 11, female: 8, unit: 'mg', sources: 'Oysters, red meat, poultry, beans, nuts, pumpkin seeds' },
+    'Selenium (mcg)': { male: 55, female: 55, unit: 'mcg', sources: 'Brazil nuts, tuna, sardines, eggs, brown rice' },
+    'Iodine (mcg)': { male: 150, female: 150, unit: 'mcg', sources: 'Iodized salt, seafood, dairy, eggs, seaweed' },
+    'Copper (mcg)': { male: 900, female: 900, unit: 'mcg', sources: 'Shellfish, seeds, nuts, organ meats, dark chocolate' },
+    'Manganese (mg)': { male: 2.3, female: 1.8, unit: 'mg', sources: 'Whole grains, nuts, leafy vegetables, tea, pineapple' },
+    'Chromium (mcg)': { male: 35, female: 25, unit: 'mcg', sources: 'Broccoli, whole grains, meat, nuts, grape juice' },
+    'Molybdenum (mcg)': { male: 45, female: 45, unit: 'mcg', sources: 'Legumes, grains, nuts, leafy vegetables' },
+    'Choline (mg)': { male: 550, female: 425, unit: 'mg', sources: 'Eggs, liver, beef, chicken, fish, cauliflower' },
+    'Phosphorus (mg)': { male: 700, female: 700, unit: 'mg', sources: 'Dairy, meat, fish, nuts, beans, whole grains' },
+    'Chloride (mg)': { male: 2300, female: 2300, unit: 'mg', sources: 'Table salt, seaweed, tomatoes, celery' },
+    'Sodium (mg)': { male: 2300, female: 2300, unit: 'mg', sources: 'Table salt, processed foods (limit intake)' }
+  };
+
+  // Age adjustments for Calcium (women over 51)
+  if (age >= 51 && isFemale) {
+    nutrients['Calcium (mg)'].female = 1200;
+  }
+
+  // Age adjustments for Vitamin D and Calcium (over 70)
+  if (age >= 71) {
+    nutrients['Vitamin D (IU)'].male = 800;
+    nutrients['Vitamin D (IU)'].female = 800;
+    nutrients['Calcium (mg)'].male = 1200;
+    nutrients['Calcium (mg)'].female = 1200;
+  }
+
+  // Elderly adjustments
+  if (isElderly) {
+    nutrients['Vitamin B12 (mcg)'].male = 2.4;
+    nutrients['Vitamin B12 (mcg)'].female = 2.4;
+    nutrients['Vitamin D (IU)'].male = 800;
+    nutrients['Vitamin D (IU)'].female = 800;
+  }
+
+  // Pregnancy adjustments
+  if (isPregnant) {
+    nutrients['Iron (mg)'].female = 27;
+    nutrients['Folate (mcg DFE)'].female = 600;
+    nutrients['Vitamin D (IU)'].female = 600;
+    nutrients['Calcium (mg)'].female = 1000;
+    nutrients['Zinc (mg)'].female = 11;
+    nutrients['Iodine (mcg)'].female = 220;
+    nutrients['Choline (mg)'].female = 450;
+  }
+
+  // Lactation adjustments
+  if (isLactating) {
+    nutrients['Iron (mg)'].female = 10;
+    nutrients['Folate (mcg DFE)'].female = 500;
+    nutrients['Calcium (mg)'].female = 1000;
+    nutrients['Vitamin D (IU)'].female = 600;
+    nutrients['Zinc (mg)'].female = 12;
+    nutrients['Iodine (mcg)'].female = 290;
+    nutrients['Choline (mg)'].female = 550;
+  }
+
+  return nutrients;
 }
 
-if(isElderly) {
-nutrients['Vitamin B12 (mcg)'].male = 2.4;
-nutrients['Vitamin B12 (mcg)'].female = 2.4;
-nutrients['Vitamin D (IU)'].male = 800;
-nutrients['Vitamin D (IU)'].female = 800;
-}
-
-if(isPregnant) {
-nutrients['Iron (mg)'].female = 27;
-nutrients['Folate (mcg DFE)'].female = 600;
-nutrients['Vitamin D (IU)'].female = 600;
-nutrients['Calcium (mg)'].female = 1000;
-}
-
-if(isLactating) {
-nutrients['Iron (mg)'].female = 10;
-nutrients['Folate (mcg DFE)'].female = 500;
-nutrients['Calcium (mg)'].female = 1000;
-nutrients['Vitamin D (IU)'].female = 600;
-}
-
-return nutrients;
-}
+// ===== DISPLAY FUNCTION =====
+let allNutrientsData = [];
+let currentCategory = '';
 
 function displayDRI() {
-let gender = document.getElementById('gender').value;
-let age = parseInt(document.getElementById('age').value);
-let lifeStage = document.getElementById('lifeStage').value;
+  const gender = document.getElementById('gender').value;
+  const age = parseInt(document.getElementById('age').value) || 30;
+  const lifeStage = document.getElementById('lifeStage').value;
 
-if(isNaN(age)) age = 30;
+  const nutrients = getNutrientDatabase(gender, age, lifeStage);
+  allNutrientsData = Object.entries(nutrients);
 
-const dri = getDRI(gender, age, lifeStage);
+  // Update summary cards
+  document.getElementById('calciumValue').innerHTML = nutrients['Calcium (mg)'][gender === 'male' ? 'male' : 'female'];
+  document.getElementById('ironValue').innerHTML = nutrients['Iron (mg)'][gender === 'male' ? 'male' : 'female'];
+  document.getElementById('vitaminCValue').innerHTML = nutrients['Vitamin C (mg)'][gender === 'male' ? 'male' : 'female'];
+  document.getElementById('vitaminDValue').innerHTML = nutrients['Vitamin D (IU)'][gender === 'male' ? 'male' : 'female'];
 
-let html = '';
-for(const [nutrient, data] of Object.entries(dri)) {
-let value = gender === 'male' ? data.male : data.female;
-if(lifeStage === 'pregnant' && nutrient.includes('Iron')) value = 27;
-if(lifeStage === 'pregnant' && nutrient.includes('Folate')) value = 600;
-if(lifeStage === 'lactating' && nutrient.includes('Iron')) value = 10;
-
-html += `<tr>
-<td style="font-weight:500;">${nutrient}</td>
-<td><strong>${value} ${data.unit}</strong></td>
-<td style="font-size:0.75rem; color:#64748b;">${data.sources}</td>
-</tr>`;
+  renderTable(allNutrientsData, gender);
 }
 
-document.getElementById('driBody').innerHTML = html;
+function renderTable(data, gender) {
+  let html = '';
+  const categories = {
+    'Fat-Soluble Vitamins': ['Vitamin A', 'Vitamin D', 'Vitamin E', 'Vitamin K'],
+    'Water-Soluble Vitamins': ['Vitamin C', 'Vitamin B1', 'Vitamin B2', 'Vitamin B3', 'Vitamin B6', 'Vitamin B12', 'Folate', 'Biotin', 'Pantothenic Acid'],
+    'Major Minerals': ['Calcium', 'Phosphorus', 'Magnesium', 'Potassium', 'Sodium', 'Chloride'],
+    'Trace Minerals': ['Iron', 'Zinc', 'Copper', 'Manganese', 'Selenium', 'Iodine', 'Chromium', 'Molybdenum', 'Choline']
+  };
+
+  let currentCategory = '';
+  let catOpen = false;
+
+  for (const [nutrient, data] of data) {
+    let catFound = '';
+    for (const [cat, names] of Object.entries(categories)) {
+      if (names.some(name => nutrient.includes(name))) {
+        catFound = cat;
+        break;
+      }
+    }
+
+    if (catFound && catFound !== currentCategory) {
+      if (catOpen) {
+        // Close previous category if open (not needed for simple rendering)
+      }
+      html += `<tr class="category-row"><td colspan="3"><strong>⭐ ${catFound}</strong></td></tr>`;
+      currentCategory = catFound;
+      catOpen = true;
+    }
+
+    let value = gender === 'male' ? data.male : data.female;
+    if (document.getElementById('lifeStage').value === 'pregnant' && nutrient.includes('Iron')) value = 27;
+    if (document.getElementById('lifeStage').value === 'pregnant' && nutrient.includes('Folate')) value = 600;
+    if (document.getElementById('lifeStage').value === 'lactating' && nutrient.includes('Iron')) value = 10;
+    if (document.getElementById('lifeStage').value === 'lactating' && nutrient.includes('Folate')) value = 500;
+
+    html += `
+      <tr data-nutrient="${nutrient.toLowerCase()}">
+        <td style="font-weight: 500;">${nutrient}</td>
+        <td><strong>${value} ${data.unit}</strong></td>
+        <td style="font-size: 11px; color: #64748b;">${data.sources}</td>
+      </tr>
+    `;
+  }
+
+  document.getElementById('driBody').innerHTML = html;
 }
 
+// ===== SEARCH FUNCTION =====
+function searchNutrients() {
+  const searchTerm = document.getElementById('searchNutrient').value.toLowerCase();
+  const rows = document.querySelectorAll('#driBody tr');
+  
+  rows.forEach(row => {
+    const nutrientCell = row.querySelector('td:first-child');
+    if (nutrientCell) {
+      const nutrientName = nutrientCell.textContent.toLowerCase();
+      if (searchTerm === '' || nutrientName.includes(searchTerm)) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  });
+}
+
+// ===== INITIALIZE =====
 document.getElementById('calculateDRI').addEventListener('click', displayDRI);
+document.getElementById('searchNutrient').addEventListener('input', searchNutrient);
+document.getElementById('gender').addEventListener('change', displayDRI);
+document.getElementById('age').addEventListener('input', displayDRI);
+document.getElementById('lifeStage').addEventListener('change', displayDRI);
 
 // Initial load
 displayDRI();
