@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+<!-- ========== SEO META ========== -->
+<title>Medical Disclaimer | HealthCalc.in — Not Medical Advice</title>
+<meta name="title" content="Medical Disclaimer — HealthCalc.in | Educational Health Tools Only">
+<meta name="description" content="Medical disclaimer for HealthCalc.in. Our health calculators are for educational purposes only. Always consult a qualified healthcare professional for medical advice.">
+<meta name="keywords" content="medical disclaimer, health disclaimer, not medical advice, informational purposes only, consult doctor, health calculator disclaimer">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://healthcalc.in/medical-disclaimer.html">
+
+<!-- ALTERNATE URLs -->
+<link rel="alternate" hreflang="en" href="https://healthcalc.in/medical-disclaimer.html">
+<link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/medical-disclaimer.html">
+<link rel="alternate" hreflang="x-default" href="https://healthcalc.in/medical-disclaimer.html">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Medical Disclaimer — HealthCalc.in">
+<meta property="og:description" content="Our health calculators are for educational purposes only. Not a substitute for professional medical advice.">
+<meta property="og:url" content="https://healthcalc.in/medical-disclaimer.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HealthCalc">
+<meta property="og:locale" content="en_US">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Medical Disclaimer | HealthCalc.in">
+<meta name="twitter:description" content="Educational health tools — not medical advice">
+
+<!-- SCHEMA MARKUP -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "WebPage",
+"name": "Medical Disclaimer — HealthCalc.in",
+"description": "Medical disclaimer for HealthCalc.in health calculators. For educational purposes only. Not medical advice.",
+"url": "https://healthcalc.in/medical-disclaimer.html",
+"author": {"@type": "Organization", "name": "HealthCalc", "url": "https://healthcalc.in"},
+"dateModified": "2026-05-26"
+}
+</script>
+
+<!-- BREADCRUMB SCHEMA -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+{"@type": "ListItem", "position": 2, "name": "Medical Disclaimer", "item": "https://healthcalc.in/medical-disclaimer.html"}
+]
+}
+</script>
+
+<!-- FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Light Mode Variables */
+:root {
+--primary: #8b5cf6;
+--primary-dark: #7c3aed;
+--primary-light: #ede9fe;
+--primary-soft: #f5f3ff;
+--secondary: #059669;
+--warning: #f59e0b;
+--danger: #ef4444;
+--dark: #1f2937;
+--text: #334155;
+--text-light: #475569;
+--text-muted: #64748b;
+--bg: #f8fafc;
+--bg-light: #f1f5f9;
+--white: #ffffff;
+--border: #e2e8f0;
+--shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+--shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+--shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
+--radius-sm: 8px;
+--radius-md: 12px;
+--radius-lg: 16px;
+--radius-xl: 24px;
+--radius-2xl: 32px;
+}
+
+/* Dark Mode Variables */
+body.dark {
+--primary: #a78bfa;
+--primary-dark: #c4b5fd;
+--primary-light: #2e1a5e;
+--primary-soft: #1e1b4b;
+--secondary: #34d399;
+--warning: #fbbf24;
+--danger: #f87171;
+--dark: #f1f5f9;
+--text: #e2e8f0;
+--text-light: #cbd5e1;
+--text-muted: #94a3b8;
+--bg: #0f172a;
+--bg-light: #1e293b;
+--white: #1e293b;
+--border: #334155;
+--shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+--shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+--shadow-lg: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+body {
+font-family: 'Inter', sans-serif;
+background: var(--bg);
+color: var(--text);
+line-height: 1.6;
+transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Theme Toggle (same as terms page) */
+.theme-toggle {
+background: var(--bg-light);
+border: 1px solid var(--border);
+border-radius: 60px;
+padding: 5px;
+display: flex;
+gap: 5px;
+cursor: pointer;
+}
+.theme-option {
+padding: 6px 14px;
+border-radius: 50px;
+font-size: 13px;
+font-weight: 600;
+transition: all 0.2s;
+color: var(--text-muted);
+}
+.theme-option.active {
+background: var(--primary);
+color: white;
+}
+.theme-option i { margin-right: 6px; }
+
+/* NAV */
+nav {
+background: var(--white);
+border-bottom: 1px solid var(--border);
+position: sticky;
+top: 0;
+z-index: 1000;
+backdrop-filter: blur(10px);
+}
+.nav-inner {
+max-width: 1300px;
+margin: 0 auto;
+padding: 16px 24px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 15px;
+}
+.logo {
+font-size: 1.6rem;
+font-weight: 800;
+text-decoration: none;
+color: var(--dark);
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.logo span { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-links { display: flex; gap: 25px; align-items: center; flex-wrap: wrap; }
+.nav-links a {
+text-decoration: none;
+color: var(--text-light);
+font-weight: 500;
+font-size: 0.9rem;
+transition: all 0.2s;
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-links a.active { color: var(--primary); font-weight: 600; }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+
+/* Breadcrumb */
+.breadcrumb {
+max-width: 1200px;
+margin: 0 auto;
+padding: 16px 24px 0;
+font-size: 0.85rem;
+color: var(--text-muted);
+display: flex;
+gap: 8px;
+align-items: center;
+}
+.breadcrumb a { color: var(--primary); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* Page Header */
+.page-header {
+background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+padding: 60px 24px;
+text-align: center;
+color: white;
+position: relative;
+overflow: hidden;
+}
+.page-header::before {
+content: '';
+position: absolute;
+top: -50%; left: -50%;
+width: 200%; height: 200%;
+background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+animation: rotate 30s linear infinite;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.page-header .badge {
+display: inline-block;
+background: rgba(255,255,255,0.2);
+padding: 6px 20px;
+border-radius: 50px;
+font-size: 0.85rem;
+font-weight: 500;
+margin-bottom: 20px;
+backdrop-filter: blur(4px);
+position: relative;
+}
+.page-header h1 {
+font-size: clamp(2rem, 4vw, 3rem);
+font-weight: 800;
+margin-bottom: 12px;
+position: relative;
+}
+.page-header p {
+font-size: 1rem;
+opacity: 0.9;
+position: relative;
+}
+.page-header .date {
+font-size: 0.85rem;
+opacity: 0.75;
+margin-top: 12px;
+}
+
+/* Content Section */
+.content-section {
+max-width: 1000px;
+margin: 0 auto;
+padding: 50px 24px 70px;
+}
+
+/* Warning Box */
+.warning-box {
+background: linear-gradient(135deg, #fef3c7, #fde68a);
+border: 2px solid #f59e0b;
+border-radius: var(--radius-xl);
+padding: 30px;
+margin-bottom: 40px;
+display: flex;
+gap: 20px;
+align-items: flex-start;
+color: #78350f;
+}
+@media (max-width: 600px) {
+.warning-box { flex-direction: column; text-align: center; align-items: center; }
+}
+.warning-box .icon {
+width: 60px;
+height: 60px;
+background: #f59e0b;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.8rem;
+color: white;
+flex-shrink: 0;
+}
+.warning-box h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+.warning-box p { font-size: 0.95rem; }
+
+/* Disclaimer Cards */
+.disclaimer-card {
+background: var(--white);
+border: 1px solid var(--border);
+border-radius: var(--radius-lg);
+padding: 28px;
+margin-bottom: 24px;
+box-shadow: var(--shadow-sm);
+transition: all 0.2s;
+}
+.disclaimer-card:hover {
+box-shadow: var(--shadow-md);
+border-color: var(--primary-light);
+}
+.disclaimer-card h3 {
+font-size: 1.3rem;
+font-weight: 700;
+color: var(--dark);
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 16px;
+}
+.disclaimer-card h3 .num {
+width: 36px;
+height: 36px;
+background: var(--primary-light);
+color: var(--primary);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1rem;
+font-weight: 700;
+flex-shrink: 0;
+}
+.disclaimer-card p {
+color: var(--text-light);
+margin-bottom: 12px;
+}
+.disclaimer-card ul {
+list-style: none;
+padding: 0;
+margin-top: 12px;
+}
+.disclaimer-card ul li {
+padding: 8px 0;
+padding-left: 24px;
+position: relative;
+color: var(--text-muted);
+}
+.disclaimer-card ul li::before {
+content: '⚠️';
+position: absolute;
+left: 0;
+font-size: 0.8rem;
+}
+
+/* Highlight Box */
+.highlight-box {
+background: var(--primary-soft);
+border-left: 4px solid var(--primary);
+border-radius: var(--radius-md);
+padding: 20px;
+margin: 20px 0;
+color: var(--text-light);
+}
+.highlight-box i { margin-right: 8px; color: var(--primary); }
+
+/* Emergency Box */
+.emergency-box {
+background: linear-gradient(135deg, #fee2e2, #fecaca);
+border-left: 4px solid #dc2626;
+border-radius: var(--radius-md);
+padding: 20px;
+margin: 20px 0;
+color: #991b1b;
+}
+.emergency-box i { margin-right: 8px; color: #dc2626; }
+
+/* Footer */
+footer {
+background: var(--dark);
+color: white;
+padding: 50px 24px 30px;
+}
+.footer-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+gap: 35px;
+max-width: 1000px;
+margin: 0 auto 40px;
+text-align: left;
+}
+.footer-col h4 { font-size: 1rem; margin-bottom: 16px; color: #a78bfa; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; transition: all 0.2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-bottom {
+text-align: center;
+border-top: 1px solid #334155;
+padding-top: 25px;
+color: #64748b;
+font-size: 0.8rem;
+}
+.footer-bottom a { color: #a78bfa; text-decoration: none; }
+
+/* Scroll Top */
+.scroll-top {
+position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px;
+border-radius: 50%; background: var(--primary); color: white; border: none;
+cursor: pointer; font-size: 1.2rem; display: flex; align-items: center;
+justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s;
+box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 1000;
+}
+.scroll-top.visible { opacity: 1; visibility: visible; }
+.scroll-top:hover { transform: scale(1.1); }
+</style>
+</head>
+<body>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<!-- NAVIGATION -->
+<nav>
+<div class="nav-inner">
+<a href="index.html" class="logo">🧬 <span>HealthCalc</span></a>
+<div class="nav-right">
+<div class="theme-toggle" id="themeToggle">
+<span class="theme-option active" data-theme="light"><i class="fas fa-sun"></i> Light</span>
+<span class="theme-option" data-theme="dark"><i class="fas fa-moon"></i> Dark</span>
+</div>
+<div class="nav-links">
+<a href="index.html"><i class="fas fa-home"></i> Home</a>
+<a href="index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+<a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+<a href="medical-disclaimer.html" class="active"><i class="fas fa-stethoscope"></i> Disclaimer</a>
+<a href="privacy-policy.html"><i class="fas fa-lock"></i> Privacy</a>
+<a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+<a href="index.html"><i class="fas fa-home"></i> Home</a>
+<span>/</span>
+<span>Medical Disclaimer</span>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+<span class="badge"><i class="fas fa-stethoscope"></i> Important Legal Notice</span>
+<h1>Medical Disclaimer</h1>
+<p>Our health calculators are for educational purposes only — not a substitute for professional medical advice</p>
+<p class="date">Last Updated: May 26, 2026</p>
+</section>
+
+<!-- CONTENT SECTION -->
+<section class="content-section">
+
+<!-- Warning Box -->
+<div class="warning-box">
+<div class="icon">⚠️</div>
+<div>
+<h2>Not Medical Advice</h2>
+<p>The information provided on HealthCalc.in is for general informational and educational purposes only. All information on the site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the site.</p>
+</div>
+</div>
+
+<!-- 1. No Doctor-Patient Relationship -->
+<div class="disclaimer-card">
+<h3><span class="num">1</span> No Doctor-Patient Relationship</h3>
+<p>Your use of HealthCalc.in does not create a doctor-patient relationship between you and HealthCalc.in or any of its affiliates. The calculators and information provided are not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+<div class="highlight-box">
+<i class="fas fa-user-md"></i>
+<strong>Never disregard professional medical advice</strong> or delay seeking it because of something you have read on this website.
+</div>
+</div>
+
+<!-- 2. Educational Purpose Only -->
+<div class="disclaimer-card">
+<h3><span class="num">2</span> Educational Purpose Only</h3>
+<p>All health calculators and tools on HealthCalc.in are designed for educational and informational purposes. They are intended to help you understand various health metrics and concepts, but they should not be used as the sole basis for making health decisions.</p>
+<ul>
+<li>BMI calculators provide estimates based on population averages</li>
+<li>ASCVD risk scores are estimates, not definitive predictions</li>
+<li>Pregnancy due dates are approximate — only 4% of babies arrive on their exact due date</li>
+<li>Body fat percentages are estimates within 3-4% of clinical measurements</li>
+<li>All calculations are estimates and may not reflect your individual health status</li>
+</ul>
+</div>
+
+<!-- 3. Emergency Situations -->
+<div class="disclaimer-card">
+<h3><span class="num">3</span> Emergency Situations</h3>
+<div class="emergency-box">
+<i class="fas fa-ambulance"></i>
+<strong>IF YOU ARE EXPERIENCING A MEDICAL EMERGENCY, CALL YOUR LOCAL EMERGENCY NUMBER (911 in US, 112 in India, 999 in UK) IMMEDIATELY.</strong>
+</div>
+<p>Do not use our calculators or website to diagnose or treat emergency medical conditions. Our tools are not designed for emergency use. If you think you may have a medical emergency, call emergency services right away.</p>
+</div>
+
+<!-- 4. Individual Results May Vary -->
+<div class="disclaimer-card">
+<h3><span class="num">4</span> Individual Results May Vary</h3>
+<p>Health and fitness results vary from person to person. Factors such as genetics, age, gender, lifestyle, and overall health can significantly affect outcomes. Our calculators provide population-based estimates that may not accurately reflect your individual situation. Always consult with a healthcare professional before starting any diet, exercise program, or medical treatment.</p>
+</div>
+
+<!-- 5. No Guarantees -->
+<div class="disclaimer-card">
+<h3><span class="num">5</span> No Guarantees</h3>
+<p>We do not guarantee that using our calculators will lead to specific health outcomes. Weight loss, improved fitness, reduced disease risk, or any other health improvements depend on many factors beyond the scope of our calculators. Our tools are designed to provide information and estimates, not promises or guarantees.</p>
+</div>
+
+<!-- 6. AI-Generated Tips Disclaimer -->
+<div class="disclaimer-card">
+<h3><span class="num">6</span> AI-Generated Tips Disclaimer</h3>
+<p>Some of our calculators offer optional AI-powered health tips using Google's Gemini API. These tips are generated by artificial intelligence and are for informational purposes only. They do not constitute medical advice and should not replace consultation with a qualified healthcare professional. Always verify AI-generated recommendations with your doctor before acting on them.</p>
+<ul>
+<li>AI tips are general suggestions based on your inputs</li>
+<li>They may not be appropriate for your specific health situation</li>
+<li>We do not guarantee the accuracy or appropriateness of AI-generated advice</li>
+<li>You are responsible for evaluating any information before use</li>
+</ul>
+</div>
+
+<!-- 7. Limitation of Liability -->
+<div class="disclaimer-card">
+<h3><span class="num">7</span> Limitation of Liability</h3>
+<p>To the fullest extent permitted by law, HealthCalc.in and its owners, operators, employees, and affiliates shall not be liable for any injury, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind, including without limitation lost profits, lost revenue, lost savings, loss of data, replacement costs, or any similar damages, whether based in contract, tort (including negligence), strict liability, or otherwise, arising from your use of any of the calculators, information, or services provided on this website.</p>
+</div>
+
+<!-- 8. No Endorsement -->
+<div class="disclaimer-card">
+<h3><span class="num">8</span> No Endorsement</h3>
+<p>References or links to third-party websites, products, or services do not constitute an endorsement by HealthCalc.in. We are not responsible for the content, accuracy, or practices of any third-party sites. Any reliance you place on such information is strictly at your own risk.</p>
+</div>
+
+<!-- 9. Accuracy of Information -->
+<div class="disclaimer-card">
+<h3><span class="num">9</span> Accuracy of Information</h3>
+<p>We strive to ensure that the information on our website is accurate and up-to-date. However, we cannot guarantee that all information is current, complete, or error-free. Medical knowledge is constantly evolving, and what was accurate at the time of writing may become outdated. Users are encouraged to verify any information with primary sources and healthcare professionals.</p>
+</div>
+
+<!-- 10. Acceptance of Terms -->
+<div class="disclaimer-card">
+<h3><span class="num">10</span> Acceptance of This Disclaimer</h3>
+<p>By using HealthCalc.in, you signify your acceptance of this medical disclaimer. If you do not agree to this disclaimer, please do not use our website. Your continued use of the site following the posting of changes to this disclaimer will be deemed your acceptance of those changes.</p>
+</div>
+
+<!-- 11. Contact Us -->
+<div class="disclaimer-card">
+<h3><span class="num">11</span> Questions About This Disclaimer</h3>
+<p>If you have any questions about this medical disclaimer or our practices, please contact us:</p>
+<ul>
+<li>Email: <a href="mailto:support@healthcalc.in" style="color: var(--primary);">support@healthcalc.in</a></li>
+<li>Through our <a href="contact.html" style="color: var(--primary);">Contact Page</a></li>
+</ul>
+</div>
+
+<!-- Last Updated -->
+<div class="last-updated" style="text-align: center; margin-top: 40px; padding: 20px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border);">
+<p>© 2024-2026 HealthCalc.in — All Rights Reserved</p>
+<p>This Medical Disclaimer was last updated on May 26, 2026</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-grid">
+<div class="footer-col">
+<h4>HealthCalc</h4>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="index.html#tools">All Tools</a></li>
+<li><a href="about.html">About Us</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Legal</h4>
+<ul>
+<li><a href="terms-of-service.html">Terms of Service</a></li>
+<li><a href="privacy-policy.html">Privacy Policy</a></li>
+<li><a href="medical-disclaimer.html" style="color: #34d399;">Medical Disclaimer</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Popular Tools</h4>
+<ul>
+<li><a href="bmi-calculator.html">BMI Calculator</a></li>
+<li><a href="ascvd-risk-calculator.html">ASCVD Risk</a></li>
+<li><a href="ffmi-calculator.html">FFMI Calculator</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Support</h4>
+<ul>
+<li><a href="contact.html">Contact Us</a></li>
+<li><a href="#">FAQ</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2024-2026 <a href="index.html">HealthCalc.in</a> — Free Health Calculators. All Rights Reserved.</p>
+<p style="margin-top: 6px;">⚠️ For educational purposes only — Not medical advice</p>
+</div>
+</footer>
+
+<script>
+// ============ THEME TOGGLE ============
+function initTheme() {
+const savedTheme = localStorage.getItem('healthcalc_theme') || 'light';
+if (savedTheme === 'dark') {
+document.body.classList.add('dark');
+document.querySelector('[data-theme="dark"]').classList.add('active');
+document.querySelector('[data-theme="light"]').classList.remove('active');
+} else {
+document.body.classList.remove('dark');
+document.querySelector('[data-theme="light"]').classList.add('active');
+document.querySelector('[data-theme="dark"]').classList.remove('active');
+}
+}
+
+function setTheme(theme) {
+if (theme === 'dark') {
+document.body.classList.add('dark');
+localStorage.setItem('healthcalc_theme', 'dark');
+document.querySelector('[data-theme="dark"]').classList.add('active');
+document.querySelector('[data-theme="light"]').classList.remove('active');
+} else {
+document.body.classList.remove('dark');
+localStorage.setItem('healthcalc_theme', 'light');
+document.querySelector('[data-theme="light"]').classList.add('active');
+document.querySelector('[data-theme="dark"]').classList.remove('active');
+}
+}
+
+document.querySelectorAll('.theme-option').forEach(opt => {
+opt.addEventListener('click', () => {
+setTheme(opt.dataset.theme);
+});
+});
+
+initTheme();
+
+// ============ SCROLL TOP ============
+window.addEventListener('scroll', function() {
+var btn = document.getElementById('scrollTop');
+if (btn) btn.classList.toggle('visible', window.scrollY > 500);
+});
+</script>
+</body>
+</html>
