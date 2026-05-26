@@ -8,24 +8,32 @@
     <title>Privacy Policy | 100% Private Health Calculators | HealthCalc.in</title>
     <meta name="title" content="Privacy Policy — HealthCalc.in | No Data Collection, No Tracking">
     <meta name="description" content="HealthCalc privacy policy: We don't collect, store, or share any personal health data. All calculations run in your browser. No tracking, no cookies, no signup. GDPR, HIPAA, and Indian IT Act compliant.">
-    <meta name="keywords" content="privacy policy, data privacy, no data collection, private health calculator, GDPR compliant, HIPAA, Indian IT Act, no tracking">
+    <meta name="keywords" content="privacy policy, data privacy, no data collection, private health calculator, GDPR compliant, HIPAA, Indian IT Act, no tracking, COPPA, CCPA, browser-based health tools">
     <meta name="author" content="HealthCalc">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://healthcalc.in/privacy-policy.html">
+    
+    <!-- ALTERNATE URLs -->
+    <link rel="alternate" hreflang="en" href="https://healthcalc.in/privacy-policy.html">
+    <link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/privacy-policy.html">
+    <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/privacy-policy.html">
     
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="Privacy Policy — HealthCalc.in">
-    <meta property="og:description" content="Your privacy is our priority. No data collection, no tracking, no signup. 100% browser-based.">
+    <meta property="og:description" content="Your privacy is our priority. No data collection, no tracking, no signup. 100% browser-based health calculators.">
     <meta property="og:url" content="https://healthcalc.in/privacy-policy.html">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://healthcalc.in/images/privacy-og.jpg">
     <meta property="og:site_name" content="HealthCalc">
+    <meta property="og:locale" content="en_US">
     
     <!-- TWITTER -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Privacy Policy | HealthCalc.in">
     <meta name="twitter:description" content="We don't track you. We don't store your data. Simple.">
+    <meta name="twitter:image" content="https://healthcalc.in/images/privacy-twitter.jpg">
     
-    <!-- SCHEMA -->
+    <!-- SCHEMA MARKUP -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -33,8 +41,8 @@
         "name": "Privacy Policy — HealthCalc.in",
         "description": "HealthCalc privacy policy: No personal data collection, storage, or sharing. 100% client-side calculations.",
         "url": "https://healthcalc.in/privacy-policy.html",
-        "author": {"@type": "Organization", "name": "HealthCalc"},
-        "dateModified": "2026-05-05"
+        "author": {"@type": "Organization", "name": "HealthCalc", "url": "https://healthcalc.in"},
+        "dateModified": "2026-05-26"
     }
     </script>
     
@@ -57,33 +65,87 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Light Mode Variables */
         :root {
             --primary: #059669;
             --primary-dark: #047857;
             --primary-light: #d1fae5;
+            --primary-soft: #ecfdf5;
             --secondary: #3b82f6;
             --dark: #1f2937;
             --text: #334155;
+            --text-light: #475569;
             --text-muted: #64748b;
             --bg: #f8fafc;
+            --bg-light: #f1f5f9;
             --white: #ffffff;
             --border: #e2e8f0;
             --success: #10b981;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --info: #3b82f6;
+            --warning: #f59e0b;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-            --radius-xl: 24px;
-            --radius-lg: 16px;
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
+            --radius-sm: 8px;
             --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-2xl: 32px;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Dark Mode Variables */
+        body.dark {
+            --primary: #34d399;
+            --primary-dark: #6ee7b7;
+            --primary-light: #064e3b;
+            --primary-soft: #022c22;
+            --dark: #f1f5f9;
+            --text: #e2e8f0;
+            --text-light: #cbd5e1;
+            --text-muted: #94a3b8;
+            --bg: #0f172a;
+            --bg-light: #1e293b;
+            --white: #1e293b;
+            --border: #334155;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
         }
-
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 60px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .theme-option {
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+            color: var(--text-muted);
+        }
+        .theme-option.active {
+            background: var(--primary);
+            color: white;
+        }
+        .theme-option i { margin-right: 6px; }
+        
         /* NAV */
         nav {
             background: var(--white);
@@ -91,41 +153,43 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(10px);
         }
         .nav-inner {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 15px;
         }
         .logo {
             font-size: 1.6rem;
             font-weight: 800;
             text-decoration: none;
             color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .logo .dot { color: var(--primary); font-size: 0.6rem; vertical-align: super; }
-        .nav-links { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+        .logo span { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; flex-wrap: wrap; }
         .nav-links a {
             text-decoration: none;
-            color: var(--text-muted);
+            color: var(--text-light);
             font-weight: 500;
             font-size: 0.9rem;
-            padding: 6px 12px;
-            border-radius: 8px;
             transition: all 0.2s;
         }
-        .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+        .nav-links a:hover { color: var(--primary); }
         .nav-links a.active { color: var(--primary); font-weight: 600; }
-
-        /* BREADCRUMB */
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        
+        /* Breadcrumb */
         .breadcrumb {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 16px 24px 0;
             font-size: 0.85rem;
@@ -136,71 +200,112 @@
         }
         .breadcrumb a { color: var(--primary); text-decoration: none; }
         .breadcrumb a:hover { text-decoration: underline; }
-
-        /* PAGE HEADER */
+        
+        /* Page Header */
         .page-header {
             background: linear-gradient(135deg, #059669, #047857, #065f46);
-            padding: 60px 24px;
+            padding: 70px 24px;
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
         }
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .page-header .badge {
             display: inline-block;
             background: rgba(255,255,255,0.2);
-            padding: 6px 18px;
+            padding: 6px 20px;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 500;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+            position: relative;
         }
-        .page-header h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 10px; }
-        .page-header p { font-size: 1.1rem; opacity: 0.9; }
-        .page-header .date { font-size: 0.85rem; opacity: 0.75; margin-top: 8px; }
-
-        /* CONTENT */
+        .page-header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+        }
+        .page-header .date {
+            font-size: 0.85rem;
+            opacity: 0.75;
+            margin-top: 10px;
+        }
+        
+        /* Content Section */
         .content-section {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 24px 60px;
+            padding: 50px 24px 70px;
         }
-
-        /* SUMMARY BOX */
+        
+        /* Summary Box */
         .summary-box {
-            background: var(--primary-light);
-            border: 2px solid #6ee7b7;
+            background: var(--primary-soft);
+            border: 2px solid var(--primary-light);
             border-radius: var(--radius-xl);
-            padding: 30px;
+            padding: 32px;
             margin-bottom: 40px;
             display: flex;
-            gap: 20px;
+            gap: 24px;
             align-items: flex-start;
         }
+        @media (max-width: 600px) {
+            .summary-box { flex-direction: column; text-align: center; align-items: center; }
+        }
         .summary-box .icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: white;
             flex-shrink: 0;
+            box-shadow: var(--shadow-md);
         }
-        .summary-box h2 { font-size: 1.5rem; font-weight: 700; color: #064e3b; margin-bottom: 8px; }
-        .summary-box p { color: #065f46; }
-
-        /* TERM CARD */
+        .summary-box h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        .summary-box p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        /* Term Cards */
         .term-card {
             background: var(--white);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             padding: 28px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             box-shadow: var(--shadow-sm);
             transition: all 0.2s;
         }
-        .term-card:hover { box-shadow: var(--shadow-md); }
+        .term-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
         .term-card h3 {
             font-size: 1.3rem;
             font-weight: 700;
@@ -208,7 +313,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
         .term-card h3 .num {
             width: 36px;
@@ -223,15 +328,18 @@
             font-weight: 700;
             flex-shrink: 0;
         }
-        .term-card p { color: var(--text-muted); }
+        .term-card p {
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
         .term-card ul {
             list-style: none;
             padding: 0;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         .term-card ul li {
-            padding: 6px 0;
-            padding-left: 20px;
+            padding: 8px 0;
+            padding-left: 24px;
             position: relative;
             color: var(--text-muted);
         }
@@ -242,113 +350,183 @@
             color: var(--primary);
             font-weight: bold;
         }
-
-        /* FEATURE GRID */
+        
+        /* Feature Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 16px;
-            margin-top: 16px;
+            margin-top: 20px;
         }
         .feature-item {
-            background: var(--primary-light);
+            background: var(--primary-soft);
             border-radius: var(--radius-lg);
             padding: 20px;
             text-align: center;
-            border: 1px solid rgba(5,150,105,0.2);
+            border: 1px solid var(--primary-light);
+            transition: all 0.2s;
         }
-        .feature-item .emoji { font-size: 2rem; margin-bottom: 8px; }
-        .feature-item h4 { font-weight: 700; font-size: 0.95rem; color: #064e3b; }
-        .feature-item p { font-size: 0.8rem; color: #065f46; margin-top: 4px; }
-
-        /* COMPLIANCE GRID */
+        .feature-item:hover { transform: translateY(-3px); }
+        .feature-item .emoji { font-size: 2rem; margin-bottom: 10px; }
+        .feature-item h4 { font-weight: 700; font-size: 0.95rem; color: var(--primary-dark); margin-bottom: 5px; }
+        .feature-item p { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+        
+        /* Compliance Grid */
         .compliance-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 12px;
-            margin-top: 16px;
+            margin-top: 20px;
         }
         .compliance-item {
-            background: white;
+            background: var(--bg-light);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 16px;
+            padding: 14px;
             text-align: center;
+            transition: all 0.2s;
         }
-        .compliance-item .badge-name { font-weight: 700; color: var(--primary); }
-        .compliance-item .badge-desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
-
-        /* HIGHLIGHT BOX */
+        .compliance-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .compliance-item .badge-name {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        .compliance-item .badge-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        
+        /* Highlight Box */
         .highlight-box {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--primary-soft), var(--bg-light));
+            border-left: 4px solid var(--primary);
+            border-radius: var(--radius-md);
             padding: 20px;
-            margin: 16px 0;
-            color: #1e40af;
+            margin: 20px 0;
+            color: var(--text-light);
         }
-        .highlight-box i { margin-right: 8px; color: #3b82f6; }
-
-        /* BACK LINK */
+        .highlight-box i { margin-right: 8px; color: var(--primary); }
+        
+        /* Contact Buttons */
+        .contact-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(5,150,105,0.3);
+        }
+        .contact-link {
+            color: var(--primary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .contact-link:hover { text-decoration: underline; }
+        
+        /* Back Link */
         .back-link {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
+            padding: 20px;
         }
         .back-link a {
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .back-link a:hover { text-decoration: underline; }
-
-        /* FOOTER */
+        
+        /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 40px 24px 24px;
-            text-align: center;
+            padding: 50px 24px 30px;
         }
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto 30px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 35px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
             text-align: left;
         }
-        .footer-col h4 { font-size: 1rem; margin-bottom: 14px; color: #34d399; }
+        .footer-col h4 { font-size: 1rem; margin-bottom: 16px; color: #34d399; }
         .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; transition: all 0.2s; }
         .footer-col ul li a:hover { color: white; }
         .footer-bottom {
+            text-align: center;
             border-top: 1px solid #334155;
-            padding-top: 20px;
+            padding-top: 25px;
             color: #64748b;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
         .footer-bottom a { color: #34d399; text-decoration: none; }
+        
+        /* Scroll Top */
+        .scroll-top {
+            position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px;
+            border-radius: 50%; background: var(--primary); color: white; border: none;
+            cursor: pointer; font-size: 1.2rem; display: flex; align-items: center;
+            justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 1000;
+        }
+        .scroll-top.visible { opacity: 1; visibility: visible; }
+        .scroll-top:hover { transform: scale(1.1); }
     </style>
 </head>
 <body>
 
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
     <!-- NAVIGATION -->
     <nav>
         <div class="nav-inner">
-            <a href="/" class="logo">🧬 HealthCalc<span class="dot">.in</span></a>
-            <div class="nav-links">
-                <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                <a href="index.html#tools"><i class="fas fa-tools"></i> Tools</a>
-                <a href="privacy-policy.html" class="active"><i class="fas fa-lock"></i> Privacy</a>
-                <a href="terms-of-service.html"><i class="fas fa-file-contract"></i> Terms</a>
-                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="index.html" class="logo">🧬 <span>HealthCalc</span></a>
+            <div class="nav-right">
+                <div class="theme-toggle" id="themeToggle">
+                    <span class="theme-option active" data-theme="light"><i class="fas fa-sun"></i> Light</span>
+                    <span class="theme-option" data-theme="dark"><i class="fas fa-moon"></i> Dark</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="index.html#tools"><i class="fas fa-tools"></i> Tools</a>
+                    <a href="privacy-policy.html" class="active"><i class="fas fa-lock"></i> Privacy</a>
+                    <a href="terms-of-service.html"><i class="fas fa-file-contract"></i> Terms</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- BREADCRUMB -->
     <div class="breadcrumb">
-        <a href="/">Home</a> <span>/</span> <span>Privacy Policy</span>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <span>/</span>
+        <span>Privacy Policy</span>
     </div>
 
     <!-- PAGE HEADER -->
@@ -356,10 +534,10 @@
         <span class="badge"><i class="fas fa-shield-alt"></i> Your Privacy Matters</span>
         <h1>Privacy Policy</h1>
         <p>We don't track you. We don't store your data. It's that simple.</p>
-        <p class="date">Last Updated: May 5, 2026</p>
+        <p class="date">Last Updated: May 26, 2026</p>
     </section>
 
-    <!-- CONTENT -->
+    <!-- CONTENT SECTION -->
     <section class="content-section">
         
         <!-- Summary Box -->
@@ -367,17 +545,17 @@
             <div class="icon">🔐</div>
             <div>
                 <h2>Privacy in One Sentence</h2>
-                <p>We don't collect, store, or share any of your personal data. <strong>All calculations happen entirely in your browser.</strong> Nothing leaves your device.</p>
+                <p>We don't collect, store, or share any of your personal data. <strong>All calculations happen entirely in your browser.</strong> Nothing leaves your device. Your health data stays yours — always.</p>
             </div>
         </div>
 
         <!-- 1. Introduction -->
         <div class="term-card">
             <h3><span class="num">1</span> Introduction</h3>
-            <p>At HealthCalc.in, your privacy is our foundation. This policy explains how we handle information when you use our 25+ free health calculators. Since we collect no personal data, this policy is refreshingly simple.</p>
+            <p>At HealthCalc.in, your privacy is our foundation. This policy explains how we handle information when you use our 32+ free health calculators. Since we collect no personal data, this policy is refreshingly simple and transparent.</p>
             <div class="highlight-box">
                 <i class="fas fa-check-circle"></i>
-                <strong>The short version:</strong> We collect zero personal data. All tools work offline-capable in your browser. No signup, no tracking, no ads.
+                <strong>The short version:</strong> We collect zero personal data. All tools work offline-capable in your browser. No signup, no tracking, no ads, no cookies.
             </div>
         </div>
 
@@ -386,14 +564,14 @@
             <h3><span class="num">2</span> What We DON'T Collect</h3>
             <p>We do <strong>NOT</strong> collect, store, or transmit:</p>
             <ul>
-                <li><strong>Personal identifiers</strong> — Name, email, phone, address, date of birth</li>
+                <li><strong>Personal identifiers</strong> — Name, email, phone, address, date of birth, IP address</li>
                 <li><strong>Health data</strong> — All calculator inputs (BMI, blood pressure, symptoms, etc.) stay in your browser</li>
-                <li><strong>Technical data</strong> — IP addresses, device fingerprints, browser type (we use privacy-respecting hosting)</li>
+                <li><strong>Technical data</strong> — Device fingerprints, browser type, operating system (we use privacy-respecting hosting)</li>
                 <li><strong>Cookies for tracking</strong> — No analytics, advertising, or social media tracking cookies</li>
-                <li><strong>Location data</strong> — GPS, WiFi, or cell tower information</li>
+                <li><strong>Location data</strong> — GPS, WiFi, or cell tower information — never requested</li>
                 <li><strong>Behavioral data</strong> — Which calculators you use, how long you stay, what you click</li>
             </ul>
-            <p style="margin-top:12px;">We use <strong>no tracking scripts, no analytics platforms, no fingerprinting technology</strong>. Our hosting provider (GitHub Pages via Cloudflare) may maintain basic server logs for security, but we do not access or use them.</p>
+            <p style="margin-top:12px;">We use <strong>no tracking scripts, no analytics platforms, no fingerprinting technology</strong>. Our hosting provider may maintain basic server logs for security, but we do not access or use them for any purpose.</p>
         </div>
 
         <!-- 3. How Calculators Work -->
@@ -413,7 +591,7 @@
                 <div class="feature-item">
                     <div class="emoji">📱</div>
                     <h4>No Signup</h4>
-                    <p>Use all 25+ tools instantly. No accounts, no passwords, no profiles.</p>
+                    <p>Use all 32+ tools instantly. No accounts, no passwords, no profiles.</p>
                 </div>
                 <div class="feature-item">
                     <div class="emoji">🚫</div>
@@ -423,110 +601,97 @@
             </div>
         </div>
 
-        <!-- 4. Cookies -->
+        <!-- 4. Cookies & Local Storage -->
         <div class="term-card">
             <h3><span class="num">4</span> Cookies & Local Storage</h3>
             <p><strong>We use NO tracking cookies.</strong> The only browser storage that may occur:</p>
             <ul>
-                <li><strong>Essential (Functional):</strong> None — our tools don't require cookies</li>
+                <li><strong>Essential (Functional):</strong> None — our tools don't require cookies to function</li>
                 <li><strong>Analytics:</strong> None — we don't track usage patterns</li>
-                <li><strong>Advertising:</strong> None — we don't display ads</li>
-                <li><strong>Local Storage:</strong> Some calculators optionally save your preferences (language, unit system) in your browser's localStorage for convenience. This data never leaves your device and is cleared when you clear browser data.</li>
+                <li><strong>Advertising:</strong> None — we don't display any advertisements</li>
+                <li><strong>Local Storage:</strong> Some calculators optionally save your preferences (language, unit system) in your browser's localStorage for convenience. This data never leaves your device and is cleared when you clear browser data. You can disable localStorage in your browser settings.</li>
             </ul>
         </div>
 
         <!-- 5. AI Feature Privacy -->
         <div class="term-card">
             <h3><span class="num">5</span> AI Health Tips Privacy</h3>
-            <p>Some calculators offer optional AI-powered health tips using Google's Gemini API. When you request AI advice:</p>
+            <p>Some calculators offer optional AI-powered health tips using Google's Gemini API. When you voluntarily request AI advice:</p>
             <ul>
-                <li>Only the specific health metric (e.g., "28% body fat") is sent to the API — <strong>no personal identifiers</strong></li>
-                <li>API requests are made directly from your browser</li>
-                <li>We do not log, store, or review AI queries or responses</li>
-                <li>You can use all calculators without ever using the AI feature</li>
+                <li>Only the specific health metric (e.g., "28% body fat", "BMI 24.5") is sent to the API — <strong>no personal identifiers</strong> (name, IP, location) are included</li>
+                <li>API requests are made directly from your browser to Google's servers</li>
+                <li>We do not log, store, or review any AI queries or responses</li>
+                <li>You can use all calculators perfectly fine without ever using the AI feature</li>
+                <li>Google's privacy policy applies to API requests — <a href="https://policies.google.com/privacy" target="_blank" style="color: var(--primary);">View Google's Privacy Policy</a></li>
             </ul>
         </div>
 
         <!-- 6. Third-Party Links -->
         <div class="term-card">
             <h3><span class="num">6</span> Third-Party Links</h3>
-            <p>Our website may link to external resources (research papers, health organizations). We are not responsible for the privacy practices of third-party sites. We recommend reviewing their privacy policies before sharing any information.</p>
+            <p>Our website may link to external resources (research papers, health organizations, medical guidelines). We are not responsible for the privacy practices of third-party sites. We recommend reviewing their privacy policies before sharing any information. These links are provided for educational purposes only.</p>
         </div>
 
         <!-- 7. Children's Privacy -->
         <div class="term-card">
             <h3><span class="num">7</span> Children's Privacy</h3>
-            <p>Our tools are designed for general audiences (ages 13+). We do not knowingly collect data from anyone under 13. Since we collect no data from anyone, this is inherently compliant with COPPA (Children's Online Privacy Protection Act) and similar international laws.</p>
+            <p>Our tools are designed for general audiences (ages 13+). We do not knowingly collect data from anyone under 13. Since we collect no data from anyone, this is inherently compliant with COPPA (Children's Online Privacy Protection Act) and similar international laws. If you believe we have inadvertently collected information from a child under 13, please contact us and we will ensure its removal.</p>
         </div>
 
-        <!-- 8. Compliance -->
+        <!-- 8. Global Compliance -->
         <div class="term-card">
             <h3><span class="num">8</span> Global Privacy Compliance</h3>
             <p>Because we collect no personal data, we are fully compliant with major privacy regulations worldwide:</p>
             <div class="compliance-grid">
-                <div class="compliance-item">
-                    <span class="badge-name">GDPR</span>
-                    <p class="badge-desc">EU Privacy Law</p>
-                </div>
-                <div class="compliance-item">
-                    <span class="badge-name">CalOPPA</span>
-                    <p class="badge-desc">California, USA</p>
-                </div>
-                <div class="compliance-item">
-                    <span class="badge-name">HIPAA</span>
-                    <p class="badge-desc">Health Data (US)</p>
-                </div>
-                <div class="compliance-item">
-                    <span class="badge-name">PIPEDA</span>
-                    <p class="badge-desc">Canada</p>
-                </div>
-                <div class="compliance-item">
-                    <span class="badge-name">IT Act 2000</span>
-                    <p class="badge-desc">India</p>
-                </div>
-                <div class="compliance-item">
-                    <span class="badge-name">DPDP Act 2023</span>
-                    <p class="badge-desc">India (New)</p>
-                </div>
-                <div class="compliance-item">
-                    <span class="badge-name">LGPD</span>
-                    <p class="badge-desc">Brazil</p>
-                </div>
-                <div class="compliance-item">
-                    <span class="badge-name">CCPA</span>
-                    <p class="badge-desc">California, USA</p>
-                </div>
+                <div class="compliance-item"><span class="badge-name">GDPR</span><p class="badge-desc">EU Privacy Law</p></div>
+                <div class="compliance-item"><span class="badge-name">CalOPPA</span><p class="badge-desc">California, USA</p></div>
+                <div class="compliance-item"><span class="badge-name">HIPAA</span><p class="badge-desc">Health Data (US)</p></div>
+                <div class="compliance-item"><span class="badge-name">PIPEDA</span><p class="badge-desc">Canada</p></div>
+                <div class="compliance-item"><span class="badge-name">IT Act 2000</span><p class="badge-desc">India</p></div>
+                <div class="compliance-item"><span class="badge-name">DPDP Act 2023</span><p class="badge-desc">India (New)</p></div>
+                <div class="compliance-item"><span class="badge-name">LGPD</span><p class="badge-desc">Brazil</p></div>
+                <div class="compliance-item"><span class="badge-name">CCPA/CPRA</span><p class="badge-desc">California, USA</p></div>
+                <div class="compliance-item"><span class="badge-name">POPIA</span><p class="badge-desc">South Africa</p></div>
+                <div class="compliance-item"><span class="badge-name">APP</span><p class="badge-desc">Australia</p></div>
             </div>
         </div>
 
-        <!-- 9. Your Rights -->
+        <!-- 9. Your Data Rights -->
         <div class="term-card">
             <h3><span class="num">9</span> Your Data Rights</h3>
-            <p>Under various privacy laws, you have rights to access, correct, delete, and port your personal data. Since we hold no personal data, these rights are automatically fulfilled. If you have any concerns, contact us and we'll confirm in writing that we hold no data about you.</p>
-        </div>
-
-        <!-- 10. Changes -->
-        <div class="term-card">
-            <h3><span class="num">10</span> Changes to This Policy</h3>
-            <p>If we ever change our data practices (unlikely, given our architecture), we will update the "Last Updated" date. Significant changes will be announced via a notice on our homepage. Continued use after changes implies acceptance.</p>
-        </div>
-
-        <!-- 11. Contact -->
-        <div class="term-card">
-            <h3><span class="num">11</span> Contact & Questions</h3>
-            <p>Questions about privacy? We're happy to help. Reach out through:</p>
-            <div style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap;">
-                <a href="contact.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:white;padding:12px 24px;border-radius:50px;text-decoration:none;font-weight:600;">
-                    <i class="fas fa-envelope"></i> Contact Page
-                </a>
-                <span style="display:flex;align-items:center;color:var(--text-muted);">or</span>
-                <a href="mailto:privacy@healthcalc.in" style="color:var(--primary);font-weight:500;">privacy@healthcalc.in</a>
+            <p>Under various privacy laws (GDPR, CCPA, etc.), you have rights to access, correct, delete, and port your personal data. Since we hold no personal data, these rights are automatically fulfilled. If you have any concerns or questions, contact us and we'll confirm in writing that we hold no data about you.</p>
+            <div class="highlight-box">
+                <i class="fas fa-user-check"></i>
+                <strong>Your Rights Summary:</strong> Right to Access ✓ | Right to Delete ✓ | Right to Portability ✓ | Right to Object ✓ — All automatically satisfied.
             </div>
+        </div>
+
+        <!-- 10. Data Security -->
+        <div class="term-card">
+            <h3><span class="num">10</span> Data Security</h3>
+            <p>Since we don't collect or store any data, there is no data to secure on our servers. All calculations occur locally on your device. We use HTTPS encryption to protect the transmission of the web pages themselves. However, no method of transmission over the Internet is 100% secure.</p>
+        </div>
+
+        <!-- 11. Changes to This Policy -->
+        <div class="term-card">
+            <h3><span class="num">11</span> Changes to This Policy</h3>
+            <p>If we ever change our data practices (unlikely, given our architecture), we will update the "Last Updated" date at the top of this page. Significant changes will be announced via a notice on our homepage. Continued use of the site after changes implies acceptance of the updated policy.</p>
+        </div>
+
+        <!-- 12. Contact Us -->
+        <div class="term-card">
+            <h3><span class="num">12</span> Contact & Questions</h3>
+            <p>Questions about privacy? We're happy to help. Reach out through any of these channels:</p>
+            <div class="contact-buttons">
+                <a href="contact.html" class="contact-btn"><i class="fas fa-envelope"></i> Contact Page</a>
+                <a href="mailto:privacy@healthcalc.in" class="contact-link" style="align-self:center;"><i class="fas fa-envelope"></i> privacy@healthcalc.in</a>
+            </div>
+            <p style="margin-top: 16px;">We typically respond within 2-3 business days.</p>
         </div>
 
         <!-- Back Link -->
         <div class="back-link">
-            <a href="index.html">← Back to HealthCalc Home</a>
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to HealthCalc Home</a>
         </div>
     </section>
 
@@ -534,7 +699,7 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>HealthCalc.in</h4>
+                <h4>HealthCalc</h4>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#tools">All Tools</a></li>
@@ -544,9 +709,9 @@
             <div class="footer-col">
                 <h4>Legal</h4>
                 <ul>
-                    <li><a href="privacy-policy.html" style="color:#34d399;">Privacy Policy</a></li>
+                    <li><a href="privacy-policy.html" style="color: #34d399;">Privacy Policy</a></li>
                     <li><a href="terms-of-service.html">Terms of Service</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="disclaimer.html">Medical Disclaimer</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -554,15 +719,67 @@
                 <ul>
                     <li><a href="bmi-calculator.html">BMI Calculator</a></li>
                     <li><a href="ascvd-risk-calculator.html">ASCVD Risk</a></li>
-                    <li><a href="pregnancy-calculator.html">Pregnancy</a></li>
+                    <li><a href="ffmi-calculator.html">FFMI Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Health Blog</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024-2026 <a href="/">HealthCalc.in</a> — Free Health Calculators. All Rights Reserved.</p>
-            <p style="margin-top:4px;">100% Private Browser-Based Tools. No Signup Required. No Data Stored.</p>
+            <p>© 2024-2026 <a href="index.html">HealthCalc.in</a> — Free Health Calculators. All Rights Reserved.</p>
+            <p style="margin-top: 6px;">100% Private Browser-Based Tools. No Signup Required. No Data Stored.</p>
+            <p style="margin-top: 6px;">⭐ 4.9/5 from 2,850+ reviews | Trusted in 50+ countries</p>
         </div>
     </footer>
 
+    <script>
+        // ============ THEME TOGGLE ============
+        function initTheme() {
+            const savedTheme = localStorage.getItem('healthcalc_theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+                document.querySelector('[data-theme="dark"]').classList.add('active');
+                document.querySelector('[data-theme="light"]').classList.remove('active');
+            } else {
+                document.body.classList.remove('dark');
+                document.querySelector('[data-theme="light"]').classList.add('active');
+                document.querySelector('[data-theme="dark"]').classList.remove('active');
+            }
+        }
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
+                localStorage.setItem('healthcalc_theme', 'dark');
+                document.querySelector('[data-theme="dark"]').classList.add('active');
+                document.querySelector('[data-theme="light"]').classList.remove('active');
+            } else {
+                document.body.classList.remove('dark');
+                localStorage.setItem('healthcalc_theme', 'light');
+                document.querySelector('[data-theme="light"]').classList.add('active');
+                document.querySelector('[data-theme="dark"]').classList.remove('active');
+            }
+        }
+
+        document.querySelectorAll('.theme-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                setTheme(opt.dataset.theme);
+            });
+        });
+
+        initTheme();
+
+        // ============ SCROLL TOP ============
+        window.addEventListener('scroll', function() {
+            var btn = document.getElementById('scrollTop');
+            if (btn) btn.classList.toggle('visible', window.scrollY > 500);
+        });
+    </script>
 </body>
 </html>
