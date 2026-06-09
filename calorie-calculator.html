@@ -5,16 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
-<title>Advanced BMI Calculator | Indian Cutoff (23+) | Visceral Fat | AI Health Tips</title>
-<meta name="title" content="BMI Calculator with AI: Indian Standards, Visceral Fat, Health Score">
-<meta name="description" content="Most advanced BMI calculator with Indian BMI cutoff (23+), visceral fat risk assessment, health score, age comparison graph, and AI-powered personalized health tips. 7 languages. 100% free.">
-<meta name="keywords" content="BMI calculator, Indian BMI, visceral fat, body mass index, health tips AI, BMI 23, obesity, health score, BMI chart, weight loss calculator">
+<title>Advanced BMI Calculator | US/UK/CA/AU Standards | Visceral Fat | AI Health Tips</title>
+<meta name="title" content="BMI Calculator with AI: International Standards, Visceral Fat, Health Score">
+<meta name="description" content="Most advanced BMI calculator with Asian cutoff (23+), visceral fat risk assessment, health score, age comparison graph, and AI-powered personalized health tips. Follows CDC, NHS, Health Canada guidelines. 7 languages. 100% free.">
+<meta name="keywords" content="BMI calculator, BMI calculator USA, BMI calculator UK, BMI calculator Canada, BMI calculator Australia, Asian BMI, visceral fat, body mass index, health tips AI, obesity, health score">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/bmi-calculator.html">
 
-<!-- hreflang tags for multilingual SEO -->
-<link rel="alternate" hreflang="en" href="https://healthcalc.in/bmi-calculator.html?lang=en">
+<!-- International hreflang tags -->
+<link rel="alternate" hreflang="en-us" href="https://healthcalc.in/bmi-calculator.html?lang=en">
+<link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/bmi-calculator.html?lang=en">
+<link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/bmi-calculator.html?lang=en">
+<link rel="alternate" hreflang="en-au" href="https://healthcalc.in/bmi-calculator.html?lang=en">
 <link rel="alternate" hreflang="hi" href="https://healthcalc.in/bmi-calculator.html?lang=hi">
 <link rel="alternate" hreflang="es" href="https://healthcalc.in/bmi-calculator.html?lang=es">
 <link rel="alternate" hreflang="fr" href="https://healthcalc.in/bmi-calculator.html?lang=fr">
@@ -27,15 +30,18 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://healthcalc.in/bmi-calculator.html">
 <meta property="og:title" content="Advanced BMI Calculator with AI Health Tips">
-<meta property="og:description" content="Know your BMI with Indian standards (23+ cutoff). Get visceral fat risk, health score, and AI-powered personalized advice.">
+<meta property="og:description" content="Know your BMI with international standards. Get visceral fat risk, health score, and AI-powered personalized advice.">
 <meta property="og:image" content="https://healthcalc.in/images/bmi-calculator-og.jpg">
-<meta property="og:locale" content="en_IN">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="en_CA">
+<meta property="og:locale:alternate" content="en_AU">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://healthcalc.in/bmi-calculator.html">
-<meta name="twitter:title" content="Advanced BMI Calculator | AI & Indian Standards">
-<meta name="twitter:description" content="Free BMI calculator with Indian cutoff, visceral fat, and AI health tips">
+<meta name="twitter:title" content="Advanced BMI Calculator | AI & International Standards">
+<meta name="twitter:description" content="Free BMI calculator with Asian cutoff, visceral fat, and AI health tips">
 
 <!-- Schema Markup -->
 <script type="application/ld+json">
@@ -44,11 +50,12 @@
   "@type": "MedicalWebPage",
   "name": "Advanced BMI Calculator",
   "url": "https://healthcalc.in/bmi-calculator.html",
-  "description": "BMI calculator with Indian cutoff (23+), visceral fat assessment, health score, and AI-powered personalized health tips.",
+  "description": "BMI calculator with Asian cutoff (23+), visceral fat assessment, health score, and AI-powered personalized health tips for US, UK, Canada, Australia.",
   "author": {"@type": "Organization", "name": "HealthCalc"},
   "about": {"@type": "MedicalCondition", "name": "Body Mass Index"},
   "inLanguage": ["en","hi","es","fr","de","ja","ar"],
-  "dateModified": "2026-05-14"
+  "audience": {"@type": "Audience", "geographicArea": {"@type": "Country", "name": ["US","UK","CA","AU"]}},
+  "dateModified": "2026-06-09"
 }
 </script>
 
@@ -63,6 +70,10 @@
   ]
 }
 </script>
+
+<!-- Global CSS + JS (International Features) -->
+<link rel="stylesheet" href="global.css">
+<script src="global.js" defer></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -101,6 +112,93 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   padding: 20px;
+  transition: background 0.3s;
+}
+
+/* Dark mode overrides (global.js adds class 'dark' on body) */
+body.dark {
+  background: linear-gradient(135deg, #1e1e2f 0%, #2a2a40 100%);
+}
+body.dark .calculator-container {
+  background: #1e293b;
+}
+body.dark .input-section {
+  background: #0f172a;
+  border-color: #334155;
+}
+body.dark .results-section {
+  background: #1e293b;
+  border-color: #334155;
+}
+body.dark .bmi-circle {
+  background: #0f172a;
+}
+body.dark .bmi-value {
+  color: #e2e8f0;
+}
+body.dark .health-card {
+  background: #0f172a;
+}
+body.dark .health-card .value {
+  color: #e2e8f0;
+}
+body.dark .indian-categories {
+  background: #2d3748;
+}
+body.dark .indian-cat-item .label {
+  color: #fbbf24;
+}
+body.dark .ai-advice-section {
+  background: #1e293b;
+  border-color: #475569;
+}
+body.dark .ai-result-card {
+  background: #0f172a;
+}
+body.dark .tools-crosslink {
+  background: #0f172a;
+}
+body.dark .tool-link-card {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+body.dark .graph-section {
+  background: #0f172a;
+}
+body.dark .footer-note {
+  border-top-color: #334155;
+  color: #94a3b8;
+}
+body.dark .reset-btn {
+  border-color: #475569;
+  color: #cbd5e1;
+}
+body.dark .reset-btn:hover {
+  background: #334155;
+}
+body.dark input, body.dark select {
+  background: #0f172a;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+body.dark input:focus, body.dark select:focus {
+  background: #1e293b;
+}
+body.dark .indian-bmi-note {
+  background: #2d3748;
+  color: #fcd34d;
+  border-left-color: #f59e0b;
+}
+body.dark .unit-toggle {
+  background: #334155;
+}
+body.dark .unit-btn {
+  color: #94a3b8;
+}
+body.dark .unit-btn.active {
+  background: #475569;
+  color: #a78bfa;
 }
 
 .calculator-container {
@@ -111,6 +209,7 @@ body {
   box-shadow: var(--shadow-xl);
   overflow: hidden;
   animation: slideIn 0.5s ease-out;
+  transition: background 0.3s;
 }
 
 @keyframes slideIn {
@@ -150,6 +249,32 @@ body {
   opacity: 0.95;
   max-width: 700px;
   margin: 0 auto;
+}
+
+/* International Bar (added) */
+.international-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 15px 25px 0 25px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.health-authority-note {
+  background: rgba(255,255,255,0.15);
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0 25px 15px 25px;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+}
+body.dark .health-authority-note {
+  background: #1e293b;
+  color: #94a3b8;
 }
 
 /* Language Selector */
@@ -199,7 +324,7 @@ body {
   gap: 8px;
 }
 
-.badge.indian-badge {
+.badge.asian-badge {
   background: linear-gradient(135deg, rgba(255,153,51,0.8), rgba(255,183,77,0.8));
 }
 
@@ -313,7 +438,7 @@ body {
   gap: 15px;
 }
 
-.indian-bmi-note {
+.asian-bmi-note {
   background: linear-gradient(135deg, #FFF8E1, #FFECB3);
   padding: 12px 15px;
   border-radius: var(--radius-md);
@@ -406,11 +531,11 @@ body {
   position: relative;
 }
 
-.scale-indian-marker {
+.scale-asian-marker {
   position: absolute;
   top: -22px;
   font-size: 11px;
-  color: var(--indian-saffron);
+  color: #E65100;
   font-weight: bold;
   white-space: nowrap;
 }
@@ -435,8 +560,8 @@ body {
   padding: 0 5px;
 }
 
-/* Indian Categories */
-.indian-categories {
+/* Asian Categories */
+.asian-categories {
   display: flex;
   justify-content: space-around;
   margin: 15px 0 20px;
@@ -446,11 +571,11 @@ body {
   font-size: 12px;
 }
 
-.indian-cat-item {
+.asian-cat-item {
   text-align: center;
 }
 
-.indian-cat-item .label {
+.asian-cat-item .label {
   color: #E65100;
   font-weight: 600;
   font-size: 10px;
@@ -706,10 +831,34 @@ body {
 <body>
 <div class="calculator-container">
   
+  <!-- International Bar (Country, Theme, Language) -->
+  <div class="international-bar">
+    <select id="countrySelect">
+      <option value="us">🇺🇸 United States</option>
+      <option value="uk">🇬🇧 United Kingdom</option>
+      <option value="ca">🇨🇦 Canada</option>
+      <option value="au">🇦🇺 Australia</option>
+    </select>
+    <div class="theme-toggle">
+      <button class="theme-option" data-theme="light">☀️ Light</button>
+      <button class="theme-option" data-theme="dark">🌙 Dark</button>
+    </div>
+    <div class="language-switcher">
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="hi">हिंदी</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="de">DE</button>
+      <button class="lang-btn" data-lang="ja">JA</button>
+      <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+  </div>
+  <div id="healthAuthorityNote" class="health-authority-note">📋 Based on CDC guidelines – Healthy BMI: 18.5–24.9 (Asian cutoff: 23+)</div>
+
   <!-- Header -->
   <div class="header">
-    <h1>⚖️ Advanced BMI Calculator <span>AI & 7 Languages</span></h1>
-    <p id="headerDesc">Know your BMI with Indian standards (23+), visceral fat risk, health score, and AI-powered personalized health tips in your language.</p>
+    <h1>⚖️ International BMI Calculator <span>AI & 7 Languages</span></h1>
+    <p id="headerDesc">Know your BMI with international standards, visceral fat risk, health score, and AI-powered personalized health tips.</p>
     
     <div class="lang-dropdown">
       <select id="langSelect" onchange="setLanguage(this.value)">
@@ -725,7 +874,7 @@ body {
     
     <div class="badge-container">
       <span class="badge"><i class="fas fa-chart-line"></i> Visceral Fat</span>
-      <span class="badge indian-badge"><i class="fas fa-flag-checkered"></i> Indian BMI (23+)</span>
+      <span class="badge asian-badge"><i class="fas fa-flag-checkered"></i> Asian BMI (23+)</span>
       <span class="badge"><i class="fas fa-robot"></i> AI Tips</span>
       <span class="badge"><i class="fas fa-globe"></i> 7 Languages</span>
       <span class="badge"><i class="fas fa-chart-simple"></i> Health Score</span>
@@ -760,7 +909,7 @@ body {
       
       <div class="input-group"><label><i class="fas fa-globe-asia"></i> <span id="ethnicityLabel">Ethnicity</span></label><select id="ethnicity"><option value="asian" selected id="asianOpt">Asian / Indian</option><option value="caucasian" id="caucasianOpt">Caucasian</option><option value="african" id="africanOpt">African</option><option value="hispanic" id="hispanicOpt">Hispanic</option></select></div>
       
-      <div class="indian-bmi-note" id="indianNote"><i class="fas fa-info-circle"></i> <span id="indianNoteText">⚠️ For Indians, Overweight starts at BMI 23, Obese at 25.</span></div>
+      <div class="asian-bmi-note" id="indianNote"><i class="fas fa-info-circle"></i> <span id="indianNoteText">⚠️ For Asians, Overweight starts at BMI 23, Obese at 25.</span></div>
       
       <div class="input-group"><label><i class="fas fa-person-walking"></i> <span id="activityLabel">Activity Level</span></label><select id="activity"><option value="sedentary" id="sedentaryOpt">Sedentary</option><option value="light" id="lightOpt" selected>Light (1-3 days/week)</option><option value="moderate" id="moderateOpt">Moderate (3-5 days/week)</option><option value="active" id="activeOpt">Active (daily)</option><option value="very-active" id="veryActiveOpt">Very Active (athlete)</option></select></div>
       
@@ -775,7 +924,7 @@ body {
       <div class="bmi-circle"><div><div class="bmi-value" id="bmi-display">--</div><div class="bmi-label" id="bmiLabel">Your BMI</div></div></div>
       
       <div class="bmi-scale">
-        <span class="scale-indian-marker" style="left: 46%;"><i class="fas fa-flag"></i> 🇮🇳 23 (Indian Cutoff)</span>
+        <span class="scale-asian-marker" style="left: 46%;"><i class="fas fa-flag"></i> Asian Cutoff 23</span>
         <div class="bmi-marker" id="bmi-marker" style="left:0%"></div>
       </div>
       
@@ -786,18 +935,18 @@ body {
         <span id="obeseCat">Obese</span>
       </div>
       
-      <div class="indian-categories" id="indianCategoriesBox">
-        <div class="indian-cat-item"><div class="label">🇮🇳 Indian Standards</div></div>
-        <div class="indian-cat-item"><div>&lt; 18.5</div><div class="label">Underweight</div></div>
-        <div class="indian-cat-item"><div>18.5 - 22.9</div><div class="label">Normal</div></div>
-        <div class="indian-cat-item"><div>23 - 24.9</div><div class="label">Overweight</div></div>
-        <div class="indian-cat-item"><div>≥ 25</div><div class="label">Obese</div></div>
+      <div class="asian-categories" id="asianCategoriesBox">
+        <div class="asian-cat-item"><div class="label">🌏 Asian Standards</div></div>
+        <div class="asian-cat-item"><div>&lt; 18.5</div><div class="label">Underweight</div></div>
+        <div class="asian-cat-item"><div>18.5 - 22.9</div><div class="label">Normal</div></div>
+        <div class="asian-cat-item"><div>23 - 24.9</div><div class="label">Overweight</div></div>
+        <div class="asian-cat-item"><div>≥ 25</div><div class="label">Obese</div></div>
       </div>
       
       <div class="health-cards">
         <div class="health-card"><span class="emoji">⚠️</span><div class="value" id="visceral-fat">--</div><div class="label" id="visceralLabel">Visceral Fat Risk</div></div>
         <div class="health-card"><span class="emoji">📊</span><div class="value" id="bmi-category">--</div><div class="label" id="categoryLabel">BMI Category (WHO)</div></div>
-        <div class="health-card"><span class="emoji">🇮🇳</span><div class="value" id="indian-category">--</div><div class="label" id="indianCatLabel">Indian Standard</div></div>
+        <div class="health-card"><span class="emoji">🌏</span><div class="value" id="asian-category">--</div><div class="label" id="asianCatLabel">Asian Standard</div></div>
         <div class="health-card"><span class="emoji">❤️</span><div class="value" id="health-score">--</div><div class="label" id="healthScoreLabel">Health Score</div></div>
       </div>
       
@@ -843,131 +992,130 @@ body {
 
 <script>
 // ===== API KEY =====
-// Your working Gemini API key
 var GEMINI_API_KEY = 'AIzaSyDnhDAJ_AeiXK4jYb1r04-uO-KtYytu-vM';
 var GEMINI_MODEL = 'gemini-1.5-flash';
 
 // ===== TRANSLATIONS =====
 var translations = {
   en: {
-    headerDesc: 'Know your BMI with Indian standards (23+), visceral fat risk, health score, and AI-powered personalized health tips.',
+    headerDesc: 'Know your BMI with international standards, visceral fat risk, health score, and AI-powered personalized health tips.',
     detailsTitle: 'Your Details', weightLabel: 'Weight (kg)', heightLabel: 'Height (cm)',
     weightLbsLabel: 'Weight (lbs)', heightInLabel: 'Height (inches)', ageLabel: 'Age (years)',
     genderLabel: 'Gender', maleOpt: 'Male', femaleOpt: 'Female', ethnicityLabel: 'Ethnicity',
     asianOpt: 'Asian / Indian', caucasianOpt: 'Caucasian', africanOpt: 'African', hispanicOpt: 'Hispanic',
-    indianNoteText: '⚠️ For Indians, Overweight starts at BMI 23, Obese at 25.',
+    indianNoteText: '⚠️ For Asians, Overweight starts at BMI 23, Obese at 25.',
     activityLabel: 'Activity Level', sedentaryOpt: 'Sedentary', lightOpt: 'Light (1-3 days/week)',
     moderateOpt: 'Moderate (3-5 days/week)', activeOpt: 'Active (daily)', veryActiveOpt: 'Very Active',
     calculateBtnText: 'Calculate Your Health Score', resetBtnText: 'Reset All Fields',
     resultsTitle: 'Your Results', bmiLabel: 'Your BMI', underweightCat: 'Underweight',
     normalCat: 'Normal', overweightCat: 'Overweight', obeseCat: 'Obese',
     visceralLabel: 'Visceral Fat Risk', categoryLabel: 'BMI Category (WHO)',
-    indianCatLabel: 'Indian Standard', healthScoreLabel: 'Health Score',
+    asianCatLabel: 'Asian Standard', healthScoreLabel: 'Health Score',
     aiTitle: '🤖 AI Health Tips for You', aiBtnText: 'Get Personalized Advice',
     aiLoadingText: 'Generating your health tips...', exploreTitle: '🔗 Explore More Free Tools',
     graphTitle: 'Your BMI vs. Age Group Average', 
     disclaimerText: '🏥 This calculator provides estimates. Always consult a healthcare professional.'
   },
   hi: {
-    headerDesc: 'भारतीय मानकों (23+), विसेरल फैट, हेल्थ स्कोर और AI टिप्स के साथ अपना BMI जानें।',
+    headerDesc: 'अंतर्राष्ट्रीय मानकों, विसेरल फैट, हेल्थ स्कोर और AI टिप्स के साथ अपना BMI जानें।',
     detailsTitle: 'आपकी जानकारी', weightLabel: 'वज़न (किलो)', heightLabel: 'ऊंचाई (सेमी)',
     weightLbsLabel: 'वज़न (पाउंड)', heightInLabel: 'ऊंचाई (इंच)', ageLabel: 'उम्र (वर्ष)',
     genderLabel: 'लिंग', maleOpt: 'पुरुष', femaleOpt: 'महिला', ethnicityLabel: 'जातीयता',
     asianOpt: 'एशियाई / भारतीय', caucasianOpt: 'कोकेशियान', africanOpt: 'अफ्रीकी', hispanicOpt: 'हिस्पैनिक',
-    indianNoteText: '⚠️ भारतीयों के लिए BMI 23+ ओवरवेट, 25+ ओबीज़।',
+    indianNoteText: '⚠️ एशियाई लोगों के लिए BMI 23+ ओवरवेट, 25+ ओबीज़।',
     activityLabel: 'गतिविधि स्तर', sedentaryOpt: 'निष्क्रिय', lightOpt: 'हल्का (1-3 दिन/सप्ताह)',
     moderateOpt: 'मध्यम (3-5 दिन/सप्ताह)', activeOpt: 'सक्रिय (रोज़)', veryActiveOpt: 'बहुत सक्रिय',
     calculateBtnText: 'हेल्थ स्कोर कैलकुलेट करें', resetBtnText: 'रीसेट करें',
     resultsTitle: 'आपके परिणाम', bmiLabel: 'आपका BMI', underweightCat: 'कम वज़न',
     normalCat: 'सामान्य', overweightCat: 'अधिक वज़न', obeseCat: 'मोटापा',
     visceralLabel: 'विसेरल फैट जोखिम', categoryLabel: 'BMI श्रेणी (WHO)',
-    indianCatLabel: 'भारतीय मानक', healthScoreLabel: 'हेल्थ स्कोर',
+    asianCatLabel: 'एशियाई मानक', healthScoreLabel: 'हेल्थ स्कोर',
     aiTitle: '🤖 आपके लिए AI टिप्स', aiBtnText: 'पर्सनलाइज़्ड सलाह लें',
     aiLoadingText: 'टिप्स बन रहे हैं...', exploreTitle: '🔗 और मुफ़्त टूल',
     graphTitle: 'आपका BMI बनाम आयु वर्ग',
     disclaimerText: '🏥 यह अनुमान देता है। डॉक्टर से सलाह लें।'
   },
   es: {
-    headerDesc: 'Conozca su IMC con estándares indios (23+), grasa visceral, puntuación de salud y consejos de IA.',
+    headerDesc: 'Conozca su IMC con estándares internacionales, grasa visceral, puntuación de salud y consejos de IA.',
     detailsTitle: 'Sus Datos', weightLabel: 'Peso (kg)', heightLabel: 'Altura (cm)',
     weightLbsLabel: 'Peso (lbs)', heightInLabel: 'Altura (pulg)', ageLabel: 'Edad',
     genderLabel: 'Género', maleOpt: 'Hombre', femaleOpt: 'Mujer', ethnicityLabel: 'Etnia',
     asianOpt: 'Asiático/Indio', caucasianOpt: 'Caucásico', africanOpt: 'Africano', hispanicOpt: 'Hispano',
-    indianNoteText: '⚠️ Para indios, sobrepeso desde IMC 23.',
+    indianNoteText: '⚠️ Para asiáticos, sobrepeso desde IMC 23.',
     activityLabel: 'Actividad', sedentaryOpt: 'Sedentario', lightOpt: 'Ligero',
     moderateOpt: 'Moderado', activeOpt: 'Activo', veryActiveOpt: 'Muy Activo',
     calculateBtnText: 'Calcular', resetBtnText: 'Restablecer', resultsTitle: 'Resultados',
     bmiLabel: 'Su IMC', underweightCat: 'Bajo peso', normalCat: 'Normal',
     overweightCat: 'Sobrepeso', obeseCat: 'Obeso', visceralLabel: 'Grasa Visceral',
-    categoryLabel: 'Categoría IMC', indianCatLabel: 'Estándar Indio', healthScoreLabel: 'Puntuación',
+    categoryLabel: 'Categoría IMC', asianCatLabel: 'Estándar Asiático', healthScoreLabel: 'Puntuación',
     aiTitle: '🤖 Consejos IA', aiBtnText: 'Obtener Consejos', aiLoadingText: 'Generando...',
     exploreTitle: '🔗 Más Herramientas', graphTitle: 'IMC vs Edad',
     disclaimerText: '🏥 Estimaciones. Consulte a un médico.'
   },
   fr: {
-    headerDesc: 'Découvrez votre IMC avec les normes indiennes (23+), graisse viscérale, score santé et conseils IA.',
+    headerDesc: 'Découvrez votre IMC avec les normes internationales, graisse viscérale, score santé et conseils IA.',
     detailsTitle: 'Vos infos', weightLabel: 'Poids (kg)', heightLabel: 'Taille (cm)',
     weightLbsLabel: 'Poids (lbs)', heightInLabel: 'Taille (pouces)', ageLabel: 'Âge',
     genderLabel: 'Genre', maleOpt: 'Homme', femaleOpt: 'Femme', ethnicityLabel: 'Ethnie',
     asianOpt: 'Asiatique', caucasianOpt: 'Caucasien', africanOpt: 'Africain', hispanicOpt: 'Hispanique',
-    indianNoteText: '⚠️ Pour Indiens, surpoids dès IMC 23.',
+    indianNoteText: '⚠️ Pour Asiatiques, surpoids dès IMC 23.',
     activityLabel: 'Activité', sedentaryOpt: 'Sédentaire', lightOpt: 'Léger',
     moderateOpt: 'Modéré', activeOpt: 'Actif', veryActiveOpt: 'Très Actif',
     calculateBtnText: 'Calculer', resetBtnText: 'Réinitialiser', resultsTitle: 'Résultats',
     bmiLabel: 'Votre IMC', underweightCat: 'Insuffisant', normalCat: 'Normal',
     overweightCat: 'Surpoids', obeseCat: 'Obèse', visceralLabel: 'Graisse Viscérale',
-    categoryLabel: 'Catégorie OMS', indianCatLabel: 'Norme Indienne', healthScoreLabel: 'Score',
+    categoryLabel: 'Catégorie OMS', asianCatLabel: 'Norme Asiatique', healthScoreLabel: 'Score',
     aiTitle: '🤖 Conseils IA', aiBtnText: 'Obtenir Conseils', aiLoadingText: 'Génération...',
     exploreTitle: '🔗 Plus d\'Outils', graphTitle: 'IMC vs Âge',
     disclaimerText: '🏥 Estimations. Consultez un médecin.'
   },
   de: {
-    headerDesc: 'BMI nach indischen Standards (23+), viszerales Fett, Gesundheitspunktzahl und KI-Tipps.',
+    headerDesc: 'BMI nach internationalen Standards, viszerales Fett, Gesundheitspunktzahl und KI-Tipps.',
     detailsTitle: 'Ihre Daten', weightLabel: 'Gewicht (kg)', heightLabel: 'Größe (cm)',
     weightLbsLabel: 'Gewicht (lbs)', heightInLabel: 'Größe (Zoll)', ageLabel: 'Alter',
     genderLabel: 'Geschlecht', maleOpt: 'Männlich', femaleOpt: 'Weiblich', ethnicityLabel: 'Ethnie',
     asianOpt: 'Asiatisch', caucasianOpt: 'Kaukasisch', africanOpt: 'Afrikanisch', hispanicOpt: 'Hispanisch',
-    indianNoteText: '⚠️ Für Inder Übergewicht ab BMI 23.',
+    indianNoteText: '⚠️ Für Asiaten Übergewicht ab BMI 23.',
     activityLabel: 'Aktivität', sedentaryOpt: 'Sitzend', lightOpt: 'Leicht',
     moderateOpt: 'Mäßig', activeOpt: 'Aktiv', veryActiveOpt: 'Sehr aktiv',
     calculateBtnText: 'Berechnen', resetBtnText: 'Zurücksetzen', resultsTitle: 'Ergebnisse',
     bmiLabel: 'Ihr BMI', underweightCat: 'Untergewicht', normalCat: 'Normal',
     overweightCat: 'Übergewicht', obeseCat: 'Adipös', visceralLabel: 'Viszeralfett',
-    categoryLabel: 'WHO Kategorie', indianCatLabel: 'Indischer Standard', healthScoreLabel: 'Punktzahl',
+    categoryLabel: 'WHO Kategorie', asianCatLabel: 'Asiatischer Standard', healthScoreLabel: 'Punktzahl',
     aiTitle: '🤖 KI-Tipps', aiBtnText: 'Tipps erhalten', aiLoadingText: 'Generiere...',
     exploreTitle: '🔗 Weitere Tools', graphTitle: 'BMI vs Alter',
     disclaimerText: '🏥 Schätzungen. Arzt konsultieren.'
   },
   ja: {
-    headerDesc: 'インド基準(23+)、内臓脂肪、ヘルススコア、AIアドバイス付きBMI計算機。',
+    headerDesc: '国際基準、内臓脂肪、ヘルススコア、AIアドバイス付きBMI計算機。',
     detailsTitle: '情報', weightLabel: '体重 (kg)', heightLabel: '身長 (cm)',
     weightLbsLabel: '体重 (lbs)', heightInLabel: '身長 (in)', ageLabel: '年齢',
     genderLabel: '性別', maleOpt: '男性', femaleOpt: '女性', ethnicityLabel: '民族',
     asianOpt: 'アジア系', caucasianOpt: '白人', africanOpt: 'アフリカ系', hispanicOpt: 'ヒスパニック',
-    indianNoteText: '⚠️ インド人ではBMI 23以上が過体重。',
+    indianNoteText: '⚠️ アジア人ではBMI 23以上が過体重。',
     activityLabel: '活動', sedentaryOpt: '座りがち', lightOpt: '軽度',
     moderateOpt: '中程度', activeOpt: 'アクティブ', veryActiveOpt: '非常にアクティブ',
     calculateBtnText: '計算', resetBtnText: 'リセット', resultsTitle: '結果',
     bmiLabel: 'BMI', underweightCat: '低体重', normalCat: '普通',
     overweightCat: '過体重', obeseCat: '肥満', visceralLabel: '内臓脂肪',
-    categoryLabel: 'WHO分類', indianCatLabel: 'インド基準', healthScoreLabel: 'ヘルススコア',
+    categoryLabel: 'WHO分類', asianCatLabel: 'アジア基準', healthScoreLabel: 'ヘルススコア',
     aiTitle: '🤖 AIアドバイス', aiBtnText: 'アドバイス取得', aiLoadingText: '生成中...',
     exploreTitle: '🔗 他のツール', graphTitle: '年齢別BMI',
     disclaimerText: '🏥 推定値です。医師に相談を。'
   },
   ar: {
-    headerDesc: 'احسب مؤشر كتلة الجسم وفقًا للمعايير الهندية (23+)، الدهون الحشوية، درجة الصحة ونصائح الذكاء الاصطناعي.',
+    headerDesc: 'احسب مؤشر كتلة الجسم وفقًا للمعايير الدولية، الدهون الحشوية، درجة الصحة ونصائح الذكاء الاصطناعي.',
     detailsTitle: 'بياناتك', weightLabel: 'الوزن (كجم)', heightLabel: 'الطول (سم)',
     weightLbsLabel: 'الوزن (رطل)', heightInLabel: 'الطول (بوصة)', ageLabel: 'العمر',
     genderLabel: 'الجنس', maleOpt: 'ذكر', femaleOpt: 'أنثى', ethnicityLabel: 'العرق',
     asianOpt: 'آسيوي', caucasianOpt: 'قوقازي', africanOpt: 'أفريقي', hispanicOpt: 'هسباني',
-    indianNoteText: '⚠️ للهنود، الوزن الزائد من BMI 23.',
+    indianNoteText: '⚠️ للآسيويين، الوزن الزائد من BMI 23.',
     activityLabel: 'النشاط', sedentaryOpt: 'خامل', lightOpt: 'خفيف',
     moderateOpt: 'متوسط', activeOpt: 'نشط', veryActiveOpt: 'نشط جداً',
     calculateBtnText: 'احسب', resetBtnText: 'إعادة', resultsTitle: 'نتائجك',
     bmiLabel: 'BMI', underweightCat: 'نقص وزن', normalCat: 'طبيعي',
     overweightCat: 'وزن زائد', obeseCat: 'سمنة', visceralLabel: 'دهون حشوية',
-    categoryLabel: 'تصنيف WHO', indianCatLabel: 'المعيار الهندي', healthScoreLabel: 'درجة الصحة',
+    categoryLabel: 'تصنيف WHO', asianCatLabel: 'المعيار الآسيوي', healthScoreLabel: 'درجة الصحة',
     aiTitle: '🤖 نصائح AI', aiBtnText: 'احصل على نصائح', aiLoadingText: 'جاري التوليد...',
     exploreTitle: '🔗 أدوات أخرى', graphTitle: 'BMI مقارنة بالعمر',
     disclaimerText: '🏥 تقديرات. استشر طبيباً.'
@@ -1016,7 +1164,7 @@ function setLanguage(lang) {
   document.getElementById('obeseCat').innerHTML = t.obeseCat;
   document.getElementById('visceralLabel').innerHTML = t.visceralLabel;
   document.getElementById('categoryLabel').innerHTML = t.categoryLabel;
-  document.getElementById('indianCatLabel').innerHTML = t.indianCatLabel;
+  document.getElementById('asianCatLabel').innerHTML = t.asianCatLabel;
   document.getElementById('healthScoreLabel').innerHTML = t.healthScoreLabel;
   document.getElementById('aiTitle').innerHTML = t.aiTitle;
   document.getElementById('aiBtnText').innerHTML = t.aiBtnText;
@@ -1045,7 +1193,7 @@ function setUnit(unit) {
 }
 
 // ===== BMI CALCULATION FUNCTIONS =====
-function getIndianBMICategory(bmi) {
+function getAsianBMICategory(bmi) {
   if (bmi < 18.5) return 'Underweight';
   if (bmi < 23) return 'Normal';
   if (bmi < 25) return 'Overweight';
@@ -1060,8 +1208,8 @@ function getWHOBMICategory(bmi) {
 }
 
 function getVisceralFat(bmi, gender, age, ethnicity) {
-  var isIndian = ethnicity === 'asian';
-  var threshold = isIndian ? 23 : 25;
+  var isAsian = ethnicity === 'asian';
+  var threshold = isAsian ? 23 : 25;
   var risk = 'Low';
   
   if (bmi < threshold - 3) risk = 'Low';
@@ -1082,9 +1230,9 @@ function getVisceralFat(bmi, gender, age, ethnicity) {
 
 function getHealthScore(bmi, age, gender, ethnicity, activity) {
   var score = 100;
-  var isIndian = ethnicity === 'asian';
+  var isAsian = ethnicity === 'asian';
   
-  if (isIndian) {
+  if (isAsian) {
     if (bmi < 18.5) score -= (18.5 - bmi) * 6;
     else if (bmi < 23) score += 5;
     else if (bmi < 25) score -= 15;
@@ -1102,7 +1250,7 @@ function getHealthScore(bmi, age, gender, ethnicity, activity) {
   else if (age > 50) score -= 10;
   else if (age > 40) score -= 5;
   
-  if (gender === 'male' && bmi > (isIndian ? 23 : 25)) score -= 5;
+  if (gender === 'male' && bmi > (isAsian ? 23 : 25)) score -= 5;
   
   var activityMap = { 'very-active': 15, 'active': 10, 'moderate': 5, 'light': 0, 'sedentary': -10 };
   score += activityMap[activity] || 0;
@@ -1187,20 +1335,20 @@ function calculateBMI() {
   bmi = Math.round(bmi * 10) / 10;
   
   var whoCat = getWHOBMICategory(bmi);
-  var indCat = getIndianBMICategory(bmi);
+  var asianCat = getAsianBMICategory(bmi);
   var vfRisk = getVisceralFat(bmi, gender, age, ethnicity);
   var healthScore = getHealthScore(bmi, age, gender, ethnicity, activity);
   
   document.getElementById('bmi-display').innerHTML = bmi.toFixed(1);
   document.getElementById('bmi-category').innerHTML = whoCat;
-  document.getElementById('indian-category').innerHTML = indCat;
+  document.getElementById('asian-category').innerHTML = asianCat;
   document.getElementById('visceral-fat').innerHTML = vfRisk;
   document.getElementById('health-score').innerHTML = healthScore;
   
   var rb = document.getElementById('recommendation-box');
   rb.className = 'recommendation-box';
-  if (indCat === 'Obese' || vfRisk.includes('Very')) rb.classList.add('danger');
-  else if (indCat === 'Overweight' || vfRisk.includes('High')) rb.classList.add('warning');
+  if (asianCat === 'Obese' || vfRisk.includes('Very')) rb.classList.add('danger');
+  else if (asianCat === 'Overweight' || vfRisk.includes('High')) rb.classList.add('warning');
   
   var recText = currentLang === 'hi' ? 'पर्सनलाइज़्ड सलाह के लिए AI बटन दबाएँ' : 'Press "Get Personalized Advice" for detailed tips';
   document.getElementById('recommendation-text').innerHTML = recText;
@@ -1230,20 +1378,20 @@ async function fetchAiAdvice() {
     return;
   }
   
-  var indCat = document.getElementById('indian-category').innerHTML;
+  var asianCat = document.getElementById('asian-category').innerHTML;
   var vf = document.getElementById('visceral-fat').innerHTML;
   var hs = document.getElementById('health-score').innerHTML;
   var age = document.getElementById('age').value;
   var gender = document.getElementById('gender').value === 'male' ? 'Male' : 'Female';
   var activityMap = { 'sedentary': 'sedentary', 'light': 'lightly active', 'moderate': 'moderately active', 'active': 'active', 'very-active': 'very active' };
   var activity = activityMap[document.getElementById('activity').value] || 'moderately active';
-  var ethnicity = document.getElementById('ethnicity').value === 'asian' ? 'Indian/Asian' : 'other';
+  var ethnicity = document.getElementById('ethnicity').value === 'asian' ? 'Asian' : 'non-Asian';
   
   var langMap = { 'en': 'English', 'hi': 'Hindi', 'es': 'Spanish', 'fr': 'French', 'de': 'German', 'ja': 'Japanese', 'ar': 'Arabic' };
   var langName = langMap[currentLang] || 'English';
   
   var prompt = `You are a health expert. Give 3 short, actionable health tips in ${langName} language for a ${gender}, ${age} years old person with:
-- BMI: ${bmi} (Indian category: ${indCat})
+- BMI: ${bmi} (Asian category: ${asianCat})
 - Visceral fat risk: ${vf}
 - Health score: ${hs}/100
 - Activity level: ${activity}
