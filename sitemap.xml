@@ -4,137 +4,176 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    
-    <!-- ========== HOME PAGE ========== -->
+
+    <!-- ========== HOME PAGE (with country-specific hreflang) ========== -->
     <url>
         <loc>https://healthcalc.in/</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/"/>
     </url>
-    
-    <!-- ========== ADVANCED NEW TOOLS (7) ========== -->
+
+    <!-- ========== ADVANCED TOOLS (7) ========== -->
     <url>
         <loc>https://healthcalc.in/ffmi-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/ffmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/ffmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/ffmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/ffmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/ffmi-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/ffmi-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/ffmi-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/whr-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/whr-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/whr-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/whr-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/whr-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/whr-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/whr-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/whr-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/bac-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/bac-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/bac-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/bac-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/bac-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/bac-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/bac-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/bac-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/vo2max-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/vo2max-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/vo2max-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/vo2max-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/vo2max-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/vo2max-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/vo2max-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/vo2max-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/body-shape-analyzer.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/body-shape-analyzer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/body-shape-analyzer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/body-shape-analyzer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/body-shape-analyzer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/body-shape-analyzer.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/body-shape-analyzer.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/body-shape-analyzer.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/medication-half-life-tracker.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/medication-half-life-tracker.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/medication-half-life-tracker.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/medication-half-life-tracker.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/medication-half-life-tracker.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/medication-half-life-tracker.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/medication-half-life-tracker.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/medication-half-life-tracker.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/dri-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/dri-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/dri-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/dri-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/dri-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/dri-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/dri-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/dri-calculator.html"/>
     </url>
-    
-    <!-- ========== HEART & VASCULAR CALCULATORS (4 Tools) ========== -->
+
+    <!-- ========== HEART & VASCULAR (4) ========== -->
     <url>
         <loc>https://healthcalc.in/ascvd-risk-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/ascvd-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/ascvd-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/ascvd-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/ascvd-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/ascvd-risk-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/ascvd-risk-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/ascvd-risk-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/heart-risk-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/heart-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/heart-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/heart-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/heart-risk-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/heart-risk-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/heart-risk-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/heart-risk-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/vascular-age-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/vascular-age-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/vascular-age-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/vascular-age-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/vascular-age-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/vascular-age-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/vascular-age-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/vascular-age-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/heart-rate-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/heart-rate-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/heart-rate-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/heart-rate-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/heart-rate-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/heart-rate-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/heart-rate-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/heart-rate-calculator.html"/>
     </url>
-    
-    <!-- ========== BODY COMPOSITION CALCULATORS (5 Tools) ========== -->
+
+    <!-- ========== BODY COMPOSITION (5) ========== -->
     <url>
         <loc>https://healthcalc.in/bmi-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/bmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/bmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/bmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/bmi-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/bmi-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/bmi-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://healthcalc.in/es/bmi-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://healthcalc.in/fr/bmi-calculator.html"/>
@@ -143,250 +182,311 @@
         <xhtml:link rel="alternate" hreflang="ar" href="https://healthcalc.in/ar/bmi-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/bmi-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/body-fat-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/body-fat-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/body-fat-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/body-fat-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/body-fat-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/body-fat-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/body-fat-calculator.html"/>
-        <xhtml:link rel="alternate" hreflang="es" href="https://healthcalc.in/es/body-fat-calculator.html"/>
-        <xhtml:link rel="alternate" hreflang="fr" href="https://healthcalc.in/fr/body-fat-calculator.html"/>
-        <xhtml:link rel="alternate" hreflang="de" href="https://healthcalc.in/de/body-fat-calculator.html"/>
-        <xhtml:link rel="alternate" hreflang="ja" href="https://healthcalc.in/ja/body-fat-calculator.html"/>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://healthcalc.in/ar/body-fat-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/body-fat-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/ideal-weight-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/ideal-weight-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/ideal-weight-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/ideal-weight-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/ideal-weight-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/ideal-weight-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/ideal-weight-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/ideal-weight-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/metabolic-age.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/metabolic-age.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/metabolic-age.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/metabolic-age.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/metabolic-age.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/metabolic-age.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/metabolic-age.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/metabolic-age.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/metabolic-age-pro.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/metabolic-age-pro.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/metabolic-age-pro.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/metabolic-age-pro.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/metabolic-age-pro.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/metabolic-age-pro.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/metabolic-age-pro.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/metabolic-age-pro.html"/>
     </url>
-    
-    <!-- ========== NUTRITION CALCULATORS (2 Tools) ========== -->
+
+    <!-- ========== NUTRITION (2) ========== -->
     <url>
         <loc>https://healthcalc.in/calorie-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/calorie-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/calorie-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/calorie-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/calorie-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/calorie-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/calorie-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/calorie-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/water-intake-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/water-intake-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/water-intake-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/water-intake-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/water-intake-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/water-intake-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/water-intake-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/water-intake-calculator.html"/>
     </url>
-    
-    <!-- ========== FITNESS CALCULATORS (2 Tools) ========== -->
+
+    <!-- ========== FITNESS (2) ========== -->
     <url>
         <loc>https://healthcalc.in/met-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/met-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/met-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/met-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/met-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/met-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/met-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/met-calculator.html"/>
     </url>
-    
-    <!-- ========== WOMEN'S HEALTH CALCULATORS (3 Tools) ========== -->
+
+    <!-- ========== WOMEN'S HEALTH (3) ========== -->
     <url>
         <loc>https://healthcalc.in/pregnancy-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/pregnancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/pregnancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/pregnancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/pregnancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/pregnancy-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/pregnancy-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/pregnancy-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/menstrual-cycle-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/menstrual-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/menstrual-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/menstrual-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/menstrual-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/menstrual-cycle-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/menstrual-cycle-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/menstrual-cycle-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/hormone-health-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/hormone-health-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/hormone-health-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/hormone-health-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/hormone-health-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/hormone-health-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/hormone-health-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/hormone-health-calculator.html"/>
     </url>
-    
-    <!-- ========== SLEEP & RECOVERY CALCULATORS (3 Tools) ========== -->
+
+    <!-- ========== SLEEP & RECOVERY (3) ========== -->
     <url>
         <loc>https://healthcalc.in/sleep-cycle-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/sleep-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/sleep-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/sleep-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/sleep-cycle-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/sleep-cycle-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/sleep-cycle-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/sleep-cycle-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/sleep-debt-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/sleep-debt-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/sleep-debt-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/sleep-debt-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/sleep-debt-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/sleep-debt-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/sleep-debt-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/sleep-debt-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/circadian-rhythm-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/circadian-rhythm-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/circadian-rhythm-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/circadian-rhythm-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/circadian-rhythm-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/circadian-rhythm-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/circadian-rhythm-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/circadian-rhythm-calculator.html"/>
     </url>
-    
-    <!-- ========== ADVANCED HEALTH CALCULATORS (2 Tools) ========== -->
+
+    <!-- ========== ADVANCED HEALTH (2) ========== -->
     <url>
         <loc>https://healthcalc.in/gut-microbiome-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/gut-microbiome-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/gut-microbiome-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/gut-microbiome-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/gut-microbiome-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/gut-microbiome-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/gut-microbiome-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/gut-microbiome-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/inflammation-score-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/inflammation-score-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/inflammation-score-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/inflammation-score-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/inflammation-score-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/inflammation-score-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/inflammation-score-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/inflammation-score-calculator.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/life-expectancy-calculator.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/life-expectancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/life-expectancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/life-expectancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/life-expectancy-calculator.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/life-expectancy-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/life-expectancy-calculator.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/life-expectancy-calculator.html"/>
     </url>
-    
-    <!-- ========== STATIC PAGES (6 Pages) ========== -->
+
+    <!-- ========== STATIC PAGES (6) ========== -->
     <url>
         <loc>https://healthcalc.in/about.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/about.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/about.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/about.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/contact.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/contact.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/contact.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/contact.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/privacy-policy.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/privacy-policy.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/privacy-policy.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/privacy-policy.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/privacy-policy.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/terms-of-service.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/terms-of-service.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/terms-of-service.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/terms-of-service.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/terms-of-service.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/terms-of-service.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/terms-of-service.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/terms-of-service.html"/>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/medical-disclaimer.html</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/medical-disclaimer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/medical-disclaimer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/medical-disclaimer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/medical-disclaimer.html"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/medical-disclaimer.html"/>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/medical-disclaimer.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/medical-disclaimer.html"/>
     </url>
-    
-    <!-- ========== LANGUAGE-SPECIFIC HOME PAGES ========== -->
+
+    <!-- ========== HINDI HOME PAGE ========== -->
     <url>
         <loc>https://healthcalc.in/hi/</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
         <xhtml:link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/"/>
+        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/"/>
     </url>
-    
+
     <!-- ========== SEO FILES ========== -->
     <url>
         <loc>https://healthcalc.in/robots.txt</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
-    
+
     <url>
         <loc>https://healthcalc.in/sitemap.xml</loc>
-        <lastmod>2026-05-26</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.3</priority>
     </url>
