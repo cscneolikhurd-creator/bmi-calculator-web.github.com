@@ -6,21 +6,29 @@
     <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
     <!-- Primary SEO Meta -->
-    <title>Advanced Heart Rate Zones Calculator | Karvonen Formula & 5 Training Zones | HealthCalc</title>
+    <title>Advanced Heart Rate Zones Calculator | Karvonen Formula | US/UK/CA/AU | HealthCalc</title>
     <meta name="title" content="Heart Rate Zones Calculator: Karvonen Method, Fat Burn & Cardio Zones | Personalized Training">
-    <meta name="description" content="Most accurate heart rate zone calculator using Karvonen formula. Find your 5 training zones: fat burn, cardio, threshold, and peak. Personalized by age, resting HR, fitness level & gender. 100% free & private.">
+    <meta name="description" content="Most accurate heart rate zone calculator using Karvonen formula. Find your 5 training zones: fat burn, cardio, threshold, and peak. Based on ACSM, CDC, NHS guidelines. Trusted in USA, UK, Canada, Australia. 100% free & private.">
     <meta name="keywords" content="heart rate zones, Karvonen method, target heart rate, fat burn zone, cardio zone, max heart rate, training zones, heart rate reserve, exercise intensity, resting heart rate, zone 2 training, HIIT zones">
     <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://healthcalc.in/heart-rate-calculator.html">
 
+    <!-- International hreflang tags -->
+    <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/heart-rate-calculator.html">
+    <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/heart-rate-calculator.html">
+    <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/heart-rate-calculator.html">
+    <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/heart-rate-calculator.html">
+    <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/heart-rate-calculator.html">
+
     <!-- Open Graph -->
     <meta property="og:title" content="Advanced Heart Rate Zones Calculator | Karvonen Formula">
-    <meta property="og:description" content="Optimize your workouts with personalized heart rate zones. Fat burn, cardio, peak zones based on Karvonen method.">
+    <meta property="og:description" content="Optimize your workouts with personalized heart rate zones. Fat burn, cardio, peak zones based on Karvonen method. Trusted in US, UK, Canada, Australia.">
     <meta property="og:url" content="https://healthcalc.in/heart-rate-calculator.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://healthcalc.in/images/heart-rate-zones-og.jpg">
-    <meta property="og:locale" content="en_IN">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="en_GB">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -33,12 +41,13 @@
         "@context": "https://schema.org",
         "@type": "MedicalWebPage",
         "name": "Advanced Heart Rate Zones Calculator",
-        "description": "Calculate target heart rate zones using Karvonen method. 5 zones: recovery, fat burn, cardio, threshold, peak.",
+        "description": "Calculate target heart rate zones using Karvonen method. 5 zones: recovery, fat burn, cardio, threshold, peak. For US, UK, Canada, Australia.",
         "url": "https://healthcalc.in/heart-rate-calculator.html",
         "author": {"@type": "Organization", "name": "HealthCalc"},
         "about": {"@type": "MedicalCondition", "name": "Exercise Physiology"},
         "inLanguage": ["en", "hi"],
-        "dateModified": "2026-05-14"
+        "audience": {"@type": "Audience", "geographicArea": {"@type": "Country", "name": ["US","UK","CA","AU"]}},
+        "dateModified": "2026-06-11"
     }
     </script>
 
@@ -85,6 +94,10 @@
     }
     </script>
 
+    <!-- Global CSS + JS (International Features) -->
+    <link rel="stylesheet" href="global.css">
+    <script src="global.js" defer></script>
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,9 +139,139 @@
             padding: 20px;
             color: var(--dark);
             line-height: 1.5;
+            transition: background 0.3s;
+        }
+
+        /* Dark mode overrides (global.js adds class 'dark') */
+        body.dark {
+            background: linear-gradient(145deg, #0f172a, #1e1e2f);
+        }
+        body.dark .card {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            border-color: rgba(255,255,255,0.1);
+        }
+        body.dark .card-title {
+            color: #fca5a5;
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+        body.dark .badge {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-color: #475569;
+        }
+        body.dark .badge i {
+            color: #f87171;
+        }
+        body.dark .method-toggle {
+            background: #334155;
+        }
+        body.dark .method-btn {
+            color: #94a3b8;
+        }
+        body.dark .method-btn.active {
+            background: #475569;
+            color: #fca5a5;
+        }
+        body.dark .input-label {
+            color: #cbd5e1;
+        }
+        body.dark select, body.dark input[type="number"] {
+            background: #0f172a;
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+        body.dark .value-badge {
+            background: #334155;
+            color: #fca5a5;
+        }
+        body.dark input[type="range"] {
+            background: #334155;
+        }
+        body.dark .max-hr-box {
+            background: #0f172a;
+            border-color: #475569;
+        }
+        body.dark .zone-item {
+            background: #0f172a;
+            border-color: #475569;
+        }
+        body.dark .goal-box {
+            background: #334155;
+            color: #e2e8f0;
+        }
+        body.dark .tips-card {
+            background: #0f172a;
+        }
+        body.dark .tools-crosslink {
+            background: #0f172a;
+            border-color: #475569;
+        }
+        body.dark .tool-link-card {
+            background: #1e293b;
+            border-color: #475569;
+            color: #cbd5e1;
+        }
+        body.dark .tool-link-card:hover {
+            background: var(--primary);
+            color: white;
+        }
+        body.dark .faq-section {
+            background: #1e293b;
+        }
+        body.dark .faq-item {
+            background: #0f172a;
+        }
+        body.dark .faq-answer {
+            color: #94a3b8;
+        }
+        body.dark .future-plan-section {
+            background: #1e293b;
+            border-color: #475569;
+        }
+        body.dark .future-feature {
+            background: #0f172a;
+        }
+        body.dark footer {
+            border-top-color: #334155;
+            color: #94a3b8;
+        }
+        body.dark .footer-links a {
+            color: #94a3b8;
+        }
+        body.dark .footer-links a:hover {
+            color: #f87171;
+        }
+        body.dark .health-authority-note {
+            background: #1e293b;
+            color: #94a3b8;
         }
 
         .container { max-width: 1400px; margin: 0 auto; }
+
+        /* International Bar (new) */
+        .international-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        body.dark .international-bar {
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+        .health-authority-note {
+            background: #eef2ff;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
 
         /* Breadcrumb */
         .breadcrumb {
@@ -142,30 +285,6 @@
         }
         .breadcrumb a { color: var(--primary-dark); text-decoration: none; font-weight: 500; }
         .breadcrumb a:hover { text-decoration: underline; }
-
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        .lang-btn {
-            padding: 8px 20px;
-            border-radius: 60px;
-            border: 2px solid var(--primary-light);
-            background: white;
-            color: var(--primary-dark);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            transition: all 0.2s;
-        }
-        .lang-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
 
         /* Header */
         .header-section {
@@ -689,6 +808,30 @@
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
     <div class="container">
+        <!-- International Bar (Country, Theme, Language) -->
+        <div class="international-bar">
+            <select id="countrySelect">
+                <option value="us">🇺🇸 United States</option>
+                <option value="uk">🇬🇧 United Kingdom</option>
+                <option value="ca">🇨🇦 Canada</option>
+                <option value="au">🇦🇺 Australia</option>
+            </select>
+            <div class="theme-toggle">
+                <button class="theme-option" data-theme="light">☀️ Light</button>
+                <button class="theme-option" data-theme="dark">🌙 Dark</button>
+            </div>
+            <div class="language-switcher">
+                <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+                <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
+                <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+                <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+                <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+                <button class="lang-btn" data-lang="ja">🇯🇵 JA</button>
+                <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
+            </div>
+        </div>
+        <div id="healthAuthorityNote" class="health-authority-note">❤️ Based on ACSM/CDC/NHS guidelines – Heart rate zones for optimal training</div>
+
         <!-- Breadcrumb -->
         <nav class="breadcrumb">
             <a href="/index.html"><i class="fas fa-home"></i> Home</a>
@@ -697,12 +840,6 @@
             <span>›</span>
             <span>Heart Rate Zones Calculator</span>
         </nav>
-
-        <!-- Language Toggle -->
-        <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-            <button class="lang-btn" onclick="setLang('hi')">🇮🇳 हिंदी</button>
-        </div>
 
         <!-- Header -->
         <div class="header-section">
@@ -843,11 +980,11 @@
             <div class="faq-grid">
                 <div class="faq-item">
                     <div class="faq-question" id="faqQ1">What is the Karvonen formula?</div>
-                    <div class="faq-answer" id="faqA1">Target HR = ((max HR - resting HR) × % intensity) + resting HR. It uses heart rate reserve for more personalized zones.</div>
+                    <div class="faq-answer" id="faqA1">Target HR = ((max HR - resting HR) × % intensity) + resting HR. Uses heart rate reserve for accuracy.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" id="faqQ2">Which zone burns the most fat?</div>
-                    <div class="faq-answer" id="faqA2">Zone 2 (60-70% of max HR) uses fat as primary fuel. 30-60 minute sessions optimize fat loss.</div>
+                    <div class="faq-answer" id="faqA2">Zone 2 (60-70% of max HR) uses fat as primary fuel. 30-60 min sessions optimize fat loss.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" id="faqQ3">How to measure resting heart rate?</div>
@@ -855,15 +992,15 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" id="faqQ4">Karvonen vs 220-age?</div>
-                    <div class="faq-answer" id="faqA4">Karvonen accounts for individual fitness via resting HR. Standard formula assumes everyone of same age has same max HR.</div>
+                    <div class="faq-answer" id="faqA4">Karvonen accounts for individual fitness via resting HR. More accurate for personalized training.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" id="faqQ5">How long in each zone?</div>
-                    <div class="faq-answer" id="faqA5">Zone 2: 30-60 min, Zone 3: 20-40 min, Zone 4-5: 1-5 min intervals. Beginners start with longer Zone 2 sessions.</div>
+                    <div class="faq-answer" id="faqA5">Zone 2: 30-60 min, Zone 3: 20-40 min, Zone 4-5: 1-5 min intervals.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" id="faqQ6">Is my heart rate data private?</div>
-                    <div class="faq-answer" id="faqA6">Yes! All calculations happen in your browser. No data is stored or transmitted.</div>
+                    <div class="faq-answer" id="faqA6">Yes! All calculations happen in your browser. 100% private.</div>
                 </div>
             </div>
         </div>
@@ -953,9 +1090,7 @@
         // ===== SET LANGUAGE =====
         function setLang(lang) {
             currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
+            // Also update the global language switcher button states if needed
             const t = translations[lang];
             if (!t) return;
             
@@ -1152,6 +1287,38 @@
             }
         }
 
+        // ===== EXPORT GLOBALS FOR LANG BUTTONS (from international bar) =====
+        window.setLang = setLang;
+        
+        // Also attach to global language switcher from global.js? but we have our own setLang.
+        // We'll override if needed but keep compatibility.
+        if (typeof window.setLanguage === 'function') {
+            // If global.js defines setLanguage, we might conflict, but we'll keep ours.
+            // The international bar uses global.js's setLanguage? Actually global.js provides its own language switcher.
+            // To avoid conflict, we'll ensure our setLang is called when language buttons from our own UI are clicked.
+            // But we removed our old language buttons, now language is only via international bar.
+            // global.js handles language switching by setting 'currentLang' and updating translations? It has its own translations.
+            // However our tool has its own translations. We'll need to sync.
+            // For simplicity, we'll let global.js handle language globally, but we'll override the setLanguage function if needed.
+            // Actually global.js might not have full translations for this tool. So we'll listen to global language changes.
+            // We can add an event listener for 'languageChanged' or override.
+            // Let's attach an event listener to the language buttons in international bar.
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = btn.getAttribute('data-lang');
+                    if (lang) setLang(lang);
+                });
+            });
+        } else {
+            // Fallback: attach manually
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = btn.getAttribute('data-lang');
+                    if (lang) setLang(lang);
+                });
+            });
+        }
+        
         // ===== EVENT LISTENERS =====
         methodKarvonen.addEventListener('click', () => {
             methodKarvonen.classList.add('active');
@@ -1180,9 +1347,6 @@
         window.addEventListener('scroll', () => {
             document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500);
         });
-        
-        // ===== EXPORT GLOBALS =====
-        window.setLang = setLang;
         
         // ===== INITIALIZE =====
         calculateZones();
