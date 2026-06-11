@@ -6,21 +6,29 @@
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
 <!-- ========== PRIMARY SEO META ========== -->
-<title>Advanced Gut Microbiome Health Score | Diversity, Fiber & Digestive Health | HealthCalc</title>
+<title>Advanced Gut Microbiome Health Score | Diversity, Fiber & Digestive Health | US/UK/CA/AU</title>
 <meta name="title" content="Gut Microbiome Health Score: Diversity, Fiber, Probiotic Assessment | Science-Based">
-<meta name="description" content="Advanced gut microbiome health score calculator based on American Gut Project research. Assess gut diversity, fiber intake, probiotic foods, digestive symptoms, and get personalized recommendations. 100% free & private.">
+<meta name="description" content="Advanced gut microbiome health score calculator based on American Gut Project research. Assess gut diversity, fiber intake, probiotic foods, digestive symptoms, and get personalized recommendations. Trusted in USA, UK, Canada, Australia. 100% free & private.">
 <meta name="keywords" content="gut microbiome test, gut health score, microbiome diversity, fiber calculator, probiotic foods, prebiotic foods, digestive health, gut-brain axis, Indian gut health, IBS assessment, SIBO, leaky gut">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/gut-microbiome-calculator.html">
 
+<!-- ========== INTERNATIONAL HREFLANG TAGS ========== -->
+<link rel="alternate" hreflang="en-us" href="https://healthcalc.in/gut-microbiome-calculator.html">
+<link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/gut-microbiome-calculator.html">
+<link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/gut-microbiome-calculator.html">
+<link rel="alternate" hreflang="en-au" href="https://healthcalc.in/gut-microbiome-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://healthcalc.in/gut-microbiome-calculator.html">
+
 <!-- ========== OPEN GRAPH ========== -->
 <meta property="og:title" content="Advanced Gut Microbiome Health Score Calculator">
-<meta property="og:description" content="Scientific assessment of gut health based on diet, lifestyle, and digestive symptoms.">
+<meta property="og:description" content="Scientific assessment of gut health based on diet, lifestyle, and digestive symptoms. Trusted in US, UK, Canada, Australia.">
 <meta property="og:url" content="https://healthcalc.in/gut-microbiome-calculator.html">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://healthcalc.in/images/gut-microbiome-og.jpg">
-<meta property="og:locale" content="en_IN">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="en_GB">
 
 <!-- ========== TWITTER ========== -->
 <meta name="twitter:card" content="summary_large_image">
@@ -38,7 +46,8 @@
   "author": {"@type": "Organization", "name": "HealthCalc"},
   "about": {"@type": "MedicalCondition", "name": "Gut Health"},
   "inLanguage": ["en", "hi"],
-  "dateModified": "2026-05-14"
+  "audience": {"@type": "Audience", "geographicArea": {"@type": "Country", "name": ["US","UK","CA","AU"]}},
+  "dateModified": "2026-06-11"
 }
 </script>
 
@@ -85,6 +94,10 @@
 }
 </script>
 
+<!-- Global CSS + JS (International Features) -->
+<link rel="stylesheet" href="global.css">
+<script src="global.js" defer></script>
+
 <!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,9 +140,127 @@ body {
   padding: 20px;
   color: var(--dark);
   line-height: 1.5;
+  transition: background 0.3s;
+}
+
+/* Dark mode overrides (global.js adds class 'dark') */
+body.dark {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+}
+body.dark .breadcrumb {
+  color: #94a3b8;
+}
+body.dark .breadcrumb a {
+  color: #34d399;
+}
+body.dark .header {
+  background: #1e293b;
+}
+body.dark .header p {
+  color: #94a3b8;
+}
+body.dark .badge {
+  background: #0f172a;
+  color: #34d399;
+}
+body.dark .card {
+  background: #1e293b;
+}
+body.dark .card-title {
+  border-bottom-color: #334155;
+}
+body.dark .section-label {
+  color: #e2e8f0;
+}
+body.dark .input-label {
+  color: #94a3b8;
+}
+body.dark select, body.dark input[type="number"] {
+  background: #0f172a;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+body.dark .checkbox-item {
+  background: #0f172a;
+  border-color: #475569;
+  color: #cbd5e1;
+}
+body.dark .checkbox-item.selected {
+  background: #2d3748;
+  border-color: #10b981;
+}
+body.dark .score-box {
+  background: #0f172a;
+}
+body.dark .meter-bar {
+  background: #334155;
+}
+body.dark .factor-card {
+  background: #0f172a;
+}
+body.dark .recommendations-box {
+  background: #0f172a;
+}
+body.dark .gut-brain-box {
+  background: #1e293b;
+  color: #a78bfa;
+}
+body.dark .future-plan-section {
+  background: #1e293b;
+  border-color: #475569;
+}
+body.dark .future-feature {
+  background: #0f172a;
+}
+body.dark .faq-section {
+  background: #1e293b;
+}
+body.dark .faq-item {
+  background: #0f172a;
+}
+body.dark .faq-answer {
+  color: #94a3b8;
+}
+body.dark footer {
+  border-top-color: #334155;
+  color: #94a3b8;
+}
+body.dark .footer-links a {
+  color: #94a3b8;
+}
+body.dark .footer-links a:hover {
+  color: #34d399;
+}
+body.dark .health-authority-note {
+  background: #1e293b;
+  color: #94a3b8;
 }
 
 .container { max-width: 1400px; margin: 0 auto; }
+
+/* International Bar (new) */
+.international-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+body.dark .international-bar {
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+.health-authority-note {
+  background: #eef2ff;
+  padding: 6px 16px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 15px;
+}
 
 /* Breadcrumb */
 .breadcrumb {
@@ -144,30 +275,6 @@ body {
 .breadcrumb a { color: var(--primary-dark); text-decoration: none; font-weight: 500; }
 .breadcrumb a:hover { text-decoration: underline; }
 
-/* Language Toggle */
-.lang-toggle {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-.lang-btn {
-  padding: 8px 20px;
-  border-radius: 60px;
-  border: 2px solid var(--primary-light);
-  background: white;
-  color: var(--primary-dark);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 13px;
-  transition: all 0.2s;
-}
-.lang-btn.active {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-}
-
 /* Header */
 .header {
   text-align: center;
@@ -176,6 +283,7 @@ body {
   border-radius: var(--radius-xl);
   margin-bottom: 30px;
   box-shadow: var(--shadow-sm);
+  transition: background 0.3s;
 }
 .header h1 {
   font-size: clamp(28px, 5vw, 42px);
@@ -660,6 +768,30 @@ footer {
 
 <div class="container">
 
+<!-- International Bar (Country, Theme, Language) -->
+<div class="international-bar">
+  <select id="countrySelect">
+    <option value="us">🇺🇸 United States</option>
+    <option value="uk">🇬🇧 United Kingdom</option>
+    <option value="ca">🇨🇦 Canada</option>
+    <option value="au">🇦🇺 Australia</option>
+  </select>
+  <div class="theme-toggle">
+    <button class="theme-option" data-theme="light">☀️ Light</button>
+    <button class="theme-option" data-theme="dark">🌙 Dark</button>
+  </div>
+  <div class="language-switcher">
+    <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+    <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
+    <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+    <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+    <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+    <button class="lang-btn" data-lang="ja">🇯🇵 JA</button>
+    <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
+  </div>
+</div>
+<div id="healthAuthorityNote" class="health-authority-note">🦠 Based on American Gut Project & Harvard research – Gut health assessment for US, UK, Canada, Australia</div>
+
 <!-- Breadcrumb -->
 <nav class="breadcrumb">
   <a href="/index.html"><i class="fas fa-home"></i> Home</a>
@@ -668,12 +800,6 @@ footer {
   <span>›</span>
   <span>Gut Microbiome Calculator</span>
 </nav>
-
-<!-- Language Toggle -->
-<div class="lang-toggle">
-  <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
-  <button class="lang-btn" onclick="setLang('hi')">🇮🇳 हिंदी</button>
-</div>
 
 <!-- Header -->
 <div class="header">
@@ -994,9 +1120,7 @@ const translations = {
 // ===== SET LANGUAGE =====
 function setLang(lang) {
   currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
-  
+  // Also update the global language switcher button states if needed
   const t = translations[lang];
   if (!t) return;
   
@@ -1222,6 +1346,14 @@ for (let i = 1; i <= 6; i++) {
   const el = document.getElementById('symptom' + i);
   if (el) el.addEventListener('change', calculateGutScore);
 }
+
+// ===== ATTACH LANGUAGE HANDLER FOR GLOBAL LANGUAGE BUTTONS =====
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const lang = btn.getAttribute('data-lang');
+    if (lang) setLang(lang);
+  });
+});
 
 // ===== SCROLL TOP =====
 window.addEventListener('scroll', () => {
