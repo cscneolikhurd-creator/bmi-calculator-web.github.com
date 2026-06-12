@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
-    <!-- ========== SEO META ========== -->
-    <title>About HealthCalc | 32+ Free Health Calculators | Trusted in 50+ Countries</title>
+    <!-- ========== SEO META (International) ========== -->
+    <title>About HealthCalc | 32+ Free Health Calculators | Trusted in USA, UK, Canada, Australia</title>
     <meta name="title" content="About HealthCalc — Free Health Tools for Everyone | 100% Private | 7 Languages">
-    <meta name="description" content="HealthCalc provides 32+ free, accurate health calculators including BMI, ASCVD Risk, FFMI, WHR, BAC, VO2Max, Body Shape Analyzer, DRI Calculator & more. 100% private, no signup, used in 50+ countries, 7 languages.">
-    <meta name="keywords" content="about healthcalc, free health calculators, BMI calculator, ASCVD risk, FFMI calculator, WHR calculator, BAC calculator, VO2Max calculator, body shape analyzer, DRI calculator, calorie counter, pregnancy due date, gut microbiome, sleep cycle, vascular age, hormone health">
+    <meta name="description" content="HealthCalc provides 32+ free, accurate health calculators including BMI, ASCVD Risk, FFMI, WHR, BAC, VO2Max, Body Shape Analyzer, DRI Calculator & more. Trusted in USA, UK, Canada, Australia. 100% private, no signup, 7 languages.">
+    <meta name="keywords" content="about healthcalc, free health calculators, BMI calculator, ASCVD risk, FFMI calculator, WHR calculator, BAC calculator, VO2Max calculator, body shape analyzer, DRI calculator, calorie counter, pregnancy due date, gut microbiome, sleep cycle, vascular age, hormone health, USA, UK, Canada, Australia">
     <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://healthcalc.in/about.html">
     
-    <!-- ALTERNATE URLs -->
-    <link rel="alternate" hreflang="en" href="https://healthcalc.in/about.html">
+    <!-- International hreflang tags -->
+    <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/about.html">
+    <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/about.html">
+    <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/about.html">
+    <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/about.html">
     <link rel="alternate" hreflang="hi" href="https://healthcalc.in/hi/about.html">
+    <link rel="alternate" hreflang="es" href="https://healthcalc.in/es/about.html">
+    <link rel="alternate" hreflang="fr" href="https://healthcalc.in/fr/about.html">
+    <link rel="alternate" hreflang="de" href="https://healthcalc.in/de/about.html">
+    <link rel="alternate" hreflang="ja" href="https://healthcalc.in/ja/about.html">
+    <link rel="alternate" hreflang="ar" href="https://healthcalc.in/ar/about.html">
     <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/about.html">
     
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="About HealthCalc — Free Health Tools for Everyone">
-    <meta property="og:description" content="Learn about our mission to provide free, private health calculators to users worldwide. 32+ tools, 7 languages, 50+ countries.">
+    <meta property="og:description" content="Learn about our mission to provide free, private health calculators to users worldwide. 32+ tools, 7 languages, trusted in USA, UK, Canada, Australia.">
     <meta property="og:url" content="https://healthcalc.in/about.html">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://healthcalc.in/images/about-og.jpg">
     <meta property="og:site_name" content="HealthCalc">
     <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="en_GB">
     
     <!-- TWITTER -->
     <meta name="twitter:card" content="summary_large_image">
@@ -33,16 +42,16 @@
     <meta name="twitter:description" content="32+ free health calculators trusted worldwide">
     <meta name="twitter:image" content="https://healthcalc.in/images/about-twitter.jpg">
     
-    <!-- SCHEMA MARKUP -->
+    <!-- SCHEMA MARKUP (updated for international audience) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "AboutPage",
         "name": "About HealthCalc.in",
-        "description": "HealthCalc provides 32+ free, private health calculators to users worldwide. No signup, no ads, 100% browser-based.",
+        "description": "HealthCalc provides 32+ free, private health calculators to users worldwide, including USA, UK, Canada, Australia. No signup, no ads, 100% browser-based.",
         "url": "https://healthcalc.in/about.html",
         "author": {"@type": "Organization", "name": "HealthCalc", "url": "https://healthcalc.in"},
-        "dateModified": "2026-05-26"
+        "dateModified": "2026-06-12"
     }
     </script>
     
@@ -72,6 +81,10 @@
         ]
     }
     </script>
+    
+    <!-- Global CSS + JS (International Features) -->
+    <link rel="stylesheet" href="global.css">
+    <script src="global.js" defer></script>
     
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,7 +152,33 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
         
-        /* Theme Toggle */
+        /* International Bar */
+        .international-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+        body.dark .international-bar {
+            background: #1e293b;
+        }
+        .health-authority-note {
+            background: var(--primary-light);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        /* Theme Toggle (kept for compatibility) */
         .theme-toggle {
             background: var(--bg-light);
             border: 1px solid var(--border);
@@ -491,15 +530,35 @@
 
     <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
 
+    <!-- International Bar (Country, Theme, Language) -->
+    <div class="international-bar">
+        <select id="countrySelect">
+            <option value="us">🇺🇸 United States</option>
+            <option value="uk">🇬🇧 United Kingdom</option>
+            <option value="ca">🇨🇦 Canada</option>
+            <option value="au">🇦🇺 Australia</option>
+        </select>
+        <div class="theme-toggle">
+            <button class="theme-option" data-theme="light">☀️ Light</button>
+            <button class="theme-option" data-theme="dark">🌙 Dark</button>
+        </div>
+        <div class="language-switcher">
+            <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+            <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
+            <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+            <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+            <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+            <button class="lang-btn" data-lang="ja">🇯🇵 JA</button>
+            <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
+        </div>
+    </div>
+    <div id="healthAuthorityNote" class="health-authority-note">🌟 Your trusted source for free health calculators – Based on evidence-based guidelines for US, UK, Canada, Australia</div>
+
     <!-- NAVIGATION -->
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="logo">🧬 <span>HealthCalc</span></a>
             <div class="nav-right">
-                <div class="theme-toggle" id="themeToggle">
-                    <span class="theme-option active" data-theme="light"><i class="fas fa-sun"></i> Light</span>
-                    <span class="theme-option" data-theme="dark"><i class="fas fa-moon"></i> Dark</span>
-                </div>
                 <div class="nav-links">
                     <a href="index.html"><i class="fas fa-home"></i> Home</a>
                     <a href="index.html#tools"><i class="fas fa-tools"></i> Tools</a>
@@ -522,7 +581,7 @@
     <section class="hero">
         <span class="badge"><i class="fas fa-star"></i> Trusted Since 2024</span>
         <h1>Free health tools for<br><span>everyone, everywhere.</span></h1>
-        <p>No signup. No hidden costs. Just accurate, instant health calculators trusted by users in 50+ countries. 32+ tools, 7 languages, 100% private.</p>
+        <p>No signup. No hidden costs. Just accurate, instant health calculators trusted by users in USA, UK, Canada, Australia, and 45+ other countries. 32+ tools, 7 languages, 100% private.</p>
         <div class="hero-buttons">
             <a href="#mission" class="btn-outline-white"><i class="fas fa-chevron-down"></i> Our Mission</a>
             <a href="index.html#tools" class="btn-white"><i class="fas fa-calculator"></i> Explore Tools</a>
@@ -725,7 +784,7 @@
         <div class="footer-bottom">
             <p>© 2024-2026 <a href="index.html">HealthCalc.in</a> — Free Health Calculators. Made with ❤️ for global health.</p>
             <p style="margin-top:6px;">All calculators are 100% free, run in your browser, and never store your data.</p>
-            <p style="margin-top:6px;">⭐ 4.9/5 from 2,850+ reviews | Trusted in 50+ countries</p>
+            <p style="margin-top:6px;">⭐ 4.9/5 from 2,850+ reviews | Trusted in USA, UK, Canada, Australia & 45+ countries</p>
         </div>
     </footer>
 
@@ -771,6 +830,10 @@
             var btn = document.getElementById('scrollTop');
             if (btn) btn.classList.toggle('visible', window.scrollY > 500);
         });
+        
+        // ============ ATTACH LANGUAGE HANDLER FOR GLOBAL LANGUAGE BUTTONS ==========
+        // The global.js will handle language switching for elements with .lang-btn.
+        // This page has static content, but the international bar will still work.
     </script>
 </body>
 </html>
