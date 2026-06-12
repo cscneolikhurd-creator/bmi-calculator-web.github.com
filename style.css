@@ -1,6 +1,7 @@
 /* =============================================
-   GLOBAL + INDIAN MARKET STYLES
+   GLOBAL + INTERNATIONAL STYLES
    Unit Toggle, Ethnicity Selector, Language Switcher
+   For US, UK, Canada, Australia
    ============================================= */
 
 /* ---------- Unit Toggle Switch (Metric/Imperial) ---------- */
@@ -49,7 +50,7 @@
     color: #2c3e50;
 }
 
-/* ---------- Ethnicity Selector (Indian BMI Cutoff) ---------- */
+/* ---------- Ethnicity Selector (Asian BMI Cutoff) ---------- */
 .ethnicity-group {
     margin: 20px 0;
     padding: 15px;
@@ -106,8 +107,8 @@
     margin-right: 5px;
 }
 
-/* Indian specific warning badge */
-.indian-warning {
+/* Asian-specific warning badge (for BMI cutoff 23+) */
+.asian-warning {
     background: linear-gradient(135deg, #fff3cd, #ffe69c);
     color: #856404;
     padding: 12px 16px;
@@ -120,7 +121,7 @@
     gap: 10px;
 }
 
-.indian-warning i {
+.asian-warning i {
     font-size: 1.3rem;
     color: #e67e22;
 }
@@ -222,7 +223,7 @@
 }
 
 /* ---------- Result Section Global Enhancements ---------- */
-.bmi-category-indian {
+.bmi-category-asian {
     background: linear-gradient(135deg, #fff9e6, #fff3cd);
     border-radius: 10px;
     padding: 15px;
@@ -230,7 +231,7 @@
     border-left: 4px solid #e67e22;
 }
 
-.bmi-category-indian h4 {
+.bmi-category-asian h4 {
     color: #e67e22;
     margin-bottom: 8px;
     display: flex;
@@ -238,7 +239,7 @@
     gap: 8px;
 }
 
-.bmi-category-indian p {
+.bmi-category-asian p {
     color: #856404;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -320,13 +321,13 @@
         padding: 12px;
     }
     
-    .indian-warning {
+    .asian-warning {
         flex-direction: column;
         text-align: center;
     }
 }
 
-/* ---------- RTL Support (For Arabic/Hebrew Future) ---------- */
+/* ---------- RTL Support (For Arabic/Hebrew) ---------- */
 [dir="rtl"] {
     text-align: right;
 }
@@ -369,32 +370,60 @@
     }
 }
 
-/* ---------- Dark Mode Support (Optional Future) ---------- */
-@media (prefers-color-scheme: dark) {
-    .unit-toggle-container {
-        background: #2d3748;
-    }
-    
-    .unit-toggle-btn {
-        color: #cbd5e0;
-    }
-    
-    .unit-toggle-btn.active {
-        background: #4a5568;
-        color: #63b3ed;
-    }
-    
-    .ethnicity-group {
-        background: #2d3748;
-    }
-    
-    .ethnicity-select {
-        background: #1a202c;
-        color: #e2e8f0;
-        border-color: #4a5568;
-    }
-    
-    .global-trust-badge {
-        background: #2d3748;
-    }
+/* ---------- Dark Mode Support (using body.dark class from global.js) ---------- */
+body.dark .unit-toggle-container {
+    background: #2d3748;
+}
+
+body.dark .unit-toggle-btn {
+    color: #cbd5e0;
+}
+
+body.dark .unit-toggle-btn.active {
+    background: #4a5568;
+    color: #63b3ed;
+}
+
+body.dark .ethnicity-group {
+    background: #2d3748;
+}
+
+body.dark .ethnicity-select {
+    background: #1a202c;
+    color: #e2e8f0;
+    border-color: #4a5568;
+}
+
+body.dark .global-trust-badge {
+    background: #2d3748;
+}
+
+body.dark .asian-warning {
+    background: #2d3748;
+    color: #fbbf24;
+    border-color: #d97706;
+}
+
+body.dark .asian-warning i {
+    color: #f59e0b;
+}
+
+body.dark .country-badge {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark .input-with-unit {
+    background: #0f172a;
+    border-color: #475569;
+}
+
+body.dark .input-with-unit .unit-label {
+    background: #334155;
+    color: #cbd5e1;
+}
+
+body.dark .bmi-category-asian {
+    background: #2d3748;
+    color: #fcd34d;
 }
