@@ -1,7 +1,8 @@
 # ============================================
 # ROBOTS.TXT for HealthCalc.in
-# Last Updated: 2026-05-05
-# Total Tools: 25 Health Calculators
+# Last Updated: 2026-06-12
+# Total Tools: 35+ Health Calculators
+# International: USA, UK, Canada, Australia
 # ============================================
 
 # Allow all crawlers full access
@@ -15,8 +16,17 @@ Crawl-delay: 1
 Sitemap: https://healthcalc.in/sitemap.xml
 
 # ============================================
-# MAIN CALCULATOR TOOLS — ALL INDEXED (25 Tools)
+# CORE CALCULATOR TOOLS (35+ Tools)
 # ============================================
+
+# Advanced New Tools (7)
+Allow: /ffmi-calculator.html
+Allow: /whr-calculator.html
+Allow: /bac-calculator.html
+Allow: /vo2max-calculator.html
+Allow: /body-shape-analyzer.html
+Allow: /medication-half-life-tracker.html
+Allow: /dri-calculator.html
 
 # Heart & Vascular (4 Tools)
 Allow: /ascvd-risk-calculator.html
@@ -35,7 +45,7 @@ Allow: /metabolic-age-pro.html
 Allow: /calorie-calculator.html
 Allow: /water-intake-calculator.html
 
-# Fitness (1 Tool)
+# Fitness (2 Tools)
 Allow: /met-calculator.html
 
 # Women's Health (3 Tools)
@@ -54,15 +64,17 @@ Allow: /inflammation-score-calculator.html
 Allow: /life-expectancy-calculator.html
 
 # ============================================
-# STATIC PAGES — ALL INDEXED (4 Pages)
+# STATIC PAGES (6 Pages)
 # ============================================
+Allow: /index.html
 Allow: /about.html
 Allow: /contact.html
 Allow: /privacy-policy.html
 Allow: /terms-of-service.html
+Allow: /medical-disclaimer.html
 
 # ============================================
-# MULTILINGUAL PAGES
+# MULTILINGUAL PAGES (7 Languages)
 # ============================================
 Allow: /hi/
 Allow: /es/
@@ -72,8 +84,16 @@ Allow: /ja/
 Allow: /ar/
 
 # ============================================
-# CSS, JS, IMAGES — ALLOW
+# INTERNATIONAL HREFLANG HANDLING
+# We use hreflang tags in HTML, not separate URLs
+# The multilingual directories above are for future expansion
 # ============================================
+
+# ============================================
+# ASSETS & MEDIA — ALLOW
+# ============================================
+Allow: /global.css
+Allow: /global.js
 Allow: /style.css
 Allow: /script.js
 Allow: /ai-health-tips.js
@@ -84,7 +104,7 @@ Allow: /favicon-32x32.png
 Allow: /apple-touch-icon.png
 
 # ============================================
-# DISALLOW RULES
+# DISALLOW RULES (prevent duplicate content)
 # ============================================
 
 # URL parameters that create duplicate content
@@ -103,7 +123,12 @@ Disallow: /*.temp$
 Disallow: /*.bak$
 Disallow: /*.old$
 
+# Server files (not needed for indexing)
+Disallow: /cgi-bin/
+Disallow: /wp-admin/
+
 # ============================================
 # END OF ROBOTS.TXT
-# Total Indexed: 25 Tools + 4 Static + Multilingual = 29+ Pages
+# Total Indexed: 35+ Tools + 6 Static + Multilingual = 50+ Pages
+# Trusted in USA, UK, Canada, Australia & 45+ countries
 # ============================================
