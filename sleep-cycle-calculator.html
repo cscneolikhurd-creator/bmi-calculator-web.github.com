@@ -4,40 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 
-<!-- SEO Meta (Global + Indian) -->
-<title>Advanced Sleep Cycle Calculator | 90-Min Cycles, Chronotype & Ayurvedic Tips | HealthCalc</title>
-<meta name="title" content="Sleep Cycle Calculator: Optimal Wake Times, 90-Min Cycles & Brahma Muhurta | Free">
-<meta name="description" content="Professional sleep cycle calculator based on 90-minute cycles. Find your best wake-up times, calculate sleep debt, discover your chronotype (Lion, Bear, Wolf, Dolphin), and get Ayurvedic sleep tips including Brahma Muhurta guidance. Hindi/English. 100% free & private.">
-<meta name="keywords" content="sleep cycle calculator, best time to wake up, 90 minute sleep cycle, REM sleep, Brahma Muhurta, Ayurvedic sleep, circadian rhythm, chronotype test, sleep debt, sleep quality calculator">
+<!-- SEO Meta (International) -->
+<title>Advanced Sleep Cycle Calculator | 90-Min Cycles, Chronotype & Sleep Tips | US/UK/CA/AU</title>
+<meta name="title" content="Sleep Cycle Calculator: Optimal Wake Times, 90-Min Cycles & Sleep Health | Free">
+<meta name="description" content="Professional sleep cycle calculator based on 90-minute cycles. Find your best wake-up times, calculate sleep debt, discover your chronotype, and get personalized sleep tips. Follows CDC, NHS, Health Canada guidelines. 7 languages. 100% free & private.">
+<meta name="keywords" content="sleep cycle calculator, best time to wake up, 90 minute sleep cycle, REM sleep, circadian rhythm, chronotype test, sleep debt, sleep quality calculator, USA, UK, Canada, Australia">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/sleep-cycle-calculator.html">
 
+<!-- International hreflang tags -->
+<link rel="alternate" hreflang="en-us" href="https://healthcalc.in/sleep-cycle-calculator.html">
+<link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/sleep-cycle-calculator.html">
+<link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/sleep-cycle-calculator.html">
+<link rel="alternate" hreflang="en-au" href="https://healthcalc.in/sleep-cycle-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://healthcalc.in/sleep-cycle-calculator.html">
+
 <!-- Open Graph -->
-<meta property="og:title" content="Advanced Sleep Cycle Calculator with Ayurvedic Tips">
-<meta property="og:description" content="Wake up refreshed by timing your alarm with 90-minute sleep cycles. Includes chronotype quiz and Brahma Muhurta guidance.">
+<meta property="og:title" content="Advanced Sleep Cycle Calculator with Chronotype & Sleep Tips">
+<meta property="og:description" content="Wake up refreshed by timing your alarm with 90-minute sleep cycles. Trusted in US, UK, Canada, Australia.">
 <meta property="og:url" content="https://healthcalc.in/sleep-cycle-calculator.html">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://healthcalc.in/images/sleep-cycle-og.jpg">
-<meta property="og:locale" content="en_IN">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="en_GB">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Advanced Sleep Cycle Calculator">
 <meta name="twitter:description" content="Optimal wake times based on 90-minute sleep cycles">
 
-<!-- Schema Markup -->
+<!-- Schema Markup (updated with international audience) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
   "name": "Advanced Sleep Cycle Calculator",
-  "description": "Calculate optimal wake times based on 90-minute sleep cycles with Ayurvedic guidance and chronotype assessment.",
+  "description": "Calculate optimal wake times based on 90-minute sleep cycles with chronotype assessment and sleep debt tracking for US, UK, Canada, Australia.",
   "url": "https://healthcalc.in/sleep-cycle-calculator.html",
   "inLanguage": ["en", "hi"],
   "about": {"@type": "Thing", "name": "Sleep Medicine"},
   "author": {"@type": "Organization", "name": "HealthCalc"},
-  "dateModified": "2026-05-13"
+  "audience": {"@type": "Audience", "geographicArea": {"@type": "Country", "name": ["US","UK","CA","AU"]}},
+  "dateModified": "2026-06-12"
 }
 </script>
 
@@ -56,11 +65,6 @@
       "@type": "Question",
       "name": "How many sleep cycles do I need?",
       "acceptedAnswer": {"@type": "Answer", "text": "Most adults need 5-6 complete cycles (7.5-9 hours). Our calculator shows 4-6 cycle options for both bedtime and wake-time planning."}
-    },
-    {
-      "@type": "Question",
-      "name": "What is Brahma Muhurta in Ayurveda?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Brahma Muhurta is the auspicious time 1.5 hours before sunrise (around 4:30-5:30 AM in India). Ayurveda recommends waking during this time for optimal physical and mental health."}
     },
     {
       "@type": "Question",
@@ -83,6 +87,10 @@
   ]
 }
 </script>
+
+<!-- Global CSS + JS (International Features) -->
+<link rel="stylesheet" href="global.css">
+<script src="global.js" defer></script>
 
 <!-- Fonts & Icons -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,9 +130,79 @@ body {
   padding: 20px;
   color: white;
   line-height: 1.6;
+  transition: background 0.3s;
 }
 
-.container { max-width: 1300px; margin: 0 auto; }
+/* Dark mode overrides (global.js adds class 'dark') */
+body.dark {
+  background: linear-gradient(145deg, #020617, #0f172a, #1e1b4b);
+}
+body.dark .container {
+  background: transparent;
+}
+body.dark .card {
+  background: rgba(15,23,42,0.9);
+}
+body.dark .breadcrumb {
+  color: #94a3b8;
+}
+body.dark .badge {
+  background: rgba(30,41,59,0.8);
+}
+body.dark .input-group input, body.dark .input-group select {
+  background: rgba(0,0,0,0.5);
+  border-color: rgba(255,255,255,0.15);
+}
+body.dark .mode-toggle, body.dark .control-group {
+  background: rgba(0,0,0,0.4);
+}
+body.dark .cycle-times, body.dark .debt-card, body.dark .chronotype-card, body.dark .ayurvedic-card {
+  background: rgba(0,0,0,0.3);
+}
+body.dark .future-plan {
+  background: rgba(30,41,59,0.5);
+}
+body.dark .faq-section {
+  background: rgba(0,0,0,0.2);
+}
+body.dark .footer {
+  border-top-color: rgba(255,255,255,0.05);
+}
+body.dark .health-authority-note {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+/* International Bar (new) */
+.international-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+body.dark .international-bar {
+  border-bottom-color: rgba(255,255,255,0.05);
+}
+.health-authority-note {
+  background: rgba(59,130,246,0.15);
+  padding: 6px 16px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 15px;
+  backdrop-filter: blur(4px);
+}
 
 /* Breadcrumb */
 .breadcrumb {
@@ -608,6 +686,30 @@ footer {
 
 <div class="container">
 
+<!-- International Bar (Country, Theme, Language) -->
+<div class="international-bar">
+    <select id="countrySelect">
+        <option value="us">🇺🇸 United States</option>
+        <option value="uk">🇬🇧 United Kingdom</option>
+        <option value="ca">🇨🇦 Canada</option>
+        <option value="au">🇦🇺 Australia</option>
+    </select>
+    <div class="theme-toggle">
+        <button class="theme-option" data-theme="light">☀️ Light</button>
+        <button class="theme-option" data-theme="dark">🌙 Dark</button>
+    </div>
+    <div class="language-switcher">
+        <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
+        <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
+        <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="ja">🇯🇵 JA</button>
+        <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
+    </div>
+</div>
+<div id="healthAuthorityNote" class="health-authority-note">😴 Based on CDC/NHS guidelines – Adults need 7-9 hours of sleep per night</div>
+
 <!-- Breadcrumb -->
 <nav class="breadcrumb">
   <a href="/index.html"><i class="fas fa-home"></i> Home</a>
@@ -620,7 +722,7 @@ footer {
 <!-- Header -->
 <div class="header">
   <h1>😴 Advanced Sleep Cycle Calculator</h1>
-  <p id="headerSub">Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Includes Ayurvedic Brahma Muhurta guidance and chronotype quiz.</p>
+  <p id="headerSub">Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Includes chronotype quiz and personalized sleep tips.</p>
 
   <div class="global-controls">
     <div class="control-group">
@@ -638,7 +740,7 @@ footer {
     <span class="badge"><i class="fas fa-clock"></i> Optimal Wake Times</span>
     <span class="badge"><i class="fas fa-chart-line"></i> Sleep Debt</span>
     <span class="badge indian"><i class="fas fa-om"></i> Brahma Muhurta</span>
-    <span class="badge indian"><i class="fas fa-leaf"></i> Ayurvedic Tips</span>
+    <span class="badge"><i class="fas fa-leaf"></i> Ayurvedic Tips</span>
     <span class="badge"><i class="fas fa-lock"></i> 100% Private</span>
   </div>
 </div>
@@ -807,7 +909,7 @@ footer {
     </div>
     <div class="faq-item">
       <div class="faq-question" id="faq3Q">What is Brahma Muhurta in Ayurveda?</div>
-      <div class="faq-answer" id="faq3A">Brahma Muhurta is the auspicious time 1.5 hours before sunrise (around 4:30-5:30 AM in India). Ayurveda recommends waking during this time for optimal physical and mental health.</div>
+      <div class="faq-answer" id="faq3A">Brahma Muhurta is the auspicious time 1.5 hours before sunrise. Ayurveda recommends waking during this time for optimal physical and mental health.</div>
     </div>
     <div class="faq-item">
       <div class="faq-question" id="faq4Q">What are the 4 chronotypes?</div>
@@ -840,7 +942,7 @@ footer {
 // ===== TRANSLATIONS =====
 const translations = {
   en: {
-    headerSub: 'Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Includes Ayurvedic Brahma Muhurta guidance and chronotype quiz.',
+    headerSub: 'Wake up refreshed by timing your alarm with your 90-minute sleep cycles. Includes chronotype quiz and personalized sleep tips.',
     scheduleTitle: 'Your Sleep Schedule', wakeModeBtn: 'I want to wake at...', sleepModeBtn: 'I will sleep at...',
     wakeLabel: 'I need to wake up at', sleepLabel: 'I will go to bed at',
     fallAsleepLabel: 'Time to fall asleep', minutes5: 'min', minutes10: 'min', minutes15: 'min', minutes20: 'min', minutes30: 'min', minutes45: 'min', hour1: 'hour',
@@ -863,7 +965,7 @@ const translations = {
     faq6Q: 'How does sleep debt work?', faq6A: 'Sleep debt = (Target sleep - Average sleep) × 7 days. The recovery plan shows how to catch up.'
   },
   hi: {
-    headerSub: '90-मिनट नींद चक्र के साथ तरोताजा उठें। आयुर्वेदिक ब्रह्म मुहूर्त और क्रोनोटाइप टेस्ट शामिल।',
+    headerSub: '90-मिनट नींद चक्र के साथ तरोताजा उठें। क्रोनोटाइप टेस्ट और व्यक्तिगत सुझाव शामिल।',
     scheduleTitle: 'आपका नींद शेड्यूल', wakeModeBtn: 'मुझे जागना है...', sleepModeBtn: 'मैं सोऊंगा...',
     wakeLabel: 'मुझे जागना है', sleepLabel: 'मैं सोऊंगा',
     fallAsleepLabel: 'सोने में लगने वाला समय', minutes5: 'मिनट', minutes10: 'मिनट', minutes15: 'मिनट', minutes20: 'मिनट', minutes30: 'मिनट', minutes45: 'मिनट', hour1: 'घंटा',
@@ -898,7 +1000,6 @@ function setLanguage(lang) {
   document.querySelectorAll('[data-lang]').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
-  document.documentElement.lang = lang;
   
   const t = translations[lang];
   if (!t) return;
@@ -978,14 +1079,12 @@ function calculateSleep() {
   let displayText = '';
   
   if (currentMode === 'wake') {
-    // Calculate bedtimes
     for (let i = 1; i <= 6; i++) {
       let bedTime = new Date(baseDate.getTime() - (cycleMinutes * i + fallAsleep) * 60000);
       cycleTimes.push(bedTime);
     }
     displayText = (currentLang === 'hi' ? formatTime(baseDate) + ' जागें तो सोने के समय:' : 'If you wake at ' + formatTime(baseDate) + ', try sleeping at:');
   } else {
-    // Calculate wake times
     let sleepStart = new Date(baseDate.getTime() + fallAsleep * 60000);
     for (let i = 1; i <= 6; i++) {
       let wakeTime = new Date(sleepStart.getTime() + cycleMinutes * i * 60000);
@@ -997,7 +1096,7 @@ function calculateSleep() {
   document.getElementById('modeDisplay').innerHTML = displayText;
   document.getElementById('cycleList').innerHTML = cycleTimes.map(t => '<span class="cycle-item">' + formatTime(t) + '</span>').join('');
   
-  // Sleep debt calculation
+  // Sleep debt
   const avgSleep = parseFloat(document.getElementById('avgSleep').value);
   const targetSleep = parseFloat(document.getElementById('targetSleep').value);
   const debt = (targetSleep - avgSleep) * 7;
@@ -1018,7 +1117,7 @@ function calculateSleep() {
   }
   document.getElementById('recoveryPlan').innerText = recoveryText;
   
-  // Chronotype recommendations
+  // Chronotype
   const chrono = document.getElementById('chronotype').value;
   const chronoData = {
     lion: { icon: '🦁', name: currentLang === 'hi' ? 'शेर' : 'Lion', bed: '9:00-10:00 PM', wake: '5:00-6:00 AM' },
@@ -1030,7 +1129,7 @@ function calculateSleep() {
   document.getElementById('chronoTitle').innerHTML = '<i class="fas fa-' + chrono + '"></i> ' + cd.name + ' Chronotype';
   document.getElementById('chronoDesc').innerHTML = 'Ideal bedtime: ' + cd.bed + ' • Wake: ' + cd.wake;
   
-  // Ayurvedic tips based on dosha
+  // Ayurvedic tips
   const dosha = document.getElementById('dosha').value;
   const doshaTips = {
     vata: { tip: currentLang === 'hi' ? 'वात: गर्म तेल मालिश, नियमित समय सार्थक।' : 'Vata: Warm oil massage before bed. Regular schedule is essential.' },
@@ -1074,6 +1173,14 @@ document.getElementById('sleepTime').addEventListener('change', calculateSleep);
 document.getElementById('fallAsleep').addEventListener('change', calculateSleep);
 document.getElementById('chronotype').addEventListener('change', calculateSleep);
 document.getElementById('dosha').addEventListener('change', calculateSleep);
+
+// ===== ATTACH LANGUAGE HANDLER FOR GLOBAL LANGUAGE BUTTONS =====
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const lang = btn.getAttribute('data-lang');
+    if (lang) setLanguage(lang);
+  });
+});
 
 // ===== SCROLL TOP =====
 window.addEventListener('scroll', () => {
