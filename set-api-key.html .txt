@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Set API Key</title>
+</head>
+<body>
+<h1>🔑 Set Gemini API Key</h1>
+<p>यह key सिर्फ आपके ब्राउज़र में store होगी (localStorage)</p>
+<input type="password" id="apiKey" placeholder="Enter your Gemini API key" style="width:400px;padding:12px;border-radius:8px;border:1px solid #ccc;">
+<button onclick="setKey()" style="padding:12px 24px;background:#10b981;color:white;border:none;border-radius:8px;cursor:pointer;">Save Key</button>
+<p id="status"></p>
+<script>
+function setKey() {
+var key = document.getElementById('apiKey').value.trim();
+if (key) {
+localStorage.setItem('gemini_api_key', key);
+document.getElementById('status').innerHTML = '✅ Key saved successfully!';
+document.getElementById('status').style.color = '#10b981';
+console.log('🔑 API key saved to localStorage');
+} else {
+document.getElementById('status').innerHTML = '⚠️ Please enter a valid API key';
+document.getElementById('status').style.color = '#ef4444';
+}
+}
+</script>
+</body>
+</html>
