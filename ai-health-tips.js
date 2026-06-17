@@ -8,7 +8,7 @@
     
     // ========== API KEY (Direct from localStorage) ==========
     // ✅ यह localStorage से key लेगी – कोई GitHub Actions नहीं
-    // 💡 Set key: localStorage.setItem("gemini_api_key", "YOUR_KEY")
+    // 💡 Set key: localStorage.setItem("gemini_api_key", "AQ.Ab8RN6KY5-9IP-3BO1Omvat_SCzRPIS6a2g96lmmlh3iHdCHgQ")
     var GEMINI_API_KEY = localStorage.getItem('gemini_api_key') || '';
     var GEMINI_MODEL = 'gemini-1.5-flash';
     
