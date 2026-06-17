@@ -1,18 +1,19 @@
 // ============================================
 // ai-health-tips.js - Direct localStorage Method
-// Version: 5.0 (No GitHub Actions Required)
+// Version: 6.0 (Working with set-api-key.html)
 // ============================================
 
 (function() {
     'use strict';
     
     // ========== API KEY (Direct from localStorage) ==========
-    // ✅ यह localStorage से key लेगी – कोई GitHub Actions नहीं
-    // 💡 Set key: localStorage.setItem("gemini_api_key", "AQ.Ab8RN6KY5-9IP-3BO1Omvat_SCzRPIS6a2g96lmmlh3iHdCHgQ")
-    var GEMINI_API_KEY = localStorage.getItem('gemini_api_key') || '';
-    var GEMINI_MODEL = 'gemini-1.5-flash';
+    // ✅ यह localStorage से key लेगी
+    // 💡 Key set करने के लिए set-api-key.html use करें
+    function getApiKey() {
+        return localStorage.getItem('AQ.Ab8RN6KY5-9IP-3BO1Omvat_SCzRPIS6a2g96lmmlh3iHdCHgQ') || '';
+    }
     
-    // ========== GLOBAL STATE ==========
+    var GEMINI_MODEL = 'gemini-1.5-flash';
     var currentLanguage = 'en';
     var isInitialized = false;
     
@@ -66,7 +67,10 @@
             errorTitle: '⚠️ Tips Unavailable',
             errorMsg: 'Unable to generate tips at this moment.',
             tryAgain: 'Try Again',
-            loading: 'Generating your personalized health tips...'
+            loading: 'Generating your personalized health tips...',
+            noKey: '⚠️ API Key Missing',
+            noKeyMsg: 'Please set your Gemini API key first.',
+            noKeyHint: 'Visit /set-api-key.html to set your key.'
         },
         hi: {
             title: '✨ AI-जनरेटेड स्वास्थ्य सुझाव',
@@ -74,7 +78,10 @@
             errorTitle: '⚠️ सुझाव अनुपलब्ध',
             errorMsg: 'इस समय सुझाव उत्पन्न करने में असमर्थ।',
             tryAgain: 'पुनः प्रयास करें',
-            loading: 'आपके व्यक्तिगत स्वास्थ्य सुझाव तैयार किए जा रहे हैं...'
+            loading: 'आपके व्यक्तिगत स्वास्थ्य सुझाव तैयार किए जा रहे हैं...',
+            noKey: '⚠️ API Key नहीं मिली',
+            noKeyMsg: 'कृपया पहले अपनी Gemini API key set करें।',
+            noKeyHint: 'Key set करने के लिए /set-api-key.html पर जाएँ।'
         },
         es: {
             title: '✨ Consejos de Salud Generados por IA',
@@ -82,7 +89,10 @@
             errorTitle: '⚠️ Consejos no disponibles',
             errorMsg: 'No se pueden generar consejos en este momento.',
             tryAgain: 'Reintentar',
-            loading: 'Generando tus consejos de salud personalizados...'
+            loading: 'Generando tus consejos de salud personalizados...',
+            noKey: '⚠️ Falta la clave API',
+            noKeyMsg: 'Configure su clave API de Gemini primero.',
+            noKeyHint: 'Visite /set-api-key.html para configurar su clave.'
         },
         fr: {
             title: '✨ Conseils Santé Générés par IA',
@@ -90,7 +100,10 @@
             errorTitle: '⚠️ Conseils indisponibles',
             errorMsg: 'Impossible de générer des conseils pour le moment.',
             tryAgain: 'Réessayer',
-            loading: 'Génération de vos conseils santé personnalisés...'
+            loading: 'Génération de vos conseils santé personnalisés...',
+            noKey: '⚠️ Clé API manquante',
+            noKeyMsg: 'Veuillez d\'abord configurer votre clé API Gemini.',
+            noKeyHint: 'Visitez /set-api-key.html pour configurer votre clé.'
         },
         de: {
             title: '✨ KI-generierte Gesundheitstipps',
@@ -98,7 +111,10 @@
             errorTitle: '⚠️ Tipps nicht verfügbar',
             errorMsg: 'Tipps können derzeit nicht generiert werden.',
             tryAgain: 'Erneut versuchen',
-            loading: 'Generiere Ihre personalisierten Gesundheitstipps...'
+            loading: 'Generiere Ihre personalisierten Gesundheitstipps...',
+            noKey: '⚠️ API-Schlüssel fehlt',
+            noKeyMsg: 'Bitte legen Sie zuerst Ihren Gemini API-Schlüssel fest.',
+            noKeyHint: 'Besuchen Sie /set-api-key.html, um Ihren Schlüssel festzulegen.'
         },
         ar: {
             title: '✨ نصائح صحية من الذكاء الاصطناعي',
@@ -106,7 +122,10 @@
             errorTitle: '⚠️ النصائح غير متوفرة',
             errorMsg: 'غير قادر على إنشاء النصائح في هذه اللحظة.',
             tryAgain: 'حاول مرة أخرى',
-            loading: 'جاري إنشاء نصائحك الصحية المخصصة...'
+            loading: 'جاري إنشاء نصائحك الصحية المخصصة...',
+            noKey: '⚠️ مفتاح API مفقود',
+            noKeyMsg: 'يرجى تعيين مفتاح Gemini API الخاص بك أولاً.',
+            noKeyHint: 'قم بزيارة /set-api-key.html لتعيين المفتاح الخاص بك.'
         }
     };
     
@@ -290,14 +309,16 @@
     
     // ========== CALL GEMINI API ==========
     async function callGeminiAPI(prompt) {
-        if (!GEMINI_API_KEY || GEMINI_API_KEY === '') {
-            throw new Error('API key not configured! Please set localStorage.gemini_api_key');
+        var apiKey = getApiKey();
+        
+        if (!apiKey || apiKey === '') {
+            throw new Error('API_KEY_MISSING');
         }
         
         console.log('📤 Sending request to Gemini API...');
         
         var response = await fetch(
-            'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + GEMINI_API_KEY,
+            'https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + apiKey,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -343,19 +364,21 @@
             return;
         }
         
+        currentLanguage = detectLanguage();
+        var msg = langMessages[currentLanguage] || langMessages.en;
+        
         // Check if API key is set
-        if (!GEMINI_API_KEY || GEMINI_API_KEY === '') {
+        var apiKey = getApiKey();
+        if (!apiKey || apiKey === '') {
             content.innerHTML = '<div style="padding:16px;background:#fef2f2;border-radius:12px;border-left:4px solid #ef4444;">' +
-                '<div style="color:#dc2626;font-weight:600;margin-bottom:8px;">⚠️ API Key Missing</div>' +
-                '<p style="color:#991b1b;margin:0;font-size:0.9rem;">Please set your Gemini API key first.</p>' +
-                '<p style="color:#6b7280;margin:5px 0;font-size:0.8rem;">Run in console: localStorage.setItem("gemini_api_key", "YOUR_KEY")</p>' +
+                '<div style="color:#dc2626;font-weight:600;margin-bottom:8px;">' + msg.noKey + '</div>' +
+                '<p style="color:#991b1b;margin:0;font-size:0.9rem;">' + msg.noKeyMsg + '</p>' +
+                '<p style="color:#6b7280;margin:5px 0 8px;font-size:0.8rem;">' + msg.noKeyHint + '</p>' +
+                '<a href="/set-api-key.html" style="display:inline-block;padding:8px 20px;background:#3b82f6;color:white;border-radius:8px;text-decoration:none;font-weight:600;font-size:13px;">🔑 Set API Key</a>' +
                 '</div>';
             resultCard.style.display = 'block';
             return;
         }
-        
-        currentLanguage = detectLanguage();
-        var msg = langMessages[currentLanguage] || langMessages.en;
         
         btn.style.display = 'none';
         loading.style.display = 'block';
@@ -394,9 +417,11 @@
         } catch (error) {
             console.error('❌ AI Error:', error.message);
             
+            var errorMsg = error.message === 'API_KEY_MISSING' ? msg.noKeyMsg : msg.errorMsg;
+            
             content.innerHTML = '<div style="padding:16px;background:#fef2f2;border-radius:12px;border-left:4px solid #ef4444;">' +
                 '<div style="color:#dc2626;font-weight:600;margin-bottom:8px;">' + msg.errorTitle + '</div>' +
-                '<p style="color:#991b1b;margin:0;font-size:0.9rem;">' + msg.errorMsg + '</p>' +
+                '<p style="color:#991b1b;margin:0;font-size:0.9rem;">' + errorMsg + '</p>' +
                 '<p style="color:#6b7280;margin:5px 0 0;font-size:0.8rem;">Error: ' + error.message.substring(0, 80) + '</p>' +
                 '<button onclick="location.reload()" style="margin-top:12px;padding:8px 18px;background:#dc2626;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + msg.tryAgain + '</button>' +
                 '</div>';
@@ -439,9 +464,10 @@
             }
         }
         
-        if (!GEMINI_API_KEY || GEMINI_API_KEY === '') {
+        var apiKey = getApiKey();
+        if (!apiKey || apiKey === '') {
             console.warn('⚠️ API key not configured.');
-            console.warn('💡 Set key: localStorage.setItem("gemini_api_key", "YOUR_KEY")');
+            console.warn('💡 Visit /set-api-key.html to set your key');
         } else {
             console.log('🔑 API key configured successfully!');
         }
@@ -454,18 +480,12 @@
     window.AIHealthTips = {
         init: initAI,
         getAdvice: getAIAdvice,
+        getApiKey: getApiKey,
         setLanguage: function(lang) {
             if (['en', 'hi', 'es', 'fr', 'de', 'ja', 'ar'].includes(lang)) {
                 currentLanguage = lang;
                 try { localStorage.setItem('healthcalc_language', lang); } catch(e) {}
                 console.log('🌐 AI language set to:', lang);
-            }
-        },
-        setApiKey: function(key) {
-            if (key) {
-                GEMINI_API_KEY = key;
-                try { localStorage.setItem('gemini_api_key', key); } catch(e) {}
-                console.log('🔑 API key updated!');
             }
         }
     };
@@ -477,7 +497,6 @@
         initAI();
     }
     
-    console.log('✅ AI Health Tips Module Loaded v5.0 (Direct localStorage Method)');
-    console.log('🔑 API Key set:', !!(GEMINI_API_KEY && GEMINI_API_KEY !== ''));
+    console.log('✅ AI Health Tips Module Loaded v6.0 (with set-api-key.html support)');
     
 })();
