@@ -10,7 +10,7 @@
 // ==================== CONFIGURATION ====================
 const CONFIG = {
 // YOUR GEMINI API KEY HERE (Get free key: https://makersuite.google.com/app/apikey)
-GEMINI_API_KEY: 'YOUR_GEMINI_API_KEY_HERE',
+GEMINI_API_KEY: 'AQ.Ab8RN6LDS4d5JlGetR1hd4SBCu0X265Sv6q9w3lZUcvr-KZyrg',
 
 // Feature Flags
 CHAT_ENABLED: true,
@@ -60,7 +60,7 @@ return cached.response;
 }
 
 // Validate API key
-if (!CONFIG.GEMINI_API_KEY || CONFIG.GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+if (!CONFIG.GEMINI_API_KEY || CONFIG.GEMINI_API_KEY === 'AQ.Ab8RN6LDS4d5JlGetR1hd4SBCu0X265Sv6q9w3lZUcvr-KZyrg') {
 return this.getFallbackResponse(userQuestion, pageContext);
 }
 
