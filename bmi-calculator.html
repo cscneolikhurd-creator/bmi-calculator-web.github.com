@@ -6,10 +6,10 @@
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
 <!-- Primary Meta Tags (SEO - International) -->
-<title>BMI Calculator: US/UK/CA/AU Standards | Visceral Fat | AI Health Tips | HealthCalc</title>
-<meta name="title" content="BMI Calculator with AI: International Standards, Visceral Fat, Health Score | Free">
-<meta name="description" content="Advanced BMI calculator with US, UK, Canada, Australia guidelines. Get visceral fat risk assessment, health score, age comparison graph, and personalized AI health tips. 7 languages. 100% free.">
-<meta name="keywords" content="BMI calculator, body mass index, visceral fat, health score, AI health tips, BMI chart, weight loss calculator, BMI for women, BMI for men, NHS BMI, CDC BMI">
+<title>BMI Calculator: US/UK/CA/AU Standards | Visceral Fat | Free Health Tools | HealthCalc</title>
+<meta name="title" content="BMI Calculator: International Standards, Visceral Fat, Health Score | Free">
+<meta name="description" content="Advanced BMI calculator with US, UK, Canada, Australia guidelines. Get visceral fat risk assessment, health score, age comparison graph. 7 languages. 100% free. Chat with our AI assistant for tips.">
+<meta name="keywords" content="BMI calculator, body mass index, visceral fat, health score, BMI chart, weight loss calculator, BMI for women, BMI for men, NHS BMI, CDC BMI, AI health assistant">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/bmi-calculator.html">
@@ -25,8 +25,8 @@
 <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/bmi-calculator.html">
 
 <!-- Open Graph / Facebook -->
-<meta property="og:title" content="Professional BMI Calculator with AI Health Tips">
-<meta property="og:description" content="Know your BMI with international guidelines. Get visceral fat risk, health score, and AI-powered personalized advice for US, UK, Canada, Australia.">
+<meta property="og:title" content="Professional BMI Calculator | International Standards">
+<meta property="og:description" content="Know your BMI with international guidelines. Get visceral fat risk, health score, and chat with AI assistant for tips. Free for US, UK, Canada, Australia.">
 <meta property="og:url" content="https://healthcalc.in/bmi-calculator.html">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://healthcalc.in/images/bmi-calculator-og.jpg">
@@ -37,8 +37,8 @@
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BMI Calculator | International Standards & AI Tips">
-<meta name="twitter:description" content="Free BMI calculator with visceral fat, health score, and AI advice for US, UK, Canada, Australia.">
+<meta name="twitter:title" content="BMI Calculator | International Standards">
+<meta name="twitter:description" content="Free BMI calculator with visceral fat, health score. Chat with AI for tips.">
 
 <!-- Schema Markup -->
 <script type="application/ld+json">
@@ -47,12 +47,12 @@
   "@type": "MedicalWebPage",
   "name": "International BMI Calculator",
   "url": "https://healthcalc.in/bmi-calculator.html",
-  "description": "BMI calculator with Asian-specific cutoff (23+), visceral fat assessment, health score, and AI-powered personalized health tips for global audiences.",
+  "description": "BMI calculator with Asian-specific cutoff (23+), visceral fat assessment, health score for global audiences. AI assistant available for health tips.",
   "author": {"@type": "Organization", "name": "HealthCalc"},
   "about": {"@type": "MedicalCondition", "name": "Body Mass Index"},
   "inLanguage": ["en","hi","es","fr","de","ja","ar"],
   "audience": {"@type": "Audience", "geographicArea": {"@type": "Country", "name": ["US","UK","CA","AU"]}},
-  "dateModified": "2026-06-09"
+  "dateModified": "2026-06-18"
 }
 </script>
 
@@ -193,6 +193,9 @@ body {
 .badge.asian-badge {
   background: linear-gradient(135deg, rgba(255,153,51,0.8), rgba(255,183,77,0.8));
 }
+.badge.chat-badge {
+  background: linear-gradient(135deg, rgba(16,185,129,0.8), rgba(5,150,105,0.8));
+}
 
 /* Main Grid */
 .main-content {
@@ -308,6 +311,37 @@ body {
   margin: 15px 0;
   font-size: 12px;
   border-left: 4px solid var(--primary);
+}
+
+/* Chat Bot CTA */
+.chat-cta-box {
+  background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+  border: 2px dashed var(--success);
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  margin: 18px 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.chat-cta-box:hover {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16,185,129,0.2);
+}
+.chat-cta-box .cta-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+.chat-cta-box .cta-text {
+  font-weight: 700;
+  color: var(--dark);
+  font-size: 14px;
+}
+.chat-cta-box .cta-sub {
+  font-size: 11px;
+  color: var(--gray-600);
+  margin-top: 4px;
 }
 
 .calculate-btn {
@@ -455,47 +489,37 @@ body {
   .health-cards { grid-template-columns: 1fr; }
 }
 
-.ai-advice-section {
+/* Chat CTA in Results */
+.chat-cta-results {
   margin: 20px 0;
   padding: 20px;
-  background: linear-gradient(135deg, #f0f4ff, #e8edff);
+  background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
   border-radius: var(--radius-lg);
-  border: 1px dashed var(--primary);
+  border: 2px solid var(--success);
+  text-align: center;
 }
-.ai-advice-section h4 {
-  color: var(--primary-dark);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 18px;
+.chat-cta-results h4 {
+  color: var(--dark);
+  margin-bottom: 10px;
+  font-size: 16px;
 }
-.get-ai-btn {
+.chat-cta-btn {
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 60px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  transition: all 0.3s;
 }
-.get-ai-btn:hover {
-  transform: scale(1.02);
-  box-shadow: 0 5px 15px rgba(16,185,129,0.3);
-}
-.ai-loading { display: none; text-align: center; padding: 15px; }
-.ai-loading i { font-size: 32px; color: var(--primary); margin-bottom: 10px; }
-.ai-result-card {
-  background: white;
-  padding: 16px;
-  border-radius: var(--radius-md);
-  margin-top: 15px;
-  display: none;
-  border-left: 4px solid var(--primary);
+.chat-cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(16,185,129,0.4);
 }
 
 .tools-crosslink {
@@ -614,8 +638,6 @@ body {
   margin-top: 20px;
 }
 .footer-note a { color: var(--primary); text-decoration: none; }
-
-.error-msg { color: var(--danger); }
 </style>
 </head>
 <body>
@@ -623,8 +645,8 @@ body {
   
   <!-- Header -->
   <div class="header">
-    <h1>⚖️ International BMI Calculator <span>AI & 7 Languages</span></h1>
-    <p id="headerDesc">Know your BMI with global standards, visceral fat risk, health score, and AI-powered personalized health tips for US, UK, Canada, Australia.</p>
+    <h1>⚖️ International BMI Calculator <span>7 Languages</span></h1>
+    <p id="headerDesc">Know your BMI with global standards, visceral fat risk, health score for US, UK, Canada, Australia. Use AI chat for personalized tips!</p>
     
     <div class="lang-country-row">
       <div class="lang-dropdown">
@@ -651,7 +673,7 @@ body {
     <div class="badge-container">
       <span class="badge"><i class="fas fa-chart-line"></i> Visceral Fat</span>
       <span class="badge asian-badge"><i class="fas fa-flag-checkered"></i> Asian BMI (23+)</span>
-      <span class="badge"><i class="fas fa-robot"></i> AI Tips</span>
+      <span class="badge chat-badge"><i class="fas fa-robot"></i> AI Chat Available</span>
       <span class="badge"><i class="fas fa-globe"></i> 7 Languages</span>
       <span class="badge"><i class="fas fa-chart-simple"></i> Health Score</span>
     </div>
@@ -688,6 +710,13 @@ body {
       <div class="asian-bmi-note" id="asianNoteText"><i class="fas fa-info-circle"></i> ⚠️ For Asians (including Indians), overweight starts at BMI 23, obesity at 25 – lower thresholds than WHO standard.</div>
       
       <div class="health-authority-note" id="healthNote">📋 Based on CDC guidelines. <a href="#" target="_blank">Learn more</a></div>
+      
+      <!-- Chat Bot CTA -->
+      <div class="chat-cta-box" onclick="openAIChat()">
+        <div class="cta-icon">💬</div>
+        <div class="cta-text">Need Health Tips? Chat with AI!</div>
+        <div class="cta-sub">Click here or use the chat button →</div>
+      </div>
       
       <div class="input-group"><label><i class="fas fa-person-walking"></i> <span id="activityLabel">Activity Level</span></label><select id="activity"><option value="sedentary" id="sedentaryOpt">Sedentary</option><option value="light" id="lightOpt" selected>Light (1-3 days/week)</option><option value="moderate" id="moderateOpt">Moderate (3-5 days/week)</option><option value="active" id="activeOpt">Active (daily)</option><option value="very-active" id="veryActiveOpt">Very Active (athlete)</option></select></div>
       
@@ -728,12 +757,13 @@ body {
         <div class="health-card"><span class="emoji">❤️</span><div class="value" id="health-score">--</div><div class="label" id="healthScoreLabel">Health Score</div></div>
       </div>
       
-      <!-- AI Advice -->
-      <div class="ai-advice-section">
-        <h4><i class="fas fa-robot"></i> <span id="aiTitle">🤖 AI Health Tips for You</span></h4>
-        <button class="get-ai-btn" id="getAiBtn" onclick="fetchAiAdvice()"><i class="fas fa-magic"></i> <span id="aiBtnText">Get Personalized Advice</span></button>
-        <div class="ai-loading" id="aiLoading"><i class="fas fa-spinner fa-pulse"></i><br><span id="aiLoadingText">Generating your health tips...</span></div>
-        <div class="ai-result-card" id="aiResultCard"><div id="aiAdviceContent"></div></div>
+      <!-- Chat CTA in Results -->
+      <div class="chat-cta-results">
+        <h4><i class="fas fa-robot"></i> <span id="chatCtaTitle">Want Personalized Health Tips?</span></h4>
+        <p style="font-size:13px; color:var(--gray-600); margin-bottom:12px;" id="chatCtaSub">Chat with our AI assistant for diet, exercise, and lifestyle recommendations based on your results!</p>
+        <button class="chat-cta-btn" onclick="openAIChat()">
+          💬 Chat with AI Assistant
+        </button>
       </div>
       
       <!-- Cross-linking -->
@@ -756,7 +786,7 @@ body {
       </div>
       
       <div id="recommendation-box" class="recommendation-box">
-        <div class="recommendation-text" id="recommendation-text">Enter your details to get personalized recommendations</div>
+        <div class="recommendation-text" id="recommendation-text">Enter your details to see your results. Then chat with AI for personalized tips!</div>
       </div>
       
       <div class="footer-note">
@@ -768,14 +798,21 @@ body {
 </div>
 
 <script>
-// ===== API KEY =====
-var GEMINI_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
-var GEMINI_MODEL = 'gemini-1.5-flash';
+// ===== GLOBAL =====
+var currentUnit = 'metric';
+var currentLang = 'en';
+var currentCountry = 'us';
 
-// ===== TRANSLATIONS =====
+const countryData = {
+  us: { name: 'USA', authority: 'CDC', link: 'https://www.cdc.gov/healthyweight/assessing/bmi/', guideline: 'CDC: Healthy BMI 18.5–24.9' },
+  uk: { name: 'UK', authority: 'NHS', link: 'https://www.nhs.uk/live-well/healthy-weight/bmi-calculator/', guideline: 'NHS: BMI 18.5–24.9' },
+  ca: { name: 'Canada', authority: 'Health Canada', link: 'https://www.canada.ca/en/health-canada.html', guideline: 'Health Canada: 18.5–24.9' },
+  au: { name: 'Australia', authority: 'Australian Dept of Health', link: 'https://www.health.gov.au/health-topics/overweight-and-obesity', guideline: 'Australian guidelines: 18.5–24.9' }
+};
+
 const translations = {
   en: {
-    headerDesc: 'Know your BMI with global standards, visceral fat risk, health score, and AI-powered tips for US, UK, Canada, Australia.',
+    headerDesc: 'Know your BMI with global standards, visceral fat risk, health score for US, UK, Canada, Australia. Use AI chat for personalized tips!',
     detailsTitle: 'Your Details', weightLabel: 'Weight (kg)', heightLabel: 'Height (cm)',
     weightLbsLabel: 'Weight (lbs)', heightInLabel: 'Height (inches)', ageLabel: 'Age (years)',
     genderLabel: 'Gender', maleOpt: 'Male', femaleOpt: 'Female', ethnicityLabel: 'Ethnicity',
@@ -787,13 +824,14 @@ const translations = {
     normalCat: 'Normal', overweightCat: 'Overweight', obeseCat: 'Obese',
     visceralLabel: 'Visceral Fat Risk', categoryLabel: 'BMI Category (WHO)',
     asianCatLabel: 'Asian Standard', healthScoreLabel: 'Health Score',
-    aiTitle: '🤖 AI Health Tips for You', aiBtnText: 'Get Personalized Advice',
-    aiLoadingText: 'Generating your health tips...', exploreTitle: '🔗 Explore More Free Tools',
+    chatCtaTitle: 'Want Personalized Health Tips?',
+    chatCtaSub: 'Chat with our AI assistant for diet, exercise, and lifestyle recommendations based on your results!',
+    exploreTitle: '🔗 Explore More Free Tools',
     graphTitle: 'Your BMI vs. Age Group Average', 
     disclaimerText: '🏥 This calculator provides estimates. Always consult a healthcare professional.'
   },
   hi: {
-    headerDesc: 'भारतीय और अंतर्राष्ट्रीय मानकों (23+), विसेरल फैट, हेल्थ स्कोर और AI टिप्स के साथ अपना BMI जानें।',
+    headerDesc: 'वैश्विक मानकों, विसेरल फैट जोखिम, हेल्थ स्कोर के साथ अपना BMI जानें। AI चैट से पर्सनलाइज़्ड टिप्स पाएं!',
     detailsTitle: 'आपकी जानकारी', weightLabel: 'वज़न (किलो)', heightLabel: 'ऊंचाई (सेमी)',
     weightLbsLabel: 'वज़न (पाउंड)', heightInLabel: 'ऊंचाई (इंच)', ageLabel: 'उम्र (वर्ष)',
     genderLabel: 'लिंग', maleOpt: 'पुरुष', femaleOpt: 'महिला', ethnicityLabel: 'जातीयता',
@@ -805,13 +843,14 @@ const translations = {
     normalCat: 'सामान्य', overweightCat: 'अधिक वज़न', obeseCat: 'मोटापा',
     visceralLabel: 'विसेरल फैट जोखिम', categoryLabel: 'BMI श्रेणी (WHO)',
     asianCatLabel: 'एशियाई मानक', healthScoreLabel: 'हेल्थ स्कोर',
-    aiTitle: '🤖 आपके लिए AI टिप्स', aiBtnText: 'पर्सनलाइज़्ड सलाह लें',
-    aiLoadingText: 'टिप्स बन रहे हैं...', exploreTitle: '🔗 और मुफ़्त टूल',
+    chatCtaTitle: 'पर्सनलाइज़्ड हेल्थ टिप्स चाहिए?',
+    chatCtaSub: 'अपने परिणामों के आधार पर डाइट, एक्सरसाइज़ और लाइफस्टाइल की सलाह के लिए AI असिस्टेंट से चैट करें!',
+    exploreTitle: '🔗 और मुफ़्त टूल',
     graphTitle: 'आपका BMI बनाम आयु वर्ग',
     disclaimerText: '🏥 यह अनुमान देता है। डॉक्टर से सलाह लें।'
   },
-  es: { /* ... same as before but with updated keys ... */ 
-    headerDesc: 'Conozca su IMC con estándares globales, grasa visceral, puntuación de salud y consejos de IA para EE.UU., Reino Unido, Canadá, Australia.',
+  es: {
+    headerDesc: 'Conozca su IMC con estándares globales, grasa visceral, puntuación de salud. ¡Use el chat AI para consejos!',
     detailsTitle: 'Sus Datos', weightLabel: 'Peso (kg)', heightLabel: 'Altura (cm)',
     weightLbsLabel: 'Peso (lbs)', heightInLabel: 'Altura (pulg)', ageLabel: 'Edad',
     genderLabel: 'Género', maleOpt: 'Hombre', femaleOpt: 'Mujer', ethnicityLabel: 'Etnia',
@@ -822,26 +861,79 @@ const translations = {
     bmiLabel: 'Su IMC', underweightCat: 'Bajo peso', normalCat: 'Normal',
     overweightCat: 'Sobrepeso', obeseCat: 'Obeso', visceralLabel: 'Grasa Visceral',
     categoryLabel: 'Categoría IMC', asianCatLabel: 'Estándar Asiático', healthScoreLabel: 'Puntuación',
-    aiTitle: '🤖 Consejos IA', aiBtnText: 'Obtener Consejos', aiLoadingText: 'Generando...',
+    chatCtaTitle: '¿Quiere Consejos Personalizados?',
+    chatCtaSub: '¡Chatee con nuestro asistente AI para recomendaciones de dieta y ejercicio!',
     exploreTitle: '🔗 Más Herramientas', graphTitle: 'IMC vs Edad',
     disclaimerText: '🏥 Estimaciones. Consulte a un médico.'
   },
-  fr: { /* similar */ },
-  de: { /* similar */ },
-  ja: { /* similar */ },
-  ar: { /* similar */ }
-};
-
-// ===== GLOBAL =====
-var currentUnit = 'metric';
-var currentLang = 'en';
-var currentCountry = 'us';
-
-const countryData = {
-  us: { name: 'USA', authority: 'CDC', link: 'https://www.cdc.gov/healthyweight/assessing/bmi/', guideline: 'CDC: Healthy BMI 18.5–24.9' },
-  uk: { name: 'UK', authority: 'NHS', link: 'https://www.nhs.uk/live-well/healthy-weight/bmi-calculator/', guideline: 'NHS: BMI 18.5–24.9' },
-  ca: { name: 'Canada', authority: 'Health Canada', link: 'https://www.canada.ca/en/health-canada.html', guideline: 'Health Canada: 18.5–24.9' },
-  au: { name: 'Australia', authority: 'Australian Dept of Health', link: 'https://www.health.gov.au/health-topics/overweight-and-obesity', guideline: 'Australian guidelines: 18.5–24.9' }
+  fr: {
+    headerDesc: 'Connaissez votre IMC avec les normes mondiales. Utilisez le chat IA pour des conseils!',
+    detailsTitle: 'Vos Détails', weightLabel: 'Poids (kg)', heightLabel: 'Taille (cm)',
+    weightLbsLabel: 'Poids (lbs)', heightInLabel: 'Taille (pouces)', ageLabel: 'Âge',
+    genderLabel: 'Genre', maleOpt: 'Homme', femaleOpt: 'Femme', ethnicityLabel: 'Ethnicité',
+    asianOpt: 'Asiatique/Indien', caucasianOpt: 'Caucasien', africanOpt: 'Africain', hispanicOpt: 'Hispanique',
+    activityLabel: 'Activité', sedentaryOpt: 'Sédentaire', lightOpt: 'Léger',
+    moderateOpt: 'Modéré', activeOpt: 'Actif', veryActiveOpt: 'Très Actif',
+    calculateBtnText: 'Calculer', resetBtnText: 'Réinitialiser', resultsTitle: 'Résultats',
+    bmiLabel: 'Votre IMC', underweightCat: 'Insuffisance pondérale', normalCat: 'Normal',
+    overweightCat: 'Surpoids', obeseCat: 'Obèse', visceralLabel: 'Graisse Viscérale',
+    categoryLabel: 'Catégorie IMC', asianCatLabel: 'Norme Asiatique', healthScoreLabel: 'Score Santé',
+    chatCtaTitle: 'Conseils Personnalisés?',
+    chatCtaSub: 'Discutez avec notre assistant IA pour des recommandations!',
+    exploreTitle: '🔗 Plus d\'Outils', graphTitle: 'IMC vs Âge',
+    disclaimerText: '🏥 Estimations. Consultez un médecin.'
+  },
+  de: {
+    headerDesc: 'Kennen Sie Ihren BMI mit globalen Standards. Nutzen Sie den AI-Chat für Tipps!',
+    detailsTitle: 'Ihre Daten', weightLabel: 'Gewicht (kg)', heightLabel: 'Größe (cm)',
+    weightLbsLabel: 'Gewicht (lbs)', heightInLabel: 'Größe (Zoll)', ageLabel: 'Alter',
+    genderLabel: 'Geschlecht', maleOpt: 'Mann', femaleOpt: 'Frau', ethnicityLabel: 'Ethnizität',
+    asianOpt: 'Asiatisch/Indisch', caucasianOpt: 'Kaukasisch', africanOpt: 'Afrikanisch', hispanicOpt: 'Hispanisch',
+    activityLabel: 'Aktivität', sedentaryOpt: 'Sitzend', lightOpt: 'Leicht',
+    moderateOpt: 'Mäßig', activeOpt: 'Aktiv', veryActiveOpt: 'Sehr Aktiv',
+    calculateBtnText: 'Berechnen', resetBtnText: 'Zurücksetzen', resultsTitle: 'Ergebnisse',
+    bmiLabel: 'Ihr BMI', underweightCat: 'Untergewicht', normalCat: 'Normal',
+    overweightCat: 'Übergewicht', obeseCat: 'Fettleibig', visceralLabel: 'Viszerales Fett',
+    categoryLabel: 'BMI-Kategorie', asianCatLabel: 'Asiatischer Standard', healthScoreLabel: 'Gesundheitswert',
+    chatCtaTitle: 'Persönliche Tipps?',
+    chatCtaSub: 'Chatten Sie mit unserem KI-Assistenten für Empfehlungen!',
+    exploreTitle: '🔗 Weitere Tools', graphTitle: 'BMI vs Alter',
+    disclaimerText: '🏥 Schätzungen. Konsultieren Sie einen Arzt.'
+  },
+  ja: {
+    headerDesc: 'グローバル基準でBMIを確認。AIチャットでアドバイスを！',
+    detailsTitle: 'あなたの情報', weightLabel: '体重 (kg)', heightLabel: '身長 (cm)',
+    weightLbsLabel: '体重 (lbs)', heightInLabel: '身長 (インチ)', ageLabel: '年齢',
+    genderLabel: '性別', maleOpt: '男性', femaleOpt: '女性', ethnicityLabel: '民族',
+    asianOpt: 'アジア/インド', caucasianOpt: '白人', africanOpt: 'アフリカ', hispanicOpt: 'ヒスパニック',
+    activityLabel: '活動レベル', sedentaryOpt: '座りがち', lightOpt: '軽い',
+    moderateOpt: '中程度', activeOpt: '活発', veryActiveOpt: '非常に活発',
+    calculateBtnText: '計算する', resetBtnText: 'リセット', resultsTitle: '結果',
+    bmiLabel: 'あなたのBMI', underweightCat: '低体重', normalCat: '標準',
+    overweightCat: '過体重', obeseCat: '肥満', visceralLabel: '内臓脂肪',
+    categoryLabel: 'BMIカテゴリー', asianCatLabel: 'アジア基準', healthScoreLabel: '健康スコア',
+    chatCtaTitle: 'パーソナライズされたヒント?',
+    chatCtaSub: 'AIアシスタントとチャットしてアドバイスを受けましょう！',
+    exploreTitle: '🔗 その他のツール', graphTitle: 'BMI vs 年齢',
+    disclaimerText: '🏥 推定値です。医師に相談してください。'
+  },
+  ar: {
+    headerDesc: 'اعرف مؤشر كتلة جسمك مع المعايير العالمية. استخدم الدردشة AI للحصول على نصائح!',
+    detailsTitle: 'بياناتك', weightLabel: 'الوزن (كجم)', heightLabel: 'الطول (سم)',
+    weightLbsLabel: 'الوزن (رطل)', heightInLabel: 'الطول (بوصة)', ageLabel: 'العمر',
+    genderLabel: 'الجنس', maleOpt: 'ذكر', femaleOpt: 'أنثى', ethnicityLabel: 'العرق',
+    asianOpt: 'آسيوي/هندي', caucasianOpt: 'قوقازي', africanOpt: 'أفريقي', hispanicOpt: 'هسباني',
+    activityLabel: 'النشاط', sedentaryOpt: 'خامل', lightOpt: 'خفيف',
+    moderateOpt: 'معتدل', activeOpt: 'نشط', veryActiveOpt: 'نشط جداً',
+    calculateBtnText: 'احسب', resetBtnText: 'إعادة تعيين', resultsTitle: 'النتائج',
+    bmiLabel: 'مؤشر كتلة جسمك', underweightCat: 'نقص الوزن', normalCat: 'طبيعي',
+    overweightCat: 'زيادة الوزن', obeseCat: 'سمنة', visceralLabel: 'الدهون الحشوية',
+    categoryLabel: 'فئة مؤشر كتلة الجسم', asianCatLabel: 'المعيار الآسيوي', healthScoreLabel: 'نقاط الصحة',
+    chatCtaTitle: 'نصائح مخصصة؟',
+    chatCtaSub: 'تحدث مع مساعد AI للحصول على توصيات!',
+    exploreTitle: '🔗 المزيد من الأدوات', graphTitle: 'مؤشر كتلة الجسم vs العمر',
+    disclaimerText: '🏥 تقديرات. استشر الطبيب.'
+  }
 };
 
 // ===== INITIALIZE =====
@@ -865,7 +957,6 @@ function setCountry(country) {
   currentCountry = country;
   document.getElementById('countrySelect').value = country;
   updateHealthNote();
-  // Set default unit based on country
   if (country === 'us') {
     if (currentUnit !== 'imperial') setUnit('imperial');
   } else {
@@ -895,6 +986,7 @@ function setUnit(unit) {
   calculateBMI();
 }
 
+// ===== BMI CALCULATIONS =====
 function getAsianBMICategory(bmi) {
   if (bmi < 18.5) return 'Underweight';
   if (bmi < 23) return 'Normal';
@@ -972,17 +1064,16 @@ function generateAgeGraph(userBMI, userAge) {
     var diff = Math.abs(userAge - ageGroups[i]);
     if (diff < minDiff) { minDiff = diff; closestIndex = i; }
   }
-  var avgBMI = avgBMIs[closestIndex];
   var userBarHeight = (userBMI / maxBMI) * 180;
   var userX = (closestIndex * 85) + 35;
   var indicator = document.createElement('div');
   indicator.className = 'user-indicator';
   indicator.style.left = userX + 'px';
   indicator.style.bottom = (userBarHeight + 20) + 'px';
-  indicator.textContent = currentLang === 'hi' ? 'आप' : 'You';
+  indicator.textContent = 'You';
   container.appendChild(indicator);
   var comp = document.getElementById('graph-comparison');
-  var diff = userBMI - avgBMI;
+  var diff = userBMI - avgBMIs[closestIndex];
   if (diff < -2) comp.innerHTML = '✅ Excellent! Your BMI is below average.';
   else if (diff < 0) comp.innerHTML = '📉 Good! Your BMI is slightly below average.';
   else if (diff < 2) comp.innerHTML = '📊 Your BMI is around the average for your age.';
@@ -1022,7 +1113,7 @@ function calculateBMI() {
   recBox.className = 'recommendation-box';
   if (asianCat === 'Obese' || vfRisk.includes('Very')) recBox.classList.add('danger');
   else if (asianCat === 'Overweight' || vfRisk.includes('High')) recBox.classList.add('warning');
-  document.getElementById('recommendation-text').innerHTML = 'Press "Get Personalized Advice" for detailed tips.';
+  document.getElementById('recommendation-text').innerHTML = 'Your results are ready! Click "Chat with AI Assistant" for personalized health tips.';
   var marker = document.getElementById('bmi-marker');
   var left;
   if (bmi < 18.5) left = (bmi / 18.5) * 25;
@@ -1034,61 +1125,19 @@ function calculateBMI() {
   saveToLocalStorage();
 }
 
-// ===== AI ADVICE with country context =====
-async function fetchAiAdvice() {
-  var btn = document.getElementById('getAiBtn');
-  var loading = document.getElementById('aiLoading');
-  var resultCard = document.getElementById('aiResultCard');
-  var content = document.getElementById('aiAdviceContent');
-  var bmi = parseFloat(document.getElementById('bmi-display').innerHTML);
-  if (isNaN(bmi) || bmi === '--') {
-    alert('Please calculate your BMI first');
-    return;
-  }
-  var asianCat = document.getElementById('asian-category').innerHTML;
-  var vf = document.getElementById('visceral-fat').innerHTML;
-  var hs = document.getElementById('health-score').innerHTML;
-  var age = document.getElementById('age').value;
-  var gender = document.getElementById('gender').value === 'male' ? 'Male' : 'Female';
-  var activityMap = { 'sedentary': 'sedentary', 'light': 'lightly active', 'moderate': 'moderately active', 'active': 'active', 'very-active': 'very active' };
-  var activity = activityMap[document.getElementById('activity').value] || 'moderately active';
-  var ethnicity = document.getElementById('ethnicity').value === 'asian' ? 'Asian/Indian' : 'other';
-  var country = countryData[currentCountry].name;
-  var langMap = { 'en':'English','hi':'Hindi','es':'Spanish','fr':'French','de':'German','ja':'Japanese','ar':'Arabic' };
-  var langName = langMap[currentLang] || 'English';
-  var prompt = `You are a health expert. Give 3 short, actionable health tips in ${langName} language for a ${gender}, ${age} years old person in ${country} with:
-- BMI: ${bmi} (Asian category: ${asianCat})
-- Visceral fat risk: ${vf}
-- Health score: ${hs}/100
-- Activity level: ${activity}
-- Ethnicity: ${ethnicity}
-
-Provide 3 numbered tips focusing on diet, exercise, and lifestyle changes relevant to ${country} (e.g., local food, guidelines). Keep it concise, under 120 words. Use friendly, encouraging tone.`;
-  btn.style.display = 'none';
-  loading.style.display = 'block';
-  resultCard.style.display = 'none';
-  try {
-    var response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + GEMINI_MODEL + ':generateContent?key=' + GEMINI_KEY, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 300, topP: 0.9 } })
-    });
-    var data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message || 'API request failed');
-    var advice = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No tips generated. Please try again.';
-    advice = advice.replace(/\n/g, '<br>');
-    content.innerHTML = '<p style="white-space: pre-wrap; line-height: 1.6;">' + advice + '</p>';
-    resultCard.style.display = 'block';
-  } catch (error) {
-    console.error('AI Error:', error);
-    content.innerHTML = '<p class="error-msg">⚠️ Unable to generate tips. Please try again later.</p>';
-    resultCard.style.display = 'block';
-  } finally {
-    loading.style.display = 'none';
-    btn.style.display = 'inline-flex';
+// ===== OPEN AI CHAT =====
+function openAIChat() {
+  if (typeof window.toggleAIChat === 'function') {
+    window.toggleAIChat();
+  } else if (typeof window.openAIChat === 'function') {
+    window.openAIChat();
+  } else {
+    var fab = document.getElementById('ai-chat-fab');
+    if (fab) fab.click();
   }
 }
 
+// ===== LOCAL STORAGE =====
 function resetForm() {
   document.getElementById('weight-kg').value = '70';
   document.getElementById('height-cm').value = '170';
@@ -1152,6 +1201,5 @@ function loadFromLocalStorage() {
 
 window.onload = loadFromLocalStorage;
 </script>
-<script src="ai-integration.js"></script>
 </body>
 </html>
