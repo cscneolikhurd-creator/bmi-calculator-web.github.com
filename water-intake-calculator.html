@@ -6,9 +6,9 @@
     <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
     <!-- SEO Meta (International) -->
-    <title>Advanced Water Intake Calculator | Personalized Hydration, Sweat Rate | HealthCalc</title>
-    <meta name="description" content="Advanced personalized water intake calculator with sweat rate, activity level, weather adjustment, and global hydration guidelines. Follows CDC, NHS, Health Canada, Australian guidelines. Free & private.">
-    <meta name="keywords" content="water intake calculator, daily water needs, hydration calculator, sweat rate, summer hydration, water tracker, personalized hydration, how much water to drink, US, UK, Canada, Australia">
+    <title>Advanced Water Intake Calculator | Personalized Hydration, Sweat Rate | AI Chat | HealthCalc</title>
+    <meta name="description" content="Advanced personalized water intake calculator with sweat rate, activity level, weather adjustment, and AI chat for hydration tips. Follows CDC, NHS, Health Canada, Australian guidelines. Free & private.">
+    <meta name="keywords" content="water intake calculator, daily water needs, hydration calculator, sweat rate, summer hydration, water tracker, AI hydration chat, how much water to drink, US, UK, Canada, Australia">
     <meta name="author" content="HealthCalc">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://healthcalc.in/water-intake-calculator.html">
@@ -22,8 +22,8 @@
     <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/water-intake-calculator.html">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Advanced Water Intake Calculator | Personalized Hydration">
-    <meta property="og:description" content="Know exactly how much water you need daily. Includes sweat rate, activity level, and weather adjustments. Follows global health guidelines.">
+    <meta property="og:title" content="Advanced Water Intake Calculator | Personalized Hydration | AI Chat">
+    <meta property="og:description" content="Know exactly how much water you need daily. AI chat for hydration tips. Follows global health guidelines.">
     <meta property="og:image" content="https://healthcalc.in/images/water-intake-og.jpg">
     <meta property="og:url" content="https://healthcalc.in/water-intake-calculator.html">
     <meta property="og:locale" content="en_US">
@@ -32,22 +32,22 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Advanced Water Intake Calculator">
-    <meta name="twitter:description" content="Personalized daily water needs based on your unique profile">
+    <meta name="twitter:title" content="Advanced Water Intake Calculator | AI Chat">
+    <meta name="twitter:description" content="Personalized daily water needs based on your unique profile with AI hydration tips">
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "MedicalWebPage",
-        "name": "Advanced Water Intake Calculator",
-        "description": "Personalized water intake calculator with sweat rate, activity level, and weather adjustment",
+        "name": "Advanced Water Intake Calculator with AI Hydration Assistant",
+        "description": "Personalized water intake calculator with sweat rate, activity level, weather adjustment, and AI chat for hydration tips",
         "url": "https://healthcalc.in/water-intake-calculator.html",
         "author": {"@type": "Organization", "name": "HealthCalc"},
         "about": {"@type": "MedicalCondition", "name": "Hydration"},
         "inLanguage": ["en", "hi"],
         "audience": {"@type": "Audience", "geographicArea": {"@type": "Country", "name": ["US","UK","CA","AU"]}},
-        "dateModified": "2026-06-09"
+        "dateModified": "2026-06-18"
     }
     </script>
 
@@ -60,7 +60,7 @@
             {
                 "@type": "Question",
                 "name": "How much water should I drink daily?",
-                "acceptedAnswer": {"@type": "Answer", "text": "The general guideline is 30-35ml per kg of body weight. Our calculator adjusts for activity level, sweat rate, weather, and lifestyle factors like caffeine intake and pregnancy."}
+                "acceptedAnswer": {"@type": "Answer", "text": "The general guideline is 30-35ml per kg of body weight. Our calculator adjusts for activity level, sweat rate, weather, and lifestyle factors like caffeine intake and pregnancy. Chat with our AI for personalized hydration tips."}
             },
             {
                 "@type": "Question",
@@ -319,6 +319,7 @@
             backdrop-filter: blur(4px);
         }
         .badge.indian { background: linear-gradient(135deg, #FF9933, #FF8C00); color: #333; font-weight: 600; }
+        .badge.chat-badge { background: linear-gradient(135deg, #10b981, #059669); }
 
         /* International Bar (new) */
         .international-bar {
@@ -331,6 +332,51 @@
             padding-bottom: 10px;
             border-bottom: 1px solid rgba(255,255,255,0.2);
         }
+        .international-bar select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 0.85rem;
+        }
+        .international-bar select option {
+            background: #1a5276;
+            color: white;
+        }
+        .theme-toggle {
+            display: flex;
+            gap: 6px;
+        }
+        .theme-option {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .theme-option:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        body.dark .international-bar {
+            border-bottom-color: #334155;
+        }
+        body.dark .international-bar select {
+            background: #1e293b;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+        body.dark .international-bar select option {
+            background: #1e293b;
+        }
+        body.dark .theme-option {
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
         .health-authority-note {
             background: rgba(255,255,255,0.15);
             padding: 8px 20px;
@@ -344,6 +390,77 @@
         body.dark .health-authority-note {
             background: #1e293b;
             color: #94a3b8;
+        }
+
+        /* Chat CTA Box */
+        .chat-cta-box {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border: 2px dashed var(--success);
+            padding: 16px;
+            border-radius: var(--radius-lg);
+            margin: 18px 0;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        body.dark .chat-cta-box {
+            background: linear-gradient(135deg, #022c22, #064e3b);
+            border-color: #059669;
+        }
+        .chat-cta-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(16,185,129,0.2);
+        }
+        .chat-cta-box .cta-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        .chat-cta-box .cta-text {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 14px;
+        }
+        body.dark .chat-cta-box .cta-text {
+            color: #e2e8f0;
+        }
+        .chat-cta-box .cta-sub {
+            font-size: 11px;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+        body.dark .chat-cta-box .cta-sub {
+            color: #94a3b8;
+        }
+
+        .chat-cta-results {
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--success);
+            text-align: center;
+        }
+        body.dark .chat-cta-results {
+            background: linear-gradient(135deg, #022c22, #064e3b);
+            border-color: #059669;
+        }
+        .chat-cta-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        .chat-cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(16,185,129,0.4);
         }
 
         /* Controls (existing unit & lang) */
@@ -692,7 +809,7 @@
         #scrollTopBtn {
             display: none;
             position: fixed;
-            bottom: 30px;
+            bottom: 100px;
             right: 30px;
             z-index: 99;
             background: #2980b9;
@@ -727,7 +844,6 @@
             <button class="theme-option" data-theme="light">☀️ Light</button>
             <button class="theme-option" data-theme="dark">🌙 Dark</button>
         </div>
-        <!-- Language switcher already exists below, so not duplicating here -->
     </div>
     <div id="healthAuthorityNote" class="health-authority-note">💧 Based on CDC guidelines – Men: ~3.7L, Women: ~2.7L total water per day</div>
 
@@ -755,12 +871,13 @@
             💧 <span id="titleMain">Advanced Water Intake Calculator</span>
             <span id="titleSub">Sweat Rate • Activity • Weather</span>
         </h1>
-        <p id="headerSub">Personalized hydration calculator with sweat rate, activity level, and weather adjustments</p>
+        <p id="headerSub">Personalized hydration calculator with sweat rate, activity level, and weather adjustments. Chat with AI for hydration tips!</p>
         <div class="badge-container">
             <span class="badge"><i class="fas fa-tint"></i> Sweat Rate</span>
             <span class="badge"><i class="fas fa-mug-hot"></i> Caffeine Adjust</span>
             <span class="badge"><i class="fas fa-sun"></i> Weather Impact</span>
             <span class="badge indian"><i class="fas fa-sun"></i> Summer Hydration</span>
+            <span class="badge chat-badge"><i class="fas fa-robot"></i> AI Chat</span>
         </div>
 
         <div class="global-controls">
@@ -835,6 +952,13 @@
                 <label class="checkbox-item"><input type="checkbox" id="breastfeeding" onchange="calculateWater()"> <span id="breastfeedingLabel">🍼 Breastfeeding</span></label>
             </div>
 
+            <!-- Chat CTA in Input -->
+            <div class="chat-cta-box" onclick="openChatWithWater()">
+                <div class="cta-icon">💬</div>
+                <div class="cta-text" id="chatCtaInput">Need Hydration Tips? Chat with AI!</div>
+                <div class="cta-sub">Get personalized water intake advice</div>
+            </div>
+
             <button class="calc-btn" onclick="calculateWater()" id="calcBtn"><i class="fas fa-calculator"></i> Calculate My Water Needs</button>
         </div>
 
@@ -869,6 +993,13 @@
                 <div class="breakdown-item"><div class="value" id="baseWater">2.0</div><div class="label" id="baseLabel">Base Need</div></div>
                 <div class="breakdown-item"><div class="value" id="activityWater">+0.5</div><div class="label" id="activityAddLabel">Activity</div></div>
                 <div class="breakdown-item"><div class="value" id="envWater">+0.0</div><div class="label" id="envLabel">Environment</div></div>
+            </div>
+
+            <!-- Chat CTA in Results -->
+            <div class="chat-cta-results">
+                <h4><i class="fas fa-robot"></i> <span id="chatCtaTitle">Want Personalized Hydration Tips?</span></h4>
+                <p style="font-size:13px; color:#666; margin-bottom:12px;" id="chatCtaSub">Chat with our AI assistant for hydration strategies, electrolyte tips, and more!</p>
+                <button class="chat-cta-btn" onclick="openChatWithWater()">💬 Chat About My Hydration</button>
             </div>
 
             <!-- Traditional Drinks (kept as is) -->
@@ -941,17 +1072,121 @@
     </div>
 </div>
 
+<!-- ============================================ -->
+<!-- AI CHAT WIDGET - WATER INTAKE CONTEXT AWARE  -->
+<!-- ============================================ -->
+<div id="ai-chat-widget" style="display:none; position:fixed; bottom:100px; right:30px; width:380px; max-width:90vw; background:white; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.2); z-index:999999; overflow:hidden; font-family:'Inter',sans-serif;">
+    <div style="background:linear-gradient(135deg,#3498db,#2980b9); color:white; padding:16px 20px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:24px;">💧</span>
+            <div>
+                <strong style="font-size:15px;">Hydration AI Assistant</strong>
+                <div style="font-size:11px; opacity:0.9;">Online · Free · AI-Powered</div>
+            </div>
+        </div>
+        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2); border:none; color:white; width:28px; height:28px; border-radius:6px; cursor:pointer; font-size:16px;">✕</button>
+    </div>
+    <div id="ai-chat-messages" style="height:320px; overflow-y:auto; padding:16px; background:#f8fafc; display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:10px;">
+            <div style="width:32px; height:32px; border-radius:50%; background:#d4e6f1; display:flex; align-items:center; justify-content:center; flex-shrink:0;">💧</div>
+            <div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.1); max-width:80%; font-size:14px; line-height:1.5;">
+                <strong>Hello! 👋</strong><br><br>
+                I'm your <strong>Hydration AI Assistant</strong>. Calculate your water needs first, then ask me for personalized hydration tips, electrolyte advice, and more!
+            </div>
+        </div>
+    </div>
+    <div id="ai-chat-suggestions" style="padding:10px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; flex-wrap:wrap; gap:6px;">
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('How to drink more water daily?')">Drink more water?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('Best electrolytes for hydration?')">Best electrolytes?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('Hydration tips for summer heat')">Summer hydration?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('How much water during exercise?')">Exercise hydration?</span>
+    </div>
+    <div style="padding:12px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; gap:8px;">
+        <input type="text" id="ai-chat-input" placeholder="Ask about your hydration needs..." style="flex:1; padding:10px 16px; border:2px solid #e2e8f0; border-radius:25px; outline:none; font-size:14px; font-family:inherit;" onkeypress="if(event.key==='Enter')sendAIQuery()">
+        <button onclick="sendAIQuery()" style="width:42px; height:42px; border-radius:50%; background:#2980b9; color:white; border:none; cursor:pointer; font-size:18px; flex-shrink:0;">➤</button>
+    </div>
+    <div style="padding:8px 16px; background:#f8fafc; border-top:1px solid #e2e8f0; text-align:center; font-size:10px; color:#64748b;">
+        ⚠️ Educational purposes only. Consult a healthcare professional.
+    </div>
+</div>
+
+<!-- AI Floating Button -->
+<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed; bottom:30px; right:30px; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#3498db,#2980b9); color:white; border:none; cursor:pointer; font-size:26px; box-shadow:0 8px 24px rgba(41,128,185,0.4); z-index:999998; transition:all 0.3s; display:flex; align-items:center; justify-content:center;" title="Chat with Hydration AI">
+    💬
+</button>
+
+<style>
+    @keyframes messageSlideIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes typingBounce {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-8px); }
+    }
+    .ai-suggestion-chip:hover {
+        background: #2980b9 !important;
+        color: white !important;
+        border-color: #2980b9 !important;
+    }
+    @media (max-width: 480px) {
+        #ai-chat-widget {
+            width: 100vw;
+            height: 100vh;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+            max-width: 100vw;
+        }
+        #ai-chat-messages {
+            height: calc(100vh - 250px);
+        }
+    }
+</style>
+
 <script>
+    // ===== GEMINI API KEY =====
+    var GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+
     let currentUnit = 'metric';
     let currentLang = 'en';
     let displayUnit = 'L';
     let currentWaterLiters = 2.5;
 
+    // ========== THEME ==========
+    function initTheme() {
+        var saved = localStorage.getItem('healthcalc_theme') || 'light';
+        document.body.classList.toggle('dark', saved === 'dark');
+    }
+    function setTheme(theme) {
+        localStorage.setItem('healthcalc_theme', theme);
+        document.body.classList.toggle('dark', theme === 'dark');
+    }
+    document.querySelectorAll('.theme-option').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            setTheme(btn.dataset.theme);
+        });
+    });
+    initTheme();
+
+    // ========== COUNTRY ==========
+    function setCountry(country) {
+        localStorage.setItem('healthcalc_country', country);
+    }
+    document.getElementById('countrySelect').addEventListener('change', function(e) {
+        setCountry(e.target.value);
+    });
+    (function() {
+        var saved = localStorage.getItem('healthcalc_country') || 'us';
+        document.getElementById('countrySelect').value = saved;
+        setCountry(saved);
+    })();
+
     // ========== TRANSLATIONS ==========
     const translations = {
         en: {
             titleMain: 'Advanced Water Intake Calculator', titleSub: 'Sweat Rate • Activity • Weather',
-            headerSub: 'Personalized hydration calculator with sweat rate, activity level, and weather adjustments',
+            headerSub: 'Personalized hydration calculator with sweat rate, activity level, and weather adjustments. Chat with AI for hydration tips!',
             detailsTitle: 'Your Details', weightLabel: 'Weight', ageLabel: 'Age',
             activityLabel: 'Activity Level', sweatLabel: 'Sweat Rate', weatherLabel: 'Current Weather',
             caffeineLabel: '☕ Coffee/tea daily', alcoholLabel: '🍷 Alcohol', pregnantLabel: '🤰 Pregnant',
@@ -965,7 +1200,10 @@
             futureTitle: 'Coming Soon: Advanced Hydration Features', future1: 'Hydration Reminders',
             future2: 'Weekly Tracker', future3: 'Water Log App', future4: 'Hydrating Foods Guide',
             future5: 'Electrolyte Balance', future6: 'Real-time Weather Sync',
-            disclaimer: '⚠️ Individual needs vary - listen to your body. Consult a doctor for medical advice.'
+            disclaimer: '⚠️ Individual needs vary - listen to your body. Consult a doctor for medical advice. 100% private — no data stored.',
+            chatCtaInput: 'Need Hydration Tips? Chat with AI!',
+            chatCtaTitle: 'Want Personalized Hydration Tips?',
+            chatCtaSub: 'Chat with our AI assistant for hydration strategies, electrolyte tips, and more!'
         },
         hi: {
             titleMain: 'एडवांस पानी सेवन कैलकुलेटर', titleSub: 'पसीना दर • गतिविधि • मौसम',
@@ -983,23 +1221,30 @@
             futureTitle: 'जल्द आ रहा है: उन्नत हाइड्रेशन सुविधाएं', future1: 'हाइड्रेशन रिमाइंडर',
             future2: 'साप्ताहिक ट्रैकर', future3: 'पानी लॉग ऐप', future4: 'हाइड्रेटिंग फूड्स गाइड',
             future5: 'इलेक्ट्रोलाइट बैलेंस', future6: 'रियल-टाइम वेदर सिंक',
-            disclaimer: '⚠️ व्यक्तिगत ज़रूरतें अलग होती हैं - अपने शरीर की सुनें। चिकित्सकीय सलाह के लिए डॉक्टर से संपर्क करें।'
+            disclaimer: '⚠️ व्यक्तिगत ज़रूरतें अलग होती हैं - अपने शरीर की सुनें। डॉक्टर से सलाह लें।',
+            chatCtaInput: 'हाइड्रेशन टिप्स चाहिए? AI से चैट करें!',
+            chatCtaTitle: 'पर्सनलाइज़्ड हाइड्रेशन टिप्स चाहिए?',
+            chatCtaSub: 'हाइड्रेशन रणनीतियों और इलेक्ट्रोलाइट टिप्स के लिए AI से चैट करें!'
         }
     };
 
     // ========== LANGUAGE FUNCTION ==========
     function setLanguage(lang) {
         currentLang = lang;
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
-        const t = translations[lang] || translations.en;
-        Object.keys(t).forEach(key => {
-            const el = document.getElementById(key);
-            if (el && !['INPUT', 'SELECT'].includes(el.tagName)) el.textContent = t[key];
+        document.querySelectorAll('.lang-btn').forEach(function(b) {
+            b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        var t = translations[lang] || translations.en;
+        Object.keys(t).forEach(function(key) {
+            var el = document.getElementById(key);
+            if (el && !['INPUT', 'SELECT'].includes(el.tagName)) {
+                el.innerHTML = t[key];
+            }
         });
         updateActivityLabel(document.getElementById('activity').value);
         updateSweatLabel(document.getElementById('sweat').value);
         
-        const weatherSelect = document.getElementById('weather');
+        var weatherSelect = document.getElementById('weather');
         if (lang === 'hi') {
             weatherSelect.options[0].text = '🌤️ सामान्य (20-25°C)';
             weatherSelect.options[1].text = '☀️ गर्म (30°C+)';
@@ -1019,10 +1264,12 @@
     // ========== UNIT FUNCTION ==========
     function setWaterUnit(unit) {
         currentUnit = unit;
-        document.querySelectorAll('#unitToggle .unit-btn').forEach(b => b.classList.toggle('active', b.dataset.unit === unit));
+        document.querySelectorAll('#unitToggle .unit-btn').forEach(function(b) {
+            b.classList.toggle('active', b.dataset.unit === unit);
+        });
         
-        const weightInput = document.getElementById('weight');
-        const weightUnit = document.getElementById('weightUnitDisplay');
+        var weightInput = document.getElementById('weight');
+        var weightUnit = document.getElementById('weightUnitDisplay');
         
         if (unit === 'metric') {
             weightUnit.textContent = 'kg';
@@ -1037,133 +1284,123 @@
     // ========== DISPLAY UNIT SWITCH ==========
     function switchDisplayUnit(unit) {
         displayUnit = unit;
-        document.querySelectorAll('.unit-pill').forEach(p => p.classList.toggle('active', p.dataset.display === unit));
+        document.querySelectorAll('.unit-pill').forEach(function(p) {
+            p.classList.toggle('active', p.dataset.display === unit);
+        });
         updateWaterDisplay();
     }
 
     function convertWaterValue(liters, unit) {
-        const conversions = { L: liters, oz: liters * 33.814, cups: liters * 4.227, glasses: liters * 4 };
+        var conversions = { L: liters, oz: liters * 33.814, cups: liters * 4.227, glasses: liters * 4 };
         return conversions[unit] || liters;
     }
 
     function getUnitLabel(unit) {
-        const labels = { L: 'L', oz: 'oz', cups: 'cups', glasses: 'glasses' };
+        var labels = { L: 'L', oz: 'oz', cups: 'cups', glasses: 'glasses' };
         return labels[unit] || 'L';
     }
 
     function updateWaterDisplay() {
-        const value = convertWaterValue(currentWaterLiters, displayUnit);
+        var value = convertWaterValue(currentWaterLiters, displayUnit);
         document.getElementById('waterAmount').textContent = value.toFixed(1);
         document.getElementById('waterUnit').textContent = getUnitLabel(displayUnit);
         document.getElementById('waterCups').innerHTML = '~' + Math.round(currentWaterLiters * 4) + ' glasses';
         
-        // Update time slots display
-        const slots = [0.2, 0.4, 0.3, 0.1];
-        const amounts = ['morningAmount', 'afternoonAmount', 'eveningAmount', 'nightAmount'];
-        amounts.forEach((id, i) => {
-            const val = convertWaterValue(currentWaterLiters * slots[i], displayUnit);
+        var slots = [0.2, 0.4, 0.3, 0.1];
+        var amounts = ['morningAmount', 'afternoonAmount', 'eveningAmount', 'nightAmount'];
+        amounts.forEach(function(id, i) {
+            var val = convertWaterValue(currentWaterLiters * slots[i], displayUnit);
             document.getElementById(id).textContent = val.toFixed(1) + getUnitLabel(displayUnit);
         });
         
-        // Update weather impact display
-        const weather = document.getElementById('weather').value;
-        const hotAdd = (weather === 'hot' ? 0.5 : (weather === 'indian-summer' ? 0.8 : 0));
-        const humidAdd = (weather === 'humid' ? 0.3 : 0);
+        var weather = document.getElementById('weather').value;
+        var hotAdd = (weather === 'hot' ? 0.5 : (weather === 'indian-summer' ? 0.8 : 0));
+        var humidAdd = (weather === 'humid' ? 0.3 : 0);
         document.getElementById('hotAmount').innerHTML = '+' + convertWaterValue(hotAdd, displayUnit).toFixed(1) + getUnitLabel(displayUnit);
         document.getElementById('humidAmount').innerHTML = '+' + convertWaterValue(humidAdd, displayUnit).toFixed(1) + getUnitLabel(displayUnit);
         
-        // Update breakdown
-        const base = currentWaterLiters - (parseFloat(document.getElementById('activityWater')?.innerHTML?.replace(/[^0-9.-]/g, '') || 0) + parseFloat(document.getElementById('envWater')?.innerHTML?.replace(/[^0-9.-]/g, '') || 0));
+        var activityAdd = [0, 0.3, 0.5, 0.8, 1.2][parseInt(document.getElementById('activity').value)];
+        var weatherAdd = 0;
+        var w = document.getElementById('weather').value;
+        if (w === 'hot') weatherAdd = 0.5;
+        else if (w === 'humid') weatherAdd = 0.3;
+        else if (w === 'cold') weatherAdd = -0.1;
+        else if (w === 'indian-summer') weatherAdd = 0.8;
+        var base = currentWaterLiters - activityAdd - weatherAdd;
         document.getElementById('baseWater').innerHTML = convertWaterValue(base, displayUnit).toFixed(1);
+        document.getElementById('activityWater').innerHTML = (activityAdd > 0 ? '+' : '') + convertWaterValue(activityAdd, displayUnit).toFixed(1);
+        document.getElementById('envWater').innerHTML = (weatherAdd >= 0 ? '+' : '') + convertWaterValue(weatherAdd, displayUnit).toFixed(1);
     }
 
     // ========== LABEL UPDATES ==========
     function updateActivityLabel(val) {
-        const labels = currentLang === 'hi' ? ['निष्क्रिय', 'हल्का', 'मध्यम', 'सक्रिय', 'बहुत सक्रिय'] : ['Sedentary', 'Light', 'Moderate', 'Active', 'Very Active'];
+        var labels = currentLang === 'hi' ? ['निष्क्रिय', 'हल्का', 'मध्यम', 'सक्रिय', 'बहुत सक्रिय'] : ['Sedentary', 'Light', 'Moderate', 'Active', 'Very Active'];
         document.getElementById('activityValue').textContent = labels[parseInt(val)];
         calculateWater();
     }
 
     function updateSweatLabel(val) {
-        const labels = currentLang === 'hi' ? ['कम पसीना', 'औसत', 'बहुत पसीना'] : ['Low Sweat', 'Average', 'Heavy Sweat'];
+        var labels = currentLang === 'hi' ? ['कम पसीना', 'औसत', 'बहुत पसीना'] : ['Low Sweat', 'Average', 'Heavy Sweat'];
         document.getElementById('sweatValue').textContent = labels[parseInt(val)];
         calculateWater();
     }
 
     // ========== MAIN CALCULATION ==========
     function calculateWater() {
-        let weight = parseFloat(document.getElementById('weight').value) || 70;
+        var weight = parseFloat(document.getElementById('weight').value) || 70;
         if (currentUnit === 'imperial') weight = weight / 2.20462;
         
-        const age = parseInt(document.getElementById('age').value) || 30;
-        const activityLevel = parseInt(document.getElementById('activity').value);
-        const sweatLevel = parseInt(document.getElementById('sweat').value);
-        const weather = document.getElementById('weather').value;
-        const caffeine = document.getElementById('caffeine').checked;
-        const alcohol = document.getElementById('alcohol').checked;
-        const pregnant = document.getElementById('pregnant').checked;
-        const breastfeeding = document.getElementById('breastfeeding').checked;
+        var age = parseInt(document.getElementById('age').value) || 30;
+        var activityLevel = parseInt(document.getElementById('activity').value);
+        var sweatLevel = parseInt(document.getElementById('sweat').value);
+        var weather = document.getElementById('weather').value;
+        var caffeine = document.getElementById('caffeine').checked;
+        var alcohol = document.getElementById('alcohol').checked;
+        var pregnant = document.getElementById('pregnant').checked;
+        var breastfeeding = document.getElementById('breastfeeding').checked;
         
-        // Base water: 30-35ml per kg
-        let base = weight * 0.033;
+        var base = weight * 0.033;
         
-        // Age adjustment
         if (age > 65) base *= 0.95;
         else if (age < 18) base *= 1.1;
         
-        // Activity adjustment (liters per day)
-        const activityAdd = [0, 0.3, 0.5, 0.8, 1.2][activityLevel];
+        var activityAdd = [0, 0.3, 0.5, 0.8, 1.2][activityLevel];
+        var sweatAdd = [0, 0.2, 0.4][sweatLevel];
         
-        // Sweat adjustment
-        const sweatAdd = [0, 0.2, 0.4][sweatLevel];
-        
-        // Weather adjustment
-        let weatherAdd = 0;
+        var weatherAdd = 0;
         if (weather === 'hot') weatherAdd = 0.5;
         else if (weather === 'humid') weatherAdd = 0.3;
         else if (weather === 'cold') weatherAdd = -0.1;
         else if (weather === 'indian-summer') weatherAdd = 0.8;
         
-        // Lifestyle adjustments
-        let lifestyleAdd = 0;
+        var lifestyleAdd = 0;
         if (caffeine) lifestyleAdd += 0.2;
         if (alcohol) lifestyleAdd += 0.3;
         if (pregnant) lifestyleAdd += 0.3;
         if (breastfeeding) lifestyleAdd += 0.7;
         
-        // Calculate total
-        let total = base + activityAdd + sweatAdd + weatherAdd + lifestyleAdd;
+        var total = base + activityAdd + sweatAdd + weatherAdd + lifestyleAdd;
         total = Math.round(total * 10) / 10;
         currentWaterLiters = Math.min(5.5, Math.max(1.5, total));
         
-        // Update display
         updateWaterDisplay();
         
-        // Update glass fill
-        const glassPercent = Math.min(100, (currentWaterLiters / 4.5) * 100);
+        var glassPercent = Math.min(100, (currentWaterLiters / 4.5) * 100);
         document.getElementById('glassFill').style.height = glassPercent + '%';
         document.getElementById('glassPercent').textContent = Math.round(glassPercent) + '% of daily target';
         
-        // Update breakdown
-        document.getElementById('baseWater').innerHTML = convertWaterValue(base, displayUnit).toFixed(1);
-        document.getElementById('activityWater').innerHTML = (activityAdd > 0 ? '+' : '') + convertWaterValue(activityAdd, displayUnit).toFixed(1);
-        document.getElementById('envWater').innerHTML = (weatherAdd > 0 ? '+' : '') + convertWaterValue(weatherAdd, displayUnit).toFixed(1);
-        
-        // Update weather factor opacity
         document.getElementById('hotFactor').style.opacity = (weather === 'hot' || weather === 'indian-summer') ? '1' : '0.4';
         document.getElementById('humidFactor').style.opacity = (weather === 'humid') ? '1' : '0.4';
         
-        // Update time dots based on total water
-        const timeDots = ['morningDot', 'afternoonDot', 'eveningDot', 'nightDot'];
-        const timeAmounts = [0.2, 0.4, 0.3, 0.1];
-        timeDots.forEach((dot, i) => {
-            const shouldBeActive = currentWaterLiters * timeAmounts[i] > 0.15;
-            const dotEl = document.getElementById(dot);
+        var timeDots = ['morningDot', 'afternoonDot', 'eveningDot', 'nightDot'];
+        var timeAmounts = [0.2, 0.4, 0.3, 0.1];
+        timeDots.forEach(function(dot, i) {
+            var shouldBeActive = currentWaterLiters * timeAmounts[i] > 0.15;
+            var dotEl = document.getElementById(dot);
             if (dotEl) dotEl.classList.toggle('active', shouldBeActive);
         });
         
-        // Update tip based on conditions
-        let tip = '';
+        var tip = '';
         if (weather === 'indian-summer') {
             tip = currentLang === 'hi' ? '🌞 भारी गर्मी! नारियल पानी और छाछ जरूर पिएं' : '🌞 Extreme heat! Drink coconut water and buttermilk for electrolytes';
         } else if (currentWaterLiters > 4) {
@@ -1182,19 +1419,140 @@
     }
 
     window.addEventListener('scroll', function() {
-        const btn = document.getElementById('scrollTopBtn');
+        var btn = document.getElementById('scrollTopBtn');
         btn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? 'block' : 'none';
     });
 
     // ========== EVENT LISTENERS ==========
-    const inputs = ['weight', 'age', 'activity', 'sweat', 'weather', 'caffeine', 'alcohol', 'pregnant', 'breastfeeding'];
-    inputs.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('input', calculateWater);
-        if (el && el.type === 'checkbox') el.addEventListener('change', calculateWater);
+    var inputs = ['weight', 'age', 'activity', 'sweat', 'weather', 'caffeine', 'alcohol', 'pregnant', 'breastfeeding'];
+    inputs.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', calculateWater);
+            if (el.type === 'checkbox') el.addEventListener('change', calculateWater);
+        }
     });
 
-    // ========== INITIALIZE ==========
+    // ==============================================
+    // 🔥 AI CHAT FUNCTIONS
+    // ==============================================
+    function toggleAIChat() {
+        var widget = document.getElementById('ai-chat-widget');
+        var fab = document.getElementById('ai-chat-fab');
+        if (widget.style.display === 'none' || !widget.style.display) {
+            widget.style.display = 'block';
+            fab.innerHTML = '✕';
+            fab.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            document.getElementById('ai-chat-input').focus();
+        } else {
+            widget.style.display = 'none';
+            fab.innerHTML = '💬';
+            fab.style.background = 'linear-gradient(135deg, #3498db, #2980b9)';
+        }
+    }
+
+    function openChatWithWater() {
+        var widget = document.getElementById('ai-chat-widget');
+        var fab = document.getElementById('ai-chat-fab');
+        widget.style.display = 'block';
+        fab.innerHTML = '✕';
+        fab.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        var waterAmount = document.getElementById('waterAmount').textContent;
+        var waterUnit = document.getElementById('waterUnit').textContent;
+        var input = document.getElementById('ai-chat-input');
+        if (waterAmount !== '2.5' || currentWaterLiters !== 2.5) {
+            input.value = 'My daily water need is ' + waterAmount + ' ' + waterUnit + '. How can I stay properly hydrated?';
+            input.focus();
+        } else {
+            input.placeholder = 'Calculate your water needs first, then ask me!';
+            input.focus();
+        }
+    }
+
+    function closeAIChat() {
+        document.getElementById('ai-chat-widget').style.display = 'none';
+        document.getElementById('ai-chat-fab').innerHTML = '💬';
+        document.getElementById('ai-chat-fab').style.background = 'linear-gradient(135deg, #3498db, #2980b9)';
+    }
+
+    function openAIChat() {
+        openChatWithWater();
+    }
+
+    function addAIMessage(text, sender) {
+        var messagesDiv = document.getElementById('ai-chat-messages');
+        var wrapper = document.createElement('div');
+        wrapper.style.cssText = 'display:flex; gap:10px; animation:messageSlideIn 0.3s ease; ' + (sender === 'user' ? 'flex-direction:row-reverse;' : '');
+        
+        var avatar = sender === 'user' ? '👤' : '💧';
+        var bgColor = sender === 'user' ? '#2980b9' : '#ffffff';
+        var textColor = sender === 'user' ? '#ffffff' : '#1e293b';
+        
+        wrapper.innerHTML = '<div style="width:32px; height:32px; border-radius:50%; background:' + (sender === 'user' ? '#d4e6f1' : '#d4e6f1') + '; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px;">' + avatar + '</div><div style="background:' + bgColor + '; color:' + textColor + '; padding:10px 14px; border-radius:12px; max-width:80%; font-size:13px; line-height:1.5; ' + (sender === 'user' ? 'border-top-right-radius:4px;' : 'border-top-left-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,0.08);') + '">' + text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') + '</div>';
+        
+        messagesDiv.appendChild(wrapper);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function showAITyping() {
+        var messagesDiv = document.getElementById('ai-chat-messages');
+        var typingDiv = document.createElement('div');
+        typingDiv.id = 'ai-typing-indicator';
+        typingDiv.style.cssText = 'display:flex; gap:10px;';
+        typingDiv.innerHTML = '<div style="width:32px; height:32px; border-radius:50%; background:#d4e6f1; display:flex; align-items:center; justify-content:center; flex-shrink:0;">💧</div><div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); display:flex; gap:5px;"><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite;"></div><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.2s;"></div><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.4s;"></div></div>';
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function removeAITyping() {
+        var typing = document.getElementById('ai-typing-indicator');
+        if (typing) typing.remove();
+    }
+
+    async function sendAIQuery(prefilledText) {
+        var input = document.getElementById('ai-chat-input');
+        var message = prefilledText || input.value.trim();
+        if (!message) return;
+        
+        var waterAmount = document.getElementById('waterAmount').textContent;
+        var waterUnit = document.getElementById('waterUnit').textContent;
+        
+        addAIMessage(message, 'user');
+        input.value = '';
+        showAITyping();
+        
+        try {
+            var response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_API_KEY, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: 'You are a Hydration AI Assistant on healthcalc.in. User daily water need: ' + waterAmount + ' ' + waterUnit + '.\n\nUser Question: ' + message + '\n\nProvide COMPLETE, detailed hydration advice. Include practical tips for staying hydrated, electrolyte balance, and signs of dehydration. Give 3-4 paragraphs. End with: "Consult a healthcare professional for medical advice."'
+                        }]
+                    }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
+                })
+            });
+            
+            var data = await response.json();
+            removeAITyping();
+            
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
+            } else {
+                throw new Error('No response');
+            }
+        } catch (error) {
+            removeAITyping();
+            console.error('AI API Error:', error);
+            
+            var fallbackText = '💧 <strong>Hydration Tips:</strong><br><br>• Drink water first thing in the morning<br>• Carry a reusable water bottle<br>• Set hydration reminders on your phone<br>• Eat water-rich foods (cucumber, watermelon)<br>• Monitor urine color (pale straw = hydrated)<br>• Increase intake during exercise and hot weather<br><br>⚠️ <em>Consult a healthcare professional for medical advice.</em>';
+            addAIMessage(fallbackText, 'ai');
+        }
+    }
+
+    // ========== EXPOSE GLOBALLY ==========
     window.setLanguage = setLanguage;
     window.setWaterUnit = setWaterUnit;
     window.switchDisplayUnit = switchDisplayUnit;
@@ -1202,7 +1560,14 @@
     window.updateSweatLabel = updateSweatLabel;
     window.calculateWater = calculateWater;
     window.scrollToTop = scrollToTop;
+    
+    window.toggleAIChat = toggleAIChat;
+    window.openAIChat = openChatWithWater;
+    window.closeAIChat = closeAIChat;
+    window.sendAIQuery = sendAIQuery;
+    window.openChatWithWater = openChatWithWater;
 
+    // ========== INITIALIZE ==========
     calculateWater();
 </script>
 </body>
