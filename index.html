@@ -65,6 +65,9 @@
     <link rel="stylesheet" href="global.css">
     <script src="global.js" defer></script>
     
+    <!-- AI Integration Script -->
+    <script src="ai-integration.js" defer></script>
+    
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -396,6 +399,27 @@
         .ai-banner h3 { font-size: 1.8rem; margin-bottom: 15px; }
         .ai-banner p { max-width: 600px; margin: 0 auto 25px; color: var(--text-light); }
         
+        /* AI Chat Button Styles (Inline for homepage) */
+        .ai-chat-launcher {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+        }
+        .ai-chat-launcher:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+        }
+        
         /* Footer */
         footer {
             border-top: 1px solid var(--border);
@@ -427,7 +451,7 @@
         }
         .scroll-top {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px;
             right: 30px;
             width: 48px;
             height: 48px;
@@ -440,6 +464,7 @@
             visibility: hidden;
             transition: all 0.3s;
             z-index: 999;
+            font-size: 18px;
         }
         .scroll-top.visible { opacity: 1; visibility: visible; }
         
@@ -450,29 +475,29 @@
     </style>
 </head>
 <body>
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="container">
     <!-- International Bar (Country, Theme, Language) -->
     <div class="international-bar">
-        <select id="countrySelect">
+        <select id="countrySelect" style="padding:8px 12px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:0.85rem;">
             <option value="us">🇺🇸 United States</option>
             <option value="uk">🇬🇧 United Kingdom</option>
             <option value="ca">🇨🇦 Canada</option>
             <option value="au">🇦🇺 Australia</option>
         </select>
-        <div class="theme-toggle">
-            <button class="theme-option" data-theme="light">☀️ Light</button>
-            <button class="theme-option" data-theme="dark">🌙 Dark</button>
+        <div class="theme-toggle" style="display:flex; gap:6px;">
+            <button class="theme-option" data-theme="light" style="padding:6px 14px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.85rem;">☀️ Light</button>
+            <button class="theme-option" data-theme="dark" style="padding:6px 14px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.85rem;">🌙 Dark</button>
         </div>
-        <div class="language-switcher">
-            <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-            <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
-            <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
-            <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
-            <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
-            <button class="lang-btn" data-lang="ja">🇯🇵 JA</button>
-            <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
+        <div class="language-switcher" style="display:flex; gap:4px; flex-wrap:wrap;">
+            <button class="lang-btn" data-lang="en" style="padding:6px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.8rem;">🇬🇧 EN</button>
+            <button class="lang-btn" data-lang="hi" style="padding:6px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.8rem;">🇮🇳 HI</button>
+            <button class="lang-btn" data-lang="es" style="padding:6px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.8rem;">🇪🇸 ES</button>
+            <button class="lang-btn" data-lang="fr" style="padding:6px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.8rem;">🇫🇷 FR</button>
+            <button class="lang-btn" data-lang="de" style="padding:6px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.8rem;">🇩🇪 DE</button>
+            <button class="lang-btn" data-lang="ja" style="padding:6px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.8rem;">🇯🇵 JA</button>
+            <button class="lang-btn" data-lang="ar" style="padding:6px 10px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.8rem;">🇸🇦 AR</button>
         </div>
     </div>
     <div id="healthAuthorityNote" class="health-authority-note">📋 Based on CDC guidelines – Healthy BMI: 18.5–24.9</div>
@@ -530,8 +555,10 @@
     <!-- AI Banner -->
     <div class="ai-banner">
         <h3>🤖 AI-Powered <span style="color:var(--primary);">Health Advice</span></h3>
-        <p>Every calculator now includes AI-generated, personalized tips in your language. Try any tool and click “Get Personalized Advice”.</p>
-        <a href="bmi-calculator.html" class="try-btn" style="display:inline-block;">Try AI Tips →</a>
+        <p>Every calculator now includes AI-generated, personalized tips in your language. Try any tool and click "Get Personalized Advice".</p>
+        <button class="ai-chat-launcher" onclick="openAIChat()">
+            💬 Chat with AI Health Assistant
+        </button>
     </div>
     
     <!-- Footer -->
@@ -550,8 +577,49 @@
     </footer>
 </div>
 
+<!-- AI Chat Widget Inline HTML -->
+<div id="ai-chat-widget" style="display:none; position:fixed; bottom:100px; right:30px; width:380px; max-width:90vw; background:white; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.2); z-index:999999; overflow:hidden; font-family:'Inter',sans-serif;">
+    <div style="background:linear-gradient(135deg,#3b82f6,#8b5cf6); color:white; padding:16px 20px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:24px;">🤖</span>
+            <div>
+                <strong style="font-size:15px;">Health AI Assistant</strong>
+                <div style="font-size:11px; opacity:0.9;">Online · Free</div>
+            </div>
+        </div>
+        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2); border:none; color:white; width:28px; height:28px; border-radius:6px; cursor:pointer; font-size:16px;">✕</button>
+    </div>
+    <div id="ai-chat-messages" style="height:320px; overflow-y:auto; padding:16px; background:#f8fafc; display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:10px;">
+            <div style="width:32px; height:32px; border-radius:50%; background:#e0e7ff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤖</div>
+            <div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.1); max-width:80%; font-size:14px; line-height:1.5;">
+                <strong>Hello! 👋</strong><br><br>
+                I'm your <strong>HealthCalc AI Assistant</strong>. Ask me anything about health metrics, calculator results, or wellness tips!
+            </div>
+        </div>
+    </div>
+    <div id="ai-chat-suggestions" style="padding:10px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; flex-wrap:wrap; gap:6px;">
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('What is a healthy BMI range?')">What is healthy BMI?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('Heart rate normal range by age')">Normal heart rate?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('Weight loss tips')">Weight loss tips</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('Daily water intake recommendation')">Water intake?</span>
+    </div>
+    <div style="padding:12px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; gap:8px;">
+        <input type="text" id="ai-chat-input" placeholder="Type your health question..." style="flex:1; padding:10px 16px; border:2px solid #e2e8f0; border-radius:25px; outline:none; font-size:14px; font-family:inherit;" onkeypress="if(event.key==='Enter')sendAIQuery()">
+        <button onclick="sendAIQuery()" style="width:42px; height:42px; border-radius:50%; background:#3b82f6; color:white; border:none; cursor:pointer; font-size:18px; flex-shrink:0;">➤</button>
+    </div>
+    <div style="padding:8px 16px; background:#f8fafc; border-top:1px solid #e2e8f0; text-align:center; font-size:10px; color:#64748b;">
+        ⚠️ Educational purposes only. Consult healthcare professionals for medical advice.
+    </div>
+</div>
+
+<!-- AI Floating Button -->
+<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed; bottom:30px; right:30px; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border:none; cursor:pointer; font-size:26px; box-shadow:0 8px 24px rgba(102,126,234,0.4); z-index:999998; transition:all 0.3s; display:flex; align-items:center; justify-content:center;" title="Chat with AI Health Assistant">
+    💬
+</button>
+
 <script>
-    // ========== THEME (dark/light) - global.js also handles, but we keep for immediate toggle ==========
+    // ========== THEME (dark/light) ==========
     function initTheme() {
         const saved = localStorage.getItem('healthcalc_theme') || 'light';
         document.body.classList.toggle('dark', saved === 'dark');
@@ -565,7 +633,6 @@
         document.querySelectorAll('.theme-option').forEach(opt => {
             opt.classList.toggle('active', opt.dataset.theme === theme);
         });
-        // Also update global health note if needed (global.js will handle)
     }
     document.querySelectorAll('.theme-option').forEach(btn => {
         btn.addEventListener('click', () => setTheme(btn.dataset.theme));
@@ -595,53 +662,34 @@
     }
     window.setCountry = setCountry;
     loadCountry();
-    
-    // Listen to country select changes
     document.getElementById('countrySelect').addEventListener('change', (e) => setCountry(e.target.value));
     
     // ========== LANGUAGE SWITCHER ==========
-    // The global.js will handle language switching via .lang-btn clicks.
-    // We'll also attach a listener to update the health note based on language if needed.
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const lang = btn.getAttribute('data-lang');
-            if (lang) {
-                // global.js defines setLanguage, but we can also call it if available
-                if (typeof window.setLanguage === 'function') {
-                    window.setLanguage(lang);
-                }
-                // Optionally update health note text to match language
-                const t = (lang === 'hi') ? '📋 CDC दिशानिर्देशों पर आधारित – स्वस्थ BMI: 18.5–24.9' : 
-                           (lang === 'es') ? '📋 Basado en guías de CDC – IMC saludable: 18.5–24.9' :
-                           (lang === 'fr') ? '📋 Basé sur les directives du CDC – IMC sain: 18.5–24.9' :
-                           (lang === 'de') ? '📋 Basierend auf CDC-Richtlinien – Gesunder BMI: 18.5–24.9' :
-                           (lang === 'ja') ? '📋 CDCガイドラインに基づく – 健康的なBMI: 18.5–24.9' :
-                           (lang === 'ar') ? '📋 استناداً إلى إرشادات CDC – مؤشر كتلة الجسم الصحي: 18.5–24.9' :
-                           '📋 Based on CDC guidelines – Healthy BMI: 18.5–24.9';
-                const noteDiv = document.getElementById('healthAuthorityNote');
-                if (noteDiv && noteDiv.innerHTML.startsWith('📋 Based on') || noteDiv.innerHTML.startsWith('📋 CDC') || noteDiv.innerHTML.startsWith('📋 Basé') || noteDiv.innerHTML.startsWith('📋 Basado')) {
-                    // Only update if it's the generic note (not the country-specific one? Actually country-specific is already set)
-                    // We'll keep the country-specific note, but allow language to change the prefix.
-                    // For simplicity, we'll just update the text while keeping the country data.
-                    const country = document.getElementById('countrySelect').value;
-                    const data = healthData[country];
-                    let prefix = '';
-                    if (lang === 'hi') prefix = `📋 ${data.name} दिशानिर्देशों पर आधारित – `;
-                    else if (lang === 'es') prefix = `📋 Basado en las pautas de ${data.name} – `;
-                    else if (lang === 'fr') prefix = `📋 Basé sur les directives de ${data.name} – `;
-                    else if (lang === 'de') prefix = `📋 Basierend auf den Richtlinien von ${data.name} – `;
-                    else if (lang === 'ja') prefix = `📋 ${data.name}ガイドラインに基づく – `;
-                    else if (lang === 'ar') prefix = `📋 استناداً إلى إرشادات ${data.name} – `;
-                    else prefix = `📋 Based on ${data.name} guidelines – `;
-                    noteDiv.innerHTML = prefix + data.text.split(' – ')[1];
-                }
+            if (lang && typeof window.setLanguage === 'function') {
+                window.setLanguage(lang);
             }
+            const country = document.getElementById('countrySelect').value;
+            const data = healthData[country];
+            const noteDiv = document.getElementById('healthAuthorityNote');
+            const translations = {
+                hi: `📋 ${data.name} दिशानिर्देशों पर आधारित – `,
+                es: `📋 Basado en las pautas de ${data.name} – `,
+                fr: `📋 Basé sur les directives de ${data.name} – `,
+                de: `📋 Basierend auf den Richtlinien von ${data.name} – `,
+                ja: `📋 ${data.name}ガイドラインに基づく – `,
+                ar: `📋 استناداً إلى إرشادات ${data.name} – `,
+                en: `📋 Based on ${data.name} guidelines – `
+            };
+            const prefix = translations[lang] || translations.en;
+            if (noteDiv) noteDiv.innerHTML = prefix + data.text.split(' – ')[1];
         });
     });
     
     // ========== TOOLS DATA ==========
     const allTools = [
-        // Advanced (7)
         { icon:"💪", title:"FFMI Calculator", subtitle:"Fat-Free Mass Index", url:"ffmi-calculator.html", features:["Muscle Mass","Natural vs Enhanced","Height-Adjusted"], category:"advanced", rating:5.0, color:"#f59e0b", desc:"Advanced muscle mass index for bodybuilders and athletes." },
         { icon:"📏", title:"WHR Calculator", subtitle:"Waist-to-Hip Ratio", url:"whr-calculator.html", features:["WHO Standard","Heart Risk","Visceral Fat"], category:"advanced", rating:4.9, color:"#10b981", desc:"Better than BMI for predicting metabolic health." },
         { icon:"🍺", title:"BAC Calculator", subtitle:"Blood Alcohol Content", url:"bac-calculator.html", features:["Widmark Formula","Legal Limits","Sober Time"], category:"advanced", rating:4.8, color:"#ef4444", desc:"Estimate blood alcohol level. Works for US, UK, EU, Australia." },
@@ -649,32 +697,25 @@
         { icon:"🧬", title:"Body Shape Analyzer", subtitle:"Somatotype", url:"body-shape-analyzer.html", features:["Endomorph/Mesomorph/Ectomorph","Personalized Plans"], category:"advanced", rating:4.9, color:"#8b5cf6", desc:"Discover your body type & get custom diet/training." },
         { icon:"💊", title:"Med Half-Life Tracker", subtitle:"Drug Concentration", url:"medication-half-life-tracker.html", features:["Concentration Graph","Elimination Time"], category:"advanced", rating:4.7, color:"#ec4899", desc:"Track medication concentration over time." },
         { icon:"🥗", title:"DRI Calculator", subtitle:"Daily Recommended Intake", url:"dri-calculator.html", features:["Vitamins & Minerals","Food Sources"], category:"advanced", rating:4.8, color:"#10b981", desc:"Complete nutrient requirements by age/sex." },
-        // Heart
         { icon:"❤️", title:"ASCVD Risk", subtitle:"10-Year Heart Risk", url:"ascvd-risk-calculator.html", features:["ACC/AHA","Heart Attack","Stroke"], category:"heart", rating:5.0, color:"#dc2626", desc:"Official ASCVD algorithm used by cardiologists." },
         { icon:"🫀", title:"Heart Risk (CVD)", subtitle:"Full Assessment", url:"heart-risk-calculator.html", features:["Framingham","Heart Age","AI Tips"], category:"heart", rating:4.8, color:"#ef4444", desc:"Comprehensive cardiovascular risk assessment." },
         { icon:"🩸", title:"Vascular Age", subtitle:"Arterial Health", url:"vascular-age-calculator.html", features:["Arterial Stiffness"], category:"heart", rating:4.7, color:"#b91c1c", desc:"Estimate your vascular age." },
         { icon:"⏳", title:"Life Expectancy", subtitle:"Healthspan", url:"life-expectancy-calculator.html", features:["Country Compare","Lifestyle Sliders"], category:"heart", rating:4.9, color:"#0ea5e9", desc:"See impact of habits on lifespan." },
-        // Body
         { icon:"⚖️", title:"BMI Calculator", subtitle:"Body Mass Index", url:"bmi-calculator.html", features:["Visceral Fat","Asian Cutoff","AI Tips"], category:"body", rating:4.9, color:"#3b82f6", desc:"BMI with visceral fat risk & age comparison graph." },
         { icon:"🧬", title:"Body Fat %", subtitle:"Visual Guide", url:"body-fat-calculator.html", features:["Navy Method","Athlete Mode"], category:"body", rating:4.8, color:"#06b6d4", desc:"US Navy method with visual reference." },
         { icon:"⚡", title:"Metabolic Age", subtitle:"Metabolism Test", url:"metabolic-age.html", features:["BMR Compare","Tips"], category:"body", rating:4.7, color:"#8b5cf6", desc:"Compare your metabolic rate to real age." },
         { icon:"🔬", title:"Metabolic Age Pro", subtitle:"Advanced", url:"metabolic-age-pro.html", features:["Detailed Analysis"], category:"body", rating:4.6, color:"#a855f7", desc:"Advanced metabolic age with body comp." },
         { icon:"⚖️", title:"Ideal Weight", subtitle:"Frame Size", url:"ideal-weight-calculator.html", features:["Peterson Formula"], category:"body", rating:4.8, color:"#f97316", desc:"Most accurate ideal weight with frame adjustment." },
-        // Nutrition
         { icon:"🔥", title:"Calorie Calculator", subtitle:"TDEE & Macros", url:"calorie-calculator.html", features:["Macro Split","Weight Projection"], category:"nutrition", rating:4.8, color:"#f59e0b", desc:"Daily calorie needs and macro breakdown." },
         { icon:"💧", title:"Water Intake", subtitle:"Hydration", url:"water-intake-calculator.html", features:["Sweat Rate","Caffeine Adjust"], category:"nutrition", rating:4.8, color:"#10b981", desc:"Personalized water intake based on activity." },
-        // Fitness
         { icon:"💪", title:"Heart Rate Zones", subtitle:"Workout", url:"heart-rate-calculator.html", features:["Karvonen","5 Zones"], category:"fitness", rating:4.7, color:"#ef4444", desc:"Optimal heart rate zones for training." },
         { icon:"🏃", title:"MET Calculator", subtitle:"Activity Burn", url:"met-calculator.html", features:["500+ Activities"], category:"fitness", rating:4.6, color:"#10b981", desc:"Calories burned for any activity." },
-        // Women
         { icon:"🌸", title:"Menstrual Cycle", subtitle:"Period Tracker", url:"menstrual-cycle-calculator.html", features:["Ovulation","Fertile Window"], category:"women", rating:4.9, color:"#ec4899", desc:"Track periods and predict ovulation." },
         { icon:"🤰", title:"Pregnancy Tracker", subtitle:"Due Date", url:"pregnancy-calculator.html", features:["Fruit Size","Weekly"], category:"women", rating:4.9, color:"#f43f5e", desc:"Calculate due date with weekly comparisons." },
         { icon:"🔬", title:"Hormone Health", subtitle:"Balance", url:"hormone-health-calculator.html", features:["Estrogen","Testosterone"], category:"women", rating:4.8, color:"#ec4899", desc:"Hormone assessment for men & women." },
-        // Sleep
         { icon:"😴", title:"Sleep Debt", subtitle:"Recovery Plan", url:"sleep-debt-calculator.html", features:["Recovery Schedule","Tips"], category:"sleep", rating:4.8, color:"#6366f1", desc:"Calculate sleep debt & get recovery plan." },
         { icon:"🌙", title:"Sleep Cycle", subtitle:"Optimal Wake", url:"sleep-cycle-calculator.html", features:["90-min Cycles"], category:"sleep", rating:4.7, color:"#3b82f6", desc:"Best wake-up times based on cycles." },
         { icon:"🌙", title:"Circadian Rhythm", subtitle:"Chronotype", url:"circadian-rhythm-calculator.html", features:["MEQ Test","4 Chronotypes"], category:"sleep", rating:4.9, color:"#6366f1", desc:"Discover your chronotype (Lion/Bear/Wolf/Dolphin)." },
-        // Health
         { icon:"🦠", title:"Gut Microbiome", subtitle:"Health Score", url:"gut-microbiome-calculator.html", features:["Diversity Score","Fiber"], category:"health", rating:5.0, color:"#10b981", desc:"Science-based gut health score." },
         { icon:"🔥", title:"Inflammation Score", subtitle:"Inflammatory Load", url:"inflammation-score-calculator.html", features:["Dietary Index","CRP"], category:"health", rating:4.8, color:"#f59e0b", desc:"Calculate inflammatory load from diet & lifestyle." }
     ];
@@ -738,6 +779,169 @@
         });
     }
     
+    // ========== AI CHAT FUNCTIONS ==========
+    const GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ'; // ← REPLACE WITH YOUR ACTUAL API KEY
+    
+    function toggleAIChat() {
+        const widget = document.getElementById('ai-chat-widget');
+        const fab = document.getElementById('ai-chat-fab');
+        if (widget.style.display === 'none' || !widget.style.display) {
+            widget.style.display = 'block';
+            fab.innerHTML = '✕';
+            fab.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            document.getElementById('ai-chat-input').focus();
+        } else {
+            widget.style.display = 'none';
+            fab.innerHTML = '💬';
+            fab.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+        }
+    }
+    
+    function openAIChat() {
+        document.getElementById('ai-chat-widget').style.display = 'block';
+        document.getElementById('ai-chat-fab').innerHTML = '✕';
+        document.getElementById('ai-chat-fab').style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        document.getElementById('ai-chat-input').focus();
+    }
+    
+    function closeAIChat() {
+        document.getElementById('ai-chat-widget').style.display = 'none';
+        document.getElementById('ai-chat-fab').innerHTML = '💬';
+        document.getElementById('ai-chat-fab').style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+    }
+    
+    function addAIMessage(text, sender) {
+        const messagesDiv = document.getElementById('ai-chat-messages');
+        const wrapper = document.createElement('div');
+        wrapper.style.cssText = `display:flex; gap:10px; ${sender === 'user' ? 'flex-direction:row-reverse;' : ''}`;
+        
+        const avatar = sender === 'user' ? '👤' : '🤖';
+        const bgColor = sender === 'user' ? '#3b82f6' : '#ffffff';
+        const textColor = sender === 'user' ? '#ffffff' : '#1e293b';
+        
+        wrapper.innerHTML = `
+            <div style="width:32px; height:32px; border-radius:50%; background:${sender === 'user' ? '#3b82f6' : '#e0e7ff'}; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px;">${avatar}</div>
+            <div style="background:${bgColor}; color:${textColor}; padding:10px 14px; border-radius:12px; max-width:80%; font-size:13px; line-height:1.5; ${sender === 'user' ? 'border-top-right-radius:4px;' : 'border-top-left-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,0.08);'}">${text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>
+        `;
+        
+        messagesDiv.appendChild(wrapper);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function showAITyping() {
+        const messagesDiv = document.getElementById('ai-chat-messages');
+        const typingDiv = document.createElement('div');
+        typingDiv.id = 'ai-typing-indicator';
+        typingDiv.style.cssText = 'display:flex; gap:10px;';
+        typingDiv.innerHTML = `
+            <div style="width:32px; height:32px; border-radius:50%; background:#e0e7ff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤖</div>
+            <div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); display:flex; gap:5px;">
+                <div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite;"></div>
+                <div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.2s;"></div>
+                <div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.4s;"></div>
+            </div>
+        `;
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    
+    function removeAITyping() {
+        const typing = document.getElementById('ai-typing-indicator');
+        if (typing) typing.remove();
+    }
+    
+    async function sendAIQuery(prefilledText) {
+        const input = document.getElementById('ai-chat-input');
+        const message = prefilledText || input.value.trim();
+        if (!message) return;
+        
+        // Add user message
+        addAIMessage(message, 'user');
+        input.value = '';
+        
+        // Show typing
+        showAITyping();
+        
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: `You are HealthCalc AI, a professional health assistant on healthcalc.in. 
+                            Provide helpful, accurate, and encouraging health information.
+                            Keep responses concise (2-3 paragraphs max).
+                            Always include: "Consult healthcare professionals for medical advice."
+                            
+                            User Question: ${message}
+                            
+                            Context: This is a health calculator website with BMI, heart risk, sleep, nutrition, pregnancy tools.`
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 400
+                    }
+                })
+            });
+            
+            const data = await response.json();
+            removeAITyping();
+            
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
+            } else {
+                throw new Error('No response');
+            }
+        } catch (error) {
+            removeAITyping();
+            console.error('AI API Error:', error);
+            
+            // Fallback responses
+            const fallbacks = {
+                bmi: "📊 **BMI Guide:**\n\n• Underweight: Below 18.5\n• Normal: 18.5-24.9\n• Overweight: 25-29.9\n• Obese: 30+\n\n💡 BMI doesn't account for muscle mass. Athletes may have high BMI but low body fat.\n\n⚠️ Consult healthcare professionals for medical advice.",
+                heart: "❤️ **Heart Rate Guide:**\n\n• Normal resting: 60-100 bpm\n• Athletes: 40-60 bpm\n\n**Tips:**\n• 150 min moderate exercise weekly\n• Mediterranean diet\n• Manage stress\n\n⚠️ Consult healthcare professionals for medical advice.",
+                sleep: "😴 **Sleep Tips:**\n\n• Adults need 7-9 hours\n• Consistent schedule helps\n• Cool, dark room (65-68°F)\n• No screens before bed\n\n💡 Sleep cycles last ~90 minutes. Wake at cycle end for refreshed feeling.\n\n⚠️ Consult healthcare professionals for medical advice.",
+                water: "💧 **Hydration Guide:**\n\n• Men: ~3.7L daily\n• Women: ~2.7L daily\n• More after exercise\n\n💡 Check urine color - pale straw indicates good hydration.\n\n⚠️ Consult healthcare professionals for medical advice.",
+                weight: "⚖️ **Weight Management:**\n\n• Healthy loss: 0.5-1 kg/week\n• 500-calorie deficit daily\n• Combine diet + exercise\n• Focus on whole foods\n\n💡 Track progress with measurements, not just scale weight.\n\n⚠️ Consult healthcare professionals for medical advice."
+            };
+            
+            let fallbackText = "🏥 **HealthCalc AI Assistant**\n\nI'm having trouble connecting right now. Here's some general guidance:\n\n";
+            const q = message.toLowerCase();
+            
+            if (q.includes('bmi')) fallbackText += fallbacks.bmi;
+            else if (q.includes('heart') || q.includes('pulse')) fallbackText += fallbacks.heart;
+            else if (q.includes('sleep')) fallbackText += fallbacks.sleep;
+            else if (q.includes('water') || q.includes('hydrat')) fallbackText += fallbacks.water;
+            else if (q.includes('weight') || q.includes('diet')) fallbackText += fallbacks.weight;
+            else fallbackText += "💡 Try asking about BMI, heart rate, sleep, hydration, or weight management. I'm here to help!\n\n⚠️ Consult healthcare professionals for medical advice.";
+            
+            addAIMessage(fallbackText, 'ai');
+        }
+    }
+    
+    // Add typing animation style
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+        .ai-suggestion-chip:hover {
+            background: #3b82f6 !important;
+            color: white !important;
+            border-color: #3b82f6 !important;
+        }
+    `;
+    document.head.appendChild(styleSheet);
+    
+    // Expose functions globally
+    window.toggleAIChat = toggleAIChat;
+    window.openAIChat = openAIChat;
+    window.closeAIChat = closeAIChat;
+    window.sendAIQuery = sendAIQuery;
+    
     // Initial render
     renderTools(allTools);
     updateCategoryCounts();
@@ -749,6 +953,10 @@
         const btn = document.getElementById('scrollTop');
         if(btn) btn.classList.toggle('visible', window.scrollY > 500);
     });
+    
+    console.log('✅ HealthCalc Homepage Loaded with AI Chat Integration');
+    console.log('💬 Click the floating chat button to try AI Assistant');
+    console.log('🔑 API Key Status:', GEMINI_API_KEY && GEMINI_API_KEY !== 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ' ? 'Configured ✅' : '⚠️ Please add your Gemini API key');
 </script>
 </body>
 </html>
