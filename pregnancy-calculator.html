@@ -2,65 +2,498 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregnancy Calculator | Due Date & Trimester Tracker | US/UK/CA/AU</title>
-<meta name="description" content="Calculate due date, current week, trimester, and fetal development milestones. Follows ACOG, NHS, RANZCOG guidelines.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+<title>Pregnancy Calculator | Due Date & Trimester Tracker | AI Chat | US/UK/CA/AU | HealthCalc</title>
+<meta name="description" content="Calculate due date, current week, trimester, and fetal development milestones. AI chat for pregnancy tips. Follows ACOG, NHS, RANZCOG guidelines. US, UK, Canada, Australia.">
+<meta name="keywords" content="pregnancy calculator, due date, trimester tracker, fetal size, pregnancy week, conception date, ACOG, NHS, AI pregnancy chat">
 <link rel="canonical" href="https://healthcalc.in/pregnancy-calculator.html">
 <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/pregnancy-calculator.html">
 <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/pregnancy-calculator.html">
 <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/pregnancy-calculator.html">
 <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/pregnancy-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://healthcalc.in/pregnancy-calculator.html">
+
+<meta property="og:title" content="Pregnancy Calculator | Due Date & Trimester | AI Chat">
+<meta property="og:description" content="Calculate your due date and track pregnancy milestones. AI chat for pregnancy tips.">
+<meta property="og:url" content="https://healthcalc.in/pregnancy-calculator.html">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Pregnancy Calculator with AI Assistant",
+  "description": "Pregnancy due date calculator with trimester tracking and AI-powered pregnancy tips",
+  "url": "https://healthcalc.in/pregnancy-calculator.html",
+  "author": {"@type": "Organization", "name": "HealthCalc"},
+  "dateModified": "2026-06-18"
+}
+</script>
+
 <link rel="stylesheet" href="global.css">
 <script src="global.js" defer></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#ec4899,#f43f5e);min-height:100vh;padding:20px}.container{max-width:800px;margin:0 auto}.card{background:white;border-radius:32px;padding:32px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.3)}h1{font-size:32px;background:linear-gradient(135deg,#ec4899,#f43f5e);-webkit-background-clip:text;background-clip:text;color:transparent}.international-bar{display:flex;justify-content:flex-end;gap:15px;flex-wrap:wrap;margin-bottom:20px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.1)}.health-authority-note{background:#fce7f3;padding:6px 16px;border-radius:40px;font-size:0.8rem;display:inline-block;margin-bottom:15px}.input-group{margin-bottom:18px}label{display:block;font-weight:600;margin-bottom:6px;color:#333}input,select{width:100%;padding:12px 14px;border:2px solid #f1c0d0;border-radius:12px}.calc-btn{background:linear-gradient(135deg,#ec4899,#f43f5e);color:white;padding:14px;width:100%;border:none;border-radius:60px;font-weight:700;cursor:pointer;margin:16px 0}.result-box{background:#fdf2f8;border-radius:24px;padding:24px;text-align:center;margin-top:20px}.due-date{font-size:28px;font-weight:800;color:#db2777}.week-info{font-size:18px;margin:10px 0}.fetal-size{font-size:14px;color:#666}body.dark .card{background:#1e293b}body.dark label{color:#cbd5e1}body.dark input,body.dark select{background:#0f172a;border-color:#475569;color:#e2e8f0}body.dark .result-box{background:#0f172a}body.dark .due-date{color:#f472b6}
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+    --primary:#ec4899;--primary-dark:#db2777;--primary-light:#fce7f3;
+    --success:#10b981;--warning:#f59e0b;--dark:#1e293b;
+    --gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-600:#475569;
+    --shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg:0 25px 50px -12px rgba(0,0,0,0.3);
+    --radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:linear-gradient(135deg,#ec4899,#f43f5e);
+    min-height:100vh;padding:20px;
+    transition:background 0.3s,color 0.3s;
+}
+
+body.dark{
+    background:linear-gradient(135deg,#1e2a3a,#0f172a);
+}
+body.dark .card{background:#1e293b}
+body.dark label{color:#cbd5e1}
+body.dark input,body.dark select{background:#0f172a;border-color:#475569;color:#e2e8f0}
+body.dark .result-box{background:#0f172a}
+body.dark .due-date{color:#f472b6}
+body.dark .week-info{color:#e2e8f0}
+body.dark .health-authority-note{background:#1e293b;color:#94a3b8}
+body.dark .chat-cta-box{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
+body.dark .chat-cta-results{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
+body.dark .interlinks a{background:#334155;color:#cbd5e1}
+body.dark .interlinks a:hover{background:var(--primary);color:white}
+body.dark footer{color:#94a3b8}
+
+.container{max-width:800px;margin:0 auto}
+
+.international-bar{
+    display:flex;justify-content:flex-end;align-items:center;gap:15px;flex-wrap:wrap;
+    margin-bottom:20px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.2);
+}
+.international-bar select{
+    padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.3);
+    background:rgba(255,255,255,0.15);color:white;font-size:0.85rem;
+}
+.international-bar select option{background:#9d174d;color:white}
+body.dark .international-bar select{background:#1e293b;border-color:#334155;color:#e2e8f0}
+body.dark .international-bar select option{background:#1e293b}
+.theme-toggle{display:flex;gap:6px}
+.theme-option{
+    padding:6px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.3);
+    background:transparent;color:white;cursor:pointer;font-size:0.85rem;transition:all 0.2s;
+}
+.theme-option:hover{background:rgba(255,255,255,0.2)}
+body.dark .theme-option{border-color:#334155;color:#cbd5e1}
+
+.health-authority-note{
+    background:rgba(255,255,255,0.15);padding:8px 20px;border-radius:40px;
+    font-size:0.85rem;text-align:center;display:inline-block;margin-bottom:15px;color:white;
+}
+body.dark .health-authority-note{background:#1e293b;color:#94a3b8}
+
+.card{
+    background:white;border-radius:32px;padding:32px;
+    box-shadow:var(--shadow-lg);transition:background 0.3s;
+}
+h1{
+    font-size:32px;background:linear-gradient(135deg,#ec4899,#f43f5e);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:8px;display:flex;align-items:center;gap:10px;
+}
+
+.input-group{margin-bottom:18px}
+label{display:block;font-weight:600;margin-bottom:6px;color:#333}
+label i{color:var(--primary);margin-right:6px}
+input,select{width:100%;padding:12px 14px;border:2px solid #f1c0d0;border-radius:12px;font-size:14px;background:white;transition:all 0.2s}
+input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(236,72,153,0.1)}
+
+/* Chat CTA */
+.chat-cta-box{
+    background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px dashed var(--success);
+    padding:16px;border-radius:var(--radius-lg);margin:18px 0;text-align:center;
+    cursor:pointer;transition:all 0.3s;
+}
+.chat-cta-box:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,0.2)}
+.chat-cta-box .cta-icon{font-size:32px;margin-bottom:8px}
+.chat-cta-box .cta-text{font-weight:700;color:var(--dark);font-size:14px}
+body.dark .chat-cta-box .cta-text{color:#e2e8f0}
+.chat-cta-box .cta-sub{font-size:11px;color:var(--gray-600);margin-top:4px}
+body.dark .chat-cta-box .cta-sub{color:#94a3b8}
+
+.calc-btn{
+    background:linear-gradient(135deg,#ec4899,#f43f5e);color:white;padding:14px;
+    width:100%;border:none;border-radius:60px;font-weight:700;cursor:pointer;
+    margin:16px 0;font-size:16px;transition:all 0.2s;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px -5px rgba(236,72,153,0.4)}
+
+.result-box{
+    background:#fdf2f8;border-radius:24px;padding:24px;text-align:center;
+    margin-top:20px;transition:background 0.3s;
+}
+.due-date{font-size:28px;font-weight:800;color:#db2777}
+.week-info{font-size:18px;margin:10px 0;color:var(--dark)}
+body.dark .week-info{color:#e2e8f0}
+.fetal-size{font-size:14px;color:#666;margin-top:8px}
+body.dark .fetal-size{color:#94a3b8}
+
+/* Chat CTA in Results */
+.chat-cta-results{
+    margin:20px 0;padding:20px;
+    background:linear-gradient(135deg,#f0fdf4,#ecfdf5);
+    border-radius:var(--radius-lg);border:2px solid var(--success);text-align:center;
+}
+.chat-cta-btn{
+    background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;
+    padding:12px 24px;border-radius:60px;font-weight:700;font-size:14px;
+    cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.3s;
+}
+.chat-cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 25px rgba(16,185,129,0.4)}
+
+/* Interlinks */
+.interlinks{
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+    margin-top:24px;padding-top:20px;border-top:1px solid var(--gray-200);
+}
+.interlinks a{
+    background:var(--gray-100);padding:6px 16px;border-radius:40px;
+    text-decoration:none;font-size:12px;color:var(--gray-600);transition:all 0.2s;
+}
+.interlinks a:hover{background:var(--primary);color:white}
+
+footer{text-align:center;margin-top:24px;font-size:11px;color:white;opacity:0.8}
+footer a{color:white}
 </style>
 </head>
 <body>
 <div class="container">
-<div class="international-bar"><select id="countrySelect"><option value="us">🇺🇸 US</option><option value="uk">🇬🇧 UK</option><option value="ca">🇨🇦 Canada</option><option value="au">🇦🇺 Australia</option></select><div class="theme-toggle"><button class="theme-option" data-theme="light">☀️</button><button class="theme-option" data-theme="dark">🌙</button></div><div class="language-switcher"><button class="lang-btn" data-lang="en">EN</button><button class="lang-btn" data-lang="hi">हि</button></div></div>
-<div id="healthAuthorityNote" class="health-authority-note">🤰 Based on ACOG/NHS guidelines – 40 weeks average gestation</div>
+
+<div class="international-bar">
+    <select id="countrySelect"><option value="us">🇺🇸 US</option><option value="uk">🇬🇧 UK</option><option value="ca">🇨🇦 Canada</option><option value="au">🇦🇺 Australia</option></select>
+    <div class="theme-toggle"><button class="theme-option" data-theme="light">☀️ Light</button><button class="theme-option" data-theme="dark">🌙 Dark</button></div>
+</div>
+<div id="healthAuthorityNote" class="health-authority-note">🤰 Based on ACOG/NHS/RANZCOG guidelines – 40 weeks average gestation</div>
+
 <div class="card">
 <h1><i class="fas fa-baby-carriage"></i> Pregnancy Due Date Calculator</h1>
+<p style="color:#666;margin-bottom:20px;font-size:14px;">Calculate your due date, current week, trimester, and fetal development milestones. Chat with AI for pregnancy tips!</p>
+
 <div class="input-group"><label><i class="fas fa-calendar-alt"></i> First day of last menstrual period (LMP)</label><input type="date" id="lmp"></div>
 <div class="input-group"><label><i class="fas fa-calendar-check"></i> Or known due date (optional)</label><input type="date" id="edd"></div>
-<button class="calc-btn" onclick="calculatePregnancy()">Calculate Pregnancy Info</button>
-<div class="result-box" id="result"><div class="due-date" id="dueDate">—</div><div class="week-info" id="weekInfo"></div><div id="trimester"></div><div id="fetalSize"></div></div>
-</div></div>
+
+<!-- Chat CTA in Input -->
+<div class="chat-cta-box" onclick="openChatWithPregnancy()">
+    <div class="cta-icon">💬</div>
+    <div class="cta-text">Need Pregnancy Tips? Chat with AI!</div>
+    <div class="cta-sub">Get trimester-specific advice & nutrition tips</div>
+</div>
+
+<button class="calc-btn" onclick="calculatePregnancy()"><i class="fas fa-calculator"></i> Calculate Pregnancy Info</button>
+
+<div class="result-box" id="result">
+    <div class="due-date" id="dueDate">—</div>
+    <div class="week-info" id="weekInfo"></div>
+    <div id="trimester" style="font-weight:600;margin-top:6px;color:var(--primary-dark)"></div>
+    <div class="fetal-size" id="fetalSize"></div>
+    
+    <!-- Chat CTA in Results -->
+    <div class="chat-cta-results" id="chatResultsCTA" style="display:none;">
+        <h4><i class="fas fa-robot"></i> Want Pregnancy Tips?</h4>
+        <p style="font-size:13px;color:#666;margin-bottom:12px;">Chat with AI for trimester advice, nutrition, and wellness tips!</p>
+        <button class="chat-cta-btn" onclick="openChatWithPregnancy()">💬 Chat About My Pregnancy</button>
+    </div>
+</div>
+
+<div class="interlinks">
+    <a href="menstrual-cycle-calculator.html">🌸 Menstrual Cycle</a>
+    <a href="hormone-health-calculator.html">🔬 Hormone Health</a>
+    <a href="bmi-calculator.html">⚖️ BMI</a>
+    <a href="water-intake-calculator.html">💧 Water Intake</a>
+    <a href="dri-calculator.html">🥗 DRI Nutrients</a>
+</div>
+</div>
+<footer>ACOG/NHS guidelines. <a href="privacy-policy.html">Privacy</a> | <a href="terms-of-service.html">Terms</a></footer>
+</div>
+
+<!-- ============================================ -->
+<!-- AI CHAT WIDGET - PREGNANCY CONTEXT AWARE     -->
+<!-- ============================================ -->
+<div id="ai-chat-widget" style="display:none; position:fixed; bottom:100px; right:30px; width:380px; max-width:90vw; background:white; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.2); z-index:999999; overflow:hidden; font-family:'Inter',sans-serif;">
+    <div style="background:linear-gradient(135deg,#ec4899,#f43f5e); color:white; padding:16px 20px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:24px;">🤰</span>
+            <div>
+                <strong style="font-size:15px;">Pregnancy AI Assistant</strong>
+                <div style="font-size:11px; opacity:0.9;">Online · Free · AI-Powered</div>
+            </div>
+        </div>
+        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2); border:none; color:white; width:28px; height:28px; border-radius:6px; cursor:pointer; font-size:16px;">✕</button>
+    </div>
+    <div id="ai-chat-messages" style="height:320px; overflow-y:auto; padding:16px; background:#f8fafc; display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; gap:10px;">
+            <div style="width:32px; height:32px; border-radius:50%; background:#fce7f3; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤰</div>
+            <div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.1); max-width:80%; font-size:14px; line-height:1.5;">
+                <strong>Hello! 👋</strong><br><br>
+                I'm your <strong>Pregnancy AI Assistant</strong>. Calculate your due date first, then ask me for trimester-specific advice, nutrition tips, and wellness guidance!
+            </div>
+        </div>
+    </div>
+    <div id="ai-chat-suggestions" style="padding:10px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; flex-wrap:wrap; gap:6px;">
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('What should I eat during pregnancy?')">Pregnancy diet?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('First trimester tips and advice')">First trimester?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('Safe exercises during pregnancy')">Safe exercises?</span>
+        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('What to pack in hospital bag?')">Hospital bag?</span>
+    </div>
+    <div style="padding:12px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; gap:8px;">
+        <input type="text" id="ai-chat-input" placeholder="Ask about your pregnancy..." style="flex:1; padding:10px 16px; border:2px solid #e2e8f0; border-radius:25px; outline:none; font-size:14px; font-family:inherit;" onkeypress="if(event.key==='Enter')sendAIQuery()">
+        <button onclick="sendAIQuery()" style="width:42px; height:42px; border-radius:50%; background:#ec4899; color:white; border:none; cursor:pointer; font-size:18px; flex-shrink:0;">➤</button>
+    </div>
+    <div style="padding:8px 16px; background:#f8fafc; border-top:1px solid #e2e8f0; text-align:center; font-size:10px; color:#64748b;">
+        ⚠️ Educational purposes only. Consult your OB-GYN for medical advice.
+    </div>
+</div>
+
+<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed; bottom:30px; right:30px; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#ec4899,#f43f5e); color:white; border:none; cursor:pointer; font-size:26px; box-shadow:0 8px 24px rgba(236,72,153,0.4); z-index:999998; transition:all 0.3s; display:flex; align-items:center; justify-content:center;" title="Chat with Pregnancy AI">
+    💬
+</button>
+
+<style>
+    @keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
+    .ai-suggestion-chip:hover { background: #ec4899 !important; color: white !important; border-color: #ec4899 !important; }
+    @media (max-width: 480px) {
+        #ai-chat-widget { width: 100vw; height: 100vh; bottom: 0; right: 0; border-radius: 0; max-width: 100vw; }
+        #ai-chat-messages { height: calc(100vh - 250px); }
+    }
+</style>
+
 <script>
-function calculatePregnancy(){
-let lmp = document.getElementById('lmp').value;
-let eddInput = document.getElementById('edd').value;
-let dueDate, today = new Date();
-today.setHours(0,0,0,0);
-if(eddInput){
-dueDate = new Date(eddInput);
-}else if(lmp){
-dueDate = new Date(lmp);
-dueDate.setDate(dueDate.getDate() + 280);
-}else{ alert('Enter LMP or EDD'); return; }
-let daysLeft = Math.ceil((dueDate - today)/(1000*60*60*24));
-let weeksElapsed = Math.floor((280 - daysLeft)/7);
-let trimester = weeksElapsed<13 ? 'First Trimester (Weeks 1-12)' : (weeksElapsed<27 ? 'Second Trimester (Weeks 13-26)' : 'Third Trimester (Weeks 27-40)');
-let fetalSize = '';
-if(weeksElapsed<=4) fetalSize='Poppy seed';
-else if(weeksElapsed<=8) fetalSize='Raspberry';
-else if(weeksElapsed<=12) fetalSize='Lime';
-else if(weeksElapsed<=16) fetalSize='Avocado';
-else if(weeksElapsed<=20) fetalSize='Mango';
-else if(weeksElapsed<=24) fetalSize='Corn';
-else if(weeksElapsed<=28) fetalSize='Eggplant';
-else if(weeksElapsed<=32) fetalSize='Coconut';
-else if(weeksElapsed<=36) fetalSize='Pineapple';
-else fetalSize='Watermelon';
-let weekStatus = weeksElapsed>=40 ? 'Full term' : `Week ${weeksElapsed} of pregnancy`;
-document.getElementById('dueDate').innerHTML = dueDate.toDateString();
-document.getElementById('weekInfo').innerHTML = weekStatus;
-document.getElementById('trimester').innerHTML = trimester;
-document.getElementById('fetalSize').innerHTML = `👶 Fetal size: ${fetalSize}`;
-}
+    // ===== GEMINI API KEY =====
+    var GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+
+    // ===== THEME =====
+    function initTheme() {
+        var saved = localStorage.getItem('healthcalc_theme') || 'light';
+        document.body.classList.toggle('dark', saved === 'dark');
+    }
+    function setTheme(theme) {
+        localStorage.setItem('healthcalc_theme', theme);
+        document.body.classList.toggle('dark', theme === 'dark');
+    }
+    document.querySelectorAll('.theme-option').forEach(function(btn) {
+        btn.addEventListener('click', function() { setTheme(btn.dataset.theme); });
+    });
+    initTheme();
+
+    // ===== COUNTRY =====
+    function setCountry(country) { localStorage.setItem('healthcalc_country', country); }
+    document.getElementById('countrySelect').addEventListener('change', function(e) { setCountry(e.target.value); });
+    (function() {
+        var saved = localStorage.getItem('healthcalc_country') || 'us';
+        document.getElementById('countrySelect').value = saved;
+        setCountry(saved);
+    })();
+
+    // ===== PREGNANCY CALCULATOR =====
+    function calculatePregnancy() {
+        var lmp = document.getElementById('lmp').value;
+        var eddInput = document.getElementById('edd').value;
+        var dueDate, today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        if (eddInput) {
+            dueDate = new Date(eddInput);
+        } else if (lmp) {
+            dueDate = new Date(lmp);
+            dueDate.setDate(dueDate.getDate() + 280);
+        } else {
+            alert('Please enter LMP or known due date');
+            return;
+        }
+        
+        var daysLeft = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
+        var weeksElapsed = Math.floor((280 - daysLeft) / 7);
+        
+        var trimester = weeksElapsed < 13 ? 'First Trimester (Weeks 1-12)' : (weeksElapsed < 27 ? 'Second Trimester (Weeks 13-26)' : 'Third Trimester (Weeks 27-40)');
+        
+        var fetalSizes = [
+            { max: 4, size: 'Poppy seed' },
+            { max: 8, size: 'Raspberry' },
+            { max: 12, size: 'Lime' },
+            { max: 16, size: 'Avocado' },
+            { max: 20, size: 'Mango' },
+            { max: 24, size: 'Corn' },
+            { max: 28, size: 'Eggplant' },
+            { max: 32, size: 'Coconut' },
+            { max: 36, size: 'Pineapple' },
+            { max: 100, size: 'Watermelon' }
+        ];
+        
+        var fetalSize = 'Watermelon';
+        for (var i = 0; i < fetalSizes.length; i++) {
+            if (weeksElapsed <= fetalSizes[i].max) {
+                fetalSize = fetalSizes[i].size;
+                break;
+            }
+        }
+        
+        var weekStatus = weeksElapsed >= 40 ? 'Full term - Baby is ready!' : 'Week ' + weeksElapsed + ' of pregnancy';
+        
+        document.getElementById('dueDate').innerHTML = dueDate.toDateString();
+        document.getElementById('weekInfo').innerHTML = weekStatus;
+        document.getElementById('trimester').innerHTML = trimester;
+        document.getElementById('fetalSize').innerHTML = '👶 Fetal size: <strong>' + fetalSize + '</strong>';
+        
+        // Show chat CTA
+        document.getElementById('chatResultsCTA').style.display = 'block';
+        
+        saveToLocalStorage();
+    }
+    
+    function saveToLocalStorage() {
+        var data = {
+            lmp: document.getElementById('lmp').value,
+            edd: document.getElementById('edd').value
+        };
+        localStorage.setItem('pregnancyCalculator', JSON.stringify(data));
+    }
+    
+    function loadFromLocalStorage() {
+        var saved = localStorage.getItem('pregnancyCalculator');
+        if (saved) {
+            try {
+                var d = JSON.parse(saved);
+                if (d.lmp) document.getElementById('lmp').value = d.lmp;
+                if (d.edd) document.getElementById('edd').value = d.edd;
+                if (d.lmp || d.edd) calculatePregnancy();
+            } catch(e) {}
+        }
+    }
+    
+    document.getElementById('lmp').addEventListener('change', function() { saveToLocalStorage(); calculatePregnancy(); });
+    document.getElementById('edd').addEventListener('change', function() { saveToLocalStorage(); calculatePregnancy(); });
+
+    // ==============================================
+    // 🔥 AI CHAT FUNCTIONS
+    // ==============================================
+    function toggleAIChat() {
+        var widget = document.getElementById('ai-chat-widget');
+        var fab = document.getElementById('ai-chat-fab');
+        if (widget.style.display === 'none' || !widget.style.display) {
+            widget.style.display = 'block';
+            fab.innerHTML = '✕';
+            fab.style.background = 'linear-gradient(135deg, #9d174d, #831843)';
+            document.getElementById('ai-chat-input').focus();
+        } else {
+            widget.style.display = 'none';
+            fab.innerHTML = '💬';
+            fab.style.background = 'linear-gradient(135deg, #ec4899, #f43f5e)';
+        }
+    }
+
+    function openChatWithPregnancy() {
+        var widget = document.getElementById('ai-chat-widget');
+        var fab = document.getElementById('ai-chat-fab');
+        widget.style.display = 'block';
+        fab.innerHTML = '✕';
+        fab.style.background = 'linear-gradient(135deg, #9d174d, #831843)';
+        
+        var weekInfo = document.getElementById('weekInfo').innerText;
+        var trimester = document.getElementById('trimester').innerText;
+        var input = document.getElementById('ai-chat-input');
+        
+        if (weekInfo && weekInfo !== '') {
+            input.value = 'I am in ' + trimester + ' (' + weekInfo + '). What should I know and do at this stage?';
+            input.focus();
+        } else {
+            input.placeholder = 'Enter your LMP first, then ask me!';
+            input.focus();
+        }
+    }
+
+    function closeAIChat() {
+        document.getElementById('ai-chat-widget').style.display = 'none';
+        document.getElementById('ai-chat-fab').innerHTML = '💬';
+        document.getElementById('ai-chat-fab').style.background = 'linear-gradient(135deg, #ec4899, #f43f5e)';
+    }
+
+    function openAIChat() { openChatWithPregnancy(); }
+
+    function addAIMessage(text, sender) {
+        var messagesDiv = document.getElementById('ai-chat-messages');
+        var wrapper = document.createElement('div');
+        wrapper.style.cssText = 'display:flex; gap:10px; animation:messageSlideIn 0.3s ease; ' + (sender === 'user' ? 'flex-direction:row-reverse;' : '');
+        var avatar = sender === 'user' ? '👤' : '🤰';
+        var bgColor = sender === 'user' ? '#ec4899' : '#ffffff';
+        var textColor = sender === 'user' ? '#ffffff' : '#1e293b';
+        wrapper.innerHTML = '<div style="width:32px; height:32px; border-radius:50%; background:' + (sender === 'user' ? '#fce7f3' : '#fce7f3') + '; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px;">' + avatar + '</div><div style="background:' + bgColor + '; color:' + textColor + '; padding:10px 14px; border-radius:12px; max-width:80%; font-size:13px; line-height:1.5; ' + (sender === 'user' ? 'border-top-right-radius:4px;' : 'border-top-left-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,0.08);') + '">' + text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') + '</div>';
+        messagesDiv.appendChild(wrapper);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function showAITyping() {
+        var messagesDiv = document.getElementById('ai-chat-messages');
+        var typingDiv = document.createElement('div');
+        typingDiv.id = 'ai-typing-indicator';
+        typingDiv.style.cssText = 'display:flex; gap:10px;';
+        typingDiv.innerHTML = '<div style="width:32px; height:32px; border-radius:50%; background:#fce7f3; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤰</div><div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); display:flex; gap:5px;"><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite;"></div><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.2s;"></div><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.4s;"></div></div>';
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function removeAITyping() {
+        var typing = document.getElementById('ai-typing-indicator');
+        if (typing) typing.remove();
+    }
+
+    async function sendAIQuery(prefilledText) {
+        var input = document.getElementById('ai-chat-input');
+        var message = prefilledText || input.value.trim();
+        if (!message) return;
+        
+        var weekInfo = document.getElementById('weekInfo').innerText;
+        var trimester = document.getElementById('trimester').innerText;
+        
+        addAIMessage(message, 'user');
+        input.value = '';
+        showAITyping();
+        
+        try {
+            var response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_API_KEY, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: 'You are a Pregnancy AI Assistant on healthcalc.in. User pregnancy status: ' + trimester + ', ' + weekInfo + '.\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed pregnancy advice. Include nutrition tips, safe exercises, trimester-specific guidance, and wellness recommendations. Give 3-4 paragraphs. End with: "Consult your OB-GYN for medical advice."' }] }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
+                })
+            });
+            var data = await response.json();
+            removeAITyping();
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
+            } else { throw new Error('No response'); }
+        } catch (error) {
+            removeAITyping();
+            addAIMessage('🤰 <strong>Pregnancy Tips:</strong><br><br>• Take prenatal vitamins with folic acid daily<br>• Stay hydrated with 8-10 glasses of water<br>• Eat a balanced diet rich in fruits and vegetables<br>• Get regular prenatal checkups<br>• Practice gentle exercises like walking and prenatal yoga<br>• Get adequate rest and sleep<br><br>⚠️ <em>Consult your OB-GYN for medical advice.</em>', 'ai');
+        }
+    }
+
+    window.calculatePregnancy = calculatePregnancy;
+    window.toggleAIChat = toggleAIChat;
+    window.openAIChat = openChatWithPregnancy;
+    window.closeAIChat = closeAIChat;
+    window.sendAIQuery = sendAIQuery;
+    window.openChatWithPregnancy = openChatWithPregnancy;
+
+    loadFromLocalStorage();
 </script>
 </body>
 </html>
