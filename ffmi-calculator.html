@@ -5,761 +5,234 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
-<title>Advanced FFMI Calculator | Fat-Free Mass Index | Natural vs Enhanced | US/UK/CA/AU</title>
-<meta name="description" content="Professional FFMI (Fat-Free Mass Index) calculator with height adjustment. Assess your muscle mass index with natural vs enhanced lifter classification. Trusted in USA, UK, Canada, Australia.">
-<meta name="keywords" content="FFMI, Fat-Free Mass Index, muscle mass calculator, natural bodybuilding, enhanced lifter, gym fitness tool, lean body mass, Kouri formula">
+<title>FFMI Calculator: Fat-Free Mass Index | Natural vs Enhanced | AI Chat | HealthCalc</title>
+<meta name="description" content="Professional FFMI calculator with height adjustment. Assess muscle mass, natural vs enhanced classification. AI chat for muscle building tips. US, UK, CA, AU.">
+<meta name="keywords" content="FFMI, Fat-Free Mass Index, muscle mass calculator, natural bodybuilding, enhanced lifter, lean body mass, Kouri formula, AI fitness chat">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://healthcalc.in/ffmi-calculator.html">
 
-<!-- International hreflang tags -->
 <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/ffmi-calculator.html">
 <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/ffmi-calculator.html">
 <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/ffmi-calculator.html">
 <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/ffmi-calculator.html">
 <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/ffmi-calculator.html">
 
-<!-- Open Graph -->
-<meta property="og:title" content="Advanced FFMI Calculator | Muscle Mass Assessment">
-<meta property="og:description" content="Professional FFMI calculator with height adjustment. Natural vs Enhanced classification. Trusted in US, UK, Canada, Australia.">
+<meta property="og:title" content="FFMI Calculator | Muscle Mass Assessment | AI Chat">
+<meta property="og:description" content="Professional FFMI calculator with AI chat for muscle building tips.">
 <meta property="og:url" content="https://healthcalc.in/ffmi-calculator.html">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://healthcalc.in/images/ffmi-og.jpg">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="en_GB">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Advanced FFMI Calculator">
-<meta name="twitter:description" content="Know your muscle mass index with natural vs enhanced classification">
-
-<!-- Schema Markup (updated with international audience) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
-  "name": "Advanced FFMI Calculator",
-  "description": "Fat-Free Mass Index calculator for muscle assessment with height adjustment for US, UK, Canada, Australia",
+  "name": "FFMI Calculator with AI Fitness Assistant",
+  "description": "Fat-Free Mass Index calculator for muscle assessment with AI-powered muscle building tips",
   "url": "https://healthcalc.in/ffmi-calculator.html",
   "author": {"@type": "Organization", "name": "HealthCalc"},
-  "about": {"@type": "MedicalCondition", "name": "Muscle Mass"},
-  "inLanguage": ["en"],
-  "audience": {"@type": "Audience", "geographicArea": {"@type": "Country", "name": ["US","UK","CA","AU"]}},
-  "dateModified": "2026-06-11"
+  "dateModified": "2026-06-18"
 }
 </script>
 
-<!-- FAQ Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is FFMI (Fat-Free Mass Index)?",
-      "acceptedAnswer": {"@type": "Answer", "text": "FFMI is a measure of muscle mass relative to height, similar to BMI but for lean mass. It's the gold standard for assessing muscularity in athletes and bodybuilders."}
-    },
-    {
-      "@type": "Question",
-      "name": "What is a good FFMI score?",
-      "acceptedAnswer": {"@type": "Answer", "text": "For natural lifters: 18-21 is average, 22-24 is excellent, 25+ is elite rare. For enhanced lifters, scores above 26 are common. Women typically have 5-7 points lower."}
-    },
-    {
-      "@type": "Question",
-      "name": "What's the difference between natural and enhanced FFMI?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Research (Kouri et al.) shows natural lifters rarely exceed 25 FFMI. Scores above 26 typically indicate performance-enhancing drug use. Our calculator flags this threshold."}
-    }
-  ]
-}
-</script>
-
-<!-- Breadcrumb Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
-    {"@type": "ListItem", "position": 2, "name": "Fitness Tools", "item": "https://healthcalc.in/#tools"},
-    {"@type": "ListItem", "position": 3, "name": "FFMI Calculator", "item": "https://healthcalc.in/ffmi-calculator.html"}
-  ]
-}
-</script>
-
-<!-- Global CSS + JS (International Features) -->
 <link rel="stylesheet" href="global.css">
 <script src="global.js" defer></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-:root {
-  --primary: #1f6392;
-  --primary-dark: #0e4b70;
-  --primary-light: #eef2fa;
-  --secondary: #2c7da0;
-  --accent: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --dark: #1e293b;
-  --gray-50: #f8fafc;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-600: #475569;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+:root{
+  --bg:#f5f7fa;--surface:#ffffff;--surface-alt:#f1f5f9;--card-bg:rgba(255,255,255,0.95);
+  --text:#1e293b;--text-light:#475569;--text-muted:#64748b;--border:#e2e8f0;
+  --primary:#1f6392;--primary-dark:#0e4b70;--primary-light:#eef2fa;
+  --success:#10b981;--warning:#f59e0b;--danger:#ef4444;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg:0 10px 30px rgba(0,0,0,0.12);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
-  min-height: 100vh;
-  padding: 20px;
-  color: var(--dark);
-  transition: background 0.3s;
+body.dark{
+  --bg:#0f172a;--surface:#1e293b;--surface-alt:#334155;--card-bg:#1e293b;
+  --text:#e2e8f0;--text-light:#cbd5e1;--text-muted:#94a3b8;--border:#334155;
+  --primary:#60a5fa;--primary-dark:#3b82f6;--primary-light:#1e3a5f;
+  --shadow-lg:0 10px 30px rgba(0,0,0,0.3);
 }
 
-/* Dark mode overrides (global.js adds class 'dark') */
-body.dark {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-}
-body.dark .calculator-card {
-  background: #1e293b;
-  backdrop-filter: blur(10px);
-  border-color: #334155;
-}
-body.dark .sub {
-  color: #94a3b8;
-  border-left-color: #2c7da0;
-}
-body.dark .unit-toggle {
-  background: #334155;
-}
-body.dark .unit-btn {
-  color: #94a3b8;
-}
-body.dark .unit-btn.active {
-  background: #475569;
-  color: #60a5fa;
-}
-body.dark label {
-  color: #cbd5e1;
-}
-body.dark input, body.dark select {
-  background: #0f172a;
-  border-color: #475569;
-  color: #e2e8f0;
-}
-body.dark input:focus {
-  border-color: #2c7da0;
-  box-shadow: 0 0 0 3px rgba(44,125,160,0.2);
-}
-body.dark .result-area {
-  background: #0f172a;
-}
-body.dark .ffmi-value {
-  color: #60a5fa;
-}
-body.dark .ffmi-detail, body.dark .ffmi-scale {
-  background: #0f172a;
-}
-body.dark .comparison-box {
-  background: #0f172a;
-}
-body.dark .interlink a {
-  background: #334155;
-  color: #cbd5e1;
-}
-body.dark .interlink a:hover {
-  background: var(--primary);
-  color: white;
-}
-body.dark footer {
-  color: #94a3b8;
-}
-body.dark .health-authority-note {
-  background: #1e293b;
-  color: #94a3b8;
-}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f5f7fa,#e9edf2);min-height:100vh;padding:20px;color:var(--text);transition:background 0.3s,color 0.3s}
+body.dark{background:linear-gradient(135deg,#0f172a,#1e293b)}
+.container{max-width:800px;margin:0 auto}
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
+.international-bar{display:flex;justify-content:flex-end;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px;padding:10px 0;border-bottom:1px solid var(--border)}
+.international-bar select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+.theme-toggle{display:flex;gap:6px}
+.theme-option{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-size:0.85rem}
+.theme-option:hover{background:var(--primary);color:white}
 
-/* International Bar (new) */
-.international-bar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-body.dark .international-bar {
-  border-bottom-color: rgba(255,255,255,0.1);
-}
-.health-authority-note {
-  background: #eef2ff;
-  padding: 6px 16px;
-  border-radius: 40px;
-  font-size: 0.8rem;
-  text-align: center;
-  display: inline-block;
-  margin-bottom: 15px;
-}
+.health-authority-note{background:var(--primary-light);padding:6px 16px;border-radius:40px;font-size:0.8rem;margin-bottom:15px;display:inline-block;color:var(--primary-dark)}
+body.dark .health-authority-note{background:#1e3a5f;color:#93c5fd}
 
-/* Breadcrumb */
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  font-size: 13px;
-  color: var(--gray-600);
-  padding: 10px 0;
-}
-.breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 500; }
-.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;font-size:13px;color:var(--text-muted)}
+.breadcrumb a{color:var(--primary);text-decoration:none;font-weight:500}
 
-/* Card */
-.calculator-card {
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-  border-radius: var(--radius-xl);
-  padding: 32px;
-  box-shadow: var(--shadow-lg);
-  transition: transform 0.2s;
-  border: 1px solid rgba(255,255,255,0.5);
-}
-.calculator-card:hover {
-  transform: translateY(-3px);
-}
+.calculator-card{background:var(--card-bg);border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-lg);border:1px solid var(--border);transition:background 0.3s}
+h1{font-size:32px;background:linear-gradient(120deg,#0f2b3d,#1b4f6e);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+body.dark h1{background:linear-gradient(120deg,#60a5fa,#93c5fd);-webkit-background-clip:text;background-clip:text}
+.sub{color:var(--text-light);border-left:4px solid var(--primary);padding-left:16px;margin-bottom:24px;font-size:14px}
 
-h1 {
-  font-size: 32px;
-  background: linear-gradient(120deg, #0f2b3d, #1b4f6e);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.unit-toggle{display:flex;gap:12px;background:var(--surface-alt);padding:6px;border-radius:60px;margin-bottom:24px}
+.unit-btn{flex:1;text-align:center;padding:10px;border-radius:50px;cursor:pointer;font-weight:600;background:transparent;color:var(--text-light);border:none;font-size:14px}
+.unit-btn.active{background:var(--surface);box-shadow:var(--shadow-sm);color:var(--primary)}
 
-.sub {
-  color: var(--gray-600);
-  border-left: 4px solid var(--secondary);
-  padding-left: 16px;
-  margin-bottom: 24px;
-  font-weight: 500;
-  font-size: 14px;
-}
+.input-group{margin-bottom:20px}
+label{display:block;font-weight:600;margin-bottom:8px;color:var(--text);font-size:14px}
+label i{color:var(--primary);margin-right:6px}
+input,select{width:100%;padding:12px 14px;font-size:14px;border:2px solid var(--border);border-radius:var(--radius-md);background:var(--surface);color:var(--text)}
+input:focus,select:focus{outline:none;border-color:var(--primary)}
 
-/* Unit Toggle */
-.unit-toggle {
-  display: flex;
-  gap: 12px;
-  background: var(--primary-light);
-  padding: 6px;
-  border-radius: 60px;
-  margin-bottom: 24px;
-}
-.unit-btn {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s;
-  background: transparent;
-  color: var(--gray-600);
-}
-.unit-btn.active {
-  background: white;
-  box-shadow: var(--shadow-sm);
-  color: var(--primary);
-}
+.chat-cta-box{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px dashed var(--success);padding:16px;border-radius:var(--radius-lg);margin:18px 0;text-align:center;cursor:pointer;transition:all 0.3s}
+body.dark .chat-cta-box{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
+.chat-cta-box:hover{transform:translateY(-2px)}
+.chat-cta-box .cta-icon{font-size:32px;margin-bottom:8px}
+.chat-cta-box .cta-text{font-weight:700;color:var(--text);font-size:14px}
+.chat-cta-box .cta-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
 
-/* Form */
-.input-group { margin-bottom: 20px; }
-label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--dark);
-  font-size: 14px;
-}
-label i {
-  color: var(--primary);
-  margin-right: 6px;
-}
-input, select {
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 14px;
-  border: 2px solid var(--gray-200);
-  border-radius: var(--radius-md);
-  background: white;
-  transition: all 0.2s;
-}
-input:focus {
-  outline: none;
-  border-color: var(--secondary);
-  box-shadow: 0 0 0 3px rgba(44,125,160,0.1);
-}
-.row-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-@media (max-width: 500px) {
-  .row-2col { grid-template-columns: 1fr; }
-}
+.calc-btn{background:var(--primary);color:white;border:none;width:100%;padding:14px;font-size:16px;font-weight:700;border-radius:60px;cursor:pointer;margin-top:16px}
+.calc-btn:hover{background:var(--primary-dark)}
 
-/* Button */
-.calc-btn {
-  background: var(--primary);
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 60px;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.calc-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px -5px rgba(31,99,146,0.4);
-}
+.result-area{background:var(--surface-alt);border-radius:var(--radius-lg);padding:24px;margin:24px 0 16px;text-align:center}
+.ffmi-value{font-size:56px;font-weight:800;color:var(--primary-dark);line-height:1}
+body.dark .ffmi-value{color:#60a5fa}
+.status{font-size:18px;font-weight:700;margin:12px 0;color:var(--text)}
 
-/* Result Area */
-.result-area {
-  background: var(--primary-light);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  margin: 24px 0 16px;
-  text-align: center;
-}
-.ffmi-value {
-  font-size: 56px;
-  font-weight: 800;
-  color: var(--primary-dark);
-  line-height: 1;
-}
-.status {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 12px 0;
-}
-.ffmi-detail {
-  font-size: 13px;
-  color: var(--gray-600);
-  margin-top: 10px;
-}
+.ffmi-scale{margin:20px 0;padding:16px;background:var(--surface-alt);border-radius:var(--radius-lg)}
+.scale-bars{display:flex;height:40px;border-radius:10px;overflow:hidden;margin-bottom:8px}
+.scale-bar{flex:1;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:white}
+.scale-bar.very-low{background:#94a3b8}.scale-bar.low{background:#3b82f6}.scale-bar.average{background:#10b981}
+.scale-bar.good{background:#84cc16}.scale-bar.excellent{background:#eab308}.scale-bar.elite{background:#f97316}.scale-bar.super{background:#ef4444}
+.scale-indicator{position:relative;height:20px;margin-top:5px}
+.scale-marker{position:absolute;width:4px;height:20px;background:var(--text);transform:translateX(-50%);border-radius:2px}
 
-/* FFMI Scale */
-.ffmi-scale {
-  margin: 20px 0;
-  padding: 16px;
-  background: var(--gray-50);
-  border-radius: var(--radius-lg);
-}
-.scale-title {
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 13px;
-}
-.scale-bars {
-  display: flex;
-  height: 40px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-.scale-bar {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  font-weight: 600;
-  color: white;
-}
-.scale-bar.very-low { background: #94a3b8; }
-.scale-bar.low { background: #3b82f6; }
-.scale-bar.average { background: #10b981; }
-.scale-bar.good { background: #84cc16; }
-.scale-bar.excellent { background: #eab308; }
-.scale-bar.elite { background: #f97316; }
-.scale-bar.super { background: #ef4444; }
-.scale-indicator {
-  position: relative;
-  height: 20px;
-  margin-top: 5px;
-}
-.scale-marker {
-  position: absolute;
-  width: 4px;
-  height: 20px;
-  background: var(--dark);
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
+.chat-cta-results{margin:20px 0;padding:20px;background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border-radius:var(--radius-lg);border:2px solid var(--success);text-align:center}
+body.dark .chat-cta-results{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
+.chat-cta-btn{background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;padding:12px 24px;border-radius:60px;font-weight:700;font-size:14px;cursor:pointer}
 
-/* Comparison Box */
-.comparison-box {
-  background: var(--gray-50);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  margin: 20px 0;
-}
-.comparison-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 13px;
-}
-.comparison-label { font-weight: 600; }
-.comparison-value { font-weight: 700; color: var(--primary); }
+.interlink{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.interlink a{background:var(--surface-alt);padding:6px 16px;border-radius:40px;text-decoration:none;font-size:12px;color:var(--text-light)}
+.interlink a:hover{background:var(--primary);color:white}
 
-/* Interlinks */
-.interlink {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--gray-200);
-}
-.interlink a {
-  background: var(--gray-100);
-  padding: 6px 16px;
-  border-radius: 40px;
-  text-decoration: none;
-  font-size: 12px;
-  color: var(--gray-600);
-  transition: all 0.2s;
-}
-.interlink a:hover {
-  background: var(--primary);
-  color: white;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 24px;
-  font-size: 11px;
-  color: var(--gray-600);
-}
+footer{text-align:center;margin-top:24px;font-size:11px;color:var(--text-muted)}
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- International Bar (Country, Theme, Language) -->
-  <div class="international-bar">
-    <select id="countrySelect">
-      <option value="us">🇺🇸 United States</option>
-      <option value="uk">🇬🇧 United Kingdom</option>
-      <option value="ca">🇨🇦 Canada</option>
-      <option value="au">🇦🇺 Australia</option>
-    </select>
-    <div class="theme-toggle">
-      <button class="theme-option" data-theme="light">☀️ Light</button>
-      <button class="theme-option" data-theme="dark">🌙 Dark</button>
-    </div>
-    <div class="language-switcher">
-      <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-      <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
-      <button class="lang-btn" data-lang="es">🇪🇸 ES</button>
-      <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
-      <button class="lang-btn" data-lang="de">🇩🇪 DE</button>
-      <button class="lang-btn" data-lang="ja">🇯🇵 JA</button>
-      <button class="lang-btn" data-lang="ar">🇸🇦 AR</button>
-    </div>
-  </div>
-  <div id="healthAuthorityNote" class="health-authority-note">💪 Based on Kouri et al. research – FFMI classification for natural vs enhanced athletes</div>
+<div class="international-bar">
+    <select id="countrySelect"><option value="us">🇺🇸 US</option><option value="uk">🇬🇧 UK</option><option value="ca">🇨🇦 CA</option><option value="au">🇦🇺 AU</option></select>
+    <div class="theme-toggle"><button class="theme-option" data-theme="light">☀️ Light</button><button class="theme-option" data-theme="dark">🌙 Dark</button></div>
+</div>
+<div id="healthAuthorityNote" class="health-authority-note">💪 Kouri et al. research – Natural FFMI limit: ~25</div>
 
-  <!-- Breadcrumb -->
-  <div class="breadcrumb">
-    <a href="/index.html"><i class="fas fa-home"></i> Home</a>
-    <span>›</span>
-    <a href="/index.html#tools">Fitness Tools</a>
-    <span>›</span>
-    <span>FFMI Calculator</span>
-  </div>
+<div class="breadcrumb"><a href="/index.html"><i class="fas fa-home"></i> Home</a> <span>›</span> <a href="/index.html#tools">Fitness Tools</a> <span>›</span> <span>FFMI Calculator</span></div>
 
-  <div class="calculator-card">
-    <h1><i class="fas fa-dumbbell"></i> Advanced FFMI Calculator</h1>
-    <div class="sub">Fat-Free Mass Index – The gold standard for muscle assessment (Natural vs Enhanced)</div>
+<div class="calculator-card">
+<h1><i class="fas fa-dumbbell"></i> Advanced FFMI Calculator</h1>
+<div class="sub">Fat-Free Mass Index – Natural vs Enhanced Classification. Chat with AI for muscle building tips!</div>
 
-    <!-- Unit Toggle -->
-    <div class="unit-toggle" id="unitToggle">
-      <div class="unit-btn active" data-unit="metric">📏 Metric (kg/cm)</div>
-      <div class="unit-btn" data-unit="imperial">🇺🇸 Imperial (lbs/in)</div>
-    </div>
+<div class="unit-toggle"><button class="unit-btn active" data-unit="metric">📏 Metric (kg/cm)</button><button class="unit-btn" data-unit="imperial">🇺🇸 Imperial (lbs/in)</button></div>
 
-    <!-- Metric Fields -->
-    <div id="metricFields">
-      <div class="input-group">
-        <label><i class="fas fa-weight-scale"></i> Weight (kg)</label>
-        <input type="number" id="weightMetric" placeholder="e.g., 75" step="0.1" value="75">
-      </div>
-      <div class="input-group">
-        <label><i class="fas fa-arrows-up-down"></i> Height (cm)</label>
-        <input type="number" id="heightMetric" placeholder="e.g., 175" step="0.1" value="175">
-      </div>
-      <div class="input-group">
-        <label><i class="fas fa-percent"></i> Body Fat Percentage</label>
-        <input type="number" id="bodyfat" placeholder="e.g., 15" step="0.5" value="15">
-      </div>
-    </div>
+<div id="metricFields">
+<div class="input-group"><label><i class="fas fa-weight-scale"></i> Weight (kg)</label><input type="number" id="weightMetric" value="75"></div>
+<div class="input-group"><label><i class="fas fa-arrows-up-down"></i> Height (cm)</label><input type="number" id="heightMetric" value="175"></div>
+<div class="input-group"><label><i class="fas fa-percent"></i> Body Fat %</label><input type="number" id="bodyfat" value="15"></div></div>
 
-    <!-- Imperial Fields -->
-    <div id="imperialFields" style="display: none;">
-      <div class="input-group">
-        <label><i class="fas fa-weight-scale"></i> Weight (lbs)</label>
-        <input type="number" id="weightImp" placeholder="e.g., 165" step="0.1" value="165">
-      </div>
-      <div class="input-group">
-        <label><i class="fas fa-arrows-up-down"></i> Height (inches)</label>
-        <input type="number" id="heightImp" placeholder="e.g., 69" step="0.1" value="69">
-      </div>
-      <div class="input-group">
-        <label><i class="fas fa-percent"></i> Body Fat Percentage</label>
-        <input type="number" id="bodyfatImp" placeholder="e.g., 15" step="0.5" value="15">
-      </div>
-    </div>
+<div id="imperialFields" style="display:none">
+<div class="input-group"><label><i class="fas fa-weight-scale"></i> Weight (lbs)</label><input type="number" id="weightImp" value="165"></div>
+<div class="input-group"><label><i class="fas fa-arrows-up-down"></i> Height (inches)</label><input type="number" id="heightImp" value="69"></div>
+<div class="input-group"><label><i class="fas fa-percent"></i> Body Fat %</label><input type="number" id="bodyfatImp" value="15"></div></div>
 
-    <!-- Lifter Type -->
-    <div class="input-group">
-      <label><i class="fas fa-flag-checkered"></i> Lifter Type</label>
-      <select id="lifterType">
-        <option value="natural">🌱 Natural (no PEDs)</option>
-        <option value="enhanced">⚡ Enhanced / Open category</option>
-      </select>
-    </div>
+<div class="input-group"><label><i class="fas fa-flag-checkered"></i> Lifter Type</label><select id="lifterType"><option value="natural">🌱 Natural (no PEDs)</option><option value="enhanced">⚡ Enhanced / Open</option></select></div>
 
-    <button class="calc-btn" id="calcBtn">
-      <i class="fas fa-calculator"></i> Calculate FFMI
-    </button>
+<div class="chat-cta-box" onclick="openChatWithFFMI()"><div class="cta-icon">💬</div><div class="cta-text">Need Muscle Building Tips? Chat with AI!</div><div class="cta-sub">Get personalized workout & nutrition advice</div></div>
 
-    <!-- Results -->
-    <div class="result-area" id="resultBox">
-      <div style="font-weight: 500;">Your FFMI Score (Height-Adjusted)</div>
-      <div class="ffmi-value" id="ffmiNumber">—</div>
-      <div class="status" id="ffmiInterpret">Enter values above</div>
-      <div class="ffmi-detail" id="ffmiDetail"></div>
-    </div>
+<button class="calc-btn" id="calcBtn"><i class="fas fa-calculator"></i> Calculate FFMI</button>
 
-    <!-- FFMI Scale -->
-    <div class="ffmi-scale">
-      <div class="scale-title">📊 FFMI Classification Scale</div>
-      <div class="scale-bars">
-        <div class="scale-bar very-low">< 17</div>
-        <div class="scale-bar low">17-19</div>
-        <div class="scale-bar average">19-21</div>
-        <div class="scale-bar good">21-23</div>
-        <div class="scale-bar excellent">23-25</div>
-        <div class="scale-bar elite">25-27</div>
-        <div class="scale-bar super">27+</div>
-      </div>
-      <div class="scale-indicator">
-        <div class="scale-marker" id="scaleMarker" style="left: 0%;"></div>
-      </div>
-    </div>
-
-    <!-- Comparison -->
-    <div class="comparison-box">
-      <div class="comparison-item">
-        <span class="comparison-label">🎯 Your FFMI</span>
-        <span class="comparison-value" id="yourFFMI">--</span>
-      </div>
-      <div class="comparison-item">
-        <span class="comparison-label">👥 Average Male Natural</span>
-        <span class="comparison-value">19-21</span>
-      </div>
-      <div class="comparison-item">
-        <span class="comparison-label">🏆 Elite Natural Limit</span>
-        <span class="comparison-value">~25</span>
-      </div>
-      <div class="comparison-item">
-        <span class="comparison-label">⚡ Typical Enhanced Range</span>
-        <span class="comparison-value">26-30+</span>
-      </div>
-    </div>
-
-    <!-- Interlinks -->
-    <div class="interlink">
-      <a href="bmi-calculator.html">📊 BMI</a>
-      <a href="body-fat-calculator.html">🧬 Body Fat</a>
-      <a href="ideal-weight-calculator.html">⚖️ Ideal Weight</a>
-      <a href="calorie-calculator.html">🔥 Calories</a>
-      <a href="whr-calculator.html">📏 WHR</a>
-      <a href="ffmi-calculator.html">💪 FFMI</a>
-    </div>
-    <div style="margin-top: 16px; font-size: 11px; text-align: center; color: var(--gray-600);">
-      ⭐ Trusted by fitness professionals in 45+ countries
-    </div>
-  </div>
-  <footer>© 2026 HealthCalc — Based on Kouri et al. research. Not medical advice. 100% private.</footer>
+<div class="result-area" id="resultBox">
+<div>Your FFMI Score (Height-Adjusted)</div>
+<div class="ffmi-value" id="ffmiNumber">—</div>
+<div class="status" id="ffmiInterpret">Enter values above</div>
+<div id="ffmiDetail" style="font-size:13px;color:var(--text-muted);margin-top:10px"></div>
 </div>
 
+<div class="ffmi-scale">
+<div class="scale-title" style="font-weight:600;margin-bottom:10px">📊 FFMI Classification Scale</div>
+<div class="scale-bars"><div class="scale-bar very-low"><17</div><div class="scale-bar low">17-19</div><div class="scale-bar average">19-21</div><div class="scale-bar good">21-23</div><div class="scale-bar excellent">23-25</div><div class="scale-bar elite">25-27</div><div class="scale-bar super">27+</div></div>
+<div class="scale-indicator"><div class="scale-marker" id="scaleMarker" style="left:0%"></div></div>
+</div>
+
+<div class="chat-cta-results"><h4><i class="fas fa-robot"></i> Want Muscle Building Tips?</h4><p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Chat with AI for personalized workout routines & nutrition plans!</p><button class="chat-cta-btn" onclick="openChatWithFFMI()">💬 Chat About My FFMI</button></div>
+
+<div class="interlink"><a href="bmi-calculator.html">📊 BMI</a><a href="body-fat-calculator.html">🧬 Body Fat</a><a href="ideal-weight-calculator.html">⚖️ Ideal Weight</a><a href="calorie-calculator.html">🔥 Calories</a><a href="body-shape-analyzer.html">🧬 Body Shape</a></div>
+</div>
+<footer>© 2026 HealthCalc — Kouri et al. research. 100% private. <a href="privacy-policy.html" style="color:var(--primary)">Privacy</a></footer>
+</div>
+
+<!-- ============================================ -->
+<!-- AI CHAT WIDGET - FFMI CONTEXT AWARE          -->
+<!-- ============================================ -->
+<div id="ai-chat-widget" style="display:none;position:fixed;bottom:100px;right:30px;width:380px;max-width:90vw;background:var(--surface);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);z-index:999999;overflow:hidden;font-family:'Inter',sans-serif;border:1px solid var(--border)">
+    <div style="background:linear-gradient(135deg,#1f6392,#0e4b70);color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
+        <div><strong>FFMI Fitness AI</strong><div style="font-size:11px;opacity:0.9">Online · Free</div></div>
+        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px">✕</button>
+    </div>
+    <div id="ai-chat-messages" style="height:320px;overflow-y:auto;padding:16px;background:var(--surface-alt);display:flex;flex-direction:column;gap:12px"></div>
+    <div style="padding:10px 16px;background:var(--surface);border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px">
+        <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('How to increase my FFMI naturally?')">Increase FFMI?</span>
+        <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('Best diet for muscle growth')">Muscle building diet?</span>
+        <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('Workout routine for natural lifters')">Natural lifter routine?</span>
+    </div>
+    <div style="padding:12px 16px;background:var(--surface);border-top:1px solid var(--border);display:flex;gap:8px">
+        <input type="text" id="ai-chat-input" placeholder="Ask about your FFMI..." style="flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:25px;outline:none;font-size:14px;background:var(--surface);color:var(--text)">
+        <button onclick="sendAIQuery()" style="width:42px;height:42px;border-radius:50%;background:#1f6392;color:white;border:none;cursor:pointer;font-size:18px">➤</button>
+    </div>
+    <div style="padding:8px 16px;background:var(--surface-alt);border-top:1px solid var(--border);text-align:center;font-size:10px;color:var(--text-muted)">⚠️ Educational only. Consult a fitness professional.</div>
+</div>
+<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed;bottom:30px;right:30px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#1f6392,#0e4b70);color:white;border:none;cursor:pointer;font-size:26px;box-shadow:0 8px 24px rgba(31,99,146,0.4);z-index:999998;transition:all 0.3s;display:flex;align-items:center;justify-content:center">💬</button>
+
+<style>@keyframes messageSlideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}.ai-suggestion-chip:hover{background:#1f6392!important;color:white!important}@media(max-width:480px){#ai-chat-widget{width:100vw;height:100vh;bottom:0;right:0;border-radius:0;max-width:100vw}#ai-chat-messages{height:calc(100vh-250px)}}</style>
+
 <script>
-// ===== GLOBAL VARIABLES =====
-let currentUnit = 'metric';
+var GEMINI_API_KEY='AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+var currentUnit='metric';
 
-// ===== UNIT TOGGLE =====
-document.querySelectorAll('.unit-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentUnit = btn.getAttribute('data-unit');
-    if (currentUnit === 'metric') {
-      document.getElementById('metricFields').style.display = 'block';
-      document.getElementById('imperialFields').style.display = 'none';
-    } else {
-      document.getElementById('metricFields').style.display = 'none';
-      document.getElementById('imperialFields').style.display = 'block';
-    }
-    calculateFFMI();
-  });
-});
+function initTheme(){var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark')}
+function setTheme(t){localStorage.setItem('healthcalc_theme',t);document.body.classList.toggle('dark',t==='dark')}
+document.querySelectorAll('.theme-option').forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.theme)})});
+initTheme();
 
-// ===== MAIN CALCULATION =====
-function calculateFFMI() {
-  let weightKg, heightM, bodyfatPct;
+function setCountry(c){localStorage.setItem('healthcalc_country',c)}
+document.getElementById('countrySelect').addEventListener('change',function(e){setCountry(e.target.value)});
+(function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;setCountry(s)})();
 
-  if (currentUnit === 'metric') {
-    let weight = parseFloat(document.getElementById('weightMetric').value);
-    let heightCm = parseFloat(document.getElementById('heightMetric').value);
-    let bf = parseFloat(document.getElementById('bodyfat').value);
-    if (isNaN(weight) || isNaN(heightCm) || isNaN(bf)) return;
-    weightKg = weight;
-    heightM = heightCm / 100;
-    bodyfatPct = bf;
-  } else {
-    let weightLbs = parseFloat(document.getElementById('weightImp').value);
-    let heightIn = parseFloat(document.getElementById('heightImp').value);
-    let bf = parseFloat(document.getElementById('bodyfatImp').value);
-    if (isNaN(weightLbs) || isNaN(heightIn) || isNaN(bf)) return;
-    weightKg = weightLbs * 0.453592;
-    heightM = heightIn * 0.0254;
-    bodyfatPct = bf;
-  }
+document.querySelectorAll('.unit-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.unit-btn').forEach(function(x){x.classList.remove('active')});b.classList.add('active');currentUnit=b.dataset.unit;document.getElementById('metricFields').style.display=currentUnit==='metric'?'block':'none';document.getElementById('imperialFields').style.display=currentUnit==='imperial'?'block':'none';calculateFFMI()})});
 
-  if (weightKg <= 0 || heightM <= 0 || bodyfatPct < 0 || bodyfatPct >= 70) return;
+function calculateFFMI(){var w,hm,bf;if(currentUnit==='metric'){w=parseFloat(document.getElementById('weightMetric').value);hm=parseFloat(document.getElementById('heightMetric').value)/100;bf=parseFloat(document.getElementById('bodyfat').value)}else{w=parseFloat(document.getElementById('weightImp').value)*0.453592;hm=parseFloat(document.getElementById('heightImp').value)*0.0254;bf=parseFloat(document.getElementById('bodyfatImp').value)}if(isNaN(w)||isNaN(hm)||isNaN(bf)||w<=0||hm<=0)return;var lm=w*(1-bf/100),ffmi=lm/(hm*hm),adj=ffmi+(6.1*(1.8-hm)),lifter=document.getElementById('lifterType').value,interp='',extra='';if(adj<17)interp='⚠️ Low muscle mass';else if(adj<19)interp='📉 Below average';else if(adj<21)interp='✅ Average';else if(adj<23)interp='💪 Above average';else if(adj<25)interp='🏆 Excellent - Natural elite';else if(adj<27)interp='🔥 Exceptional - Rare natural';else interp='⚡ Extremely high';if(lifter==='natural'&&adj>25.5)extra='⚠️ Scores >25 rarely natural (Kouri et al.)';else if(lifter==='natural'&&adj>23)extra='🏆 Great natural development!';else extra='📊 Height-adjusted to 1.8m';document.getElementById('ffmiNumber').innerText=adj.toFixed(1);document.getElementById('ffmiInterpret').innerHTML=interp;document.getElementById('ffmiDetail').innerHTML='Raw FFMI: '+ffmi.toFixed(1)+' | Lean Mass: '+lm.toFixed(1)+' kg | '+extra;document.getElementById('scaleMarker').style.left=Math.min(95,Math.max(5,(adj/30)*95))+'%'}
+document.getElementById('calcBtn').addEventListener('click',calculateFFMI);
+['weightMetric','heightMetric','bodyfat','weightImp','heightImp','bodyfatImp','lifterType'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',calculateFFMI);el.addEventListener('change',calculateFFMI)}});
 
-  // Calculate fat mass and lean mass
-  let fatMass = weightKg * (bodyfatPct / 100);
-  let leanMass = weightKg - fatMass;
+// ===== AI CHAT =====
+function toggleAIChat(){var w=document.getElementById('ai-chat-widget'),f=document.getElementById('ai-chat-fab');if(w.style.display==='none'||!w.style.display){w.style.display='block';f.innerHTML='✕';f.style.background='linear-gradient(135deg,#ef4444,#dc2626)';document.getElementById('ai-chat-input').focus()}else{w.style.display='none';f.innerHTML='💬';f.style.background='linear-gradient(135deg,#1f6392,#0e4b70)'}}
+function openChatWithFFMI(){var w=document.getElementById('ai-chat-widget'),f=document.getElementById('ai-chat-fab'),ffmi=document.getElementById('ffmiNumber').innerText;w.style.display='block';f.innerHTML='✕';f.style.background='linear-gradient(135deg,#ef4444,#dc2626)';var input=document.getElementById('ai-chat-input');if(ffmi!=='—'){input.value='My FFMI is '+ffmi+'. How can I build more muscle?';input.focus()}else{input.focus()}}
+function closeAIChat(){document.getElementById('ai-chat-widget').style.display='none';document.getElementById('ai-chat-fab').innerHTML='💬';document.getElementById('ai-chat-fab').style.background='linear-gradient(135deg,#1f6392,#0e4b70)'}
+function openAIChat(){openChatWithFFMI()}
+function addAIMessage(text,sender){var md=document.getElementById('ai-chat-messages'),w=document.createElement('div');w.style.cssText='display:flex;gap:10px;animation:messageSlideIn 0.3s ease;'+(sender==='user'?'flex-direction:row-reverse;':'');var avatar=sender==='user'?'👤':'💪';w.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">'+avatar+'</div><div style="background:'+(sender==='user'?'#1f6392':'var(--surface)')+';color:'+(sender==='user'?'white':'var(--text)')+';padding:10px 14px;border-radius:12px;max-width:80%;font-size:13px;line-height:1.5">'+text.replace(/\n/g,'<br>')+'</div>';md.appendChild(w);md.scrollTop=md.scrollHeight}
+function showAITyping(){var md=document.getElementById('ai-chat-messages'),td=document.createElement('div');td.id='ai-typing-indicator';td.innerHTML='<div style="display:flex;gap:10px"><div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center">💪</div><div style="background:var(--surface);padding:12px 16px;border-radius:12px;display:flex;gap:5px"><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s"></div></div></div>';md.appendChild(td);md.scrollTop=md.scrollHeight}
+function removeAITyping(){var t=document.getElementById('ai-typing-indicator');if(t)t.remove()}
+async function sendAIQuery(prefilledText){var input=document.getElementById('ai-chat-input'),message=prefilledText||input.value.trim();if(!message)return;var ffmi=document.getElementById('ffmiNumber').innerText;addAIMessage(message,'user');input.value='';showAITyping();try{var response=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_API_KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:'You are a Fitness AI on healthcalc.in. User FFMI: '+ffmi+'.\n\nQuestion: '+message+'\n\nProvide COMPLETE, detailed muscle building advice. Include workout and nutrition tips. End with: "Consult a fitness professional."'}],}],generationConfig:{temperature:0.7,maxOutputTokens:1024}})});var data=await response.json();removeAITyping();if(data.candidates&&data.candidates[0]?.content?.parts?.[0]?.text){addAIMessage(data.candidates[0].content.parts[0].text,'ai')}else{throw new Error('No response')}}catch(error){removeAITyping();addAIMessage('💪 <strong>Muscle Building Tips:</strong><br><br>• Progressive overload is key<br>• Eat 1.6-2.2g protein/kg<br>• Train each muscle 2x/week<br>• Get 7-8 hours sleep<br>• Stay consistent!<br><br>⚠️ Consult a fitness professional.','ai')}}
 
-  // Raw FFMI
-  let ffmi = leanMass / (heightM * heightM);
-  
-  // Height-adjusted FFMI (Kouri formula, reference height 1.8m)
-  let referenceHeight = 1.8;
-  let adjustedFFMI = ffmi + (6.1 * (referenceHeight - heightM));
-  
-  let displayFFMI = adjustedFFMI.toFixed(1);
-  let rawFFMI = ffmi.toFixed(1);
-  
-  let lifter = document.getElementById('lifterType').value;
-  
-  // Interpretation based on adjusted FFMI
-  let interpretation = "";
-  let extraNote = "";
-  let categoryClass = "";
-  
-  if (adjustedFFMI < 17) {
-    interpretation = "⚠️ Low muscle mass — focus on resistance training & protein intake.";
-    categoryClass = "very-low";
-  } else if (adjustedFFMI < 19) {
-    interpretation = "📉 Below average muscle mass. Consistent strength training will help.";
-    categoryClass = "low";
-  } else if (adjustedFFMI < 21) {
-    interpretation = "✅ Average / Healthy muscle mass for general population.";
-    categoryClass = "average";
-  } else if (adjustedFFMI < 23) {
-    interpretation = "💪 Above average — good lean mass! You're more muscular than most.";
-    categoryClass = "good";
-  } else if (adjustedFFMI < 25) {
-    interpretation = "🏆 Excellent muscle development. Natural elite range.";
-    categoryClass = "excellent";
-  } else if (adjustedFFMI < 27) {
-    interpretation = "🔥 Exceptional FFMI. Very rare for natural lifters.";
-    categoryClass = "elite";
-  } else {
-    interpretation = "⚡ Extremely high FFMI — typical range for enhanced athletes.";
-    categoryClass = "super";
-  }
-  
-  // Lifter-specific notes
-  if (lifter === 'natural' && adjustedFFMI > 25.5) {
-    extraNote = "⚠️ Research (Kouri et al.) shows natural lifters rarely exceed 25 FFMI. Scores above 26 typically indicate performance-enhancing drug use.";
-  } else if (lifter === 'enhanced' && adjustedFFMI < 20) {
-    extraNote = "ℹ️ Even for enhanced lifters, building a solid natural foundation first is key. Focus on progressive overload and nutrition.";
-  } else if (lifter === 'natural' && adjustedFFMI > 23) {
-    extraNote = "🏆 Excellent natural development! You've achieved impressive muscle mass without enhancement.";
-  } else if (lifter === 'enhanced' && adjustedFFMI > 27) {
-    extraNote = "💪 High FFMI consistent with enhanced status. Monitor health markers regularly.";
-  } else {
-    extraNote = "📊 FFMI is height-adjusted to 1.8m (5'11\"). This allows fair comparison across different heights.";
-  }
-  
-  // Update UI
-  document.getElementById('ffmiNumber').innerText = displayFFMI;
-  document.getElementById('ffmiInterpret').innerHTML = interpretation;
-  document.getElementById('ffmiDetail').innerHTML = `Raw FFMI: ${rawFFMI} kg/m² | Lean Mass: ${leanMass.toFixed(1)} kg | ${extraNote}`;
-  document.getElementById('yourFFMI').innerHTML = displayFFMI;
-  
-  // Update scale marker position (FFMI range 0-30)
-  let markerPos = Math.min(95, Math.max(5, (adjustedFFMI / 30) * 95));
-  document.getElementById('scaleMarker').style.left = markerPos + '%';
-}
-
-// ===== EVENT LISTENERS =====
-document.getElementById('calcBtn').addEventListener('click', calculateFFMI);
-
-// Add input listeners for real-time calculation
-const inputs = ['weightMetric', 'heightMetric', 'bodyfat', 'weightImp', 'heightImp', 'bodyfatImp', 'lifterType'];
-inputs.forEach(id => {
-  const el = document.getElementById(id);
-  if (el) {
-    el.addEventListener('input', calculateFFMI);
-    el.addEventListener('change', calculateFFMI);
-  }
-});
-
-// ===== INITIALIZE =====
-window.addEventListener('load', () => {
-  calculateFFMI();
-});
+window.toggleAIChat=toggleAIChat;window.openAIChat=openChatWithFFMI;window.closeAIChat=closeAIChat;window.sendAIQuery=sendAIQuery;window.openChatWithFFMI=openChatWithFFMI;
+window.addEventListener('load',calculateFFMI);
 </script>
 </body>
 </html>
