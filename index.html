@@ -7,8 +7,44 @@
     
     <title>HealthCalc – 32+ Free Health Calculators with AI Chat | US, UK, CA, AU</title>
     <meta name="description" content="Free professional health calculators with AI chat assistant. BMI, ASCVD heart risk, FFMI, WHR, BAC, VO2Max, Body Shape, DRI & 30+ more. Chat with AI for personalized tips. 100% private.">
+    <meta name="keywords" content="health calculator, BMI calculator USA, ASCVD risk UK, FFMI calculator Canada, WHR calculator Australia, BAC calculator, VO2Max, body shape analyzer, DRI, calorie calculator, heart risk, sleep debt, pregnancy tracker, gut microbiome, AI health tips">
+    <meta name="author" content="HealthCalc">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://healthcalc.in">
     
-    <!-- All your existing meta tags, OG, Twitter, Schema remain same -->
+    <link rel="alternate" hreflang="en-us" href="https://healthcalc.in">
+    <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in">
+    <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in">
+    <link rel="alternate" hreflang="en-au" href="https://healthcalc.in">
+    <link rel="alternate" hreflang="x-default" href="https://healthcalc.in">
+    
+    <meta property="og:title" content="HealthCalc – Free AI-Powered Health Calculators for US, UK, CA, AU">
+    <meta property="og:description" content="32+ professional health tools with AI advice. BMI, heart risk, FFMI, WHR, BAC, VO2Max, body shape & more. Trusted guidelines.">
+    <meta property="og:url" content="https://healthcalc.in">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://healthcalc.in/images/healthcalc-og.jpg">
+    <meta property="og:site_name" content="HealthCalc">
+    <meta property="og:locale" content="en_US">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HealthCalc – 32+ Health Calculators with AI">
+    <meta name="twitter:description" content="Free AI-powered health tools. BMI, heart risk, FFMI, WHR, BAC, VO2Max, body shape, DRI & more. Follows CDC/NHS guidelines.">
+    <meta name="twitter:image" content="https://healthcalc.in/images/healthcalc-twitter.jpg">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "HealthCalc - Health Calculators Suite",
+        "url": "https://healthcalc.in",
+        "description": "32+ free advanced health calculators with AI-powered tips, following US, UK, Canada, Australia guidelines.",
+        "applicationCategory": "HealthApplication",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "3200"},
+        "inLanguage": ["en","hi","es","fr","de","ja","ar"],
+        "featureList": "BMI Calculator, ASCVD Risk, FFMI, WHR, BAC, VO2Max, Body Shape Analyzer, DRI Calculator, Calorie Calculator, Heart Risk, Sleep Tools, Pregnancy Tracker, Gut Microbiome"
+    }
+    </script>
     
     <link rel="stylesheet" href="global.css">
     <script src="global.js" defer></script>
@@ -18,7 +54,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* ========== ALL YOUR EXISTING STYLES (same) ========== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
@@ -71,7 +106,6 @@
         }
         .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
         
-        /* ========== ALL YOUR EXISTING STYLES CONTINUE ========== */
         .international-bar {
             display: flex;
             justify-content: flex-end;
@@ -81,6 +115,14 @@
             padding: 12px 0;
             border-bottom: 1px solid var(--border);
             margin-bottom: 20px;
+        }
+        .international-bar select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 0.85rem;
         }
         .health-authority-note {
             background: var(--surface-light);
@@ -182,7 +224,6 @@
             margin: 40px 0;
         }
         
-        /* ========== UPDATED TOOL CARD WITH CHAT BUTTON ========== */
         .tool-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -239,7 +280,6 @@
         }
         .stars { color: var(--accent3); letter-spacing: 2px; font-size: 0.8rem; }
         
-        /* Try Button */
         .try-btn {
             background: var(--primary);
             color: white;
@@ -253,7 +293,6 @@
         }
         .try-btn:hover { background: var(--primary-dark); transform: scale(1.02); }
         
-        /* 🔥 NEW: Chat Button on Card */
         .card-chat-btn {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
@@ -281,7 +320,6 @@
             flex-wrap: wrap;
         }
         
-        /* AI Banner */
         .ai-banner {
             background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1));
             border: 1px solid var(--border);
@@ -310,7 +348,6 @@
         }
         .ai-chat-launcher:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6); }
         
-        /* Footer */
         footer { border-top: 1px solid var(--border); padding: 50px 0 30px; margin-top: 60px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-col h4 { margin-bottom: 20px; font-size: 1rem; }
@@ -350,9 +387,8 @@
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="container">
-    <!-- International Bar -->
     <div class="international-bar">
-        <select id="countrySelect" style="padding:8px 12px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:0.85rem;">
+        <select id="countrySelect">
             <option value="us">🇺🇸 United States</option>
             <option value="uk">🇬🇧 United Kingdom</option>
             <option value="ca">🇨🇦 Canada</option>
@@ -374,7 +410,6 @@
     </div>
     <div id="healthAuthorityNote" class="health-authority-note">📋 Based on CDC guidelines – Healthy BMI: 18.5–24.9</div>
     
-    <!-- Navigation -->
     <nav>
         <a href="/" class="logo">🧬 <span>HealthCalc</span></a>
         <div class="nav-links">
@@ -387,28 +422,25 @@
         </div>
     </nav>
     
-    <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge">✨ Trusted in USA, UK, Canada, Australia – 32+ Advanced Health Tools</div>
+        <div class="hero-badge">✨ Trusted in USA, UK, Canada, Australia – 27+ Advanced Health Tools</div>
         <h1>Smart Health Calculators <br>Powered by AI Chat</h1>
         <p>Get personalized health insights using medical-grade algorithms. Chat with our AI assistant for instant tips. 100% free, no signup.</p>
         <div class="hero-stats">
             <div class="hero-stat"><div class="num">3,200+</div><div class="lbl">★★★★★ Reviews</div></div>
             <div class="hero-stat"><div class="num">50+</div><div class="lbl">Countries</div></div>
-            <div class="hero-stat"><div class="num">32</div><div class="lbl">Free Tools</div></div>
+            <div class="hero-stat"><div class="num">27</div><div class="lbl">Free Tools</div></div>
             <div class="hero-stat"><div class="num">7</div><div class="lbl">Languages</div></div>
         </div>
     </section>
     
-    <!-- Search -->
     <div class="search-wrapper">
-        <input type="text" id="searchTools" placeholder="Search 32+ calculators... (e.g., BMI, FFMI, WHR, BAC, VO2Max, Body Shape)" onkeyup="filterTools()">
+        <input type="text" id="searchTools" placeholder="Search calculators... (e.g., BMI, FFMI, WHR, BAC, VO2Max, Body Shape)" onkeyup="filterTools()">
         <i class="fas fa-search"></i>
     </div>
     
-    <!-- Category Tabs -->
     <div class="category-tabs" id="catTabs">
-        <button class="cat-tab active" onclick="filterCategory('all')">📊 All (32)</button>
+        <button class="cat-tab active" onclick="filterCategory('all')">📊 All (27)</button>
         <button class="cat-tab" onclick="filterCategory('body')">⚖️ Body (6)</button>
         <button class="cat-tab" onclick="filterCategory('nutrition')">🥗 Nutrition (2)</button>
         <button class="cat-tab" onclick="filterCategory('fitness')">🏋️ Fitness (2)</button>
@@ -416,15 +448,13 @@
         <button class="cat-tab" onclick="filterCategory('sleep')">😴 Sleep (3)</button>
         <button class="cat-tab" onclick="filterCategory('heart')">❤️ Heart (4)</button>
         <button class="cat-tab" onclick="filterCategory('health')">🩺 Health (2)</button>
-        <button class="cat-tab" onclick="filterCategory('advanced')">🚀 Advanced (7)</button>
+        <button class="cat-tab" onclick="filterCategory('advanced')">🚀 Advanced (5)</button>
     </div>
     
-    <!-- Tools Grid -->
     <div class="tools-grid" id="toolsGrid">
         <div style="text-align:center; padding:40px;"><i class="fas fa-spinner fa-pulse"></i> Loading tools...</div>
     </div>
     
-    <!-- AI Banner -->
     <div class="ai-banner">
         <h3>💬 AI Chat <span style="color:var(--primary);">Health Assistant</span></h3>
         <p>Chat with our AI for personalized health tips, diet advice, and exercise recommendations. Available on every page!</p>
@@ -433,17 +463,16 @@
         </button>
     </div>
     
-    <!-- Footer -->
     <footer>
         <div class="footer-grid">
-            <div class="footer-col"><h4>Body & Fitness</h4><ul><li><a href="bmi-calculator.html">BMI Calculator</a></li><li><a href="body-fat-calculator.html">Body Fat %</a></li><li><a href="ideal-weight-calculator.html">Ideal Weight</a></li><li><a href="ffmi-calculator.html">FFMI (NEW)</a></li><li><a href="whr-calculator.html">WHR (NEW)</a></li></ul></div>
-            <div class="footer-col"><h4>Nutrition & Cardio</h4><ul><li><a href="calorie-calculator.html">Calorie Calculator</a></li><li><a href="water-intake-calculator.html">Water Intake</a></li><li><a href="vo2max-calculator.html">VO₂ Max (NEW)</a></li><li><a href="body-shape-analyzer.html">Body Shape (NEW)</a></li><li><a href="dri-calculator.html">DRI (NEW)</a></li></ul></div>
-            <div class="footer-col"><h4>Heart & Vascular</h4><ul><li><a href="ascvd-risk-calculator.html">ASCVD Risk</a></li><li><a href="heart-risk-calculator.html">Heart Risk (CVD)</a></li><li><a href="vascular-age-calculator.html">Vascular Age</a></li><li><a href="bac-calculator.html">BAC (NEW)</a></li></ul></div>
-            <div class="footer-col"><h4>Women & Health</h4><ul><li><a href="menstrual-cycle-calculator.html">Menstrual Cycle</a></li><li><a href="pregnancy-calculator.html">Pregnancy Tracker</a></li><li><a href="gut-microbiome-calculator.html">Gut Microbiome</a></li><li><a href="medication-half-life-tracker.html">Med Half-Life (NEW)</a></li></ul></div>
+            <div class="footer-col"><h4>Body & Fitness</h4><ul><li><a href="bmi-calculator.html">BMI Calculator</a></li><li><a href="body-fat-calculator.html">Body Fat %</a></li><li><a href="ideal-weight-calculator.html">Ideal Weight</a></li><li><a href="ffmi-calculator.html">FFMI</a></li><li><a href="whr-calculator.html">WHR</a></li></ul></div>
+            <div class="footer-col"><h4>Nutrition & Cardio</h4><ul><li><a href="calorie-calculator.html">Calorie Calculator</a></li><li><a href="water-intake-calculator.html">Water Intake</a></li><li><a href="vo2max-calculator.html">VO₂ Max</a></li><li><a href="body-shape-analyzer.html">Body Shape</a></li><li><a href="dri-calculator.html">DRI</a></li></ul></div>
+            <div class="footer-col"><h4>Heart & Vascular</h4><ul><li><a href="ascvd-risk-calculator.html">ASCVD Risk</a></li><li><a href="heart-risk-calculator.html">Heart Risk (CVD)</a></li><li><a href="vascular-age-calculator.html">Vascular Age</a></li><li><a href="bac-calculator.html">BAC</a></li></ul></div>
+            <div class="footer-col"><h4>Women & Health</h4><ul><li><a href="menstrual-cycle-calculator.html">Menstrual Cycle</a></li><li><a href="pregnancy-calculator.html">Pregnancy Tracker</a></li><li><a href="gut-microbiome-calculator.html">Gut Microbiome</a></li><li><a href="medication-half-life-tracker.html">Med Half-Life</a></li></ul></div>
             <div class="footer-col"><h4>Legal</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="privacy-policy.html">Privacy</a></li><li><a href="terms-of-service.html">Terms</a></li></ul></div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 HealthCalc.in — 32+ Free Health Calculators with AI Chat. Trusted in USA, UK, Canada, Australia.</p>
+            <p>© 2026 HealthCalc.in — 27+ Free Health Calculators with AI Chat. Trusted in USA, UK, Canada, Australia.</p>
             <p style="margin-top:8px;">100% private browser-based calculations. No data stored. For educational purposes only.</p>
         </div>
     </footer>
@@ -491,6 +520,35 @@
     💬
 </button>
 
+<style>
+    @keyframes messageSlideIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes typingBounce {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-8px); }
+    }
+    .ai-suggestion-chip:hover {
+        background: #3b82f6 !important;
+        color: white !important;
+        border-color: #3b82f6 !important;
+    }
+    @media (max-width: 480px) {
+        #ai-chat-widget {
+            width: 100vw;
+            height: 100vh;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+            max-width: 100vw;
+        }
+        #ai-chat-messages {
+            height: calc(100vh - 250px);
+        }
+    }
+</style>
+
 <script>
     // ========== THEME ==========
     function initTheme() {
@@ -511,7 +569,7 @@
         us: { name:'CDC', text:'CDC guidelines – Healthy BMI: 18.5–24.9' },
         uk: { name:'NHS', text:'NHS guidelines – Healthy BMI: 18.5–24.9' },
         ca: { name:'Health Canada', text:'Health Canada – Healthy BMI: 18.5–24.9' },
-        au: { name:'Australian Dept of Health', text:'Australian guidelines – Healthy BMI: 18.5–24.9' }
+        au: { name:'Australian DoH', text:'Australian guidelines – Healthy BMI: 18.5–24.9' }
     };
     function setCountry(country) {
         localStorage.setItem('healthcalc_country', country);
@@ -527,39 +585,37 @@
     loadCountry();
     document.getElementById('countrySelect').addEventListener('change', (e) => setCountry(e.target.value));
     
-    // ========== TOOLS DATA ==========
+    // ========== TOOLS DATA (27 tools) ==========
     const allTools = [
-        { icon:"💪", title:"FFMI Calculator", subtitle:"Fat-Free Mass Index", url:"ffmi-calculator.html", features:["Muscle Mass","Natural vs Enhanced"], category:"advanced", rating:5.0, color:"#f59e0b", desc:"Advanced muscle mass index for bodybuilders and athletes.", chatQuery:"What is a good FFMI score?" },
-        { icon:"📏", title:"WHR Calculator", subtitle:"Waist-to-Hip Ratio", url:"whr-calculator.html", features:["WHO Standard","Heart Risk"], category:"advanced", rating:4.9, color:"#10b981", desc:"Better than BMI for predicting metabolic health.", chatQuery:"What does my waist-to-hip ratio mean?" },
-        { icon:"🍺", title:"BAC Calculator", subtitle:"Blood Alcohol Content", url:"bac-calculator.html", features:["Widmark Formula","Legal Limits"], category:"advanced", rating:4.8, color:"#ef4444", desc:"Estimate blood alcohol level. Works for US, UK, EU, Australia.", chatQuery:"How long until I'm sober?" },
-        { icon:"❤️", title:"VO₂ Max Estimator", subtitle:"Cardio Fitness", url:"vo2max-calculator.html", features:["Resting HR","Walk Test"], category:"advanced", rating:4.9, color:"#06b6d4", desc:"Gold standard for cardiovascular fitness.", chatQuery:"How to improve my VO2 max?" },
-        { icon:"🧬", title:"Body Shape Analyzer", subtitle:"Somatotype", url:"body-shape-analyzer.html", features:["Endomorph/Mesomorph/Ectomorph"], category:"advanced", rating:4.9, color:"#8b5cf6", desc:"Discover your body type & get custom diet/training.", chatQuery:"Best diet for my body type?" },
-        { icon:"💊", title:"Med Half-Life Tracker", subtitle:"Drug Concentration", url:"medication-half-life-tracker.html", features:["Concentration Graph"], category:"advanced", rating:4.7, color:"#ec4899", desc:"Track medication concentration over time.", chatQuery:"How does medication half-life work?" },
-        { icon:"🥗", title:"DRI Calculator", subtitle:"Daily Recommended Intake", url:"dri-calculator.html", features:["Vitamins & Minerals"], category:"advanced", rating:4.8, color:"#10b981", desc:"Complete nutrient requirements by age/sex.", chatQuery:"What vitamins do I need daily?" },
-        { icon:"❤️", title:"ASCVD Risk", subtitle:"10-Year Heart Risk", url:"ascvd-risk-calculator.html", features:["ACC/AHA","Heart Attack"], category:"heart", rating:5.0, color:"#dc2626", desc:"Official ASCVD algorithm used by cardiologists.", chatQuery:"How to reduce heart attack risk?" },
-        { icon:"🫀", title:"Heart Risk (CVD)", subtitle:"Full Assessment", url:"heart-risk-calculator.html", features:["Framingham","Heart Age"], category:"heart", rating:4.8, color:"#ef4444", desc:"Comprehensive cardiovascular risk assessment.", chatQuery:"Heart healthy diet recommendations?" },
-        { icon:"🩸", title:"Vascular Age", subtitle:"Arterial Health", url:"vascular-age-calculator.html", features:["Arterial Stiffness"], category:"heart", rating:4.7, color:"#b91c1c", desc:"Estimate your vascular age.", chatQuery:"How to improve vascular health?" },
-        { icon:"⏳", title:"Life Expectancy", subtitle:"Healthspan", url:"life-expectancy-calculator.html", features:["Country Compare"], category:"heart", rating:4.9, color:"#0ea5e9", desc:"See impact of habits on lifespan.", chatQuery:"How to increase life expectancy?" },
-        { icon:"⚖️", title:"BMI Calculator", subtitle:"Body Mass Index", url:"bmi-calculator.html", features:["Visceral Fat","AI Chat"], category:"body", rating:4.9, color:"#3b82f6", desc:"BMI with visceral fat risk & age comparison graph.", chatQuery:"Is my BMI healthy? What should I do?" },
-        { icon:"🧬", title:"Body Fat %", subtitle:"Visual Guide", url:"body-fat-calculator.html", features:["Navy Method"], category:"body", rating:4.8, color:"#06b6d4", desc:"US Navy method with visual reference.", chatQuery:"What body fat percentage is healthy?" },
-        { icon:"⚡", title:"Metabolic Age", subtitle:"Metabolism Test", url:"metabolic-age.html", features:["BMR Compare"], category:"body", rating:4.7, color:"#8b5cf6", desc:"Compare your metabolic rate to real age.", chatQuery:"How to improve metabolic age?" },
-        { icon:"🔬", title:"Metabolic Age Pro", subtitle:"Advanced", url:"metabolic-age-pro.html", features:["Detailed Analysis"], category:"body", rating:4.6, color:"#a855f7", desc:"Advanced metabolic age with body comp.", chatQuery:"Metabolic health improvement tips?" },
-        { icon:"⚖️", title:"Ideal Weight", subtitle:"Frame Size", url:"ideal-weight-calculator.html", features:["Peterson Formula"], category:"body", rating:4.8, color:"#f97316", desc:"Most accurate ideal weight with frame adjustment.", chatQuery:"How to reach my ideal weight?" },
-        { icon:"🔥", title:"Calorie Calculator", subtitle:"TDEE & Macros", url:"calorie-calculator.html", features:["Macro Split"], category:"nutrition", rating:4.8, color:"#f59e0b", desc:"Daily calorie needs and macro breakdown.", chatQuery:"How many calories for weight loss?" },
-        { icon:"💧", title:"Water Intake", subtitle:"Hydration", url:"water-intake-calculator.html", features:["Sweat Rate"], category:"nutrition", rating:4.8, color:"#10b981", desc:"Personalized water intake based on activity.", chatQuery:"How much water should I drink?" },
-        { icon:"💪", title:"Heart Rate Zones", subtitle:"Workout", url:"heart-rate-calculator.html", features:["Karvonen","5 Zones"], category:"fitness", rating:4.7, color:"#ef4444", desc:"Optimal heart rate zones for training.", chatQuery:"Best heart rate zone for fat burn?" },
-        { icon:"🏃", title:"MET Calculator", subtitle:"Activity Burn", url:"met-calculator.html", features:["500+ Activities"], category:"fitness", rating:4.6, color:"#10b981", desc:"Calories burned for any activity.", chatQuery:"Most effective exercises for weight loss?" },
-        { icon:"🌸", title:"Menstrual Cycle", subtitle:"Period Tracker", url:"menstrual-cycle-calculator.html", features:["Ovulation"], category:"women", rating:4.9, color:"#ec4899", desc:"Track periods and predict ovulation.", chatQuery:"How to manage PMS symptoms?" },
-        { icon:"🤰", title:"Pregnancy Tracker", subtitle:"Due Date", url:"pregnancy-calculator.html", features:["Fruit Size"], category:"women", rating:4.9, color:"#f43f5e", desc:"Calculate due date with weekly comparisons.", chatQuery:"Healthy pregnancy diet tips?" },
-        { icon:"🔬", title:"Hormone Health", subtitle:"Balance", url:"hormone-health-calculator.html", features:["Estrogen","Testosterone"], category:"women", rating:4.8, color:"#ec4899", desc:"Hormone assessment for men & women.", chatQuery:"How to balance hormones naturally?" },
-        { icon:"😴", title:"Sleep Debt", subtitle:"Recovery Plan", url:"sleep-debt-calculator.html", features:["Recovery Schedule"], category:"sleep", rating:4.8, color:"#6366f1", desc:"Calculate sleep debt & get recovery plan.", chatQuery:"How to recover from sleep debt?" },
-        { icon:"🌙", title:"Sleep Cycle", subtitle:"Optimal Wake", url:"sleep-cycle-calculator.html", features:["90-min Cycles"], category:"sleep", rating:4.7, color:"#3b82f6", desc:"Best wake-up times based on cycles.", chatQuery:"Best time to wake up for energy?" },
-        { icon:"🌙", title:"Circadian Rhythm", subtitle:"Chronotype", url:"circadian-rhythm-calculator.html", features:["MEQ Test"], category:"sleep", rating:4.9, color:"#6366f1", desc:"Discover your chronotype (Lion/Bear/Wolf/Dolphin).", chatQuery:"How to optimize my sleep schedule?" },
-        { icon:"🦠", title:"Gut Microbiome", subtitle:"Health Score", url:"gut-microbiome-calculator.html", features:["Diversity Score"], category:"health", rating:5.0, color:"#10b981", desc:"Science-based gut health score.", chatQuery:"Best foods for gut health?" },
-        { icon:"🔥", title:"Inflammation Score", subtitle:"Inflammatory Load", url:"inflammation-score-calculator.html", features:["Dietary Index"], category:"health", rating:4.8, color:"#f59e0b", desc:"Calculate inflammatory load from diet & lifestyle.", chatQuery:"Anti-inflammatory diet tips?" }
+        { icon:"💪", title:"FFMI Calculator", subtitle:"Fat-Free Mass Index", url:"ffmi-calculator.html", features:["Muscle Mass","Natural vs Enhanced"], category:"advanced", rating:5.0, color:"#f59e0b", desc:"Advanced muscle mass index for bodybuilders and athletes.", chatQuery:"What is a good FFMI score for a natural lifter?" },
+        { icon:"📏", title:"WHR Calculator", subtitle:"Waist-to-Hip Ratio", url:"whr-calculator.html", features:["WHO Standard","Heart Risk"], category:"advanced", rating:4.9, color:"#10b981", desc:"Better than BMI for predicting metabolic health.", chatQuery:"What does my waist-to-hip ratio mean for my health?" },
+        { icon:"🍺", title:"BAC Calculator", subtitle:"Blood Alcohol Content", url:"bac-calculator.html", features:["Widmark Formula","Legal Limits"], category:"advanced", rating:4.8, color:"#ef4444", desc:"Estimate blood alcohol level. Works for US, UK, EU, Australia.", chatQuery:"How long until I'm safe to drive after drinking?" },
+        { icon:"❤️", title:"VO₂ Max Estimator", subtitle:"Cardio Fitness", url:"vo2max-calculator.html", features:["Resting HR","Walk Test"], category:"advanced", rating:4.9, color:"#06b6d4", desc:"Gold standard for cardiovascular fitness.", chatQuery:"How can I improve my VO2 max quickly?" },
+        { icon:"🧬", title:"Body Shape Analyzer", subtitle:"Somatotype", url:"body-shape-analyzer.html", features:["Endomorph/Mesomorph/Ectomorph"], category:"advanced", rating:4.9, color:"#8b5cf6", desc:"Discover your body type & get custom diet/training.", chatQuery:"What is the best diet and workout for my body type?" },
+        { icon:"❤️", title:"ASCVD Risk", subtitle:"10-Year Heart Risk", url:"ascvd-risk-calculator.html", features:["ACC/AHA","Heart Attack","Stroke"], category:"heart", rating:5.0, color:"#dc2626", desc:"Official ASCVD algorithm used by cardiologists.", chatQuery:"How can I reduce my risk of heart attack?" },
+        { icon:"🫀", title:"Heart Risk (CVD)", subtitle:"Full Assessment", url:"heart-risk-calculator.html", features:["Framingham","Heart Age"], category:"heart", rating:4.8, color:"#ef4444", desc:"Comprehensive cardiovascular risk assessment.", chatQuery:"What is a heart-healthy diet plan?" },
+        { icon:"🩸", title:"Vascular Age", subtitle:"Arterial Health", url:"vascular-age-calculator.html", features:["Arterial Stiffness"], category:"heart", rating:4.7, color:"#b91c1c", desc:"Estimate your vascular age.", chatQuery:"How can I improve my vascular health naturally?" },
+        { icon:"⏳", title:"Life Expectancy", subtitle:"Healthspan", url:"life-expectancy-calculator.html", features:["Country Compare","Lifestyle"], category:"heart", rating:4.9, color:"#0ea5e9", desc:"See impact of habits on lifespan.", chatQuery:"What lifestyle changes increase life expectancy the most?" },
+        { icon:"⚖️", title:"BMI Calculator", subtitle:"Body Mass Index", url:"bmi-calculator.html", features:["Visceral Fat","Asian Cutoff","AI Chat"], category:"body", rating:4.9, color:"#3b82f6", desc:"BMI with visceral fat risk & age comparison graph.", chatQuery:"Is my BMI healthy? What should I do to improve it?" },
+        { icon:"🧬", title:"Body Fat %", subtitle:"Visual Guide", url:"body-fat-calculator.html", features:["Navy Method","Athlete Mode"], category:"body", rating:4.8, color:"#06b6d4", desc:"US Navy method with visual reference.", chatQuery:"What body fat percentage is healthy for my age?" },
+        { icon:"⚡", title:"Metabolic Age", subtitle:"Metabolism Test", url:"metabolic-age.html", features:["BMR Compare","Tips"], category:"body", rating:4.7, color:"#8b5cf6", desc:"Compare your metabolic rate to real age.", chatQuery:"How can I improve my metabolic age?" },
+        { icon:"⚖️", title:"Ideal Weight", subtitle:"Frame Size", url:"ideal-weight-calculator.html", features:["Peterson Formula"], category:"body", rating:4.8, color:"#f97316", desc:"Most accurate ideal weight with frame adjustment.", chatQuery:"How can I reach and maintain my ideal weight?" },
+        { icon:"🔥", title:"Calorie Calculator", subtitle:"TDEE & Macros", url:"calorie-calculator.html", features:["Macro Split","Weight Projection"], category:"nutrition", rating:4.8, color:"#f59e0b", desc:"Daily calorie needs and macro breakdown.", chatQuery:"How many calories should I eat to lose weight?" },
+        { icon:"💧", title:"Water Intake", subtitle:"Hydration", url:"water-intake-calculator.html", features:["Sweat Rate","Caffeine Adjust"], category:"nutrition", rating:4.8, color:"#10b981", desc:"Personalized water intake based on activity.", chatQuery:"How much water should I drink based on my activity level?" },
+        { icon:"💪", title:"Heart Rate Zones", subtitle:"Workout", url:"heart-rate-calculator.html", features:["Karvonen","5 Zones"], category:"fitness", rating:4.7, color:"#ef4444", desc:"Optimal heart rate zones for training.", chatQuery:"What heart rate zone is best for burning fat?" },
+        { icon:"🏃", title:"MET Calculator", subtitle:"Activity Burn", url:"met-calculator.html", features:["500+ Activities"], category:"fitness", rating:4.6, color:"#10b981", desc:"Calories burned for any activity.", chatQuery:"Which exercises burn the most calories?" },
+        { icon:"🌸", title:"Menstrual Cycle", subtitle:"Period Tracker", url:"menstrual-cycle-calculator.html", features:["Ovulation","Fertile Window"], category:"women", rating:4.9, color:"#ec4899", desc:"Track periods and predict ovulation.", chatQuery:"How can I manage PMS symptoms naturally?" },
+        { icon:"🤰", title:"Pregnancy Tracker", subtitle:"Due Date", url:"pregnancy-calculator.html", features:["Fruit Size","Weekly"], category:"women", rating:4.9, color:"#f43f5e", desc:"Calculate due date with weekly comparisons.", chatQuery:"What should I eat during pregnancy for a healthy baby?" },
+        { icon:"🔬", title:"Hormone Health", subtitle:"Balance", url:"hormone-health-calculator.html", features:["Estrogen","Testosterone"], category:"women", rating:4.8, color:"#ec4899", desc:"Hormone assessment for men & women.", chatQuery:"How can I balance my hormones naturally?" },
+        { icon:"😴", title:"Sleep Debt", subtitle:"Recovery Plan", url:"sleep-debt-calculator.html", features:["Recovery Schedule","Tips"], category:"sleep", rating:4.8, color:"#6366f1", desc:"Calculate sleep debt & get recovery plan.", chatQuery:"How can I recover from chronic sleep debt?" },
+        { icon:"🌙", title:"Sleep Cycle", subtitle:"Optimal Wake", url:"sleep-cycle-calculator.html", features:["90-min Cycles"], category:"sleep", rating:4.7, color:"#3b82f6", desc:"Best wake-up times based on cycles.", chatQuery:"What is the best time to wake up to feel refreshed?" },
+        { icon:"🌙", title:"Circadian Rhythm", subtitle:"Chronotype", url:"circadian-rhythm-calculator.html", features:["MEQ Test","4 Chronotypes"], category:"sleep", rating:4.9, color:"#6366f1", desc:"Discover your chronotype (Lion/Bear/Wolf/Dolphin).", chatQuery:"How can I optimize my daily schedule based on my chronotype?" },
+        { icon:"🦠", title:"Gut Microbiome", subtitle:"Health Score", url:"gut-microbiome-calculator.html", features:["Diversity Score","Fiber"], category:"health", rating:5.0, color:"#10b981", desc:"Science-based gut health score.", chatQuery:"What are the best foods for improving gut health?" },
+        { icon:"🔥", title:"Inflammation Score", subtitle:"Inflammatory Load", url:"inflammation-score-calculator.html", features:["Dietary Index","CRP"], category:"health", rating:4.8, color:"#f59e0b", desc:"Calculate inflammatory load from diet & lifestyle.", chatQuery:"What is an anti-inflammatory diet plan?" },
+        { icon:"🥗", title:"DRI Calculator", subtitle:"Daily Recommended Intake", url:"dri-calculator.html", features:["Vitamins & Minerals","Food Sources"], category:"advanced", rating:4.8, color:"#10b981", desc:"Complete nutrient requirements by age/sex.", chatQuery:"What vitamins and minerals am I likely deficient in?" },
+        { icon:"💊", title:"Med Half-Life Tracker", subtitle:"Drug Concentration", url:"medication-half-life-tracker.html", features:["Concentration Graph"], category:"advanced", rating:4.7, color:"#ec4899", desc:"Track medication concentration over time.", chatQuery:"How does medication half-life affect dosing?" }
     ];
     
-    // 🔥 UPDATED: RENDER TOOLS WITH CHAT BUTTON
     function renderTools(tools) {
         const grid = document.getElementById('toolsGrid');
         if (!tools.length) {
@@ -628,7 +684,7 @@
     }
     
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS
+    // 🔥 AI CHAT FUNCTIONS (UPDATED - Complete Answers)
     // ==============================================
     const GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
     
@@ -654,7 +710,6 @@
         document.getElementById('ai-chat-input').focus();
     }
     
-    // 🔥 NEW: Open chat with pre-filled query from tool card
     function openChatWithQuery(query) {
         openAIChat();
         document.getElementById('ai-chat-input').value = query;
@@ -724,16 +779,16 @@
                     contents: [{
                         parts: [{
                             text: `You are HealthCalc AI, a professional health assistant on healthcalc.in. 
-                            Provide helpful, accurate, and encouraging health information.
-                            Keep responses concise (2-3 paragraphs max).
-                            Always include: "Consult healthcare professionals for medical advice."
-                            
-                            User Question: ${message}
-                            
-                            Context: This is a health calculator website with BMI, heart risk, sleep, nutrition, fitness, pregnancy tools.`
+
+IMPORTANT: Provide COMPLETE, detailed answers. Do NOT cut off responses mid-sentence. Give full explanations with actionable tips. Use 3-4 paragraphs for a thorough response.
+Always include: "Consult healthcare professionals for medical advice."
+
+User Question: ${message}
+
+Context: This is a health calculator website with 27+ tools including BMI, heart risk, sleep, nutrition, fitness, pregnancy, body fat, and more.`
                         }]
                     }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 400 }
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
                 })
             });
             
@@ -752,35 +807,17 @@
             const q = message.toLowerCase();
             let fallback = "🏥 **HealthCalc AI Assistant**\n\nHere's some helpful information:\n\n";
             
-            if (q.includes('bmi')) fallback += "📊 BMI Categories: Underweight <18.5, Normal 18.5-24.9, Overweight 25-29.9, Obese 30+\n\n💡 Focus on whole foods and regular exercise for healthy weight management.";
-            else if (q.includes('weight') || q.includes('diet')) fallback += "⚖️ For healthy weight loss: 500-calorie deficit daily, combine cardio + strength training, eat more protein and fiber.";
-            else if (q.includes('heart')) fallback += "❤️ Heart health: 150 min moderate exercise/week, Mediterranean diet, manage stress, 7-9 hours sleep.";
-            else if (q.includes('sleep')) fallback += "😴 Sleep tips: Consistent schedule, cool dark room, no screens before bed, avoid caffeine after 2pm.";
-            else fallback += "💡 Try any of our 32+ health calculators and chat with me for personalized tips!";
+            if (q.includes('bmi')) fallback += "📊 BMI Categories: Underweight <18.5, Normal 18.5-24.9, Overweight 25-29.9, Obese 30+. For Asians, overweight starts at BMI 23.\n\n💡 Focus on whole foods, regular exercise, and consistent sleep for healthy weight management.";
+            else if (q.includes('weight') || q.includes('diet')) fallback += "⚖️ For healthy weight loss: 500-calorie daily deficit, combine cardio + strength training, eat more protein (1.6g/kg) and fiber (25-30g), drink 8-10 glasses of water.";
+            else if (q.includes('heart')) fallback += "❤️ Heart health: 150 min moderate exercise/week, Mediterranean diet rich in olive oil & fish, manage stress through meditation, 7-9 hours sleep, avoid smoking.";
+            else if (q.includes('sleep')) fallback += "😴 Sleep tips: Consistent sleep-wake schedule, cool dark room (65-68°F), no screens 1 hour before bed, avoid caffeine after 2pm, limit alcohol before sleep.";
+            else if (q.includes('water') || q.includes('hydrat')) fallback += "💧 Hydration: Men need ~3.7L, women ~2.7L total water daily. Increase by 500ml-1L during exercise. Check urine color - pale straw indicates good hydration.";
+            else fallback += "💡 Explore our 27+ free health calculators! Try BMI, Body Fat, Calorie, Heart Risk, Sleep Cycle, Water Intake, and more. Each tool includes AI chat for personalized tips!";
             
             fallback += "\n\n⚠️ Consult healthcare professionals for medical advice.";
             addAIMessage(fallback, 'ai');
         }
     }
-    
-    // Add animations
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = `
-        @keyframes messageSlideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes typingBounce {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-8px); }
-        }
-        .ai-suggestion-chip:hover {
-            background: #3b82f6 !important;
-            color: white !important;
-            border-color: #3b82f6 !important;
-        }
-    `;
-    document.head.appendChild(styleSheet);
     
     // Expose globally
     window.toggleAIChat = toggleAIChat;
@@ -801,8 +838,9 @@
         if(btn) btn.classList.toggle('visible', window.scrollY > 500);
     });
     
-    console.log('✅ HealthCalc Loaded - AI Chat Ready!');
-    console.log('💬 Each tool card has a Chat button - try it!');
+    console.log('✅ HealthCalc Homepage Ready - 27 Tools with AI Chat!');
+    console.log('💬 AI gives COMPLETE answers (1024 tokens)');
+    console.log('🎯 Each tool card has a Chat button with smart questions');
 </script>
 </body>
 </html>
