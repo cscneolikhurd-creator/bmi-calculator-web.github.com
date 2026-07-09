@@ -6,10 +6,11 @@
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
 <title>Body Shape Analyzer: Somatotype | Endomorph Mesomorph Ectomorph | AI Chat | HealthCalc</title>
-<meta name="description" content="Discover your body type with Heath-Carter method. Endomorph, Mesomorph, or Ectomorph? Get personalized diet & workout plans. AI chat for fitness tips. US, UK, CA, AU.">
-<meta name="keywords" content="body shape analyzer, somatotype, endomorph, mesomorph, ectomorph, body type calculator, Heath-Carter, fitness body type, AI fitness chat, bodybuilding">
+<meta name="description" content="Discover your body type with Heath-Carter method. Endomorph, Mesomorph, or Ectomorph? Get personalized diet & workout plans. AI chat for fitness tips. US, UK, Canada, Australia.">
+<meta name="keywords" content="body shape analyzer, somatotype, endomorph, mesomorph, ectomorph, body type calculator, Heath-Carter, fitness body type, AI fitness chat, bodybuilding, USA, UK, Canada, Australia">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="revisit-after" content="7 days">
 <link rel="canonical" href="https://healthcalc.in/body-shape-analyzer.html">
 
 <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/body-shape-analyzer.html">
@@ -22,6 +23,14 @@
 <meta property="og:description" content="Discover your body type with personalized diet & workout plans. AI chat for fitness advice.">
 <meta property="og:url" content="https://healthcalc.in/body-shape-analyzer.html">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://healthcalc.in/images/body-shape-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="HealthCalc">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Body Shape Analyzer | Find Your Somatotype">
+<meta name="twitter:description" content="Discover your body type with AI-powered fitness recommendations">
 
 <script type="application/ld+json">
 {
@@ -32,7 +41,31 @@
   "url": "https://healthcalc.in/body-shape-analyzer.html",
   "author": {"@type": "Organization", "name": "HealthCalc"},
   "inLanguage": ["en"],
-  "dateModified": "2026-06-18"
+  "dateModified": "2026-07-09"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What are the three somatotypes?", "acceptedAnswer": {"@type": "Answer", "text": "Endomorph: Larger bone structure, higher body fat tendency, round physique. Mesomorph: Athletic, naturally muscular, medium frame. Ectomorph: Lean, slim, difficulty gaining weight or muscle. Most people are mixed types."}},
+    {"@type": "Question", "name": "How accurate is the Heath-Carter method?", "acceptedAnswer": {"@type": "Answer", "text": "The Heath-Carter somatotype method has been used since the 1960s and provides reliable classification. It rates body type on three scales (endomorphy, mesomorphy, ectomorphy) from 1-7. Our questionnaire-based version provides strong correlation with anthropometric measurements."}},
+    {"@type": "Question", "name": "Can I change my somatotype?", "acceptedAnswer": {"@type": "Answer", "text": "Your basic bone structure and somatotype tendencies are largely genetic and don't change significantly. However, you can dramatically change your body composition through diet and exercise. Our AI chat provides personalized recommendations for your body type."}}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+    {"@type": "ListItem", "position": 2, "name": "Fitness Tools", "item": "https://healthcalc.in/#tools"},
+    {"@type": "ListItem", "position": 3, "name": "Body Shape Analyzer", "item": "https://healthcalc.in/body-shape-analyzer.html"}
+  ]
 }
 </script>
 
@@ -68,9 +101,9 @@ body{font-family:'Inter',sans-serif;background:var(--gradient-bg);min-height:100
 .container{max-width:800px;margin:0 auto}
 
 .international-bar{display:flex;justify-content:flex-end;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.2)}
-.international-bar select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+.international-bar select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:0.85rem}
 .theme-toggle{display:flex;gap:6px}
-.theme-option{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-size:0.85rem}
+.theme-option{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-size:0.85rem;transition:all 0.2s}
 .theme-option:hover{background:var(--primary);color:white}
 
 .health-authority-note{background:rgba(255,255,255,0.15);padding:6px 16px;border-radius:40px;font-size:0.8rem;margin-bottom:15px;display:inline-block;color:white}
@@ -78,6 +111,7 @@ body.dark .health-authority-note{background:#1e293b;color:#94a3b8}
 
 .breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;font-size:13px;color:#cbd5e1;padding:10px 0}
 .breadcrumb a{color:white;text-decoration:none;font-weight:500;opacity:0.8}
+.breadcrumb a:hover{opacity:1}
 
 .card{background:var(--card-bg);border-radius:var(--radius-xl);padding:32px;box-shadow:var(--shadow-lg);transition:background 0.3s}
 
@@ -95,15 +129,75 @@ h1{font-size:32px;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-bac
 input[type="number"]{width:100%;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:14px;background:var(--surface);color:var(--text)}
 input[type="number"]:focus{outline:none;border-color:var(--primary)}
 
-.chat-cta-box{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px dashed var(--success);padding:16px;border-radius:var(--radius-lg);margin:18px 0;text-align:center;cursor:pointer;transition:all 0.3s}
-body.dark .chat-cta-box{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
-.chat-cta-box:hover{transform:translateY(-2px)}
-.chat-cta-box .cta-icon{font-size:32px;margin-bottom:8px}
-.chat-cta-box .cta-text{font-weight:700;color:var(--text);font-size:14px}
-.chat-cta-box .cta-sub{font-size:11px;color:var(--text-muted);margin-top:4px}
-
 .calc-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;padding:14px;width:100%;border-radius:60px;font-size:16px;font-weight:700;cursor:pointer;margin:16px 0;transition:all 0.2s}
 .calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px -5px rgba(102,126,234,0.4)}
+
+/* ============================================ */
+/* 🔥 AI CHAT PANEL (Inline - Single Chat)      */
+/* ============================================ */
+.ai-chat-panel{
+  margin:20px 0;border:2px solid var(--border);border-radius:var(--radius-lg);
+  overflow:hidden;background:var(--surface);transition:all 0.3s;
+}
+body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
+.ai-chat-header{
+  background:linear-gradient(135deg,#667eea,#764ba2);color:white;
+  padding:12px 16px;display:flex;align-items:center;justify-content:space-between;
+  font-weight:600;font-size:14px;
+}
+.ai-chat-header-left{display:flex;align-items:center;gap:8px}
+.ai-chat-status{font-size:10px;opacity:0.9;font-weight:400}
+.ai-chat-messages{
+  height:220px;overflow-y:auto;padding:12px;background:var(--surface-alt);
+  display:flex;flex-direction:column;gap:8px;
+}
+body.dark .ai-chat-messages{background:#0f172a}
+.ai-message-bot{
+  background:var(--surface);padding:10px 14px;border-radius:12px;
+  border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);
+  max-width:85%;font-size:13px;line-height:1.5;align-self:flex-start;color:var(--text);
+}
+body.dark .ai-message-bot{background:#1e293b;color:#e2e8f0}
+.ai-message-user{
+  background:var(--primary);color:white;padding:10px 14px;
+  border-radius:12px;border-top-right-radius:4px;
+  max-width:85%;font-size:13px;line-height:1.5;align-self:flex-end;
+}
+.ai-chat-suggestions{
+  display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;
+  background:var(--surface);border-top:1px solid var(--border);
+}
+body.dark .ai-chat-suggestions{background:#1e293b;border-color:#334155}
+.ai-suggestion-chip{
+  background:var(--surface-alt);padding:6px 12px;border-radius:15px;
+  font-size:11px;cursor:pointer;border:1px solid var(--border);
+  color:var(--text);transition:all 0.2s;white-space:nowrap;
+}
+body.dark .ai-suggestion-chip{background:#334155;color:#cbd5e1;border-color:#475569}
+.ai-suggestion-chip:hover{background:var(--primary);color:white;border-color:var(--primary)}
+.ai-chat-input-row{
+  display:flex;gap:8px;padding:10px 12px;
+  background:var(--surface);border-top:1px solid var(--border);
+}
+body.dark .ai-chat-input-row{background:#1e293b;border-color:#334155}
+.ai-chat-input{
+  flex:1;padding:10px 14px;border:2px solid var(--border);
+  border-radius:25px;outline:none;font-size:13px;
+  font-family:inherit;background:var(--surface);color:var(--text);
+}
+body.dark .ai-chat-input{background:#0f172a;border-color:#475569;color:#e2e8f0}
+.ai-chat-input:focus{border-color:var(--primary)}
+.ai-chat-send-btn{
+  width:38px;height:38px;border-radius:50%;background:var(--primary);
+  color:white;border:none;cursor:pointer;font-size:16px;
+  flex-shrink:0;transition:all 0.2s;
+}
+.ai-chat-send-btn:hover{background:var(--primary-dark);transform:scale(1.05)}
+.ai-chat-disclaimer{
+  padding:6px 12px;background:var(--surface-alt);border-top:1px solid var(--border);
+  text-align:center;font-size:10px;color:var(--text-muted);
+}
+body.dark .ai-chat-disclaimer{background:#0f172a;border-color:#334155}
 
 .result-box{background:var(--surface-alt);border-radius:var(--radius-xl);padding:28px;margin-top:20px;text-align:center;transition:background 0.3s}
 .somatype{font-size:32px;font-weight:800;margin:12px 0}
@@ -123,30 +217,45 @@ body.dark .chat-cta-box{background:linear-gradient(135deg,#022c22,#064e3b);borde
 .recommendation{background:var(--surface);border-radius:var(--radius-lg);padding:20px;margin-top:20px;text-align:left;border:1px solid var(--border)}
 .recommendation h4{margin-bottom:12px;font-size:16px;color:var(--text)}
 
-.chat-cta-results{margin:20px 0;padding:20px;background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border-radius:var(--radius-lg);border:2px solid var(--success);text-align:center}
-body.dark .chat-cta-results{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
-.chat-cta-btn{background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;padding:12px 24px;border-radius:60px;font-weight:700;font-size:14px;cursor:pointer}
-
 .interlinks{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
-.interlinks a{background:var(--surface-alt);padding:6px 16px;border-radius:40px;text-decoration:none;font-size:12px;color:var(--text-light)}
+.interlinks a{background:var(--surface-alt);padding:6px 16px;border-radius:40px;text-decoration:none;font-size:12px;color:var(--text-light);transition:all 0.2s}
 .interlinks a:hover{background:var(--primary);color:white}
 
-footer{text-align:center;margin-top:24px;font-size:11px;color:#cbd5e1}
+footer{text-align:center;margin-top:24px;font-size:11px;color:#cbd5e1;padding:16px 0}
+footer a{color:white;text-decoration:none}
+
+/* Animations */
+@keyframes messageSlideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
+
+@media(max-width:600px){.ai-chat-messages{height:180px}}
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="international-bar">
-    <select id="countrySelect"><option value="us">🇺🇸 US</option><option value="uk">🇬🇧 UK</option><option value="ca">🇨🇦 CA</option><option value="au">🇦🇺 AU</option></select>
-    <div class="theme-toggle"><button class="theme-option" data-theme="light">☀️ Light</button><button class="theme-option" data-theme="dark">🌙 Dark</button></div>
-</div>
+<nav class="international-bar" aria-label="Region and theme selector">
+    <select id="countrySelect" aria-label="Select your country">
+        <option value="us">🇺🇸 United States</option>
+        <option value="uk">🇬🇧 United Kingdom</option>
+        <option value="ca">🇨🇦 Canada</option>
+        <option value="au">🇦🇺 Australia</option>
+    </select>
+    <div class="theme-toggle">
+        <button class="theme-option" data-theme="light" aria-label="Light mode">☀️ Light</button>
+        <button class="theme-option" data-theme="dark" aria-label="Dark mode">🌙 Dark</button>
+    </div>
+</nav>
 <div id="healthAuthorityNote" class="health-authority-note">💪 Heath-Carter somatotype methodology – Trusted by fitness professionals worldwide</div>
 
-<div class="breadcrumb"><a href="/index.html"><i class="fas fa-home"></i> Home</a> <span>›</span> <a href="/index.html#tools">Fitness Tools</a> <span>›</span> <span>Body Shape Analyzer</span></div>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/index.html"><i class="fas fa-home"></i> Home</a> <span>›</span>
+    <a href="/index.html#tools">Fitness Tools</a> <span>›</span>
+    <span>Body Shape Analyzer</span>
+</nav>
 
-<div class="card">
-<h1><i class="fas fa-shapes"></i> Advanced Body Shape Analyzer</h1>
+<main class="card">
+<h1><i class="fas fa-shapes"></i> Advanced Body Shape Analyzer with AI Chat</h1>
 <div class="subtitle">Discover your somatotype — Endomorph, Mesomorph, or Ectomorph. Get personalized diet & training plans. Chat with AI for fitness tips!</div>
 
 <div class="question-section">
@@ -154,10 +263,8 @@ footer{text-align:center;margin-top:24px;font-size:11px;color:#cbd5e1}
 <div class="question"><label><i class="fas fa-chart-line"></i> 2. Body Fat Tendency</label><div class="options" id="fatOptions"><div class="option-btn" data-fat="low">Difficult to gain fat</div><div class="option-btn" data-fat="moderate">Balanced gain/loss</div><div class="option-btn" data-fat="high">Easy to gain, hard to lose</div></div></div>
 <div class="question"><label><i class="fas fa-dumbbell"></i> 3. Muscle Building Ability</label><div class="options" id="muscleOptions"><div class="option-btn" data-muscle="low">Slow muscle growth</div><div class="option-btn" data-muscle="medium">Steady progress</div><div class="option-btn" data-muscle="high">Quick muscle gains</div></div></div>
 <div class="question"><label><i class="fas fa-fire"></i> 4. Metabolism Speed</label><div class="options" id="metabolismOptions"><div class="option-btn" data-metab="fast">Fast (stay lean)</div><div class="option-btn" data-metab="normal">Normal</div><div class="option-btn" data-metab="slow">Slow (gain easily)</div></div></div>
-<div class="question"><label><i class="fas fa-hand-peace"></i> 5. Wrist Circumference (cm, optional)</label><input type="number" id="wristSize" step="0.1" placeholder="e.g., 17.5 cm"></div>
+<div class="question"><label><i class="fas fa-hand-peace"></i> 5. Wrist Circumference (cm, optional)</label><input type="number" id="wristSize" step="0.1" placeholder="e.g., 17.5 cm" aria-label="Wrist circumference in cm"></div>
 </div>
-
-<div class="chat-cta-box" onclick="openChatWithSomatotype()"><div class="cta-icon">💬</div><div class="cta-text">Need Fitness Tips? Chat with AI!</div><div class="cta-sub">Get personalized diet & workout advice for your body type</div></div>
 
 <button class="calc-btn" id="analyzeBtn"><i class="fas fa-microscope"></i> Analyze My Body Type</button>
 
@@ -166,109 +273,223 @@ footer{text-align:center;margin-top:24px;font-size:11px;color:#cbd5e1}
 <div class="somatype" id="somatype">—</div>
 <div class="scores-display"><div class="score-card endo"><div class="score-value" id="endoScore">--</div><div class="score-label">Endomorphy</div></div><div class="score-card meso"><div class="score-value" id="mesoScore">--</div><div class="score-label">Mesomorphy</div></div><div class="score-card ecto"><div class="score-value" id="ectoScore">--</div><div class="score-label">Ectomorphy</div></div></div>
 <div class="recommendation" id="recommendation"></div>
-<div class="chat-cta-results"><h4><i class="fas fa-robot"></i> Want Personalized Fitness Tips?</h4><p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Chat with our AI for diet, workout, and lifestyle tips based on your body type!</p><button class="chat-cta-btn" onclick="openChatWithSomatotype()">💬 Chat About My Body Type</button></div>
-</div>
-
-<div class="interlinks"><a href="bmi-calculator.html">⚖️ BMI</a><a href="body-fat-calculator.html">🧬 Body Fat</a><a href="ffmi-calculator.html">💪 FFMI</a><a href="calorie-calculator.html">🔥 Calories</a><a href="ideal-weight-calculator.html">⚖️ Ideal Weight</a></div></div>
-<footer>Heath-Carter methodology. Personalized fitness recommendations. <a href="privacy-policy.html" style="color:white">Privacy</a></footer>
-</div>
 
 <!-- ============================================ -->
-<!-- AI CHAT WIDGET - BODY SHAPE CONTEXT AWARE   -->
+<!-- 🔥 NEW AI CHAT PANEL (Inline - Single Chat)  -->
 <!-- ============================================ -->
-<div id="ai-chat-widget" style="display:none;position:fixed;bottom:100px;right:30px;width:380px;max-width:90vw;background:var(--surface);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);z-index:999999;overflow:hidden;font-family:'Inter',sans-serif;border:1px solid var(--border)">
-    <div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:24px">🧬</span><div><strong style="font-size:15px">Body Type AI</strong><div style="font-size:11px;opacity:0.9">Online · Free</div></div></div>
-        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px">✕</button>
+<div class="ai-chat-panel" id="aiChatPanel">
+    <div class="ai-chat-header">
+        <div class="ai-chat-header-left">
+            <span>🧬</span>
+            <span>Body Type Fitness AI Assistant</span>
+        </div>
+        <span class="ai-chat-status">🟢 Online · Free</span>
     </div>
-    <div id="ai-chat-messages" style="height:320px;overflow-y:auto;padding:16px;background:var(--surface-alt);display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;gap:10px"><div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">🧬</div><div style="background:var(--surface);padding:12px 16px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.1);max-width:80%;font-size:14px;line-height:1.5;color:var(--text)"><strong>Hello! 👋</strong><br><br>I'm your <strong>Body Type AI Assistant</strong>. Discover your somatotype first, then ask me for personalized diet plans, workout routines, and fitness tips tailored to your body type!</div></div>
+    <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI fitness chat messages">
+        <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
+            <strong>Hello! 👋</strong><br><br>
+            I'm your <strong>Body Type Fitness AI Assistant</strong>. Discover your somatotype above, then ask me for personalized diet plans, workout routines, and fitness tips tailored to your body type!
+        </div>
     </div>
-    <div id="ai-chat-suggestions" style="padding:10px 16px;background:var(--surface);border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px">
-        <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('Best diet for my body type?')">Diet for my type?</span>
-        <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('Workout plan for endomorph')">Endomorph workout?</span>
-        <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('How to build muscle as an ectomorph?')">Ectomorph tips?</span>
-        <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('Mesomorph training routine')">Mesomorph training?</span>
+    <div class="ai-chat-suggestions" id="aiChatSuggestions">
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Best diet plan for my somatotype body type?')">🥗 Diet for my type?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Workout and training plan for endomorph body type')">🏋️ Endomorph workout?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('How to build muscle and gain weight as an ectomorph?')">💪 Ectomorph tips?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Mesomorph training routine and nutrition plan')">🏆 Mesomorph training?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Cardio recommendations for each body type')">🏃 Cardio for my type?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('How to change my body composition effectively?')">🔄 Body recomposition?</span>
     </div>
-    <div style="padding:12px 16px;background:var(--surface);border-top:1px solid var(--border);display:flex;gap:8px">
-        <input type="text" id="ai-chat-input" placeholder="Ask about your body type..." style="flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:25px;outline:none;font-size:14px;font-family:inherit;background:var(--surface);color:var(--text)">
-        <button onclick="sendAIQuery()" style="width:42px;height:42px;border-radius:50%;background:#667eea;color:white;border:none;cursor:pointer;font-size:18px;flex-shrink:0">➤</button>
+    <div class="ai-chat-input-row">
+        <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your body type fitness..." aria-label="Type your fitness question" onkeypress="if(event.key==='Enter')sendAIMessage()">
+        <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button>
     </div>
-    <div style="padding:8px 16px;background:var(--surface-alt);border-top:1px solid var(--border);text-align:center;font-size:10px;color:var(--text-muted)">⚠️ Educational only. Consult a fitness professional.</div>
+    <div class="ai-chat-disclaimer">
+        ⚠️ Educational purposes only. Consult a fitness professional for personalized advice.
+    </div>
+</div>
 </div>
 
-<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed;bottom:30px;right:30px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;cursor:pointer;font-size:26px;box-shadow:0 8px 24px rgba(102,126,234,0.4);z-index:999998;transition:all 0.3s;display:flex;align-items:center;justify-content:center" title="Chat with Body Type AI">💬</button>
+<nav class="interlinks" aria-label="Related fitness tools">
+    <a href="bmi-calculator.html">⚖️ BMI</a>
+    <a href="body-fat-calculator.html">🧬 Body Fat</a>
+    <a href="ffmi-calculator.html">💪 FFMI</a>
+    <a href="calorie-calculator.html">🔥 Calories</a>
+    <a href="ideal-weight-calculator.html">⚖️ Ideal Weight</a>
+</nav>
+</main>
 
-<style>
-@keyframes messageSlideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
-.ai-suggestion-chip:hover{background:#667eea!important;color:white!important;border-color:#667eea!important}
-@media(max-width:480px){#ai-chat-widget{width:100vw;height:100vh;bottom:0;right:0;border-radius:0;max-width:100vw}#ai-chat-messages{height:calc(100vh - 250px)}}
-</style>
+<footer role="contentinfo">
+    <p>© 2026 HealthCalc — Heath-Carter methodology. <a href="privacy-policy.html">Privacy Policy</a> • <a href="terms-of-service.html">Terms</a> • <a href="sitemap.xml">Sitemap</a></p>
+</footer>
+</div>
 
 <script>
-var GEMINI_API_KEY='AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+    // ==============================================
+    // 🔥 NEW AI API KEY
+    // ==============================================
+    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
+    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
 
-function initTheme(){var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark')}
-function setTheme(t){localStorage.setItem('healthcalc_theme',t);document.body.classList.toggle('dark',t==='dark')}
-document.querySelectorAll('.theme-option').forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.theme)})});
-initTheme();
+    // ===== THEME =====
+    function initTheme(){var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark')}
+    function setTheme(t){localStorage.setItem('healthcalc_theme',t);document.body.classList.toggle('dark',t==='dark')}
+    document.querySelectorAll('.theme-option').forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.theme)})});
+    initTheme();
 
-function setCountry(c){localStorage.setItem('healthcalc_country',c)}
-document.getElementById('countrySelect').addEventListener('change',function(e){setCountry(e.target.value)});
-(function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;setCountry(s)})();
+    // ===== COUNTRY =====
+    function setCountry(c){localStorage.setItem('healthcalc_country',c)}
+    document.getElementById('countrySelect').addEventListener('change',function(e){setCountry(e.target.value)});
+    (function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;setCountry(s)})();
 
-var selectedFrame=null,selectedFat=null,selectedMuscle=null,selectedMetab=null;
+    // ===== QUESTION OPTIONS =====
+    var selectedFrame=null,selectedFat=null,selectedMuscle=null,selectedMetab=null;
+    function setupOptions(id,cb){document.querySelectorAll(id+' .option-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll(id+' .option-btn').forEach(function(x){x.classList.remove('selected')});b.classList.add('selected');cb(b)})})}
+    setupOptions('#frameOptions',function(b){selectedFrame=b.dataset.frame});
+    setupOptions('#fatOptions',function(b){selectedFat=b.dataset.fat});
+    setupOptions('#muscleOptions',function(b){selectedMuscle=b.dataset.muscle});
+    setupOptions('#metabolismOptions',function(b){selectedMetab=b.dataset.metab});
 
-function setupOptions(id,cb){document.querySelectorAll(id+' .option-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll(id+' .option-btn').forEach(function(x){x.classList.remove('selected')});b.classList.add('selected');cb(b)})})}
-setupOptions('#frameOptions',function(b){selectedFrame=b.dataset.frame});
-setupOptions('#fatOptions',function(b){selectedFat=b.dataset.fat});
-setupOptions('#muscleOptions',function(b){selectedMuscle=b.dataset.muscle});
-setupOptions('#metabolismOptions',function(b){selectedMetab=b.dataset.metab});
+    // ===== SOMATOTYPE CALCULATION =====
+    function calculateSomatotype(){
+        var e=0,m=0,ec=0;
+        if(selectedFat==='high')e+=4;else if(selectedFat==='moderate')e+=2;
+        if(selectedMetab==='slow')e+=3;else if(selectedMetab==='normal')e+=1;
+        if(selectedFrame==='large')m+=4;else if(selectedFrame==='medium')m+=2;
+        if(selectedMuscle==='high')m+=4;else if(selectedMuscle==='medium')m+=2;
+        if(selectedFrame==='small')ec+=4;
+        if(selectedMetab==='fast')ec+=4;else if(selectedMetab==='normal')ec+=1;
+        if(selectedMuscle==='low')ec+=3;
+        var w=parseFloat(document.getElementById('wristSize').value);
+        if(!isNaN(w)&&w>0){if(w<16)ec+=2;else if(w>19)e+=2;else m+=1}
+        var t=e+m+ec;if(t>0){e=(e/t)*7;m=(m/t)*7;ec=(ec/t)*7}
+        var maxV=Math.max(e,m,ec),st='';
+        if(maxV===e&&e>m&&e>ec)st='Endomorph';
+        else if(maxV===m&&m>e&&m>ec)st='Mesomorph';
+        else if(maxV===ec&&ec>e&&ec>m)st='Ectomorph';
+        else if(e>4&&m>3)st='Endo-Mesomorph';
+        else if(ec>4&&m>3)st='Ecto-Mesomorph';
+        else st='Mixed Type';
+        return{endo:Math.round(e*10)/10,meso:Math.round(m*10)/10,ecto:Math.round(ec*10)/10,somaType:st}
+    }
 
-function calculateSomatotype(){var e=0,m=0,ec=0;
-if(selectedFat==='high')e+=4;else if(selectedFat==='moderate')e+=2;
-if(selectedMetab==='slow')e+=3;else if(selectedMetab==='normal')e+=1;
-if(selectedFrame==='large')m+=4;else if(selectedFrame==='medium')m+=2;
-if(selectedMuscle==='high')m+=4;else if(selectedMuscle==='medium')m+=2;
-if(selectedFrame==='small')ec+=4;
-if(selectedMetab==='fast')ec+=4;else if(selectedMetab==='normal')ec+=1;
-if(selectedMuscle==='low')ec+=3;
-var w=parseFloat(document.getElementById('wristSize').value);
-if(!isNaN(w)&&w>0){if(w<16)ec+=2;else if(w>19)e+=2;else m+=1}
-var t=e+m+ec;if(t>0){e=(e/t)*7;m=(m/t)*7;ec=(ec/t)*7}
-var maxV=Math.max(e,m,ec),st='';
-if(maxV===e&&e>m&&e>ec)st='Endomorph';
-else if(maxV===m&&m>e&&m>ec)st='Mesomorph';
-else if(maxV===ec&&ec>e&&ec>m)st='Ectomorph';
-else if(e>4&&m>3)st='Endo-Mesomorph';
-else if(ec>4&&m>3)st='Ecto-Mesomorph';
-else st='Mixed Type';
-return{endo:Math.round(e*10)/10,meso:Math.round(m*10)/10,ecto:Math.round(ec*10)/10,somaType:st}}
+    function getRecommendations(st){
+        var r={
+            Endomorph:{diet:'🥗 <strong>Diet:</strong> Lower carb, higher protein & healthy fats. Portion control. Intermittent fasting works well.',workout:'🏋️ <strong>Workout:</strong> Strength training 3-4x/week + HIIT 2-3x/week. Compound movements.',tips:'💡 <strong>Tips:</strong> Consistency is key. Track calories. 7-8 hours sleep.'},
+            Mesomorph:{diet:'🥩 <strong>Diet:</strong> Balanced 40/30/30 macros. Rotate cutting/bulking phases.',workout:'💪 <strong>Workout:</strong> Mix strength + cardio. Progressive overload. Vary rep ranges.',tips:'💡 <strong>Tips:</strong> Genetically gifted! Vary routine every 6-8 weeks.'},
+            Ectomorph:{diet:'🍚 <strong>Diet:</strong> Calorie surplus. Complex carbs + protein. 5-6 meals daily.',workout:'🏋️ <strong>Workout:</strong> Heavy compound lifts, low volume, high intensity. Limit cardio.',tips:'💡 <strong>Tips:</strong> Eat frequently. Prioritize recovery. Consider creatine.'},
+            'Endo-Mesomorph':{diet:'🥩 <strong>Diet:</strong> High protein, moderate fat, lower carbs. Time carbs around workouts.',workout:'🏋️ <strong>Workout:</strong> Strength + HIIT. Body recomposition focus. 4x strength, 2x HIIT.',tips:'💡 <strong>Tips:</strong> Build muscle easily but also store fat. Monitor nutrition closely.'},
+            'Ecto-Mesomorph':{diet:'🍗 <strong>Diet:</strong> High protein, moderate-high carbs. Lean bulk approach.',workout:'💪 <strong>Workout:</strong> Push-pull-legs split. Train each muscle 2x/week.',tips:'💡 <strong>Tips:</strong> Best of both worlds! Build muscle while staying lean.'},
+            'Mixed Type':{diet:'🥑 <strong>Diet:</strong> Balanced Mediterranean-style. Whole foods. Moderate all macros.',workout:'🏃 <strong>Workout:</strong> Varied routine - strength, cardio, flexibility. Experiment!',tips:'💡 <strong>Tips:</strong> You have versatility! Find what works best for your goals.'}
+        };
+        return r[st]||r['Mixed Type'];
+    }
 
-function getRecommendations(st){var r={Endomorph:{diet:'🥗 <strong>Diet:</strong> Lower carb, higher protein & healthy fats. Portion control. Intermittent fasting works well.',workout:'🏋️ <strong>Workout:</strong> Strength training 3-4x/week + HIIT 2-3x/week. Compound movements.',tips:'💡 <strong>Tips:</strong> Consistency is key. Track calories. 7-8 hours sleep.'},Mesomorph:{diet:'🥩 <strong>Diet:</strong> Balanced 40/30/30 macros. Rotate cutting/bulking phases.',workout:'💪 <strong>Workout:</strong> Mix strength + cardio. Progressive overload. Vary rep ranges.',tips:'💡 <strong>Tips:</strong> Genetically gifted! Vary routine every 6-8 weeks.'},Ectomorph:{diet:'🍚 <strong>Diet:</strong> Calorie surplus. Complex carbs + protein. 5-6 meals daily.',workout:'🏋️ <strong>Workout:</strong> Heavy compound lifts, low volume, high intensity. Limit cardio.',tips:'💡 <strong>Tips:</strong> Eat frequently. Prioritize recovery. Consider creatine.'},'Endo-Mesomorph':{diet:'🥩 <strong>Diet:</strong> High protein, moderate fat, lower carbs. Time carbs around workouts.',workout:'🏋️ <strong>Workout:</strong> Strength + HIIT. Body recomposition focus. 4x strength, 2x HIIT.',tips:'💡 <strong>Tips:</strong> Build muscle easily but also store fat. Monitor nutrition closely.'},'Ecto-Mesomorph':{diet:'🍗 <strong>Diet:</strong> High protein, moderate-high carbs. Lean bulk approach.',workout:'💪 <strong>Workout:</strong> Push-pull-legs split. Train each muscle 2x/week.',tips:'💡 <strong>Tips:</strong> Best of both worlds! Build muscle while staying lean.'},'Mixed Type':{diet:'🥑 <strong>Diet:</strong> Balanced Mediterranean-style. Whole foods. Moderate all macros.',workout:'🏃 <strong>Workout:</strong> Varied routine - strength, cardio, flexibility. Experiment!',tips:'💡 <strong>Tips:</strong> You have versatility! Find what works best for your goals.'}};return r[st]||r['Mixed Type']}
+    function analyzeBodyType(){
+        if(!selectedFrame||!selectedFat||!selectedMuscle||!selectedMetab){alert('Please answer all questions.');return}
+        var result=calculateSomatotype();var rec=getRecommendations(result.somaType);
+        document.getElementById('resultBox').style.display='block';
+        var se=document.getElementById('somatype');se.textContent=result.somaType;se.className='somatype';
+        if(result.somaType.includes('Endomorph'))se.classList.add('endomorph');
+        else if(result.somaType.includes('Mesomorph'))se.classList.add('mesomorph');
+        else if(result.somaType.includes('Ectomorph'))se.classList.add('ectomorph');
+        else se.classList.add('mixed');
+        document.getElementById('endoScore').innerHTML=result.endo;
+        document.getElementById('mesoScore').innerHTML=result.meso;
+        document.getElementById('ectoScore').innerHTML=result.ecto;
+        document.getElementById('recommendation').innerHTML=rec.diet+'<br><br>'+rec.workout+'<br><br>'+rec.tips;
+        document.getElementById('resultBox').scrollIntoView({behavior:'smooth'})
+    }
+    document.getElementById('analyzeBtn').addEventListener('click',analyzeBodyType);
 
-function analyzeBodyType(){if(!selectedFrame||!selectedFat||!selectedMuscle||!selectedMetab){alert('Please answer all questions.');return}
-var result=calculateSomatotype();var rec=getRecommendations(result.somaType);
-document.getElementById('resultBox').style.display='block';
-var se=document.getElementById('somatype');se.textContent=result.somaType;se.className='somatype';
-if(result.somaType.includes('Endomorph'))se.classList.add('endomorph');else if(result.somaType.includes('Mesomorph'))se.classList.add('mesomorph');else if(result.somaType.includes('Ectomorph'))se.classList.add('ectomorph');else se.classList.add('mixed');
-document.getElementById('endoScore').innerHTML=result.endo;document.getElementById('mesoScore').innerHTML=result.meso;document.getElementById('ectoScore').innerHTML=result.ecto;
-document.getElementById('recommendation').innerHTML=rec.diet+'<br><br>'+rec.workout+'<br><br>'+rec.tips;
-document.getElementById('resultBox').scrollIntoView({behavior:'smooth'})}
-document.getElementById('analyzeBtn').addEventListener('click',analyzeBodyType);
+    // ==============================================
+    // 🔥 NEW AI CHAT FUNCTIONS (Inline Panel)
+    // ==============================================
+    function addChatMessage(text, sender) {
+        var messagesDiv = document.getElementById('aiChatMessages');
+        var msgDiv = document.createElement('div');
+        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
+        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        messagesDiv.appendChild(msgDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
 
-// ===== AI CHAT =====
-function toggleAIChat(){var w=document.getElementById('ai-chat-widget');var f=document.getElementById('ai-chat-fab');if(w.style.display==='none'||!w.style.display){w.style.display='block';f.innerHTML='✕';f.style.background='linear-gradient(135deg,#ef4444,#dc2626)';document.getElementById('ai-chat-input').focus()}else{w.style.display='none';f.innerHTML='💬';f.style.background='linear-gradient(135deg,#667eea,#764ba2)'}}
-function openChatWithSomatotype(){var w=document.getElementById('ai-chat-widget');var f=document.getElementById('ai-chat-fab');w.style.display='block';f.innerHTML='✕';f.style.background='linear-gradient(135deg,#ef4444,#dc2626)';var st=document.getElementById('somatype').textContent;var input=document.getElementById('ai-chat-input');if(st!=='—'){input.value='My body type is '+st+'. What diet and workout plan should I follow?';input.focus()}else{input.placeholder='Discover your body type first!';input.focus()}}
-function closeAIChat(){document.getElementById('ai-chat-widget').style.display='none';document.getElementById('ai-chat-fab').innerHTML='💬';document.getElementById('ai-chat-fab').style.background='linear-gradient(135deg,#667eea,#764ba2)'}
-function openAIChat(){openChatWithSomatotype()}
-function addAIMessage(text,sender){var md=document.getElementById('ai-chat-messages');var w=document.createElement('div');w.style.cssText='display:flex;gap:10px;animation:messageSlideIn 0.3s ease;'+(sender==='user'?'flex-direction:row-reverse;':'');var avatar=sender==='user'?'👤':'🧬';w.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">'+avatar+'</div><div style="background:'+(sender==='user'?'#667eea':'var(--surface)')+';color:'+(sender==='user'?'white':'var(--text)')+';padding:10px 14px;border-radius:12px;max-width:80%;font-size:13px;line-height:1.5">'+text.replace(/\n/g,'<br>')+'</div>';md.appendChild(w);md.scrollTop=md.scrollHeight}
-function showAITyping(){var md=document.getElementById('ai-chat-messages');var td=document.createElement('div');td.id='ai-typing-indicator';td.innerHTML='<div style="display:flex;gap:10px"><div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center">🧬</div><div style="background:var(--surface);padding:12px 16px;border-radius:12px;display:flex;gap:5px"><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s"></div></div></div>';md.appendChild(td);md.scrollTop=md.scrollHeight}
-function removeAITyping(){var t=document.getElementById('ai-typing-indicator');if(t)t.remove()}
-async function sendAIQuery(prefilledText){var input=document.getElementById('ai-chat-input');var message=prefilledText||input.value.trim();if(!message)return;var st=document.getElementById('somatype').textContent;addAIMessage(message,'user');input.value='';showAITyping();try{var response=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_API_KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:'You are a Body Type AI on healthcalc.in. User somatotype: '+st+'.\n\nQuestion: '+message+'\n\nProvide COMPLETE, detailed fitness advice. Include diet, workout, and lifestyle tips specific to their body type. End with: "Consult a fitness professional."'}],}],generationConfig:{temperature:0.7,maxOutputTokens:1024}})});var data=await response.json();removeAITyping();if(data.candidates&&data.candidates[0]?.content?.parts?.[0]?.text){addAIMessage(data.candidates[0].content.parts[0].text,'ai')}else{throw new Error('No response')}}catch(error){removeAITyping();addAIMessage('🧬 <strong>Body Type Tips:</strong><br><br>• Know your somatotype for best results<br>• Diet should match your body type<br>• Workout routine matters<br>• Stay consistent!<br><br>⚠️ Consult a fitness professional.','ai')}}
+    function showTypingIndicator() {
+        var messagesDiv = document.getElementById('aiChatMessages');
+        var typingDiv = document.createElement('div');
+        typingDiv.id = 'aiTypingIndicator';
+        typingDiv.className = 'ai-message-bot';
+        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
+        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
 
-window.toggleAIChat=toggleAIChat;window.openAIChat=openChatWithSomatotype;window.closeAIChat=closeAIChat;window.sendAIQuery=sendAIQuery;window.openChatWithSomatotype=openChatWithSomatotype;
+    function removeTypingIndicator() {
+        var typing = document.getElementById('aiTypingIndicator');
+        if (typing) typing.remove();
+    }
+
+    function getSomatotypeContext() {
+        var st = document.getElementById('somatype').textContent;
+        var endo = document.getElementById('endoScore').textContent;
+        var meso = document.getElementById('mesoScore').textContent;
+        var ecto = document.getElementById('ectoScore').textContent;
+        if (st !== '—') {
+            return 'User Somatotype: ' + st + ' (Endomorphy=' + endo + ', Mesomorphy=' + meso + ', Ectomorphy=' + ecto + '). ';
+        }
+        return '';
+    }
+
+    async function sendAIMessage(prefilledText) {
+        var input = document.getElementById('aiChatInput');
+        var message = prefilledText || input.value.trim();
+        if (!message) return;
+        
+        addChatMessage(message, 'user');
+        if (!prefilledText) input.value = '';
+        showTypingIndicator();
+        
+        var context = getSomatotypeContext();
+        
+        try {
+            var response = await fetch(AI_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ 
+                        parts: [{ 
+                            text: 'You are a professional Fitness & Body Type AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, personalized fitness advice. Include specific diet recommendations, workout plans, macronutrient guidance, and lifestyle tips tailored to their somatotype. Structure with bullet points for clarity. End with: "⚠️ Consult a fitness professional for personalized advice."' 
+                        }] 
+                    }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
+                })
+            });
+            
+            var data = await response.json();
+            removeTypingIndicator();
+            
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else { 
+                throw new Error('No response from AI'); 
+            }
+        } catch (error) {
+            removeTypingIndicator();
+            console.error('AI Chat Error:', error);
+            var st = document.getElementById('somatype').textContent;
+            var fb = '🧬 <strong>Body Type Fitness Tips:</strong><br><br>';
+            if (st.includes('Endomorph')) fb += '• Focus on lower carbs, higher protein (40% protein, 30% carbs, 30% fat)<br>• HIIT 2-3x/week + strength training 3-4x/week<br>• Track calories to maintain deficit<br>• Prioritize compound movements (squats, deadlifts)<br>• Get 7-8 hours sleep for hormone regulation<br><br>';
+            else if (st.includes('Mesomorph')) fb += '• Balanced 40/30/30 macros work well<br>• Mix strength training with moderate cardio<br>• Progressive overload is key<br>• Vary rep ranges (8-12 for hypertrophy, 4-6 for strength)<br>• Rotate cutting/bulking phases every 8-12 weeks<br><br>';
+            else if (st.includes('Ectomorph')) fb += '• Calorie surplus with 5-6 meals daily<br>• Focus on complex carbs (rice, oats, potatoes)<br>• Heavy compound lifts, limit cardio<br>• 1.6-2.2g protein per kg bodyweight<br>• Prioritize recovery and sleep (8+ hours)<br><br>';
+            else fb += '• Balanced whole-food diet with moderate macros<br>• Varied workout routine (strength, cardio, flexibility)<br>• Experiment to find what works best<br>• Stay consistent and track progress<br>• Listen to your body and adjust accordingly<br><br>';
+            fb += '⚠️ <em>Consult a fitness professional for personalized advice.</em>';
+            addChatMessage(fb, 'bot');
+        }
+    }
+
+    // Expose globally
+    window.sendAIMessage = sendAIMessage;
 </script>
 </body>
 </html>
