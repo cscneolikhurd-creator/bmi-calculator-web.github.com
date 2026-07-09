@@ -7,6 +7,9 @@
 <title>Pregnancy Calculator | Due Date & Trimester Tracker | AI Chat | US/UK/CA/AU | HealthCalc</title>
 <meta name="description" content="Calculate due date, current week, trimester, and fetal development milestones. AI chat for pregnancy tips. Follows ACOG, NHS, RANZCOG guidelines. US, UK, Canada, Australia.">
 <meta name="keywords" content="pregnancy calculator, due date, trimester tracker, fetal size, pregnancy week, conception date, ACOG, NHS, AI pregnancy chat">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="HealthCalc">
+<meta name="revisit-after" content="7 days">
 <link rel="canonical" href="https://healthcalc.in/pregnancy-calculator.html">
 <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/pregnancy-calculator.html">
 <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/pregnancy-calculator.html">
@@ -14,20 +17,65 @@
 <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/pregnancy-calculator.html">
 <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/pregnancy-calculator.html">
 
+<!-- Open Graph / Social Media -->
 <meta property="og:title" content="Pregnancy Calculator | Due Date & Trimester | AI Chat">
 <meta property="og:description" content="Calculate your due date and track pregnancy milestones. AI chat for pregnancy tips.">
 <meta property="og:url" content="https://healthcalc.in/pregnancy-calculator.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="HealthCalc">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://healthcalc.in/images/pregnancy-calculator-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pregnancy Calculator | Due Date & Trimester | AI Chat">
+<meta name="twitter:description" content="Calculate your due date and track pregnancy milestones. AI chat for pregnancy tips.">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
   "name": "Pregnancy Calculator with AI Assistant",
-  "description": "Pregnancy due date calculator with trimester tracking and AI-powered pregnancy tips",
+  "description": "Pregnancy due date calculator with trimester tracking and AI-powered pregnancy tips following ACOG, NHS, and RANZCOG guidelines",
   "url": "https://healthcalc.in/pregnancy-calculator.html",
   "author": {"@type": "Organization", "name": "HealthCalc"},
-  "dateModified": "2026-06-18"
+  "dateModified": "2026-07-09",
+  "about": {
+    "@type": "MedicalCondition",
+    "name": "Pregnancy"
+  },
+  "audience": {
+    "@type": "MedicalAudience",
+    "audienceType": "Pregnant women and healthcare seekers"
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".due-date", ".week-info"]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How is the due date calculated?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Due date is calculated by adding 280 days (40 weeks) to the first day of your last menstrual period (LMP), following ACOG guidelines."
+    }
+  }, {
+    "@type": "Question",
+    "name": "How accurate is the pregnancy calculator?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Only about 5% of babies are born on their exact due date. Most arrive between 37-42 weeks. This calculator provides an estimate based on standard medical guidelines."
+    }
+  }]
 }
 </script>
 
@@ -65,8 +113,14 @@ body.dark .result-box{background:#0f172a}
 body.dark .due-date{color:#f472b6}
 body.dark .week-info{color:#e2e8f0}
 body.dark .health-authority-note{background:#1e293b;color:#94a3b8}
-body.dark .chat-cta-box{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
-body.dark .chat-cta-results{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
+body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
+body.dark .ai-chat-messages{background:#0f172a}
+body.dark .ai-message-user{background:#db2777}
+body.dark .ai-message-bot{background:#334155;color:#e2e8f0}
+body.dark .ai-chat-input{background:#0f172a;border-color:#475569;color:#e2e8f0}
+body.dark .ai-chat-suggestions{background:#1e293b;border-color:#334155}
+body.dark .ai-suggestion-chip{background:#334155;color:#cbd5e1;border-color:#475569}
+body.dark .ai-suggestion-chip:hover{background:var(--primary);color:white;border-color:var(--primary)}
 body.dark .interlinks a{background:#334155;color:#cbd5e1}
 body.dark .interlinks a:hover{background:var(--primary);color:white}
 body.dark footer{color:#94a3b8}
@@ -114,18 +168,132 @@ label i{color:var(--primary);margin-right:6px}
 input,select{width:100%;padding:12px 14px;border:2px solid #f1c0d0;border-radius:12px;font-size:14px;background:white;transition:all 0.2s}
 input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(236,72,153,0.1)}
 
-/* Chat CTA */
-.chat-cta-box{
-    background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px dashed var(--success);
-    padding:16px;border-radius:var(--radius-lg);margin:18px 0;text-align:center;
-    cursor:pointer;transition:all 0.3s;
+/* AI Chat Panel (Inline - replaces old popup) */
+.ai-chat-panel{
+    margin:18px 0;
+    border:2px solid #f1c0d0;
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    background:white;
+    transition:all 0.3s;
 }
-.chat-cta-box:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,0.2)}
-.chat-cta-box .cta-icon{font-size:32px;margin-bottom:8px}
-.chat-cta-box .cta-text{font-weight:700;color:var(--dark);font-size:14px}
-body.dark .chat-cta-box .cta-text{color:#e2e8f0}
-.chat-cta-box .cta-sub{font-size:11px;color:var(--gray-600);margin-top:4px}
-body.dark .chat-cta-box .cta-sub{color:#94a3b8}
+.ai-chat-header{
+    background:linear-gradient(135deg,#ec4899,#f43f5e);
+    color:white;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-weight:600;
+    font-size:14px;
+}
+.ai-chat-header-left{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.ai-chat-status{
+    font-size:10px;
+    opacity:0.9;
+    font-weight:400;
+}
+.ai-chat-messages{
+    height:250px;
+    overflow-y:auto;
+    padding:12px;
+    background:#f8fafc;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.ai-message-bot{
+    background:white;
+    padding:10px 14px;
+    border-radius:12px;
+    border-top-left-radius:4px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.08);
+    max-width:85%;
+    font-size:13px;
+    line-height:1.5;
+    align-self:flex-start;
+}
+.ai-message-user{
+    background:var(--primary);
+    color:white;
+    padding:10px 14px;
+    border-radius:12px;
+    border-top-right-radius:4px;
+    max-width:85%;
+    font-size:13px;
+    line-height:1.5;
+    align-self:flex-end;
+}
+.ai-chat-suggestions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    padding:10px 12px;
+    background:white;
+    border-top:1px solid #e2e8f0;
+}
+.ai-suggestion-chip{
+    background:#f1f5f9;
+    padding:6px 12px;
+    border-radius:15px;
+    font-size:11px;
+    cursor:pointer;
+    border:1px solid #e2e8f0;
+    transition:all 0.2s;
+    white-space:nowrap;
+}
+.ai-suggestion-chip:hover{
+    background:var(--primary);
+    color:white;
+    border-color:var(--primary);
+}
+.ai-chat-input-row{
+    display:flex;
+    gap:8px;
+    padding:10px 12px;
+    background:white;
+    border-top:1px solid #e2e8f0;
+}
+.ai-chat-input{
+    flex:1;
+    padding:10px 14px;
+    border:2px solid #e2e8f0;
+    border-radius:25px;
+    outline:none;
+    font-size:13px;
+    font-family:inherit;
+}
+.ai-chat-input:focus{
+    border-color:var(--primary);
+}
+.ai-chat-send-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:var(--primary);
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+    flex-shrink:0;
+    transition:all 0.2s;
+}
+.ai-chat-send-btn:hover{
+    background:var(--primary-dark);
+    transform:scale(1.05);
+}
+.ai-chat-disclaimer{
+    padding:6px 12px;
+    background:#f8fafc;
+    border-top:1px solid #e2e8f0;
+    text-align:center;
+    font-size:10px;
+    color:#64748b;
+}
 
 .calc-btn{
     background:linear-gradient(135deg,#ec4899,#f43f5e);color:white;padding:14px;
@@ -145,19 +313,6 @@ body.dark .week-info{color:#e2e8f0}
 .fetal-size{font-size:14px;color:#666;margin-top:8px}
 body.dark .fetal-size{color:#94a3b8}
 
-/* Chat CTA in Results */
-.chat-cta-results{
-    margin:20px 0;padding:20px;
-    background:linear-gradient(135deg,#f0fdf4,#ecfdf5);
-    border-radius:var(--radius-lg);border:2px solid var(--success);text-align:center;
-}
-.chat-cta-btn{
-    background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;
-    padding:12px 24px;border-radius:60px;font-weight:700;font-size:14px;
-    cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.3s;
-}
-.chat-cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 25px rgba(16,185,129,0.4)}
-
 /* Interlinks */
 .interlinks{
     display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
@@ -169,115 +324,116 @@ body.dark .fetal-size{color:#94a3b8}
 }
 .interlinks a:hover{background:var(--primary);color:white}
 
+/* Animations */
+@keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
+
 footer{text-align:center;margin-top:24px;font-size:11px;color:white;opacity:0.8}
 footer a{color:white}
+
+@media (max-width: 600px) {
+    .card{padding:20px;border-radius:24px}
+    h1{font-size:24px}
+    .ai-chat-messages{height:200px}
+}
 </style>
 </head>
 <body>
 <div class="container">
 
-<div class="international-bar">
-    <select id="countrySelect"><option value="us">🇺🇸 US</option><option value="uk">🇬🇧 UK</option><option value="ca">🇨🇦 Canada</option><option value="au">🇦🇺 Australia</option></select>
-    <div class="theme-toggle"><button class="theme-option" data-theme="light">☀️ Light</button><button class="theme-option" data-theme="dark">🌙 Dark</button></div>
+<nav class="international-bar" aria-label="Region and theme selector">
+    <select id="countrySelect" aria-label="Select your country">
+        <option value="us">🇺🇸 United States</option>
+        <option value="uk">🇬🇧 United Kingdom</option>
+        <option value="ca">🇨🇦 Canada</option>
+        <option value="au">🇦🇺 Australia</option>
+    </select>
+    <div class="theme-toggle">
+        <button class="theme-option" data-theme="light" aria-label="Light mode">☀️ Light</button>
+        <button class="theme-option" data-theme="dark" aria-label="Dark mode">🌙 Dark</button>
+    </div>
+</nav>
+
+<div id="healthAuthorityNote" class="health-authority-note" role="note">
+    🤰 Based on ACOG/NHS/RANZCOG guidelines – 40 weeks average gestation
 </div>
-<div id="healthAuthorityNote" class="health-authority-note">🤰 Based on ACOG/NHS/RANZCOG guidelines – 40 weeks average gestation</div>
 
-<div class="card">
+<main class="card" role="main">
 <h1><i class="fas fa-baby-carriage"></i> Pregnancy Due Date Calculator</h1>
-<p style="color:#666;margin-bottom:20px;font-size:14px;">Calculate your due date, current week, trimester, and fetal development milestones. Chat with AI for pregnancy tips!</p>
+<p style="color:#666;margin-bottom:20px;font-size:14px;">Calculate your due date, current week, trimester, and fetal development milestones. <strong>AI assistant available below for personalized pregnancy guidance.</strong></p>
 
-<div class="input-group"><label><i class="fas fa-calendar-alt"></i> First day of last menstrual period (LMP)</label><input type="date" id="lmp"></div>
-<div class="input-group"><label><i class="fas fa-calendar-check"></i> Or known due date (optional)</label><input type="date" id="edd"></div>
-
-<!-- Chat CTA in Input -->
-<div class="chat-cta-box" onclick="openChatWithPregnancy()">
-    <div class="cta-icon">💬</div>
-    <div class="cta-text">Need Pregnancy Tips? Chat with AI!</div>
-    <div class="cta-sub">Get trimester-specific advice & nutrition tips</div>
+<div class="input-group">
+    <label for="lmp"><i class="fas fa-calendar-alt"></i> First day of last menstrual period (LMP)</label>
+    <input type="date" id="lmp" aria-label="Last menstrual period date">
+</div>
+<div class="input-group">
+    <label for="edd"><i class="fas fa-calendar-check"></i> Or known due date (optional)</label>
+    <input type="date" id="edd" aria-label="Expected due date">
 </div>
 
 <button class="calc-btn" onclick="calculatePregnancy()"><i class="fas fa-calculator"></i> Calculate Pregnancy Info</button>
 
-<div class="result-box" id="result">
+<div class="result-box" id="result" role="region" aria-live="polite">
     <div class="due-date" id="dueDate">—</div>
     <div class="week-info" id="weekInfo"></div>
     <div id="trimester" style="font-weight:600;margin-top:6px;color:var(--primary-dark)"></div>
     <div class="fetal-size" id="fetalSize"></div>
-    
-    <!-- Chat CTA in Results -->
-    <div class="chat-cta-results" id="chatResultsCTA" style="display:none;">
-        <h4><i class="fas fa-robot"></i> Want Pregnancy Tips?</h4>
-        <p style="font-size:13px;color:#666;margin-bottom:12px;">Chat with AI for trimester advice, nutrition, and wellness tips!</p>
-        <button class="chat-cta-btn" onclick="openChatWithPregnancy()">💬 Chat About My Pregnancy</button>
-    </div>
-</div>
-
-<div class="interlinks">
-    <a href="menstrual-cycle-calculator.html">🌸 Menstrual Cycle</a>
-    <a href="hormone-health-calculator.html">🔬 Hormone Health</a>
-    <a href="bmi-calculator.html">⚖️ BMI</a>
-    <a href="water-intake-calculator.html">💧 Water Intake</a>
-    <a href="dri-calculator.html">🥗 DRI Nutrients</a>
-</div>
-</div>
-<footer>ACOG/NHS guidelines. <a href="privacy-policy.html">Privacy</a> | <a href="terms-of-service.html">Terms</a></footer>
 </div>
 
 <!-- ============================================ -->
-<!-- AI CHAT WIDGET - PREGNANCY CONTEXT AWARE     -->
+<!-- 🔥 NEW AI CHAT PANEL (Inline - Single Chat)  -->
 <!-- ============================================ -->
-<div id="ai-chat-widget" style="display:none; position:fixed; bottom:100px; right:30px; width:380px; max-width:90vw; background:white; border-radius:20px; box-shadow:0 20px 60px rgba(0,0,0,0.2); z-index:999999; overflow:hidden; font-family:'Inter',sans-serif;">
-    <div style="background:linear-gradient(135deg,#ec4899,#f43f5e); color:white; padding:16px 20px; display:flex; justify-content:space-between; align-items:center;">
-        <div style="display:flex; align-items:center; gap:10px;">
-            <span style="font-size:24px;">🤰</span>
-            <div>
-                <strong style="font-size:15px;">Pregnancy AI Assistant</strong>
-                <div style="font-size:11px; opacity:0.9;">Online · Free · AI-Powered</div>
-            </div>
+<div class="ai-chat-panel" id="aiChatPanel">
+    <div class="ai-chat-header">
+        <div class="ai-chat-header-left">
+            <span>🤰</span>
+            <span>Pregnancy AI Assistant</span>
         </div>
-        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2); border:none; color:white; width:28px; height:28px; border-radius:6px; cursor:pointer; font-size:16px;">✕</button>
+        <span class="ai-chat-status">🟢 Online · Free</span>
     </div>
-    <div id="ai-chat-messages" style="height:320px; overflow-y:auto; padding:16px; background:#f8fafc; display:flex; flex-direction:column; gap:12px;">
-        <div style="display:flex; gap:10px;">
-            <div style="width:32px; height:32px; border-radius:50%; background:#fce7f3; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤰</div>
-            <div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.1); max-width:80%; font-size:14px; line-height:1.5;">
-                <strong>Hello! 👋</strong><br><br>
-                I'm your <strong>Pregnancy AI Assistant</strong>. Calculate your due date first, then ask me for trimester-specific advice, nutrition tips, and wellness guidance!
-            </div>
+    <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI chat messages">
+        <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
+            <strong>Hello! 👋</strong><br><br>
+            I'm your <strong>Pregnancy AI Assistant</strong>. Calculate your due date above, then ask me anything about your pregnancy — nutrition, exercises, trimester guidance, or any concerns!
         </div>
     </div>
-    <div id="ai-chat-suggestions" style="padding:10px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; flex-wrap:wrap; gap:6px;">
-        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('What should I eat during pregnancy?')">Pregnancy diet?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('First trimester tips and advice')">First trimester?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('Safe exercises during pregnancy')">Safe exercises?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9; padding:6px 12px; border-radius:15px; font-size:12px; cursor:pointer; border:1px solid #e2e8f0;" onclick="sendAIQuery('What to pack in hospital bag?')">Hospital bag?</span>
+    <div class="ai-chat-suggestions" id="aiChatSuggestions">
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What should I eat during pregnancy?')">🥗 Pregnancy diet?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('First trimester tips and advice')">📋 First trimester?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Safe exercises during pregnancy')">🧘 Safe exercises?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What to pack in hospital bag?')">🏥 Hospital bag?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Pregnancy symptoms week by week')">📅 Week-by-week?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Foods to avoid during pregnancy')">🚫 Foods to avoid?</span>
     </div>
-    <div style="padding:12px 16px; background:white; border-top:1px solid #e2e8f0; display:flex; gap:8px;">
-        <input type="text" id="ai-chat-input" placeholder="Ask about your pregnancy..." style="flex:1; padding:10px 16px; border:2px solid #e2e8f0; border-radius:25px; outline:none; font-size:14px; font-family:inherit;" onkeypress="if(event.key==='Enter')sendAIQuery()">
-        <button onclick="sendAIQuery()" style="width:42px; height:42px; border-radius:50%; background:#ec4899; color:white; border:none; cursor:pointer; font-size:18px; flex-shrink:0;">➤</button>
+    <div class="ai-chat-input-row">
+        <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your pregnancy..." aria-label="Type your pregnancy question" onkeypress="if(event.key==='Enter')sendAIMessage()">
+        <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button>
     </div>
-    <div style="padding:8px 16px; background:#f8fafc; border-top:1px solid #e2e8f0; text-align:center; font-size:10px; color:#64748b;">
+    <div class="ai-chat-disclaimer">
         ⚠️ Educational purposes only. Consult your OB-GYN for medical advice.
     </div>
 </div>
 
-<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed; bottom:30px; right:30px; width:60px; height:60px; border-radius:50%; background:linear-gradient(135deg,#ec4899,#f43f5e); color:white; border:none; cursor:pointer; font-size:26px; box-shadow:0 8px 24px rgba(236,72,153,0.4); z-index:999998; transition:all 0.3s; display:flex; align-items:center; justify-content:center;" title="Chat with Pregnancy AI">
-    💬
-</button>
+<nav class="interlinks" aria-label="Related calculators">
+    <a href="menstrual-cycle-calculator.html">🌸 Menstrual Cycle</a>
+    <a href="hormone-health-calculator.html">🔬 Hormone Health</a>
+    <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+    <a href="water-intake-calculator.html">💧 Water Intake</a>
+    <a href="dri-calculator.html">🥗 DRI Nutrients</a>
+</nav>
+</main>
 
-<style>
-    @keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
-    .ai-suggestion-chip:hover { background: #ec4899 !important; color: white !important; border-color: #ec4899 !important; }
-    @media (max-width: 480px) {
-        #ai-chat-widget { width: 100vw; height: 100vh; bottom: 0; right: 0; border-radius: 0; max-width: 100vw; }
-        #ai-chat-messages { height: calc(100vh - 250px); }
-    }
-</style>
+<footer role="contentinfo">
+    <p>© 2026 HealthCalc.in | Follows ACOG, NHS, RANZCOG guidelines. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms of Service</a> | <a href="sitemap.xml">Sitemap</a></p>
+</footer>
+</div>
 
 <script>
-    // ===== GEMINI API KEY =====
-    var GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+    // ==============================================
+    // 🔥 NEW API KEY - Requesty (Gemini-compatible)
+    // ==============================================
+    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
+    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
 
     // ===== THEME =====
     function initTheme() {
@@ -294,8 +450,12 @@ footer a{color:white}
     initTheme();
 
     // ===== COUNTRY =====
-    function setCountry(country) { localStorage.setItem('healthcalc_country', country); }
-    document.getElementById('countrySelect').addEventListener('change', function(e) { setCountry(e.target.value); });
+    function setCountry(country) { 
+        localStorage.setItem('healthcalc_country', country); 
+    }
+    document.getElementById('countrySelect').addEventListener('change', function(e) { 
+        setCountry(e.target.value); 
+    });
     (function() {
         var saved = localStorage.getItem('healthcalc_country') || 'us';
         document.getElementById('countrySelect').value = saved;
@@ -352,8 +512,11 @@ footer a{color:white}
         document.getElementById('trimester').innerHTML = trimester;
         document.getElementById('fetalSize').innerHTML = '👶 Fetal size: <strong>' + fetalSize + '</strong>';
         
-        // Show chat CTA
-        document.getElementById('chatResultsCTA').style.display = 'block';
+        // Auto-fill chat with context
+        var chatInput = document.getElementById('aiChatInput');
+        if (chatInput && weekStatus !== '') {
+            chatInput.placeholder = 'Ask about your ' + trimester + '...';
+        }
         
         saveToLocalStorage();
     }
@@ -378,121 +541,108 @@ footer a{color:white}
         }
     }
     
-    document.getElementById('lmp').addEventListener('change', function() { saveToLocalStorage(); calculatePregnancy(); });
-    document.getElementById('edd').addEventListener('change', function() { saveToLocalStorage(); calculatePregnancy(); });
+    document.getElementById('lmp').addEventListener('change', function() { 
+        saveToLocalStorage(); 
+        calculatePregnancy(); 
+    });
+    document.getElementById('edd').addEventListener('change', function() { 
+        saveToLocalStorage(); 
+        calculatePregnancy(); 
+    });
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS
+    // 🔥 NEW AI CHAT FUNCTION (Single inline panel)
     // ==============================================
-    function toggleAIChat() {
-        var widget = document.getElementById('ai-chat-widget');
-        var fab = document.getElementById('ai-chat-fab');
-        if (widget.style.display === 'none' || !widget.style.display) {
-            widget.style.display = 'block';
-            fab.innerHTML = '✕';
-            fab.style.background = 'linear-gradient(135deg, #9d174d, #831843)';
-            document.getElementById('ai-chat-input').focus();
-        } else {
-            widget.style.display = 'none';
-            fab.innerHTML = '💬';
-            fab.style.background = 'linear-gradient(135deg, #ec4899, #f43f5e)';
-        }
-    }
-
-    function openChatWithPregnancy() {
-        var widget = document.getElementById('ai-chat-widget');
-        var fab = document.getElementById('ai-chat-fab');
-        widget.style.display = 'block';
-        fab.innerHTML = '✕';
-        fab.style.background = 'linear-gradient(135deg, #9d174d, #831843)';
-        
-        var weekInfo = document.getElementById('weekInfo').innerText;
-        var trimester = document.getElementById('trimester').innerText;
-        var input = document.getElementById('ai-chat-input');
-        
-        if (weekInfo && weekInfo !== '') {
-            input.value = 'I am in ' + trimester + ' (' + weekInfo + '). What should I know and do at this stage?';
-            input.focus();
-        } else {
-            input.placeholder = 'Enter your LMP first, then ask me!';
-            input.focus();
-        }
-    }
-
-    function closeAIChat() {
-        document.getElementById('ai-chat-widget').style.display = 'none';
-        document.getElementById('ai-chat-fab').innerHTML = '💬';
-        document.getElementById('ai-chat-fab').style.background = 'linear-gradient(135deg, #ec4899, #f43f5e)';
-    }
-
-    function openAIChat() { openChatWithPregnancy(); }
-
-    function addAIMessage(text, sender) {
-        var messagesDiv = document.getElementById('ai-chat-messages');
-        var wrapper = document.createElement('div');
-        wrapper.style.cssText = 'display:flex; gap:10px; animation:messageSlideIn 0.3s ease; ' + (sender === 'user' ? 'flex-direction:row-reverse;' : '');
-        var avatar = sender === 'user' ? '👤' : '🤰';
-        var bgColor = sender === 'user' ? '#ec4899' : '#ffffff';
-        var textColor = sender === 'user' ? '#ffffff' : '#1e293b';
-        wrapper.innerHTML = '<div style="width:32px; height:32px; border-radius:50%; background:' + (sender === 'user' ? '#fce7f3' : '#fce7f3') + '; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px;">' + avatar + '</div><div style="background:' + bgColor + '; color:' + textColor + '; padding:10px 14px; border-radius:12px; max-width:80%; font-size:13px; line-height:1.5; ' + (sender === 'user' ? 'border-top-right-radius:4px;' : 'border-top-left-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,0.08);') + '">' + text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') + '</div>';
-        messagesDiv.appendChild(wrapper);
+    function addChatMessage(text, sender) {
+        var messagesDiv = document.getElementById('aiChatMessages');
+        var msgDiv = document.createElement('div');
+        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
+        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        messagesDiv.appendChild(msgDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    function showAITyping() {
-        var messagesDiv = document.getElementById('ai-chat-messages');
+    function showTypingIndicator() {
+        var messagesDiv = document.getElementById('aiChatMessages');
         var typingDiv = document.createElement('div');
-        typingDiv.id = 'ai-typing-indicator';
-        typingDiv.style.cssText = 'display:flex; gap:10px;';
-        typingDiv.innerHTML = '<div style="width:32px; height:32px; border-radius:50%; background:#fce7f3; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤰</div><div style="background:white; padding:12px 16px; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.08); display:flex; gap:5px;"><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite;"></div><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.2s;"></div><div class="typing-dot" style="width:7px; height:7px; background:#94a3b8; border-radius:50%; animation:typingBounce 1.4s infinite; animation-delay:0.4s;"></div></div>';
+        typingDiv.id = 'aiTypingIndicator';
+        typingDiv.className = 'ai-message-bot';
+        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
+        typingDiv.innerHTML = '<div class="typing-dot" style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div class="typing-dot" style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div class="typing-dot" style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
         messagesDiv.appendChild(typingDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    function removeAITyping() {
-        var typing = document.getElementById('ai-typing-indicator');
+    function removeTypingIndicator() {
+        var typing = document.getElementById('aiTypingIndicator');
         if (typing) typing.remove();
     }
 
-    async function sendAIQuery(prefilledText) {
-        var input = document.getElementById('ai-chat-input');
+    function getPregnancyContext() {
+        var weekInfo = document.getElementById('weekInfo').innerText;
+        var trimester = document.getElementById('trimester').innerText;
+        if (weekInfo && trimester) {
+            return 'User pregnancy status: ' + trimester + ', ' + weekInfo + '. ';
+        }
+        return '';
+    }
+
+    async function sendAIMessage(prefilledText) {
+        var input = document.getElementById('aiChatInput');
         var message = prefilledText || input.value.trim();
         if (!message) return;
         
-        var weekInfo = document.getElementById('weekInfo').innerText;
-        var trimester = document.getElementById('trimester').innerText;
+        addChatMessage(message, 'user');
+        if (!prefilledText) input.value = '';
+        showTypingIndicator();
         
-        addAIMessage(message, 'user');
-        input.value = '';
-        showAITyping();
+        var context = getPregnancyContext();
         
         try {
-            var response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_API_KEY, {
+            var response = await fetch(AI_API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{ parts: [{ text: 'You are a Pregnancy AI Assistant on healthcalc.in. User pregnancy status: ' + trimester + ', ' + weekInfo + '.\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed pregnancy advice. Include nutrition tips, safe exercises, trimester-specific guidance, and wellness recommendations. Give 3-4 paragraphs. End with: "Consult your OB-GYN for medical advice."' }] }],
+                    contents: [{ 
+                        parts: [{ 
+                            text: 'You are a professional Pregnancy AI Assistant on healthcalc.in, serving users from US, UK, Canada, and Australia. Follow ACOG, NHS, and RANZCOG medical guidelines. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, medically-accurate pregnancy advice. Include nutrition tips, safe exercises, trimester-specific guidance, and wellness recommendations. Structure with bullet points for clarity. End with: "⚠️ Consult your OB-GYN or midwife for personalized medical advice."' 
+                        }] 
+                    }],
                     generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
                 })
             });
+            
             var data = await response.json();
-            removeAITyping();
+            removeTypingIndicator();
+            
             if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
-            } else { throw new Error('No response'); }
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else { 
+                throw new Error('No response from AI'); 
+            }
         } catch (error) {
-            removeAITyping();
-            addAIMessage('🤰 <strong>Pregnancy Tips:</strong><br><br>• Take prenatal vitamins with folic acid daily<br>• Stay hydrated with 8-10 glasses of water<br>• Eat a balanced diet rich in fruits and vegetables<br>• Get regular prenatal checkups<br>• Practice gentle exercises like walking and prenatal yoga<br>• Get adequate rest and sleep<br><br>⚠️ <em>Consult your OB-GYN for medical advice.</em>', 'ai');
+            removeTypingIndicator();
+            console.error('AI Chat Error:', error);
+            // Fallback response
+            var fallback = '🤰 <strong>Pregnancy Guidance:</strong><br><br>';
+            fallback += '• Take prenatal vitamins with 400-800mcg folic acid daily<br>';
+            fallback += '• Stay hydrated with 8-10 glasses of water per day<br>';
+            fallback += '• Eat a balanced diet rich in fruits, vegetables, and lean proteins<br>';
+            fallback += '• Get regular prenatal checkups as recommended by your provider<br>';
+            fallback += '• Practice gentle exercises like walking and prenatal yoga<br>';
+            fallback += '• Get 7-9 hours of sleep and rest when tired<br>';
+            fallback += '• Avoid alcohol, smoking, and raw/undercooked foods<br><br>';
+            fallback += '⚠️ <em>Consult your OB-GYN for personalized medical advice.</em>';
+            addChatMessage(fallback, 'bot');
         }
     }
 
+    // Expose functions globally
     window.calculatePregnancy = calculatePregnancy;
-    window.toggleAIChat = toggleAIChat;
-    window.openAIChat = openChatWithPregnancy;
-    window.closeAIChat = closeAIChat;
-    window.sendAIQuery = sendAIQuery;
-    window.openChatWithPregnancy = openChatWithPregnancy;
+    window.sendAIMessage = sendAIMessage;
 
+    // Load saved data on page load
     loadFromLocalStorage();
 </script>
 </body>
