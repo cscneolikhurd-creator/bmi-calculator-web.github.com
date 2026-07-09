@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
 <!-- Primary Meta Tags (SEO - International English Only) -->
-<title>BMI Calculator: CDC, NHS, Health Canada & Australian Standards | Visceral Fat & Health Score | AI Chat | HealthCalc</title>
+<title>BMI Calculator: CDC, NHS, Health Canada & Australian Standards | AI Health Chat | HealthCalc</title>
 <meta name="title" content="BMI Calculator: International Standards (CDC/NHS) | AI Health Chat | Free">
 <meta name="description" content="Advanced BMI calculator using CDC, NHS, Health Canada & Australian guidelines. Get visceral fat risk, health score, age comparison graph. Asian-specific cutoffs included. Chat with AI for personalized diet & exercise tips. 100% free, no signup.">
-<meta name="keywords" content="BMI calculator, body mass index, BMI chart, healthy weight, CDC BMI, NHS BMI, Health Canada BMI, Australian BMI, visceral fat, health score, AI health chat, BMI women, BMI men, ideal weight, obesity calculator, Asian BMI, weight loss">
+<meta name="keywords" content="BMI calculator, body mass index, BMI chart, healthy weight, CDC BMI, NHS BMI, Health Canada BMI, Australian BMI, visceral fat, health score, AI health chat, BMI women, BMI men, ideal weight, obesity calculator, Asian BMI, weight loss, USA, UK, Canada, Australia">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="revisit-after" content="7 days">
 <link rel="canonical" href="https://healthcalc.in/bmi-calculator.html">
 
 <!-- hreflang tags -->
@@ -59,7 +60,7 @@
       {"@type": "Country", "name": "Australia"}
     ]
   },
-  "dateModified": "2026-07-07",
+  "dateModified": "2026-07-09",
   "mainEntityOfPage": {"@type": "WebPage", "@id": "https://healthcalc.in/bmi-calculator.html"}
 }
 </script>
@@ -91,6 +92,18 @@
       "text": "WHO standards classify overweight at BMI 25+. However, Asian populations face higher health risks at lower BMIs. Asian-specific cutoffs classify overweight at BMI 23 and obesity at BMI 25. Our calculator shows both standards."
     }
   }]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
+    {"@type": "ListItem", "position": 2, "name": "Health Tools", "item": "https://healthcalc.in/#tools"},
+    {"@type": "ListItem", "position": 3, "name": "BMI Calculator", "item": "https://healthcalc.in/bmi-calculator.html"}
+  ]
 }
 </script>
 
@@ -231,22 +244,6 @@ body.dark .asian-bmi-note{background:linear-gradient(135deg,#431407,#7c2d12);col
 body.dark .health-authority-note{background:#172554;color:#93c5fd}
 .health-authority-note a{color:var(--primary);font-weight:600}
 
-/* Chat CTA Box */
-.chat-cta-box{
-  background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px dashed var(--success);
-  padding:16px;border-radius:var(--radius-lg);margin:18px 0;text-align:center;
-  cursor:pointer;transition:all 0.3s;
-}
-body.dark .chat-cta-box{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
-.chat-cta-box:hover{
-  background:linear-gradient(135deg,#d1fae5,#a7f3d0);transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(16,185,129,0.2);
-}
-.chat-cta-box .cta-icon{font-size:32px;margin-bottom:8px}
-.chat-cta-box .cta-text{font-weight:700;color:var(--dark);font-size:14px}
-body.dark .chat-cta-box .cta-text{color:#e2e8f0}
-.chat-cta-box .cta-sub{font-size:11px;color:var(--gray-600);margin-top:4px}
-
 /* Buttons */
 .calculate-btn{
   width:100%;padding:14px;background:var(--gradient-primary);color:white;
@@ -304,6 +301,171 @@ body.dark .asian-categories{background:#431407}
 .asian-cat-item .label{color:#E65100;font-weight:600;font-size:9px}
 body.dark .asian-cat-item .label{color:#fbbf24}
 
+/* ============================================ */
+/* 🔥 AI CHAT PANEL (Inline - Single Chat)      */
+/* ============================================ */
+.ai-chat-panel {
+  margin: 20px 0;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: white;
+  transition: all 0.3s;
+}
+body.dark .ai-chat-panel {
+  background: var(--gray-100);
+  border-color: #334155;
+}
+.ai-chat-header {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+}
+.ai-chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ai-chat-status {
+  font-size: 10px;
+  opacity: 0.9;
+  font-weight: 400;
+}
+.ai-chat-messages {
+  height: 220px;
+  overflow-y: auto;
+  padding: 12px;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+body.dark .ai-chat-messages {
+  background: #0f172a;
+}
+.ai-message-bot {
+  background: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border-top-left-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  max-width: 85%;
+  font-size: 13px;
+  line-height: 1.5;
+  align-self: flex-start;
+  color: #1e293b;
+}
+body.dark .ai-message-bot {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+.ai-message-user {
+  background: var(--primary);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border-top-right-radius: 4px;
+  max-width: 85%;
+  font-size: 13px;
+  line-height: 1.5;
+  align-self: flex-end;
+}
+.ai-chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+body.dark .ai-chat-suggestions {
+  background: var(--gray-100);
+  border-color: #334155;
+}
+.ai-suggestion-chip {
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 11px;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+body.dark .ai-suggestion-chip {
+  background: #334155;
+  color: #cbd5e1;
+  border-color: #475569;
+}
+.ai-suggestion-chip:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.ai-chat-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+body.dark .ai-chat-input-row {
+  background: var(--gray-100);
+  border-color: #334155;
+}
+.ai-chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 25px;
+  outline: none;
+  font-size: 13px;
+  font-family: inherit;
+  color: #1e293b;
+}
+body.dark .ai-chat-input {
+  background: #0f172a;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+.ai-chat-input:focus {
+  border-color: var(--primary);
+}
+.ai-chat-send-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.ai-chat-send-btn:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+.ai-chat-disclaimer {
+  padding: 6px 12px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+  font-size: 10px;
+  color: #64748b;
+}
+body.dark .ai-chat-disclaimer {
+  background: #0f172a;
+  border-color: #334155;
+}
+
 /* Health Cards */
 .health-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:20px 0}
 .health-card{background:var(--gray-50);padding:15px;border-radius:var(--radius-md);text-align:center}
@@ -313,21 +475,6 @@ body.dark .health-card{background:var(--gray-100)}
 body.dark .health-card .value{color:#e2e8f0}
 .health-card .label{font-size:10px;color:var(--gray-600);margin-top:4px}
 @media(max-width:500px){.health-cards{grid-template-columns:1fr}}
-
-/* Chat CTA in Results */
-.chat-cta-results{
-  margin:20px 0;padding:20px;background:linear-gradient(135deg,#f0fdf4,#ecfdf5);
-  border-radius:var(--radius-lg);border:2px solid var(--success);text-align:center;
-}
-body.dark .chat-cta-results{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
-.chat-cta-results h4{color:var(--dark);margin-bottom:10px;font-size:16px}
-body.dark .chat-cta-results h4{color:#e2e8f0}
-.chat-cta-btn{
-  background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;
-  padding:12px 24px;border-radius:60px;font-weight:700;font-size:14px;
-  cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.3s;
-}
-.chat-cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 25px rgba(16,185,129,0.4)}
 
 /* Tools Crosslink */
 .tools-crosslink{margin:20px 0;padding:20px;background:var(--gray-50);border-radius:var(--radius-lg)}
@@ -385,18 +532,26 @@ body.dark .footer-note{color:#94a3b8;border-top-color:#334155}
   border-radius:var(--radius-md);font-size:11px;color:#92400e;margin:16px 0;text-align:center;
 }
 body.dark .disclaimer-global{background:#422006;color:#fcd34d}
+
+/* Animations */
+@keyframes messageSlideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
+
+@media(max-width:600px){
+  .ai-chat-messages{height:180px}
+}
 </style>
 </head>
 <body>
 <div class="calculator-container">
 
-  <div class="header">
+  <header class="header">
     <h1>⚖️ BMI Calculator <span>International Standards</span></h1>
     <p>Calculate your Body Mass Index using CDC, NHS, Health Canada & Australian guidelines. Includes Asian-specific cutoffs, visceral fat risk, health score, and AI-powered health chat for personalized diet & exercise recommendations.</p>
 
     <div class="top-bar-row">
       <div class="region-dropdown">
-        <select id="countrySelect" onchange="setCountry(this.value)">
+        <select id="countrySelect" onchange="setCountry(this.value)" aria-label="Select your country">
           <option value="us">🇺🇸 United States (CDC)</option>
           <option value="uk">🇬🇧 United Kingdom (NHS)</option>
           <option value="ca">🇨🇦 Canada (Health Canada)</option>
@@ -404,7 +559,7 @@ body.dark .disclaimer-global{background:#422006;color:#fcd34d}
         </select>
       </div>
       <div class="theme-dropdown">
-        <select id="themeSelect" onchange="setTheme(this.value)">
+        <select id="themeSelect" onchange="setTheme(this.value)" aria-label="Select theme">
           <option value="light">☀️ Light Mode</option>
           <option value="dark">🌙 Dark Mode</option>
         </select>
@@ -417,11 +572,11 @@ body.dark .disclaimer-global{background:#422006;color:#fcd34d}
       <span class="badge chat-badge"><i class="fas fa-robot"></i> AI Health Chat</span>
       <span class="badge"><i class="fas fa-globe"></i> 45+ Countries</span>
       <span class="badge"><i class="fas fa-chart-simple"></i> Health Score</span>
-      <span class="badge"><i class="fas fa-star"></i> 4.9 ★ Rated</span>
+      <span class="badge"><i class="fas fa-lock"></i> 100% Private</span>
     </div>
-  </div>
+  </header>
 
-  <div class="main-content">
+  <main class="main-content">
 
     <div class="input-section">
       <h2><i class="fas fa-pen-alt"></i> Your Details</h2>
@@ -432,33 +587,27 @@ body.dark .disclaimer-global{background:#422006;color:#fcd34d}
       </div>
 
       <div id="metric-fields" class="metric-fields active">
-        <div class="input-group"><label><i class="fas fa-weight-scale"></i> Weight (kg)</label><input type="number" id="weight-kg" placeholder="e.g., 70" min="20" max="300" step="0.1" value="70"></div>
-        <div class="input-group"><label><i class="fas fa-arrows-up-down"></i> Height (cm)</label><input type="number" id="height-cm" placeholder="e.g., 170" min="100" max="250" step="0.1" value="170"></div>
+        <div class="input-group"><label for="weight-kg"><i class="fas fa-weight-scale"></i> Weight (kg)</label><input type="number" id="weight-kg" placeholder="e.g., 70" min="20" max="300" step="0.1" value="70"></div>
+        <div class="input-group"><label for="height-cm"><i class="fas fa-arrows-up-down"></i> Height (cm)</label><input type="number" id="height-cm" placeholder="e.g., 170" min="100" max="250" step="0.1" value="170"></div>
       </div>
 
       <div id="imperial-fields" class="imperial-fields">
-        <div class="input-group"><label><i class="fas fa-weight-scale"></i> Weight (lbs)</label><input type="number" id="weight-lbs" placeholder="e.g., 154" min="44" max="660" step="0.1" value="154"></div>
-        <div class="input-group"><label><i class="fas fa-arrows-up-down"></i> Height (inches)</label><input type="number" id="height-in" placeholder="e.g., 67" min="39" max="98" step="0.1" value="67"></div>
+        <div class="input-group"><label for="weight-lbs"><i class="fas fa-weight-scale"></i> Weight (lbs)</label><input type="number" id="weight-lbs" placeholder="e.g., 154" min="44" max="660" step="0.1" value="154"></div>
+        <div class="input-group"><label for="height-in"><i class="fas fa-arrows-up-down"></i> Height (inches)</label><input type="number" id="height-in" placeholder="e.g., 67" min="39" max="98" step="0.1" value="67"></div>
       </div>
 
       <div class="age-gender-row">
-        <div class="input-group"><label><i class="fas fa-calendar"></i> Age (years)</label><input type="number" id="age" placeholder="18-120" min="18" max="120" value="30"></div>
-        <div class="input-group"><label><i class="fas fa-venus-mars"></i> Gender</label><select id="gender"><option value="male">Male</option><option value="female" selected>Female</option></select></div>
+        <div class="input-group"><label for="age"><i class="fas fa-calendar"></i> Age (years)</label><input type="number" id="age" placeholder="18-120" min="18" max="120" value="30"></div>
+        <div class="input-group"><label for="gender"><i class="fas fa-venus-mars"></i> Gender</label><select id="gender"><option value="male">Male</option><option value="female" selected>Female</option></select></div>
       </div>
 
-      <div class="input-group"><label><i class="fas fa-globe-asia"></i> Ethnicity</label><select id="ethnicity"><option value="south_asian" selected>South Asian (Indian, Pakistani, Bangladeshi)</option><option value="east_asian">East Asian (Chinese, Japanese, Korean)</option><option value="caucasian">Caucasian / White</option><option value="african">African / Black</option><option value="hispanic">Hispanic / Latino</option><option value="middle_eastern">Middle Eastern / North African</option><option value="other">Other / Mixed</option></select></div>
+      <div class="input-group"><label for="ethnicity"><i class="fas fa-globe-asia"></i> Ethnicity</label><select id="ethnicity"><option value="south_asian" selected>South Asian (Indian, Pakistani, Bangladeshi)</option><option value="east_asian">East Asian (Chinese, Japanese, Korean)</option><option value="caucasian">Caucasian / White</option><option value="african">African / Black</option><option value="hispanic">Hispanic / Latino</option><option value="middle_eastern">Middle Eastern / North African</option><option value="other">Other / Mixed</option></select></div>
 
-      <div class="asian-bmi-note" id="asianNoteText"><i class="fas fa-info-circle"></i> Asian populations face higher health risks at lower BMIs. Asian-specific cutoffs classify overweight at BMI 23 and obesity at BMI 25 — stricter than WHO thresholds due to higher visceral fat at lower body weights.</div>
+      <div class="asian-bmi-note" id="asianNoteText"><i class="fas fa-info-circle"></i> Asian populations face higher health risks at lower BMIs. Asian-specific cutoffs classify overweight at BMI 23 and obesity at BMI 25.</div>
 
       <div class="health-authority-note" id="healthNote">📋 Based on CDC guidelines: Healthy BMI 18.5–24.9. <a href="https://www.cdc.gov/healthyweight/assessing/bmi/" target="_blank" rel="noopener">Learn more</a></div>
 
-      <div class="chat-cta-box" onclick="openChatWithBMI()">
-        <div class="cta-icon">💬</div>
-        <div class="cta-text">Need Weight Loss Tips? Chat with AI!</div>
-        <div class="cta-sub">Get personalized diet & exercise recommendations</div>
-      </div>
-
-      <div class="input-group"><label><i class="fas fa-person-walking"></i> Activity Level</label><select id="activity"><option value="sedentary">Sedentary (little or no exercise)</option><option value="light" selected>Light (1-3 days/week)</option><option value="moderate">Moderate (3-5 days/week)</option><option value="active">Active (daily exercise)</option><option value="very-active">Very Active (athlete/intense training)</option></select></div>
+      <div class="input-group"><label for="activity"><i class="fas fa-person-walking"></i> Activity Level</label><select id="activity"><option value="sedentary">Sedentary (little or no exercise)</option><option value="light" selected>Light (1-3 days/week)</option><option value="moderate">Moderate (3-5 days/week)</option><option value="active">Active (daily exercise)</option><option value="very-active">Very Active (athlete/intense training)</option></select></div>
 
       <button class="calculate-btn" onclick="calculateBMI()"><i class="fas fa-calculator"></i> Calculate My Health Score</button>
       <button class="reset-btn" onclick="resetForm()"><i class="fas fa-undo"></i> Reset All Fields</button>
@@ -493,13 +642,41 @@ body.dark .disclaimer-global{background:#422006;color:#fcd34d}
         <div class="health-card"><span class="emoji">❤️</span><div class="value" id="health-score">--</div><div class="label">Health Score /100</div></div>
       </div>
 
-      <div class="chat-cta-results">
-        <h4><i class="fas fa-robot"></i> Want Personalized Health Tips?</h4>
-        <p style="font-size:13px;color:var(--gray-600);margin-bottom:12px">Chat with our AI assistant for diet plans, exercise routines, and lifestyle changes based on your BMI results!</p>
-        <button class="chat-cta-btn" onclick="openChatWithBMI()">💬 Chat About My BMI Results</button>
+      <!-- ============================================ -->
+      <!-- 🔥 NEW AI CHAT PANEL (Inline - Single Chat)  -->
+      <!-- ============================================ -->
+      <div class="ai-chat-panel" id="aiChatPanel">
+        <div class="ai-chat-header">
+          <div class="ai-chat-header-left">
+            <span>🤖</span>
+            <span>BMI Health AI Assistant</span>
+          </div>
+          <span class="ai-chat-status">🟢 Online · Free</span>
+        </div>
+        <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI health chat messages">
+          <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
+            <strong>Hello! 👋</strong><br><br>
+            I'm your <strong>BMI Health Assistant</strong>. Calculate your BMI above, then ask me for personalized diet plans, exercise recommendations, weight management strategies, or any health questions!
+          </div>
+        </div>
+        <div class="ai-chat-suggestions" id="aiChatSuggestions">
+          <span class="ai-suggestion-chip" onclick="sendAIMessage('What diet should I follow for my BMI?')">🥗 Diet for my BMI?</span>
+          <span class="ai-suggestion-chip" onclick="sendAIMessage('Best exercises to lower BMI and lose weight')">🏃 Best exercises?</span>
+          <span class="ai-suggestion-chip" onclick="sendAIMessage('How to reduce visceral fat effectively?')">⚠️ Reduce visceral fat?</span>
+          <span class="ai-suggestion-chip" onclick="sendAIMessage('What is a healthy weight for my height?')">⚖️ Healthy weight?</span>
+          <span class="ai-suggestion-chip" onclick="sendAIMessage('Meal plan for weight loss')">📋 Meal plan?</span>
+          <span class="ai-suggestion-chip" onclick="sendAIMessage('How many calories should I eat daily?')">🔥 Calorie needs?</span>
+        </div>
+        <div class="ai-chat-input-row">
+          <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your BMI results..." aria-label="Type your health question" onkeypress="if(event.key==='Enter')sendAIMessage()">
+          <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button>
+        </div>
+        <div class="ai-chat-disclaimer">
+          ⚠️ Educational purposes only. Consult a healthcare professional for medical advice.
+        </div>
       </div>
 
-      <div class="tools-crosslink">
+      <nav class="tools-crosslink" aria-label="Related health tools">
         <h4><i class="fas fa-link"></i> Continue Your Health Journey</h4>
         <div class="tools-grid">
           <a href="ideal-weight-calculator.html" class="tool-link-card">⚖️ Ideal Weight</a>
@@ -509,7 +686,7 @@ body.dark .disclaimer-global{background:#422006;color:#fcd34d}
           <a href="water-intake-calculator.html" class="tool-link-card">💧 Water Intake</a>
           <a href="ascvd-risk-calculator.html" class="tool-link-card">🫀 ASCVD Risk</a>
         </div>
-      </div>
+      </nav>
 
       <div class="graph-section">
         <h3><i class="fas fa-chart-line"></i> Your BMI Compared to Age Group Average</h3>
@@ -522,477 +699,387 @@ body.dark .disclaimer-global{background:#422006;color:#fcd34d}
       </div>
 
       <div class="disclaimer-global">
-        <i class="fas fa-exclamation-triangle"></i> This BMI calculator provides educational estimates based on CDC, NHS, and WHO guidelines. It does not replace professional medical advice. Always consult a qualified healthcare professional for diagnosis or treatment.
+        <i class="fas fa-exclamation-triangle"></i> This BMI calculator provides educational estimates based on CDC, NHS, and WHO guidelines. It does not replace professional medical advice.
       </div>
 
       <div class="footer-note">
-        <p>⭐ Rated 4.9/5 by 5,200+ users | Trusted in 45+ countries | <a href="/index.html">← Back to All Health Tools</a></p>
-        <p style="margin-top:4px">© 2026 HealthCalc — Free International Health Tool. <a href="privacy-policy.html">Privacy</a> • <a href="terms-of-service.html">Terms</a></p>
+        <p>© 2026 HealthCalc — Free International Health Tool. <a href="privacy-policy.html">Privacy</a> • <a href="terms-of-service.html">Terms</a> • <a href="sitemap.xml">Sitemap</a></p>
+        <p style="margin-top:4px">⭐ Rated 4.9/5 by 5,200+ users | Trusted in 45+ countries | <a href="/index.html">← Back to All Health Tools</a></p>
       </div>
     </div>
-  </div>
+  </main>
 </div>
-
-<!-- ============================================ -->
-<!-- AI CHAT WIDGET - BMI CONTEXT AWARE (ENGLISH ONLY) -->
-<!-- ============================================ -->
-<div id="ai-chat-widget" style="display:none;position:fixed;bottom:100px;right:30px;width:380px;max-width:90vw;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);z-index:999999;overflow:hidden;font-family:'Inter',sans-serif">
-    <div style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:24px">🤖</span><div><strong style="font-size:15px">BMI Health Assistant</strong><div style="font-size:11px;opacity:0.9">Online · Free · AI-Powered</div></div></div>
-        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px">✕</button>
-    </div>
-    <div id="ai-chat-messages" style="height:320px;overflow-y:auto;padding:16px;background:#f8fafc;display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;gap:10px"><div style="width:32px;height:32px;border-radius:50%;background:#e0e7ff;display:flex;align-items:center;justify-content:center;flex-shrink:0">🤖</div><div style="background:white;padding:12px 16px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.1);max-width:80%;font-size:14px;line-height:1.5"><strong>Hello! 👋</strong><br><br>I'm your <strong>BMI Health Assistant</strong>. Calculate your BMI first, then ask me for personalized diet plans, exercise recommendations, and weight management strategies!</div></div>
-    </div>
-    <div id="ai-chat-suggestions" style="padding:10px 16px;background:white;border-top:1px solid #e2e8f0;display:flex;flex-wrap:wrap;gap:6px">
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('What diet should I follow for my BMI?')">Diet for my BMI?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('Best exercises to lower BMI')">Best exercises?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('How to reduce visceral fat?')">Reduce visceral fat?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('What is a healthy weight for my height?')">Healthy weight?</span>
-    </div>
-    <div style="padding:12px 16px;background:white;border-top:1px solid #e2e8f0;display:flex;gap:8px">
-        <input type="text" id="ai-chat-input" placeholder="Ask about your BMI results..." style="flex:1;padding:10px 16px;border:2px solid #e2e8f0;border-radius:25px;outline:none;font-size:14px;font-family:inherit" onkeypress="if(event.key==='Enter')sendAIQuery()">
-        <button onclick="sendAIQuery()" style="width:42px;height:42px;border-radius:50%;background:#3b82f6;color:white;border:none;cursor:pointer;font-size:18px;flex-shrink:0">➤</button>
-    </div>
-    <div style="padding:8px 16px;background:#f8fafc;border-top:1px solid #e2e8f0;text-align:center;font-size:10px;color:#64748b">⚠️ Educational purposes only. Consult a healthcare professional for medical advice.</div>
-</div>
-
-<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed;bottom:30px;right:30px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;cursor:pointer;font-size:26px;box-shadow:0 8px 24px rgba(102,126,234,0.4);z-index:999998;transition:all 0.3s;display:flex;align-items:center;justify-content:center" title="Chat with BMI Health AI">💬</button>
-
-<style>
-@keyframes messageSlideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
-.ai-suggestion-chip:hover{background:#3b82f6!important;color:white!important;border-color:#3b82f6!important}
-@media(max-width:480px){#ai-chat-widget{width:100vw;height:100vh;bottom:0;right:0;border-radius:0;max-width:100vw}#ai-chat-messages{height:calc(100vh - 250px)}}
-</style>
 
 <script>
-// ===== GEMINI API KEY =====
-var GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+    // ==============================================
+    // 🔥 NEW AI API KEY
+    // ==============================================
+    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
+    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
 
-// ===== GLOBAL STATE =====
-var currentUnit = 'metric';
-var currentCountry = 'us';
+    // ===== GLOBAL STATE =====
+    var currentUnit = 'metric';
+    var currentCountry = 'us';
 
-// ===== COUNTRY CONFIG =====
-var countryData = {
-    us: {name:'USA',authority:'CDC',guideline:'Healthy BMI 18.5–24.9',link:'https://www.cdc.gov/healthyweight/assessing/bmi/'},
-    uk: {name:'UK',authority:'NHS',guideline:'Healthy BMI 18.5–24.9',link:'https://www.nhs.uk/live-well/healthy-weight/bmi-calculator/'},
-    ca: {name:'Canada',authority:'Health Canada',guideline:'Healthy BMI 18.5–24.9',link:'https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/healthy-weights.html'},
-    au: {name:'Australia',authority:'Australian DoH',guideline:'Healthy BMI 18.5–24.9',link:'https://www.health.gov.au/topics/overweight-and-obesity'}
-};
+    // ===== COUNTRY CONFIG =====
+    var countryData = {
+        us: {name:'USA',authority:'CDC',guideline:'Healthy BMI 18.5–24.9',link:'https://www.cdc.gov/healthyweight/assessing/bmi/'},
+        uk: {name:'UK',authority:'NHS',guideline:'Healthy BMI 18.5–24.9',link:'https://www.nhs.uk/live-well/healthy-weight/bmi-calculator/'},
+        ca: {name:'Canada',authority:'Health Canada',guideline:'Healthy BMI 18.5–24.9',link:'https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/healthy-weights.html'},
+        au: {name:'Australia',authority:'Australian DoH',guideline:'Healthy BMI 18.5–24.9',link:'https://www.health.gov.au/topics/overweight-and-obesity'}
+    };
 
-// ===== THEME =====
-function setTheme(t) {
-    localStorage.setItem('healthcalc_theme', t);
-    document.body.classList.toggle('dark', t === 'dark');
-    document.getElementById('themeSelect').value = t;
-}
-function initTheme() {
-    var t = localStorage.getItem('healthcalc_theme') || 'light';
-    setTheme(t);
-}
-
-// ===== COUNTRY =====
-function setCountry(code) {
-    currentCountry = code;
-    document.getElementById('countrySelect').value = code;
-    localStorage.setItem('healthcalc_country', code);
-    updateHealthNote();
-    // Auto-switch units: US defaults to imperial
-    if (code === 'us') {
-        if (currentUnit !== 'imperial') setUnit('imperial');
-    } else {
-        if (currentUnit !== 'metric') setUnit('metric');
+    // ===== THEME =====
+    function setTheme(t) {
+        localStorage.setItem('healthcalc_theme', t);
+        document.body.classList.toggle('dark', t === 'dark');
+        document.getElementById('themeSelect').value = t;
     }
-    calculateBMI();
-}
-
-function updateHealthNote() {
-    var c = countryData[currentCountry];
-    document.getElementById('healthNote').innerHTML = '📋 Based on ' + c.authority + ' guidelines: ' + c.guideline + '. <a href="' + c.link + '" target="_blank" rel="noopener">Learn more</a>';
-}
-
-// ===== UNIT TOGGLE =====
-function setUnit(unit) {
-    currentUnit = unit;
-    document.querySelectorAll('.unit-btn').forEach(function(b) { b.classList.remove('active'); });
-    if (unit === 'metric') {
-        document.getElementById('metricBtn').classList.add('active');
-        document.getElementById('metric-fields').classList.add('active');
-        document.getElementById('imperial-fields').classList.remove('active');
-    } else {
-        document.getElementById('imperialBtn').classList.add('active');
-        document.getElementById('metric-fields').classList.remove('active');
-        document.getElementById('imperial-fields').classList.add('active');
-    }
-    localStorage.setItem('healthcalc_unit', unit);
-    calculateBMI();
-}
-
-// ===== BMI CATEGORY FUNCTIONS =====
-function getAsianBMICategory(bmi) {
-    if (bmi < 18.5) return 'Underweight';
-    if (bmi < 23) return 'Normal';
-    if (bmi < 25) return 'Overweight';
-    return 'Obese';
-}
-
-function getWHOBMICategory(bmi) {
-    if (bmi < 18.5) return 'Underweight';
-    if (bmi < 25) return 'Normal';
-    if (bmi < 30) return 'Overweight';
-    return 'Obese';
-}
-
-function isAsianEthnicity(ethnicity) {
-    return ethnicity === 'south_asian' || ethnicity === 'east_asian';
-}
-
-function getVisceralFat(bmi, gender, age, ethnicity) {
-    var isAsian = isAsianEthnicity(ethnicity);
-    var threshold = isAsian ? 23 : 25;
-    var risk = 'Low';
-    if (bmi < threshold - 3) risk = 'Low';
-    else if (bmi < threshold) risk = 'Moderate';
-    else if (bmi < threshold + 5) risk = 'High';
-    else risk = 'Very High';
-    if (gender === 'male' && bmi > threshold) risk = (risk === 'Moderate' ? 'High' : (risk === 'High' ? 'Very High' : risk));
-    if (age > 45 && bmi > threshold) risk = (risk === 'Moderate' ? 'High' : (risk === 'High' ? 'Very High' : risk));
-    if (isAsian && bmi > 25) risk = (risk === 'High' ? 'Very High' : risk);
-    return risk;
-}
-
-function getHealthScore(bmi, age, gender, ethnicity, activity) {
-    var score = 100;
-    var isAsian = isAsianEthnicity(ethnicity);
-
-    // BMI scoring
-    if (isAsian) {
-        if (bmi < 18.5) score -= (18.5 - bmi) * 6;
-        else if (bmi < 23) score += 5;
-        else if (bmi < 25) score -= 15;
-        else if (bmi < 30) score -= 30;
-        else score -= 45;
-    } else {
-        if (bmi < 18.5) score -= (18.5 - bmi) * 6;
-        else if (bmi < 22) score += 5;
-        else if (bmi < 25) score += 2;
-        else if (bmi < 30) score -= 20;
-        else score -= 40;
+    function initTheme() {
+        var t = localStorage.getItem('healthcalc_theme') || 'light';
+        setTheme(t);
     }
 
-    // Age adjustment
-    if (age > 60) score -= 15;
-    else if (age > 50) score -= 10;
-    else if (age > 40) score -= 5;
+    // ===== COUNTRY =====
+    function setCountry(code) {
+        currentCountry = code;
+        document.getElementById('countrySelect').value = code;
+        localStorage.setItem('healthcalc_country', code);
+        updateHealthNote();
+        if (code === 'us') {
+            if (currentUnit !== 'imperial') setUnit('imperial');
+        } else {
+            if (currentUnit !== 'metric') setUnit('metric');
+        }
+        calculateBMI();
+    }
 
-    // Gender adjustment
-    if (gender === 'male' && bmi > (isAsian ? 23 : 25)) score -= 5;
+    function updateHealthNote() {
+        var c = countryData[currentCountry];
+        document.getElementById('healthNote').innerHTML = '📋 Based on ' + c.authority + ' guidelines: ' + c.guideline + '. <a href="' + c.link + '" target="_blank" rel="noopener">Learn more</a>';
+    }
 
-    // Activity adjustment
-    var actMap = {'very-active': 15, 'active': 10, 'moderate': 5, 'light': 0, 'sedentary': -10};
-    score += (actMap[activity] || 0);
+    // ===== UNIT TOGGLE =====
+    function setUnit(unit) {
+        currentUnit = unit;
+        document.querySelectorAll('.unit-btn').forEach(function(b) { b.classList.remove('active'); });
+        if (unit === 'metric') {
+            document.getElementById('metricBtn').classList.add('active');
+            document.getElementById('metric-fields').classList.add('active');
+            document.getElementById('imperial-fields').classList.remove('active');
+        } else {
+            document.getElementById('imperialBtn').classList.add('active');
+            document.getElementById('metric-fields').classList.remove('active');
+            document.getElementById('imperial-fields').classList.add('active');
+        }
+        localStorage.setItem('healthcalc_unit', unit);
+        calculateBMI();
+    }
 
-    return Math.max(0, Math.min(100, Math.round(score)));
-}
+    // ===== BMI CATEGORY FUNCTIONS =====
+    function getAsianBMICategory(bmi) {
+        if (bmi < 18.5) return 'Underweight';
+        if (bmi < 23) return 'Normal';
+        if (bmi < 25) return 'Overweight';
+        return 'Obese';
+    }
 
-// ===== AGE COMPARISON GRAPH =====
-function generateAgeGraph(userBMI, userAge) {
-    var container = document.getElementById('graph-container');
-    container.innerHTML = '';
-    var ageGroups = [20, 30, 40, 50, 60, 70, 80];
-    var avgBMIs = [23.5, 24.5, 25.5, 26.5, 27.0, 27.2, 26.8];
-    var maxBMI = 35;
+    function getWHOBMICategory(bmi) {
+        if (bmi < 18.5) return 'Underweight';
+        if (bmi < 25) return 'Normal';
+        if (bmi < 30) return 'Overweight';
+        return 'Obese';
+    }
 
-    ageGroups.forEach(function(age, i) {
-        var bh = (avgBMIs[i] / maxBMI) * 180;
-        var bc = document.createElement('div');
-        bc.className = 'age-bar-container';
-        var bar = document.createElement('div');
-        bar.className = 'age-bar';
-        bar.style.height = Math.max(bh, 5) + 'px';
-        var lbl = document.createElement('div');
-        lbl.className = 'age-label';
-        lbl.textContent = age + 'y';
-        bc.appendChild(bar);
-        bc.appendChild(lbl);
-        container.appendChild(bc);
+    function isAsianEthnicity(ethnicity) {
+        return ethnicity === 'south_asian' || ethnicity === 'east_asian';
+    }
+
+    function getVisceralFat(bmi, gender, age, ethnicity) {
+        var isAsian = isAsianEthnicity(ethnicity);
+        var threshold = isAsian ? 23 : 25;
+        var risk = 'Low';
+        if (bmi < threshold - 3) risk = 'Low';
+        else if (bmi < threshold) risk = 'Moderate';
+        else if (bmi < threshold + 5) risk = 'High';
+        else risk = 'Very High';
+        if (gender === 'male' && bmi > threshold) risk = (risk === 'Moderate' ? 'High' : (risk === 'High' ? 'Very High' : risk));
+        if (age > 45 && bmi > threshold) risk = (risk === 'Moderate' ? 'High' : (risk === 'High' ? 'Very High' : risk));
+        if (isAsian && bmi > 25) risk = (risk === 'High' ? 'Very High' : risk);
+        return risk;
+    }
+
+    function getHealthScore(bmi, age, gender, ethnicity, activity) {
+        var score = 100;
+        var isAsian = isAsianEthnicity(ethnicity);
+        if (isAsian) {
+            if (bmi < 18.5) score -= (18.5 - bmi) * 6;
+            else if (bmi < 23) score += 5;
+            else if (bmi < 25) score -= 15;
+            else if (bmi < 30) score -= 30;
+            else score -= 45;
+        } else {
+            if (bmi < 18.5) score -= (18.5 - bmi) * 6;
+            else if (bmi < 22) score += 5;
+            else if (bmi < 25) score += 2;
+            else if (bmi < 30) score -= 20;
+            else score -= 40;
+        }
+        if (age > 60) score -= 15;
+        else if (age > 50) score -= 10;
+        else if (age > 40) score -= 5;
+        if (gender === 'male' && bmi > (isAsian ? 23 : 25)) score -= 5;
+        var actMap = {'very-active': 15, 'active': 10, 'moderate': 5, 'light': 0, 'sedentary': -10};
+        score += (actMap[activity] || 0);
+        return Math.max(0, Math.min(100, Math.round(score)));
+    }
+
+    // ===== AGE COMPARISON GRAPH =====
+    function generateAgeGraph(userBMI, userAge) {
+        var container = document.getElementById('graph-container');
+        container.innerHTML = '';
+        var ageGroups = [20, 30, 40, 50, 60, 70, 80];
+        var avgBMIs = [23.5, 24.5, 25.5, 26.5, 27.0, 27.2, 26.8];
+        var maxBMI = 35;
+        ageGroups.forEach(function(age, i) {
+            var bh = (avgBMIs[i] / maxBMI) * 180;
+            var bc = document.createElement('div');
+            bc.className = 'age-bar-container';
+            var bar = document.createElement('div');
+            bar.className = 'age-bar';
+            bar.style.height = Math.max(bh, 5) + 'px';
+            var lbl = document.createElement('div');
+            lbl.className = 'age-label';
+            lbl.textContent = age + 'y';
+            bc.appendChild(bar);
+            bc.appendChild(lbl);
+            container.appendChild(bc);
+        });
+        var closestIndex = 0, minDiff = Math.abs(userAge - ageGroups[0]);
+        for (var i = 1; i < ageGroups.length; i++) {
+            var diff = Math.abs(userAge - ageGroups[i]);
+            if (diff < minDiff) { minDiff = diff; closestIndex = i; }
+        }
+        var userBarHeight = (userBMI / maxBMI) * 180;
+        var userX = (closestIndex * 85) + 35;
+        var indicator = document.createElement('div');
+        indicator.className = 'user-indicator';
+        indicator.style.left = userX + 'px';
+        indicator.style.bottom = (Math.min(userBarHeight, 180) + 25) + 'px';
+        indicator.textContent = 'You';
+        container.appendChild(indicator);
+        var comp = document.getElementById('graph-comparison');
+        var diff = userBMI - avgBMIs[closestIndex];
+        if (diff < -2) comp.innerHTML = '✅ <strong>Excellent!</strong> Your BMI is below the average for your age group.';
+        else if (diff < 0) comp.innerHTML = '📉 <strong>Good!</strong> Your BMI is slightly below average for your age group.';
+        else if (diff < 2) comp.innerHTML = '📊 Your BMI is <strong>around average</strong> for your age group.';
+        else if (diff < 5) comp.innerHTML = '⚠️ Your BMI is <strong>above average</strong> for your age group. Chat with AI for tips.';
+        else comp.innerHTML = '🚨 <strong>Attention!</strong> Your BMI is significantly above average. Chat with AI for a plan.';
+    }
+
+    // ===== MAIN BMI CALCULATION =====
+    function calculateBMI() {
+        var age = parseInt(document.getElementById('age').value) || 30;
+        var gender = document.getElementById('gender').value;
+        var ethnicity = document.getElementById('ethnicity').value;
+        var activity = document.getElementById('activity').value;
+        var weight, height, bmi;
+        if (currentUnit === 'metric') {
+            weight = parseFloat(document.getElementById('weight-kg').value);
+            height = parseFloat(document.getElementById('height-cm').value) / 100;
+        } else {
+            weight = parseFloat(document.getElementById('weight-lbs').value);
+            height = parseFloat(document.getElementById('height-in').value) * 0.0254;
+        }
+        if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+            alert('Please enter valid weight and height values.');
+            return;
+        }
+        bmi = weight / (height * height);
+        bmi = Math.round(bmi * 10) / 10;
+        var whoCat = getWHOBMICategory(bmi);
+        var asianCat = getAsianBMICategory(bmi);
+        var vfRisk = getVisceralFat(bmi, gender, age, ethnicity);
+        var healthScore = getHealthScore(bmi, age, gender, ethnicity, activity);
+        document.getElementById('bmi-display').innerHTML = bmi.toFixed(1);
+        document.getElementById('bmi-category').innerHTML = whoCat;
+        document.getElementById('asian-category').innerHTML = asianCat;
+        document.getElementById('visceral-fat').innerHTML = vfRisk;
+        document.getElementById('health-score').innerHTML = healthScore;
+        var recBox = document.getElementById('recommendation-box');
+        recBox.className = 'recommendation-box';
+        if (asianCat === 'Obese' || vfRisk.includes('Very')) recBox.classList.add('danger');
+        else if (asianCat === 'Overweight' || vfRisk.includes('High')) recBox.classList.add('warning');
+        else recBox.classList.add('normal');
+        document.getElementById('recommendation-text').innerHTML =
+            '<strong>Your BMI: ' + bmi.toFixed(1) + ' (' + whoCat + ' WHO / ' + asianCat + ' Asian)</strong>. ' +
+            'Chat with AI above for personalized diet and exercise recommendations.';
+        var marker = document.getElementById('bmi-marker');
+        var left;
+        if (bmi < 18.5) left = (bmi / 18.5) * 25;
+        else if (bmi < 25) left = 25 + ((bmi - 18.5) / 6.5) * 25;
+        else if (bmi < 30) left = 50 + ((bmi - 25) / 5) * 25;
+        else left = 75 + Math.min((bmi - 30) / 15, 1) * 25;
+        marker.style.left = Math.min(98, Math.max(2, left)) + '%';
+        generateAgeGraph(bmi, age);
+        saveToLocalStorage();
+    }
+
+    // ===== LOCALSTORAGE =====
+    function saveToLocalStorage() {
+        var d = {
+            weightKg: document.getElementById('weight-kg').value,
+            heightCm: document.getElementById('height-cm').value,
+            weightLbs: document.getElementById('weight-lbs').value,
+            heightIn: document.getElementById('height-in').value,
+            age: document.getElementById('age').value,
+            gender: document.getElementById('gender').value,
+            ethnicity: document.getElementById('ethnicity').value,
+            activity: document.getElementById('activity').value,
+            unit: currentUnit,
+            country: currentCountry
+        };
+        localStorage.setItem('bmiCalculator', JSON.stringify(d));
+    }
+
+    function loadFromLocalStorage() {
+        var s = localStorage.getItem('bmiCalculator');
+        if (s) {
+            try {
+                var d = JSON.parse(s);
+                document.getElementById('weight-kg').value = d.weightKg || '70';
+                document.getElementById('height-cm').value = d.heightCm || '170';
+                document.getElementById('weight-lbs').value = d.weightLbs || '154';
+                document.getElementById('height-in').value = d.heightIn || '67';
+                document.getElementById('age').value = d.age || '30';
+                document.getElementById('gender').value = d.gender || 'female';
+                document.getElementById('ethnicity').value = d.ethnicity || 'south_asian';
+                document.getElementById('activity').value = d.activity || 'light';
+                if (d.unit) setUnit(d.unit);
+                if (d.country) setCountry(d.country);
+            } catch(e) { setCountry('us'); }
+        } else {
+            setCountry('us');
+        }
+        calculateBMI();
+    }
+
+    function resetForm() {
+        document.getElementById('weight-kg').value = '70';
+        document.getElementById('height-cm').value = '170';
+        document.getElementById('weight-lbs').value = '154';
+        document.getElementById('height-in').value = '67';
+        document.getElementById('age').value = '30';
+        document.getElementById('gender').value = 'female';
+        document.getElementById('ethnicity').value = 'south_asian';
+        document.getElementById('activity').value = 'light';
+        if (currentCountry === 'us') setUnit('imperial'); else setUnit('metric');
+        calculateBMI();
+    }
+
+    // ===== EVENT LISTENERS =====
+    document.getElementById('countrySelect').addEventListener('change', function(e) { setCountry(e.target.value); });
+    document.getElementById('themeSelect').addEventListener('change', function(e) { setTheme(e.target.value); });
+    ['weight-kg', 'height-cm', 'weight-lbs', 'height-in', 'age', 'gender', 'ethnicity', 'activity'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('change', function() { saveToLocalStorage(); calculateBMI(); });
     });
 
-    // Find closest age group
-    var closestIndex = 0, minDiff = Math.abs(userAge - ageGroups[0]);
-    for (var i = 1; i < ageGroups.length; i++) {
-        var diff = Math.abs(userAge - ageGroups[i]);
-        if (diff < minDiff) { minDiff = diff; closestIndex = i; }
+    // ==============================================
+    // 🔥 NEW AI CHAT FUNCTIONS (Inline Panel)
+    // ==============================================
+    function addChatMessage(text, sender) {
+        var messagesDiv = document.getElementById('aiChatMessages');
+        var msgDiv = document.createElement('div');
+        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
+        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        messagesDiv.appendChild(msgDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    var userBarHeight = (userBMI / maxBMI) * 180;
-    var userX = (closestIndex * 85) + 35;
-    var indicator = document.createElement('div');
-    indicator.className = 'user-indicator';
-    indicator.style.left = userX + 'px';
-    indicator.style.bottom = (Math.min(userBarHeight, 180) + 25) + 'px';
-    indicator.textContent = 'You';
-    container.appendChild(indicator);
-
-    // Comparison text
-    var comp = document.getElementById('graph-comparison');
-    var diff = userBMI - avgBMIs[closestIndex];
-    if (diff < -2) comp.innerHTML = '✅ <strong>Excellent!</strong> Your BMI is below the average for your age group.';
-    else if (diff < 0) comp.innerHTML = '📉 <strong>Good!</strong> Your BMI is slightly below average for your age group.';
-    else if (diff < 2) comp.innerHTML = '📊 Your BMI is <strong>around average</strong> for your age group.';
-    else if (diff < 5) comp.innerHTML = '⚠️ Your BMI is <strong>above average</strong> for your age group. Consider consulting our AI for lifestyle tips.';
-    else comp.innerHTML = '🚨 <strong>Attention!</strong> Your BMI is significantly above average. Chat with AI for a personalized plan.';
-}
-
-// ===== MAIN BMI CALCULATION =====
-function calculateBMI() {
-    var age = parseInt(document.getElementById('age').value) || 30;
-    var gender = document.getElementById('gender').value;
-    var ethnicity = document.getElementById('ethnicity').value;
-    var activity = document.getElementById('activity').value;
-
-    var weight, height, bmi;
-    if (currentUnit === 'metric') {
-        weight = parseFloat(document.getElementById('weight-kg').value);
-        height = parseFloat(document.getElementById('height-cm').value) / 100;
-    } else {
-        weight = parseFloat(document.getElementById('weight-lbs').value);
-        height = parseFloat(document.getElementById('height-in').value) * 0.0254;
+    function showTypingIndicator() {
+        var messagesDiv = document.getElementById('aiChatMessages');
+        var typingDiv = document.createElement('div');
+        typingDiv.id = 'aiTypingIndicator';
+        typingDiv.className = 'ai-message-bot';
+        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
+        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
-        alert('Please enter valid weight and height values.');
-        return;
+    function removeTypingIndicator() {
+        var typing = document.getElementById('aiTypingIndicator');
+        if (typing) typing.remove();
     }
 
-    bmi = weight / (height * height);
-    bmi = Math.round(bmi * 10) / 10;
-
-    var whoCat = getWHOBMICategory(bmi);
-    var asianCat = getAsianBMICategory(bmi);
-    var vfRisk = getVisceralFat(bmi, gender, age, ethnicity);
-    var healthScore = getHealthScore(bmi, age, gender, ethnicity, activity);
-
-    // Update displays
-    document.getElementById('bmi-display').innerHTML = bmi.toFixed(1);
-    document.getElementById('bmi-category').innerHTML = whoCat;
-    document.getElementById('asian-category').innerHTML = asianCat;
-    document.getElementById('visceral-fat').innerHTML = vfRisk;
-    document.getElementById('health-score').innerHTML = healthScore;
-
-    // Recommendation box
-    var recBox = document.getElementById('recommendation-box');
-    recBox.className = 'recommendation-box';
-    if (asianCat === 'Obese' || vfRisk.includes('Very')) recBox.classList.add('danger');
-    else if (asianCat === 'Overweight' || vfRisk.includes('High')) recBox.classList.add('warning');
-    else recBox.classList.add('normal');
-
-    document.getElementById('recommendation-text').innerHTML =
-        '<strong>Your BMI: ' + bmi.toFixed(1) + ' (' + whoCat + ' WHO / ' + asianCat + ' Asian standard)</strong>. ' +
-        'Click <em>"Chat About My BMI Results"</em> below for AI-powered personalized diet and exercise recommendations.';
-
-    // BMI scale marker
-    var marker = document.getElementById('bmi-marker');
-    var left;
-    if (bmi < 18.5) left = (bmi / 18.5) * 25;
-    else if (bmi < 25) left = 25 + ((bmi - 18.5) / 6.5) * 25;
-    else if (bmi < 30) left = 50 + ((bmi - 25) / 5) * 25;
-    else left = 75 + Math.min((bmi - 30) / 15, 1) * 25;
-    marker.style.left = Math.min(98, Math.max(2, left)) + '%';
-
-    // Age comparison graph
-    generateAgeGraph(bmi, age);
-
-    // Save to localStorage
-    saveToLocalStorage();
-}
-
-// ===== LOCALSTORAGE =====
-function saveToLocalStorage() {
-    var d = {
-        weightKg: document.getElementById('weight-kg').value,
-        heightCm: document.getElementById('height-cm').value,
-        weightLbs: document.getElementById('weight-lbs').value,
-        heightIn: document.getElementById('height-in').value,
-        age: document.getElementById('age').value,
-        gender: document.getElementById('gender').value,
-        ethnicity: document.getElementById('ethnicity').value,
-        activity: document.getElementById('activity').value,
-        unit: currentUnit,
-        country: currentCountry
-    };
-    localStorage.setItem('bmiCalculator', JSON.stringify(d));
-}
-
-function loadFromLocalStorage() {
-    var s = localStorage.getItem('bmiCalculator');
-    if (s) {
-        try {
-            var d = JSON.parse(s);
-            document.getElementById('weight-kg').value = d.weightKg || '70';
-            document.getElementById('height-cm').value = d.heightCm || '170';
-            document.getElementById('weight-lbs').value = d.weightLbs || '154';
-            document.getElementById('height-in').value = d.heightIn || '67';
-            document.getElementById('age').value = d.age || '30';
-            document.getElementById('gender').value = d.gender || 'female';
-            document.getElementById('ethnicity').value = d.ethnicity || 'south_asian';
-            document.getElementById('activity').value = d.activity || 'light';
-            if (d.unit) setUnit(d.unit);
-            if (d.country) setCountry(d.country);
-        } catch(e) { setCountry('us'); }
-    } else {
-        setCountry('us');
-    }
-    calculateBMI();
-}
-
-function resetForm() {
-    document.getElementById('weight-kg').value = '70';
-    document.getElementById('height-cm').value = '170';
-    document.getElementById('weight-lbs').value = '154';
-    document.getElementById('height-in').value = '67';
-    document.getElementById('age').value = '30';
-    document.getElementById('gender').value = 'female';
-    document.getElementById('ethnicity').value = 'south_asian';
-    document.getElementById('activity').value = 'light';
-    if (currentCountry === 'us') setUnit('imperial'); else setUnit('metric');
-    calculateBMI();
-}
-
-// ===== EVENT LISTENERS =====
-document.getElementById('countrySelect').addEventListener('change', function(e) { setCountry(e.target.value); });
-document.getElementById('themeSelect').addEventListener('change', function(e) { setTheme(e.target.value); });
-
-['weight-kg', 'height-cm', 'weight-lbs', 'height-in', 'age', 'gender', 'ethnicity', 'activity'].forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.addEventListener('change', function() { saveToLocalStorage(); calculateBMI(); });
-});
-
-// ===== AI CHAT FUNCTIONS =====
-function toggleAIChat() {
-    var w = document.getElementById('ai-chat-widget');
-    var f = document.getElementById('ai-chat-fab');
-    if (w.style.display === 'none' || !w.style.display) {
-        w.style.display = 'block';
-        f.innerHTML = '✕';
-        f.style.background = 'linear-gradient(135deg,#ef4444,#dc2626)';
-        document.getElementById('ai-chat-input').focus();
-    } else {
-        w.style.display = 'none';
-        f.innerHTML = '💬';
-        f.style.background = 'linear-gradient(135deg,#667eea,#764ba2)';
-    }
-}
-
-function openChatWithBMI() {
-    var w = document.getElementById('ai-chat-widget');
-    var f = document.getElementById('ai-chat-fab');
-    w.style.display = 'block';
-    f.innerHTML = '✕';
-    f.style.background = 'linear-gradient(135deg,#ef4444,#dc2626)';
-    var bmi = document.getElementById('bmi-display').innerHTML;
-    var cat = document.getElementById('bmi-category').innerHTML;
-    var vf = document.getElementById('visceral-fat').innerHTML;
-    var hs = document.getElementById('health-score').innerHTML;
-    var input = document.getElementById('ai-chat-input');
-    if (bmi !== '--') {
-        input.value = 'My BMI is ' + bmi + ' (' + cat + '), visceral fat risk: ' + vf + ', health score: ' + hs + '/100. Using ' + countryData[currentCountry].authority + ' standards. What should I do to improve my health?';
-        input.focus();
-    } else {
-        input.placeholder = 'Calculate BMI first, then ask me for tips!';
-        input.focus();
-    }
-}
-
-function closeAIChat() {
-    document.getElementById('ai-chat-widget').style.display = 'none';
-    document.getElementById('ai-chat-fab').innerHTML = '💬';
-    document.getElementById('ai-chat-fab').style.background = 'linear-gradient(135deg,#667eea,#764ba2)';
-}
-
-function addAIMessage(text, sender) {
-    var md = document.getElementById('ai-chat-messages');
-    var msgDiv = document.createElement('div');
-    msgDiv.style.cssText = 'display:flex;gap:10px;animation:messageSlideIn 0.3s ease;' + (sender === 'user' ? 'flex-direction:row-reverse;' : '');
-    var avatar = sender === 'user' ? '👤' : '🤖';
-    var bg = sender === 'user' ? '#3b82f6' : '#ffffff';
-    var tc = sender === 'user' ? '#ffffff' : '#1e293b';
-    msgDiv.innerHTML = '<div style="width:32px;height:32px;border-radius:50%;background:' + (sender === 'user' ? '#3b82f6' : '#e0e7ff') + ';display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">' + avatar + '</div><div style="background:' + bg + ';color:' + tc + ';padding:10px 14px;border-radius:12px;max-width:80%;font-size:13px;line-height:1.5;' + (sender === 'user' ? 'border-top-right-radius:4px;' : 'border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);') + '">' + text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') + '</div>';
-    md.appendChild(msgDiv);
-    md.scrollTop = md.scrollHeight;
-}
-
-function showAITyping() {
-    var md = document.getElementById('ai-chat-messages');
-    var td = document.createElement('div');
-    td.id = 'ai-typing-indicator';
-    td.style.cssText = 'display:flex;gap:10px';
-    td.innerHTML = '<div style="width:32px;height:32px;border-radius:50%;background:#e0e7ff;display:flex;align-items:center;justify-content:center;flex-shrink:0">🤖</div><div style="background:white;padding:12px 16px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);display:flex;gap:5px"><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s"></div></div>';
-    md.appendChild(td);
-    md.scrollTop = md.scrollHeight;
-}
-
-function removeAITyping() {
-    var t = document.getElementById('ai-typing-indicator');
-    if (t) t.remove();
-}
-
-async function sendAIQuery(prefilledText) {
-    var input = document.getElementById('ai-chat-input');
-    var message = prefilledText || input.value.trim();
-    if (!message) return;
-    var bmi = document.getElementById('bmi-display').innerHTML;
-    var cat = document.getElementById('bmi-category').innerHTML;
-    var vf = document.getElementById('visceral-fat').innerHTML;
-    var hs = document.getElementById('health-score').innerHTML;
-    var country = countryData[currentCountry];
-    addAIMessage(message, 'user');
-    input.value = '';
-    showAITyping();
-    try {
-        var response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + GEMINI_API_KEY, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: 'You are a BMI Health Assistant on healthcalc.in, serving users in ' + country.name + ' (' + country.authority + ' guidelines). User stats: BMI: ' + bmi + ', WHO Category: ' + cat + ', Visceral Fat Risk: ' + vf + ', Health Score: ' + hs + '/100.\n\nUser Question: ' + message + '\n\nProvide COMPLETE, detailed, personalized health advice in English. Include specific diet recommendations, exercise plans, lifestyle modifications, and relevant ' + country.authority + ' guideline information. Give 3-4 thorough paragraphs. End with: "Consult a healthcare professional for medical advice."'
-                    }]
-                }],
-                generationConfig: {temperature: 0.7, maxOutputTokens: 1024}
-            })
-        });
-        var data = await response.json();
-        removeAITyping();
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-            addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
-        } else {
-            throw new Error('No response');
+    function getBMIContext() {
+        var bmi = document.getElementById('bmi-display').innerHTML;
+        var cat = document.getElementById('bmi-category').innerHTML;
+        var vf = document.getElementById('visceral-fat').innerHTML;
+        var hs = document.getElementById('health-score').innerHTML;
+        var country = countryData[currentCountry];
+        if (bmi !== '--') {
+            return 'User health profile: BMI=' + bmi + ', WHO Category=' + cat + ', Visceral Fat Risk=' + vf + ', Health Score=' + hs + '/100. Using ' + country.authority + ' standards (' + country.name + '). ';
         }
-    } catch(error) {
-        removeAITyping();
-        console.error('AI Error:', error);
-        var fb = '🏥 <strong>BMI Health Tips (' + country.authority + ' Standards):</strong><br><br>';
-        if (cat.includes('Underweight')) fb += '• Eat nutrient-dense foods (nuts, avocados, eggs, whole milk, lean meats)<br>• Have 5-6 smaller meals throughout the day<br>• Add healthy fats (olive oil, butter, nut butters)<br>• Strength train 3-4x per week to build muscle<br>• Consider protein shakes between meals<br>• Track calories to ensure surplus<br><br>';
-        else if (cat.includes('Normal')) fb += '• Maintain balanced diet with all food groups<br>• 150 minutes moderate exercise weekly (or 75 min vigorous)<br>• Stay hydrated (8-10 glasses of water daily)<br>• Get 7-9 hours of quality sleep<br>• Regular annual health checkups<br>• Practice mindful eating<br><br>';
-        else if (cat.includes('Overweight')) fb += '• Create a 500-calorie daily deficit for steady weight loss<br>• Prioritize lean protein and vegetables at every meal<br>• Walk 10,000+ steps daily<br>• Strength training 3x per week to preserve muscle<br>• Eliminate sugary drinks and processed foods<br>• Track meals with a food diary<br>• Aim for 1-2 lbs weight loss per week<br><br>';
-        else if (cat.includes('Obese')) fb += '• Consult your doctor for a personalized weight management plan<br>• Start with 20-minute daily walks, gradually increase<br>• Cut all sugary beverages immediately<br>• Focus on whole, unprocessed foods<br>• Consider working with a registered dietitian<br>• Set realistic weekly goals (1-2 lbs loss)<br>• Explore medical weight management options if needed<br><br>';
-        fb += '⚠️ <em>Consult a healthcare professional for medical advice. This calculator follows ' + country.authority + ' guidelines.</em>';
-        addAIMessage(fb, 'ai');
+        return '';
     }
-}
 
-// ===== EXPOSE GLOBALLY =====
-window.toggleAIChat = toggleAIChat;
-window.closeAIChat = closeAIChat;
-window.sendAIQuery = sendAIQuery;
-window.openChatWithBMI = openChatWithBMI;
+    async function sendAIMessage(prefilledText) {
+        var input = document.getElementById('aiChatInput');
+        var message = prefilledText || input.value.trim();
+        if (!message) return;
+        
+        addChatMessage(message, 'user');
+        if (!prefilledText) input.value = '';
+        showTypingIndicator();
+        
+        var context = getBMIContext();
+        var country = countryData[currentCountry];
+        
+        try {
+            var response = await fetch(AI_API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ 
+                        parts: [{ 
+                            text: 'You are a professional Health & BMI Assistant on healthcalc.in, serving users in ' + country.name + ' following ' + country.authority + ' guidelines. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, personalized health advice. Include specific diet recommendations, exercise plans, lifestyle modifications, and relevant ' + country.authority + ' guideline information. Structure with bullet points for clarity. End with: "⚠️ Consult a healthcare professional for personalized medical advice."' 
+                        }] 
+                    }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
+                })
+            });
+            
+            var data = await response.json();
+            removeTypingIndicator();
+            
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else { 
+                throw new Error('No response from AI'); 
+            }
+        } catch (error) {
+            removeTypingIndicator();
+            console.error('AI Chat Error:', error);
+            var fb = '🏥 <strong>BMI Health Tips (' + country.authority + ' Standards):</strong><br><br>';
+            var cat = document.getElementById('bmi-category').innerHTML;
+            if (cat.includes('Underweight')) fb += '• Eat nutrient-dense foods (nuts, avocados, eggs, whole milk, lean meats)<br>• Have 5-6 smaller meals throughout the day<br>• Add healthy fats (olive oil, butter, nut butters)<br>• Strength train 3-4x per week to build muscle<br>• Consider protein shakes between meals<br>• Track calories to ensure surplus<br><br>';
+            else if (cat.includes('Normal')) fb += '• Maintain balanced diet with all food groups<br>• 150 minutes moderate exercise weekly<br>• Stay hydrated (8-10 glasses of water daily)<br>• Get 7-9 hours of quality sleep<br>• Regular annual health checkups<br>• Practice mindful eating<br><br>';
+            else if (cat.includes('Overweight')) fb += '• Create a 500-calorie daily deficit for steady weight loss<br>• Prioritize lean protein and vegetables at every meal<br>• Walk 10,000+ steps daily<br>• Strength training 3x per week<br>• Eliminate sugary drinks and processed foods<br>• Track meals with a food diary<br>• Aim for 1-2 lbs weight loss per week<br><br>';
+            else if (cat.includes('Obese')) fb += '• Consult your doctor for a personalized weight management plan<br>• Start with 20-minute daily walks<br>• Cut all sugary beverages immediately<br>• Focus on whole, unprocessed foods<br>• Consider working with a registered dietitian<br>• Set realistic weekly goals (1-2 lbs loss)<br>• Explore medical weight management options if needed<br><br>';
+            fb += '⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>';
+            addChatMessage(fb, 'ai');
+        }
+    }
 
-// ===== INITIALIZE =====
-initTheme();
-window.addEventListener('load', loadFromLocalStorage);
+    // ===== EXPOSE GLOBALLY =====
+    window.sendAIMessage = sendAIMessage;
+
+    // ===== INITIALIZE =====
+    initTheme();
+    window.addEventListener('load', loadFromLocalStorage);
 </script>
 </body>
 </html>
