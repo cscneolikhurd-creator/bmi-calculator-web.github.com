@@ -1,8 +1,48 @@
 /* =============================================
-   GLOBAL + INTERNATIONAL STYLES
-   Unit Toggle, Ethnicity Selector, Language Switcher
+   HEALTHCALC.IN - GLOBAL + INTERNATIONAL STYLES
+   Version: 2.0
+   Features: Unit Toggle, Ethnicity, Language, AI Chat
    For US, UK, Canada, Australia
+   Last Updated: 2026-07-10
    ============================================= */
+
+/* ---------- CSS Variables (Root) ---------- */
+:root {
+    --primary: #3498db;
+    --primary-dark: #2980b9;
+    --primary-light: #dbeafe;
+    --secondary: #10b981;
+    --accent: #f59e0b;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --dark: #1e293b;
+    --text: #334155;
+    --text-muted: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --transition: all 0.3s ease;
+}
+
+/* Dark Mode Variables */
+body.dark {
+    --primary: #60a5fa;
+    --primary-dark: #3b82f6;
+    --primary-light: #1e3a5f;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --bg: #1e293b;
+    --bg-alt: #0f172a;
+    --border: #334155;
+}
 
 /* ---------- Unit Toggle Switch (Metric/Imperial) ---------- */
 .unit-toggle-wrapper {
@@ -14,10 +54,10 @@
 .unit-toggle-container {
     display: inline-flex;
     gap: 8px;
-    background: #f1f5f9;
+    background: var(--bg-alt);
     padding: 5px;
     border-radius: 50px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
 }
 
 .unit-toggle-btn {
@@ -28,8 +68,8 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    color: #64748b;
+    transition: var(--transition);
+    color: var(--text-muted);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -40,23 +80,28 @@
 }
 
 .unit-toggle-btn.active {
-    background: white;
-    color: #3498db;
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+    background: var(--bg);
+    color: var(--primary);
+    box-shadow: var(--shadow-sm);
 }
 
 .unit-toggle-btn:hover:not(.active) {
     background: rgba(255, 255, 255, 0.6);
-    color: #2c3e50;
+    color: var(--text);
+}
+
+body.dark .unit-toggle-btn.active {
+    background: #334155;
+    color: var(--primary);
 }
 
 /* ---------- Ethnicity Selector (Asian BMI Cutoff) ---------- */
 .ethnicity-group {
     margin: 20px 0;
     padding: 15px;
-    background: #f8f9fa;
-    border-radius: 12px;
-    border-left: 4px solid #3498db;
+    background: var(--bg-alt);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary);
 }
 
 .ethnicity-group label {
@@ -64,34 +109,35 @@
     align-items: center;
     gap: 8px;
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--text);
     margin-bottom: 8px;
 }
 
 .ethnicity-group label i {
-    color: #3498db;
+    color: var(--primary);
     font-size: 1.2rem;
 }
 
 .ethnicity-select {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
     font-size: 1rem;
-    background: white;
-    color: #2c3e50;
+    background: var(--bg);
+    color: var(--text);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: var(--transition);
+    font-family: 'Inter', sans-serif;
 }
 
 .ethnicity-select:hover {
-    border-color: #3498db;
+    border-color: var(--primary);
 }
 
 .ethnicity-select:focus {
     outline: none;
-    border-color: #3498db;
+    border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
@@ -107,12 +153,18 @@
     margin-right: 5px;
 }
 
-/* Asian-specific warning badge (for BMI cutoff 23+) */
+body.dark .ethnicity-select {
+    background: var(--bg-alt);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+/* ---------- Asian-specific Warning Badge ---------- */
 .asian-warning {
     background: linear-gradient(135deg, #fff3cd, #ffe69c);
     color: #856404;
     padding: 12px 16px;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     margin: 15px 0;
     font-size: 0.95rem;
     border: 1px solid #ffc107;
@@ -126,36 +178,131 @@
     color: #e67e22;
 }
 
+body.dark .asian-warning {
+    background: #2d3748;
+    color: #fbbf24;
+    border-color: #d97706;
+}
+
 /* ---------- Language Switcher (Global) ---------- */
 .language-switcher {
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-left: 20px;
+    flex-wrap: wrap;
 }
 
 .lang-btn {
     background: transparent;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
-    color: #64748b;
+    color: var(--text-muted);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: var(--transition);
 }
 
 .lang-btn:hover {
-    background: #3498db;
+    background: var(--primary);
     color: white;
-    border-color: #3498db;
+    border-color: var(--primary);
 }
 
 .lang-btn.active {
-    background: #3498db;
+    background: var(--primary);
     color: white;
-    border-color: #3498db;
+    border-color: var(--primary);
+}
+
+/* ---------- Theme Toggle ---------- */
+.theme-toggle {
+    display: flex;
+    gap: 6px;
+}
+
+.theme-option {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.theme-option:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* ---------- International Bar ---------- */
+.international-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.international-bar select {
+    padding: 8px 14px;
+    border-radius: 25px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+.international-bar select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* ---------- Health Authority Note ---------- */
+.health-authority-note {
+    background: var(--primary-light);
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 15px;
+    color: var(--primary-dark);
+}
+
+body.dark .health-authority-note {
+    background: #1e3a5f;
+    color: #93c5fd;
+}
+
+/* ---------- Breadcrumb ---------- */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.breadcrumb a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
 }
 
 /* ---------- Global Trust Badges ---------- */
@@ -166,7 +313,7 @@
     flex-wrap: wrap;
     margin: 30px 0;
     padding: 20px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, var(--bg-alt) 0%, #e9ecef 100%);
     border-radius: 50px;
 }
 
@@ -174,19 +321,23 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #2c3e50;
+    color: var(--text);
     font-weight: 500;
 }
 
 .trust-item i {
-    color: #27ae60;
+    color: var(--success);
     font-size: 1.2rem;
 }
 
-/* ---------- Multi-currency / Unit Label ---------- */
+body.dark .global-trust-badge {
+    background: #2d3748;
+}
+
+/* ---------- Input with Unit ---------- */
 .unit-label {
     margin-left: 8px;
-    color: #7f8c8d;
+    color: var(--text-muted);
     font-size: 0.9rem;
     font-weight: normal;
 }
@@ -194,15 +345,15 @@
 .input-with-unit {
     display: flex;
     align-items: center;
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
     padding: 0 15px;
-    transition: all 0.3s;
+    transition: var(--transition);
 }
 
 .input-with-unit:focus-within {
-    border-color: #3498db;
+    border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
@@ -212,20 +363,22 @@
     flex: 1;
     outline: none;
     font-size: 1rem;
+    background: transparent;
+    color: var(--text);
 }
 
 .input-with-unit .unit-label {
-    background: #f1f5f9;
+    background: var(--bg-alt);
     padding: 5px 10px;
     border-radius: 20px;
-    color: #64748b;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
-/* ---------- Result Section Global Enhancements ---------- */
+/* ---------- BMI Category - Asian ---------- */
 .bmi-category-asian {
     background: linear-gradient(135deg, #fff9e6, #fff3cd);
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     padding: 15px;
     margin: 15px 0;
     border-left: 4px solid #e67e22;
@@ -239,13 +392,12 @@
     gap: 8px;
 }
 
-.bmi-category-asian p {
-    color: #856404;
-    font-size: 0.95rem;
-    line-height: 1.6;
+body.dark .bmi-category-asian {
+    background: #2d3748;
+    color: #fcd34d;
 }
 
-/* Health Risk Indicator */
+/* ---------- Health Risk Meter ---------- */
 .health-risk-meter {
     margin: 20px 0;
 }
@@ -254,11 +406,12 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+    font-size: 0.85rem;
 }
 
 .risk-bar {
     height: 8px;
-    background: #e2e8f0;
+    background: var(--border);
     border-radius: 10px;
     overflow: hidden;
 }
@@ -269,29 +422,260 @@
     transition: width 0.5s ease;
 }
 
-.risk-fill.low { background: #10b981; }
-.risk-fill.moderate { background: #f59e0b; }
-.risk-fill.high { background: #ef4444; }
+.risk-fill.low { background: var(--success); }
+.risk-fill.moderate { background: var(--warning); }
+.risk-fill.high { background: var(--danger); }
+.risk-fill.critical { background: #991b1b; }
 
-/* ---------- Country Flag Indicator ---------- */
+/* ---------- Country Badge ---------- */
 .country-badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: white;
+    background: var(--bg);
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-sm);
+    color: var(--text);
 }
 
-.country-badge img {
-    width: 18px;
-    height: 14px;
-    border-radius: 2px;
+body.dark .country-badge {
+    background: #1e293b;
+    color: var(--text);
 }
 
-/* ---------- Mobile Responsive for Global Features ---------- */
+/* ---------- AI Chat Panel (Inline Global) ---------- */
+.ai-chat-panel {
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg);
+    transition: var(--transition);
+}
+
+.ai-chat-header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.ai-chat-messages {
+    height: 220px;
+    overflow-y: auto;
+    padding: 12px;
+    background: var(--bg-alt);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ai-message-bot {
+    background: var(--bg);
+    padding: 10px 14px;
+    border-radius: 12px;
+    border-top-left-radius: 4px;
+    box-shadow: var(--shadow-sm);
+    max-width: 85%;
+    font-size: 13px;
+    line-height: 1.5;
+    align-self: flex-start;
+    color: var(--text);
+}
+
+.ai-message-user {
+    background: var(--primary);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border-top-right-radius: 4px;
+    max-width: 85%;
+    font-size: 13px;
+    line-height: 1.5;
+    align-self: flex-end;
+}
+
+.ai-chat-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    outline: none;
+    font-size: 13px;
+    font-family: inherit;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.ai-chat-input:focus {
+    border-color: var(--primary);
+}
+
+.ai-chat-send-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.ai-chat-send-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+}
+
+.ai-suggestion-chip {
+    background: var(--bg-alt);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.ai-suggestion-chip:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* ---------- Toast Notification ---------- */
+.healthcalc-toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 999999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ---------- Scroll Top Button ---------- */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    border: none;
+    z-index: 1000;
+    font-size: 18px;
+    box-shadow: var(--shadow-md);
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    transform: scale(1.1);
+    background: var(--primary-dark);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    padding: 25px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+footer a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Print Styles ---------- */
+@media print {
+    .unit-toggle-wrapper,
+    .language-switcher,
+    .theme-toggle,
+    .international-bar,
+    .ai-chat-panel,
+    .scroll-top,
+    .cta-buttons,
+    .social-links,
+    .keyword-tags,
+    .cross-links,
+    .badge-container {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .card, .result-section {
+        border: 2px solid #3498db;
+        padding: 20px;
+        break-inside: avoid;
+        box-shadow: none;
+    }
+}
+
+/* ---------- High Contrast / Accessibility ---------- */
+@media (prefers-contrast: high) {
+    .unit-toggle-btn.active {
+        outline: 3px solid #000;
+    }
+    
+    .ethnicity-select {
+        border: 2px solid #000;
+    }
+    
+    .ai-chat-input {
+        border: 2px solid #000;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ---------- Mobile Responsive ---------- */
 @media (max-width: 768px) {
     .unit-toggle-wrapper {
         justify-content: center;
@@ -304,12 +688,15 @@
     
     .language-switcher {
         margin-left: 0;
-        margin-top: 10px;
+        justify-content: center;
+    }
+    
+    .international-bar {
         justify-content: center;
     }
     
     .global-trust-badge {
-        border-radius: 20px;
+        border-radius: var(--radius-lg);
         gap: 15px;
     }
     
@@ -325,105 +712,64 @@
         flex-direction: column;
         text-align: center;
     }
+    
+    .ai-chat-messages {
+        height: 180px;
+    }
+    
+    .scroll-top {
+        bottom: 20px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
+    }
 }
 
-/* ---------- RTL Support (For Arabic/Hebrew) ---------- */
+/* ---------- RTL Support (Arabic/Hebrew) ---------- */
 [dir="rtl"] {
     text-align: right;
 }
 
 [dir="rtl"] .ethnicity-group {
     border-left: none;
-    border-right: 4px solid #3498db;
+    border-right: 4px solid var(--primary);
 }
 
-[dir="rtl"] .unit-toggle-btn i {
-    margin-left: 0;
-    margin-right: 5px;
+[dir="rtl"] .input-with-unit {
+    flex-direction: row-reverse;
 }
 
-/* ---------- Print Styles for Global Users ---------- */
-@media print {
-    .unit-toggle-wrapper,
-    .language-switcher,
-    .cta-buttons,
-    .social-links,
-    .keyword-tags {
-        display: none !important;
-    }
-    
-    .result-section {
-        border: 2px solid #3498db;
-        padding: 20px;
-        break-inside: avoid;
-    }
+[dir="rtl"] .ai-message-bot {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 4px;
 }
 
-/* ---------- High Contrast / Accessibility ---------- */
-@media (prefers-contrast: high) {
-    .unit-toggle-btn.active {
-        outline: 3px solid #000;
-    }
-    
-    .ethnicity-select {
-        border: 2px solid #000;
-    }
+[dir="rtl"] .ai-message-user {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 4px;
 }
 
-/* ---------- Dark Mode Support (using body.dark class from global.js) ---------- */
-body.dark .unit-toggle-container {
-    background: #2d3748;
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-body.dark .unit-toggle-btn {
-    color: #cbd5e0;
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-body.dark .unit-toggle-btn.active {
-    background: #4a5568;
-    color: #63b3ed;
+@keyframes messageSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-body.dark .ethnicity-group {
-    background: #2d3748;
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
 }
 
-body.dark .ethnicity-select {
-    background: #1a202c;
-    color: #e2e8f0;
-    border-color: #4a5568;
-}
-
-body.dark .global-trust-badge {
-    background: #2d3748;
-}
-
-body.dark .asian-warning {
-    background: #2d3748;
-    color: #fbbf24;
-    border-color: #d97706;
-}
-
-body.dark .asian-warning i {
-    color: #f59e0b;
-}
-
-body.dark .country-badge {
-    background: #1e293b;
-    color: #e2e8f0;
-}
-
-body.dark .input-with-unit {
-    background: #0f172a;
-    border-color: #475569;
-}
-
-body.dark .input-with-unit .unit-label {
-    background: #334155;
-    color: #cbd5e1;
-}
-
-body.dark .bmi-category-asian {
-    background: #2d3748;
-    color: #fcd34d;
-}
+/* =============================================
+   END OF GLOBAL.CSS
+   ============================================= */
