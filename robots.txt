@@ -1,8 +1,9 @@
 # ============================================
 # ROBOTS.TXT for HealthCalc.in
-# Last Updated: 2026-06-12
+# Last Updated: 2026-07-10
 # Total Tools: 35+ Health Calculators
 # International: USA, UK, Canada, Australia
+# AI Chat: Available on all calculator pages
 # ============================================
 
 # Allow all crawlers full access
@@ -16,7 +17,7 @@ Crawl-delay: 1
 Sitemap: https://healthcalc.in/sitemap.xml
 
 # ============================================
-# CORE CALCULATOR TOOLS (35+ Tools)
+# CORE CALCULATOR TOOLS (35+ Tools with AI Chat)
 # ============================================
 
 # Advanced New Tools (7)
@@ -40,12 +41,13 @@ Allow: /body-fat-calculator.html
 Allow: /ideal-weight-calculator.html
 Allow: /metabolic-age.html
 Allow: /metabolic-age-pro.html
+Allow: /ffmi-calculator.html
 
-# Nutrition (2 Tools)
+# Nutrition & Hydration (2 Tools)
 Allow: /calorie-calculator.html
 Allow: /water-intake-calculator.html
 
-# Fitness (2 Tools)
+# Fitness (1 Tool)
 Allow: /met-calculator.html
 
 # Women's Health (3 Tools)
@@ -64,7 +66,7 @@ Allow: /inflammation-score-calculator.html
 Allow: /life-expectancy-calculator.html
 
 # ============================================
-# STATIC PAGES (6 Pages)
+# STATIC PAGES (7 Pages)
 # ============================================
 Allow: /index.html
 Allow: /about.html
@@ -72,9 +74,15 @@ Allow: /contact.html
 Allow: /privacy-policy.html
 Allow: /terms-of-service.html
 Allow: /medical-disclaimer.html
+Allow: /sitemap.xml
 
 # ============================================
-# MULTILINGUAL PAGES (7 Languages)
+# AI CHAT API ENDPOINT (if using proxy)
+# ============================================
+# Allow: /api/ai-chat/
+
+# ============================================
+# MULTILINGUAL PAGES (7 Languages - Future)
 # ============================================
 Allow: /hi/
 Allow: /es/
@@ -82,12 +90,6 @@ Allow: /fr/
 Allow: /de/
 Allow: /ja/
 Allow: /ar/
-
-# ============================================
-# INTERNATIONAL HREFLANG HANDLING
-# We use hreflang tags in HTML, not separate URLs
-# The multilingual directories above are for future expansion
-# ============================================
 
 # ============================================
 # ASSETS & MEDIA — ALLOW
@@ -108,14 +110,15 @@ Allow: /apple-touch-icon.png
 # ============================================
 
 # URL parameters that create duplicate content
-Disallow: /*?utm_source=
-Disallow: /*?utm_medium=
-Disallow: /*?utm_campaign=
-Disallow: /*?fbclid=
-Disallow: /*?ref=
-Disallow: /*?gclid=
-Disallow: /*?msclkid=
+Disallow: /*?utm_source=*
+Disallow: /*?utm_medium=*
+Disallow: /*?utm_campaign=*
+Disallow: /*?fbclid=*
+Disallow: /*?ref=*
+Disallow: /*?gclid=*
+Disallow: /*?msclkid=*
 Disallow: /*?lang=*
+Disallow: /*?print=*
 
 # Temporary/backup files
 Disallow: /*.tmp$
@@ -128,7 +131,16 @@ Disallow: /cgi-bin/
 Disallow: /wp-admin/
 
 # ============================================
+# SEO SUMMARY
+# ============================================
+# Total Indexed: 35+ Tools + 7 Static + Multilingual = 50+ Pages
+# AI Chat: Available on all calculator pages (inline, no popup)
+# API Key: rsk_01KX30NR2A1988J2N3GWG1KF5F (Requesty/Gemini-compatible)
+# International: USA, UK, Canada, Australia & 45+ countries
+# Schemas: MedicalWebPage, FAQPage, BreadcrumbList on all pages
+# Privacy: 100% browser-based, no data stored
+# ============================================
+
+# ============================================
 # END OF ROBOTS.TXT
-# Total Indexed: 35+ Tools + 6 Static + Multilingual = 50+ Pages
-# Trusted in USA, UK, Canada, Australia & 45+ countries
 # ============================================
