@@ -1,9 +1,8 @@
 // ===============================================
 //  HEALTHCALC.IN - GLOBAL.JS (Universal)
-//  Version: 2.0
-//  Features: Theme, Country, Language, Units, AI Chat
-//  API Key: rsk_01KX30NR2A1988J2N3GWG1KF5F
-//  Last Updated: 2026-07-10
+//  Version: 2.1 (Cloudflare Worker Secure API Integrated)
+//  Features: Theme, Country, Language, Units, AI Health Advice
+//  Last Updated: 2026-07-31
 //  Total Tools: 35+ Health Calculators
 //  International: USA, UK, Canada, Australia
 // ===============================================
@@ -12,10 +11,9 @@
     'use strict';
 
     // ==============================================
-    // 🔥 AI CHAT API CONFIGURATION
+    // 🔥 SECURE AI CHAT CONFIGURATION (Cloudflare Proxy)
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_PROXY_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     // ==============================================
     // THEME MANAGEMENT
@@ -43,14 +41,12 @@
 
     function setCountry(country) {
         localStorage.setItem('healthcalc_country', country);
-        // Update any country selectors on the page
         var selects = document.querySelectorAll('#countrySelect, [data-country-select]');
         selects.forEach(function(sel) {
             if (sel.tagName === 'SELECT') sel.value = country;
         });
     }
 
-    // Country health authority data
     var countryAuthorities = {
         us: { name: 'CDC', fullName: 'Centers for Disease Control', flag: '🇺🇸' },
         uk: { name: 'NHS', fullName: 'National Health Service', flag: '🇬🇧' },
@@ -73,8 +69,6 @@
         try {
             var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
             var language = navigator.language || 'en-US';
-            
-            // US, Liberia, Myanmar use imperial
             if (timezone.startsWith('America/') || language === 'en-US') {
                 return 'imperial';
             }
@@ -100,7 +94,6 @@
 
     function setLanguage(lang) {
         localStorage.setItem('healthcalc_lang', lang);
-        // Trigger custom event for page-specific handlers
         document.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang: lang } }));
     }
 
@@ -108,30 +101,19 @@
     // UNIT CONVERSION HELPERS
     // ==============================================
     var UNIT_CONVERSION = {
-        // Length
         cmToInch: function(cm) { return cm / 2.54; },
         inchToCm: function(inch) { return inch * 2.54; },
         metersToFeet: function(m) { return m * 3.28084; },
         feetToMeters: function(ft) { return ft / 3.28084; },
-        
-        // Weight
         kgToLbs: function(kg) { return kg * 2.20462; },
         lbsToKg: function(lbs) { return lbs / 2.20462; },
-        
-        // Volume
         litersToOz: function(l) { return l * 33.814; },
         ozToLiters: function(oz) { return oz / 33.814; },
         litersToCups: function(l) { return l * 4.227; },
-        
-        // Temperature
         celsiusToFahrenheit: function(c) { return (c * 9/5) + 32; },
         fahrenheitToCelsius: function(f) { return (f - 32) * 5/9; },
-        
-        // Cholesterol
         mgdlToMmol: function(mgdl) { return parseFloat((mgdl / 38.67).toFixed(2)); },
         mmolToMgdl: function(mmol) { return Math.round(mmol * 38.67); },
-        
-        // Blood Alcohol
         bacPercentToPermille: function(pct) { return pct * 10; }
     };
 
@@ -203,7 +185,6 @@
     function formatDate(date, format) {
         date = new Date(date);
         var options = {};
-        
         if (format === 'short') {
             options = { year: 'numeric', month: 'short', day: 'numeric' };
         } else if (format === 'long') {
@@ -211,7 +192,6 @@
         } else {
             options = { year: 'numeric', month: 'long', day: 'numeric' };
         }
-        
         return date.toLocaleDateString('en-US', options);
     }
 
@@ -223,7 +203,7 @@
     }
 
     // ==============================================
-    // SCROLL TO TOP
+    // UI UTILITIES
     // ==============================================
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -240,17 +220,12 @@
                     scrollBtn.style.display = isVisible ? 'flex' : 'none';
                 }
             });
-            
             scrollBtn.addEventListener('click', scrollToTop);
         }
     }
 
-    // ==============================================
-    // SHARE FUNCTIONALITY
-    // ==============================================
     function shareResults(title, text) {
         var url = window.location.href;
-        
         if (navigator.share) {
             navigator.share({
                 title: title || document.title,
@@ -258,7 +233,6 @@
                 url: url
             }).catch(function() {});
         } else {
-            // Fallback: copy to clipboard
             copyToClipboard(url);
             showToast('Link copied to clipboard!');
         }
@@ -279,19 +253,13 @@
         }
     }
 
-    // ==============================================
-    // TOAST NOTIFICATION
-    // ==============================================
     function showToast(message, duration) {
         duration = duration || 3000;
-        
         var toast = document.createElement('div');
         toast.className = 'healthcalc-toast';
         toast.textContent = message;
         toast.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1e293b;color:white;padding:12px 24px;border-radius:50px;font-size:14px;font-weight:600;z-index:999999;box-shadow:0 8px 24px rgba(0,0,0,0.3);transition:all 0.3s;opacity:0;';
-        
         document.body.appendChild(toast);
-        
         setTimeout(function() { toast.style.opacity = '1'; }, 100);
         setTimeout(function() {
             toast.style.opacity = '0';
@@ -299,9 +267,6 @@
         }, duration);
     }
 
-    // ==============================================
-    // DEBOUNCE UTILITY
-    // ==============================================
     function debounce(func, wait) {
         var timeout;
         return function() {
@@ -314,53 +279,58 @@
     }
 
     // ==============================================
+    // 🤖 AI ADVICE ENGINE (Cloudflare Safe Call)
+    // ==============================================
+    async function getAIAdvice(toolName, userInputs) {
+        var prompt = "You are an expert medical AI for healthcalc.in. The user used tool '" + toolName + "'. Input Data: " + JSON.stringify(userInputs) + ". Provide 3 clear bullet points of practical health advice in Hindi/English mixed. Keep it under 100 words. Add standard medical disclaimer at end.";
+
+        try {
+            var response = await fetch(WORKER_PROXY_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt: prompt })
+            });
+
+            var data = await response.json();
+            if (data.candidates && data.candidates[0]) {
+                return data.candidates[0].content.parts[0].text;
+            } else {
+                return "Sujhav abhi available nahi hai.";
+            }
+        } catch (error) {
+            console.error("AI Proxy Fetch Error:", error);
+            return "AI Sujhav load karne mein samasya aayi.";
+        }
+    }
+
+    // ==============================================
     // INITIALIZATION (DOM READY)
     // ==============================================
     function initialize() {
-        // Theme
         initTheme();
         
-        // Theme toggle buttons
         document.querySelectorAll('.theme-option').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                setTheme(btn.dataset.theme);
-            });
+            btn.addEventListener('click', function() { setTheme(btn.dataset.theme); });
         });
         
-        // Country selector
         var countrySelect = document.getElementById('countrySelect');
         if (countrySelect) {
-            var savedCountry = getCountry();
-            countrySelect.value = savedCountry;
+            countrySelect.value = getCountry();
             countrySelect.addEventListener('change', function(e) {
                 setCountry(e.target.value);
-                // Trigger custom event for page-specific handlers
                 document.dispatchEvent(new CustomEvent('countryChanged', { detail: { country: e.target.value } }));
             });
         }
         
-        // Language buttons
         document.querySelectorAll('.lang-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var lang = btn.dataset.lang;
-                setLanguage(lang);
-            });
+            btn.addEventListener('click', function() { setLanguage(btn.dataset.lang); });
         });
         
-        // Scroll to top
         initScrollToTop();
         
-        // Log initialization
-        console.log('✅ HealthCalc Global JS v2.0 Loaded');
-        console.log('🌐 Country:', getCountry(), '(' + (getCountryAuthority().name) + ')');
-        console.log('📏 Units:', getSavedUnit());
-        console.log('🌙 Theme:', getTheme());
-        console.log('🗣️ Language:', getLanguage());
-        console.log('💬 AI Chat API: Active (rsk_01KX30...)');
-        console.log('📊 35+ Health Calculators Ready');
+        console.log('✅ HealthCalc Global JS v2.1 Loaded (Cloudflare Secure)');
     }
 
-    // Run on DOM ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initialize);
     } else {
@@ -371,52 +341,34 @@
     // EXPOSE GLOBALLY
     // ==============================================
     window.HealthCalc = {
-        // Theme
         initTheme: initTheme,
         setTheme: setTheme,
         getTheme: getTheme,
-        
-        // Country
         getCountry: getCountry,
         setCountry: setCountry,
         getCountryAuthority: getCountryAuthority,
         countryAuthorities: countryAuthorities,
-        
-        // Units
         detectUserUnit: detectUserUnit,
         getSavedUnit: getSavedUnit,
         setSavedUnit: setSavedUnit,
         UNIT_CONVERSION: UNIT_CONVERSION,
-        
-        // Language
         getLanguage: getLanguage,
         setLanguage: setLanguage,
-        
-        // Storage
         saveToStorage: saveToStorage,
         loadFromStorage: loadFromStorage,
         removeFromStorage: removeFromStorage,
-        
-        // BMI
         getBMICategory: getBMICategory,
-        
-        // Formatting
         formatNumber: formatNumber,
         formatDate: formatDate,
         formatTime: formatTime,
-        
-        // UI
         scrollToTop: scrollToTop,
         shareResults: shareResults,
         copyToClipboard: copyToClipboard,
         showToast: showToast,
-        
-        // Utility
         debounce: debounce,
         
-        // AI Chat
-        AI_API_KEY: AI_API_KEY,
-        AI_API_URL: AI_API_URL
+        // AI Integration
+        getAIAdvice: getAIAdvice
     };
 
 })();
