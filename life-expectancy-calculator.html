@@ -177,7 +177,7 @@ select:focus, .mini-input:focus { outline: none; border-color: var(--primary); b
 .country-compare { display: flex; justify-content: space-between; background: #f8fafc; padding: 14px 20px; border-radius: 40px; margin: 20px 0; font-size: 14px; font-weight: 500; }
 
 /* ============================================ */
-/* 🔥 AI CHAT PANEL (Inline)                    */
+/* 🔥 AI CHAT PANEL (Cloudflare Proxy Safe)     */
 /* ============================================ */
 .ai-chat-panel { margin: 20px 0; border: 2px solid #bae6fd; border-radius: var(--radius-lg); overflow: hidden; background: white; transition: all 0.3s; }
 body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
@@ -307,12 +307,12 @@ footer { text-align: center; padding: 24px; color: var(--text-muted); font-size:
         <div class="country-compare"><span><i class="fas fa-globe-asia"></i> Country avg: <span id="countryAvg">72.3</span> yrs</span><span>You: <span id="youVsCountry">+10.9</span> yrs</span></div>
 
         <!-- ============================================ -->
-        <!-- 🔥 NEW AI CHAT PANEL (Inline)                -->
+        <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
         <!-- ============================================ -->
         <div class="ai-chat-panel" id="aiChatPanel">
             <div class="ai-chat-header">
                 <div class="ai-chat-header-left"><span>⏳</span><span>Longevity AI Assistant</span></div>
-                <span class="ai-chat-status">🟢 Online · Free</span>
+                <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
             </div>
             <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI longevity chat messages">
                 <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -356,10 +356,9 @@ footer { text-align: center; padding: 24px; color: var(--text-muted); font-size:
 
 <script>
     // ==============================================
-    // 🔥 NEW AI API KEY
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     let currentLang = 'en';
 
@@ -481,7 +480,7 @@ footer { text-align: center; padding: 24px; color: var(--text-muted); font-size:
     (function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;})();
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS (Inline Panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -528,15 +527,13 @@ footer { text-align: center; padding: 24px; color: var(--text-muted); font-size:
         showTypingIndicator();
         
         var context = getLifeExpectancyContext();
-        
+        var promptText = "You are a professional Longevity & Healthy Aging AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable longevity advice in fluent English. Include evidence-based diet, exercise, sleep, stress management, and lifestyle recommendations. Structure with bullet points. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
+
         try {
-            var response = await fetch(AI_API_URL, {
+            var response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: 'You are a professional Longevity & Healthy Aging AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, personalized longevity advice. Include evidence-based diet, exercise, sleep, stress management, and lifestyle recommendations. Structure with bullet points. End with: "⚠️ Consult a healthcare professional for personalized medical advice."' }] }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-                })
+                body: JSON.stringify({ prompt: promptText })
             });
             
             var data = await response.json();
@@ -544,7 +541,9 @@ footer { text-align: center; padding: 24px; color: var(--text-muted); font-size:
             
             if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                 addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { throw new Error('No response'); }
+            } else { 
+                throw new Error('No response from AI worker'); 
+            }
         } catch (error) {
             removeTypingIndicator();
             console.error('AI Chat Error:', error);
