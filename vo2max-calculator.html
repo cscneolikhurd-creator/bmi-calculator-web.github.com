@@ -168,7 +168,7 @@ body.dark .ai-chat-suggestions { background: #1e293b; border-color: #334155; }
 body.dark .ai-suggestion-chip { background: #334155; color: #cbd5e1; border-color: #475569; }
 .ai-suggestion-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
 .ai-chat-input-row { display: flex; gap: 8px; padding: 10px 12px; background: white; border-top: 1px solid #e2e8f0; }
-body.dark .ai-chat-input-row { background: #1e293b; border-color: #334155; }
+body.dark .ai-chat-input-row { background: #0f172a; border-color: #334155; }
 .ai-chat-input { flex: 1; padding: 10px 14px; border: 2px solid #e2e8f0; border-radius: 25px; outline: none; font-size: 13px; font-family: inherit; color: #1e293b; }
 body.dark .ai-chat-input { background: #0f172a; border-color: #475569; color: #e2e8f0; }
 .ai-chat-input:focus { border-color: var(--primary); }
@@ -265,7 +265,7 @@ footer a { color: white; text-decoration: none; }
       <div class="ai-chat-panel" id="aiChatPanel">
         <div class="ai-chat-header">
           <div class="ai-chat-header-left"><span>🫁</span><span>Cardio Fitness AI Assistant</span></div>
-          <span class="ai-chat-status">🟢 Online · Free</span>
+          <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
         </div>
         <div class="ai-chat-messages" id="aiChatMessages" role="log">
           <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -307,10 +307,9 @@ footer a { color: white; text-decoration: none; }
 
 <script>
     // ==============================================
-    // 🔥 NEW AI API KEY
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     let currentMethod = 'resting';
 
@@ -491,7 +490,7 @@ footer a { color: white; text-decoration: none; }
     (function() { var s = localStorage.getItem('healthcalc_country') || 'us'; document.getElementById('countrySelect').value = s; })();
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS (Inline Panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -514,7 +513,7 @@ footer a { color: white; text-decoration: none; }
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if (t) t.remove(); }
+    function removeTypingIndicator() { var t = document.getElementById('aiChatInput'); if (t) t.remove(); }
 
     function getVO2Context() {
         var vo2 = document.getElementById('vo2Number').innerHTML;
@@ -530,21 +529,25 @@ footer a { color: white; text-decoration: none; }
         if (!prefilledText) input.value = '';
         showTypingIndicator();
         var context = getVO2Context();
+        var promptText = "You are a Cardio Fitness AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable training advice in fluent English. Include HIIT, endurance, and cardiovascular fitness tips. End with: '⚠️ Consult a fitness professional before starting any new exercise program.'";
+
         try {
-            var response = await fetch(AI_API_URL, {
-                method: 'POST', headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: 'You are a Cardio Fitness AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE training advice. End with: "⚠️ Consult a fitness professional before starting any new exercise program."' }] }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-                })
+            var response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: promptText })
             });
+            
             var data = await response.json();
             removeTypingIndicator();
             if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                 addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { throw new Error('No response'); }
+            } else { 
+                throw new Error('No response from AI worker'); 
+            }
         } catch (e) {
             removeTypingIndicator();
+            console.error('AI Error:', e);
             addChatMessage('🫁 <strong>VO2 Max Tips:</strong><br><br>• HIIT 2x/week for rapid improvement<br>• Tempo runs at threshold pace<br>• Zone 2 training for aerobic base<br>• Strength training supports endurance<br>• Consistency over intensity<br><br>⚠️ <em>Consult a fitness professional.</em>', 'bot');
         }
     }
