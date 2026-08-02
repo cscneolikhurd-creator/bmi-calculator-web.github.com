@@ -439,11 +439,11 @@
 </div>
 
 <!-- ============================================ -->
-<!-- AI CHAT WIDGET (ENGLISH ONLY)                 -->
+<!-- AI CHAT WIDGET (PROXIED - NO CLIENT API KEY) -->
 <!-- ============================================ -->
 <div id="ai-chat-widget" style="display:none;position:fixed;bottom:100px;right:30px;width:380px;max-width:90vw;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);z-index:999999;overflow:hidden;font-family:'Inter',sans-serif">
     <div style="background:linear-gradient(135deg,#dc2626,#b91c1c);color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:24px">❤️</span><div><strong style="font-size:15px">Heart Rate Training AI</strong><div style="font-size:11px;opacity:0.9">Online · Free · AI-Powered</div></div></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:24px">❤️</span><div><strong style="font-size:15px">Heart Rate Training AI</strong><div style="font-size:11px;opacity:0.9">Online · Free · Cloudflare Secured</div></div></div>
         <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px">✕</button>
     </div>
     <div id="ai-chat-messages" style="height:320px;overflow-y:auto;padding:16px;background:#f8fafc;display:flex;flex-direction:column;gap:12px">
@@ -472,8 +472,10 @@
 </style>
 
 <script>
-// ===== GEMINI API KEY =====
-var GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+// ==============================================
+// 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
+// ==============================================
+var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
 // ===== GLOBAL STATE =====
 var useKarvonen = true;
@@ -524,7 +526,7 @@ function calculateMaxHR(){
     var fitnessLevel=document.getElementById('fitness').value;
     var isMale=document.getElementById('gender').value==='male';
     if(!useKarvonen)return 220-age;
-    // Fitness-adjusted formulas (based on research)
+    // Fitness-adjusted formulas
     if(fitnessLevel==='athlete'){return isMale?205-(age/2):210-(age/2)}
     else if(fitnessLevel==='advanced'){return isMale?210-(age/2.5):215-(age/2.5)}
     else{return isMale?214-(age*0.8):209-(age*0.8)}
@@ -593,10 +595,45 @@ function closeAIChat(){document.getElementById('ai-chat-widget').style.display='
 function addAIMessage(text,sender){var md=document.getElementById('ai-chat-messages'),msgDiv=document.createElement('div');msgDiv.style.cssText='display:flex;gap:10px;animation:messageSlideIn 0.3s ease;'+(sender==='user'?'flex-direction:row-reverse;':'');var avatar=sender==='user'?'👤':'❤️';var bg=sender==='user'?'#dc2626':'#ffffff';var tc=sender==='user'?'#ffffff':'#1e293b';msgDiv.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:'+(sender==='user'?'#fee2e2':'#fee2e2')+';display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">'+avatar+'</div><div style="background:'+bg+';color:'+tc+';padding:10px 14px;border-radius:12px;max-width:80%;font-size:13px;line-height:1.5;'+(sender==='user'?'border-top-right-radius:4px;':'border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);')+'">'+text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</div>';md.appendChild(msgDiv);md.scrollTop=md.scrollHeight}
 function showAITyping(){var md=document.getElementById('ai-chat-messages'),td=document.createElement('div');td.id='ai-typing-indicator';td.style.cssText='display:flex;gap:10px';td.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;flex-shrink:0">❤️</div><div style="background:white;padding:12px 16px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);display:flex;gap:5px"><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s"></div></div>';md.appendChild(td);md.scrollTop=md.scrollHeight}
 function removeAITyping(){var t=document.getElementById('ai-typing-indicator');if(t)t.remove()}
-async function sendAIQuery(prefilledText){var input=document.getElementById('ai-chat-input'),message=prefilledText||input.value.trim();if(!message)return;var maxHr=document.getElementById('maxHr').textContent,cd=countryData[currentCountry];addAIMessage(message,'user');input.value='';showAITyping();try{var response=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_API_KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:'You are a Heart Rate Training AI on healthcalc.in. User is in '+cd.name+' ('+cd.authority+' guidelines). User max HR: '+maxHr+' bpm.\n\nQuestion: '+message+'\n\nProvide COMPLETE, detailed heart rate training advice in English. Include zone-specific workouts, fat burn strategies, cardio tips, and safety recommendations. Give 3-4 thorough paragraphs. End with: "Consult a doctor before starting any exercise program."'}],}],generationConfig:{temperature:0.7,maxOutputTokens:1024}})});var data=await response.json();removeAITyping();if(data.candidates&&data.candidates[0]?.content?.parts?.[0]?.text){addAIMessage(data.candidates[0].content.parts[0].text,'ai')}else{throw new Error('No response')}}catch(error){removeAITyping();var fb='❤️ <strong>Heart Rate Training Tips ('+cd.authority+'):</strong><br><br>• Zone 2 (60-70%): Best for fat burn, 30-60 min sessions<br>• Zone 3 (70-80%): Improves cardio fitness, 20-40 min<br>• Zone 4 (80-90%): Threshold training, 5-15 min intervals<br>• Zone 5 (90-100%): Sprint/HIIT, 30 sec-2 min bursts<br>• Always warm up in Zone 1 for 5-10 minutes<br>• '+cd.authority+' recommends 150 min/week moderate activity<br><br>⚠️ <em>Consult a doctor before starting any exercise program.</em>';addAIMessage(fb,'ai')}}
+
+async function sendAIQuery(prefilledText){
+    var input=document.getElementById('ai-chat-input'),message=prefilledText||input.value.trim();
+    if(!message)return;
+    var maxHr=document.getElementById('maxHr').textContent,cd=countryData[currentCountry];
+    addAIMessage(message,'user');
+    input.value='';
+    showAITyping();
+    
+    var promptText = "You are a Heart Rate Training AI on HealthCalc.in, serving users under " + cd.authority + " (" + cd.name + ") guidelines. User's max HR is " + maxHr + " bpm.\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable heart rate training advice in fluent English. Include zone-specific workouts, fat burn strategies, cardio tips, and safety recommendations. End with: 'Consult a doctor before starting any exercise program.'";
+
+    try {
+        var response = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: promptText })
+        });
+        
+        var data = await response.json();
+        removeAITyping();
+        
+        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+            addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
+        } else {
+            throw new Error('No response from AI worker');
+        }
+    } catch (error) {
+        removeAITyping();
+        console.error('AI Error:', error);
+        var fb = '❤️ <strong>Heart Rate Training Tips (' + cd.authority + '):</strong><br><br>• Zone 2 (60-70%): Best for fat burn, 30-60 min sessions<br>• Zone 3 (70-80%): Improves cardio fitness, 20-40 min<br>• Zone 4 (80-90%): Threshold training, 5-15 min intervals<br>• Zone 5 (90-100%): Sprint/HIIT, 30 sec-2 min bursts<br>• Always warm up in Zone 1 for 5-10 minutes<br>• ' + cd.authority + ' recommends 150 min/week moderate activity<br><br>⚠️ <em>Consult a doctor before starting any exercise program.</em>';
+        addAIMessage(fb, 'ai');
+    }
+}
 
 // ===== EXPOSE GLOBALLY =====
-window.toggleAIChat=toggleAIChat;window.closeAIChat=closeAIChat;window.sendAIQuery=sendAIQuery;window.openChatWithHR=openChatWithHR;
+window.toggleAIChat=toggleAIChat;
+window.closeAIChat=closeAIChat;
+window.sendAIQuery=sendAIQuery;
+window.openChatWithHR=openChatWithHR;
 
 // ===== INIT =====
 (function(){var s=localStorage.getItem('healthcalc_country')||'us';setCountry(s)})();
