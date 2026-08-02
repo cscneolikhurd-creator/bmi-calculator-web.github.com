@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
 
 <title>Medication Half-Life Tracker | Drug Concentration Calculator | AI Chat | US/UK/CA/AU | HealthCalc</title>
@@ -162,7 +162,7 @@ canvas{max-height:350px;margin:16px 0}
 body.dark .interpretation{background:#1e293b;border-left-color:#a78bfa;color:#cbd5e1}
 
 /* ============================================ */
-/* 🔥 AI CHAT PANEL (Inline)                    */
+/* 🔥 AI CHAT PANEL (Cloudflare Proxy Safe)     */
 /* ============================================ */
 .ai-chat-panel{margin:20px 0;border:2px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;background:white;transition:all 0.3s}
 body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
@@ -312,12 +312,12 @@ footer a{color:white;text-decoration:none}
     <div class="interpretation" id="interpretation">Enter your medication details and click Calculate to see results.</div>
 
     <!-- ============================================ -->
-    <!-- 🔥 AI CHAT PANEL (Inline)                    -->
+    <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
     <!-- ============================================ -->
     <div class="ai-chat-panel" id="aiChatPanel">
         <div class="ai-chat-header">
             <div class="ai-chat-header-left"><span>💊</span><span>Medication AI Assistant</span></div>
-            <span class="ai-chat-status">🟢 Online · Free</span>
+            <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
         </div>
         <div class="ai-chat-messages" id="aiChatMessages" role="log">
             <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -358,10 +358,9 @@ footer a{color:white;text-decoration:none}
 
 <script>
 // ==============================================
-// 🔥 NEW AI API KEY
+// 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
 // ==============================================
-var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
 var chart = null;
 var currentTab = 'single';
@@ -638,7 +637,7 @@ document.getElementById('countrySelect').addEventListener('change', function(e) 
 })();
 
 // ==============================================
-// 🔥 AI CHAT FUNCTIONS (Inline Panel)
+// 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
 // ==============================================
 function addChatMessage(text, sender) {
     var messagesDiv = document.getElementById('aiChatMessages');
@@ -666,6 +665,15 @@ function removeTypingIndicator() {
     if (typing) typing.remove();
 }
 
+function getMedicationContext() {
+    var med = currentTab === 'single' ? document.getElementById('medNameSingle').value : document.getElementById('medNameMulti').value;
+    var conc = document.getElementById('currentConc').innerText;
+    if (conc && conc !== '—') {
+        return 'User Medication Profile: Drug=' + med + ', Current Estimated Concentration=' + conc + '. ';
+    }
+    return '';
+}
+
 async function sendAIMessage(prefilledText) {
     var input = document.getElementById('aiChatInput');
     var message = prefilledText || input.value.trim();
@@ -675,18 +683,14 @@ async function sendAIMessage(prefilledText) {
     if (!prefilledText) input.value = '';
     showTypingIndicator();
     
+    var context = getMedicationContext();
+    var promptText = "You are a professional Medication & Pharmacology AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable pharmacology and drug safety advice in fluent English. End with: '⚠️ Consult a healthcare professional for personalized medical advice. This is educational information only.'";
+
     try {
-        var response = await fetch(AI_API_URL, {
+        var response = await fetch(WORKER_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{ 
-                    parts: [{ 
-                        text: 'You are a professional Medication & Pharmacology AI Assistant on healthcalc.in. Provide accurate, educational information about medications, half-life, dosing, and drug safety.\n\nQuestion: ' + message + '\n\nGive a complete, helpful answer. Always include: "⚠️ Consult a healthcare professional for personalized medical advice. This is educational information only."' 
-                    }] 
-                }],
-                generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-            })
+            body: JSON.stringify({ prompt: promptText })
         });
         
         var data = await response.json();
@@ -695,7 +699,7 @@ async function sendAIMessage(prefilledText) {
         if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
             addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
         } else { 
-            throw new Error('No response'); 
+            throw new Error('No response from AI worker'); 
         }
     } catch (error) {
         removeTypingIndicator();
@@ -712,7 +716,7 @@ window.sendAIMessage = sendAIMessage;
 calculate();
 
 console.log('✅ Medication Half-Life Tracker Ready!');
-console.log('💬 AI Chat Active with API Key: rsk_01KX30...');
+console.log('💬 AI Chat Active with Cloudflare Worker Proxy');
 console.log('📊 Chart.js Loaded');
 console.log('💊 Single Dose + Multi Dose + Drug Database');
 </script>
