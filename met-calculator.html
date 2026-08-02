@@ -187,9 +187,7 @@
         .future-feature i { font-size: 28px; color: var(--accent); margin-bottom: 10px; }
         .coming-soon-tag { display: inline-block; background: var(--accent); color: white; padding: 3px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; margin-top: 10px; }
 
-        /* ============================================ */
-        /* 🔥 AI CHAT PANEL (Inline)                    */
-        /* ============================================ */
+        /* AI CHAT PANEL */
         .ai-chat-panel { margin: 20px 0; border: 2px solid #a7f3d0; border-radius: var(--radius-lg); overflow: hidden; background: white; transition: all 0.3s; }
         body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
         .ai-chat-header { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 14px; }
@@ -344,12 +342,12 @@
             </div>
 
             <!-- ============================================ -->
-            <!-- 🔥 NEW AI CHAT PANEL (Inline)                -->
+            <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
             <!-- ============================================ -->
             <div class="ai-chat-panel" id="aiChatPanel">
                 <div class="ai-chat-header">
                     <div class="ai-chat-header-left"><span>🏃</span><span>Fitness AI Assistant</span></div>
-                    <span class="ai-chat-status">🟢 Online · Free</span>
+                    <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
                 </div>
                 <div class="ai-chat-messages" id="aiChatMessages" role="log">
                     <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -392,10 +390,9 @@
 
 <script>
     // ==============================================
-    // 🔥 NEW AI API KEY
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     // ===== THEME =====
     function initTheme() { var saved = localStorage.getItem('healthcalc_theme') || 'light'; document.body.classList.toggle('dark', saved === 'dark'); }
@@ -529,7 +526,7 @@
     document.addEventListener('click', function(e) { if (!e.target.closest('.activity-search')) document.getElementById('activityList').classList.remove('show'); });
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS (Inline Panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -569,14 +566,25 @@
         if (!prefilledText) input.value = '';
         showTypingIndicator();
         var context = getMETContext();
+        var promptText = "You are a Fitness & Exercise AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable fitness advice in fluent English. Include workout planning, EPOC maximization, and exercise recovery tips. End with: '⚠️ Consult a fitness professional before starting any new exercise program.'";
+
         try {
-            var response = await fetch(AI_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: 'You are a Fitness & Exercise AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE fitness advice. End with: "⚠️ Consult a fitness professional before starting any new exercise program."' }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 1024 } }) });
+            var response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: promptText })
+            });
+            
             var data = await response.json();
             removeTypingIndicator();
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            else throw new Error('No response');
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else {
+                throw new Error('No response from AI worker');
+            }
         } catch (e) {
             removeTypingIndicator();
+            console.error('AI Error:', e);
             addChatMessage('🏃 <strong>Fitness Tips:</strong><br><br>• Mix cardio + strength training<br>• Aim for 150+ min activity weekly<br>• HIIT maximizes EPOC afterburn<br>• Stay hydrated during exercise<br>• Rest is essential for recovery<br><br>⚠️ <em>Consult a fitness professional.</em>', 'bot');
         }
     }
