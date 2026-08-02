@@ -132,71 +132,30 @@ input[type="number"]:focus{outline:none;border-color:var(--primary)}
 .calc-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:white;border:none;padding:14px;width:100%;border-radius:60px;font-size:16px;font-weight:700;cursor:pointer;margin:16px 0;transition:all 0.2s}
 .calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px -5px rgba(102,126,234,0.4)}
 
-/* ============================================ */
-/* 🔥 AI CHAT PANEL (Inline - Single Chat)      */
-/* ============================================ */
-.ai-chat-panel{
-  margin:20px 0;border:2px solid var(--border);border-radius:var(--radius-lg);
-  overflow:hidden;background:var(--surface);transition:all 0.3s;
-}
+/* AI CHAT PANEL */
+.ai-chat-panel{margin:20px 0;border:2px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:var(--surface);transition:all 0.3s}
 body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
-.ai-chat-header{
-  background:linear-gradient(135deg,#667eea,#764ba2);color:white;
-  padding:12px 16px;display:flex;align-items:center;justify-content:space-between;
-  font-weight:600;font-size:14px;
-}
+.ai-chat-header{background:linear-gradient(135deg,#667eea,#764ba2);color:white;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:14px}
 .ai-chat-header-left{display:flex;align-items:center;gap:8px}
 .ai-chat-status{font-size:10px;opacity:0.9;font-weight:400}
-.ai-chat-messages{
-  height:220px;overflow-y:auto;padding:12px;background:var(--surface-alt);
-  display:flex;flex-direction:column;gap:8px;
-}
+.ai-chat-messages{height:220px;overflow-y:auto;padding:12px;background:var(--surface-alt);display:flex;flex-direction:column;gap:8px}
 body.dark .ai-chat-messages{background:#0f172a}
-.ai-message-bot{
-  background:var(--surface);padding:10px 14px;border-radius:12px;
-  border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);
-  max-width:85%;font-size:13px;line-height:1.5;align-self:flex-start;color:var(--text);
-}
+.ai-message-bot{background:var(--surface);padding:10px 14px;border-radius:12px;border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);max-width:85%;font-size:13px;line-height:1.5;align-self:flex-start;color:var(--text)}
 body.dark .ai-message-bot{background:#1e293b;color:#e2e8f0}
-.ai-message-user{
-  background:var(--primary);color:white;padding:10px 14px;
-  border-radius:12px;border-top-right-radius:4px;
-  max-width:85%;font-size:13px;line-height:1.5;align-self:flex-end;
-}
-.ai-chat-suggestions{
-  display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;
-  background:var(--surface);border-top:1px solid var(--border);
-}
+.ai-message-user{background:var(--primary);color:white;padding:10px 14px;border-radius:12px;border-top-right-radius:4px;max-width:85%;font-size:13px;line-height:1.5;align-self:flex-end}
+.ai-chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;background:var(--surface);border-top:1px solid var(--border)}
 body.dark .ai-chat-suggestions{background:#1e293b;border-color:#334155}
-.ai-suggestion-chip{
-  background:var(--surface-alt);padding:6px 12px;border-radius:15px;
-  font-size:11px;cursor:pointer;border:1px solid var(--border);
-  color:var(--text);transition:all 0.2s;white-space:nowrap;
-}
+.ai-suggestion-chip{background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:11px;cursor:pointer;border:1px solid var(--border);color:var(--text);transition:all 0.2s;white-space:nowrap}
 body.dark .ai-suggestion-chip{background:#334155;color:#cbd5e1;border-color:#475569}
 .ai-suggestion-chip:hover{background:var(--primary);color:white;border-color:var(--primary)}
-.ai-chat-input-row{
-  display:flex;gap:8px;padding:10px 12px;
-  background:var(--surface);border-top:1px solid var(--border);
-}
+.ai-chat-input-row{display:flex;gap:8px;padding:10px 12px;background:var(--surface);border-top:1px solid var(--border)}
 body.dark .ai-chat-input-row{background:#1e293b;border-color:#334155}
-.ai-chat-input{
-  flex:1;padding:10px 14px;border:2px solid var(--border);
-  border-radius:25px;outline:none;font-size:13px;
-  font-family:inherit;background:var(--surface);color:var(--text);
-}
+.ai-chat-input{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:25px;outline:none;font-size:13px;font-family:inherit;background:var(--surface);color:var(--text)}
 body.dark .ai-chat-input{background:#0f172a;border-color:#475569;color:#e2e8f0}
 .ai-chat-input:focus{border-color:var(--primary)}
-.ai-chat-send-btn{
-  width:38px;height:38px;border-radius:50%;background:var(--primary);
-  color:white;border:none;cursor:pointer;font-size:16px;
-  flex-shrink:0;transition:all 0.2s;
-}
+.ai-chat-send-btn{width:38px;height:38px;border-radius:50%;background:var(--primary);color:white;border:none;cursor:pointer;font-size:16px;flex-shrink:0;transition:all 0.2s}
 .ai-chat-send-btn:hover{background:var(--primary-dark);transform:scale(1.05)}
-.ai-chat-disclaimer{
-  padding:6px 12px;background:var(--surface-alt);border-top:1px solid var(--border);
-  text-align:center;font-size:10px;color:var(--text-muted);
-}
+.ai-chat-disclaimer{padding:6px 12px;background:var(--surface-alt);border-top:1px solid var(--border);text-align:center;font-size:10px;color:var(--text-muted)}
 body.dark .ai-chat-disclaimer{background:#0f172a;border-color:#334155}
 
 .result-box{background:var(--surface-alt);border-radius:var(--radius-xl);padding:28px;margin-top:20px;text-align:center;transition:background 0.3s}
@@ -275,7 +234,7 @@ footer a{color:white;text-decoration:none}
 <div class="recommendation" id="recommendation"></div>
 
 <!-- ============================================ -->
-<!-- 🔥 NEW AI CHAT PANEL (Inline - Single Chat)  -->
+<!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
 <!-- ============================================ -->
 <div class="ai-chat-panel" id="aiChatPanel">
     <div class="ai-chat-header">
@@ -283,7 +242,7 @@ footer a{color:white;text-decoration:none}
             <span>🧬</span>
             <span>Body Type Fitness AI Assistant</span>
         </div>
-        <span class="ai-chat-status">🟢 Online · Free</span>
+        <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
     </div>
     <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI fitness chat messages">
         <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -325,10 +284,9 @@ footer a{color:white;text-decoration:none}
 
 <script>
     // ==============================================
-    // 🔥 NEW AI API KEY
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     // ===== THEME =====
     function initTheme(){var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark')}
@@ -402,7 +360,7 @@ footer a{color:white;text-decoration:none}
     document.getElementById('analyzeBtn').addEventListener('click',analyzeBodyType);
 
     // ==============================================
-    // 🔥 NEW AI CHAT FUNCTIONS (Inline Panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -451,19 +409,13 @@ footer a{color:white;text-decoration:none}
         showTypingIndicator();
         
         var context = getSomatotypeContext();
-        
+        var promptText = "You are a professional Fitness & Body Type AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable fitness advice in fluent English. Include diet recommendations, workout plans, macronutrient guidance, and lifestyle tips tailored to their somatotype. End with: '⚠️ Consult a fitness professional for personalized advice.'";
+
         try {
-            var response = await fetch(AI_API_URL, {
+            var response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ 
-                        parts: [{ 
-                            text: 'You are a professional Fitness & Body Type AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, personalized fitness advice. Include specific diet recommendations, workout plans, macronutrient guidance, and lifestyle tips tailored to their somatotype. Structure with bullet points for clarity. End with: "⚠️ Consult a fitness professional for personalized advice."' 
-                        }] 
-                    }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-                })
+                body: JSON.stringify({ prompt: promptText })
             });
             
             var data = await response.json();
@@ -472,7 +424,7 @@ footer a{color:white;text-decoration:none}
             if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                 addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
             } else { 
-                throw new Error('No response from AI'); 
+                throw new Error('No response from AI worker'); 
             }
         } catch (error) {
             removeTypingIndicator();
