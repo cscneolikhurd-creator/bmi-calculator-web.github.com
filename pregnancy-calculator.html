@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+
 <title>Pregnancy Calculator | Due Date & Trimester Tracker | AI Chat | US/UK/CA/AU | HealthCalc</title>
 <meta name="description" content="Calculate due date, current week, trimester, and fetal development milestones. AI chat for pregnancy tips. Follows ACOG, NHS, RANZCOG guidelines. US, UK, Canada, Australia.">
 <meta name="keywords" content="pregnancy calculator, due date, trimester tracker, fetal size, pregnancy week, conception date, ACOG, NHS, AI pregnancy chat">
@@ -381,7 +382,7 @@ footer a{color:white}
 </div>
 
 <!-- ============================================ -->
-<!-- 🔥 NEW AI CHAT PANEL (Inline - Single Chat)  -->
+<!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
 <!-- ============================================ -->
 <div class="ai-chat-panel" id="aiChatPanel">
     <div class="ai-chat-header">
@@ -389,7 +390,7 @@ footer a{color:white}
             <span>🤰</span>
             <span>Pregnancy AI Assistant</span>
         </div>
-        <span class="ai-chat-status">🟢 Online · Free</span>
+        <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
     </div>
     <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI chat messages">
         <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -430,10 +431,9 @@ footer a{color:white}
 
 <script>
     // ==============================================
-    // 🔥 NEW API KEY - Requesty (Gemini-compatible)
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     // ===== THEME =====
     function initTheme() {
@@ -551,7 +551,7 @@ footer a{color:white}
     });
 
     // ==============================================
-    // 🔥 NEW AI CHAT FUNCTION (Single inline panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -598,19 +598,13 @@ footer a{color:white}
         showTypingIndicator();
         
         var context = getPregnancyContext();
-        
+        var promptText = "You are a professional Pregnancy AI Assistant on HealthCalc.in, serving users from US, UK, Canada, and Australia. Follow ACOG, NHS, and RANZCOG medical guidelines. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable pregnancy advice in fluent English. Include nutrition tips, safe exercises, trimester-specific guidance, and wellness recommendations. End with: '⚠️ Consult your OB-GYN or midwife for personalized medical advice.'";
+
         try {
-            var response = await fetch(AI_API_URL, {
+            var response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ 
-                        parts: [{ 
-                            text: 'You are a professional Pregnancy AI Assistant on healthcalc.in, serving users from US, UK, Canada, and Australia. Follow ACOG, NHS, and RANZCOG medical guidelines. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, medically-accurate pregnancy advice. Include nutrition tips, safe exercises, trimester-specific guidance, and wellness recommendations. Structure with bullet points for clarity. End with: "⚠️ Consult your OB-GYN or midwife for personalized medical advice."' 
-                        }] 
-                    }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-                })
+                body: JSON.stringify({ prompt: promptText })
             });
             
             var data = await response.json();
@@ -619,7 +613,7 @@ footer a{color:white}
             if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                 addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
             } else { 
-                throw new Error('No response from AI'); 
+                throw new Error('No response from AI worker'); 
             }
         } catch (error) {
             removeTypingIndicator();
