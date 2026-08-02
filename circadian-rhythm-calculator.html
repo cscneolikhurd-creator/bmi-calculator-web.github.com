@@ -565,6 +565,152 @@
         color: white;
     }
 
+    /* AI CHAT PANEL (INLINE) */
+    .ai-chat-panel {
+        margin: 2rem 0;
+        border: 2px solid var(--border-dark);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: var(--bg-dark);
+        transition: all 0.3s;
+    }
+
+    .ai-chat-header {
+        background: linear-gradient(135deg, var(--accent-blue-dark), var(--accent-purple));
+        color: white;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .ai-chat-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .ai-chat-status {
+        font-size: 10px;
+        opacity: 0.9;
+        font-weight: 400;
+    }
+
+    .ai-chat-messages {
+        height: 220px;
+        overflow-y: auto;
+        padding: 12px;
+        background: var(--bg-darker);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .ai-message-bot {
+        background: var(--card-dark);
+        padding: 10px 14px;
+        border-radius: 12px;
+        border-top-left-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        max-width: 85%;
+        font-size: 13px;
+        line-height: 1.5;
+        align-self: flex-start;
+        color: var(--text-primary);
+    }
+
+    .ai-message-user {
+        background: var(--accent-blue);
+        color: white;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border-top-right-radius: 4px;
+        max-width: 85%;
+        font-size: 13px;
+        line-height: 1.5;
+        align-self: flex-end;
+    }
+
+    .ai-chat-suggestions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 10px 12px;
+        background: var(--card-dark);
+        border-top: 1px solid var(--border-dark);
+    }
+
+    .ai-suggestion-chip {
+        background: var(--bg-dark);
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 11px;
+        cursor: pointer;
+        border: 1px solid var(--border-dark);
+        color: var(--text-secondary);
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+
+    .ai-suggestion-chip:hover {
+        background: var(--accent-blue);
+        color: white;
+        border-color: var(--accent-blue);
+    }
+
+    .ai-chat-input-row {
+        display: flex;
+        gap: 8px;
+        padding: 10px 12px;
+        background: var(--card-dark);
+        border-top: 1px solid var(--border-dark);
+    }
+
+    .ai-chat-input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 2px solid var(--border-dark);
+        border-radius: 25px;
+        outline: none;
+        font-size: 13px;
+        font-family: inherit;
+        background: var(--bg-dark);
+        color: var(--text-primary);
+    }
+
+    .ai-chat-input:focus {
+        border-color: var(--accent-blue);
+    }
+
+    .ai-chat-send-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--accent-blue);
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        flex-shrink: 0;
+        transition: all 0.2s;
+    }
+
+    .ai-chat-send-btn:hover {
+        background: var(--accent-blue-dark);
+        transform: scale(1.05);
+    }
+
+    .ai-chat-disclaimer {
+        padding: 6px 12px;
+        background: var(--bg-darker);
+        border-top: 1px solid var(--border-dark);
+        text-align: center;
+        font-size: 10px;
+        color: var(--text-muted);
+    }
+
     /* Footer */
     .tool-footer-note {
         margin-top: 2rem;
@@ -596,6 +742,10 @@
         margin: 15px 0;
     }
 
+    /* Animations */
+    @keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
+
     /* Responsive */
     @media (max-width: 700px) {
         .tool-container { padding: 1.2rem; }
@@ -607,6 +757,7 @@
         .top-bar { flex-direction: column; align-items: flex-start; }
         .category-tabs { gap: 0.3rem; }
         .category-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+        .ai-chat-messages { height: 180px; }
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -713,6 +864,39 @@
         </div>
     </div>
 
+    <!-- ============================================ -->
+    <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
+    <!-- ============================================ -->
+    <div class="ai-chat-panel" id="aiChatPanel">
+        <div class="ai-chat-header">
+            <div class="ai-chat-header-left">
+                <span>🚀</span>
+                <span>SEO & Keyword AI Assistant</span>
+            </div>
+            <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
+        </div>
+        <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI SEO chat messages">
+            <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
+                <strong>Hello! 👋</strong><br><br>
+                I'm your <strong>SEO & Keyword Strategy AI Assistant</strong>. Filter or search keywords above, then ask me for content ideas, blog post outlines, keyword targeting strategies, or country-specific SEO tips!
+            </div>
+        </div>
+        <div class="ai-chat-suggestions" id="aiChatSuggestions">
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('How to write a blog post targeting high-volume keywords?')">📝 Blog post outline?</span>
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('Best SEO strategy for new websites in 2026')">🎯 SEO strategy 2026?</span>
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('How to rank for zero-click and AI search features?')">🤖 Rank in AI Search?</span>
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('Tips for targeting US vs UK search intent')">🌐 US vs UK SEO?</span>
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('How to optimize for EEAT and Google Core Updates?')">⚡ EEAT Optimization?</span>
+        </div>
+        <div class="ai-chat-input-row">
+            <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about SEO, content ideas, keyword strategy..." aria-label="Type your SEO question" onkeypress="if(event.key==='Enter')sendAIMessage()">
+            <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button>
+        </div>
+        <div class="ai-chat-disclaimer">
+            ⚠️ Educational purposes only. Always test SEO strategies against official Google Search guidelines.
+        </div>
+    </div>
+
     <!-- ===== GEOGRAPHIC TAGS ===== -->
     <div class="geo-context">
         <span class="geo-tag us-tag"><i class="fas fa-flag-usa"></i> US Trends</span>
@@ -741,8 +925,13 @@
 </div>
 
 <script>
+    // ==============================================
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
+    // ==============================================
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+
     (function() {
-        // ========== KEYWORD DATABASE (Realistic Trending Data 2026) ==========
+        // ========== KEYWORD DATABASE (80+ Realistic Trending Data 2026) ==========
         const keywordDatabase = [
             // ===== US TRENDING =====
             { name: "US midterm elections 2026 polls", category: "us", subCat: "news", volume: "890K", trend: "+720%", country: "United States", region: "US" },
@@ -785,7 +974,6 @@
             { name: "UPI transaction limit increase 2026", category: "india", subCat: "finance", volume: "289K", trend: "+660%", country: "India", region: "IN" },
             { name: "IPL 2026 schedule and tickets", category: "india", subCat: "sports", volume: "2.5M", trend: "+1500%", country: "India", region: "IN" },
             { name: "New income tax slabs 2026-27", category: "india", subCat: "finance", volume: "567K", trend: "+520%", country: "India", region: "IN" },
-            { name: "Aadhaar card update online 2026", category: "india", subCat: "govt", volume: "234K", trend: "+290%", country: "India", region: "IN" },
             { name: "PM Kisan Samman Nidhi next installment", category: "india", subCat: "govt", volume: "456K", trend: "+185%", country: "India", region: "IN" },
             { name: "Flipkart Big Billion Days 2026 date", category: "india", subCat: "ecom", volume: "1.2M", trend: "+490%", country: "India", region: "IN" },
             { name: "ITR filing last date FY 2025-26", category: "india", subCat: "finance", volume: "550K", trend: "+430%", country: "India", region: "IN" },
@@ -869,13 +1057,10 @@
 
         // ========== RENDER FUNCTION ==========
         function renderKeywords() {
-            // Filter
             let filtered = keywordDatabase.filter(item => {
-                // Category filter
                 if (activeCategory !== 'all' && item.category !== activeCategory && item.subCat !== activeCategory) {
                     return false;
                 }
-                // Country filter
                 if (currentCountry !== 'all') {
                     const regionMap = {
                         'us': 'US',
@@ -889,7 +1074,6 @@
                         return false;
                     }
                 }
-                // Search filter
                 if (searchQuery.trim() !== '') {
                     const query = searchQuery.trim().toLowerCase();
                     return item.name.toLowerCase().includes(query) || 
@@ -899,13 +1083,9 @@
                 return true;
             });
 
-            // Sort
             filtered = sortKeywords(filtered);
-            
-            // Update count
             keywordCountSpan.textContent = filtered.length;
 
-            // No results
             if (filtered.length === 0) {
                 gridContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:var(--bg-dark); border-radius:var(--radius-lg); border: 1px solid var(--border-dark);">
                     <i class="fas fa-search" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
@@ -915,14 +1095,12 @@
                 return;
             }
 
-            // Build HTML
             let htmlString = '';
             filtered.forEach((kw, index) => {
                 const flag = getCountryFlag(kw.country);
-                const trendValue = getTrendValue(kw.trend);
                 
                 htmlString += `
-                    <div class="keyword-card">
+                    <div class="keyword-card" onclick="askAIAboutKeyword('${kw.name.replace(/'/g, "\\'")}')">
                         <div class="keyword-rank">#${index + 1} Trending</div>
                         <div class="keyword-name">${flag} ${kw.name}</div>
                         <div class="keyword-meta">
@@ -941,14 +1119,12 @@
             gridContainer.innerHTML = htmlString;
         }
 
-        // ========== UPDATE SORT BUTTONS ==========
         function updateSortButtons() {
             sortBtns.forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-sort') === currentSort);
             });
         }
 
-        // ========== UPDATE CATEGORY BUTTONS ==========
         function updateCategoryButtons() {
             categoryBtns.forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-category') === activeCategory);
@@ -1014,8 +1190,92 @@
         // ========== INITIAL RENDER ==========
         setUpdateDate();
         renderKeywords();
-        console.log('Trending Keywords Finder loaded — 80+ keywords across 5 countries');
     })();
+
+    // ==============================================
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
+    // ==============================================
+    function addChatMessage(text, sender) {
+        var messagesDiv = document.getElementById('aiChatMessages');
+        var msgDiv = document.createElement('div');
+        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
+        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        messagesDiv.appendChild(msgDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+        var messagesDiv = document.getElementById('aiChatMessages');
+        var typingDiv = document.createElement('div');
+        typingDiv.id = 'aiTypingIndicator';
+        typingDiv.className = 'ai-message-bot';
+        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
+        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
+        messagesDiv.appendChild(typingDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function removeTypingIndicator() {
+        var typing = document.getElementById('aiTypingIndicator');
+        if (typing) typing.remove();
+    }
+
+    function getSEOContext() {
+        var count = document.getElementById('keywordCount').textContent;
+        var country = document.getElementById('countrySelect').value;
+        return 'User is viewing ' + count + ' trending keywords for country filter: ' + country.toUpperCase() + '. ';
+    }
+
+    async function sendAIMessage(prefilledText) {
+        var input = document.getElementById('aiChatInput');
+        var message = prefilledText || input.value.trim();
+        if (!message) return;
+        
+        addChatMessage(message, 'user');
+        if (!prefilledText) input.value = '';
+        showTypingIndicator();
+        
+        var context = getSEOContext();
+        var promptText = "You are a professional SEO & Content Marketing AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable SEO advice in fluent English. Include blog outlines, keyword cluster ideas, or search intent optimization strategies. End with: '⚠️ Always test SEO strategies against Google Search guidelines.'";
+
+        try {
+            var response = await fetch('https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: promptText })
+            });
+            
+            var data = await response.json();
+            removeTypingIndicator();
+            
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else { 
+                throw new Error('No response from AI worker'); 
+            }
+        } catch (error) {
+            removeTypingIndicator();
+            console.error('AI Chat Error:', error);
+            var fb = '🚀 <strong>SEO Strategy Tips:</strong><br><br>';
+            fb += '• Target high-intent long-tail keywords<br>';
+            fb += '• Create comprehensive, E-E-A-T aligned content<br>';
+            fb += '• Optimize meta tags and heading structures<br>';
+            fb += '• Include structured Schema markup<br>';
+            fb += '• Build contextual internal links<br><br>';
+            fb += '⚠️ <em>Always test SEO strategies against Google Search guidelines.</em>';
+            addChatMessage(fb, 'bot');
+        }
+    }
+
+    function askAIAboutKeyword(keyword) {
+        var query = "How can I rank for the keyword: '" + keyword + "'? Give me a content outline and target audience.";
+        sendAIMessage(query);
+        document.getElementById('aiChatPanel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.sendAIMessage = sendAIMessage;
+    window.askAIAboutKeyword = askAIAboutKeyword;
 </script>
 </body>
 </html>
