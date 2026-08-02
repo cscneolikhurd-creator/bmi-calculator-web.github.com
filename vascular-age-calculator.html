@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+    <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
     <title>Advanced Vascular Age Calculator | Arterial Stiffness & Heart Age | AI Chat | US/UK/CA/AU | HealthCalc</title>
     <meta name="description" content="Professional vascular age calculator based on Framingham Heart Study with AI chat. Measure arterial stiffness, pulse wave velocity, and true heart age. CDC, NHS, Health Canada guidelines. Free & private.">
@@ -155,9 +155,7 @@
         .rec-section { background: #fef2f2; border-radius: var(--radius-lg); padding: 20px; margin: 20px 0; }
         .rec-item { display: flex; gap: 14px; padding: 14px; background: white; border-radius: var(--radius-md); border-left: 4px solid var(--primary); margin-bottom: 8px; }
 
-        /* ============================================ */
-        /* 🔥 AI CHAT PANEL (Inline)                    */
-        /* ============================================ */
+        /* AI CHAT PANEL */
         .ai-chat-panel { margin: 20px 0; border: 2px solid #fecaca; border-radius: var(--radius-lg); overflow: hidden; background: white; transition: all 0.3s; }
         body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
         .ai-chat-header { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 14px; }
@@ -272,12 +270,12 @@
             <div class="rec-section"><h3 style="margin-bottom:16px;color:var(--primary-dark)"><i class="fas fa-lightbulb"></i> Recommendations</h3><div id="recommendations"></div></div>
 
             <!-- ============================================ -->
-            <!-- 🔥 NEW AI CHAT PANEL (Inline)                -->
+            <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
             <!-- ============================================ -->
             <div class="ai-chat-panel" id="aiChatPanel">
                 <div class="ai-chat-header">
                     <div class="ai-chat-header-left"><span>❤️</span><span>Heart Health AI Assistant</span></div>
-                    <span class="ai-chat-status">🟢 Online · Free</span>
+                    <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
                 </div>
                 <div class="ai-chat-messages" id="aiChatMessages" role="log">
                     <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -309,10 +307,9 @@
 
 <script>
     // ==============================================
-    // 🔥 NEW AI API KEY
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     function calculateVascularAge() {
         const age = parseInt(document.getElementById('age').value) || 45;
@@ -384,7 +381,7 @@
     (function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;})();
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS (Inline Panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -425,15 +422,25 @@
         if (!prefilledText) input.value = '';
         showTypingIndicator();
         var context = getVascularContext();
+        var promptText = "You are a professional Heart Health AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable medical advice in fluent English. Include diet tips (Mediterranean/DASH), exercise recommendations, and guidance on when to consult a cardiologist. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
+
         try {
-            var response = await fetch(AI_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: 'You are a Heart Health AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE heart health advice. End with: "⚠️ Consult a healthcare professional for personalized medical advice."' }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 1024 } }) });
+            var response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: promptText })
+            });
+            
             var data = await response.json();
             removeTypingIndicator();
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            else throw new Error('No response');
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else {
+                throw new Error('No response from AI worker');
+            }
         } catch (e) {
             removeTypingIndicator();
-            addChatMessage('❤️ <strong>Heart Health Tips:</strong><br><br>• DASH/Mediterranean diet<br>• 150 min exercise weekly<br>• Quit smoking<br>• Monitor BP regularly<br>• Manage stress<br><br>⚠️ <em>Consult a healthcare professional.</em>', 'bot');
+            addChatMessage('❤️ <strong>Heart Health Recommendations:</strong><br><br>• Follow a DASH or Mediterranean diet<br>• Aim for 150 minutes of moderate exercise weekly<br>• Quit smoking immediately<br>• Monitor blood pressure regularly<br>• Manage stress effectively<br><br>⚠️ <em>Consult a healthcare professional for medical advice.</em>', 'bot');
         }
     }
 
