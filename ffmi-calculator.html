@@ -392,11 +392,11 @@ body.dark .research-note{background:#1e3a5f;color:#93c5fd}
 </div>
 
 <!-- ============================================ -->
-<!-- AI CHAT WIDGET (ENGLISH ONLY)                 -->
+<!-- AI CHAT WIDGET (ENGLISH ONLY - PROXY SAFE)    -->
 <!-- ============================================ -->
 <div id="ai-chat-widget" style="display:none;position:fixed;bottom:100px;right:30px;width:380px;max-width:90vw;background:var(--surface);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);z-index:999999;overflow:hidden;font-family:'Inter',sans-serif;border:1px solid var(--border)">
     <div style="background:linear-gradient(135deg,#1e40af,#1e3a8a);color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:24px">💪</span><div><strong style="font-size:15px">FFMI Fitness AI</strong><div style="font-size:11px;opacity:0.9">Online · Free · AI-Powered</div></div></div>
+        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:24px">💪</span><div><strong style="font-size:15px">FFMI Fitness AI</strong><div style="font-size:11px;opacity:0.9">Online · Free · Cloudflare Secured</div></div></div>
         <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px">✕</button>
     </div>
     <div id="ai-chat-messages" style="height:320px;overflow-y:auto;padding:16px;background:var(--surface-alt);display:flex;flex-direction:column;gap:12px">
@@ -409,7 +409,7 @@ body.dark .research-note{background:#1e3a5f;color:#93c5fd}
         <span class="ai-suggestion-chip" style="background:var(--surface-alt);padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--text)" onclick="sendAIQuery('How much protein do I need for muscle growth?')">Protein needs?</span>
     </div>
     <div style="padding:12px 16px;background:var(--surface);border-top:1px solid var(--border);display:flex;gap:8px">
-        <input type="text" id="ai-chat-input" placeholder="Ask about your FFMI results..." style="flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:25px;outline:none;font-size:14px;font-family:inherit;background:var(--surface);color:var(--text)">
+        <input type="text" id="ai-chat-input" placeholder="Ask about your FFMI results..." style="flex:1;padding:10px 16px;border:2px solid var(--border);border-radius:25px;outline:none;font-size:14px;font-family:inherit;background:var(--surface);color:var(--text)" onkeypress="if(event.key==='Enter')sendAIQuery()">
         <button onclick="sendAIQuery()" style="width:42px;height:42px;border-radius:50%;background:#1e40af;color:white;border:none;cursor:pointer;font-size:18px;flex-shrink:0">➤</button>
     </div>
     <div style="padding:8px 16px;background:var(--surface-alt);border-top:1px solid var(--border);text-align:center;font-size:10px;color:var(--text-muted)">⚠️ Educational only. Consult a fitness professional for personalized advice.</div>
@@ -425,8 +425,10 @@ body.dark .research-note{background:#1e3a5f;color:#93c5fd}
 </style>
 
 <script>
-// ===== GEMINI API KEY =====
-var GEMINI_API_KEY = 'AQ.Ab8RN6JPDZKbtRtEQ2zLxIz7MzVdKbHTEepD0fdZ69OQHPCuRQ';
+// ==============================================
+// 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
+// ==============================================
+var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
 // ===== GLOBAL STATE =====
 var currentUnit = 'metric';
@@ -557,10 +559,45 @@ function closeAIChat(){document.getElementById('ai-chat-widget').style.display='
 function addAIMessage(text,sender){var md=document.getElementById('ai-chat-messages'),msgDiv=document.createElement('div');msgDiv.style.cssText='display:flex;gap:10px;animation:messageSlideIn 0.3s ease;'+(sender==='user'?'flex-direction:row-reverse;':'');var avatar=sender==='user'?'👤':'💪';var bg=sender==='user'?'#1e40af':'var(--surface)';var tc=sender==='user'?'white':'var(--text)';msgDiv.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:'+(sender==='user'?'#dbeafe':'var(--primary-light)')+';display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">'+avatar+'</div><div style="background:'+bg+';color:'+tc+';padding:10px 14px;border-radius:12px;max-width:80%;font-size:13px;line-height:1.5;'+(sender==='user'?'border-top-right-radius:4px;':'border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);')+'">'+text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</div>';md.appendChild(msgDiv);md.scrollTop=md.scrollHeight}
 function showAITyping(){var md=document.getElementById('ai-chat-messages'),td=document.createElement('div');td.id='ai-typing-indicator';td.style.cssText='display:flex;gap:10px';td.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">💪</div><div style="background:var(--surface);padding:12px 16px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);display:flex;gap:5px"><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s"></div></div>';md.appendChild(td);md.scrollTop=md.scrollHeight}
 function removeAITyping(){var t=document.getElementById('ai-typing-indicator');if(t)t.remove()}
-async function sendAIQuery(prefilledText){var input=document.getElementById('ai-chat-input'),message=prefilledText||input.value.trim();if(!message)return;var ffmi=document.getElementById('ffmiNumber').textContent,classification=document.getElementById('statusBadge').textContent,gender=document.getElementById('gender').value;addAIMessage(message,'user');input.value='';showAITyping();try{var response=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key='+GEMINI_API_KEY,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:'You are a Fitness & Bodybuilding AI on healthcalc.in. User stats: Height-Adjusted FFMI: '+ffmi+', Classification: '+classification+', Gender: '+gender+', based on Kouri et al. research.\n\nUser Question: '+message+'\n\nProvide COMPLETE, detailed, evidence-based muscle building advice in English. Include specific workout programming, nutrition recommendations, and recovery strategies. Give 3-4 thorough paragraphs. End with: "Consult a fitness professional for personalized advice."'}],}],generationConfig:{temperature:0.7,maxOutputTokens:1024}})});var data=await response.json();removeAITyping();if(data.candidates&&data.candidates[0]?.content?.parts?.[0]?.text){addAIMessage(data.candidates[0].content.parts[0].text,'ai')}else{throw new Error('No response')}}catch(error){removeAITyping();var fb='💪 <strong>Muscle Building Tips (Kouri Research):</strong><br><br>• Progressive overload is essential — increase weight or reps weekly<br>• Consume 1.6-2.2g protein per kg of bodyweight daily<br>• Eat in a 300-500 calorie surplus for muscle gain<br>• Train each muscle group 2x per week for optimal growth<br>• Prioritize compound lifts: squat, deadlift, bench press, rows<br>• Get 7-9 hours of quality sleep for recovery<br>• Natural FFMI gains slow significantly after 3-5 years of training<br><br>⚠️ <em>Consult a fitness professional for personalized advice.</em>';addAIMessage(fb,'ai')}}
+
+async function sendAIQuery(prefilledText){
+    var input=document.getElementById('ai-chat-input'),message=prefilledText||input.value.trim();
+    if(!message)return;
+    var ffmi=document.getElementById('ffmiNumber').textContent,classification=document.getElementById('statusBadge').textContent,gender=document.getElementById('gender').value;
+    addAIMessage(message,'user');
+    input.value='';
+    showAITyping();
+    
+    var promptText = "You are a Fitness & Bodybuilding AI on HealthCalc.in. User stats: Height-Adjusted FFMI: " + ffmi + ", Classification: " + classification + ", Gender: " + gender + ", based on Kouri et al. research.\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable muscle building advice in fluent English. Include workout programming, nutrition recommendations, and recovery strategies. End with: 'Consult a fitness professional for personalized advice.'";
+
+    try {
+        var response = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: promptText })
+        });
+        
+        var data = await response.json();
+        removeAITyping();
+        
+        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+            addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
+        } else {
+            throw new Error('No response from AI worker');
+        }
+    } catch (error) {
+        removeAITyping();
+        console.error('AI Error:', error);
+        var fb = '💪 <strong>Muscle Building Tips (Kouri Research):</strong><br><br>• Progressive overload is essential — increase weight or reps weekly<br>• Consume 1.6-2.2g protein per kg of bodyweight daily<br>• Eat in a 300-500 calorie surplus for muscle gain<br>• Train each muscle group 2x per week for optimal growth<br>• Prioritize compound lifts: squat, deadlift, bench press, rows<br>• Get 7-9 hours of quality sleep for recovery<br>• Natural FFMI gains slow significantly after 3-5 years of training<br><br>⚠️ <em>Consult a fitness professional for personalized advice.</em>';
+        addAIMessage(fb, 'ai');
+    }
+}
 
 // ===== EXPOSE GLOBALLY =====
-window.toggleAIChat=toggleAIChat;window.closeAIChat=closeAIChat;window.sendAIQuery=sendAIQuery;window.openChatWithFFMI=openChatWithFFMI;
+window.toggleAIChat=toggleAIChat;
+window.closeAIChat=closeAIChat;
+window.sendAIQuery=sendAIQuery;
+window.openChatWithFFMI=openChatWithFFMI;
 window.setUnit=setUnit;
 
 // ===== INIT =====
