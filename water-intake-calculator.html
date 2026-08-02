@@ -180,9 +180,7 @@
         .weather-factor { flex: 1; text-align: center; padding: 12px; background: #e8f4fc; border-radius: 16px; }
         .weather-factor .value { font-size: 18px; font-weight: 700; color: #2980b9; }
 
-        /* ============================================ */
-        /* 🔥 AI CHAT PANEL (Inline)                    */
-        /* ============================================ */
+        /* AI CHAT PANEL */
         .ai-chat-panel { margin: 20px 0; border: 2px solid #b8d9f0; border-radius: var(--radius-lg); overflow: hidden; background: white; transition: all 0.3s; }
         body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
         .ai-chat-header { background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 14px; }
@@ -385,12 +383,12 @@
             </div>
 
             <!-- ============================================ -->
-            <!-- 🔥 NEW AI CHAT PANEL (Inline)                -->
+            <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
             <!-- ============================================ -->
             <div class="ai-chat-panel" id="aiChatPanel">
                 <div class="ai-chat-header">
                     <div class="ai-chat-header-left"><span>💧</span><span>Hydration AI Assistant</span></div>
-                    <span class="ai-chat-status">🟢 Online · Free</span>
+                    <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
                 </div>
                 <div class="ai-chat-messages" id="aiChatMessages" role="log">
                     <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -423,10 +421,9 @@
 
 <script>
     // ==============================================
-    // 🔥 NEW AI API KEY
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     let currentUnit = 'metric';
     let displayUnit = 'L';
@@ -534,7 +531,7 @@
     });
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS (Inline Panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -574,15 +571,26 @@
         if (!prefilledText) input.value = '';
         showTypingIndicator();
         var context = getWaterContext();
+        var promptText = "You are a Hydration AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable hydration advice in fluent English. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
+
         try {
-            var response = await fetch(AI_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: 'You are a Hydration AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE hydration advice. End with: "⚠️ Consult a healthcare professional for personalized medical advice."' }] }], generationConfig: { temperature: 0.7, maxOutputTokens: 1024 } }) });
+            var response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: promptText })
+            });
+            
             var data = await response.json();
             removeTypingIndicator();
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            else throw new Error('No response');
+            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else {
+                throw new Error('No response from AI worker');
+            }
         } catch (e) {
             removeTypingIndicator();
-            addChatMessage('💧 <strong>Hydration Tips:</strong><br><br>• Drink water first thing in the morning<br>• Carry a reusable water bottle<br>• Set hydration reminders<br>• Eat water-rich foods (cucumber, watermelon)<br>• Monitor urine color (pale straw = hydrated)<br>• Increase intake during exercise<br><br>⚠️ <em>Consult a healthcare professional.</em>', 'bot');
+            console.error('AI Error:', e);
+            addChatMessage('💧 <strong>Hydration Tips:</strong><br><br>• Drink water first thing in the morning<br>• Carry a reusable water bottle<br>• Set hydration reminders<br>• Eat water-rich foods (cucumber, watermelon)<br>• Monitor urine color (pale straw = hydrated)<br>• Increase intake during exercise<br><br>⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>', 'bot');
         }
     }
 
