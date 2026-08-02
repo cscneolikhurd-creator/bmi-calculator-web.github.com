@@ -309,12 +309,12 @@ footer { text-align: center; padding: 30px; color: var(--text-muted); margin-top
             </ul></div>
 
         <!-- ============================================ -->
-        <!-- 🔥 NEW AI CHAT PANEL (Inline)                -->
+        <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
         <!-- ============================================ -->
         <div class="ai-chat-panel" id="aiChatPanel">
             <div class="ai-chat-header">
                 <div class="ai-chat-header-left"><span>🔥</span><span>Inflammation & Diet AI Assistant</span></div>
-                <span class="ai-chat-status">🟢 Online · Free</span>
+                <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
             </div>
             <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI inflammation chat messages">
                 <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -357,10 +357,9 @@ footer { text-align: center; padding: 30px; color: var(--text-muted); margin-top
 
 <script>
     // ==============================================
-    // 🔥 NEW AI API KEY
+    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
     let currentLang = 'en';
 
@@ -395,7 +394,7 @@ footer { text-align: center; padding: 30px; color: var(--text-muted); margin-top
     }
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS (Inline Panel)
+    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
@@ -443,15 +442,13 @@ footer { text-align: center; padding: 30px; color: var(--text-muted); margin-top
         showTypingIndicator();
         
         var context = getInflammationContext();
-        
+        var promptText = "You are a professional Anti-Inflammatory Diet & Health AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable anti-inflammatory advice in fluent English. Include specific foods, spices, Indian diet recommendations, and lifestyle changes. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
+
         try {
-            var response = await fetch(AI_API_URL, {
+            var response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: 'You are a professional Anti-Inflammatory Diet & Health AI Assistant on healthcalc.in. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, personalized anti-inflammatory advice. Include specific foods, spices, Indian diet recommendations, and lifestyle changes. Structure with bullet points. End with: "⚠️ Consult a healthcare professional for personalized medical advice."' }] }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-                })
+                body: JSON.stringify({ prompt: promptText })
             });
             
             var data = await response.json();
@@ -459,7 +456,9 @@ footer { text-align: center; padding: 30px; color: var(--text-muted); margin-top
             
             if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                 addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { throw new Error('No response'); }
+            } else { 
+                throw new Error('No response from AI worker'); 
+            }
         } catch (error) {
             removeTypingIndicator();
             console.error('AI Chat Error:', error);
