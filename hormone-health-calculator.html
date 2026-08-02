@@ -363,9 +363,7 @@
             font-weight: 600; color: var(--primary-dark);
         }
 
-        /* ============================================ */
-        /* 🔥 AI CHAT PANEL (Inline)                    */
-        /* ============================================ */
+        /* AI CHAT PANEL */
         .ai-chat-panel {
             margin: 20px 0; border: 2px solid var(--gray-200);
             border-radius: var(--radius-lg); overflow: hidden;
@@ -742,7 +740,7 @@
                 </div>
 
                 <!-- ============================================ -->
-                <!-- 🔥 NEW AI CHAT PANEL (Inline)                -->
+                <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
                 <!-- ============================================ -->
                 <div class="ai-chat-panel" id="aiChatPanel">
                     <div class="ai-chat-header">
@@ -750,7 +748,7 @@
                             <span>🔬</span>
                             <span>Hormone Health AI Assistant</span>
                         </div>
-                        <span class="ai-chat-status">🟢 Online · Free</span>
+                        <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
                     </div>
                     <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI hormone chat messages">
                         <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
@@ -846,10 +844,9 @@
 
     <script>
         // ==============================================
-        // 🔥 NEW AI API KEY
+        // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
         // ==============================================
-        var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-        var AI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + AI_API_KEY;
+        var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
         // ===== TRANSLATIONS =====
         const translations = {
@@ -896,7 +893,7 @@
                     male: ['Low Libido', 'Erectile Dysfunction', 'Fatigue', 'Muscle Loss', 
                            'Mood Swings', 'Belly Fat', 'Hair Loss', 'Poor Focus'],
                     female: ['Irregular Periods', 'Heavy Periods', 'Severe PMS', 'Hot Flashes', 
-                           'Night Sweats', 'Fatigue', 'Weight Gain', 'Low Libido']
+                             'Night Sweats', 'Fatigue', 'Weight Gain', 'Low Libido']
                 }
             },
             hi: {
@@ -941,7 +938,7 @@
                     male: ['कम यौन इच्छा', 'स्तंभन दोष', 'थकान', 'मांसपेशी हानि', 
                            'मूड स्विंग', 'पेट की चर्बी', 'बाल झड़ना', 'खराब फोकस'],
                     female: ['अनियमित पीरियड', 'भारी पीरियड', 'गंभीर PMS', 'हॉट फ्लैश', 
-                           'रात पसीना', 'थकान', 'वजन बढ़ना', 'कम यौन इच्छा']
+                             'रात पसीना', 'थकान', 'वजन बढ़ना', 'कम यौन इच्छा']
                 }
             }
         };
@@ -1112,7 +1109,7 @@
         }
 
         // ==============================================
-        // 🔥 AI CHAT FUNCTIONS (Inline Panel)
+        // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
         // ==============================================
         function addChatMessage(text, sender) {
             var messagesDiv = document.getElementById('aiChatMessages');
@@ -1163,19 +1160,13 @@
             showTypingIndicator();
             
             var context = getHormoneContext();
-            
+            var promptText = "You are a professional Hormone Health AI Assistant on HealthCalc.in, serving users worldwide. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable hormone health advice in fluent English. Include diet recommendations, lifestyle changes, stress management tips, and exercise guidance specific to their hormone profile. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
+
             try {
-                var response = await fetch(AI_API_URL, {
+                var response = await fetch(WORKER_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ 
-                            parts: [{ 
-                                text: 'You are a professional Hormone Health AI Assistant on healthcalc.in, serving users worldwide. ' + context + '\n\nQuestion: ' + message + '\n\nProvide COMPLETE, detailed, personalized hormone health advice. Include diet recommendations, lifestyle changes, stress management tips, and exercise guidance specific to their hormone profile. Structure with bullet points for clarity. End with: "⚠️ Consult a healthcare professional for personalized medical advice."' 
-                            }] 
-                        }],
-                        generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-                    })
+                    body: JSON.stringify({ prompt: promptText })
                 });
                 
                 var data = await response.json();
@@ -1184,7 +1175,7 @@
                 if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                     addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
                 } else { 
-                    throw new Error('No response from AI'); 
+                    throw new Error('No response from AI worker'); 
                 }
             } catch (error) {
                 removeTypingIndicator();
