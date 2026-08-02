@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
+<!-- ========== SEO META TAGS ========== -->
 <title>BAC Calculator 2026: Blood Alcohol Content | 50+ Countries Legal Limits | AI Chat | HealthCalc</title>
 <meta name="description" content="International BAC calculator with Widmark formula. Legal driving limits for US (0.08%), UK (0.08% England, 0.05% Scotland), Canada (0.08%), Australia (0.05%), EU (0.05%), India (0.03%), UAE (0.00%). Dual units, AI chat, sober time tracker.">
 <meta name="keywords" content="BAC calculator, blood alcohol content, drink driving limit, alcohol metabolism, Widmark formula, sober time, DUI check, international legal limits, standard drink calculator, alcohol safety, USA, UK, Canada, Australia, India">
@@ -41,8 +42,8 @@
   "url": "https://healthcalc.in/bac-calculator.html",
   "author": {"@type": "Organization", "name": "HealthCalc"},
   "about": {"@type": "MedicalCondition", "name": "Alcohol Intoxication & Blood Alcohol Content"},
-  "inLanguage": ["en", "hi"],
-  "dateModified": "2026-07-16"
+  "inLanguage": ["en"],
+  "dateModified": "2026-08-01"
 }
 </script>
 
@@ -113,7 +114,6 @@ body{font-family:'Inter',sans-serif;background:var(--gradient-bg);color:var(--te
 .unit-toggle{display:flex;gap:6px;background:var(--surface-alt);padding:4px;border-radius:25px}
 .unit-btn{padding:6px 14px;border-radius:25px;cursor:pointer;font-weight:600;font-size:12px;transition:all 0.2s;background:transparent;color:var(--text-light);border:none}
 .unit-btn.active{background:var(--surface);box-shadow:var(--shadow-sm);color:var(--primary)}
-.lang-toggle select{padding:8px 12px;border-radius:25px;border:2px solid var(--border);background:var(--surface);color:var(--text);font-size:0.85rem;cursor:pointer}
 .theme-toggle{display:flex;gap:4px}
 .theme-option{padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;font-size:0.85rem;transition:all 0.2s}
 .theme-option:hover{background:var(--primary);color:white;border-color:var(--primary)}
@@ -218,7 +218,7 @@ footer a{color:var(--primary);text-decoration:none}
 <body>
 <div class="container">
 
-<nav class="international-bar" aria-label="Region, unit, language, and theme selector">
+<nav class="international-bar" aria-label="Region, unit, and theme selector">
     <div class="region-selector">
         <label for="countrySelect"><i class="fas fa-globe"></i> Country:</label>
         <select id="countrySelect" aria-label="Select your country">
@@ -272,7 +272,7 @@ footer a{color:var(--primary);text-decoration:none}
 <div class="penalty-info"><h4>⚖️ Legal Info for <span id="penaltyCountry">United States</span></h4><span id="penaltyText">DUI penalties vary by state.</span></div>
 
 <div class="ai-chat-panel" id="aiChatPanel">
-    <div class="ai-chat-header"><div class="ai-chat-header-left"><span>🍺</span><span>BAC & Alcohol Safety AI Assistant</span></div><span class="ai-chat-status">🟢 Online · Free</span></div>
+    <div class="ai-chat-header"><div class="ai-chat-header-left"><span>🍺</span><span>BAC & Alcohol Safety AI Assistant</span></div><span class="ai-chat-status">🟢 Online · Cloudflare Secured</span></div>
     <div class="ai-chat-messages" id="aiChatMessages" role="log"><div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;"><strong>Hello! 👋</strong><br><br>I'm your <strong>BAC & Alcohol Safety Assistant</strong>. Calculate your BAC above, then ask me about responsible drinking, sober time estimates, legal limits, or alcohol metabolism!</div></div>
     <div class="ai-chat-suggestions">
         <span class="ai-suggestion-chip" onclick="sendAIMessage('How long until I am safe to drive?')">⏱️ Sober time?</span>
@@ -295,12 +295,11 @@ footer a{color:var(--primary);text-decoration:none}
 
 <script>
     // ==============================================
-    // 🔥 MeshAPI.ai CONFIGURATION
+    // SECURE WORKER ENDPOINT (NO CLIENT API KEYS)
     // ==============================================
-    var AI_API_KEY = 'rsk_01KX30NR2A1988J2N3GWG1KF5F';
-    var AI_API_URL = 'https://api.meshapi.ai/v1/chat/completions';
+    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
 
-    var currentUnitBAC = 'metric', currentCountry = 'us', currentLang = 'en';
+    var currentUnitBAC = 'metric', currentCountry = 'us';
 
     var countryData = {
         'us':{limit:0.08,name:'United States',flag:'🇺🇸',stdDrink:'14g pure alcohol',penalty:'DUI penalties vary by state. First offense: fines up to $2,000, license suspension 6-12 months.'},
@@ -364,7 +363,6 @@ footer a{color:var(--primary);text-decoration:none}
         document.getElementById('penaltyCountry').textContent = cd.name; document.getElementById('penaltyText').textContent = cd.penalty;
     }
 
-    function setLanguage(lang) { currentLang = lang; document.getElementById('langSelect') && (document.getElementById('langSelect').value = lang); localStorage.setItem('healthcalc_lang', lang); calculateBAC(); }
     function setCountry(code) { currentCountry = code; document.getElementById('countrySelect').value = code; localStorage.setItem('healthcalc_country', code); calculateBAC(); }
     function setUnit(unit) { currentUnitBAC = unit; document.querySelectorAll('.unit-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.unitbac === unit); }); document.getElementById('metricFieldsBAC').style.display = (unit === 'metric') ? 'block' : 'none'; document.getElementById('imperialFieldsBAC').style.display = (unit === 'imperial') ? 'block' : 'none'; localStorage.setItem('healthcalc_unitbac', unit); calculateBAC(); }
     function initTheme() { var s = localStorage.getItem('healthcalc_theme') || 'light'; document.body.classList.toggle('dark', s === 'dark'); }
@@ -379,11 +377,11 @@ footer a{color:var(--primary);text-decoration:none}
     ['weightMetricBAC','weightImpBAC','hours','gender','genderImp','metabolism'].forEach(function(id) { var el = document.getElementById(id); if(el) { el.addEventListener('input', calculateBAC); el.addEventListener('change', calculateBAC); } });
     document.addEventListener('input', function(e) { if(e.target.classList && (e.target.classList.contains('drink-quantity') || e.target.classList.contains('drink-type'))) calculateBAC(); });
 
-    (function() { var c = localStorage.getItem('healthcalc_country') || 'us', l = localStorage.getItem('healthcalc_lang') || 'en', u = localStorage.getItem('healthcalc_unitbac') || 'metric'; setCountry(c); setUnit(u); })();
+    (function() { var c = localStorage.getItem('healthcalc_country') || 'us', u = localStorage.getItem('healthcalc_unitbac') || 'metric'; setCountry(c); setUnit(u); })();
     window.addEventListener('load', calculateBAC);
 
     // ==============================================
-    // 🔥 AI CHAT FUNCTIONS (MeshAPI.ai - OpenAI Format)
+    // AI CHAT FUNCTIONS (Cloudflare Reverse Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var md = document.getElementById('aiChatMessages'), msgDiv = document.createElement('div');
@@ -392,34 +390,54 @@ footer a{color:var(--primary);text-decoration:none}
         msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
     }
+    
     function showTypingIndicator() {
         var md = document.getElementById('aiChatMessages'), td = document.createElement('div');
         td.id = 'aiTypingIndicator'; td.className = 'ai-message-bot'; td.style.cssText = 'display:flex; gap:5px; padding:14px;';
         td.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
         md.appendChild(td); md.scrollTop = md.scrollHeight;
     }
+    
     function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if(t) t.remove(); }
-    function getBACContext() { var bac = document.getElementById('bacResult').innerText, cd = countryData[currentCountry]; if(bac !== '0.000%') return 'User BAC Profile: BAC=' + bac + ', Country=' + cd.name + ' (legal limit: ' + cd.limit.toFixed(2) + '%). '; return ''; }
+    
+    function getBACContext() { 
+        var bac = document.getElementById('bacResult').innerText, cd = countryData[currentCountry]; 
+        if(bac !== '0.000%') return 'User Calculated BAC Profile: BAC=' + bac + ', Country=' + cd.name + ' (Legal driving limit: ' + cd.limit.toFixed(2) + '%). '; 
+        return ''; 
+    }
 
     async function sendAIMessage(prefilledText) {
         var input = document.getElementById('aiChatInput'), message = prefilledText || input.value.trim();
         if(!message) return;
-        addChatMessage(message, 'user'); if(!prefilledText) input.value = ''; showTypingIndicator();
+        
+        addChatMessage(message, 'user'); 
+        if(!prefilledText) input.value = ''; 
+        showTypingIndicator();
+        
         var context = getBACContext(), cd = countryData[currentCountry];
+        var promptText = "You are an expert BAC & Alcohol Safety AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable safety advice in fluent English. Explain alcohol metabolism, sober timing, and legal implications for " + cd.name + " if applicable. End with: '⚠️ Never drink and drive under any circumstances.'";
+
         try {
-            var response = await fetch(AI_API_URL, {
+            var response = await fetch(WORKER_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + AI_API_KEY },
-                body: JSON.stringify({
-                    model: 'gemini-2.0-flash',
-                    messages: [{ role: 'system', content: 'You are a BAC & Alcohol Safety Assistant on healthcalc.in. ' + context + 'Provide accurate, practical advice about alcohol safety, sober time, and legal limits. End with: "⚠️ Never drink and drive."' }, { role: 'user', content: message }],
-                    max_tokens: 1024, temperature: 0.7
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: promptText })
             });
-            var data = await response.json(); removeTypingIndicator();
-            if(data.choices && data.choices[0]?.message?.content) addChatMessage(data.choices[0].message.content, 'bot');
-            else throw new Error('No response');
-        } catch(e) { removeTypingIndicator(); console.error('AI Error:', e); var fb = '🍺 <strong>Responsible Drinking Tips:</strong><br><br>• Wait 1 hour per standard drink before driving<br>• Eat food before and while drinking<br>• Alternate alcohol with water<br>• Use taxi/ride-share if unsure<br>• BAC metabolizes at ~0.015% per hour<br>• ' + cd.name + ' legal limit: ' + cd.limit.toFixed(2) + '%<br><br>⚠️ <em>Never drink and drive.</em>'; addChatMessage(fb, 'bot'); }
+            
+            var data = await response.json(); 
+            removeTypingIndicator();
+            
+            if(data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            } else { 
+                throw new Error('Invalid AI response structure'); 
+            }
+        } catch(e) { 
+            removeTypingIndicator(); 
+            console.error('AI Error:', e); 
+            var fb = '🍺 <strong>Alcohol Safety Guidelines:</strong><br><br>• Alcohol metabolizes at an average rate of ~0.015% per hour.<br>• Eating food, drinking water, or taking showers does NOT accelerate metabolism.<br>• ' + cd.name + ' legal driving limit: ' + cd.limit.toFixed(2) + '%<br>• Always use a designated driver, taxi, or ride-share service if you have consumed alcohol.<br><br>⚠️ <em>Never drink and drive under any circumstances.</em>'; 
+            addChatMessage(fb, 'bot'); 
+        }
     }
 
     window.sendAIMessage = sendAIMessage;
