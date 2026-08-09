@@ -43,7 +43,7 @@
   "author": {"@type": "Organization", "name": "HealthCalc"},
   "about": {"@type": "MedicalCondition", "name": "Alcohol Intoxication & Blood Alcohol Content"},
   "inLanguage": ["en"],
-  "dateModified": "2026-08-01"
+  "dateModified": "2026-08-09"
 }
 </script>
 
@@ -272,15 +272,15 @@ footer a{color:var(--primary);text-decoration:none}
 <div class="penalty-info"><h4>⚖️ Legal Info for <span id="penaltyCountry">United States</span></h4><span id="penaltyText">DUI penalties vary by state.</span></div>
 
 <div class="ai-chat-panel" id="aiChatPanel">
-    <div class="ai-chat-header"><div class="ai-chat-header-left"><span>🍺</span><span>BAC & Alcohol Safety AI Assistant</span></div><span class="ai-chat-status">🟢 Online · Cloudflare Secured</span></div>
-    <div class="ai-chat-messages" id="aiChatMessages" role="log"><div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;"><strong>Hello! 👋</strong><br><br>I'm your <strong>BAC & Alcohol Safety Assistant</strong>. Calculate your BAC above, then ask me about responsible drinking, sober time estimates, legal limits, or alcohol metabolism!</div></div>
+    <div class="ai-chat-header"><div class="ai-chat-header-left"><span>🍺</span><span>BAC & Alcohol Safety AI Assistant</span></div><span class="ai-chat-status">Online · Groq Powered</span></div>
+    <div class="ai-chat-messages" id="aiChatMessages" role="log"><div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;"><strong>Hello! 👋</strong><br><br>I'm your <strong>BAC & Alcohol Safety Assistant</strong> powered by Groq. Calculate your BAC above, then ask me about responsible drinking, sober time estimates, legal limits, or alcohol metabolism!</div></div>
     <div class="ai-chat-suggestions">
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How long until I am safe to drive?')">⏱️ Sober time?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('Tips for responsible drinking and staying safe')">🍺 Responsible drinking?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How to reduce BAC faster - what works and what does not?')">⚡ Reduce BAC?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('Legal driving limits worldwide by country')">🌍 Legal limits?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How does alcohol affect the body and brain?')">🧠 Alcohol effects?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('DUI penalties and consequences in my country')">⚖️ DUI penalties?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Based on my BAC, how long until I am completely sober and safe to drive?')">⏱️ My sober time?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What are the best strategies for responsible drinking and staying safe?')">🍺 Safe drinking tips?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What actually works to reduce BAC faster - myths vs facts?')">⚡ Reduce BAC fast?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What are the DUI penalties and legal consequences in my country?')">⚖️ DUI penalties?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('How does alcohol affect the body and brain at different BAC levels?')">🧠 Alcohol effects?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What is a standard drink in different countries and how to track intake?')">📐 Standard drinks?</span>
     </div>
     <div class="ai-chat-input-row"><input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your BAC, sober time, or alcohol safety..." onkeypress="if(event.key==='Enter')sendAIMessage()"><button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button></div>
     <div class="ai-chat-disclaimer">⚠️ Educational only. Never drink and drive. When in doubt, use taxi/ride-share.</div>
@@ -295,9 +295,11 @@ footer a{color:var(--primary);text-decoration:none}
 
 <script>
     // ==============================================
-    // SECURE WORKER ENDPOINT (NO CLIENT API KEYS)
+    // SECURE WORKER ENDPOINT - Groq API Proxy
     // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+    var WORKER_URL = 'https://groq-proxy.cscneolikhurd.workers.dev/';
+    var GROQ_MODEL = 'llama-3.3-70b-versatile';
+    var isAIProcessing = false;
 
     var currentUnitBAC = 'metric', currentCountry = 'us';
 
@@ -381,62 +383,104 @@ footer a{color:var(--primary);text-decoration:none}
     window.addEventListener('load', calculateBAC);
 
     // ==============================================
-    // AI CHAT FUNCTIONS (Cloudflare Reverse Proxy)
+    // GROQ AI CHAT INTEGRATION (Cloudflare Worker Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var md = document.getElementById('aiChatMessages'), msgDiv = document.createElement('div');
         msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
         msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        text = text.replace(/\n/g, '<br>');
+        text = text.replace(/•/g, '•');
+        text = text.replace(/^- /gm, '• ');
+        msgDiv.innerHTML = text;
         md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
     }
     
     function showTypingIndicator() {
         var md = document.getElementById('aiChatMessages'), td = document.createElement('div');
-        td.id = 'aiTypingIndicator'; td.className = 'ai-message-bot'; td.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        td.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
+        td.id = 'aiTypingIndicator'; td.className = 'ai-message-bot'; td.style.cssText = 'display:flex; gap:5px; padding:14px; align-items:center;';
+        td.innerHTML = '<span style="font-size:12px;color:#94a3b8;">AI is thinking</span><div style="width:7px;height:7px;background:#667eea;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#667eea;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#667eea;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
         md.appendChild(td); md.scrollTop = md.scrollHeight;
     }
     
     function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if(t) t.remove(); }
     
     function getBACContext() { 
-        var bac = document.getElementById('bacResult').innerText, cd = countryData[currentCountry]; 
-        if(bac !== '0.000%') return 'User Calculated BAC Profile: BAC=' + bac + ', Country=' + cd.name + ' (Legal driving limit: ' + cd.limit.toFixed(2) + '%). '; 
-        return ''; 
+        var bac = document.getElementById('bacResult').innerText, cd = countryData[currentCountry];
+        var gender = currentUnitBAC === 'metric' ? document.getElementById('gender').value : document.getElementById('genderImp').value;
+        var weight = currentUnitBAC === 'metric' ? document.getElementById('weightMetricBAC').value + ' kg' : document.getElementById('weightImpBAC').value + ' lbs';
+        var hours = document.getElementById('hours').value;
+        var drinkCount = document.querySelectorAll('.drink-item').length;
+        
+        if(bac !== '0.000%') {
+            return 'BAC PROFILE:\n- Current BAC: ' + bac + '\n- Country: ' + cd.name + ' (Legal Limit: ' + cd.limit.toFixed(2) + '%)\n- Gender: ' + gender + ', Weight: ' + weight + '\n- Hours Since First Drink: ' + hours + '\n- Number of Drink Types: ' + drinkCount + '\n\n';
+        }
+        return '';
     }
 
     async function sendAIMessage(prefilledText) {
+        if (isAIProcessing) return;
+        
         var input = document.getElementById('aiChatInput'), message = prefilledText || input.value.trim();
         if(!message) return;
         
+        isAIProcessing = true;
         addChatMessage(message, 'user'); 
         if(!prefilledText) input.value = ''; 
         showTypingIndicator();
         
         var context = getBACContext(), cd = countryData[currentCountry];
-        var promptText = "You are an expert BAC & Alcohol Safety AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable safety advice in fluent English. Explain alcohol metabolism, sober timing, and legal implications for " + cd.name + " if applicable. End with: '⚠️ Never drink and drive under any circumstances.'";
+        
+        var systemPrompt = 'You are an expert BAC & Alcohol Safety AI Assistant on HealthCalc.in, a global health platform. You provide evidence-based, responsible drinking advice.\n\n' +
+            'IMPORTANT RULES:\n' +
+            '1. Always respond in clear, fluent English only\n' +
+            '2. Use structured formatting with bullet points (•) for recommendations\n' +
+            '3. Be specific - mention exact sober times, metabolism rates, legal limits\n' +
+            '4. Reference the user\'s actual BAC and country when giving advice\n' +
+            '5. Include sections: 🍺 Current Status, ⏱️ Sober Time Estimate, ⚖️ Legal Info for ' + cd.name + ', 🛡️ Safety Tips, 🚫 Myths vs Facts\n' +
+            '6. Always end with: "⚠️ Never drink and drive under any circumstances. Use taxi/ride-share or designated driver."\n' +
+            '7. Never encourage excessive drinking - always promote responsible consumption\n' +
+            '8. Keep responses under 400 words, practical and actionable';
+
+        var requestBody = {
+            model: GROQ_MODEL,
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: context + 'USER QUESTION: ' + message }
+            ],
+            temperature: 0.7,
+            max_tokens: 600,
+            top_p: 0.9
+        };
 
         try {
             var response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
+                body: JSON.stringify(requestBody)
             });
+            
+            if (!response.ok) {
+                throw new Error('Worker responded with status: ' + response.status);
+            }
             
             var data = await response.json(); 
             removeTypingIndicator();
             
-            if(data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            if(data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+                addChatMessage(data.choices[0].message.content, 'bot');
             } else { 
                 throw new Error('Invalid AI response structure'); 
             }
         } catch(e) { 
             removeTypingIndicator(); 
-            console.error('AI Error:', e); 
-            var fb = '🍺 <strong>Alcohol Safety Guidelines:</strong><br><br>• Alcohol metabolizes at an average rate of ~0.015% per hour.<br>• Eating food, drinking water, or taking showers does NOT accelerate metabolism.<br>• ' + cd.name + ' legal driving limit: ' + cd.limit.toFixed(2) + '%<br>• Always use a designated driver, taxi, or ride-share service if you have consumed alcohol.<br><br>⚠️ <em>Never drink and drive under any circumstances.</em>'; 
-            addChatMessage(fb, 'bot'); 
+            console.error('Groq AI Error:', e); 
+            var errorMessage = '❌ <strong>AI Service Temporarily Unavailable</strong><br><br>I apologize, but I\'m unable to process your request right now.<br><br><strong>Please try:</strong><br>• Refreshing the page<br>• Asking a shorter question<br>• Waiting a few moments<br><br>⚠️ Never drink and drive under any circumstances.';
+            addChatMessage(errorMessage, 'bot'); 
+        } finally {
+            isAIProcessing = false;
         }
     }
 
