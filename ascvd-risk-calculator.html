@@ -45,7 +45,7 @@
   "about": {"@type": "MedicalCondition", "name": "Atherosclerotic Cardiovascular Disease"},
   "audience": {"@type": "MedicalAudience", "audienceType": "Adults aged 40-79 worldwide"},
   "inLanguage": ["en"],
-  "dateModified": "2026-08-01"
+  "dateModified": "2026-08-09"
 }
 </script>
 
@@ -196,7 +196,7 @@ input:focus,select:focus{outline:none;border-color:var(--primary);box-shadow:0 0
 /* AI CHAT PANEL */
 .ai-chat-panel{margin:20px 0;border:2px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;background:white;transition:all 0.3s;}
 body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
-.ai-chat-header{background:linear-gradient(135deg,#dc2626,#991b1b);color:white;padding:12px 16px;display:flex;align-items:center;justify-space-between:space-between;font-weight:600;font-size:14px;}
+.ai-chat-header{background:linear-gradient(135deg,#dc2626,#991b1b);color:white;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:14px;}
 .ai-chat-header-left{display:flex;align-items:center;gap:8px}
 .ai-chat-status{font-size:10px;opacity:0.9;font-weight:400}
 .ai-chat-messages{height:220px;overflow-y:auto;padding:12px;background:#f8fafc;display:flex;flex-direction:column;gap:8px;}
@@ -254,7 +254,6 @@ body.dark .ai-chat-disclaimer{background:#0f172a;border-color:#334155}
 footer{text-align:center;padding:30px;margin-top:40px;border-top:1px solid var(--gray-200);font-size:13px;color:var(--gray-600)}
 footer a{color:var(--primary);text-decoration:none}
 
-/* Animations */
 @keyframes messageSlideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
 
@@ -442,20 +441,20 @@ footer a{color:var(--primary);text-decoration:none}
             <span>🫀</span>
             <span>Heart Health AI Assistant</span>
         </div>
-        <span class="ai-chat-status">Online · Cloudflare Secured</span>
+        <span class="ai-chat-status">Online · Groq Powered</span>
     </div>
     <div class="ai-chat-messages" id="aiChatMessages" role="log" aria-label="AI heart health chat messages">
         <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
             <strong>Hello! 👋</strong><br><br>
-            I am your specialized Heart Health AI Assistant. Adjust your health metrics above, then select a question or ask me for personalized prevention strategies based on your calculated score!
+            I am your specialized Heart Health AI Assistant powered by Groq. Adjust your health metrics above, then ask me anything about your cardiovascular health, diet plans, exercise routines, or medication guidance!
         </div>
     </div>
     <div class="ai-chat-suggestions" id="aiChatSuggestions">
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How can I lower my 10-year ASCVD risk profile?')">Lower my risk?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('What diet plans work best for lowering LDL cholesterol?')">Heart healthy diet?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('What exercise routines improve cardiovascular health efficiently?')">Best exercises?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How can I manage blood pressure without increasing medication?')">Manage BP?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('When should I consult a cardiologist based on my risk score?')">Cardiologist consult?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Based on my current ASCVD risk score, what specific lifestyle changes should I make?')">My risk plan?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What is the best diet to lower LDL cholesterol and reduce heart attack risk?')">Heart healthy diet?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What exercise routine is most effective for cardiovascular health improvement?')">Best exercises?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Explain my risk factors in detail and what each one means for my health')">Explain my risks?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('When should I see a cardiologist based on my numbers?')">See a doctor?</span>
     </div>
     <div class="ai-chat-input-row">
         <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your cardiovascular health..." aria-label="Type your heart health question" onkeypress="if(event.key==='Enter')sendAIMessage()">
@@ -510,9 +509,11 @@ footer a{color:var(--primary);text-decoration:none}
 
 <script>
     // ==============================================
-    // SECURE WORKER ENDPOINT (NO CLIENT API KEYS)
+    // SECURE WORKER ENDPOINT - Groq API Proxy
     // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+    var WORKER_URL = 'https://groq-proxy.cscneolikhurd.workers.dev/';
+    var GROQ_MODEL = 'llama-3.3-70b-versatile';
+    var isAIProcessing = false;
 
     // ===== GLOBAL STATE =====
     var currentUnit = 'mgdl';
@@ -737,14 +738,19 @@ footer a{color:var(--primary);text-decoration:none}
     })();
 
     // ==============================================
-    // AI CHAT INTEGRATION (Cloudflare Reverse Proxy)
+    // GROQ AI CHAT INTEGRATION (Cloudflare Worker Proxy)
     // ==============================================
     function addChatMessage(text, sender) {
         var messagesDiv = document.getElementById('aiChatMessages');
         var msgDiv = document.createElement('div');
         msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
         msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        text = text.replace(/\n/g, '<br>');
+        text = text.replace(/•/g, '•');
+        text = text.replace(/^- /gm, '• ');
+        msgDiv.innerHTML = text;
         messagesDiv.appendChild(msgDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
@@ -754,8 +760,11 @@ footer a{color:var(--primary);text-decoration:none}
         var typingDiv = document.createElement('div');
         typingDiv.id = 'aiTypingIndicator';
         typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
+        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px; align-items:center;';
+        typingDiv.innerHTML = '<span style="font-size:12px;color:#94a3b8;">AI is thinking</span>' +
+            '<div style="width:7px;height:7px;background:#dc2626;border-radius:50%;animation:typingBounce 1.4s infinite;"></div>' +
+            '<div style="width:7px;height:7px;background:#dc2626;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div>' +
+            '<div style="width:7px;height:7px;background:#dc2626;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
         messagesDiv.appendChild(typingDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
@@ -766,25 +775,42 @@ footer a{color:var(--primary);text-decoration:none}
     }
 
     function getASCVDContext() {
-        var risk = document.getElementById('riskPercent').innerText.replace('%','');
+        var riskPercent = document.getElementById('riskPercent').innerText;
+        var risk = riskPercent.replace('%','').replace('--','0');
         var cat = document.getElementById('riskCategory').textContent;
-        var ethnicity = document.getElementById('ethnicity').value;
+        var ethnicityEl = document.getElementById('ethnicity');
+        var ethnicity = ethnicityEl.options[ethnicityEl.selectedIndex].text;
         var age = document.getElementById('age').value;
+        var gender = document.querySelector('input[name="gender"]:checked').value;
         var sbp = document.getElementById('sbp').value;
         var chol = document.getElementById('totalChol').value;
+        var hdl = document.getElementById('hdl').value;
+        var bpMeds = document.querySelector('input[name="bpMeds"]:checked').value;
+        var diabetes = document.querySelector('input[name="diabetes"]:checked').value;
+        var smoker = document.querySelector('input[name="smoker"]:checked').value;
         var region = regionConfig[currentRegion];
         
-        if (risk !== '--') {
-            return 'Calculated 10-Year Risk: ' + risk + '% (' + cat + '). Age: ' + age + ', Systolic BP: ' + sbp + ' mmHg, Total Cholesterol: ' + chol + ' mg/dL, Ethnicity: ' + ethnicity + '. Framework: ' + region.name + '. ';
+        if (riskPercent !== '--%') {
+            return 'PATIENT PROFILE:\n' +
+                '- 10-Year ASCVD Risk: ' + risk + '% (' + cat + ')\n' +
+                '- Age: ' + age + ' years, Gender: ' + gender + '\n' +
+                '- Ethnicity: ' + ethnicity + '\n' +
+                '- Systolic BP: ' + sbp + ' mmHg (On BP Meds: ' + bpMeds + ')\n' +
+                '- Total Cholesterol: ' + chol + ' mg/dL, HDL: ' + hdl + ' mg/dL\n' +
+                '- Diabetes: ' + diabetes + ', Smoker: ' + smoker + '\n' +
+                '- Clinical Guidelines: ' + region.name + '\n\n';
         }
         return '';
     }
 
     async function sendAIMessage(prefilledText) {
+        if (isAIProcessing) return;
+        
         var input = document.getElementById('aiChatInput');
         var message = prefilledText || input.value.trim();
         if (!message) return;
         
+        isAIProcessing = true;
         addChatMessage(message, 'user');
         if (!prefilledText) input.value = '';
         showTypingIndicator();
@@ -792,37 +818,66 @@ footer a{color:var(--primary);text-decoration:none}
         var context = getASCVDContext();
         var region = regionConfig[currentRegion];
         
-        var promptText = "You are an expert Heart Health AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, clear, and actionable medical advice in fluent English. Use bullet points where appropriate. Include diet (Mediterranean/DASH), exercise, blood pressure, cholesterol advice, and clear guidance on when to consult a cardiologist based on " + region.name + " standards. End with: '⚠️ Consult a qualified cardiologist for personalized clinical diagnosis and treatment.'";
+        var systemPrompt = 'You are an expert Preventive Cardiologist and Heart Health AI Assistant on HealthCalc.in, a global health platform. You provide evidence-based, personalized cardiovascular advice following ' + region.name + ' clinical guidelines.\n\n' +
+            'IMPORTANT RULES:\n' +
+            '1. Always respond in clear, fluent English only\n' +
+            '2. Use structured formatting with bullet points (•) for recommendations\n' +
+            '3. Be specific and actionable - mention exact foods, exercise durations, target numbers\n' +
+            '4. Reference the patient\'s actual numbers when giving advice\n' +
+            '5. Include sections: 📊 Risk Analysis, 🥗 Diet Plan, 🏃 Exercise Guide, 💊 Medical Guidance, ⚠️ When to See Doctor\n' +
+            '6. Always end with: "⚠️ Disclaimer: This is educational information. Consult your cardiologist for personalized medical treatment."\n' +
+            '7. Never say "I don\'t have enough information" - use the patient profile provided\n' +
+            '8. Keep responses under 500 words, focused and practical';
+
+        var requestBody = {
+            model: GROQ_MODEL,
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: context + 'USER QUESTION: ' + message }
+            ],
+            temperature: 0.7,
+            max_tokens: 800,
+            top_p: 0.9
+        };
 
         try {
             var response = await fetch(WORKER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
+                body: JSON.stringify(requestBody)
             });
+            
+            if (!response.ok) {
+                throw new Error('Worker responded with status: ' + response.status);
+            }
             
             var data = await response.json();
             removeTypingIndicator();
             
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { 
-                throw new Error('AI response structure invalid'); 
+            if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+                var aiResponse = data.choices[0].message.content;
+                addChatMessage(aiResponse, 'bot');
+            } else {
+                throw new Error('Invalid response structure from Groq API');
             }
         } catch (error) {
             removeTypingIndicator();
-            console.error('AI Chat Error:', error);
-            var cat = document.getElementById('riskCategory').textContent;
-            var fb = '🫀 <strong>Heart Health Recommendations (' + region.name + '):</strong><br><br>';
-            if (cat.includes('High')) {
-                fb += '• Consult a cardiologist promptly for clinical evaluation.<br>• Adopt a Mediterranean or DASH dietary pattern.<br>• Engage in 150 minutes of moderate aerobic physical activity weekly.<br>• Cease tobacco use immediately.<br>• Target blood pressure control under 130/80 mmHg.<br>• Discuss preventative lipid-lowering therapies (statins) with your doctor.<br><br>';
-            } else if (cat.includes('Intermediate')) {
-                fb += '• Discuss personalized risk mitigation with your physician.<br>• Reduce saturated fat intake and increase dietary fiber.<br>• Monitor blood pressure and cholesterol at regular intervals.<br>• Engage in at least 30 minutes of daily walking.<br>• Maintain optimal weight.<br><br>';
-            } else {
-                fb += '• Maintain your current healthy lifestyle habits.<br>• Follow a balanced diet rich in whole foods and vegetables.<br>• Engage in regular aerobic exercise (150+ minutes per week).<br>• Avoid smoking and limit alcohol consumption.<br>• Schedule routine wellness check-ups.<br><br>';
-            }
-            fb += '⚠️ <em>Consult a qualified cardiologist for personalized medical diagnosis and treatment.</em>';
-            addChatMessage(fb, 'bot');
+            console.error('Groq AI Error:', error);
+            
+            var errorMessage = '❌ <strong>AI Service Temporarily Unavailable</strong><br><br>' +
+                'I apologize, but I\'m unable to process your request right now. This could be due to:<br><br>' +
+                '• High traffic volume<br>' +
+                '• Temporary service interruption<br>' +
+                '• Network connectivity issue<br><br>' +
+                '<strong>Please try:</strong><br>' +
+                '• Refreshing the page<br>' +
+                '• Asking a shorter question<br>' +
+                '• Waiting a few moments and trying again<br><br>' +
+                'Your health data is still calculated and displayed above. ⚠️ Consult your doctor for medical advice.';
+            
+            addChatMessage(errorMessage, 'bot');
+        } finally {
+            isAIProcessing = false;
         }
     }
 
