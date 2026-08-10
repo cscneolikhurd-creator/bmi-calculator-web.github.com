@@ -11,7 +11,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "llama3-70b-8192", // Groq ka advanced fast model
+        model: "llama3-70b-8192", 
         messages: [
           { role: "system", content: "You are a helpful and advanced health assistant for HealthCalc.in. Always give a disclaimer to consult a doctor." },
           { role: "user", content: userMessage }
