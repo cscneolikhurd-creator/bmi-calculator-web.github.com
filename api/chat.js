@@ -1,10 +1,22 @@
 export default async function handler(req, res) {
+  // CORS Headers (Yeh GitHub Pages se aane wali request ko allow karega)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*'); 
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+
+  // OPTIONS request handle karna browser ke liye zaroori hai
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') return res.status(405).send('Only POST allowed');
 
   const { userMessage } = req.body;
 
+  // Agar Vercel mein API key nahi daali hai toh error yahan dikhega
   if (!process.env.GROQ_API_KEY) {
-    return res.status(200).json({ reply: "❌ Vercel Error: GROQ_API_KEY missing hai. Kripya Vercel settings mein key daalein aur redeploy karein." });
+    return res.status(200).json({ reply: "❌ Backend Error: Vercel mein GROQ_API_KEY missing hai." });
   }
 
   try {
@@ -15,9 +27,9 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile", // Groq ka latest model
+        model: "llama-3.3-70b-versatile",
         messages: [
-          { role: "system", content: "You are an advanced medical AI assistant for HealthCalc.in. Answer in bullet points and be conversational. Always add a medical disclaimer." },
+          { role: "system", content: "You are an advanced medical AI assistant for HealthCalc.in. Always reply in clear bullet points. Add a disclaimer to consult a doctor." },
           { role: "user", content: userMessage }
         ]
       })
@@ -25,9 +37,8 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // Agar Groq ki taraf se API Key ya Limit ka error aata hai
     if (data.error) {
-      return res.status(200).json({ reply: `⚠️ Groq API Error: ${data.error.message}` });
+      return res.status(200).json({ reply: `⚠️ Groq Error: ${data.error.message}` });
     }
 
     res.status(200).json({ reply: data.choices[0].message.content });
