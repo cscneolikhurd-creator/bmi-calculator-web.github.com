@@ -6,7 +6,7 @@
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
 <!-- ========== SEO META TAGS ========== -->
-<title>Calorie Calculator 2026: TDEE & BMR Engine | Mifflins-St Jeor | AI Nutrition | HealthCalc</title>
+<title>Calorie Calculator 2026: TDEE & BMR Engine | Mifflin-St Jeor | HealthCalc</title>
 <meta name="description" content="Advanced TDEE & BMR Calorie Calculator using the Mifflin-St Jeor equation. Calculate daily calorie needs for weight loss, maintenance, or muscle gain with AI nutritional coaching.">
 <meta name="keywords" content="Calorie calculator, TDEE calculator, BMR calculator, daily calorie intake, calorie deficit, weight loss calculator, macro calculator, Mifflin St Jeor, AI nutrition assistant">
 <meta name="author" content="HealthCalc">
@@ -14,24 +14,11 @@
 <meta name="revisit-after" content="7 days">
 <link rel="canonical" href="https://healthcalc.in/calorie-calculator.html">
 
-<link rel="alternate" hreflang="en-us" href="https://healthcalc.in/calorie-calculator.html">
-<link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/calorie-calculator.html">
-<link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/calorie-calculator.html">
-<link rel="alternate" hreflang="en-au" href="https://healthcalc.in/calorie-calculator.html">
-<link rel="alternate" hreflang="x-default" href="https://healthcalc.in/calorie-calculator.html">
-
 <meta property="og:title" content="Calorie & TDEE Calculator | AI Nutritional Coach">
 <meta property="og:description" content="Calculate your exact BMR and TDEE daily calorie goals for weight loss, maintenance, or muscle gain with AI coaching.">
 <meta property="og:url" content="https://healthcalc.in/calorie-calculator.html">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://healthcalc.in/images/calorie-og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <meta property="og:site_name" content="HealthCalc">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Calorie & TDEE Engine - HealthCalc">
-<meta name="twitter:description" content="Calculate your daily calorie goals accurately using validated clinical equations and AI nutrition assistance.">
 
 <script type="application/ld+json">
 {
@@ -39,219 +26,311 @@
   "@type": "MedicalWebPage",
   "name": "International Calorie & TDEE Calculator with AI Assistant",
   "description": "Calculates Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) using the Mifflin-St Jeor formula alongside AI coaching.",
-  "url": "https://healthcalc.in/calorie-calculator.html",
-  "author": {"@type": "Organization", "name": "HealthCalc"},
-  "about": {"@type": "MedicalCondition", "name": "Metabolic Rate & Caloric Requirements"},
-  "inLanguage": ["en"],
-  "dateModified": "2026-08-01"
+  "url": "https://healthcalc.in/calorie-calculator.html"
 }
 </script>
 
-<link rel="stylesheet" href="global.css">
-<script src="global.js" defer></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --primary:#10b981;--primary-dark:#059669;--primary-light:#d1fae5;
-  --dark:#1e293b;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-600:#475569;
-  --radius-md:12px;--radius-lg:20px;--radius-xl:28px;
+/* --- PREMIUM CSS VARIABLES (Emerald/Green Theme for Nutrition) --- */
+:root {
+  --primary: #10b981;
+  --primary-hover: #059669;
+  --primary-light: #d1fae5;
+  --secondary: #3b82f6;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --dark: #0f172a;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+  --shadow-md: 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-hover: 0 20px 40px rgba(16, 185, 129, 0.15);
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#ecfdf5 0%,#f8fafc 50%,#f1f5f9 100%);color:var(--dark);line-height:1.5;min-height:100vh}
-body.dark{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#e2e8f0}
-body.dark .card{background:#1e293b;border-color:#334155}
-body.dark .top-nav{background:#0f172a;border-bottom-color:#334155}
-body.dark .nav-inner a{color:#94a3b8}
-body.dark input,body.dark select{background:#0f172a;border-color:#475569;color:#e2e8f0}
-body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
-body.dark .ai-chat-messages{background:#0f172a}
-body.dark .ai-message-bot{background:#1e293b;color:#e2e8f0}
-body.dark .ai-chat-input{background:#0f172a;border-color:#475569;color:#e2e8f0}
 
-.container{max-width:1100px;margin:0 auto;padding:20px}
-.top-nav{background:white;padding:12px 24px;border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:1000}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
-.nav-inner a{text-decoration:none;color:var(--gray-600);font-weight:500;font-size:14px;padding:6px 16px;border-radius:40px}
-.nav-inner a.active{background:var(--primary);color:white}
-.international-bar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--gray-200)}
-.unit-toggle{display:flex;gap:6px;background:var(--gray-100);padding:4px;border-radius:25px}
-.unit-btn{padding:6px 14px;border-radius:25px;cursor:pointer;font-weight:600;font-size:12px;background:transparent;border:none;color:var(--gray-600)}
-.unit-btn.active{background:white;box-shadow:0 1px 3px rgba(0,0,0,0.1);color:var(--primary-dark)}
+body.dark {
+  --primary-light: #064e3b;
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
 
-.hero{text-align:center;padding:30px 20px 20px}
-.hero h1{font-size:clamp(28px,5vw,42px);font-weight:800;color:var(--primary-dark);margin-bottom:8px}
-.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:20px 0}
-@media(max-width:800px){.main-grid{grid-template-columns:1fr}}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text); line-height: 1.6; min-height: 100vh; transition: var(--transition); }
 
-.card{background:white;border-radius:var(--radius-xl);padding:28px;box-shadow:0 4px 12px rgba(0,0,0,0.05);border:1px solid var(--gray-200)}
-.form-group{margin-bottom:18px}
-label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
-input,select{width:100%;padding:10px 14px;border:2px solid var(--gray-200);border-radius:var(--radius-md);font-size:15px}
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
 
-.btn-primary{background:var(--primary);color:white;border:none;padding:14px;border-radius:40px;font-size:16px;font-weight:700;cursor:pointer;width:100%;transition:all 0.2s}
-.btn-primary:hover{background:var(--primary-dark)}
+/* --- TOP NAVIGATION --- */
+.top-nav { background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; }
+.nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 14px; padding: 8px 20px; border-radius: 50px; transition: var(--transition); }
+.nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+.theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.theme-toggle-btn:hover { background: var(--primary-light); transform: rotate(15deg); }
 
-.result-box{background:var(--gray-50);padding:18px;border-radius:var(--radius-lg);margin-bottom:12px;text-align:center}
-body.dark .result-box{background:#0f172a}
-.calorie-score{font-size:42px;font-weight:800;color:var(--primary-dark)}
+/* --- INTERNATIONAL BAR --- */
+.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; background: var(--card-bg); padding: 16px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+.unit-toggle { display: flex; gap: 8px; align-items: center; }
+.unit-btn { padding: 8px 16px; border: 2px solid var(--border); border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; background: var(--card-bg); color: var(--text-muted); transition: var(--transition); }
+.unit-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-/* AI CHAT PANEL */
-.ai-chat-panel{margin-top:20px;border:2px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;background:white}
-.ai-chat-header{background:linear-gradient(135deg,#10b981,#059669);color:white;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:14px}
-.ai-chat-messages{height:200px;overflow-y:auto;padding:12px;background:var(--gray-50);display:flex;flex-direction:column;gap:8px}
-.ai-message-bot{background:white;padding:10px 14px;border-radius:12px;border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);max-width:85%;font-size:13px;align-self:flex-start}
-.ai-message-user{background:var(--primary);color:white;padding:10px 14px;border-radius:12px;border-top-right-radius:4px;max-width:85%;font-size:13px;align-self:flex-end}
-.ai-chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px;background:white;border-top:1px solid var(--gray-200)}
-.ai-suggestion-chip{background:var(--gray-100);padding:6px 12px;border-radius:15px;font-size:11px;cursor:pointer;border:1px solid var(--gray-200);color:var(--gray-600)}
-.ai-suggestion-chip:hover{background:var(--primary);color:white}
-.ai-chat-input-row{display:flex;gap:8px;padding:10px 12px;background:white;border-top:1px solid var(--gray-200)}
-.ai-chat-input{flex:1;padding:10px 14px;border:2px solid var(--gray-200);border-radius:25px;outline:none;font-size:13px}
-.ai-chat-send-btn{width:38px;height:38px;border-radius:50%;background:var(--primary);color:white;border:none;cursor:pointer}
-footer{text-align:center;padding:20px;margin-top:30px;font-size:13px;color:var(--gray-600)}
+/* --- HERO SECTION --- */
+.hero { text-align: center; padding: 30px 20px 40px; }
+.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; margin-bottom: 12px; letter-spacing: -1px; }
+.hero p { font-size: 16px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+.health-authority-note { background: var(--primary-light); color: var(--primary-hover); padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+
+/* --- MAIN CARD & FORM --- */
+.main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 30px 0; }
+@media(max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+.card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
+.section-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+.section-title i { color: var(--primary); }
+
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width: 600px) { .row-2 { grid-template-columns: 1fr; } }
+.form-group { margin-bottom: 16px; }
+label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); font-size: 14px; }
+label i { color: var(--primary); margin-right: 6px; }
+
+input, select { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 15px; background: var(--card-bg); color: var(--text); outline: none; transition: var(--transition); font-weight: 500; }
+input:focus, select:focus { border-color: var(--primary); }
+
+.calc-btn { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; border: none; padding: 18px; width: 100%; border-radius: 50px; font-size: 18px; font-weight: 800; cursor: pointer; margin-top: 20px; transition: var(--transition); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3); display: flex; justify-content: center; gap: 10px; }
+.calc-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(16, 185, 129, 0.4); }
+
+/* --- RESULTS SECTION --- */
+.result-main-box { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: var(--radius-xl); padding: 32px; color: white; text-align: center; margin-bottom: 20px; }
+.calorie-score { font-size: 56px; font-weight: 900; background: linear-gradient(135deg, #34d399, #10b981); -webkit-background-clip: text; color: transparent; margin: 5px 0; line-height: 1; }
+
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.result-sub-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 20px; text-align: center; color: white; }
+.result-sub-box.loss { border-left: 4px solid var(--danger); }
+.result-sub-box.gain { border-left: 4px solid var(--secondary); }
+.sub-val { font-size: 28px; font-weight: 800; margin: 8px 0; }
+.loss .sub-val { color: #fca5a5; }
+.gain .sub-val { color: #93c5fd; }
+
+.bmr-text { font-size: 14px; font-weight: 600; color: var(--text-muted); text-align: center; padding: 12px; background: var(--primary-light); border-radius: var(--radius-md); color: var(--primary-hover); }
+body.dark .bmr-text { background: rgba(16,185,129,0.1); color: #6ee7b7; }
+
+/* --- PREMIUM AI CHAT PANEL --- */
+.ai-chat-panel { margin-top: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.ai-chat-header { background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.2)); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.ai-chat-messages { height: 280px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
+.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; animation: slideIn 0.3s ease; }
+.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
+.ai-message-user { background: var(--primary); color: white; font-weight: 500; border-radius: 16px; border-top-right-radius: 4px; align-self: flex-end; }
+.ai-chat-suggestions { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); }
+.ai-chat-suggestions::-webkit-scrollbar { display: none; }
+.ai-suggestion-chip { background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; font-size: 12px; cursor: pointer; color: #cbd5e1; white-space: nowrap; transition: var(--transition); border: 1px solid transparent; }
+.ai-suggestion-chip:hover { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); }
+.ai-chat-input-row { display: flex; gap: 12px; padding: 16px; background: rgba(0,0,0,0.4); }
+.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 14px; outline: none; transition: var(--transition); }
+.ai-chat-input:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
+.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+.ai-chat-send-btn:hover { background: var(--primary-hover); transform: scale(1.05); }
+.ai-chat-disclaimer { padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.5); }
+
+/* Animations */
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.typing-dots { display: flex; gap: 4px; padding: 4px; }
+.typing-dots div { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+.typing-dots div:nth-child(1) { animation-delay: -0.32s; }
+.typing-dots div:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 </style>
 </head>
 <body>
 
-<nav class="top-nav">
-<div class="nav-inner">
-<a href="index.html"><i class="fas fa-home"></i> Home</a>
-<a href="bmi-calculator.html"><i class="fas fa-weight-scale"></i> BMI</a>
-<a href="calorie-calculator.html" class="active"><i class="fas fa-utensils"></i> Calories</a>
-<a href="body-fat-calculator.html"><i class="fas fa-person"></i> Body Fat</a>
-<a href="ascvd-risk-calculator.html"><i class="fas fa-heartbeat"></i> ASCVD Risk</a>
-</div>
-</nav>
-
 <div class="container">
 
-<div class="international-bar">
+  <!-- Premium Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="ascvd-risk-calculator.html"><i class="fas fa-heartbeat"></i> ASCVD Risk</a>
+      <a href="bac-calculator.html"><i class="fas fa-wine-bottle"></i> BAC</a>
+      <a href="calorie-calculator.html" class="active"><i class="fas fa-utensils"></i> Calories</a>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </nav>
+
+  <div class="international-bar">
+    <div style="font-weight: 600; color: var(--text);"><i class="fas fa-gear"></i> System Preferences</div>
     <div class="unit-toggle">
-        <button class="unit-btn active" data-unit="metric">Metric (kg/cm)</button>
-        <button class="unit-btn" data-unit="imperial">Imperial (lbs/in)</button>
+      <button class="unit-btn active" data-unit="metric">Metric (kg/cm)</button>
+      <button class="unit-btn" data-unit="imperial">Imperial (lbs/in)</button>
     </div>
-    <div class="theme-toggle">
-        <button class="theme-option" onclick="document.body.classList.toggle('dark')">☀️ / 🌙</button>
-    </div>
-</div>
+  </div>
 
-<header class="hero">
-<h1>Calorie & TDEE Calculator</h1>
-<p>Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) with AI-driven nutritional guidance.</p>
-</header>
+  <header class="hero">
+    <div class="health-authority-note"><i class="fas fa-shield-halved"></i> Mifflin-St Jeor Equation</div>
+    <h1>Premium Calorie & TDEE Engine</h1>
+    <p>Calculate your daily energy expenditure accurately for weight loss, maintenance, or muscle gain. Paired with a smart Nutrition AI.</p>
+  </header>
 
-<main class="main-grid">
-
-<div class="card">
-<h2 style="font-size:18px;margin-bottom:20px;"><i class="fas fa-sliders"></i> Metabolic Profile</h2>
-
-<div class="form-group">
-    <label for="gender"><i class="fas fa-venus-mars"></i> Biological Sex</label>
-    <select id="gender">
-        <option value="male">👨 Male</option>
-        <option value="female">👩 Female</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="age"><i class="fas fa-calendar"></i> Age (Years)</label>
-    <input type="number" id="age" value="30" min="15" max="100">
-</div>
-
-<div id="metricInputs">
-    <div class="form-group">
-        <label for="heightCm"><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
-        <input type="number" id="heightCm" value="175" min="50" max="250">
-    </div>
-    <div class="form-group">
-        <label for="weightKg"><i class="fas fa-weight-scale"></i> Weight (kg)</label>
-        <input type="number" id="weightKg" value="70" min="20" max="300">
-    </div>
-</div>
-
-<div id="imperialInputs" style="display:none;">
-    <div class="form-group">
-        <label for="heightIn"><i class="fas fa-ruler-vertical"></i> Height (inches)</label>
-        <input type="number" id="heightIn" value="69" min="20" max="100">
-    </div>
-    <div class="form-group">
-        <label for="weightLbs"><i class="fas fa-weight-scale"></i> Weight (lbs)</label>
-        <input type="number" id="weightLbs" value="154" min="40" max="700">
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="activity"><i class="fas fa-person-running"></i> Activity Level</label>
-    <select id="activity">
-        <option value="1.2">Sedentary (Little to no exercise)</option>
-        <option value="1.375">Lightly Active (Exercise 1-3 days/week)</option>
-        <option value="1.55" selected>Moderately Active (Exercise 3-5 days/week)</option>
-        <option value="1.725">Very Active (Exercise 6-7 days/week)</option>
-        <option value="1.9">Extra Active (Intense work or training twice daily)</option>
-    </select>
-</div>
-
-<button type="button" class="btn-primary" onclick="calculateCalories()"><i class="fas fa-calculator"></i> Calculate Calories</button>
-</div>
-
-<div class="card">
-<h2 style="font-size:18px;margin-bottom:20px;"><i class="fas fa-fire"></i> Daily Calorie Goals</h2>
-
-<div class="result-box">
-    <div style="font-size:13px;color:#64748b;">Weight Maintenance (TDEE)</div>
-    <div class="calorie-score" id="tdeeVal">2,284</div>
-    <div style="font-size:12px;color:#64748b;">Calories/day</div>
-</div>
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-    <div class="result-box" style="border-left:4px solid #ef4444;">
-        <div style="font-size:11px;color:#64748b;">Weight Loss (-0.5 kg/wk)</div>
-        <div style="font-size:22px;font-weight:700;color:#ef4444;" id="lossVal">1,784</div>
-        <div style="font-size:10px;color:#64748b;">Cal/day</div>
-    </div>
-    <div class="result-box" style="border-left:4px solid #3b82f6;">
-        <div style="font-size:11px;color:#64748b;">Muscle Gain (+0.25 kg/wk)</div>
-        <div style="font-size:22px;font-weight:700;color:#3b82f6;" id="gainVal">2,534</div>
-        <div style="font-size:10px;color:#64748b;">Cal/day</div>
-    </div>
-</div>
-
-<div style="font-size:12px;text-align:center;color:#64748b;margin-top:6px;" id="bmrText">Basal Metabolic Rate (BMR): 1,650 Cal/day</div>
-
-<!-- AI CHAT PANEL -->
-<div class="ai-chat-panel">
-    <div class="ai-chat-header">
-        <span>🥗 Nutrition & TDEE AI Assistant</span>
-        <span style="font-size:10px;opacity:0.9;">Cloudflare Secured</span>
-    </div>
-    <div class="ai-chat-messages" id="aiChatMessages">
-        <div class="ai-message-bot">
-            <strong>Hello! 👋</strong><br>I'm your Nutrition & Metabolism AI Assistant. Calculate your daily calories above, then ask me for meal plans, macro splits, or deficit strategies!
+  <main class="main-grid">
+    <!-- LEFT COLUMN: INPUTS -->
+    <div class="card">
+      <div class="section-title"><i class="fas fa-sliders"></i> Metabolic Profile</div>
+      
+      <div class="row-2">
+        <div class="form-group">
+          <label for="gender"><i class="fas fa-venus-mars"></i> Biological Sex</label>
+          <select id="gender">
+            <option value="male">👨 Male</option>
+            <option value="female">👩 Female</option>
+          </select>
         </div>
-    </div>
-    <div class="ai-chat-suggestions">
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('What macronutrient ratio (protein/carbs/fat) should I use?')">Macro ratio recommendation?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How can I create a sustainable calorie deficit without feeling hungry?')">Sustainable calorie deficit?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('What are the best foods for maintaining muscle while losing weight?')">High protein meal ideas?</span>
-    </div>
-    <div class="ai-chat-input-row">
-        <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about macros, diet plans, or TDEE..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-        <button class="ai-chat-send-btn" onclick="sendAIMessage()">➤</button>
-    </div>
-</div>
+        <div class="form-group">
+          <label for="age"><i class="fas fa-calendar"></i> Age (Years)</label>
+          <input type="number" id="age" value="30" min="15" max="100">
+        </div>
+      </div>
 
-</div>
-</main>
+      <div id="metricInputs">
+        <div class="row-2">
+          <div class="form-group">
+            <label for="heightCm"><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
+            <input type="number" id="heightCm" value="175" min="50" max="250">
+          </div>
+          <div class="form-group">
+            <label for="weightKg"><i class="fas fa-weight-scale"></i> Weight (kg)</label>
+            <input type="number" id="weightKg" value="70" min="20" max="300">
+          </div>
+        </div>
+      </div>
 
-<footer role="contentinfo">
-<p>© 2026 HealthCalc.in — Free Metabolism & TDEE Engine. Always consult a nutritionist or doctor for specialized diets.</p>
-</footer>
+      <div id="imperialInputs" style="display:none;">
+        <div class="row-2">
+          <div class="form-group">
+            <label for="heightIn"><i class="fas fa-ruler-vertical"></i> Height (inches)</label>
+            <input type="number" id="heightIn" value="69" min="20" max="100">
+          </div>
+          <div class="form-group">
+            <label for="weightLbs"><i class="fas fa-weight-scale"></i> Weight (lbs)</label>
+            <input type="number" id="weightLbs" value="154" min="40" max="700">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="activity"><i class="fas fa-person-running"></i> Activity Level</label>
+        <select id="activity">
+          <option value="1.2">Sedentary (Little to no exercise)</option>
+          <option value="1.375">Lightly Active (Exercise 1-3 days/wk)</option>
+          <option value="1.55" selected>Moderately Active (Exercise 3-5 days/wk)</option>
+          <option value="1.725">Very Active (Exercise 6-7 days/wk)</option>
+          <option value="1.9">Extra Active (Intense training twice daily)</option>
+        </select>
+      </div>
+
+      <button type="button" class="calc-btn" onclick="calculateCalories()"><i class="fas fa-calculator"></i> Calculate Calories</button>
+    </div>
+
+    <!-- RIGHT COLUMN: OUTPUT & AI -->
+    <div class="card">
+      <div class="section-title"><i class="fas fa-fire"></i> Daily Calorie Goals</div>
+
+      <div class="result-main-box">
+        <div style="font-size:14px; opacity:0.8; font-weight:500;">Weight Maintenance (TDEE)</div>
+        <div class="calorie-score" id="tdeeVal">2,284</div>
+        <div style="font-size:13px; opacity:0.8;">Calories / day</div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-sub-box loss">
+          <div style="font-size:12px; opacity:0.8;">Weight Loss (-0.5kg/wk)</div>
+          <div class="sub-val" id="lossVal">1,784</div>
+          <div style="font-size:11px; opacity:0.8;">Cal/day</div>
+        </div>
+        <div class="result-sub-box gain">
+          <div style="font-size:12px; opacity:0.8;">Muscle Gain (+0.25kg/wk)</div>
+          <div class="sub-val" id="gainVal">2,534</div>
+          <div style="font-size:11px; opacity:0.8;">Cal/day</div>
+        </div>
+      </div>
+
+      <div class="bmr-text" id="bmrText">Basal Metabolic Rate (BMR): 1,650 Cal/day</div>
+
+      <!-- PREMIUM AI CHAT PANEL -->
+      <div class="ai-chat-panel" id="aiChatPanel">
+        <div class="ai-chat-header">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <i class="fas fa-robot" style="color:var(--primary-light);"></i>
+            <span>Nutrition AI Coach</span>
+          </div>
+          <span style="font-size:10px; background:rgba(16,185,129,0.2); color:#6ee7b7; padding:4px 10px; border-radius:20px;">Vercel Secured</span>
+        </div>
+        
+        <div class="ai-chat-messages" id="aiChatMessages">
+          <div class="ai-message ai-message-bot">
+            <strong>Hello! 👋</strong><br><br>I'm your Nutrition AI Coach. Calculate your TDEE above, then ask me for personalized meal plans, macro splits, or deficit strategies based on your exact calorie targets!
+          </div>
+        </div>
+        
+        <div class="ai-chat-suggestions">
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('What macronutrient ratio (protein/carbs/fat) should I use for weight loss?')">📊 Macro Ratio?</div>
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('Can you give me a simple 1-day high protein meal plan for my target calories?')">🥗 1-Day Meal Plan</div>
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('How can I create a sustainable calorie deficit without feeling hungry?')">🛡️ Avoid Hunger?</div>
+        </div>
+        
+        <div class="ai-chat-input-row">
+          <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about macros, diet plans, or TDEE..." onkeypress="if(event.key==='Enter')sendAIMessage()">
+          <button class="ai-chat-send-btn" onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="ai-chat-disclaimer">⚠️ Educational only. Consult a registered dietitian for medical nutrition therapy.</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer role="contentinfo" style="text-align:center; padding:20px; margin-top:30px; font-size:13px; color:var(--text-muted);">
+    <p>© 2026 HealthCalc.in — Free Metabolism & TDEE Engine. Always consult a nutritionist or doctor for specialized diets.</p>
+  </footer>
 
 </div>
 
 <script>
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+    // ==============================================
+    // THEME MANAGEMENT
+    // ==============================================
+    function initTheme() { 
+        var s = localStorage.getItem('hc_theme') || 'light'; 
+        document.body.classList.toggle('dark', s === 'dark'); 
+        updateThemeIcon(s);
+    }
+    function toggleTheme() { 
+        var isDark = document.body.classList.contains('dark');
+        var newTheme = isDark ? 'light' : 'dark';
+        localStorage.setItem('hc_theme', newTheme); 
+        document.body.classList.toggle('dark', !isDark); 
+        updateThemeIcon(newTheme);
+    }
+    function updateThemeIcon(theme) {
+        var btn = document.getElementById('themeToggleBtn');
+        if(btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    initTheme();
+
+    // ==============================================
+    // CALCULATOR LOGIC & UNITS
+    // ==============================================
     var currentUnit = 'metric';
 
     function setUnit(unit) {
@@ -293,47 +372,85 @@ footer{text-align:center;padding:20px;margin-top:30px;font-size:13px;color:var(-
         document.getElementById('bmrText').innerText = `Basal Metabolic Rate (BMR): ${bmrRound.toLocaleString()} Cal/day`;
     }
 
+    // Auto-calculate on load and input change
+    ['age', 'heightCm', 'weightKg', 'heightIn', 'weightLbs', 'gender', 'activity'].forEach(id => {
+        document.getElementById(id).addEventListener('input', calculateCalories);
+        document.getElementById(id).addEventListener('change', calculateCalories);
+    });
+    window.addEventListener('load', calculateCalories);
+
+    // ==============================================
+    // VERCEL SECURE AI CHAT INTEGRATION (/api/chat)
+    // ==============================================
+    var isAIProcessing = false;
+
     function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        var md = document.getElementById('aiChatMessages'), msgDiv = document.createElement('div');
+        msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
+        msgDiv.style.animation = 'slideIn 0.3s ease';
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        text = text.replace(/\n/g, '<br>');
+        msgDiv.innerHTML = text;
+        md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
+    }
+    
+    function showTypingIndicator() {
+        var md = document.getElementById('aiChatMessages'), td = document.createElement('div');
+        td.id = 'aiTypingIndicator'; td.className = 'ai-message ai-message-bot'; 
+        td.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
+        md.appendChild(td); md.scrollTop = md.scrollHeight;
+    }
+    
+    function removeTypingIndicator() { 
+        var t = document.getElementById('aiTypingIndicator'); 
+        if(t) t.remove(); 
     }
 
     async function sendAIMessage(prefilledText) {
+        if (isAIProcessing) return;
+
         var input = document.getElementById('aiChatInput');
         var message = prefilledText || input.value.trim();
         if(!message) return;
 
+        isAIProcessing = true;
         addChatMessage(message, 'user');
         if(!prefilledText) input.value = '';
+        showTypingIndicator();
 
         let tdee = document.getElementById('tdeeVal').innerText;
         let bmr = document.getElementById('bmrText').innerText;
+        let loss = document.getElementById('lossVal').innerText;
+        let gain = document.getElementById('gainVal').innerText;
 
-        let promptText = `You are an expert Nutrition AI Assistant on HealthCalc.in. User Context: Calculated TDEE=${tdee} Cal/day, ${bmr}. User Question: ${message}. Provide structured, clear, and encouraging advice in fluent English. End with: "⚠️ Consult a registered dietitian for personalized nutrition planning."`;
+        // Properly formatted payload for the Vercel backend
+        let promptContext = `[PATIENT PROFILE - Maintenance/TDEE: ${tdee} Cal/day, Weight Loss Target: ${loss} Cal/day, Muscle Gain Target: ${gain} Cal/day, ${bmr}]\n\nPlease act as an expert Nutrition AI Coach. Answer the following question based on my exact calorie targets. Keep answers structured and concise using bullet points. Always end with: '⚠️ Consult a registered dietitian for personalized medical nutrition.'\n\nUSER QUESTION: ${message}`;
 
         try {
+            // ✅ CONNECTED TO YOUR SECURE VERCEL BACKEND
             var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
+                body: JSON.stringify({ userMessage: promptContext }) // Fixed payload mapping!
             });
 
             var data = await response.json();
-            if(data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+            removeTypingIndicator();
+
+            if(data.reply) {
+                addChatMessage(data.reply, 'bot');
             } else {
                 throw new Error('Invalid response');
             }
         } catch(e) {
-            addChatMessage(`🥗 <strong>Nutritional Guidance:</strong><br>• Protein: Aim for 1.6-2.2g per kg of body weight for muscle retention.<br>• Healthy Fats: Include avocados, nuts, and olive oil.<br>• Hydration: Drink 2.5-3.5 liters of water daily.<br><br>⚠️ <em>Consult a registered dietitian for personalized nutrition planning.</em>`, 'bot');
+            removeTypingIndicator();
+            console.error('API Error:', e);
+            addChatMessage('❌ <strong>Network Error</strong><br>Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Consult a registered dietitian.', 'bot');
+        } finally {
+            isAIProcessing = false;
         }
     }
-
-    calculateCalories();
 </script>
 </body>
 </html>
