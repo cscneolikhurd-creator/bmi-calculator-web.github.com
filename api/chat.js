@@ -1,11 +1,12 @@
+// api/chat.js
 export default async function handler(req, res) {
-  // CORS Headers (Yeh GitHub Pages se aane wali request ko allow karega)
+  // CORS Headers (GitHub Pages se request allow karne ke liye)
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*'); 
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-  // OPTIONS request handle karna browser ke liye zaroori hai
+  // OPTIONS request handle karna (Pre-flight check)
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -14,9 +15,9 @@ export default async function handler(req, res) {
 
   const { userMessage } = req.body;
 
-  // Agar Vercel mein API key nahi daali hai toh error yahan dikhega
+  // Error handling agar Vercel mein API key nahi hai
   if (!process.env.GROQ_API_KEY) {
-    return res.status(200).json({ reply: "❌ Backend Error: Vercel mein GROQ_API_KEY missing hai." });
+    return res.status(200).json({ reply: "❌ Backend Error: Vercel mein GROQ_API_KEY missing hai. Kripya Environment Variables check karein." });
   }
 
   try {
@@ -27,9 +28,12 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        model: "llama-3.3-70b-versatile", // Sabse fast aur smart model
         messages: [
-          { role: "system", content: "You are an advanced medical AI assistant for HealthCalc.in. Always reply in clear bullet points. Add a disclaimer to consult a doctor." },
+          { 
+            role: "system", 
+            content: "You are an advanced medical AI assistant for HealthCalc.in. Always reply in clear bullet points. Keep answers concise. Always add a disclaimer to consult a doctor." 
+          },
           { role: "user", content: userMessage }
         ]
       })
