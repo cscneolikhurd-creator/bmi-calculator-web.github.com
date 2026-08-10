@@ -557,7 +557,7 @@ async function sendAIMessage(prefilledText) {
     var systemPrompt = "You are an expert Preventive Cardiologist AI for HealthCalc. Provide clear, structured advice in bullet points. Always reference the patient's numbers. End with: '⚠️ Consult a doctor for medical advice.'";
 
     try {
-        var response = await fetch(WORKER_URL, {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
