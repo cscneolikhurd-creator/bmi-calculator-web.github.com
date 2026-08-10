@@ -625,16 +625,18 @@ input:focus, select:focus { border-color: var(--primary); }
         // Connect to your secure Vercel backend. No external proxy!
         var promptContext = context + "Act as an expert BAC AI Assistant. Provide responsible advice based on my BAC and country (" + cd.name + "). Keep answers short. Always end with: '⚠️ Never drink and drive.'\n\nUSER QUESTION: " + message;
 
-        try {
-           var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+     try {
+            // ✅ DIRECT VERCEL URL (Cross-Origin Setup)
+            var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userMessage: promptContext })
+                body: JSON.stringify({ userMessage: promptContext }) // Agar Index page hai toh promptContext ki jagah 'message' hoga
             });
             
             var data = await response.json(); 
             removeTypingIndicator();
             
+            // ✅ Naya Backend data.reply bhejta hai
             if(data.reply) {
                 addChatMessage(data.reply, 'bot');
             } else { 
@@ -642,11 +644,12 @@ input:focus, select:focus { border-color: var(--primary); }
             }
         } catch(e) { 
             removeTypingIndicator(); 
-            addChatMessage('❌ <strong>Network Error</strong><br>Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Never drink and drive.', 'bot'); 
+            console.error('Fetch Error:', e); 
+            addChatMessage('❌ <strong>Connection Error</strong><br>Vercel backend se connect nahi ho pa raha hai. Kripya check karein ki `api/chat.js` Vercel par live hai.<br><br>⚠️ Consult your doctor.', 'bot'); 
         } finally {
             isAIProcessing = false;
         }
-    }
+      
 </script>
 </body>
 </html>
