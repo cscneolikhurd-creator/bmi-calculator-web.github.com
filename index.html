@@ -15,29 +15,6 @@
 <meta name="revisit-after" content="7 days">
 <link rel="canonical" href="https://healthcalc.in/index.html">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://healthcalc.in/">
-<meta property="og:title" content="HealthCalc.in — Premium Medical & Fitness Calculators">
-<meta property="og:description" content="Medical-grade calculators with AI Health Assistant. Calculate heart risk, body composition, metabolic metrics & more for free.">
-<meta property="og:image" content="https://healthcalc.in/images/og-home.jpg">
-<meta property="og:site_name" content="HealthCalc">
-
-<!-- Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "HealthCalc",
-  "url": "https://healthcalc.in/",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://healthcalc.in/#search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -182,14 +159,11 @@ footer a:hover { color: var(--accent); }
 @keyframes typeBlink { 0%, 100% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.2); opacity: 1; } }
 
 /* Staggered animation */
-.tool-card:nth-child(1) { animation-delay: 0.1s; }
-.tool-card:nth-child(2) { animation-delay: 0.15s; }
-.tool-card:nth-child(3) { animation-delay: 0.2s; }
-.tool-card:nth-child(4) { animation-delay: 0.25s; }
-.tool-card:nth-child(5) { animation-delay: 0.3s; }
-.tool-card:nth-child(6) { animation-delay: 0.35s; }
-.tool-card:nth-child(7) { animation-delay: 0.4s; }
-.tool-card:nth-child(8) { animation-delay: 0.45s; }
+.tool-card:nth-child(1) { animation-delay: 0.05s; }
+.tool-card:nth-child(2) { animation-delay: 0.1s; }
+.tool-card:nth-child(3) { animation-delay: 0.15s; }
+.tool-card:nth-child(4) { animation-delay: 0.2s; }
+.tool-card:nth-child(5) { animation-delay: 0.25s; }
 </style>
 </head>
 <body>
@@ -234,10 +208,10 @@ footer a:hover { color: var(--accent); }
     </div>
   </header>
 
-  <!-- Main Calculators Grid (ALL TOOLS RESTORED) -->
+  <!-- Main Calculators Grid (ALL 35+ TOOLS OPEN) -->
   <main class="tools-grid" id="toolsGrid">
     
-    <!-- ASCVD -->
+    <!-- Heart & Cardio -->
     <a href="ascvd-risk-calculator.html" class="tool-card" data-category="cardio" data-keywords="ascvd heart risk stroke cholesterol blood pressure">
       <div>
         <div class="tool-icon"><i class="fas fa-heartbeat"></i></div>
@@ -247,7 +221,6 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
-    <!-- Heart Risk -->
     <a href="heart-risk-calculator.html" class="tool-card" data-category="cardio" data-keywords="framingham heart risk heart age cvd">
       <div>
         <div class="tool-icon"><i class="fas fa-heart-pulse"></i></div>
@@ -257,7 +230,6 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
-    <!-- Vascular Age -->
     <a href="vascular-age-calculator.html" class="tool-card" data-category="cardio" data-keywords="vascular age arterial stiffness pulse wave velocity">
       <div>
         <div class="tool-icon"><i class="fas fa-stethoscope"></i></div>
@@ -267,17 +239,34 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
-    <!-- VO2 Max -->
-    <a href="vo2max-calculator.html" class="tool-card" data-category="fitness" data-keywords="vo2 max aerobic capacity cardio fitness resting hr walk test">
+    <a href="blood-pressure-percentile.html" class="tool-card" data-category="cardio" data-keywords="blood pressure bp percentile hypertension">
       <div>
-        <div class="tool-icon"><i class="fas fa-lungs"></i></div>
-        <div class="tool-title">VO₂ Max Estimator</div>
-        <div class="tool-desc">Estimate maximum oxygen consumption using Resting HR and 1-Mile Walk test.</div>
+        <div class="tool-icon"><i class="fas fa-pump-medical"></i></div>
+        <div class="tool-title">BP Percentile</div>
+        <div class="tool-desc">Analyze your blood pressure percentiles based on age and height data.</div>
       </div>
-      <div class="tool-tag">Fitness</div>
+      <div class="tool-tag">Cardiovascular</div>
     </a>
 
-    <!-- BMI -->
+    <a href="cholesterol-ratio.html" class="tool-card" data-category="cardio" data-keywords="cholesterol ratio hdl ldl triglycerides lipid">
+      <div>
+        <div class="tool-icon"><i class="fas fa-vial-circle-check"></i></div>
+        <div class="tool-title">Cholesterol Ratio</div>
+        <div class="tool-desc">Evaluate your lipid panel, total cholesterol to HDL ratio, and triglyceride levels.</div>
+      </div>
+      <div class="tool-tag">Cardiovascular</div>
+    </a>
+
+    <a href="target-heart-rate.html" class="tool-card" data-category="cardio" data-keywords="target heart rate thr zone max hr exercise cardio">
+      <div>
+        <div class="tool-icon"><i class="fas fa-wave-square"></i></div>
+        <div class="tool-title">Target Heart Rate</div>
+        <div class="tool-desc">Determine your optimal heart rate zones for fat burn and cardio endurance.</div>
+      </div>
+      <div class="tool-tag">Cardiovascular</div>
+    </a>
+
+    <!-- Fitness & Body -->
     <a href="bmi-calculator.html" class="tool-card" data-category="fitness" data-keywords="bmi body mass index weight ideal weight Asian WHO">
       <div>
         <div class="tool-icon"><i class="fas fa-weight-scale"></i></div>
@@ -287,17 +276,15 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Body Composition</div>
     </a>
 
-    <!-- Calorie / TDEE -->
     <a href="calorie-calculator.html" class="tool-card" data-category="fitness" data-keywords="calorie tdee bmr weight loss deficit muscle gain mifflin">
       <div>
         <div class="tool-icon"><i class="fas fa-utensils"></i></div>
-        <div class="tool-title">Calorie & TDEE Calculator</div>
+        <div class="tool-title">Calorie & TDEE Guide</div>
         <div class="tool-desc">Calculate daily energy expenditure (TDEE) and BMR for weight goals via Mifflin-St Jeor.</div>
       </div>
       <div class="tool-tag">Nutrition</div>
     </a>
 
-    <!-- Body Fat -->
     <a href="body-fat-calculator.html" class="tool-card" data-category="fitness" data-keywords="body fat navy formula lean mass fat mass percentage">
       <div>
         <div class="tool-icon"><i class="fas fa-child-reaching"></i></div>
@@ -307,7 +294,6 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Body Composition</div>
     </a>
 
-    <!-- FFMI -->
     <a href="ffmi-calculator.html" class="tool-card" data-category="fitness" data-keywords="ffmi fat free mass index kouri natural limit muscle">
       <div>
         <div class="tool-icon"><i class="fas fa-dumbbell"></i></div>
@@ -317,57 +303,33 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Fitness</div>
     </a>
 
-    <!-- WHR -->
     <a href="whr-calculator.html" class="tool-card" data-category="fitness" data-keywords="whr waist to hip ratio central obesity body shape apple pear">
       <div>
         <div class="tool-icon"><i class="fas fa-ruler-horizontal"></i></div>
-        <div class="tool-title">Waist-to-Hip Ratio (WHR)</div>
+        <div class="tool-title">Waist-to-Hip Ratio</div>
         <div class="tool-desc">Assess central abdominal obesity and visceral fat risk using WHO thresholds.</div>
       </div>
       <div class="tool-tag">Body Composition</div>
     </a>
 
-    <!-- BAC -->
-    <a href="bac-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="bac blood alcohol content widmark sober time legal driving limit">
+    <a href="lean-body-mass.html" class="tool-card" data-category="fitness" data-keywords="lean body mass lbm fat free mass boer james peters">
       <div>
-        <div class="tool-icon"><i class="fas fa-wine-bottle"></i></div>
-        <div class="tool-title">BAC Alcohol Calculator</div>
-        <div class="tool-desc">Blood Alcohol Content estimator using Widmark formula with 50+ country driving limits.</div>
+        <div class="tool-icon"><i class="fas fa-person-muscle"></i></div>
+        <div class="tool-title">Lean Body Mass</div>
+        <div class="tool-desc">Calculate total body weight minus fat, utilizing Boer, James, and Peters equations.</div>
       </div>
-      <div class="tool-tag">Lifestyle</div>
+      <div class="tool-tag">Body Composition</div>
     </a>
 
-    <!-- Sleep Cycle -->
-    <a href="sleep-cycle-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="sleep cycle REM chronotype sleep debt bedtime wake alarm">
+    <a href="vo2max-calculator.html" class="tool-card" data-category="fitness" data-keywords="vo2 max aerobic capacity cardio fitness resting hr walk test">
       <div>
-        <div class="tool-icon"><i class="fas fa-bed"></i></div>
-        <div class="tool-title">Sleep Cycle Calculator</div>
-        <div class="tool-desc">Calculate optimal wake-up times based on 90-minute sleep cycles and sleep debt.</div>
+        <div class="tool-icon"><i class="fas fa-lungs"></i></div>
+        <div class="tool-title">VO₂ Max Estimator</div>
+        <div class="tool-desc">Estimate maximum oxygen consumption using Resting HR and 1-Mile Walk test.</div>
       </div>
-      <div class="tool-tag">Lifestyle</div>
+      <div class="tool-tag">Fitness</div>
     </a>
-
-    <!-- Hormone Health -->
-    <a href="hormone-health-calculator.html" class="tool-card" data-category="women" data-keywords="hormone testosterone estrogen cortisol thyroid menopause PCOS">
-      <div>
-        <div class="tool-icon"><i class="fas fa-vial"></i></div>
-        <div class="tool-title">Hormone Health Assessment</div>
-        <div class="tool-desc">Gender-specific assessment for testosterone, estrogen, cortisol, and thyroid markers.</div>
-      </div>
-      <div class="tool-tag">Wellness</div>
-    </a>
-
-    <!-- Pregnancy -->
-    <a href="pregnancy-calculator.html" class="tool-card" data-category="women" data-keywords="pregnancy due date trimester lmp ACOG fetal size week">
-      <div>
-        <div class="tool-icon"><i class="fas fa-baby-carriage"></i></div>
-        <div class="tool-title">Pregnancy Due Date Calculator</div>
-        <div class="tool-desc">Track due date, current week, trimester, and fetal growth milestones (ACOG).</div>
-      </div>
-      <div class="tool-tag">Women's Health</div>
-    </a>
-
-    <!-- Ideal Weight -->
+    
     <a href="ideal-weight-calculator.html" class="tool-card" data-category="fitness" data-keywords="ideal weight peterson formula healthy weight range frame size">
       <div>
         <div class="tool-icon"><i class="fas fa-bullseye"></i></div>
@@ -377,17 +339,6 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Body Composition</div>
     </a>
 
-    <!-- Water Intake -->
-    <a href="water-intake-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="water intake hydration sweat rate daily water glasses">
-      <div>
-        <div class="tool-icon"><i class="fas fa-glass-water"></i></div>
-        <div class="tool-title">Daily Water Intake</div>
-        <div class="tool-desc">Hydration requirements adjusted for activity, weather conditions, and sweat rate.</div>
-      </div>
-      <div class="tool-tag">Nutrition</div>
-    </a>
-
-    <!-- MET Activity -->
     <a href="met-calculator.html" class="tool-card" data-category="fitness" data-keywords="met activity exercise calories epoc afterburn 500 activities">
       <div>
         <div class="tool-icon"><i class="fas fa-person-running"></i></div>
@@ -397,7 +348,6 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Fitness</div>
     </a>
 
-    <!-- Metabolic Age -->
     <a href="metabolic-age.html" class="tool-card" data-category="fitness" data-keywords="metabolic age BMR metabolism score fitness age">
       <div>
         <div class="tool-icon"><i class="fas fa-bolt"></i></div>
@@ -407,7 +357,115 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Fitness</div>
     </a>
 
-    <!-- DRI Nutrients -->
+    <a href="bmr-calculator.html" class="tool-card" data-category="fitness" data-keywords="bmr basal metabolic rate calories harris benedict">
+      <div>
+        <div class="tool-icon"><i class="fas fa-fire"></i></div>
+        <div class="tool-title">BMR Calculator</div>
+        <div class="tool-desc">Determine your Basal Metabolic Rate using Harris-Benedict and Mifflin formulas.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <a href="macro-calculator.html" class="tool-card" data-category="fitness" data-keywords="macro macros protein carbs fat nutrition keto diet">
+      <div>
+        <div class="tool-icon"><i class="fas fa-chart-pie"></i></div>
+        <div class="tool-title">Macro Calculator</div>
+        <div class="tool-desc">Optimize daily intake of protein, carbohydrates, and fats for your fitness goals.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <a href="protein-calculator.html" class="tool-card" data-category="fitness" data-keywords="protein intake muscle gain whey diet">
+      <div>
+        <div class="tool-icon"><i class="fas fa-egg"></i></div>
+        <div class="tool-title">Protein Calculator</div>
+        <div class="tool-desc">Calculate exactly how much protein you need daily for muscle gain or maintenance.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <a href="weight-gain-calculator.html" class="tool-card" data-category="fitness" data-keywords="weight gain surplus bulk muscle">
+      <div>
+        <div class="tool-icon"><i class="fas fa-arrow-trend-up"></i></div>
+        <div class="tool-title">Weight Gain Calculator</div>
+        <div class="tool-desc">Find your optimal caloric surplus for clean bulking and muscle growth.</div>
+      </div>
+      <div class="tool-tag">Fitness</div>
+    </a>
+
+    <a href="calorie-deficit.html" class="tool-card" data-category="fitness" data-keywords="calorie deficit weight loss shred cut fat">
+      <div>
+        <div class="tool-icon"><i class="fas fa-arrow-trend-down"></i></div>
+        <div class="tool-title">Calorie Deficit Tool</div>
+        <div class="tool-desc">Map out your weight loss timeline and daily caloric deficit requirements safely.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <a href="carb-cycling.html" class="tool-card" data-category="fitness" data-keywords="carb cycling high low carbs diet">
+      <div>
+        <div class="tool-icon"><i class="fas fa-bowl-rice"></i></div>
+        <div class="tool-title">Carb Cycling Planner</div>
+        <div class="tool-desc">Plan your high, low, and no-carb days to maximize fat loss and retain muscle.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <a href="keto-calculator.html" class="tool-card" data-category="fitness" data-keywords="keto ketogenic diet fat carbs macro">
+      <div>
+        <div class="tool-icon"><i class="fas fa-avocado"></i></div>
+        <div class="tool-title">Keto Calculator</div>
+        <div class="tool-desc">Strict macronutrient ratios tailored for achieving and maintaining ketosis.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <a href="ponderal-index.html" class="tool-card" data-category="fitness" data-keywords="ponderal index rohrer corpulence">
+      <div>
+        <div class="tool-icon"><i class="fas fa-arrows-up-down"></i></div>
+        <div class="tool-title">Ponderal Index</div>
+        <div class="tool-desc">An alternative to BMI (Rohrer's Index) that better evaluates tall or short individuals.</div>
+      </div>
+      <div class="tool-tag">Body Composition</div>
+    </a>
+
+    <a href="army-body-fat.html" class="tool-card" data-category="fitness" data-keywords="army body fat military standards tape test">
+      <div>
+        <div class="tool-icon"><i class="fas fa-person-military-rifle"></i></div>
+        <div class="tool-title">Army Body Fat Test</div>
+        <div class="tool-desc">Verify if you meet military enlistment body fat standards via official tape test rules.</div>
+      </div>
+      <div class="tool-tag">Fitness</div>
+    </a>
+
+    <!-- Sleep & Lifestyle -->
+    <a href="sleep-cycle-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="sleep cycle REM chronotype sleep debt bedtime wake alarm">
+      <div>
+        <div class="tool-icon"><i class="fas fa-bed"></i></div>
+        <div class="tool-title">Sleep Cycle Calculator</div>
+        <div class="tool-desc">Calculate optimal wake-up times based on 90-minute sleep cycles and sleep debt.</div>
+      </div>
+      <div class="tool-tag">Lifestyle</div>
+    </a>
+
+    <a href="bac-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="bac blood alcohol content widmark sober time legal driving limit">
+      <div>
+        <div class="tool-icon"><i class="fas fa-wine-bottle"></i></div>
+        <div class="tool-title">BAC Alcohol Calculator</div>
+        <div class="tool-desc">Blood Alcohol Content estimator using Widmark formula with 50+ country driving limits.</div>
+      </div>
+      <div class="tool-tag">Lifestyle</div>
+    </a>
+
+    <a href="water-intake-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="water intake hydration sweat rate daily water glasses">
+      <div>
+        <div class="tool-icon"><i class="fas fa-glass-water"></i></div>
+        <div class="tool-title">Daily Water Intake</div>
+        <div class="tool-desc">Hydration requirements adjusted for activity, weather conditions, and sweat rate.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
     <a href="dri-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="dri recommended daily intake vitamins minerals RDA USDA NHS">
       <div>
         <div class="tool-icon"><i class="fas fa-apple-whole"></i></div>
@@ -415,6 +473,52 @@ footer a:hover { color: var(--accent); }
         <div class="tool-desc">Daily recommended intakes for 25+ essential vitamins and minerals (USDA/NHS).</div>
       </div>
       <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <!-- Women's Health -->
+    <a href="pregnancy-calculator.html" class="tool-card" data-category="women" data-keywords="pregnancy due date trimester lmp ACOG fetal size week">
+      <div>
+        <div class="tool-icon"><i class="fas fa-baby-carriage"></i></div>
+        <div class="tool-title">Pregnancy Due Date</div>
+        <div class="tool-desc">Track due date, current week, trimester, and fetal growth milestones (ACOG).</div>
+      </div>
+      <div class="tool-tag">Women's Health</div>
+    </a>
+
+    <a href="hormone-health-calculator.html" class="tool-card" data-category="women" data-keywords="hormone testosterone estrogen cortisol thyroid menopause PCOS">
+      <div>
+        <div class="tool-icon"><i class="fas fa-vial"></i></div>
+        <div class="tool-title">Hormone Health</div>
+        <div class="tool-desc">Gender-specific assessment for testosterone, estrogen, cortisol, and thyroid markers.</div>
+      </div>
+      <div class="tool-tag">Wellness</div>
+    </a>
+
+    <a href="ovulation-calculator.html" class="tool-card" data-category="women" data-keywords="ovulation fertility window conceive egg">
+      <div>
+        <div class="tool-icon"><i class="fas fa-calendar-days"></i></div>
+        <div class="tool-title">Ovulation Calculator</div>
+        <div class="tool-desc">Find your most fertile days to increase chances of conception based on your cycle length.</div>
+      </div>
+      <div class="tool-tag">Women's Health</div>
+    </a>
+
+    <a href="period-tracker.html" class="tool-card" data-category="women" data-keywords="period tracker menstruation cycle pms">
+      <div>
+        <div class="tool-icon"><i class="fas fa-droplet"></i></div>
+        <div class="tool-title">Period Tracker</div>
+        <div class="tool-desc">Predict your next menstrual cycles, PMS days, and track historical period lengths.</div>
+      </div>
+      <div class="tool-tag">Women's Health</div>
+    </a>
+
+    <a href="conception-date.html" class="tool-card" data-category="women" data-keywords="conception date baby birth exact date">
+      <div>
+        <div class="tool-icon"><i class="fas fa-cake-candles"></i></div>
+        <div class="tool-title">Conception Calculator</div>
+        <div class="tool-desc">Work backward from your due date or ultrasound to estimate the exact date of conception.</div>
+      </div>
+      <div class="tool-tag">Women's Health</div>
     </a>
 
   </main>
@@ -522,18 +626,15 @@ footer a:hover { color: var(--accent); }
 
   // CATEGORY FILTER
   function filterCategory(cat) {
-    // Update active button state
     document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
     event.currentTarget.classList.add('active');
     
-    // Filter cards
     let cards = document.querySelectorAll('.tool-card');
     cards.forEach(card => {
       if (cat === 'all' || card.getAttribute('data-category') === cat) {
         card.style.display = 'flex';
-        // Re-trigger animation
         card.style.animation = 'none';
-        card.offsetHeight; /* trigger reflow */
+        card.offsetHeight; 
         card.style.animation = null; 
       } else {
         card.style.display = 'none';
@@ -541,9 +642,7 @@ footer a:hover { color: var(--accent); }
     });
   }
 
-  // --- PREMIUM AI CHAT ENGINE ---
-  var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
-
+  // --- SECURE VERCEL AI CHAT ENGINE ---
   function addChatMessage(text, sender) {
     var messagesDiv = document.getElementById('aiChatMessages');
     var msgDiv = document.createElement('div');
@@ -582,29 +681,29 @@ footer a:hover { color: var(--accent); }
     addChatMessage(message, 'user');
     input.value = '';
     
-    // 2. Show Premium Typing Animation
+    // 2. Show Typing Animation
     showTypingIndicator();
 
-    var promptText = "You are a highly advanced Medical & Health AI Assistant for HealthCalc.in. User Question: " + message + ". Provide clear, concise, structured advice in fluent English using bullet points. Focus on actionable insights. Always end with: '⚠️ Consult a doctor for personal medical advice.'";
-
     try {
-      var response = await fetch(WORKER_URL, {
+      // ✅ CONNECTED TO YOUR OWN VERCEL BACKEND (/api/chat)
+      var response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: promptText })
+        body: JSON.stringify({ userMessage: message }) 
       });
       
       var data = await response.json();
-      removeTypingIndicator(); // Remove dots
+      removeTypingIndicator(); 
 
-      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
+      // ✅ Fetching response from Vercel logic
+      if (data.reply) {
+        addChatMessage(data.reply, 'bot');
       } else {
         throw new Error('Invalid AI response structure');
       }
     } catch (e) {
       removeTypingIndicator();
-      addChatMessage("🏥 <strong>General Health Advice:</strong><br>• Focus on a balanced diet and regular movement.<br>• Stay adequately hydrated.<br>• Ensure 7-9 hours of quality sleep.<br><br><em>Note: System is currently experiencing high load. Please try again.</em><br><br>⚠️ <em>Consult a doctor for personal medical advice.</em>", 'bot');
+      addChatMessage("🏥 <strong>Network Error:</strong><br>Aapke Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai ya nahi.<br><br>⚠️ <em>Consult a doctor for personal medical advice.</em>", 'bot');
     }
   }
 </script>
