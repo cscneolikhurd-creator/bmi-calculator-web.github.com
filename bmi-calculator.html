@@ -626,7 +626,7 @@ input:focus, select:focus { border-color: var(--primary); }
         var promptContext = context + "Act as an expert BAC AI Assistant. Provide responsible advice based on my BAC and country (" + cd.name + "). Keep answers short. Always end with: '⚠️ Never drink and drive.'\n\nUSER QUESTION: " + message;
 
         try {
-            var response = await fetch('/api/chat', {
+           var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userMessage: promptContext })
