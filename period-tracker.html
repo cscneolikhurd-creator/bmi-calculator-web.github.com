@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Period Tracker & Cycle Predictor | AI Chat | HealthCalc</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root { --primary: #f43f5e; --primary-light: #ffe4e6; --bg: #fff1f2; --card: #ffffff; --text: #1e293b; --border: #fecdd3; }
+body.dark { --primary-light: #881337; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --border: #334155; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--bg); color: var(--text); padding: 20px; transition: 0.3s; }
+.container { max-width: 900px; margin: 0 auto; }
+.card { background: var(--card); border-radius: 24px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 20px; }
+.hero { text-align: center; margin-bottom: 30px; }
+.hero h1 { color: var(--primary); font-size: 32px; font-weight: 800; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+.input-group { margin-bottom: 15px; }
+label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px; }
+input { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background: var(--card); color: var(--text); outline: none; }
+.btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 10px; }
+.result { background: var(--primary-light); border-radius: 16px; padding: 20px; margin-top: 20px; }
+.date-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 0; }
+.date-row strong { color: var(--primary); }
+.ai-panel { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
+.ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 600; }
+.ai-msgs { height: 200px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
+.msg-bot { background: var(--border); padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-start; color: var(--text); }
+.msg-user { background: var(--primary); color: white; padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-end; }
+.ai-input { display: flex; border-top: 1px solid var(--border); }
+.ai-input input { border: none; padding: 12px; flex: 1; background: var(--card); color: var(--text); outline: none;}
+.ai-input button { background: var(--primary); color: white; border: none; padding: 0 20px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="container">
+  <button onclick="document.body.classList.toggle('dark')" style="position:absolute;top:20px;right:20px;padding:10px;border-radius:50%;border:none;">☀️/🌙</button>
+  <div class="hero"><h1>Period Tracker</h1><p>Predict your next menstrual cycle, PMS window, and ovulation dates.</p></div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="input-group"><label>First day of last period</label><input type="date" id="lmp"></div>
+      <div class="input-group"><label>Cycle Length (Days)</label><input type="number" id="cycle" value="28"></div>
+      <div class="input-group"><label>Period Duration (Days)</label><input type="number" id="duration" value="5"></div>
+      <button class="btn" onclick="calcCycle()">Predict Next Cycle</button>
+    </div>
+
+    <div class="card">
+      <div class="result" id="resBox" style="display:none;">
+        <h3 style="margin-bottom:15px; color:var(--text);">Your Cycle Timeline</h3>
+        <div class="date-row"><span>🩸 Next Period Starts:</span> <strong id="nextPeriod"></strong></div>
+        <div class="date-row"><span>🌸 PMS Window:</span> <strong id="pmsWindow"></strong></div>
+        <div class="date-row"><span>🥚 Ovulation Day:</span> <strong id="ovulation"></strong></div>
+      </div>
+
+      <div class="ai-panel">
+        <div class="ai-header"><i class="fas fa-robot"></i> Women's Health AI</div>
+        <div class="ai-msgs" id="chatMsgs"><div class="msg-bot">Calculate your dates, then ask me about PMS relief, cramps, or cycle health!</div></div>
+        <div class="ai-input">
+          <input type="text" id="chatInput" placeholder="E.g., How to reduce cramps naturally?" onkeypress="if(event.key==='Enter')sendAI()">
+          <button onclick="sendAI()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function formatDate(date) { return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
+
+  function calcCycle() {
+    let lmp = new Date(document.getElementById('lmp').value);
+    let cycle = parseInt(document.getElementById('cycle').value);
+    if(isNaN(lmp.getTime()) || !cycle) return;
+
+    let next = new Date(lmp); next.setDate(lmp.getDate() + cycle);
+    let pmsStart = new Date(next); pmsStart.setDate(next.getDate() - 7);
+    let ovu = new Date(next); ovu.setDate(next.getDate() - 14);
+
+    document.getElementById('resBox').style.display = 'block';
+    document.getElementById('nextPeriod').innerText = formatDate(next);
+    document.getElementById('pmsWindow').innerText = `${formatDate(pmsStart)} to ${formatDate(next)}`;
+    document.getElementById('ovulation').innerText = formatDate(ovu);
+  }
+
+  async function sendAI() {
+    let input = document.getElementById('chatInput'), msg = input.value.trim();
+    if(!msg) return;
+
+    let md = document.getElementById('chatMsgs');
+    md.innerHTML += `<div class="msg-user">${msg}</div>`;
+    input.value = ''; md.scrollTop = md.scrollHeight;
+
+    let next = document.getElementById('nextPeriod').innerText;
+    let prompt = `[USER GOAL: Menstrual Health. Next Period: ${next}]\nAct as an OB/GYN AI Assistant. Answer: ${msg}`;
+
+    try {
+      var res = await fetch('/api/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ userMessage: prompt }) });
+      var data = await res.json();
+      md.innerHTML += `<div class="msg-bot">${data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
+      md.scrollTop = md.scrollHeight;
+    } catch(e) {
+      md.innerHTML += `<div class="msg-bot">❌ Connection error to Vercel API.</div>`;
+    }
+  }
+</script>
+</body>
+</html>
