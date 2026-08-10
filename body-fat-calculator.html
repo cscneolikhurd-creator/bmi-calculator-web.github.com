@@ -321,24 +321,31 @@ footer{text-align:center;padding:20px;margin-top:30px;font-size:13px;color:var(-
 
         let promptText = `You are a fitness AI on HealthCalc.in. User Context: Body Fat=${fat} (${cat}). User Question: ${message}. Provide structured, clear advice in fluent English. End with: "⚠️ Consult a trainer or doctor for personal fitness plans."`;
 
-        try {
-           var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+       try {
+            // ✅ DIRECT VERCEL URL (Cross-Origin Setup)
+            var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
+                body: JSON.stringify({ userMessage: promptContext }) // Agar Index page hai toh promptContext ki jagah 'message' hoga
             });
-
-            var data = await response.json();
-            if(data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else {
-                throw new Error('Invalid response');
+            
+            var data = await response.json(); 
+            removeTypingIndicator();
+            
+            // ✅ Naya Backend data.reply bhejta hai
+            if(data.reply) {
+                addChatMessage(data.reply, 'bot');
+            } else { 
+                throw new Error('Invalid response'); 
             }
-        } catch(e) {
-            addChatMessage(`🧬 <strong>Body Fat Guidance:</strong><br>• Focus on resistance training to preserve lean mass.<br>• Maintain a slight calorie deficit for fat loss.<br>• Consume adequate protein (1.6-2.2g/kg).<br><br>⚠️ <em>Consult a trainer or doctor for personal fitness plans.</em>`, 'bot');
+        } catch(e) { 
+            removeTypingIndicator(); 
+            console.error('Fetch Error:', e); 
+            addChatMessage('❌ <strong>Connection Error</strong><br>Vercel backend se connect nahi ho pa raha hai. Kripya check karein ki `api/chat.js` Vercel par live hai.<br><br>⚠️ Consult your doctor.', 'bot'); 
+        } finally {
+            isAIProcessing = false;
         }
-    }
-
+      
     toggleHipInput();
 </script>
 </body>
