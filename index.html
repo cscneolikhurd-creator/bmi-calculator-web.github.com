@@ -158,7 +158,6 @@ body {
 .ai-chat-input:focus { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.5); }
 .ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
 .ai-chat-send-btn:hover { transform: scale(1.05); background: #059669; }
-.ai-chat-send-btn:active { transform: scale(0.95); }
 
 /* Typing Indicator Animation */
 .typing-indicator { display: flex; gap: 4px; padding: 8px 4px; }
@@ -182,13 +181,15 @@ footer a:hover { color: var(--accent); }
 @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes typeBlink { 0%, 100% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.2); opacity: 1; } }
 
-/* CSS for staggered animation */
+/* Staggered animation */
 .tool-card:nth-child(1) { animation-delay: 0.1s; }
 .tool-card:nth-child(2) { animation-delay: 0.15s; }
 .tool-card:nth-child(3) { animation-delay: 0.2s; }
 .tool-card:nth-child(4) { animation-delay: 0.25s; }
 .tool-card:nth-child(5) { animation-delay: 0.3s; }
 .tool-card:nth-child(6) { animation-delay: 0.35s; }
+.tool-card:nth-child(7) { animation-delay: 0.4s; }
+.tool-card:nth-child(8) { animation-delay: 0.45s; }
 </style>
 </head>
 <body>
@@ -233,9 +234,10 @@ footer a:hover { color: var(--accent); }
     </div>
   </header>
 
-  <!-- Main Calculators Grid -->
+  <!-- Main Calculators Grid (ALL TOOLS RESTORED) -->
   <main class="tools-grid" id="toolsGrid">
     
+    <!-- ASCVD -->
     <a href="ascvd-risk-calculator.html" class="tool-card" data-category="cardio" data-keywords="ascvd heart risk stroke cholesterol blood pressure">
       <div>
         <div class="tool-icon"><i class="fas fa-heartbeat"></i></div>
@@ -245,15 +247,17 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
+    <!-- Heart Risk -->
     <a href="heart-risk-calculator.html" class="tool-card" data-category="cardio" data-keywords="framingham heart risk heart age cvd">
       <div>
-        <div class="tool-icon"><i class="fas fa-heart-circle-bolt"></i></div>
+        <div class="tool-icon"><i class="fas fa-heart-pulse"></i></div>
         <div class="tool-title">Heart Risk Calculator</div>
         <div class="tool-desc">Framingham CVD risk model with Heart Age calculation and ethnic adjustments.</div>
       </div>
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
+    <!-- Vascular Age -->
     <a href="vascular-age-calculator.html" class="tool-card" data-category="cardio" data-keywords="vascular age arterial stiffness pulse wave velocity">
       <div>
         <div class="tool-icon"><i class="fas fa-stethoscope"></i></div>
@@ -263,6 +267,7 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
+    <!-- VO2 Max -->
     <a href="vo2max-calculator.html" class="tool-card" data-category="fitness" data-keywords="vo2 max aerobic capacity cardio fitness resting hr walk test">
       <div>
         <div class="tool-icon"><i class="fas fa-lungs"></i></div>
@@ -272,6 +277,7 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Fitness</div>
     </a>
 
+    <!-- BMI -->
     <a href="bmi-calculator.html" class="tool-card" data-category="fitness" data-keywords="bmi body mass index weight ideal weight Asian WHO">
       <div>
         <div class="tool-icon"><i class="fas fa-weight-scale"></i></div>
@@ -281,49 +287,134 @@ footer a:hover { color: var(--accent); }
       <div class="tool-tag">Body Composition</div>
     </a>
 
+    <!-- Calorie / TDEE -->
     <a href="calorie-calculator.html" class="tool-card" data-category="fitness" data-keywords="calorie tdee bmr weight loss deficit muscle gain mifflin">
       <div>
-        <div class="tool-icon"><i class="fas fa-fire-flame-curved"></i></div>
-        <div class="tool-title">TDEE & Calorie Guide</div>
+        <div class="tool-icon"><i class="fas fa-utensils"></i></div>
+        <div class="tool-title">Calorie & TDEE Calculator</div>
         <div class="tool-desc">Calculate daily energy expenditure (TDEE) and BMR for weight goals via Mifflin-St Jeor.</div>
       </div>
       <div class="tool-tag">Nutrition</div>
     </a>
 
+    <!-- Body Fat -->
     <a href="body-fat-calculator.html" class="tool-card" data-category="fitness" data-keywords="body fat navy formula lean mass fat mass percentage">
       <div>
-        <div class="tool-icon"><i class="fas fa-person-rays"></i></div>
+        <div class="tool-icon"><i class="fas fa-child-reaching"></i></div>
         <div class="tool-title">Body Fat Calculator</div>
         <div class="tool-desc">US Navy tape measure method to estimate body fat percentage and lean muscle mass.</div>
       </div>
       <div class="tool-tag">Body Composition</div>
     </a>
 
+    <!-- FFMI -->
     <a href="ffmi-calculator.html" class="tool-card" data-category="fitness" data-keywords="ffmi fat free mass index kouri natural limit muscle">
       <div>
-        <div class="tool-icon"><i class="fas fa-hand-fist"></i></div>
+        <div class="tool-icon"><i class="fas fa-dumbbell"></i></div>
         <div class="tool-title">FFMI Calculator</div>
         <div class="tool-desc">Height-adjusted Fat-Free Mass Index with natural vs enhanced bodybuilding limits.</div>
       </div>
       <div class="tool-tag">Fitness</div>
     </a>
-    
+
+    <!-- WHR -->
+    <a href="whr-calculator.html" class="tool-card" data-category="fitness" data-keywords="whr waist to hip ratio central obesity body shape apple pear">
+      <div>
+        <div class="tool-icon"><i class="fas fa-ruler-horizontal"></i></div>
+        <div class="tool-title">Waist-to-Hip Ratio (WHR)</div>
+        <div class="tool-desc">Assess central abdominal obesity and visceral fat risk using WHO thresholds.</div>
+      </div>
+      <div class="tool-tag">Body Composition</div>
+    </a>
+
+    <!-- BAC -->
+    <a href="bac-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="bac blood alcohol content widmark sober time legal driving limit">
+      <div>
+        <div class="tool-icon"><i class="fas fa-wine-bottle"></i></div>
+        <div class="tool-title">BAC Alcohol Calculator</div>
+        <div class="tool-desc">Blood Alcohol Content estimator using Widmark formula with 50+ country driving limits.</div>
+      </div>
+      <div class="tool-tag">Lifestyle</div>
+    </a>
+
+    <!-- Sleep Cycle -->
     <a href="sleep-cycle-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="sleep cycle REM chronotype sleep debt bedtime wake alarm">
       <div>
-        <div class="tool-icon"><i class="fas fa-bed-pulse"></i></div>
-        <div class="tool-title">Sleep Cycle Engine</div>
+        <div class="tool-icon"><i class="fas fa-bed"></i></div>
+        <div class="tool-title">Sleep Cycle Calculator</div>
         <div class="tool-desc">Calculate optimal wake-up times based on 90-minute sleep cycles and sleep debt.</div>
       </div>
       <div class="tool-tag">Lifestyle</div>
     </a>
 
+    <!-- Hormone Health -->
+    <a href="hormone-health-calculator.html" class="tool-card" data-category="women" data-keywords="hormone testosterone estrogen cortisol thyroid menopause PCOS">
+      <div>
+        <div class="tool-icon"><i class="fas fa-vial"></i></div>
+        <div class="tool-title">Hormone Health Assessment</div>
+        <div class="tool-desc">Gender-specific assessment for testosterone, estrogen, cortisol, and thyroid markers.</div>
+      </div>
+      <div class="tool-tag">Wellness</div>
+    </a>
+
+    <!-- Pregnancy -->
     <a href="pregnancy-calculator.html" class="tool-card" data-category="women" data-keywords="pregnancy due date trimester lmp ACOG fetal size week">
       <div>
         <div class="tool-icon"><i class="fas fa-baby-carriage"></i></div>
-        <div class="tool-title">Pregnancy Timeline</div>
-        <div class="tool-desc">Track due date, current week, trimester, and fetal growth milestones (ACOG standards).</div>
+        <div class="tool-title">Pregnancy Due Date Calculator</div>
+        <div class="tool-desc">Track due date, current week, trimester, and fetal growth milestones (ACOG).</div>
       </div>
       <div class="tool-tag">Women's Health</div>
+    </a>
+
+    <!-- Ideal Weight -->
+    <a href="ideal-weight-calculator.html" class="tool-card" data-category="fitness" data-keywords="ideal weight peterson formula healthy weight range frame size">
+      <div>
+        <div class="tool-icon"><i class="fas fa-bullseye"></i></div>
+        <div class="tool-title">Ideal Weight Calculator</div>
+        <div class="tool-desc">Peterson equation for calculating ideal body weight based on height and frame size.</div>
+      </div>
+      <div class="tool-tag">Body Composition</div>
+    </a>
+
+    <!-- Water Intake -->
+    <a href="water-intake-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="water intake hydration sweat rate daily water glasses">
+      <div>
+        <div class="tool-icon"><i class="fas fa-glass-water"></i></div>
+        <div class="tool-title">Daily Water Intake</div>
+        <div class="tool-desc">Hydration requirements adjusted for activity, weather conditions, and sweat rate.</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
+    </a>
+
+    <!-- MET Activity -->
+    <a href="met-calculator.html" class="tool-card" data-category="fitness" data-keywords="met activity exercise calories epoc afterburn 500 activities">
+      <div>
+        <div class="tool-icon"><i class="fas fa-person-running"></i></div>
+        <div class="tool-title">MET Activity Calculator</div>
+        <div class="tool-desc">Calculate calories burned for 500+ exercises with EPOC afterburn estimations.</div>
+      </div>
+      <div class="tool-tag">Fitness</div>
+    </a>
+
+    <!-- Metabolic Age -->
+    <a href="metabolic-age.html" class="tool-card" data-category="fitness" data-keywords="metabolic age BMR metabolism score fitness age">
+      <div>
+        <div class="tool-icon"><i class="fas fa-bolt"></i></div>
+        <div class="tool-title">Metabolic Age Calculator</div>
+        <div class="tool-desc">Compare your BMR against age-group averages to find your biological metabolic age.</div>
+      </div>
+      <div class="tool-tag">Fitness</div>
+    </a>
+
+    <!-- DRI Nutrients -->
+    <a href="dri-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="dri recommended daily intake vitamins minerals RDA USDA NHS">
+      <div>
+        <div class="tool-icon"><i class="fas fa-apple-whole"></i></div>
+        <div class="tool-title">DRI Nutrient Calculator</div>
+        <div class="tool-desc">Daily recommended intakes for 25+ essential vitamins and minerals (USDA/NHS).</div>
+      </div>
+      <div class="tool-tag">Nutrition</div>
     </a>
 
   </main>
@@ -401,7 +492,6 @@ footer a:hover { color: var(--accent); }
     localStorage.setItem('hc_country', e.target.value);
     let regionText = e.target.options[e.target.selectedIndex].text;
     showToast(`Region updated to: ${regionText.split(' ')[1]}`);
-    // Here you would add logic to globally update calculators (kg/lbs, cm/inches)
   });
 
   // --- TOAST NOTIFICATION FUNCTION ---
