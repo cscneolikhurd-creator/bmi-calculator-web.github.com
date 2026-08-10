@@ -18,15 +18,10 @@
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://healthcalc.in/">
-<meta property="og:title" content="HealthCalc.in — 35+ Free Medical & Fitness Calculators">
-<meta property="og:description" content="Medical-grade calculators with AI Health Assistant. Calculate heart risk, body composition, metabolic metrics & more.">
+<meta property="og:title" content="HealthCalc.in — Premium Medical & Fitness Calculators">
+<meta property="og:description" content="Medical-grade calculators with AI Health Assistant. Calculate heart risk, body composition, metabolic metrics & more for free.">
 <meta property="og:image" content="https://healthcalc.in/images/og-home.jpg">
 <meta property="og:site_name" content="HealthCalc">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HealthCalc.in — 35+ Free Medical & Fitness Calculators">
-<meta name="twitter:description" content="Medical-grade health tools with AI assistance for global users.">
 
 <!-- Structured Data -->
 <script type="application/ld+json">
@@ -43,108 +38,157 @@
 }
 </script>
 
-<link rel="stylesheet" href="global.css">
-<script src="global.js" defer></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+/* --- PREMIUM CSS VARIABLES --- */
 :root {
   --primary: #2563eb;
-  --primary-dark: #1d4ed8;
-  --primary-light: #dbeafe;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
   --accent: #10b981;
   --dark: #0f172a;
   --card-bg: #ffffff;
   --text: #1e293b;
   --text-muted: #64748b;
   --border: #e2e8f0;
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+  --shadow-md: 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.1);
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body.dark {
-  --dark: #020617;
-  --card-bg: #1e293b;
+  --primary-light: #1e293b;
+  --card-bg: #0f172a;
   --text: #f8fafc;
   --text-muted: #94a3b8;
-  --border: #334155;
-  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-  --primary-light: #1e3a8a;
+  --border: #1e293b;
+  --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
+/* --- RESET & BASE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg-gradient);
   color: var(--text);
   min-height: 100vh;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
 }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px 24px; }
 
-.container { max-width: 1300px; margin: 0 auto; padding: 20px; }
+/* --- CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-/* Top Navigation Bar */
+/* --- TOP NAVIGATION --- */
 .top-nav {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 16px 24px; background: var(--card-bg); border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; z-index: 1000; border-radius: var(--radius-lg); margin-bottom: 24px;
+  padding: 16px 28px; background: rgba(var(--card-bg), 0.8);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  position: sticky; top: 16px; z-index: 1000;
+  border-radius: 100px; margin-bottom: 40px;
+  box-shadow: var(--shadow-sm);
 }
-.brand-logo { font-size: 24px; font-weight: 800; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-.brand-logo span { color: var(--accent); }
-.nav-controls { display: flex; gap: 12px; align-items: center; }
-.country-select { padding: 8px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); font-size: 13px; cursor: pointer; }
-.theme-toggle-btn { background: transparent; border: 1px solid var(--border); padding: 8px 14px; border-radius: 20px; color: var(--text); cursor: pointer; font-size: 13px; }
+.brand-logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.5px; }
+.brand-logo i { color: var(--primary); font-size: 24px; }
+.brand-logo span { color: var(--primary); }
+.nav-controls { display: flex; gap: 16px; align-items: center; }
+.country-select { padding: 10px 16px; border-radius: 50px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); font-size: 14px; font-weight: 500; cursor: pointer; outline: none; transition: var(--transition); }
+.country-select:focus { border-color: var(--primary); }
+.theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.theme-toggle-btn:hover { background: var(--primary-light); transform: rotate(15deg); }
 
-/* Hero Section */
-.hero { text-align: center; padding: 40px 20px; margin-bottom: 30px; }
-.hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; margin-bottom: 16px; background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero p { font-size: 18px; color: var(--text-muted); max-width: 750px; margin: 0 auto 28px; }
+/* --- HERO SECTION --- */
+.hero { text-align: center; padding: 60px 20px 40px; }
+.hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; }
+.hero h1 .highlight { background: linear-gradient(135deg, var(--primary), #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { font-size: 18px; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; line-height: 1.6; }
 
-/* Live Search Bar */
-.search-container { max-width: 650px; margin: 0 auto 30px; position: relative; }
-.search-input { width: 100%; padding: 16px 20px 16px 50px; border-radius: 50px; border: 2px solid var(--border); font-size: 16px; background: var(--card-bg); color: var(--text); box-shadow: var(--shadow-md); outline: none; }
-.search-input:focus { border-color: var(--primary); }
-.search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 18px; }
+/* --- LIVE SEARCH --- */
+.search-container { max-width: 700px; margin: 0 auto 40px; position: relative; }
+.search-input { width: 100%; padding: 20px 24px 20px 60px; border-radius: 50px; border: 2px solid transparent; font-size: 16px; background: var(--card-bg); color: var(--text); box-shadow: var(--shadow-md); outline: none; transition: var(--transition); font-weight: 500; }
+.search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+.search-icon { position: absolute; left: 24px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 20px; transition: var(--transition); }
 
-/* Tool Categories Tabs */
-.category-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
-.cat-tab { padding: 10px 20px; border-radius: 40px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text-muted); font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.2s; }
-.cat-tab.active, .cat-tab:hover { background: var(--primary); color: white; border-color: var(--primary); }
+/* --- CATEGORY TABS --- */
+.category-tabs { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px; }
+.cat-tab { padding: 12px 24px; border-radius: 50px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text-muted); font-weight: 600; font-size: 14px; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 8px; }
+.cat-tab:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary-light); }
+.cat-tab.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
 
-/* Tools Grid */
-.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
-.tool-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; text-decoration: none; color: var(--text); transition: all 0.25s; display: flex; flex-direction: column; justify-content: space-between; }
-.tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
-.tool-icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
-.tool-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-.tool-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
-.tool-tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; background: var(--primary-light); color: var(--primary); align-self: flex-start; }
+/* --- TOOLS GRID --- */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
+.tool-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; text-decoration: none; color: var(--text); transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; animation: fadeUp 0.6s ease forwards; opacity: 0; transform: translateY(20px); }
+.tool-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); transform: scaleY(0); transition: var(--transition); transform-origin: bottom; }
+.tool-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: transparent; }
+.tool-card:hover::before { transform: scaleY(1); }
 
-/* Global AI Assistant Banner */
-.ai-banner { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; border-radius: var(--radius-xl); padding: 32px; margin-bottom: 40px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
-.ai-banner-content { flex: 1; min-width: 280px; }
-.ai-banner-content h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-.ai-banner-content p { font-size: 14px; opacity: 0.9; margin-bottom: 16px; }
+.tool-icon { width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; transition: var(--transition); }
+.tool-card:hover .tool-icon { background: var(--primary); color: white; transform: rotate(10deg); }
+.tool-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.3px; }
+.tool-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+.tool-tag { font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 50px; background: var(--bg-gradient); color: var(--text); align-self: flex-start; border: 1px solid var(--border); }
 
-/* AI Inline Quick Panel */
-.ai-chat-panel { width: 100%; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(10px); }
-.ai-chat-messages { height: 180px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; }
-.ai-message-bot { background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 12px; border-top-left-radius: 2px; align-self: flex-start; }
-.ai-message-user { background: var(--primary); color: white; padding: 10px 14px; border-radius: 12px; border-top-right-radius: 2px; align-self: flex-end; }
-.ai-chat-input-row { display: flex; gap: 8px; padding: 10px; background: rgba(0,0,0,0.2); }
-.ai-chat-input { flex: 1; padding: 10px 16px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.3); color: white; font-size: 13px; outline: none; }
-.ai-chat-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: white; border: none; cursor: pointer; }
+/* --- AI ASSISTANT (PREMIUM GLASSMORPHISM UI) --- */
+.ai-banner { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); border-radius: var(--radius-lg); padding: 40px; margin-bottom: 60px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; box-shadow: 0 20px 40px rgba(37,99,235,0.2); position: relative; overflow: hidden; }
+.ai-banner::after { content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%); border-radius: 50%; }
+.ai-banner-content { flex: 1; min-width: 300px; color: white; position: relative; z-index: 2; }
+.ai-banner-content h2 { font-size: 32px; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; letter-spacing: -0.5px; }
+.ai-banner-content p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; line-height: 1.6; font-weight: 300; }
 
-/* Footer */
-footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted); }
-footer a { color: var(--primary); text-decoration: none; }
+.ai-chat-panel { width: 100%; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-md); overflow: hidden; background: rgba(15,23,42,0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.ai-chat-messages { height: 250px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; scroll-behavior: smooth; }
+.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; animation: slideIn 0.3s ease; }
+.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
+.ai-message-user { background: white; color: #1e3a8a; font-weight: 500; border-radius: 16px; border-top-right-radius: 4px; align-self: flex-end; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.ai-chat-input-row { display: flex; gap: 12px; padding: 16px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.1); }
+.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 15px; outline: none; transition: var(--transition); }
+.ai-chat-input::placeholder { color: rgba(255,255,255,0.6); }
+.ai-chat-input:focus { background: rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.5); }
+.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
+.ai-chat-send-btn:hover { transform: scale(1.05); background: #059669; }
+.ai-chat-send-btn:active { transform: scale(0.95); }
+
+/* Typing Indicator Animation */
+.typing-indicator { display: flex; gap: 4px; padding: 8px 4px; }
+.typing-dot { width: 6px; height: 6px; background: rgba(255,255,255,0.6); border-radius: 50%; animation: typeBlink 1.4s infinite ease-in-out; }
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* TOAST NOTIFICATION */
+#toast { visibility: hidden; min-width: 250px; background-color: var(--text); color: var(--card-bg); text-align: center; border-radius: 50px; padding: 12px 24px; position: fixed; z-index: 9999; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 14px; font-weight: 500; box-shadow: var(--shadow-lg); opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
+#toast.show { visibility: visible; opacity: 1; bottom: 50px; }
+
+/* --- FOOTER --- */
+footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
+footer a { color: var(--primary); text-decoration: none; font-weight: 500; transition: var(--transition); margin: 0 10px; }
+footer a:hover { color: var(--accent); }
+.footer-disclaimer { margin-top: 16px; font-size: 12px; background: var(--primary-light); padding: 12px; border-radius: 8px; display: inline-block; max-width: 800px; line-height: 1.5; border: 1px solid var(--border); }
+
+/* --- KEYFRAMES --- */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes typeBlink { 0%, 100% { transform: scale(1); opacity: 0.2; } 50% { transform: scale(1.2); opacity: 1; } }
+
+/* CSS for staggered animation */
+.tool-card:nth-child(1) { animation-delay: 0.1s; }
+.tool-card:nth-child(2) { animation-delay: 0.15s; }
+.tool-card:nth-child(3) { animation-delay: 0.2s; }
+.tool-card:nth-child(4) { animation-delay: 0.25s; }
+.tool-card:nth-child(5) { animation-delay: 0.3s; }
+.tool-card:nth-child(6) { animation-delay: 0.35s; }
 </style>
 </head>
 <body>
@@ -153,44 +197,45 @@ footer a { color: var(--primary); text-decoration: none; }
 
   <!-- Top Navigation -->
   <nav class="top-nav">
-    <a href="index.html" class="brand-logo"><i class="fas fa-heart-pulse"></i> Health<span>Calc</span></a>
+    <a href="index.html" class="brand-logo"><i class="fas fa-notes-medical"></i> Health<span>Calc</span></a>
     <div class="nav-controls">
-      <select id="countrySelect" class="country-select">
-        <option value="us">🇺🇸 United States</option>
-        <option value="uk">🇬🇧 United Kingdom</option>
-        <option value="ca">🇨🇦 Canada</option>
-        <option value="au">🇦🇺 Australia</option>
-        <option value="in">🇮🇳 India</option>
+      <select id="countrySelect" class="country-select" title="Select your region to adjust unit standards">
+        <option value="us">🇺🇸 United States (Imperial)</option>
+        <option value="uk">🇬🇧 United Kingdom (Mixed)</option>
+        <option value="ca">🇨🇦 Canada (Metric)</option>
+        <option value="au">🇦🇺 Australia (Metric)</option>
+        <option value="in">🇮🇳 India (Metric)</option>
       </select>
-      <button class="theme-toggle-btn" onclick="document.body.classList.toggle('dark')">☀️ / 🌙</button>
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </nav>
 
   <!-- Hero Banner -->
   <header class="hero">
-    <h1>35+ Evidence-Based Health Calculators</h1>
-    <p>Accurate, medical-grade calculators for cardiovascular risk, body composition, fitness, and nutrition — paired with real-time AI guidance.</p>
+    <h1>35+ <span class="highlight">Evidence-Based</span> Health Tools</h1>
+    <p>Accurate, medical-grade calculators for cardiovascular risk, body composition, fitness, and nutrition — paired with a premium real-time AI guidance engine.</p>
     
     <!-- Live Search -->
     <div class="search-container">
       <i class="fas fa-search search-icon"></i>
-      <input type="text" id="toolSearch" class="search-input" placeholder="Search calculators (e.g. BMI, ASCVD, Calories, Heart Risk)..." onkeyup="filterTools()">
+      <input type="text" id="toolSearch" class="search-input" placeholder="Search for BMI, ASCVD, Calories, Heart Risk..." onkeyup="filterTools()">
     </div>
 
     <!-- Category Tabs -->
     <div class="category-tabs">
-      <button class="cat-tab active" onclick="filterCategory('all')">All Tools</button>
-      <button class="cat-tab" onclick="filterCategory('cardio')">❤️ Heart & Cardio</button>
-      <button class="cat-tab" onclick="filterCategory('fitness')">💪 Fitness & Body</button>
-      <button class="cat-tab" onclick="filterCategory('lifestyle')">😴 Sleep & Lifestyle</button>
-      <button class="cat-tab" onclick="filterCategory('women')">🌸 Women's Health</button>
+      <button class="cat-tab active" onclick="filterCategory('all')"><i class="fas fa-layer-group"></i> All Tools</button>
+      <button class="cat-tab" onclick="filterCategory('cardio')"><i class="fas fa-heart-pulse"></i> Heart & Cardio</button>
+      <button class="cat-tab" onclick="filterCategory('fitness')"><i class="fas fa-dumbbell"></i> Fitness & Body</button>
+      <button class="cat-tab" onclick="filterCategory('lifestyle')"><i class="fas fa-bed"></i> Sleep & Lifestyle</button>
+      <button class="cat-tab" onclick="filterCategory('women')"><i class="fas fa-person-dress"></i> Women's Health</button>
     </div>
   </header>
 
   <!-- Main Calculators Grid -->
   <main class="tools-grid" id="toolsGrid">
     
-    <!-- ASCVD -->
     <a href="ascvd-risk-calculator.html" class="tool-card" data-category="cardio" data-keywords="ascvd heart risk stroke cholesterol blood pressure">
       <div>
         <div class="tool-icon"><i class="fas fa-heartbeat"></i></div>
@@ -200,17 +245,15 @@ footer a { color: var(--primary); text-decoration: none; }
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
-    <!-- Heart Risk -->
     <a href="heart-risk-calculator.html" class="tool-card" data-category="cardio" data-keywords="framingham heart risk heart age cvd">
       <div>
-        <div class="tool-icon"><i class="fas fa-heart-pulse"></i></div>
+        <div class="tool-icon"><i class="fas fa-heart-circle-bolt"></i></div>
         <div class="tool-title">Heart Risk Calculator</div>
         <div class="tool-desc">Framingham CVD risk model with Heart Age calculation and ethnic adjustments.</div>
       </div>
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
-    <!-- Vascular Age -->
     <a href="vascular-age-calculator.html" class="tool-card" data-category="cardio" data-keywords="vascular age arterial stiffness pulse wave velocity">
       <div>
         <div class="tool-icon"><i class="fas fa-stethoscope"></i></div>
@@ -220,7 +263,6 @@ footer a { color: var(--primary); text-decoration: none; }
       <div class="tool-tag">Cardiovascular</div>
     </a>
 
-    <!-- VO2 Max -->
     <a href="vo2max-calculator.html" class="tool-card" data-category="fitness" data-keywords="vo2 max aerobic capacity cardio fitness resting hr walk test">
       <div>
         <div class="tool-icon"><i class="fas fa-lungs"></i></div>
@@ -230,7 +272,6 @@ footer a { color: var(--primary); text-decoration: none; }
       <div class="tool-tag">Fitness</div>
     </a>
 
-    <!-- BMI -->
     <a href="bmi-calculator.html" class="tool-card" data-category="fitness" data-keywords="bmi body mass index weight ideal weight Asian WHO">
       <div>
         <div class="tool-icon"><i class="fas fa-weight-scale"></i></div>
@@ -240,153 +281,70 @@ footer a { color: var(--primary); text-decoration: none; }
       <div class="tool-tag">Body Composition</div>
     </a>
 
-    <!-- Calorie / TDEE -->
     <a href="calorie-calculator.html" class="tool-card" data-category="fitness" data-keywords="calorie tdee bmr weight loss deficit muscle gain mifflin">
       <div>
-        <div class="tool-icon"><i class="fas fa-utensils"></i></div>
-        <div class="tool-title">Calorie & TDEE Calculator</div>
+        <div class="tool-icon"><i class="fas fa-fire-flame-curved"></i></div>
+        <div class="tool-title">TDEE & Calorie Guide</div>
         <div class="tool-desc">Calculate daily energy expenditure (TDEE) and BMR for weight goals via Mifflin-St Jeor.</div>
       </div>
       <div class="tool-tag">Nutrition</div>
     </a>
 
-    <!-- Body Fat -->
     <a href="body-fat-calculator.html" class="tool-card" data-category="fitness" data-keywords="body fat navy formula lean mass fat mass percentage">
       <div>
-        <div class="tool-icon"><i class="fas fa-child-reaching"></i></div>
+        <div class="tool-icon"><i class="fas fa-person-rays"></i></div>
         <div class="tool-title">Body Fat Calculator</div>
         <div class="tool-desc">US Navy tape measure method to estimate body fat percentage and lean muscle mass.</div>
       </div>
       <div class="tool-tag">Body Composition</div>
     </a>
 
-    <!-- FFMI -->
     <a href="ffmi-calculator.html" class="tool-card" data-category="fitness" data-keywords="ffmi fat free mass index kouri natural limit muscle">
       <div>
-        <div class="tool-icon"><i class="fas fa-dumbbell"></i></div>
+        <div class="tool-icon"><i class="fas fa-hand-fist"></i></div>
         <div class="tool-title">FFMI Calculator</div>
         <div class="tool-desc">Height-adjusted Fat-Free Mass Index with natural vs enhanced bodybuilding limits.</div>
       </div>
       <div class="tool-tag">Fitness</div>
     </a>
-
-    <!-- WHR -->
-    <a href="whr-calculator.html" class="tool-card" data-category="fitness" data-keywords="whr waist to hip ratio central obesity body shape apple pear">
-      <div>
-        <div class="tool-icon"><i class="fas fa-ruler-horizontal"></i></div>
-        <div class="tool-title">Waist-to-Hip Ratio (WHR)</div>
-        <div class="tool-desc">Assess central abdominal obesity and visceral fat risk using WHO thresholds.</div>
-      </div>
-      <div class="tool-tag">Body Composition</div>
-    </a>
-
-    <!-- BAC -->
-    <a href="bac-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="bac blood alcohol content widmark sober time legal driving limit">
-      <div>
-        <div class="tool-icon"><i class="fas fa-wine-bottle"></i></div>
-        <div class="tool-title">BAC Alcohol Calculator</div>
-        <div class="tool-desc">Blood Alcohol Content estimator using Widmark formula with 50+ country driving limits.</div>
-      </div>
-      <div class="tool-tag">Lifestyle</div>
-    </a>
-
-    <!-- Sleep Cycle -->
+    
     <a href="sleep-cycle-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="sleep cycle REM chronotype sleep debt bedtime wake alarm">
       <div>
-        <div class="tool-icon"><i class="fas fa-bed"></i></div>
-        <div class="tool-title">Sleep Cycle Calculator</div>
+        <div class="tool-icon"><i class="fas fa-bed-pulse"></i></div>
+        <div class="tool-title">Sleep Cycle Engine</div>
         <div class="tool-desc">Calculate optimal wake-up times based on 90-minute sleep cycles and sleep debt.</div>
       </div>
       <div class="tool-tag">Lifestyle</div>
     </a>
 
-    <!-- Hormone Health -->
-    <a href="hormone-health-calculator.html" class="tool-card" data-category="women" data-keywords="hormone testosterone estrogen cortisol thyroid menopause PCOS">
-      <div>
-        <div class="tool-icon"><i class="fas fa-vial"></i></div>
-        <div class="tool-title">Hormone Health Assessment</div>
-        <div class="tool-desc">Gender-specific assessment for testosterone, estrogen, cortisol, and thyroid markers.</div>
-      </div>
-      <div class="tool-tag">Wellness</div>
-    </a>
-
-    <!-- Pregnancy -->
     <a href="pregnancy-calculator.html" class="tool-card" data-category="women" data-keywords="pregnancy due date trimester lmp ACOG fetal size week">
       <div>
         <div class="tool-icon"><i class="fas fa-baby-carriage"></i></div>
-        <div class="tool-title">Pregnancy Due Date Calculator</div>
-        <div class="tool-desc">Track due date, current week, trimester, and fetal growth milestones (ACOG).</div>
+        <div class="tool-title">Pregnancy Timeline</div>
+        <div class="tool-desc">Track due date, current week, trimester, and fetal growth milestones (ACOG standards).</div>
       </div>
       <div class="tool-tag">Women's Health</div>
     </a>
 
-    <!-- Ideal Weight -->
-    <a href="ideal-weight-calculator.html" class="tool-card" data-category="fitness" data-keywords="ideal weight peterson formula healthy weight range frame size">
-      <div>
-        <div class="tool-icon"><i class="fas fa-bullseye"></i></div>
-        <div class="tool-title">Ideal Weight Calculator</div>
-        <div class="tool-desc">Peterson equation for calculating ideal body weight based on height and frame size.</div>
-      </div>
-      <div class="tool-tag">Body Composition</div>
-    </a>
-
-    <!-- Water Intake -->
-    <a href="water-intake-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="water intake hydration sweat rate daily water glasses">
-      <div>
-        <div class="tool-icon"><i class="fas fa-glass-water"></i></div>
-        <div class="tool-title">Daily Water Intake</div>
-        <div class="tool-desc">Hydration requirements adjusted for activity, weather conditions, and sweat rate.</div>
-      </div>
-      <div class="tool-tag">Nutrition</div>
-    </a>
-
-    <!-- MET Activity -->
-    <a href="met-calculator.html" class="tool-card" data-category="fitness" data-keywords="met activity exercise calories epoc afterburn 500 activities">
-      <div>
-        <div class="tool-icon"><i class="fas fa-person-running"></i></div>
-        <div class="tool-title">MET Activity Calculator</div>
-        <div class="tool-desc">Calculate calories burned for 500+ exercises with EPOC afterburn estimations.</div>
-      </div>
-      <div class="tool-tag">Fitness</div>
-    </a>
-
-    <!-- Metabolic Age -->
-    <a href="metabolic-age.html" class="tool-card" data-category="fitness" data-keywords="metabolic age BMR metabolism score fitness age">
-      <div>
-        <div class="tool-icon"><i class="fas fa-bolt"></i></div>
-        <div class="tool-title">Metabolic Age Calculator</div>
-        <div class="tool-desc">Compare your BMR against age-group averages to find your biological metabolic age.</div>
-      </div>
-      <div class="tool-tag">Fitness</div>
-    </a>
-
-    <!-- DRI Nutrients -->
-    <a href="dri-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="dri recommended daily intake vitamins minerals RDA USDA NHS">
-      <div>
-        <div class="tool-icon"><i class="fas fa-apple-whole"></i></div>
-        <div class="tool-title">DRI Nutrient Calculator</div>
-        <div class="tool-desc">Daily recommended intakes for 25+ essential vitamins and minerals (USDA/NHS).</div>
-      </div>
-      <div class="tool-tag">Nutrition</div>
-    </a>
-
   </main>
 
-  <!-- AI Assistant Banner -->
+  <!-- Premium AI Assistant Banner -->
   <section class="ai-banner">
     <div class="ai-banner-content">
-      <h2>🤖 HealthCalc Universal AI Assistant</h2>
-      <p>Ask health or fitness questions and get instant, evidence-based guidance mapped to clinical standards.</p>
+      <h2><i class="fas fa-robot" style="color:var(--accent)"></i> HealthCalc Pro AI</h2>
+      <p>Ask complex health or fitness questions and get instant, customized, and evidence-based guidance mapped to clinical standards. It's like having a digital health consultant.</p>
       
       <div class="ai-chat-panel">
         <div class="ai-chat-messages" id="aiChatMessages">
-          <div class="ai-message-bot">
-            <strong>Hello! 👋</strong> I am your HealthCalc AI Assistant. Ask me anything about heart risk, weight loss, sleep hygiene, or exercise!
+          <div class="ai-message ai-message-bot">
+            <strong>Hello! 👋</strong> I am your HealthCalc AI Assistant. Ask me anything about heart risk, weight loss strategies, sleep hygiene, or how to read your metrics!
           </div>
         </div>
         <div class="ai-chat-input-row">
-          <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Type a health question (e.g. How to lower blood pressure naturally?)..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-          <button class="ai-chat-send-btn" onclick="sendAIMessage()">➤</button>
+          <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="E.g., How do I lower my ASCVD risk naturally?" onkeypress="if(event.key==='Enter')sendAIMessage()">
+          <button class="ai-chat-send-btn" onclick="sendAIMessage()" title="Send Message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -394,17 +352,68 @@ footer a { color: var(--primary); text-decoration: none; }
 
   <!-- Footer -->
   <footer role="contentinfo">
-    <p><a href="privacy-policy.html">Privacy Policy</a> • <a href="terms-of-service.html">Terms of Service</a> • <a href="contact.html">Contact</a> • <a href="sitemap.xml">Sitemap</a></p>
-    <p style="margin-top:8px">© 2026 HealthCalc.in — Free Global Medical & Health Assessment Engine.</p>
-    <p style="margin-top:4px;font-size:11px">⚕️ Educational tools only. Always consult a licensed medical professional for personal diagnosis.</p>
+    <p>
+      <a href="privacy-policy.html">Privacy Policy</a> • 
+      <a href="terms-of-service.html">Terms of Service</a> • 
+      <a href="contact.html">Contact Us</a> • 
+      <a href="sitemap.xml">Sitemap</a>
+    </p>
+    <p style="margin-top:16px; font-weight: 600;">© 2026 HealthCalc.in — The Global Standard in Health Assessments.</p>
+    <div class="footer-disclaimer">
+      ⚕️ <strong>Medical Disclaimer:</strong> The tools and AI responses provided on HealthCalc.in are for educational and informational purposes only. They are not intended as a substitute for professional medical advice, diagnosis, or treatment. Always consult a licensed medical professional for personal health concerns.
+    </div>
   </footer>
 
 </div>
 
-<script>
-  // SECURE WORKER ENDPOINT
-  var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+<!-- TOAST DIV -->
+<div id="toast">Settings updated successfully!</div>
 
+<script>
+  // --- PREMIUM UPGRADES: LOCAL STORAGE & PREFERENCES ---
+  
+  // 1. Theme Management (Saves User Preference)
+  const themeBtn = document.getElementById('themeToggleBtn');
+  const savedTheme = localStorage.getItem('hc_theme');
+  
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark');
+    themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('hc_theme', isDark ? 'dark' : 'light');
+    themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    showToast(isDark ? "Dark Mode Enabled" : "Light Mode Enabled");
+  }
+
+  // 2. Country/Region Management (For Unit Systems)
+  const countrySelect = document.getElementById('countrySelect');
+  const savedCountry = localStorage.getItem('hc_country');
+  
+  if (savedCountry) {
+    countrySelect.value = savedCountry;
+  }
+
+  countrySelect.addEventListener('change', (e) => {
+    localStorage.setItem('hc_country', e.target.value);
+    let regionText = e.target.options[e.target.selectedIndex].text;
+    showToast(`Region updated to: ${regionText.split(' ')[1]}`);
+    // Here you would add logic to globally update calculators (kg/lbs, cm/inches)
+  });
+
+  // --- TOAST NOTIFICATION FUNCTION ---
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.innerText = message;
+    toast.className = "show";
+    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+  }
+
+  // --- CORE FUNCTIONALITY ---
+  
   // LIVE SEARCH FILTER
   function filterTools() {
     let input = document.getElementById('toolSearch').value.toLowerCase();
@@ -423,27 +432,55 @@ footer a { color: var(--primary); text-decoration: none; }
 
   // CATEGORY FILTER
   function filterCategory(cat) {
+    // Update active button state
     document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-    event.target.classList.add('active');
+    event.currentTarget.classList.add('active');
     
+    // Filter cards
     let cards = document.querySelectorAll('.tool-card');
     cards.forEach(card => {
       if (cat === 'all' || card.getAttribute('data-category') === cat) {
         card.style.display = 'flex';
+        // Re-trigger animation
+        card.style.animation = 'none';
+        card.offsetHeight; /* trigger reflow */
+        card.style.animation = null; 
       } else {
         card.style.display = 'none';
       }
     });
   }
 
-  // AI CHAT ENGINE
+  // --- PREMIUM AI CHAT ENGINE ---
+  var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+
   function addChatMessage(text, sender) {
     var messagesDiv = document.getElementById('aiChatMessages');
     var msgDiv = document.createElement('div');
-    msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-    msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
+    
+    // Basic Markdown Parsing for bold and line breaks
+    let formattedText = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    msgDiv.innerHTML = formattedText;
+    
     messagesDiv.appendChild(msgDiv);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  // Add Typing Indicator
+  function showTypingIndicator() {
+    var messagesDiv = document.getElementById('aiChatMessages');
+    var msgDiv = document.createElement('div');
+    msgDiv.className = 'ai-message ai-message-bot';
+    msgDiv.id = 'typingIndicator';
+    msgDiv.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+    messagesDiv.appendChild(msgDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    var indicator = document.getElementById('typingIndicator');
+    if (indicator) indicator.remove();
   }
 
   async function sendAIMessage() {
@@ -451,10 +488,14 @@ footer a { color: var(--primary); text-decoration: none; }
     var message = input.value.trim();
     if (!message) return;
 
+    // 1. Add User Message
     addChatMessage(message, 'user');
     input.value = '';
+    
+    // 2. Show Premium Typing Animation
+    showTypingIndicator();
 
-    var promptText = "You are a professional Medical & Health AI Assistant for healthcalc.in. User Question: " + message + ". Provide clear, concise, structured advice in fluent English using bullet points. End with: '⚠️ Consult a doctor for personal medical advice.'";
+    var promptText = "You are a highly advanced Medical & Health AI Assistant for HealthCalc.in. User Question: " + message + ". Provide clear, concise, structured advice in fluent English using bullet points. Focus on actionable insights. Always end with: '⚠️ Consult a doctor for personal medical advice.'";
 
     try {
       var response = await fetch(WORKER_URL, {
@@ -464,13 +505,16 @@ footer a { color: var(--primary); text-decoration: none; }
       });
       
       var data = await response.json();
+      removeTypingIndicator(); // Remove dots
+
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
         addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
       } else {
-        throw new Error('Invalid AI response');
+        throw new Error('Invalid AI response structure');
       }
     } catch (e) {
-      addChatMessage("🏥 <strong>General Health Advice:</strong><br>• Eat a balanced diet rich in whole foods<br>• Exercise 150+ minutes weekly<br>• Stay hydrated and get 7-8 hours sleep<br><br>⚠️ <em>Consult a doctor for personal medical advice.</em>", 'bot');
+      removeTypingIndicator();
+      addChatMessage("🏥 <strong>General Health Advice:</strong><br>• Focus on a balanced diet and regular movement.<br>• Stay adequately hydrated.<br>• Ensure 7-9 hours of quality sleep.<br><br><em>Note: System is currently experiencing high load. Please try again.</em><br><br>⚠️ <em>Consult a doctor for personal medical advice.</em>", 'bot');
     }
   }
 </script>
