@@ -686,7 +686,7 @@ footer a:hover { color: var(--accent); }
 
     try {
       // ✅ CONNECTED TO YOUR OWN VERCEL BACKEND (/api/chat)
-      var response = await fetch('/api/chat', {
+     var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userMessage: message }) 
