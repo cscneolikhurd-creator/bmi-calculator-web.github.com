@@ -387,31 +387,30 @@ footer a{color:var(--primary);text-decoration:none}
         var promptContext = context + "Please act as an expert BAC & Alcohol Safety AI Assistant. Provide evidence-based, responsible drinking advice. Reference my BAC and country (" + cd.name + "). Always end with: '⚠️ Never drink and drive. Use a taxi/ride-share.'\n\nUSER QUESTION: " + message;
 
         try {
-            // ✅ CONNECTED TO YOUR SECURE VERCEL BACKEND
+            // ✅ DIRECT VERCEL URL (Cross-Origin Setup)
             var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userMessage: promptContext })
+                body: JSON.stringify({ userMessage: promptContext }) // Agar Index page hai toh promptContext ki jagah 'message' hoga
             });
             
             var data = await response.json(); 
             removeTypingIndicator();
             
+            // ✅ Naya Backend data.reply bhejta hai
             if(data.reply) {
                 addChatMessage(data.reply, 'bot');
             } else { 
-                throw new Error('Invalid AI response structure'); 
+                throw new Error('Invalid response'); 
             }
         } catch(e) { 
             removeTypingIndicator(); 
-            console.error('API Error:', e); 
-            var errorMessage = '❌ <strong>Network Error</strong><br><br>Aapke Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Never drink and drive under any circumstances.';
-            addChatMessage(errorMessage, 'bot'); 
+            console.error('Fetch Error:', e); 
+            addChatMessage('❌ <strong>Connection Error</strong><br>Vercel backend se connect nahi ho pa raha hai. Kripya check karein ki `api/chat.js` Vercel par live hai.<br><br>⚠️ Consult your doctor.', 'bot'); 
         } finally {
             isAIProcessing = false;
         }
-    }
-
+      
     window.sendAIMessage = sendAIMessage;
 </script>
 </body>
