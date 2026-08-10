@@ -322,7 +322,7 @@ footer{text-align:center;padding:20px;margin-top:30px;font-size:13px;color:var(-
         let promptText = `You are a fitness AI on HealthCalc.in. User Context: Body Fat=${fat} (${cat}). User Question: ${message}. Provide structured, clear advice in fluent English. End with: "⚠️ Consult a trainer or doctor for personal fitness plans."`;
 
         try {
-            var response = await fetch(WORKER_URL, {
+           var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt: promptText })
