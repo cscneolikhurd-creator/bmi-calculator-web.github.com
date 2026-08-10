@@ -557,33 +557,28 @@ async function sendAIMessage(prefilledText) {
     var systemPrompt = "You are an expert Preventive Cardiologist AI for HealthCalc. Provide clear, structured advice in bullet points. Always reference the patient's numbers. End with: '⚠️ Consult a doctor for medical advice.'";
 
     try {
-        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                model: 'llama-3.3-70b-versatile',
-                messages: [
-                    { role: 'system', content: systemPrompt },
-                    { role: 'user', content: context + message }
-                ]
-            })
-        });
-        
-        var data = await response.json();
-        removeTypingIndicator();
-        
-        if (data.choices && data.choices[0].message) {
-            addChatMessage(data.choices[0].message.content, 'bot');
-        } else {
-            throw new Error('API Error');
+       var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userMessage: promptContext }) // Fixed payload mapping!
+            });
+
+            var data = await response.json();
+            removeTypingIndicator();
+
+            if(data.reply) {
+                addChatMessage(data.reply, 'bot');
+            } else {
+                throw new Error('Invalid response');
+            }
+        } catch(e) {
+            removeTypingIndicator();
+            console.error('API Error:', e);
+            addChatMessage('❌ <strong>Network Error</strong><br>Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Consult a registered dietitian.', 'bot');
+        } finally {
+            isAIProcessing = false;
         }
-    } catch (error) {
-        removeTypingIndicator();
-        addChatMessage("⚠️ <strong>Network Error</strong><br>Unable to connect to AI Server. Please ensure your metrics are filled and try again. Consult your doctor for medical decisions.", 'bot');
-    } finally {
-        isAIProcessing = false;
     }
-}
 
 // Initialize on load
 updateAll();
