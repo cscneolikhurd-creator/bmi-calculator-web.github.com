@@ -1,643 +1,520 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
-    <title>Heart Rate Zones Calculator | Karvonen Formula | ACSM, NHS, CSEP Guidelines | AI Chat | HealthCalc</title>
-    <meta name="description" content="Professional heart rate zone calculator using the Karvonen formula. Get 5 personalized training zones for fat burn, cardio, and performance. Based on ACSM, NHS, CSEP & ESSA guidelines. AI chat for workout tips. Free, private.">
-    <meta name="keywords" content="heart rate zones, Karvonen formula, target heart rate, fat burn zone, cardio zone, max heart rate, training zones, ACSM guidelines, NHS exercise, AI fitness chat, zone 2 training, HIIT heart rate">
-    <meta name="author" content="HealthCalc">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://healthcalc.in/heart-rate-calculator.html">
+<!-- ========== SEO META TAGS ========== -->
+<title>Heart Rate Zones Calculator | Karvonen Formula | AI Chat | HealthCalc</title>
+<meta name="description" content="Professional heart rate zone calculator using the Karvonen formula. Get 5 personalized training zones for fat burn, cardio, and performance. Based on ACSM, NHS, CSEP & ESSA guidelines.">
+<meta name="keywords" content="heart rate zones, Karvonen formula, target heart rate, fat burn zone, cardio zone, max heart rate, training zones, ACSM guidelines, NHS exercise, AI fitness chat">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://healthcalc.in/heart-rate-calculator.html">
 
-    <link rel="alternate" hreflang="en" href="https://healthcalc.in/heart-rate-calculator.html">
-    <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/heart-rate-calculator.html">
-    <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/heart-rate-calculator.html">
-    <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/heart-rate-calculator.html">
-    <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/heart-rate-calculator.html">
-    <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/heart-rate-calculator.html">
+<meta property="og:title" content="Heart Rate Zones Calculator | Karvonen Formula | AI Chat">
+<meta property="og:description" content="Calculate your 5 personalized training zones using the Karvonen method. ACSM, NHS, CSEP & ESSA guidelines. AI chat for workout tips.">
+<meta property="og:url" content="https://healthcalc.in/heart-rate-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HealthCalc">
 
-    <meta property="og:title" content="Heart Rate Zones Calculator | Karvonen Formula | AI Chat">
-    <meta property="og:description" content="Calculate your 5 personalized training zones using the Karvonen method. ACSM, NHS, CSEP & ESSA guidelines. AI chat for workout tips.">
-    <meta property="og:url" content="https://healthcalc.in/heart-rate-calculator.html">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://healthcalc.in/images/heart-rate-zones-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "International Heart Rate Zones Calculator with AI Training Assistant",
+  "description": "Calculate target heart rate zones using the Karvonen method based on ACSM, NHS, CSEP, and ESSA guidelines.",
+  "url": "https://healthcalc.in/heart-rate-calculator.html"
+}
+</script>
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Heart Rate Zones Calculator | Karvonen Formula">
-    <meta name="twitter:description" content="5 training zones with Karvonen formula and AI training tips">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalWebPage",
-        "name": "International Heart Rate Zones Calculator with AI Training Assistant",
-        "description": "Calculate target heart rate zones using the Karvonen method based on ACSM, NHS, CSEP, and ESSA guidelines. Includes AI-powered personalized training tips for US, UK, Canada, Australia.",
-        "url": "https://healthcalc.in/heart-rate-calculator.html",
-        "author": {"@type": "Organization", "name": "HealthCalc", "url": "https://healthcalc.in"},
-        "about": {"@type": "MedicalCondition", "name": "Exercise Physiology & Heart Rate Training"},
-        "inLanguage": "en",
-        "audience": {
-            "@type": "Audience",
-            "geographicArea": [
-                {"@type": "Country", "name": "United States"},
-                {"@type": "Country", "name": "United Kingdom"},
-                {"@type": "Country", "name": "Canada"},
-                {"@type": "Country", "name": "Australia"}
-            ]
-        },
-        "dateModified": "2026-07-07"
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {"@type": "Question", "name": "What is the Karvonen formula?", "acceptedAnswer": {"@type": "Answer", "text": "Target HR = ((max HR − resting HR) × % intensity) + resting HR. It uses heart rate reserve for more accurate personalized zones than the standard 220−age formula."}},
-            {"@type": "Question", "name": "Which heart rate zone burns the most fat?", "acceptedAnswer": {"@type": "Answer", "text": "Zone 2 (60–70% of max HR or 65–75% of HR reserve) uses fat as the primary fuel source. Sessions of 30–60 minutes in this zone optimize fat metabolism."}},
-            {"@type": "Question", "name": "How do I measure my resting heart rate?", "acceptedAnswer": {"@type": "Answer", "text": "Measure first thing in the morning before getting out of bed. Count your pulse for 60 seconds. A normal resting heart rate is 60–100 bpm; athletes may be 40–60 bpm."}},
-            {"@type": "Question", "name": "Karvonen method vs 220−age?", "acceptedAnswer": {"@type": "Answer", "text": "The Karvonen method accounts for individual fitness level via resting heart rate, making it more accurate for personalized training. The 220−age formula is a simpler estimate that doesn't account for fitness variations."}}
-        ]
-    }
-    </script>
-
-    <link rel="stylesheet" href="global.css">
-    <script src="global.js" defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-
-    :root{
-        --primary:#dc2626;--primary-dark:#b91c1c;--primary-light:#fee2e2;
-        --secondary:#3b82f6;--success:#10b981;--warning:#f59e0b;
-        --dark:#1e293b;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;
-        --gray-600:#475569;--gray-900:#0f172a;
-        --gradient-bg:linear-gradient(135deg,#fef2f2 0%,#f8fafc 50%,#eff6ff 100%);
-        --shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.08);
-        --shadow-lg:0 20px 40px rgba(0,0,0,0.12);--shadow-xl:0 30px 60px rgba(0,0,0,0.2);
-        --radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;--radius-2xl:36px;
-    }
-
-    body.dark{
-        --primary:#f87171;--primary-dark:#ef4444;--primary-light:#450a0a;
-        --dark:#e2e8f0;--gray-50:#0f172a;--gray-100:#1e293b;--gray-200:#334155;
-        --gray-600:#94a3b8;--gray-900:#e2e8f0;
-        --gradient-bg:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);
-        --shadow-xl:0 30px 60px rgba(0,0,0,0.5);
-    }
-
-    body{font-family:'Inter',sans-serif;background:var(--gradient-bg);min-height:100vh;padding:20px;color:var(--dark);line-height:1.5;transition:background 0.3s,color 0.3s}
-    .container{max-width:1300px;margin:0 auto}
-
-    /* Top Bar */
-    .top-bar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;padding:14px 0;margin-bottom:15px;border-bottom:1px solid var(--gray-200)}
-    .region-selector{display:flex;gap:10px;align-items:center}
-    .region-selector label{font-weight:600;font-size:13px;color:var(--dark)}
-    .region-selector select{padding:8px 14px;border-radius:25px;border:2px solid var(--gray-200);background:var(--gray-50);color:var(--dark);font-size:13px;cursor:pointer}
-    .controls-right{display:flex;gap:10px;align-items:center}
-    .theme-toggle{display:flex;gap:4px}
-    .theme-option{padding:7px 14px;border-radius:20px;border:1px solid var(--gray-200);background:transparent;color:var(--gray-600);cursor:pointer;font-size:13px;transition:all 0.2s}
-    .theme-option:hover{background:var(--primary);color:white;border-color:var(--primary)}
-
-    .health-authority-note{background:var(--primary-light);padding:8px 20px;border-radius:40px;font-size:0.85rem;margin-bottom:15px;display:inline-block;color:var(--primary-dark)}
-    body.dark .health-authority-note{background:#450a0a;color:#fca5a5}
-
-    .breadcrumb{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px;font-size:13px;color:var(--gray-600)}
-    .breadcrumb a{color:var(--primary-dark);text-decoration:none;font-weight:500}
-    .breadcrumb a:hover{text-decoration:underline}
-
-    /* Header */
-    .header{text-align:center;padding:20px 0 10px}
-    .header h1{font-size:clamp(28px,4vw,38px);font-weight:800;background:linear-gradient(135deg,#b91c1c,#dc2626,#ef4444);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
-    body.dark .header h1{background:linear-gradient(135deg,#f87171,#fca5a5);-webkit-background-clip:text;background-clip:text}
-    .header p{color:var(--gray-600);font-size:15px;max-width:700px;margin:0 auto}
-
-    .badge-container{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:15px 0}
-    .badge{background:var(--primary-light);padding:5px 14px;border-radius:40px;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:6px;color:var(--primary-dark)}
-    body.dark .badge{background:#450a0a;color:#fca5a5}
-
-    /* Grid */
-    .grid{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;margin:30px 0}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
-
-    /* Cards */
-    .card{background:var(--gray-50);border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-md);transition:background 0.3s,transform 0.2s;border:1px solid var(--gray-200)}
-    body.dark .card{background:#1e293b;border-color:#334155}
-    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-    .card-title{font-size:20px;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:10px;color:var(--primary-dark);padding-bottom:12px;border-bottom:2px dashed var(--primary-light)}
-    body.dark .card-title{border-bottom-color:#450a0a}
-
-    /* Method Toggle */
-    .method-toggle{display:flex;gap:10px;background:var(--primary-light);padding:5px;border-radius:60px;margin-bottom:22px}
-    body.dark .method-toggle{background:#334155}
-    .method-btn{flex:1;padding:10px;border:none;background:transparent;border-radius:60px;font-weight:600;cursor:pointer;font-size:13px;color:var(--gray-600);transition:all 0.2s}
-    body.dark .method-btn{color:#94a3b8}
-    .method-btn.active{background:white;color:var(--primary);box-shadow:var(--shadow-sm)}
-    body.dark .method-btn.active{background:#1e293b;color:#f87171}
-
-    /* Form */
-    .input-group{margin-bottom:18px}
-    .input-group label{display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px;color:var(--gray-600);margin-bottom:6px}
-    .input-group label i{color:var(--primary);width:16px}
-    .input-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-    .value-badge{background:var(--primary-light);padding:4px 12px;border-radius:30px;font-size:13px;font-weight:600;color:var(--primary-dark)}
-    body.dark .value-badge{background:#450a0a;color:#fca5a5}
-    input[type="range"]{width:100%;height:6px;background:var(--gray-200);border-radius:10px;-webkit-appearance:none}
-    input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;background:var(--primary);border-radius:50%;cursor:pointer;border:2px solid white;box-shadow:var(--shadow-sm)}
-    select,input[type="number"]{width:100%;padding:11px 14px;border:2px solid var(--gray-200);border-radius:var(--radius-sm);font-size:14px;background:white;color:var(--dark);transition:all 0.2s}
-    body.dark select,body.dark input[type="number"]{background:#0f172a;border-color:#334155;color:#e2e8f0}
-    select:focus,input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(220,38,38,0.1)}
-    .small-text{font-size:11px;color:var(--gray-600);margin-top:4px}
-
-    /* Chat CTA */
-    .chat-cta-box{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px dashed var(--success);padding:16px;border-radius:var(--radius-lg);margin:18px 0;text-align:center;cursor:pointer;transition:all 0.3s}
-    body.dark .chat-cta-box{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
-    .chat-cta-box:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(16,185,129,0.2)}
-    .chat-cta-box .cta-icon{font-size:32px;margin-bottom:8px}
-    .chat-cta-box .cta-text{font-weight:700;color:var(--dark);font-size:14px}
-    .chat-cta-box .cta-sub{font-size:11px;color:var(--gray-600);margin-top:4px}
-
-    /* Buttons */
-    .btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,#dc2626,#b91c1c);color:white;border:none;border-radius:60px;font-size:15px;font-weight:700;cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px -5px rgba(220,38,38,0.4)}
-    .btn-outline{flex:1;padding:10px;background:transparent;border:2px solid var(--gray-200);border-radius:60px;color:var(--gray-600);font-weight:600;cursor:pointer;text-align:center;font-size:13px;transition:all 0.2s}
-    .btn-outline:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary-dark)}
-    .button-group{display:flex;gap:10px;margin-top:16px}
-
-    /* Max HR Box */
-    .max-hr-box{background:linear-gradient(135deg,#fef2f2,white);border-radius:var(--radius-lg);padding:24px;text-align:center;margin-bottom:20px;border:2px solid var(--primary-light)}
-    body.dark .max-hr-box{background:#0f172a;border-color:#450a0a}
-    .max-value{font-size:56px;font-weight:800;color:var(--primary);line-height:1}
-    body.dark .max-value{color:#f87171}
-    .max-label{font-size:13px;color:var(--gray-600);margin-top:4px}
-
-    /* Zones */
-    .zone-item{background:white;border-radius:var(--radius-lg);padding:16px;margin-bottom:10px;border:2px solid var(--gray-200);transition:all 0.2s}
-    body.dark .zone-item{background:#0f172a;border-color:#334155}
-    .zone-item:hover{border-color:var(--primary);transform:translateX(3px)}
-    .zone-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px}
-    .zone-name{font-weight:700;font-size:15px}
-    .zone-range{font-weight:700;color:var(--primary);background:var(--primary-light);padding:4px 12px;border-radius:40px;font-size:13px}
-    body.dark .zone-range{background:#450a0a;color:#fca5a5}
-    .zone-bar-container{height:8px;background:var(--gray-100);border-radius:10px;overflow:hidden;margin:10px 0}
-    body.dark .zone-bar-container{background:#334155}
-    .zone-bar{height:100%;border-radius:10px;transition:width 0.3s}
-    .zone-desc{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-600);margin-top:6px}
-
-    /* Goal Box */
-    .goal-box{background:var(--primary-light);border-radius:var(--radius-lg);padding:16px;text-align:center;margin:16px 0;font-weight:600;font-size:14px;color:var(--primary-dark)}
-    body.dark .goal-box{background:#450a0a;color:#fca5a5}
-
-    /* Tips */
-    .tips-card{margin:16px 0}
-    .tips-card h4{font-size:15px;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--dark)}
-    .tip-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-200)}
-    body.dark .tip-item{border-bottom-color:#334155}
-    .tip-item:last-child{border-bottom:none}
-    .tip-icon{font-size:24px;flex-shrink:0}
-
-    /* Chat CTA Results */
-    .chat-cta-results{margin:20px 0;padding:20px;background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border-radius:var(--radius-lg);border:2px solid var(--success);text-align:center}
-    body.dark .chat-cta-results{background:linear-gradient(135deg,#022c22,#064e3b);border-color:#059669}
-    .chat-cta-results h4{color:var(--dark);margin-bottom:10px;font-size:16px}
-    .chat-cta-btn{background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;padding:12px 24px;border-radius:60px;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.3s}
-    .chat-cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 25px rgba(16,185,129,0.4)}
-
-    /* Crosslinks */
-    .tools-crosslink{margin:20px 0;padding:18px;background:var(--gray-100);border-radius:var(--radius-lg)}
-    body.dark .tools-crosslink{background:#0f172a}
-    .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:10px}
-    .tool-link-card{background:white;padding:10px;border-radius:var(--radius-sm);text-align:center;text-decoration:none;color:var(--dark);font-weight:600;font-size:12px;border:1px solid var(--gray-200);transition:all 0.2s}
-    body.dark .tool-link-card{background:#1e293b;border-color:#334155;color:#e2e8f0}
-    .tool-link-card:hover{background:var(--primary);color:white;transform:translateY(-2px)}
-
-    /* FAQ */
-    .faq-section{margin:30px 0;padding:28px;background:var(--gray-50);border-radius:var(--radius-xl);border:1px solid var(--gray-200)}
-    body.dark .faq-section{background:#1e293b;border-color:#334155}
-    .faq-section h2{font-size:22px;text-align:center;margin-bottom:24px;color:var(--dark)}
-    .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-    @media(max-width:700px){.faq-grid{grid-template-columns:1fr}}
-    .faq-item{background:white;border-radius:var(--radius-lg);padding:16px;cursor:pointer}
-    body.dark .faq-item{background:#0f172a}
-    .faq-question{font-weight:700;font-size:14px;color:var(--primary-dark);display:flex;justify-content:space-between;align-items:center}
-    body.dark .faq-question{color:#f87171}
-    .faq-question .toggle{font-size:18px;transition:transform 0.2s}
-    .faq-item.active .faq-question .toggle{transform:rotate(45deg)}
-    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.3s ease;font-size:12px;color:var(--gray-600);margin-top:0}
-    .faq-item.active .faq-answer{max-height:200px;margin-top:10px}
-
-    /* Footer */
-    .footer-note{text-align:center;margin-top:30px;font-size:11px;color:var(--gray-600);padding:20px 0;border-top:1px solid var(--gray-200)}
-    body.dark .footer-note{border-top-color:#334155}
-    .footer-note a{color:var(--primary-dark);text-decoration:none;font-weight:600}
-
-    @media print{.top-bar,.btn-primary,.btn-outline,.button-group,.breadcrumb,.chat-cta-box,.chat-cta-results,footer{display:none}.grid{display:block}.card{box-shadow:none;border:1px solid #ddd;margin-bottom:20px}}
-    </style>
-</head>
-<body>
-<div class="container">
-
-<!-- ===== TOP BAR ===== -->
-<div class="top-bar">
-    <div class="region-selector">
-        <label><i class="fas fa-globe"></i> Region:</label>
-        <select id="countrySelect">
-            <option value="us">🇺🇸 United States (ACSM)</option>
-            <option value="uk">🇬🇧 United Kingdom (NHS)</option>
-            <option value="ca">🇨🇦 Canada (CSEP)</option>
-            <option value="au">🇦🇺 Australia (ESSA)</option>
-        </select>
-    </div>
-    <div class="controls-right">
-        <div class="theme-toggle">
-            <button class="theme-option" data-theme="light">☀️ Light</button>
-            <button class="theme-option" data-theme="dark">🌙 Dark</button>
-        </div>
-    </div>
-</div>
-
-<div id="healthAuthorityNote" class="health-authority-note">
-    ❤️ Based on ACSM, NHS, CSEP & ESSA guidelines — Heart rate zones for optimal training
-</div>
-
-<div class="breadcrumb">
-    <a href="/index.html"><i class="fas fa-home"></i> Home</a> <span>›</span>
-    <a href="/index.html#tools">Fitness Tools</a> <span>›</span>
-    <span>Heart Rate Zones Calculator</span>
-</div>
-
-<!-- ===== HEADER ===== -->
-<div class="header">
-    <h1>❤️ Heart Rate Zones Calculator</h1>
-    <p>Calculate your 5 personalized training zones using the accurate Karvonen formula. Get zone-specific recommendations for fat burn, cardio endurance, and performance training based on ACSM, NHS, CSEP & ESSA guidelines.</p>
-    <div class="badge-container">
-        <span class="badge"><i class="fas fa-heartbeat"></i> Karvonen Method</span>
-        <span class="badge"><i class="fas fa-fire"></i> Fat Burn Zone</span>
-        <span class="badge"><i class="fas fa-chart-line"></i> 5 Training Zones</span>
-        <span class="badge"><i class="fas fa-robot"></i> AI Chat</span>
-        <span class="badge"><i class="fas fa-lock"></i> 100% Private</span>
-    </div>
-</div>
-
-<!-- ===== MAIN GRID ===== -->
-<div class="grid">
-
-    <!-- INPUT CARD -->
-    <div class="card">
-        <div class="card-title"><i class="fas fa-sliders-h"></i> Your Details</div>
-
-        <div class="method-toggle">
-            <button class="method-btn active" id="methodKarvonen">📊 Karvonen (Most Accurate)</button>
-            <button class="method-btn" id="methodStandard">📈 Standard (220 − Age)</button>
-        </div>
-
-        <div class="input-group">
-            <div class="input-row">
-                <label><i class="fas fa-calendar-alt"></i> Age</label>
-                <span class="value-badge" id="ageValue">35</span>
-            </div>
-            <input type="range" id="age" min="15" max="100" value="35" step="1">
-        </div>
-
-        <div class="input-group">
-            <div class="input-row">
-                <label><i class="fas fa-heart"></i> Resting Heart Rate (bpm)</label>
-                <span class="value-badge" id="restingValue">70</span>
-            </div>
-            <input type="range" id="restingHr" min="40" max="120" value="70" step="1">
-            <div class="small-text">Measure first thing in the morning before getting out of bed. Normal: 60–100 bpm.</div>
-        </div>
-
-        <div class="input-group">
-            <label><i class="fas fa-running"></i> Fitness Level</label>
-            <select id="fitness">
-                <option value="beginner">Beginner</option>
-                <option value="intermediate" selected>Intermediate</option>
-                <option value="advanced">Advanced</option>
-                <option value="athlete">Athlete / Elite</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label><i class="fas fa-bullseye"></i> Training Goal</label>
-            <select id="goal">
-                <option value="fatburn">🔥 Fat Burn / Weight Loss</option>
-                <option value="cardio">🏃 Cardiovascular Endurance</option>
-                <option value="performance">⚡ Performance / Speed</option>
-                <option value="general" selected>🌟 General Health & Fitness</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label><i class="fas fa-venus-mars"></i> Gender</label>
-            <select id="gender">
-                <option value="male">Male</option>
-                <option value="female" selected>Female</option>
-            </select>
-        </div>
-
-        <div class="chat-cta-box" onclick="openChatWithHR()">
-            <div class="cta-icon">💬</div>
-            <div class="cta-text">Need Training Tips? Chat with AI!</div>
-            <div class="cta-sub">Get personalized zone training advice based on your results</div>
-        </div>
-
-        <button class="btn-primary" id="calculateBtn" onclick="calculateZones()"><i class="fas fa-calculator"></i> Calculate My Training Zones</button>
-    </div>
-
-    <!-- RESULTS CARD -->
-    <div class="card">
-        <div class="card-title"><i class="fas fa-chart-pie"></i> Your Training Zones</div>
-
-        <div class="max-hr-box">
-            <div class="max-value" id="maxHr">185</div>
-            <div class="max-label">Maximum Heart Rate (bpm)</div>
-            <div class="max-label" id="reserveLabel" style="font-size:11px"></div>
-        </div>
-
-        <div id="zonesContainer"></div>
-
-        <div class="goal-box" id="goalAdvice">
-            <i class="fas fa-clock"></i> For general health: 150 minutes per week in Zones 2–3
-        </div>
-
-        <div class="chat-cta-results">
-            <h4><i class="fas fa-robot"></i> Want Personalized Training Tips?</h4>
-            <p style="font-size:13px;color:var(--gray-600);margin-bottom:12px">Chat with our AI for zone-specific workouts, fat burn strategies, and cardio plans!</p>
-            <button class="chat-cta-btn" onclick="openChatWithHR()">💬 Chat About My Zones</button>
-        </div>
-
-        <div class="tips-card">
-            <h4><i class="fas fa-lightbulb"></i> Personalized Training Tips</h4>
-            <div id="tipsList"></div>
-        </div>
-
-        <div class="tools-crosslink">
-            <h4><i class="fas fa-link"></i> Explore Related Fitness Tools</h4>
-            <div class="tools-grid">
-                <a href="bmi-calculator.html" class="tool-link-card">⚖️ BMI</a>
-                <a href="body-fat-calculator.html" class="tool-link-card">🧬 Body Fat</a>
-                <a href="calorie-calculator.html" class="tool-link-card">🔥 Calories</a>
-                <a href="ffmi-calculator.html" class="tool-link-card">💪 FFMI</a>
-                <a href="ascvd-risk-calculator.html" class="tool-link-card">🫀 Heart Risk</a>
-            </div>
-        </div>
-
-        <div class="button-group">
-            <button class="btn-outline" onclick="window.print()"><i class="fas fa-print"></i> Print Report</button>
-            <button class="btn-outline" onclick="shareResults()"><i class="fas fa-share-alt"></i> Share Results</button>
-        </div>
-
-        <p style="text-align:center;font-size:10px;color:var(--gray-600);margin-top:16px">
-            ⚕️ Consult a doctor before starting any exercise program. Heart rate zones are estimates; individual responses vary. All calculations happen in your browser — 100% private.
-        </p>
-    </div>
-</div>
-
-<!-- ===== FAQ ===== -->
-<div class="faq-section">
-    <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-    <div class="faq-grid">
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">What is the Karvonen formula? <span class="toggle">+</span></div>
-            <div class="faq-answer">Target HR = ((max HR − resting HR) × % intensity) + resting HR. It uses your heart rate reserve for more accurate personalized zones than the standard 220−age formula.</div>
-        </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">Which zone burns the most fat? <span class="toggle">+</span></div>
-            <div class="faq-answer">Zone 2 (60–70% of max HR) uses fat as the primary fuel source. Sessions of 30–60 minutes in this zone optimize fat metabolism and are sustainable for longer workouts.</div>
-        </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">How to measure resting heart rate? <span class="toggle">+</span></div>
-            <div class="faq-answer">Measure first thing in the morning before getting out of bed. Place two fingers on your wrist or neck, count beats for 60 seconds. Normal: 60–100 bpm. Well-trained athletes: 40–60 bpm.</div>
-        </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">Karvonen vs 220−age? <span class="toggle">+</span></div>
-            <div class="faq-answer">The Karvonen method accounts for individual fitness via resting heart rate, making it more accurate for personalized training. The 220−age formula is simpler but doesn't consider fitness variations.</div>
-        </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">How long should I train in each zone? <span class="toggle">+</span></div>
-            <div class="faq-answer">Zone 1: 5–10 min warm-up/cool-down. Zone 2: 30–60 min for fat burn. Zone 3: 20–40 min for cardio. Zone 4: 5–15 min intervals. Zone 5: 30 sec – 2 min sprints with recovery.</div>
-        </div>
-        <div class="faq-item" onclick="this.classList.toggle('active')">
-            <div class="faq-question">Is my heart rate data private? <span class="toggle">+</span></div>
-            <div class="faq-answer">Yes! All calculations happen entirely in your browser. We never store, log, or transmit any of your personal health data to any server. 100% private and anonymous.</div>
-        </div>
-    </div>
-</div>
-
-<!-- Footer -->
-<div class="footer-note">
-    <p>⭐ Rated 4.8/5 by 1,800+ users | Based on ACSM, NHS, CSEP & ESSA guidelines | <a href="/index.html">← Back to All Tools</a></p>
-    <p style="margin-top:4px">© 2026 HealthCalc — Free Heart Rate Training Tool. <a href="privacy-policy.html">Privacy</a> • <a href="terms-of-service.html">Terms</a></p>
-</div>
-</div>
-
-<!-- ============================================ -->
-<!-- AI CHAT WIDGET (PROXIED - NO CLIENT API KEY) -->
-<!-- ============================================ -->
-<div id="ai-chat-widget" style="display:none;position:fixed;bottom:100px;right:30px;width:380px;max-width:90vw;background:white;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.2);z-index:999999;overflow:hidden;font-family:'Inter',sans-serif">
-    <div style="background:linear-gradient(135deg,#dc2626,#b91c1c);color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center">
-        <div style="display:flex;align-items:center;gap:10px"><span style="font-size:24px">❤️</span><div><strong style="font-size:15px">Heart Rate Training AI</strong><div style="font-size:11px;opacity:0.9">Online · Free · Cloudflare Secured</div></div></div>
-        <button onclick="closeAIChat()" style="background:rgba(255,255,255,0.2);border:none;color:white;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px">✕</button>
-    </div>
-    <div id="ai-chat-messages" style="height:320px;overflow-y:auto;padding:16px;background:#f8fafc;display:flex;flex-direction:column;gap:12px">
-        <div style="display:flex;gap:10px"><div style="width:32px;height:32px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;flex-shrink:0">❤️</div><div style="background:white;padding:12px 16px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.1);max-width:80%;font-size:14px;line-height:1.5"><strong>Hello! 👋</strong><br><br>I'm your <strong>Heart Rate Training AI</strong>. Calculate your zones first, then ask me for personalized workout plans, fat burn strategies, and cardio tips!</div></div>
-    </div>
-    <div id="ai-chat-suggestions" style="padding:10px 16px;background:white;border-top:1px solid #e2e8f0;display:flex;flex-wrap:wrap;gap:6px">
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('Best heart rate zone for fat loss?')">Fat burn zone?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('How to improve cardiovascular fitness?')">Improve cardio?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('Zone 2 training benefits and workout plan')">Zone 2 benefits?</span>
-        <span class="ai-suggestion-chip" style="background:#f1f5f9;padding:6px 12px;border-radius:15px;font-size:12px;cursor:pointer;border:1px solid #e2e8f0" onclick="sendAIQuery('HIIT workout heart rate guide')">HIIT guide?</span>
-    </div>
-    <div style="padding:12px 16px;background:white;border-top:1px solid #e2e8f0;display:flex;gap:8px">
-        <input type="text" id="ai-chat-input" placeholder="Ask about your heart rate zones..." style="flex:1;padding:10px 16px;border:2px solid #e2e8f0;border-radius:25px;outline:none;font-size:14px;font-family:inherit" onkeypress="if(event.key==='Enter')sendAIQuery()">
-        <button onclick="sendAIQuery()" style="width:42px;height:42px;border-radius:50%;background:#dc2626;color:white;border:none;cursor:pointer;font-size:18px;flex-shrink:0">➤</button>
-    </div>
-    <div style="padding:8px 16px;background:#f8fafc;border-top:1px solid #e2e8f0;text-align:center;font-size:10px;color:#64748b">⚠️ Educational only. Consult a doctor before starting exercise.</div>
-</div>
-
-<button id="ai-chat-fab" onclick="toggleAIChat()" style="position:fixed;bottom:30px;right:30px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#dc2626,#b91c1c);color:white;border:none;cursor:pointer;font-size:26px;box-shadow:0 8px 24px rgba(220,38,38,0.4);z-index:999998;transition:all 0.3s;display:flex;align-items:center;justify-content:center" title="Chat with Heart Rate AI">💬</button>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-@keyframes messageSlideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes typingBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-8px)}}
-.ai-suggestion-chip:hover{background:#dc2626!important;color:white!important;border-color:#dc2626!important}
-@media(max-width:480px){#ai-chat-widget{width:100vw;height:100vh;bottom:0;right:0;border-radius:0;max-width:100vw}#ai-chat-messages{height:calc(100vh-250px)}}
+/* --- PREMIUM CSS VARIABLES (Red/Rose Theme for Heart Rate) --- */
+:root {
+  --primary: #ef4444;
+  --primary-hover: #dc2626;
+  --primary-light: #fee2e2;
+  --secondary: #f43f5e;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --dark: #0f172a;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #fef2f2 100%);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+  --shadow-md: 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-hover: 0 20px 40px rgba(239, 68, 68, 0.15);
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark {
+  --primary-light: #450a0a;
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text); line-height: 1.6; min-height: 100vh; transition: var(--transition); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+/* --- TOP NAVIGATION --- */
+.top-nav { background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; }
+.nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 14px; padding: 8px 20px; border-radius: 50px; transition: var(--transition); }
+.nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+.theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.theme-toggle-btn:hover { background: var(--primary-light); transform: rotate(15deg); }
+
+/* --- INTERNATIONAL BAR --- */
+.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; background: var(--card-bg); padding: 16px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+.region-selector select { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-size: 14px; font-weight: 600; background: var(--card-bg); color: var(--text); cursor: pointer; outline: none; transition: var(--transition); }
+.region-selector select:focus { border-color: var(--primary); }
+
+/* --- HERO SECTION --- */
+.hero { text-align: center; padding: 30px 20px 40px; }
+.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; margin-bottom: 12px; letter-spacing: -1px; }
+.hero p { font-size: 16px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+.health-authority-note { background: var(--primary-light); color: var(--primary-hover); padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+
+/* --- MAIN CARD & FORM --- */
+.main-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; margin: 30px 0; }
+@media(max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+.card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
+.section-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; color: var(--text); padding-bottom: 12px; border-bottom: 2px dashed var(--border); }
+.section-title i { color: var(--primary); }
+
+/* Method Toggle */
+.method-toggle { display: flex; gap: 10px; background: var(--border); padding: 6px; border-radius: 60px; margin-bottom: 24px; }
+body.dark .method-toggle { background: var(--border); }
+.method-btn { flex: 1; padding: 12px; border: none; background: transparent; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 14px; color: var(--text-muted); transition: var(--transition); }
+.method-btn.active { background: var(--card-bg); color: var(--primary); box-shadow: var(--shadow-sm); }
+
+.input-group { margin-bottom: 20px; }
+.input-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.input-group label { font-weight: 600; font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.input-group label i { color: var(--primary); width: 16px; }
+.value-badge { background: var(--primary-light); color: var(--primary-hover); padding: 4px 12px; border-radius: 30px; font-size: 14px; font-weight: 700; }
+
+input[type="range"] { width: 100%; height: 8px; background: var(--border); border-radius: 10px; -webkit-appearance: none; outline: none; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; background: white; border: 3px solid var(--primary); border-radius: 50%; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); transition: var(--transition); }
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+select { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 15px; background: var(--card-bg); color: var(--text); outline: none; transition: var(--transition); font-weight: 500; }
+select:focus { border-color: var(--primary); }
+
+.calc-btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 18px; width: 100%; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 10px; transition: var(--transition); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3); display: flex; justify-content: center; gap: 10px; }
+.calc-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(239, 68, 68, 0.4); }
+
+/* --- RESULTS SECTION --- */
+.max-hr-box { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: var(--radius-xl); padding: 24px; text-align: center; margin-bottom: 24px; color: white; }
+.max-value { font-size: 56px; font-weight: 900; background: linear-gradient(135deg, #fca5a5, #ef4444); -webkit-background-clip: text; color: transparent; line-height: 1; margin: 5px 0; }
+
+.zone-item { background: var(--card-bg); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px; border: 1px solid var(--border); transition: var(--transition); box-shadow: var(--shadow-sm); }
+.zone-item:hover { border-color: var(--primary); transform: translateX(4px); }
+.zone-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.zone-name { font-weight: 700; font-size: 15px; color: var(--text); }
+.zone-range { font-weight: 800; color: var(--primary); background: var(--primary-light); padding: 4px 12px; border-radius: 40px; font-size: 14px; }
+.zone-bar-container { height: 8px; background: var(--border); border-radius: 10px; overflow: hidden; margin: 12px 0; }
+.zone-bar { height: 100%; border-radius: 10px; transition: width 0.5s ease-in-out; }
+.zone-desc { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+.goal-box { background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 16px; margin: 20px 0; font-weight: 600; font-size: 14px; color: var(--text); }
+
+/* --- PREMIUM AI CHAT PANEL --- */
+.ai-chat-panel { margin-top: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.ai-chat-header { background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(244,63,94,0.2)); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.ai-chat-messages { height: 280px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
+.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; animation: slideIn 0.3s ease; }
+.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
+.ai-message-user { background: var(--primary); color: white; font-weight: 500; border-radius: 16px; border-top-right-radius: 4px; align-self: flex-end; }
+.ai-chat-suggestions { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); }
+.ai-chat-suggestions::-webkit-scrollbar { display: none; }
+.ai-suggestion-chip { background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; font-size: 12px; cursor: pointer; color: #cbd5e1; white-space: nowrap; transition: var(--transition); border: 1px solid transparent; }
+.ai-suggestion-chip:hover { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); }
+.ai-chat-input-row { display: flex; gap: 12px; padding: 16px; background: rgba(0,0,0,0.4); }
+.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 14px; outline: none; transition: var(--transition); }
+.ai-chat-input:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
+.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+.ai-chat-send-btn:hover { background: var(--primary-hover); transform: scale(1.05); }
+.ai-chat-disclaimer { padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.5); }
+
+/* Animations */
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.typing-dots { display: flex; gap: 4px; padding: 4px; }
+.typing-dots div { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+.typing-dots div:nth-child(1) { animation-delay: -0.32s; }
+.typing-dots div:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Premium Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="ascvd-risk-calculator.html"><i class="fas fa-heartbeat"></i> ASCVD Risk</a>
+      <a href="heart-rate-calculator.html" class="active"><i class="fas fa-wave-square"></i> Heart Rate</a>
+      <a href="calorie-calculator.html"><i class="fas fa-utensils"></i> Calories</a>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </nav>
+
+  <!-- Tools & Regional Settings -->
+  <div class="international-bar">
+    <div class="region-selector">
+      <label for="countrySelect"><i class="fas fa-globe"></i> Clinical Guidelines:</label>
+      <select id="countrySelect">
+        <option value="us">🇺🇸 United States (ACSM)</option>
+        <option value="uk">🇬🇧 United Kingdom (NHS)</option>
+        <option value="ca">🇨🇦 Canada (CSEP)</option>
+        <option value="au">🇦🇺 Australia (ESSA)</option>
+      </select>
+    </div>
+    <div style="font-weight: 600; color: var(--text-muted); font-size:13px;" id="healthAuthorityNote">
+      <i class="fas fa-shield-halved"></i> Based on ACSM guidelines
+    </div>
+  </div>
+
+  <header class="hero">
+    <h1>Premium Heart Rate Zones</h1>
+    <p>Calculate your 5 personalized training zones using the accurate Karvonen formula. Get zone-specific recommendations paired with an AI Fitness Coach.</p>
+  </header>
+
+  <main class="main-grid">
+    <!-- LEFT COLUMN: INPUTS -->
+    <div class="card">
+      <div class="section-title"><i class="fas fa-sliders-h"></i> Biological Profile</div>
+
+      <div class="method-toggle">
+        <button class="method-btn active" id="methodKarvonen"><i class="fas fa-chart-pie"></i> Karvonen (Accurate)</button>
+        <button class="method-btn" id="methodStandard"><i class="fas fa-chart-line"></i> Standard (220-Age)</button>
+      </div>
+
+      <div class="input-group">
+        <div class="input-row">
+          <label><i class="fas fa-calendar-alt"></i> Age</label>
+          <span class="value-badge" id="ageValue">35</span>
+        </div>
+        <input type="range" id="age" min="15" max="100" value="35" step="1">
+      </div>
+
+      <div class="input-group">
+        <div class="input-row">
+          <label><i class="fas fa-heartbeat"></i> Resting Heart Rate (bpm)</label>
+          <span class="value-badge" id="restingValue">70</span>
+        </div>
+        <input type="range" id="restingHr" min="40" max="120" value="70" step="1">
+        <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">Normal: 60–100 bpm. Measure first thing in the morning.</div>
+      </div>
+
+      <div class="input-group" style="margin-top: 24px;">
+        <label><i class="fas fa-running"></i> Fitness Level</label>
+        <select id="fitness">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate" selected>Intermediate</option>
+          <option value="advanced">Advanced</option>
+          <option value="athlete">Athlete / Elite</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-bullseye"></i> Primary Goal</label>
+        <select id="goal">
+          <option value="fatburn">🔥 Fat Burn / Weight Loss</option>
+          <option value="cardio">🏃 Cardiovascular Endurance</option>
+          <option value="performance">⚡ Performance / Speed</option>
+          <option value="general" selected>🌟 General Health & Fitness</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-venus-mars"></i> Gender</label>
+        <select id="gender">
+          <option value="male">Male</option>
+          <option value="female" selected>Female</option>
+        </select>
+      </div>
+
+      <button class="calc-btn" id="calculateBtn" onclick="calculateZones()"><i class="fas fa-calculator"></i> Calculate My Zones</button>
+    </div>
+
+    <!-- RIGHT COLUMN: OUTPUT & AI -->
+    <div class="card">
+      <div class="section-title"><i class="fas fa-heart-pulse"></i> Your Training Zones</div>
+
+      <div class="max-hr-box">
+        <div style="font-size:14px; opacity:0.8; font-weight:600;">Maximum Heart Rate (bpm)</div>
+        <div class="max-value" id="maxHr">185</div>
+        <div id="reserveLabel" style="font-size:12px; opacity:0.7; margin-top:8px;"></div>
+      </div>
+
+      <div id="zonesContainer"></div>
+
+      <div class="goal-box" id="goalAdvice">
+        <i class="fas fa-clock"></i> For general health: 150 minutes per week in Zones 2–3
+      </div>
+
+      <!-- PREMIUM AI CHAT PANEL -->
+      <div class="ai-chat-panel" id="aiChatPanel">
+        <div class="ai-chat-header">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <i class="fas fa-robot" style="color:var(--primary-light);"></i>
+            <span>Fitness AI Coach</span>
+          </div>
+          <span style="font-size:10px; background:rgba(16,185,129,0.2); color:#6ee7b7; padding:4px 10px; border-radius:20px;">Vercel Secured</span>
+        </div>
+        
+        <div class="ai-chat-messages" id="aiChatMessages">
+          <div class="ai-message ai-message-bot">
+            <strong>Hello! 👋</strong><br><br>I'm your Heart Rate Training AI. I can see your calculated zones above. Ask me for personalized workout plans, fat burn strategies, or zone-specific cardio routines!
+          </div>
+        </div>
+        
+        <div class="ai-chat-suggestions">
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('What is the best workout plan to maximize fat burning in Zone 2?')">🔥 Fat Burn Plan?</div>
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('How can I incorporate Zone 4 and Zone 5 interval training safely?')">⚡ HIIT Intervals?</div>
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('How do I improve my overall cardiovascular endurance based on my zones?')">🏃 Improve Cardio?</div>
+        </div>
+        
+        <div class="ai-chat-input-row">
+          <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about fat burn, cardio, or HIIT..." onkeypress="if(event.key==='Enter')sendAIMessage()">
+          <button class="ai-chat-send-btn" onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="ai-chat-disclaimer">⚠️ Educational only. Consult a doctor before starting any rigorous exercise program.</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer role="contentinfo" style="text-align:center; padding:20px; margin-top:30px; font-size:13px; color:var(--text-muted);">
+    <p>© 2026 HealthCalc.in — Free Heart Rate Training Tool. <a href="privacy-policy.html">Privacy</a> • <a href="terms-of-service.html">Terms</a></p>
+  </footer>
+
+</div>
 
 <script>
-// ==============================================
-// 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-// ==============================================
-var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
-
-// ===== GLOBAL STATE =====
-var useKarvonen = true;
-var currentCountry = 'us';
-
-// ===== COUNTRY DATA =====
-var countryData = {
-    us: {name:'USA',authority:'ACSM',fullName:'American College of Sports Medicine'},
-    uk: {name:'UK',authority:'NHS',fullName:'National Health Service (UK)'},
-    ca: {name:'Canada',authority:'CSEP',fullName:'Canadian Society for Exercise Physiology'},
-    au: {name:'Australia',authority:'ESSA',fullName:'Exercise & Sports Science Australia'}
-};
-
-// ===== THEME =====
-function initTheme(){var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark')}
-function setTheme(t){localStorage.setItem('healthcalc_theme',t);document.body.classList.toggle('dark',t==='dark')}
-document.querySelectorAll('.theme-option').forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.theme)})});
-initTheme();
-
-// ===== COUNTRY =====
-function setCountry(c){
-    currentCountry=c;document.getElementById('countrySelect').value=c;
-    localStorage.setItem('healthcalc_country',c);
-    var cd=countryData[c];
-    document.getElementById('healthAuthorityNote').innerHTML='❤️ Based on '+cd.authority+' ('+cd.fullName+') guidelines — Heart rate zones for optimal training';
-    calculateZones();
-}
-
-// ===== SHARE =====
-function shareResults(){
-    var url=window.location.href;
-    if(navigator.share){navigator.share({title:'My Heart Rate Training Zones',url:url})}
-    else{navigator.clipboard.writeText(url);alert('Link copied to clipboard!')}
-}
-
-// ===== ZONE DATA =====
-var zones = [
-    {name:'Zone 1 · Very Light',desc:'Recovery & Warm-Up',benefit:'Improves blood flow & recovery',percent:[0.5,0.6],color:'#94a3b8'},
-    {name:'Zone 2 · Light / Fat Burn',desc:'Fat Burning Zone',benefit:'Increases fat metabolism',percent:[0.6,0.7],color:'#4ade80'},
-    {name:'Zone 3 · Moderate / Cardio',desc:'Aerobic Endurance',benefit:'Improves cardiovascular fitness',percent:[0.7,0.8],color:'#fbbf24'},
-    {name:'Zone 4 · Hard / Threshold',desc:'Lactate Threshold',benefit:'Increases speed & stamina',percent:[0.8,0.9],color:'#f97316'},
-    {name:'Zone 5 · Maximum / Peak',desc:'Anaerobic Power',benefit:'Builds explosive power & speed',percent:[0.9,1.0],color:'#ef4444'}
-];
-
-// ===== MAX HR CALCULATION =====
-function calculateMaxHR(){
-    var age=parseInt(document.getElementById('age').value);
-    var fitnessLevel=document.getElementById('fitness').value;
-    var isMale=document.getElementById('gender').value==='male';
-    if(!useKarvonen)return 220-age;
-    // Fitness-adjusted formulas
-    if(fitnessLevel==='athlete'){return isMale?205-(age/2):210-(age/2)}
-    else if(fitnessLevel==='advanced'){return isMale?210-(age/2.5):215-(age/2.5)}
-    else{return isMale?214-(age*0.8):209-(age*0.8)}
-}
-
-// ===== MAIN CALCULATION =====
-function calculateZones(){
-    document.getElementById('ageValue').textContent=document.getElementById('age').value;
-    document.getElementById('restingValue').textContent=document.getElementById('restingHr').value;
-
-    var maxHr=calculateMaxHR();
-    var resting=parseInt(document.getElementById('restingHr').value);
-    var reserve=maxHr-resting;
-    document.getElementById('maxHr').textContent=maxHr;
-    document.getElementById('reserveLabel').innerHTML=useKarvonen?'❤️ Heart Rate Reserve: '+reserve+' bpm (Karvonen method)':'📊 Standard method (220 − age)';
-
-    var html='';
-    for(var i=0;i<zones.length;i++){
-        var z=zones[i];
-        var low,high;
-        if(useKarvonen){low=Math.round(resting+reserve*z.percent[0]);high=Math.round(resting+reserve*z.percent[1])}
-        else{low=Math.round(maxHr*z.percent[0]);high=Math.round(maxHr*z.percent[1])}
-        var barWidth=((z.percent[0]+z.percent[1])/2)*100;
-        html+='<div class="zone-item"><div class="zone-header"><span class="zone-name">'+z.name+'</span><span class="zone-range">'+low+' – '+high+' bpm</span></div><div class="zone-bar-container"><div class="zone-bar" style="width:'+barWidth+'%;background:'+z.color+'"></div></div><div class="zone-desc"><span>'+z.desc+'</span><span>'+z.benefit+'</span></div></div>';
+    // ==============================================
+    // THEME MANAGEMENT
+    // ==============================================
+    function initTheme() { 
+        var s = localStorage.getItem('hc_theme') || 'light'; 
+        document.body.classList.toggle('dark', s === 'dark'); 
+        updateThemeIcon(s);
     }
-    document.getElementById('zonesContainer').innerHTML=html;
-
-    // Goal advice
-    var goal=document.getElementById('goal').value;
-    var advice='';
-    if(goal==='fatburn')advice='<i class="fas fa-fire"></i> For fat loss: 30–45 minutes in Zone 2, 3–4 times per week. Maintain conversational pace.';
-    else if(goal==='cardio')advice='<i class="fas fa-heart-pulse"></i> For cardio endurance: 20–40 minutes in Zone 3 + Zone 2 recovery. Gradually increase duration.';
-    else if(goal==='performance')advice='<i class="fas fa-bolt"></i> For performance: HIIT in Zones 4–5 with 1:2 work-rest ratio. 2–3 sessions per week maximum.';
-    else advice='<i class="fas fa-clock"></i> For general health: 150 minutes per week in Zones 2–3 (ACSM/NHS recommendation).';
-    document.getElementById('goalAdvice').innerHTML=advice;
-
-    // Tips
-    generateTips(goal);
-}
-
-function generateTips(goal){
-    var tips=[];
-    if(goal==='fatburn'){
-        tips=[{icon:'🔥',title:'Stay in Zone 2',desc:'You should be able to hold a conversation comfortably while exercising.'},{icon:'⏱️',title:'Duration Matters',desc:'Longer sessions (45–60 min) at moderate intensity burn more fat than short, intense workouts.'},{icon:'🍽️',title:'Fasted Cardio?',desc:'Morning fasted cardio may increase fat oxidation, but consistency matters more than timing.'}];
-    }else if(goal==='cardio'){
-        tips=[{icon:'📈',title:'Progressive Overload',desc:'Increase duration by 5–10% each week. Aim for 150+ minutes of moderate cardio weekly.'},{icon:'🔄',title:'Mix Intensities',desc:'Alternate Zone 2 recovery days with Zone 3–4 training days for optimal adaptation.'},{icon:'❤️',title:'Monitor Recovery',desc:'Your resting HR should decrease over time as cardiovascular fitness improves.'}];
-    }else if(goal==='performance'){
-        tips=[{icon:'⚡',title:'Quality Over Quantity',desc:'Focus on interval training. 1–2 high-quality sessions beat multiple mediocre ones.'},{icon:'💪',title:'Strength Training',desc:'Combine with 2–3 strength sessions per week for power development.'},{icon:'🛌',title:'Recovery Is Training',desc:'Zone 4–5 training requires 48+ hours recovery. Sleep 7–9 hours.'}];
-    }else{
-        tips=[{icon:'🌟',title:'Variety Is Key',desc:'Mix Zone 2 endurance, Zone 3 cardio, and occasional Zone 4 intervals for well-rounded fitness.'},{icon:'😴',title:'Rest Days Matter',desc:'Include 1–2 active recovery days in Zone 1 per week.'},{icon:'📊',title:'Track Progress',desc:'Re-measure your resting HR monthly. A decreasing trend indicates improving fitness.'}];
+    function toggleTheme() { 
+        var isDark = document.body.classList.contains('dark');
+        var newTheme = isDark ? 'light' : 'dark';
+        localStorage.setItem('hc_theme', newTheme); 
+        document.body.classList.toggle('dark', !isDark); 
+        updateThemeIcon(newTheme);
     }
-    document.getElementById('tipsList').innerHTML=tips.map(function(t){return '<div class="tip-item"><div class="tip-icon">'+t.icon+'</div><div><strong>'+t.title+'</strong><p style="font-size:12px;color:var(--gray-600);margin-top:2px">'+t.desc+'</p></div></div>'}).join('');
-}
+    function updateThemeIcon(theme) {
+        var btn = document.getElementById('themeToggleBtn');
+        if(btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    initTheme();
 
-// ===== EVENT LISTENERS =====
-document.getElementById('countrySelect').addEventListener('change',function(e){setCountry(e.target.value)});
-document.getElementById('methodKarvonen').addEventListener('click',function(){document.getElementById('methodKarvonen').classList.add('active');document.getElementById('methodStandard').classList.remove('active');useKarvonen=true;calculateZones()});
-document.getElementById('methodStandard').addEventListener('click',function(){document.getElementById('methodStandard').classList.add('active');document.getElementById('methodKarvonen').classList.remove('active');useKarvonen=false;calculateZones()});
-['age','restingHr','fitness','goal','gender'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',calculateZones);el.addEventListener('change',calculateZones)}});
-document.getElementById('calculateBtn').addEventListener('click',calculateZones);
+    // ==============================================
+    // COUNTRY DATA & LOGIC
+    // ==============================================
+    var useKarvonen = true;
+    var currentCountry = 'us';
 
-// ===== AI CHAT FUNCTIONS =====
-function toggleAIChat(){var w=document.getElementById('ai-chat-widget'),f=document.getElementById('ai-chat-fab');if(w.style.display==='none'||!w.style.display){w.style.display='block';f.innerHTML='✕';f.style.background='linear-gradient(135deg,#991b1b,#7f1d1d)';document.getElementById('ai-chat-input').focus()}else{w.style.display='none';f.innerHTML='💬';f.style.background='linear-gradient(135deg,#dc2626,#b91c1c)'}}
-function openChatWithHR(){var w=document.getElementById('ai-chat-widget'),f=document.getElementById('ai-chat-fab');w.style.display='block';f.innerHTML='✕';f.style.background='linear-gradient(135deg,#991b1b,#7f1d1d)';var maxHr=document.getElementById('maxHr').textContent;var input=document.getElementById('ai-chat-input');input.value='My maximum heart rate is '+maxHr+' bpm. What is the best training plan for my goals?';input.focus()}
-function closeAIChat(){document.getElementById('ai-chat-widget').style.display='none';document.getElementById('ai-chat-fab').innerHTML='💬';document.getElementById('ai-chat-fab').style.background='linear-gradient(135deg,#dc2626,#b91c1c)'}
-function addAIMessage(text,sender){var md=document.getElementById('ai-chat-messages'),msgDiv=document.createElement('div');msgDiv.style.cssText='display:flex;gap:10px;animation:messageSlideIn 0.3s ease;'+(sender==='user'?'flex-direction:row-reverse;':'');var avatar=sender==='user'?'👤':'❤️';var bg=sender==='user'?'#dc2626':'#ffffff';var tc=sender==='user'?'#ffffff':'#1e293b';msgDiv.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:'+(sender==='user'?'#fee2e2':'#fee2e2')+';display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">'+avatar+'</div><div style="background:'+bg+';color:'+tc+';padding:10px 14px;border-radius:12px;max-width:80%;font-size:13px;line-height:1.5;'+(sender==='user'?'border-top-right-radius:4px;':'border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,0.08);')+'">'+text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</div>';md.appendChild(msgDiv);md.scrollTop=md.scrollHeight}
-function showAITyping(){var md=document.getElementById('ai-chat-messages'),td=document.createElement('div');td.id='ai-typing-indicator';td.style.cssText='display:flex;gap:10px';td.innerHTML='<div style="width:32px;height:32px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;flex-shrink:0">❤️</div><div style="background:white;padding:12px 16px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.08);display:flex;gap:5px"><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s"></div></div>';md.appendChild(td);md.scrollTop=md.scrollHeight}
-function removeAITyping(){var t=document.getElementById('ai-typing-indicator');if(t)t.remove()}
+    var countryData = {
+        us: {name:'USA',authority:'ACSM',fullName:'American College of Sports Medicine'},
+        uk: {name:'UK',authority:'NHS',fullName:'National Health Service (UK)'},
+        ca: {name:'Canada',authority:'CSEP',fullName:'Canadian Society for Exercise Physiology'},
+        au: {name:'Australia',authority:'ESSA',fullName:'Exercise & Sports Science Australia'}
+    };
 
-async function sendAIQuery(prefilledText){
-    var input=document.getElementById('ai-chat-input'),message=prefilledText||input.value.trim();
-    if(!message)return;
-    var maxHr=document.getElementById('maxHr').textContent,cd=countryData[currentCountry];
-    addAIMessage(message,'user');
-    input.value='';
-    showAITyping();
-    
-    var promptText = "You are a Heart Rate Training AI on HealthCalc.in, serving users under " + cd.authority + " (" + cd.name + ") guidelines. User's max HR is " + maxHr + " bpm.\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable heart rate training advice in fluent English. Include zone-specific workouts, fat burn strategies, cardio tips, and safety recommendations. End with: 'Consult a doctor before starting any exercise program.'";
+    function setCountry(c){
+        currentCountry=c;
+        document.getElementById('countrySelect').value=c;
+        localStorage.setItem('healthcalc_country',c);
+        var cd = countryData[c];
+        document.getElementById('healthAuthorityNote').innerHTML='<i class="fas fa-shield-halved"></i> Based on '+cd.authority+' guidelines';
+        calculateZones();
+    }
 
-    try {
-        var response = await fetch(WORKER_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt: promptText })
-        });
+    var zones = [
+        {name:'Zone 1 · Very Light',desc:'Recovery & Warm-Up',percent:[0.5,0.6],color:'#94a3b8'},
+        {name:'Zone 2 · Light',desc:'Fat Burning Zone',percent:[0.6,0.7],color:'#4ade80'},
+        {name:'Zone 3 · Moderate',desc:'Aerobic Cardio',percent:[0.7,0.8],color:'#fbbf24'},
+        {name:'Zone 4 · Hard',desc:'Lactate Threshold',percent:[0.8,0.9],color:'#f97316'},
+        {name:'Zone 5 · Maximum',desc:'Anaerobic Peak',percent:[0.9,1.0],color:'#ef4444'}
+    ];
+
+    function calculateMaxHR(){
+        var age = parseInt(document.getElementById('age').value);
+        var fitnessLevel = document.getElementById('fitness').value;
+        var isMale = document.getElementById('gender').value === 'male';
+        if(!useKarvonen) return 220 - age;
         
-        var data = await response.json();
-        removeAITyping();
+        if(fitnessLevel === 'athlete') return isMale ? 205-(age/2) : 210-(age/2);
+        else if(fitnessLevel === 'advanced') return isMale ? 210-(age/2.5) : 215-(age/2.5);
+        else return isMale ? 214-(age*0.8) : 209-(age*0.8);
+    }
+
+    function calculateZones(){
+        document.getElementById('ageValue').textContent = document.getElementById('age').value;
+        document.getElementById('restingValue').textContent = document.getElementById('restingHr').value;
+
+        var maxHr = Math.round(calculateMaxHR());
+        var resting = parseInt(document.getElementById('restingHr').value);
+        var reserve = maxHr - resting;
         
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-            addAIMessage(data.candidates[0].content.parts[0].text, 'ai');
-        } else {
-            throw new Error('No response from AI worker');
+        document.getElementById('maxHr').textContent = maxHr;
+        document.getElementById('reserveLabel').innerHTML = useKarvonen ? '❤️ Heart Rate Reserve (HRR): '+reserve+' bpm' : '📊 Standard calculation (220 − age)';
+
+        var html = '';
+        for(var i=0; i<zones.length; i++){
+            var z = zones[i];
+            var low, high;
+            if(useKarvonen){
+                low = Math.round(resting + reserve * z.percent[0]);
+                high = Math.round(resting + reserve * z.percent[1]);
+            } else {
+                low = Math.round(maxHr * z.percent[0]);
+                high = Math.round(maxHr * z.percent[1]);
+            }
+            var barWidth = ((z.percent[0] + z.percent[1]) / 2) * 100;
+            html += `
+                <div class="zone-item">
+                    <div class="zone-header">
+                        <span class="zone-name">${z.name}</span>
+                        <span class="zone-range">${low} – ${high} bpm</span>
+                    </div>
+                    <div class="zone-bar-container">
+                        <div class="zone-bar" style="width:${barWidth}%; background:${z.color}"></div>
+                    </div>
+                    <div class="zone-desc"><span>${z.desc}</span></div>
+                </div>`;
         }
-    } catch (error) {
-        removeAITyping();
-        console.error('AI Error:', error);
-        var fb = '❤️ <strong>Heart Rate Training Tips (' + cd.authority + '):</strong><br><br>• Zone 2 (60-70%): Best for fat burn, 30-60 min sessions<br>• Zone 3 (70-80%): Improves cardio fitness, 20-40 min<br>• Zone 4 (80-90%): Threshold training, 5-15 min intervals<br>• Zone 5 (90-100%): Sprint/HIIT, 30 sec-2 min bursts<br>• Always warm up in Zone 1 for 5-10 minutes<br>• ' + cd.authority + ' recommends 150 min/week moderate activity<br><br>⚠️ <em>Consult a doctor before starting any exercise program.</em>';
-        addAIMessage(fb, 'ai');
+        document.getElementById('zonesContainer').innerHTML = html;
+
+        var goal = document.getElementById('goal').value;
+        var advice = '';
+        if(goal==='fatburn') advice='<i class="fas fa-fire"></i> For fat loss: 30–45 minutes in Zone 2, 3–4 times per week. Maintain conversational pace.';
+        else if(goal==='cardio') advice='<i class="fas fa-heart-pulse"></i> For cardio endurance: 20–40 minutes in Zone 3 + Zone 2 recovery.';
+        else if(goal==='performance') advice='<i class="fas fa-bolt"></i> For performance: HIIT in Zones 4–5 with 1:2 work-rest ratio.';
+        else advice='<i class="fas fa-clock"></i> For general health: 150 minutes per week in Zones 2–3 (ACSM guidelines).';
+        document.getElementById('goalAdvice').innerHTML = advice;
     }
-}
 
-// ===== EXPOSE GLOBALLY =====
-window.toggleAIChat=toggleAIChat;
-window.closeAIChat=closeAIChat;
-window.sendAIQuery=sendAIQuery;
-window.openChatWithHR=openChatWithHR;
+    // Event Listeners
+    document.getElementById('countrySelect').addEventListener('change', e => setCountry(e.target.value));
+    
+    document.getElementById('methodKarvonen').addEventListener('click', function(){
+        this.classList.add('active');
+        document.getElementById('methodStandard').classList.remove('active');
+        useKarvonen = true; calculateZones();
+    });
+    document.getElementById('methodStandard').addEventListener('click', function(){
+        this.classList.add('active');
+        document.getElementById('methodKarvonen').classList.remove('active');
+        useKarvonen = false; calculateZones();
+    });
 
-// ===== INIT =====
-(function(){var s=localStorage.getItem('healthcalc_country')||'us';setCountry(s)})();
-calculateZones();
+    ['age','restingHr','fitness','goal','gender'].forEach(id => {
+        document.getElementById(id).addEventListener('input', calculateZones);
+        document.getElementById(id).addEventListener('change', calculateZones);
+    });
+
+    // Init
+    (function(){ var s=localStorage.getItem('healthcalc_country')||'us'; setCountry(s); })();
+
+
+    // ==============================================
+    // VERCEL SECURE AI CHAT INTEGRATION (/api/chat)
+    // ==============================================
+    var isAIProcessing = false;
+
+    function addChatMessage(text, sender) {
+        var md = document.getElementById('aiChatMessages'), msgDiv = document.createElement('div');
+        msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
+        msgDiv.style.animation = 'slideIn 0.3s ease';
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        text = text.replace(/\n/g, '<br>');
+        msgDiv.innerHTML = text;
+        md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
+    }
+    
+    function showTypingIndicator() {
+        var md = document.getElementById('aiChatMessages'), td = document.createElement('div');
+        td.id = 'aiTypingIndicator'; td.className = 'ai-message ai-message-bot'; 
+        td.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
+        md.appendChild(td); md.scrollTop = md.scrollHeight;
+    }
+    
+    function removeTypingIndicator() { 
+        var t = document.getElementById('aiTypingIndicator'); 
+        if(t) t.remove(); 
+    }
+
+    async function sendAIMessage(prefilledText) {
+        if (isAIProcessing) return;
+
+        var input = document.getElementById('aiChatInput');
+        var message = prefilledText || input.value.trim();
+        if(!message) return;
+
+        isAIProcessing = true;
+        addChatMessage(message, 'user');
+        if(!prefilledText) input.value = '';
+        showTypingIndicator();
+
+        var maxHr = document.getElementById('maxHr').textContent;
+        var resting = document.getElementById('restingHr').value;
+        var cd = countryData[currentCountry];
+        var method = useKarvonen ? "Karvonen method" : "Standard method";
+
+        // Formatted payload for your Vercel backend
+        var promptContext = `[PATIENT PROFILE - Max HR: ${maxHr} bpm, Resting HR: ${resting} bpm, Method: ${method}, Guidelines: ${cd.authority}]\n\nPlease act as an expert Heart Rate Training AI Assistant. Provide evidence-based advice based on my heart rate data and country guidelines. Keep answers structured and concise using bullet points. Always end with: '⚠️ Consult a doctor before starting any exercise program.'\n\nUSER QUESTION: ${message}`;
+
+        try {
+            // ✅ CONNECTED TO YOUR SECURE VERCEL BACKEND
+            var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userMessage: promptContext }) 
+            });
+
+            var data = await response.json();
+            removeTypingIndicator();
+
+            if(data.reply) {
+                addChatMessage(data.reply, 'bot');
+            } else {
+                throw new Error('Invalid response');
+            }
+        } catch(e) {
+            removeTypingIndicator();
+            console.error('API Error:', e);
+            addChatMessage('❌ <strong>Network Error</strong><br>Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Consult a doctor before starting any exercise program.', 'bot');
+        } finally {
+            isAIProcessing = false;
+        }
+    }
 </script>
 </body>
 </html>
