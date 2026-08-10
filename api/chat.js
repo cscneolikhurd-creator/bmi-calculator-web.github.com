@@ -3,6 +3,10 @@ export default async function handler(req, res) {
 
   const { userMessage } = req.body;
 
+  if (!process.env.GROQ_API_KEY) {
+    return res.status(200).json({ reply: "❌ Vercel Error: GROQ_API_KEY missing hai. Kripya Vercel settings mein key daalein aur redeploy karein." });
+  }
+
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -11,17 +15,23 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "llama3-70b-8192", 
+        model: "llama-3.3-70b-versatile", // Groq ka latest model
         messages: [
-          { role: "system", content: "You are a helpful and advanced health assistant for HealthCalc.in. Always give a disclaimer to consult a doctor." },
+          { role: "system", content: "You are an advanced medical AI assistant for HealthCalc.in. Answer in bullet points and be conversational. Always add a medical disclaimer." },
           { role: "user", content: userMessage }
         ]
       })
     });
 
     const data = await response.json();
+
+    // Agar Groq ki taraf se API Key ya Limit ka error aata hai
+    if (data.error) {
+      return res.status(200).json({ reply: `⚠️ Groq API Error: ${data.error.message}` });
+    }
+
     res.status(200).json({ reply: data.choices[0].message.content });
   } catch (error) {
-    res.status(500).json({ error: "Something went wrong" });
+    res.status(200).json({ reply: `🚨 Server Error: ${error.message}` });
   }
 }
