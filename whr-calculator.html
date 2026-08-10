@@ -1,368 +1,346 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
-    <title>Advanced WHR Calculator | Waist-to-Hip Ratio | AI Chat | US/UK/CA/AU | HealthCalc</title>
-    <meta name="description" content="Advanced Waist-to-Hip Ratio calculator with AI chat. Visual body shape analysis, WHO risk assessment, personalized health recommendations. CDC, NHS, Health Canada, Australian guidelines. Free & private.">
-    <meta name="keywords" content="WHR calculator, waist-to-hip ratio, central obesity, metabolic syndrome, WHO standards, AI health chat, USA, UK, Canada, Australia">
-    <meta name="author" content="HealthCalc">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="revisit-after" content="7 days">
-    <link rel="canonical" href="https://healthcalc.in/whr-calculator.html">
+<!-- ========== SEO META TAGS ========== -->
+<title>Advanced WHR Calculator | Waist-to-Hip Ratio | AI Chat | HealthCalc</title>
+<meta name="description" content="Advanced Waist-to-Hip Ratio calculator with AI chat. Visual body shape analysis, WHO risk assessment, personalized health recommendations.">
+<meta name="keywords" content="WHR calculator, waist-to-hip ratio, central obesity, metabolic syndrome, WHO standards, AI health chat">
+<meta name="author" content="HealthCalc">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://healthcalc.in/whr-calculator.html">
 
-    <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/whr-calculator.html">
-    <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/whr-calculator.html">
-    <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/whr-calculator.html">
-    <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/whr-calculator.html">
-    <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/whr-calculator.html">
+<meta property="og:title" content="Advanced WHR Calculator | Health Risk Assessment | AI Chat">
+<meta property="og:description" content="Measure your body fat distribution with AI-powered health tips.">
+<meta property="og:url" content="https://healthcalc.in/whr-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HealthCalc">
 
-    <meta property="og:title" content="Advanced WHR Calculator | Health Risk Assessment | AI Chat">
-    <meta property="og:description" content="Measure your body fat distribution with AI-powered health tips.">
-    <meta property="og:url" content="https://healthcalc.in/whr-calculator.html">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://healthcalc.in/images/whr-calculator-og.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="HealthCalc">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "name": "Advanced WHR Calculator with AI Assistant",
+  "description": "Waist-to-Hip Ratio calculator with visual body shape analysis, metabolic risk assessment, and AI-powered health tips.",
+  "url": "https://healthcalc.in/whr-calculator.html"
+}
+</script>
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Advanced WHR Calculator | AI Chat">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalWebPage",
-        "name": "Advanced WHR Calculator with AI Assistant",
-        "description": "Waist-to-Hip Ratio calculator with visual body shape analysis, metabolic risk assessment, and AI-powered health tips.",
-        "url": "https://healthcalc.in/whr-calculator.html",
-        "author": {"@type": "Organization", "name": "HealthCalc"},
-        "about": {"@type": "MedicalCondition", "name": "Central Obesity"},
-        "inLanguage": ["en"],
-        "dateModified": "2026-07-09"
-    }
-    </script>
+<style>
+/* --- PREMIUM CSS VARIABLES (Indigo/Blue Theme for WHR) --- */
+:root {
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-light: #eff6ff;
+  --secondary: #8b5cf6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --dark: #0f172a;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+  --shadow-md: 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-hover: 0 20px 40px rgba(59, 130, 246, 0.15);
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {"@type": "Question", "name": "What is Waist-to-Hip Ratio (WHR)?", "acceptedAnswer": {"@type": "Answer", "text": "WHR is the ratio of your waist circumference to your hip circumference. It indicates fat distribution and is a better predictor of cardiovascular risk than BMI."}},
-            {"@type": "Question", "name": "What is a healthy WHR?", "acceptedAnswer": {"@type": "Answer", "text": "For women: below 0.85. For men: below 0.90. Higher ratios indicate increased risk of heart disease and diabetes."}},
-            {"@type": "Question", "name": "Apple shape vs Pear shape?", "acceptedAnswer": {"@type": "Answer", "text": "Apple shape (high WHR) stores fat around abdomen, increasing metabolic risk. Pear shape (low WHR) stores fat around hips/thighs, which is metabolically neutral."}}
-        ]
-    }
-    </script>
+body.dark {
+  --primary-light: #1e3a8a;
+  --card-bg: #1e293b;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
-            {"@type": "ListItem", "position": 2, "name": "Health Tools", "item": "https://healthcalc.in/#tools"},
-            {"@type": "ListItem", "position": 3, "name": "WHR Calculator", "item": "https://healthcalc.in/whr-calculator.html"}
-        ]
-    }
-    </script>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text); line-height: 1.6; min-height: 100vh; transition: var(--transition); }
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+/* --- TOP NAVIGATION --- */
+.top-nav { background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; }
+.nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 14px; padding: 8px 20px; border-radius: 50px; transition: var(--transition); }
+.nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+.theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.theme-toggle-btn:hover { background: var(--primary-light); transform: rotate(15deg); }
 
-        :root {
-            --primary: #1f4870; --primary-dark: #0e3a5a; --primary-light: #d9eaf5;
-            --success: #10b981; --warning: #f59e0b; --danger: #ef4444;
-            --dark: #1e293b; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
-            --gray-600: #475569; --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.08); --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
-            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
-        }
+/* --- INTERNATIONAL BAR --- */
+.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; background: var(--card-bg); padding: 16px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
+.region-selector select { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-size: 14px; font-weight: 600; background: var(--card-bg); color: var(--text); cursor: pointer; outline: none; transition: var(--transition); }
+.region-selector select:focus { border-color: var(--primary); }
 
-        body { font-family: 'Inter', system-ui, sans-serif; background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%); padding: 20px; min-height: 100vh; transition: background 0.3s; }
-        body.dark { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
-        body.dark .card { background: #1e293b; color: #e2e8f0; }
-        body.dark .field label { color: #cbd5e1; }
-        body.dark .field input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
-        body.dark .gender-btn { background: #0f172a; border-color: #334155; color: #cbd5e1; }
-        body.dark .gender-btn.active { background: var(--primary); color: white; }
-        body.dark .result-card { background: #0f172a; }
-        body.dark .health-score { background: #0f172a; }
-        body.dark .recommendations { background: #0f172a; }
-        body.dark .recommendations li { border-bottom-color: #334155; }
-        body.dark .badge { background: #1e293b; color: #94a3b8; }
-        body.dark .unit-row { background: #334155; }
-        body.dark .unit-opt { color: #cbd5e1; }
-        body.dark .unit-opt.active { background: #475569; color: white; }
-        body.dark .interlinks a { background: #334155; color: #94a3b8; }
-        body.dark .interlinks a:hover { background: var(--primary); color: white; }
-        body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
-        body.dark .ai-chat-messages { background: #0f172a; }
-        body.dark .ai-message-bot { background: #1e293b; color: #e2e8f0; }
-        body.dark .ai-chat-input { background: #0f172a; border-color: #475569; color: #e2e8f0; }
-        body.dark .ai-chat-suggestions { background: #1e293b; border-color: #334155; }
-        body.dark .ai-suggestion-chip { background: #334155; color: #cbd5e1; border-color: #475569; }
-        body.dark .ai-suggestion-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        body.dark footer { color: #94a3b8; }
-        body.dark .health-authority-note { background: #1e293b; color: #94a3b8; }
-        body.dark .risk-level.low { background: #065f46; color: #a7f3d0; }
-        body.dark .risk-level.moderate { background: #9a3412; color: #fed7aa; }
-        body.dark .risk-level.high { background: #991b1b; color: #fecaca; }
+/* --- HERO SECTION --- */
+.hero { text-align: center; padding: 30px 20px 40px; }
+.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; margin-bottom: 12px; letter-spacing: -1px; }
+.hero p { font-size: 16px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+.health-authority-note { background: var(--primary-light); color: var(--primary-hover); padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
 
-        .container { max-width: 1300px; margin: 0 auto; }
+/* --- MAIN CARD & FORM --- */
+.main-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; margin: 30px 0; }
+@media(max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+.card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
+.section-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; color: var(--text); padding-bottom: 12px; border-bottom: 2px dashed var(--border); }
+.section-title i { color: var(--primary); }
 
-        .international-bar { display: flex; justify-content: flex-end; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; padding: 10px 0; border-bottom: 1px solid rgba(31,72,112,0.2); }
-        body.dark .international-bar { border-bottom-color: #334155; }
-        .health-authority-note { background: #eef2ff; padding: 6px 16px; border-radius: 40px; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; }
+/* Unit Toggle */
+.unit-row { display: flex; gap: 12px; background: var(--border); border-radius: 60px; padding: 6px; margin-bottom: 24px; }
+body.dark .unit-row { background: var(--border); }
+.unit-opt { flex: 1; text-align: center; padding: 12px; cursor: pointer; border-radius: 50px; font-weight: 600; transition: var(--transition); color: var(--text-muted); font-size: 14px; }
+.unit-opt.active { background: var(--card-bg); box-shadow: var(--shadow-sm); color: var(--primary); }
 
-        .header { text-align: center; margin-bottom: 30px; }
-        .badge-container { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-        .badge { background: white; padding: 6px 16px; border-radius: 60px; font-size: 0.8rem; font-weight: 600; color: var(--primary); box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; gap: 6px; }
-        .badge.chat-badge { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+/* Gender Toggle */
+.gender-buttons { display: flex; gap: 12px; margin-bottom: 24px; }
+.gender-btn { flex: 1; padding: 14px; border: 2px solid var(--border); border-radius: 50px; background: var(--card-bg); font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--text-muted); }
+.gender-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
 
-        .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+.input-group { margin-bottom: 20px; }
+.input-group label { font-weight: 600; font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.input-group label i { color: var(--primary); width: 16px; }
 
-        .card { background: white; border-radius: var(--radius-xl); padding: 28px; box-shadow: var(--shadow-md); }
-        .card-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--primary); border-bottom: 2px solid var(--gray-100); padding-bottom: 12px; }
+input[type="number"] { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 15px; background: var(--card-bg); color: var(--text); outline: none; transition: var(--transition); font-weight: 500; font-family: 'Inter', sans-serif; }
+input[type="number"]:focus { border-color: var(--primary); }
 
-        .unit-row { display: flex; gap: 12px; background: #eef2f5; border-radius: 60px; padding: 6px; margin: 20px 0; }
-        .unit-opt { flex: 1; text-align: center; padding: 10px; cursor: pointer; border-radius: 50px; font-weight: 600; transition: all 0.2s; }
-        .unit-opt.active { background: white; box-shadow: var(--shadow-sm); color: #116b8c; }
+.calc-btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 18px; width: 100%; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 10px; transition: var(--transition); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); display: flex; justify-content: center; gap: 10px; }
+.calc-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4); }
 
-        .form-grid { display: flex; flex-direction: column; gap: 1.2rem; margin: 1.5rem 0; }
-        .field { display: flex; flex-direction: column; }
-        .field label { font-weight: 600; margin-bottom: 8px; color: var(--dark); font-size: 0.9rem; }
-        .field input { padding: 12px 16px; border: 2px solid #cbdae9; border-radius: 48px; font-size: 1rem; transition: all 0.2s; }
-        .field input:focus { outline: none; border-color: var(--primary); }
+/* --- RESULTS SECTION --- */
+.result-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: var(--radius-xl); padding: 32px; text-align: center; color: white; margin-bottom: 24px; position: relative; overflow: hidden; }
+.whr-number { font-size: 56px; font-weight: 900; background: linear-gradient(135deg, #93c5fd, #3b82f6); -webkit-background-clip: text; color: transparent; line-height: 1; margin: 10px 0; }
+.risk-level { font-size: 16px; font-weight: 700; margin: 10px 0; padding: 6px 16px; border-radius: 50px; display: inline-block; }
+.risk-level.low { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+.risk-level.moderate { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3); }
+.risk-level.high { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
 
-        .gender-buttons { display: flex; gap: 12px; margin: 15px 0; }
-        .gender-btn { flex: 1; padding: 12px; border: 2px solid #cbdae9; border-radius: 48px; background: white; font-weight: 600; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .gender-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+.body-shape-visual { background: var(--bg-gradient); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; text-align: center; border: 1px solid var(--border); }
+.shape-icon { font-size: 60px; margin-bottom: 10px; }
 
-        .calc-btn { background: var(--primary); color: white; border: none; padding: 14px; width: 100%; border-radius: 48px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .calc-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+.risk-meter { margin: 20px 0; }
+.risk-bar { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; margin-top: 8px; }
+.risk-fill { height: 100%; width: 0%; border-radius: 10px; transition: width 0.5s ease; }
+.risk-fill.low { background: linear-gradient(90deg, #10b981, #34d399); }
+.risk-fill.moderate { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.risk-fill.high { background: linear-gradient(90deg, #ef4444, #f87171); }
 
-        .result-card { background: linear-gradient(135deg, #e8f0fe, #d9eaf5); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 20px; text-align: center; }
-        .whr-number { font-size: 3.5rem; font-weight: 800; color: var(--primary-dark); line-height: 1; }
-        .risk-level { font-size: 1.3rem; font-weight: 700; margin: 10px 0; padding: 6px 12px; border-radius: 40px; display: inline-block; }
-        .risk-level.low { background: #d1fae5; color: #065f46; }
-        .risk-level.moderate { background: #fed7aa; color: #9a3412; }
-        .risk-level.high { background: #fee2e2; color: #991b1b; }
+.risk-factors { margin: 24px 0; }
+.risk-factor-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 500; }
 
-        .body-shape-visual { background: var(--gray-50); border-radius: var(--radius-lg); padding: 20px; margin: 20px 0; text-align: center; }
-        .shape-icon { font-size: 80px; margin-bottom: 10px; }
+.recommendations { background: rgba(59, 130, 246, 0.05); border-radius: var(--radius-lg); padding: 20px; margin: 20px 0; border: 1px solid rgba(59, 130, 246, 0.1); }
+.recommendations li { padding: 8px 0; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; }
 
-        .risk-meter { margin: 20px 0; }
-        .risk-bar { height: 8px; background: var(--gray-200); border-radius: 10px; overflow: hidden; }
-        .risk-fill { height: 100%; width: 0%; border-radius: 10px; transition: width 0.5s ease; }
-        .risk-fill.low { background: linear-gradient(90deg, #10b981, #34d399); }
-        .risk-fill.moderate { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-        .risk-fill.high { background: linear-gradient(90deg, #ef4444, #f87171); }
+/* --- PREMIUM AI CHAT PANEL --- */
+.ai-chat-panel { margin-top: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.ai-chat-header { background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2)); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.ai-chat-messages { height: 280px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
+.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; animation: slideIn 0.3s ease; }
+.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
+.ai-message-user { background: var(--primary); color: white; font-weight: 500; border-radius: 16px; border-top-right-radius: 4px; align-self: flex-end; }
+.ai-chat-suggestions { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); }
+.ai-chat-suggestions::-webkit-scrollbar { display: none; }
+.ai-suggestion-chip { background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; font-size: 12px; cursor: pointer; color: #cbd5e1; white-space: nowrap; transition: var(--transition); border: 1px solid transparent; }
+.ai-suggestion-chip:hover { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); }
+.ai-chat-input-row { display: flex; gap: 12px; padding: 16px; background: rgba(0,0,0,0.4); }
+.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 14px; outline: none; transition: var(--transition); }
+.ai-chat-input:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
+.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+.ai-chat-send-btn:hover { background: var(--primary-hover); transform: scale(1.05); }
+.ai-chat-disclaimer { padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.5); }
 
-        .health-score { background: white; border-radius: var(--radius-lg); padding: 20px; margin: 20px 0; text-align: center; }
-
-        .risk-factors { margin: 20px 0; }
-        .risk-factor-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--gray-200); }
-
-        .recommendations { background: var(--gray-50); border-radius: var(--radius-lg); padding: 20px; margin: 20px 0; }
-        .recommendations li { padding: 8px 0; display: flex; align-items: center; gap: 10px; font-size: 0.85rem; border-bottom: 1px solid var(--gray-200); }
-        .recommendations li:last-child { border-bottom: none; }
-
-        /* AI CHAT PANEL */
-        .ai-chat-panel { margin: 20px 0; border: 2px solid #cbdae9; border-radius: var(--radius-lg); overflow: hidden; background: white; transition: all 0.3s; }
-        body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
-        .ai-chat-header { background: linear-gradient(135deg, #1f4870, #0e3a5a); color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 14px; }
-        .ai-chat-header-left { display: flex; align-items: center; gap: 8px; }
-        .ai-chat-status { font-size: 10px; opacity: 0.9; font-weight: 400; }
-        .ai-chat-messages { height: 200px; overflow-y: auto; padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px; }
-        body.dark .ai-chat-messages { background: #0f172a; }
-        .ai-message-bot { background: white; padding: 10px 14px; border-radius: 12px; border-top-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); max-width: 85%; font-size: 13px; line-height: 1.5; align-self: flex-start; color: #1e293b; }
-        body.dark .ai-message-bot { background: #1e293b; color: #e2e8f0; }
-        .ai-message-user { background: var(--primary); color: white; padding: 10px 14px; border-radius: 12px; border-top-right-radius: 4px; max-width: 85%; font-size: 13px; line-height: 1.5; align-self: flex-end; }
-        .ai-chat-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; background: white; border-top: 1px solid #e2e8f0; }
-        body.dark .ai-chat-suggestions { background: #1e293b; border-color: #334155; }
-        .ai-suggestion-chip { background: #f1f5f9; padding: 6px 12px; border-radius: 15px; font-size: 11px; cursor: pointer; border: 1px solid #e2e8f0; color: #475569; transition: all 0.2s; white-space: nowrap; }
-        body.dark .ai-suggestion-chip { background: #334155; color: #cbd5e1; border-color: #475569; }
-        .ai-suggestion-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        .ai-chat-input-row { display: flex; gap: 8px; padding: 10px 12px; background: white; border-top: 1px solid #e2e8f0; }
-        body.dark .ai-chat-input-row { background: #1e293b; border-color: #334155; }
-        .ai-chat-input { flex: 1; padding: 10px 14px; border: 2px solid #e2e8f0; border-radius: 25px; outline: none; font-size: 13px; font-family: inherit; color: #1e293b; }
-        body.dark .ai-chat-input { background: #0f172a; border-color: #475569; color: #e2e8f0; }
-        .ai-chat-input:focus { border-color: var(--primary); }
-        .ai-chat-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 16px; flex-shrink: 0; transition: all 0.2s; }
-        .ai-chat-send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
-        .ai-chat-disclaimer { padding: 6px 12px; background: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; font-size: 10px; color: #64748b; }
-        body.dark .ai-chat-disclaimer { background: #0f172a; border-color: #334155; }
-
-        .comparison-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .comparison-label { width: 100px; font-size: 0.8rem; font-weight: 500; }
-        .comparison-bar { flex: 1; height: 8px; background: var(--gray-200); border-radius: 10px; overflow: hidden; }
-        .comparison-fill { height: 100%; border-radius: 10px; }
-        .comparison-fill.your { background: var(--primary); }
-        .comparison-fill.avg { background: var(--info); }
-
-        .interlinks { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; padding-top: 24px; border-top: 1px solid #cbdadf; }
-        .interlinks a { text-decoration: none; background: #edf2f7; padding: 8px 18px; border-radius: 40px; font-size: 0.8rem; color: var(--primary); font-weight: 500; transition: all 0.2s; }
-        .interlinks a:hover { background: var(--primary); color: white; }
-
-        footer { text-align: center; margin-top: 2rem; font-size: 0.7rem; color: #5e7e9c; padding: 20px 0; }
-        footer a { color: var(--primary); text-decoration: none; }
-
-        /* Animations */
-        @keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
-
-        @media (max-width: 600px) { .ai-chat-messages { height: 160px; } }
-    </style>
+/* Animations */
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.typing-dots { display: flex; gap: 4px; padding: 4px; }
+.typing-dots div { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+.typing-dots div:nth-child(1) { animation-delay: -0.32s; }
+.typing-dots div:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+</style>
 </head>
 <body>
+
 <div class="container">
 
-<nav class="international-bar" aria-label="Region, theme selector">
-    <select id="countrySelect" aria-label="Select country">
+  <!-- Premium Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="ascvd-risk-calculator.html"><i class="fas fa-heartbeat"></i> ASCVD</a>
+      <a href="bmi-calculator.html"><i class="fas fa-weight-scale"></i> BMI</a>
+      <a href="whr-calculator.html" class="active"><i class="fas fa-arrows-up-down"></i> WHR</a>
+    </div>
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </nav>
+
+  <!-- Regional Settings -->
+  <div class="international-bar">
+    <div class="region-selector">
+      <label for="countrySelect" style="font-weight: 600; color: var(--text);"><i class="fas fa-globe"></i> Region:</label>
+      <select id="countrySelect" aria-label="Select your country">
         <option value="us">🇺🇸 United States</option>
         <option value="uk">🇬🇧 United Kingdom</option>
         <option value="ca">🇨🇦 Canada</option>
         <option value="au">🇦🇺 Australia</option>
-    </select>
-    <div class="theme-toggle">
-        <button class="theme-option" data-theme="light" aria-label="Light mode">☀️ Light</button>
-        <button class="theme-option" data-theme="dark" aria-label="Dark mode">🌙 Dark</button>
+      </select>
     </div>
-</nav>
-<div id="healthAuthorityNote" class="health-authority-note">📋 Based on WHO & CDC guidelines – Healthy WHR: Women &lt;0.85, Men &lt;0.90</div>
-
-<header class="header">
-<h1>📏 Advanced WHR Calculator with AI Chat</h1>
-<p>Waist-to-Hip Ratio — Better predictor of metabolic health than BMI. AI chat for personalized health tips!</p>
-<div class="badge-container">
-<span class="badge"><i class="fas fa-chart-line"></i> Apple Shape Risk</span>
-<span class="badge"><i class="fas fa-heartbeat"></i> Cardiovascular Risk</span>
-<span class="badge chat-badge"><i class="fas fa-robot"></i> AI Chat</span>
-<span class="badge"><i class="fas fa-lock"></i> 100% Private</span>
-</div>
-</header>
-
-<main class="main-grid">
-
-<div class="card">
-<div class="card-title"><i class="fas fa-sliders-h"></i> Enter Your Measurements</div>
-
-<div class="unit-row" id="unitSelectorWHR">
-<div class="unit-opt active" data-unitwhr="cm">📏 cm (metric)</div>
-<div class="unit-opt" data-unitwhr="inch">🇺🇸 inches (imperial)</div>
-</div>
-
-<div class="form-grid">
-<div class="field"><label><i class="fas fa-arrows-up-down"></i> Waist circumference</label><input type="number" id="waist" step="any" placeholder="e.g., 82 cm" value="82"></div>
-<div class="field"><label><i class="fas fa-arrow-left-right"></i> Hip circumference</label><input type="number" id="hip" step="any" placeholder="e.g., 98 cm" value="98"></div>
-</div>
-
-<div class="gender-buttons">
-<button class="gender-btn active" data-gender="female"><i class="fas fa-female"></i> Female</button>
-<button class="gender-btn" data-gender="male"><i class="fas fa-male"></i> Male</button>
-</div>
-
-<button class="calc-btn" id="calcWHR"><i class="fas fa-calculator"></i> Calculate WHR & Risk Assessment</button>
-</div>
-
-<div class="card">
-<div class="card-title"><i class="fas fa-chart-pie"></i> Your Health Assessment</div>
-
-<div class="result-card">
-<div>Your Waist-to-Hip Ratio</div>
-<div class="whr-number" id="whrValue">—</div>
-<div class="risk-level" id="riskCategory">—</div>
-<div id="whrAdvice" style="font-size:0.9rem;margin-top:8px"></div>
-</div>
-
-<div class="body-shape-visual">
-<div class="shape-icon" id="shapeIcon">🍎</div>
-<div class="shape-name" id="shapeName" style="font-size:1.2rem;font-weight:700">Apple Shape</div>
-<div class="shape-desc" id="shapeDesc" style="font-size:0.85rem;color:var(--gray-600)">Fat stored around abdomen</div>
-</div>
-
-<div class="risk-meter">
-<div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:5px"><span>Low</span><span>Moderate</span><span>High</span></div>
-<div class="risk-bar"><div class="risk-fill" id="riskFill" style="width:0%"></div></div>
-</div>
-
-<div class="health-score">
-<div style="font-size:0.9rem;color:var(--gray-600)">Metabolic Health Score</div>
-<div style="font-size:2.5rem;font-weight:800;color:var(--primary)" id="healthScore">—</div>
-</div>
-
-<div class="risk-factors">
-<h4 style="margin-bottom:12px"><i class="fas fa-chart-pie"></i> Risk Factor Analysis</h4>
-<div class="risk-factor-item"><span>❤️ Cardiovascular</span><span id="cardioRisk">—</span></div>
-<div class="risk-factor-item"><span>💉 Diabetes</span><span id="diabetesRisk">—</span></div>
-<div class="risk-factor-item"><span>🫁 Visceral Fat</span><span id="visceralRisk">—</span></div>
-<div class="risk-factor-item"><span>📊 Metabolic Syndrome</span><span id="metabolicRisk">—</span></div>
-</div>
-
-<div class="recommendations"><h4 style="margin-bottom:12px"><i class="fas fa-lightbulb"></i> Recommendations</h4><ul id="recommendationsList"></ul></div>
-
-<!-- ============================================ -->
-<!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
-<!-- ============================================ -->
-<div class="ai-chat-panel" id="aiChatPanel">
-    <div class="ai-chat-header">
-        <div class="ai-chat-header-left"><span>📏</span><span>Body Shape & Health AI</span></div>
-        <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
+    <div style="font-weight: 600; color: var(--text-muted); font-size:13px;">
+      <i class="fas fa-shield-halved"></i> 100% Private & Secure
     </div>
-    <div class="ai-chat-messages" id="aiChatMessages" role="log">
-        <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
-            <strong>Hello! 👋</strong><br><br>
-            I'm your <strong>Body Shape & Health AI Assistant</strong>. Calculate your WHR above, then ask me about reducing waist size, diet plans, exercise tips, and metabolic health strategies!
+  </div>
+
+  <header class="hero">
+    <div class="health-authority-note"><i class="fas fa-stethoscope"></i> Based on WHO & CDC guidelines</div>
+    <h1>Advanced WHR Calculator</h1>
+    <p>Waist-to-Hip Ratio is a better predictor of metabolic health and cardiovascular risk than BMI. Calculate your shape and chat with our AI for tips!</p>
+  </header>
+
+  <main class="main-grid">
+    <!-- LEFT COLUMN: INPUTS -->
+    <div class="card">
+      <div class="section-title"><i class="fas fa-sliders-h"></i> Enter Measurements</div>
+
+      <div class="unit-row" id="unitSelectorWHR">
+        <div class="unit-opt active" data-unitwhr="cm">📏 cm (Metric)</div>
+        <div class="unit-opt" data-unitwhr="inch">🇺🇸 inches (Imperial)</div>
+      </div>
+
+      <div class="gender-buttons">
+        <button class="gender-btn active" data-gender="female"><i class="fas fa-female"></i> Female</button>
+        <button class="gender-btn" data-gender="male"><i class="fas fa-male"></i> Male</button>
+      </div>
+
+      <div class="input-group">
+        <label><i class="fas fa-arrows-up-down"></i> Waist Circumference</label>
+        <input type="number" id="waist" step="any" placeholder="e.g., 82" value="82">
+      </div>
+      
+      <div class="input-group">
+        <label><i class="fas fa-arrow-left-right"></i> Hip Circumference</label>
+        <input type="number" id="hip" step="any" placeholder="e.g., 98" value="98">
+      </div>
+
+      <button class="calc-btn" id="calcWHR" onclick="computeWHR()"><i class="fas fa-calculator"></i> Calculate WHR</button>
+    </div>
+
+    <!-- RIGHT COLUMN: OUTPUT & AI -->
+    <div class="card">
+      <div class="section-title"><i class="fas fa-chart-pie"></i> Your Health Assessment</div>
+
+      <div class="result-card">
+        <div style="font-size:14px; opacity:0.8; font-weight:600;">Your Waist-to-Hip Ratio</div>
+        <div class="whr-number" id="whrValue">—</div>
+        <div class="risk-level" id="riskCategory">—</div>
+        <div id="whrAdvice" style="font-size:14px; margin-top:8px; font-weight:500;"></div>
+      </div>
+
+      <div class="body-shape-visual">
+        <div class="shape-icon" id="shapeIcon">🍎</div>
+        <div class="shape-name" id="shapeName" style="font-size:1.2rem; font-weight:700; color:var(--text);">Apple Shape</div>
+        <div class="shape-desc" id="shapeDesc" style="font-size:0.85rem; color:var(--text-muted);">Fat stored around abdomen</div>
+      </div>
+
+      <div class="risk-meter">
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600; color:var(--text-muted); margin-bottom:5px;">
+            <span>Low</span><span>Moderate</span><span>High</span>
         </div>
-    </div>
-    <div class="ai-chat-suggestions" id="aiChatSuggestions">
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How to reduce waist circumference effectively?')">📏 Reduce waist?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('Best diet to lose belly fat and improve WHR?')">🥗 Diet for WHR?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('Best exercises to reduce waist-to-hip ratio?')">🏃 Exercises for WHR?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('Apple shape vs pear shape health risks?')">🍎 Apple vs Pear?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('How to reduce visceral fat naturally?')">🔥 Reduce visceral fat?</span>
-        <span class="ai-suggestion-chip" onclick="sendAIMessage('Metabolic syndrome prevention tips?')">⚠️ Metabolic syndrome?</span>
-    </div>
-    <div class="ai-chat-input-row">
-        <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your WHR results..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-        <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button>
-    </div>
-    <div class="ai-chat-disclaimer">⚠️ Educational purposes only. Consult a healthcare professional.</div>
-</div>
-</div>
-</main>
+        <div class="risk-bar"><div class="risk-fill" id="riskFill" style="width:0%"></div></div>
+      </div>
 
-<nav class="interlinks">
-<a href="bmi-calculator.html">⚖️ BMI</a>
-<a href="body-fat-calculator.html">🧬 Body Fat</a>
-<a href="ffmi-calculator.html">💪 FFMI</a>
-<a href="ascvd-risk-calculator.html">❤️ Heart Risk</a>
-<a href="calorie-calculator.html">🔥 Calories</a>
-</nav>
+      <div class="risk-factors">
+        <h4 style="margin-bottom:12px; color:var(--text);"><i class="fas fa-heartbeat"></i> Risk Factor Analysis</h4>
+        <div class="risk-factor-item"><span>❤️ Cardiovascular</span><span id="cardioRisk">—</span></div>
+        <div class="risk-factor-item"><span>💉 Diabetes</span><span id="diabetesRisk">—</span></div>
+        <div class="risk-factor-item"><span>🫁 Visceral Fat</span><span id="visceralRisk">—</span></div>
+        <div class="risk-factor-item"><span>📊 Metabolic Syndrome</span><span id="metabolicRisk">—</span></div>
+      </div>
 
-<footer role="contentinfo">
-<p>© 2026 HealthCalc.in — WHR Calculator | <a href="privacy-policy.html">Privacy</a> • <a href="terms-of-service.html">Terms</a> • <a href="sitemap.xml">Sitemap</a></p>
-</footer>
+      <div class="recommendations">
+        <h4 style="margin-bottom:12px; color:var(--text);"><i class="fas fa-lightbulb"></i> AI Recommendations</h4>
+        <ul id="recommendationsList" style="list-style:none;"></ul>
+      </div>
+
+      <!-- PREMIUM AI CHAT PANEL -->
+      <div class="ai-chat-panel" id="aiChatPanel">
+        <div class="ai-chat-header">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <i class="fas fa-robot" style="color:var(--primary-light);"></i>
+            <span>Body Shape AI Assistant</span>
+          </div>
+          <span style="font-size:10px; background:rgba(16,185,129,0.2); color:#6ee7b7; padding:4px 10px; border-radius:20px;">Vercel Secured</span>
+        </div>
+        
+        <div class="ai-chat-messages" id="aiChatMessages">
+          <div class="ai-message ai-message-bot">
+            <strong>Hello! 👋</strong><br><br>I'm your Body Shape & Health AI Assistant. Calculate your WHR above, then ask me about reducing waist size, diet plans, exercise tips, and metabolic health strategies!
+          </div>
+        </div>
+        
+        <div class="ai-chat-suggestions">
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('How to reduce waist circumference effectively?')">📏 Reduce waist?</div>
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('Best diet to lose belly fat and improve WHR?')">🥗 Diet for WHR?</div>
+          <div class="ai-suggestion-chip" onclick="sendAIMessage('Apple shape vs pear shape health risks?')">🍎 Apple vs Pear?</div>
+        </div>
+        
+        <div class="ai-chat-input-row">
+          <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your WHR results..." onkeypress="if(event.key==='Enter')sendAIMessage()">
+          <button class="ai-chat-send-btn" onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        <div class="ai-chat-disclaimer">⚠️ Educational only. Consult a healthcare professional for medical advice.</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer role="contentinfo" style="text-align:center; padding:20px; margin-top:30px; font-size:13px; color:var(--text-muted);">
+    <p>© 2026 HealthCalc.in | Follows WHO Guidelines. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms</a></p>
+  </footer>
+
 </div>
 
 <script>
     // ==============================================
-    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
+    // THEME MANAGEMENT
     // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+    function initTheme() { 
+        var s = localStorage.getItem('hc_theme') || 'light'; 
+        document.body.classList.toggle('dark', s === 'dark'); 
+        updateThemeIcon(s);
+    }
+    function toggleTheme() { 
+        var isDark = document.body.classList.contains('dark');
+        var newTheme = isDark ? 'light' : 'dark';
+        localStorage.setItem('hc_theme', newTheme); 
+        document.body.classList.toggle('dark', !isDark); 
+        updateThemeIcon(newTheme);
+    }
+    function updateThemeIcon(theme) {
+        var btn = document.getElementById('themeToggleBtn');
+        if(btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+    initTheme();
 
+    // ==============================================
+    // LOGIC & UI
+    // ==============================================
     let currentUnit = 'cm';
     let currentGender = 'female';
 
-    // Unit toggle
     document.querySelectorAll('.unit-opt').forEach(opt => {
         opt.addEventListener('click', () => {
             document.querySelectorAll('.unit-opt').forEach(u => u.classList.remove('active'));
@@ -372,7 +350,6 @@
         });
     });
 
-    // Gender toggle
     document.querySelectorAll('.gender-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
@@ -386,6 +363,7 @@
         let waistVal = parseFloat(document.getElementById('waist').value);
         let hipVal = parseFloat(document.getElementById('hip').value);
         if (isNaN(waistVal) || isNaN(hipVal) || waistVal <= 0 || hipVal <= 0) return;
+        
         let waistCm = currentUnit === 'inch' ? waistVal * 2.54 : waistVal;
         let hipCm = currentUnit === 'inch' ? hipVal * 2.54 : hipVal;
         let ratio = waistCm / hipCm;
@@ -393,34 +371,34 @@
 
         document.getElementById('whrValue').innerHTML = ratio.toFixed(3);
 
-        let riskText = '', riskClass = '', riskLevel = '', shapeIcon = '', shapeName = '', healthScore = 0;
+        let riskText = '', riskClass = '', riskLevel = '', shapeIcon = '', shapeName = '';
         let cardioRisk = '', diabetesRisk = '', visceralRisk = '', metabolicRisk = '';
 
         if (currentGender === 'female') {
             if (ratio < 0.75) {
-                riskText = "🟢 Low Risk"; riskClass = "low"; riskLevel = "low"; healthScore = 85;
+                riskText = "🟢 Low Risk"; riskClass = "low"; riskLevel = "low";
                 shapeIcon = "🍐"; shapeName = "Pear Shape";
                 cardioRisk = "Low"; diabetesRisk = "Low"; visceralRisk = "Low"; metabolicRisk = "Low";
             } else if (ratio < 0.85) {
-                riskText = "🟡 Moderate Risk"; riskClass = "moderate"; riskLevel = "moderate"; healthScore = 65;
+                riskText = "🟡 Moderate Risk"; riskClass = "moderate"; riskLevel = "moderate";
                 shapeIcon = "⏳"; shapeName = "Hourglass Shape";
                 cardioRisk = "Moderate"; diabetesRisk = "Moderate"; visceralRisk = "Moderate"; metabolicRisk = "Borderline";
             } else {
-                riskText = "🔴 High Risk"; riskClass = "high"; riskLevel = "high"; healthScore = 45;
+                riskText = "🔴 High Risk"; riskClass = "high"; riskLevel = "high";
                 shapeIcon = "🍎"; shapeName = "Apple Shape";
                 cardioRisk = "High"; diabetesRisk = "High"; visceralRisk = "High"; metabolicRisk = "High";
             }
         } else {
             if (ratio < 0.85) {
-                riskText = "🟢 Low Risk"; riskClass = "low"; riskLevel = "low"; healthScore = 85;
+                riskText = "🟢 Low Risk"; riskClass = "low"; riskLevel = "low";
                 shapeIcon = "🍐"; shapeName = "Pear Shape";
                 cardioRisk = "Low"; diabetesRisk = "Low"; visceralRisk = "Low"; metabolicRisk = "Low";
             } else if (ratio < 0.95) {
-                riskText = "🟡 Moderate Risk"; riskClass = "moderate"; riskLevel = "moderate"; healthScore = 65;
+                riskText = "🟡 Moderate Risk"; riskClass = "moderate"; riskLevel = "moderate";
                 shapeIcon = "⏳"; shapeName = "Hourglass Shape";
                 cardioRisk = "Moderate"; diabetesRisk = "Moderate"; visceralRisk = "Moderate"; metabolicRisk = "Borderline";
             } else {
-                riskText = "🔴 High Risk"; riskClass = "high"; riskLevel = "high"; healthScore = 45;
+                riskText = "🔴 High Risk"; riskClass = "high"; riskLevel = "high";
                 shapeIcon = "🍎"; shapeName = "Apple Shape";
                 cardioRisk = "High"; diabetesRisk = "High"; visceralRisk = "High"; metabolicRisk = "High";
             }
@@ -431,8 +409,6 @@
         document.getElementById('shapeIcon').innerHTML = shapeIcon;
         document.getElementById('shapeName').innerHTML = shapeName;
         document.getElementById('shapeDesc').innerHTML = riskLevel === 'high' ? 'Fat around abdomen — higher risk' : (riskLevel === 'moderate' ? 'Balanced — moderate risk' : 'Fat around hips — lower risk');
-        document.getElementById('healthScore').innerHTML = healthScore;
-        document.getElementById('healthScore').style.color = healthScore >= 80 ? '#10b981' : (healthScore >= 60 ? '#f59e0b' : '#ef4444');
 
         let fillPercent = riskLevel === 'low' ? 25 : (riskLevel === 'moderate' ? 60 : 90);
         document.getElementById('riskFill').style.width = fillPercent + '%';
@@ -442,9 +418,11 @@
         document.getElementById('diabetesRisk').innerHTML = diabetesRisk;
         document.getElementById('visceralRisk').innerHTML = visceralRisk;
         document.getElementById('metabolicRisk').innerHTML = metabolicRisk;
+        
         [cardioRisk, diabetesRisk, visceralRisk, metabolicRisk].forEach((t, i) => {
             var el = [document.getElementById('cardioRisk'), document.getElementById('diabetesRisk'), document.getElementById('visceralRisk'), document.getElementById('metabolicRisk')][i];
             el.style.color = t === 'Low' ? '#10b981' : (t === 'Moderate' || t === 'Borderline' ? '#f59e0b' : '#ef4444');
+            el.style.fontWeight = "bold";
         });
 
         var recs = [];
@@ -455,96 +433,91 @@
         } else {
             recs = [{ t: 'Maintain healthy lifestyle' }, { t: 'Check WHR every 3-6 months' }, { t: 'Routine health checkups' }];
         }
-        document.getElementById('recommendationsList').innerHTML = recs.map(r => '<li><i class="fas fa-check-circle" style="color:#10b981"></i> ' + r.t + '</li>').join('');
+        document.getElementById('recommendationsList').innerHTML = recs.map(r => '<li><i class="fas fa-check-circle" style="color:var(--primary); font-size:16px;"></i> ' + r.t + '</li>').join('');
 
         var advice = ratio.toFixed(3) + ' — ';
         advice += riskLevel === 'high' ? 'Elevated risk. Reduce waist through exercise and diet.' : (riskLevel === 'moderate' ? 'Moderate range. Maintain healthy habits.' : 'Healthy range. Keep it up!');
         document.getElementById('whrAdvice').innerHTML = advice;
     }
 
-    // Event listeners
-    document.getElementById('calcWHR').addEventListener('click', computeWHR);
+    // Auto-calculate on load and input
     document.getElementById('waist').addEventListener('input', computeWHR);
     document.getElementById('hip').addEventListener('input', computeWHR);
+    window.addEventListener('load', computeWHR);
 
-    // Theme
-    function initTheme(){ var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark'); }
-    function setTheme(t){ localStorage.setItem('healthcalc_theme',t);document.body.classList.toggle('dark',t==='dark'); }
-    document.querySelectorAll('.theme-option').forEach(b=>b.addEventListener('click',function(){setTheme(b.dataset.theme)}));
-    initTheme();
-
-    // Country
-    document.getElementById('countrySelect').addEventListener('change',function(e){localStorage.setItem('healthcalc_country',e.target.value)});
-    (function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;})();
 
     // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
+    // VERCEL SECURE AI CHAT INTEGRATION (/api/chat)
     // ==============================================
+    var isAIProcessing = false;
+
     function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        var md = document.getElementById('aiChatMessages'), msgDiv = document.createElement('div');
+        msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
+        msgDiv.style.animation = 'slideIn 0.3s ease';
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        text = text.replace(/\n/g, '<br>');
+        msgDiv.innerHTML = text;
+        md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
     }
-
+    
     function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        var md = document.getElementById('aiChatMessages'), td = document.createElement('div');
+        td.id = 'aiTypingIndicator'; td.className = 'ai-message ai-message-bot'; 
+        td.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
+        md.appendChild(td); md.scrollTop = md.scrollHeight;
     }
-
-    function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if (t) t.remove(); }
-
-    function getWHRContext() {
-        var whr = document.getElementById('whrValue').innerHTML;
-        if (whr !== '—') return 'User WHR: ' + whr + ', Gender: ' + currentGender + '. ';
-        return '';
+    
+    function removeTypingIndicator() { 
+        var t = document.getElementById('aiTypingIndicator'); 
+        if(t) t.remove(); 
     }
 
     async function sendAIMessage(prefilledText) {
+        if (isAIProcessing) return;
+
         var input = document.getElementById('aiChatInput');
         var message = prefilledText || input.value.trim();
-        if (!message) return;
-        
+        if(!message) return;
+
+        isAIProcessing = true;
         addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
+        if(!prefilledText) input.value = '';
         showTypingIndicator();
-        
-        var context = getWHRContext();
-        var promptText = "You are a Body Shape & Health AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable health advice in fluent English. Include diet recommendations, exercise tips, and metabolic risk explanations. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
+
+        var whr = document.getElementById('whrValue').innerHTML;
+        var context = "";
+        if (whr !== '—') {
+            context = `[PATIENT PROFILE - WHR: ${whr}, Gender: ${currentGender}]\n\n`;
+        }
+
+        var promptContext = context + `Please act as an expert Body Shape & Metabolic Health AI Assistant. Provide evidence-based advice regarding Waist-to-Hip Ratio. Keep answers structured and concise using bullet points. Always end with: '⚠️ Consult a healthcare professional for personalized medical advice.'\n\nUSER QUESTION: ${message}`;
 
         try {
-            var response = await fetch(WORKER_URL, {
+            // ✅ CONNECTED TO YOUR SECURE VERCEL BACKEND
+            var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
+                body: JSON.stringify({ userMessage: promptContext }) 
             });
-            
+
             var data = await response.json();
             removeTypingIndicator();
-            
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { 
-                throw new Error('No response from AI worker'); 
+
+            if(data.reply) {
+                addChatMessage(data.reply, 'bot');
+            } else {
+                throw new Error('Invalid response');
             }
-        } catch (e) {
+        } catch(e) {
             removeTypingIndicator();
-            console.error('AI Error:', e);
-            addChatMessage('📏 <strong>WHR Health Tips:</strong><br><br>• Reduce waist size with aerobic exercise<br>• Follow a Mediterranean diet rich in whole foods<br>• Strength train 2-3 times per week<br>• Manage stress and aim for 7-8 hours of sleep<br>• Limit processed foods and refined sugars<br><br>⚠️ <em>Consult a healthcare professional for medical advice.</em>', 'bot');
+            console.error('API Error:', e);
+            addChatMessage('❌ <strong>Network Error</strong><br>Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Consult a healthcare professional for medical advice.', 'bot');
+        } finally {
+            isAIProcessing = false;
         }
     }
-
-    window.sendAIMessage = sendAIMessage;
-    computeWHR();
 </script>
 </body>
 </html>
