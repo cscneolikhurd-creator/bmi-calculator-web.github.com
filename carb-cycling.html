@@ -3,134 +3,1409 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carb Cycling Planner | Macro Cycle | AI Coach | HealthCalc</title>
-<meta name="description" content="Plan your high, low, and no-carb days to maximize fat loss and retain muscle mass.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Advanced Carb Cycling Planner Pro | Macro Scheduler | AI Nutrition Coach | HealthCalc</title>
+<meta name="description" content="Free advanced carb cycling planner with weekly schedules, meal suggestions, progress tracking, and AI nutrition coaching. Better than paid tools!">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --primary: #0ea5e9; --primary-light: #e0f2fe; --bg: #f0f9ff; --card: #ffffff; --text: #1e293b; --border: #bae6fd; }
-body.dark { --primary-light: #0c4a6e; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --border: #334155; }
+:root {
+    --primary: #0ea5e9;
+    --primary-dark: #0284c7;
+    --primary-light: #e0f2fe;
+    --bg: #f0f9ff;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #bae6fd;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --high-carb: #3b82f6;
+    --low-carb: #f59e0b;
+    --no-carb: #ef4444;
+    --gradient-1: linear-gradient(135deg, #0ea5e9, #0284c7);
+    --gradient-2: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+}
+body.dark {
+    --primary-light: #0c4a6e;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.3);
+}
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg); color: var(--text); padding: 20px; transition: 0.3s; }
-.container { max-width: 900px; margin: 0 auto; }
-.card { background: var(--card); border-radius: 24px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 20px; }
-.hero { text-align: center; margin-bottom: 30px; }
-.hero h1 { color: var(--primary); font-size: 32px; font-weight: 800; }
+body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
+.container { max-width: 1300px; margin: 0 auto; }
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+.header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+.header p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.badge {
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--card);
+    border: 2px solid var(--border);
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Cards */
+.card {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+}
+
+/* Grid */
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-.input-group { margin-bottom: 15px; }
-label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px; }
-input { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background: var(--card); color: var(--text); outline: none; }
-.btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 10px; }
-.cycle-card { background: var(--primary-light); padding: 15px; border-radius: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-.cycle-card h4 { margin-bottom: 4px; color: var(--text); }
-.macro-mini { font-size: 12px; color: var(--text); opacity: 0.8; }
-.ai-panel { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
-.ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 600; }
-.ai-msgs { height: 200px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.msg-bot { background: var(--border); padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-start; color: var(--text); }
-.msg-user { background: var(--primary); color: white; padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-end; }
-.ai-input { display: flex; border-top: 1px solid var(--border); }
-.ai-input input { border: none; border-radius: 0; padding: 12px; flex: 1; background: var(--card); color: var(--text); outline: none;}
-.ai-input button { background: var(--primary); color: white; border: none; padding: 0 20px; cursor: pointer; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+@media(max-width: 1200px) { .grid-7 { grid-template-columns: repeat(4, 1fr); } }
+@media(max-width: 1024px) { .grid { grid-template-columns: 1fr; } .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } .grid-7 { grid-template-columns: repeat(3, 1fr); } }
+
+/* Input Styles */
+.input-group { margin-bottom: 20px; position: relative; }
+.input-group label {
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.input-group label i { color: var(--primary); width: 20px; }
+input, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(14,165,233,0.1);
+}
+.input-hint {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+.unit-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.unit-btn {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-align: center;
+}
+.unit-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(14,165,233,0.3);
+}
+.btn:active { transform: translateY(0); }
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    background: var(--bg);
+    padding: 5px;
+    border-radius: 14px;
+    flex-wrap: wrap;
+}
+.tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+    text-align: center;
+}
+.tab.active {
+    background: var(--gradient-1);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Day Cards */
+.day-card {
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.day-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.day-card.high-carb {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    border-color: #3b82f6;
+}
+.day-card.low-carb {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-color: #f59e0b;
+}
+.day-card.no-carb {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-color: #ef4444;
+}
+body.dark .day-card.high-carb { background: linear-gradient(135deg, #1e3a5f, #1e40af); }
+body.dark .day-card.low-carb { background: linear-gradient(135deg, #5f4a1e, #92400e); }
+body.dark .day-card.no-carb { background: linear-gradient(135deg, #5f1e1e, #991b1b); }
+.day-name {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.day-type {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.type-high { background: #3b82f6; color: white; }
+.type-low { background: #f59e0b; color: white; }
+.type-rest { background: #ef4444; color: white; }
+.day-calories {
+    font-size: 20px;
+    font-weight: 800;
+}
+.day-macros {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+/* Cycle Cards */
+.cycle-card {
+    background: var(--bg);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    border-left: 5px solid;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.cycle-card:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+}
+.cycle-card.high { border-color: var(--high-carb); }
+.cycle-card.low { border-color: var(--low-carb); }
+.cycle-card.rest { border-color: var(--no-carb); }
+.cycle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.cycle-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+.cycle-calories {
+    font-weight: 800;
+    font-size: 18px;
+}
+.macro-bars {
+    display: flex;
+    gap: 5px;
+    height: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.macro-bar {
+    height: 100%;
+    transition: width 1s ease;
+}
+.bar-protein { background: var(--danger); }
+.bar-carbs { background: var(--warning); }
+.bar-fats { background: var(--success); }
+.macro-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 13px;
+}
+.macro-item {
+    text-align: center;
+}
+.macro-value {
+    font-weight: 700;
+    font-size: 16px;
+}
+.macro-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* Chart Container */
+.chart-wrapper {
+    position: relative;
+    height: 300px;
+    margin: 20px 0;
+}
+
+/* Food Suggestions */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.food-card {
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+}
+.food-card h4 {
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+.food-card ul {
+    list-style: none;
+    font-size: 13px;
+}
+.food-card ul li {
+    padding: 3px 0;
+    color: var(--text-secondary);
+}
+.food-card ul li::before {
+    content: '• ';
+    color: var(--primary);
+}
+
+/* Weekly Summary */
+.weekly-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+.summary-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+.summary-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary);
+}
+.summary-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+/* AI Chat */
+.ai-panel {
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--card);
+}
+.ai-header {
+    background: var(--gradient-1);
+    color: white;
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.ai-header i { font-size: 24px; }
+.ai-messages {
+    height: 350px;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--bg);
+}
+.ai-messages::-webkit-scrollbar { width: 6px; }
+.ai-messages::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+.msg-bot, .msg-user {
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.5;
+    animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.msg-bot {
+    background: var(--card);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+.msg-user {
+    background: var(--gradient-1);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+.ai-input-container {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--border);
+    background: var(--card);
+    gap: 10px;
+}
+.ai-input-container input {
+    flex: 1;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    background: var(--bg);
+}
+.ai-input-container button {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.ai-input-container button:hover { transform: scale(1.05); }
+
+/* Preset Cards */
+.preset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.preset-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+}
+.preset-card:hover, .preset-card.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-3px);
+}
+.preset-card i { font-size: 28px; margin-bottom: 10px; color: var(--primary); }
+.preset-card h4 { font-size: 14px; margin-bottom: 5px; }
+.preset-card p { font-size: 12px; color: var(--text-secondary); }
+
+/* History */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+}
+.history-item:hover {
+    background: var(--bg);
+    border-radius: 10px;
+}
+
+/* Workout Match */
+.workout-suggestions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.workout-card {
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+.workout-card i { font-size: 24px; color: var(--primary); margin-bottom: 10px; }
+.workout-card h4 { font-size: 14px; margin-bottom: 5px; }
+.workout-card p { font-size: 12px; color: var(--text-secondary); }
+
+@media(max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .weekly-summary { grid-template-columns: repeat(2, 1fr); }
+    .grid-7 { grid-template-columns: repeat(3, 1fr); }
+}
 </style>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+</button>
+
 <div class="container">
-  <button onclick="document.body.classList.toggle('dark')" style="position:absolute;top:20px;right:20px;padding:10px;border-radius:50%;border:none;">☀️/🌙</button>
-  <div class="hero"><h1>Carb Cycling Planner</h1><p>Plan your High, Low, and Rest days to maximize fat loss while retaining muscle.</p></div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="input-group"><label>Daily Target Calories (TDEE)</label><input type="number" id="tdee" value="2200" placeholder="Use Calorie Calculator to find this"></div>
-      <div class="input-group"><label>Body Weight (kg)</label><input type="number" id="weight" value="75"></div>
-      <button class="btn" onclick="calcCycle()">Generate My Carb Cycle</button>
+    <!-- Header -->
+    <div class="header">
+        <h1>🔄 Carb Cycling Planner Pro</h1>
+        <p>Advanced carb cycling protocol with weekly scheduling, workout matching, meal suggestions, and AI coaching</p>
+        <div class="badges">
+            <span class="badge"><i class="fas fa-calendar-week"></i> Weekly Planner</span>
+            <span class="badge"><i class="fas fa-dumbbell"></i> Workout Match</span>
+            <span class="badge"><i class="fas fa-utensils"></i> Meal Ideas</span>
+            <span class="badge"><i class="fas fa-robot"></i> AI Coach</span>
+            <span class="badge"><i class="fas fa-chart-pie"></i> Macro Tracking</span>
+            <span class="badge"><i class="fas fa-fire"></i> Fat Loss Optimized</span>
+        </div>
     </div>
 
-    <div class="card">
-      <div id="resBox" style="display:none;">
-        <h3 style="margin-bottom: 15px;">Your Macro Schedule</h3>
-        
-        <div class="cycle-card" style="border-left: 5px solid #3b82f6;">
-          <div><h4>High Carb Day (Training)</h4><div class="macro-mini" id="highMacros"></div></div>
-          <strong id="highCal"></strong>
-        </div>
-        
-        <div class="cycle-card" style="border-left: 5px solid #f59e0b;">
-          <div><h4>Low Carb Day (Light Activity)</h4><div class="macro-mini" id="lowMacros"></div></div>
-          <strong id="lowCal"></strong>
-        </div>
-        
-        <div class="cycle-card" style="border-left: 5px solid #ef4444;">
-          <div><h4>Rest / No Carb Day (Off Day)</h4><div class="macro-mini" id="restMacros"></div></div>
-          <strong id="restCal"></strong>
-        </div>
-      </div>
+    <div class="grid">
+        <!-- Input Section -->
+        <div>
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-sliders-h"></i> Configure Your Cycle
+                </div>
 
-      <div class="ai-panel">
-        <div class="ai-header"><i class="fas fa-robot"></i> Carb Cycling AI Coach</div>
-        <div class="ai-msgs" id="chatMsgs"><div class="msg-bot">I have generated your high and low carb days. Ask me how to structure this across the week!</div></div>
-        <div class="ai-input">
-          <input type="text" id="chatInput" placeholder="E.g., What to eat on a High Carb day?" onkeypress="if(event.key==='Enter')sendAI()">
-          <button onclick="sendAI()">➤</button>
+                <!-- Preset Protocols -->
+                <div class="preset-grid">
+                    <div class="preset-card selected" onclick="selectPreset('standard')">
+                        <i class="fas fa-balance-scale"></i>
+                        <h4>Standard</h4>
+                        <p>3 High · 2 Low · 2 Rest</p>
+                    </div>
+                    <div class="preset-card" onclick="selectPreset('aggressive')">
+                        <i class="fas fa-fire"></i>
+                        <h4>Aggressive Cut</h4>
+                        <p>2 High · 3 Low · 2 Rest</p>
+                    </div>
+                    <div class="preset-card" onclick="selectPreset('maintenance')">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Maintenance</h4>
+                        <p>4 High · 2 Low · 1 Rest</p>
+                    </div>
+                    <div class="preset-card" onclick="selectPreset('keto')">
+                        <i class="fas fa-bacon"></i>
+                        <h4>Keto Cycle</h4>
+                        <p>1 High · 2 Low · 4 Rest</p>
+                    </div>
+                </div>
+
+                <!-- Unit Toggle -->
+                <div class="unit-toggle">
+                    <button class="unit-btn active" onclick="switchUnit('metric')">📏 Metric (kg)</button>
+                    <button class="unit-btn" onclick="switchUnit('imperial')">📐 Imperial (lbs)</button>
+                </div>
+
+                <div id="metric-inputs">
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Body Weight (kg)</label>
+                        <input type="number" id="weight" value="75" step="0.1" placeholder="Your current weight">
+                    </div>
+                </div>
+                <div id="imperial-inputs" style="display:none;">
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Body Weight (lbs)</label>
+                        <input type="number" id="weightLbs" value="165" step="0.1" placeholder="Your current weight">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-fire"></i> Maintenance Calories (TDEE)</label>
+                    <input type="number" id="tdee" value="2500" placeholder="Daily calories to maintain weight">
+                    <div class="input-hint">Use our <a href="#" style="color:var(--primary);">TDEE Calculator</a> to find this</div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-venus-mars"></i> Gender</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-bullseye"></i> Goal</label>
+                    <select id="goal">
+                        <option value="cut">Fat Loss / Cut</option>
+                        <option value="maintain">Maintenance</option>
+                        <option value="bulk">Lean Bulk</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-chart-line"></i> Carb Sensitivity</label>
+                    <select id="carbSensitivity">
+                        <option value="high">High (Tolerate carbs well)</option>
+                        <option value="moderate" selected>Moderate</option>
+                        <option value="low">Low (Carb sensitive)</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="generateCycle()">
+                    <i class="fas fa-sync-alt"></i> Generate Carb Cycle
+                </button>
+
+                <button class="btn btn-outline" onclick="resetForm()" style="margin-top:10px;">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Quick Info -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-info-circle"></i> How Carb Cycling Works
+                </div>
+                <div style="font-size:14px;color:var(--text-secondary);line-height:1.8;">
+                    <p><strong>🔵 High Carb Days:</strong> Fuel intense workouts, replenish glycogen, boost metabolism</p>
+                    <p><strong>🟡 Low Carb Days:</strong> Moderate activity, maintain insulin sensitivity</p>
+                    <p><strong>🔴 Rest/No Carb Days:</strong> Recovery, enhance fat oxidation, improve metabolic flexibility</p>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- Results Section -->
+        <div>
+            <div class="card" id="resultsCard" style="display:none;">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('week')">📅 Week View</button>
+                    <button class="tab" onclick="switchTab('details')">📊 Macro Details</button>
+                    <button class="tab" onclick="switchTab('meals')">🍽️ Food Guide</button>
+                    <button class="tab" onclick="switchTab('workout')">🏋️ Workout Match</button>
+                    <button class="tab" onclick="switchTab('chart')">📈 Visual</button>
+                </div>
+
+                <!-- Week View Tab -->
+                <div id="week-tab" class="tab-content">
+                    <h3 style="margin-bottom:15px;">Weekly Schedule</h3>
+                    <div class="grid-7" id="weekGrid"></div>
+                    
+                    <div class="weekly-summary" id="weeklySummary"></div>
+                </div>
+
+                <!-- Macro Details Tab -->
+                <div id="details-tab" class="tab-content" style="display:none;">
+                    <div id="cycleDetails"></div>
+                    <div class="chart-wrapper">
+                        <canvas id="macroComparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Food Guide Tab -->
+                <div id="meals-tab" class="tab-content" style="display:none;">
+                    <h3 style="margin-bottom:15px;">Food Suggestions by Day Type</h3>
+                    <div class="food-grid">
+                        <div class="food-card">
+                            <h4>🔵 High Carb Day Foods</h4>
+                            <ul>
+                                <li>Brown rice, quinoa, oats</li>
+                                <li>Sweet potatoes, yams</li>
+                                <li>Whole grain pasta, bread</li>
+                                <li>Bananas, dates, mangoes</li>
+                                <li>Lean chicken, turkey</li>
+                                <li>Low-fat dairy</li>
+                            </ul>
+                        </div>
+                        <div class="food-card">
+                            <h4>🟡 Low Carb Day Foods</h4>
+                            <ul>
+                                <li>Leafy greens, broccoli</li>
+                                <li>Berries, green apples</li>
+                                <li>Eggs, egg whites</li>
+                                <li>Fish, seafood</li>
+                                <li>Nuts, seeds (moderate)</li>
+                                <li>Cottage cheese</li>
+                            </ul>
+                        </div>
+                        <div class="food-card">
+                            <h4>🔴 Rest Day Foods</h4>
+                            <ul>
+                                <li>Fatty fish (salmon)</li>
+                                <li>Avocados, olives</li>
+                                <li>Beef, lamb, pork</li>
+                                <li>Cheese, butter, cream</li>
+                                <li>Above-ground vegetables</li>
+                                <li>Bone broth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Workout Match Tab -->
+                <div id="workout-tab" class="tab-content" style="display:none;">
+                    <h3 style="margin-bottom:15px;">Workout Recommendations</h3>
+                    <div class="workout-suggestions">
+                        <div class="workout-card">
+                            <i class="fas fa-dumbbell"></i>
+                            <h4>Heavy Lifting</h4>
+                            <p>Best on High Carb Days</p>
+                        </div>
+                        <div class="workout-card">
+                            <i class="fas fa-running"></i>
+                            <h4>HIIT / Cardio</h4>
+                            <p>Best on Low Carb Days</p>
+                        </div>
+                        <div class="workout-card">
+                            <i class="fas fa-spa"></i>
+                            <h4>Yoga / Stretching</h4>
+                            <p>Perfect for Rest Days</p>
+                        </div>
+                        <div class="workout-card">
+                            <i class="fas fa-swimmer"></i>
+                            <h4>Swimming</h4>
+                            <p>Good on Low/High Days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Tab -->
+                <div id="chart-tab" class="tab-content" style="display:none;">
+                    <div class="chart-wrapper" style="height:400px;">
+                        <canvas id="weeklyCalorieChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper" style="height:300px;">
+                        <canvas id="macroDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Coach -->
+            <div class="ai-panel">
+                <div class="ai-header">
+                    <i class="fas fa-robot"></i>
+                    <span>Carb Cycling AI Coach</span>
+                    <span style="font-size:12px;opacity:0.8;">🟢 Online</span>
+                </div>
+                <div class="ai-messages" id="chatMessages">
+                    <div class="msg-bot">
+                        <strong>👋 Welcome to your Carb Cycling AI Coach!</strong><br><br>
+                        I can help you with:<br>
+                        • 🍞 Structuring your high/low carb days<br>
+                        • 🥗 Meal timing and food choices<br>
+                        • 🏋️ Matching workouts to carb days<br>
+                        • 📊 Adjusting macros for your goals<br>
+                        • 💡 Tips to manage hunger on low carb days<br><br>
+                        Generate your cycle first, then ask me anything!
+                    </div>
+                </div>
+                <div class="ai-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about carb cycling, meals, or workouts..." onkeypress="if(event.key==='Enter')sendAI()">
+                    <button onclick="sendAI()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card" style="margin-top:20px;">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Cycle History
+                    <button onclick="clearHistory()" style="margin-left:auto;background:none;border:1px solid var(--danger);color:var(--danger);padding:5px 15px;border-radius:8px;cursor:pointer;font-size:12px;">
+                        Clear
+                    </button>
+                </div>
+                <div id="historyList">
+                    <p style="color:var(--text-secondary);text-align:center;">No cycles saved yet. Generate your first carb cycle!</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>
-  function calcCycle() {
-    let tdee = parseInt(document.getElementById('tdee').value);
-    let w = parseFloat(document.getElementById('weight').value);
-    
-    if(!tdee || !w) return;
+// Global variables
+let currentUnit = 'metric';
+let currentPreset = 'standard';
+let currentCycleData = null;
+let cycleHistory = JSON.parse(localStorage.getItem('carbCycleHistory') || '[]');
+let macroComparisonChart = null;
+let weeklyCalorieChart = null;
+let macroDistributionChart = null;
 
-    // High Carb Day (+10% cal): 50% C, 30% P, 20% F
-    let hcCal = tdee * 1.1;
-    let hcC = Math.round((hcCal * 0.5) / 4), hcP = Math.round((hcCal * 0.3) / 4), hcF = Math.round((hcCal * 0.2) / 9);
-
-    // Low Carb Day (-10% cal): 20% C, 40% P, 40% F
-    let lcCal = tdee * 0.9;
-    let lcC = Math.round((lcCal * 0.2) / 4), lcP = Math.round((lcCal * 0.4) / 4), lcF = Math.round((lcCal * 0.4) / 9);
-
-    // Rest/No Carb Day (-20% cal): 5% C, 45% P, 50% F
-    let rcCal = tdee * 0.8;
-    let rcC = Math.round((rcCal * 0.05) / 4), rcP = Math.round((rcCal * 0.45) / 4), rcF = Math.round((rcCal * 0.5) / 9);
-
-    document.getElementById('resBox').style.display = 'block';
-    
-    document.getElementById('highCal').innerText = Math.round(hcCal) + " kcal";
-    document.getElementById('highMacros').innerText = `${hcP}g Protein | ${hcC}g Carbs | ${hcF}g Fats`;
-
-    document.getElementById('lowCal').innerText = Math.round(lcCal) + " kcal";
-    document.getElementById('lowMacros').innerText = `${lcP}g Protein | ${lcC}g Carbs | ${lcF}g Fats`;
-
-    document.getElementById('restCal').innerText = Math.round(rcCal) + " kcal";
-    document.getElementById('restMacros').innerText = `${rcP}g Protein | ${rcC}g Carbs | ${rcF}g Fats`;
-  }
-
-  async function sendAI() {
-    let input = document.getElementById('chatInput');
-    let msg = input.value.trim();
-    if(!msg) return;
-
-    let md = document.getElementById('chatMsgs');
-    md.innerHTML += `<div class="msg-user">${msg}</div>`;
-    input.value = '';
-    md.scrollTop = md.scrollHeight;
-
-    let prompt = `[USER GOAL: Carb Cycling]\nAct as a Sports Nutrition AI. Answer: ${msg}`;
-
-    try {
-      var res = await fetch('/api/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ userMessage: prompt }) });
-      var data = await res.json();
-      md.innerHTML += `<div class="msg-bot">${data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-      md.scrollTop = md.scrollHeight;
-    } catch(e) {
-      md.innerHTML += `<div class="msg-bot">❌ Connection error to Vercel API.</div>`;
+// Theme toggle
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.getElementById('themeIcon');
+    if (document.body.classList.contains('dark')) {
+        icon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.className = 'fas fa-moon';
+        localStorage.setItem('theme', 'light');
     }
-  }
+}
+
+// Load saved theme
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
+
+// Unit switching
+function switchUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('metric-inputs').style.display = unit === 'metric' ? 'block' : 'none';
+    document.getElementById('imperial-inputs').style.display = unit === 'imperial' ? 'block' : 'none';
+}
+
+// Preset selection
+function selectPreset(preset) {
+    currentPreset = preset;
+    document.querySelectorAll('.preset-card').forEach(c => c.classList.remove('selected'));
+    event.target.closest('.preset-card').classList.add('selected');
+    
+    // Update goal based on preset
+    const goalSelect = document.getElementById('goal');
+    if (preset === 'aggressive') goalSelect.value = 'cut';
+    else if (preset === 'maintenance') goalSelect.value = 'maintain';
+    else if (preset === 'keto') goalSelect.value = 'cut';
+}
+
+// Tab switching
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabName + '-tab').style.display = 'block';
+    event.target.classList.add('active');
+    
+    if (tabName === 'chart' && currentCycleData) {
+        setTimeout(() => {
+            drawWeeklyCalorieChart();
+            drawMacroDistributionChart();
+        }, 100);
+    }
+}
+
+// Generate carb cycle
+function generateCycle() {
+    let weight;
+    if (currentUnit === 'metric') {
+        weight = parseFloat(document.getElementById('weight').value);
+    } else {
+        weight = parseFloat(document.getElementById('weightLbs').value) * 0.453592;
+    }
+    
+    const tdee = parseInt(document.getElementById('tdee').value);
+    const gender = document.getElementById('gender').value;
+    const goal = document.getElementById('goal').value;
+    const carbSensitivity = document.getElementById('carbSensitivity').value;
+
+    if (!weight || !tdee) {
+        alert('Please fill in all required fields');
+        return;
+    }
+
+    // Define weekly schedule based on preset
+    const schedules = {
+        standard: ['high', 'high', 'low', 'high', 'low', 'rest', 'rest'],
+        aggressive: ['high', 'low', 'high', 'low', 'low', 'rest', 'rest'],
+        maintenance: ['high', 'high', 'low', 'high', 'high', 'low', 'rest'],
+        keto: ['high', 'low', 'rest', 'low', 'rest', 'rest', 'rest']
+    };
+
+    const weekSchedule = schedules[currentPreset];
+    
+    // Calculate macros for each day type
+    const dayMacros = calculateDayMacros(tdee, weight, gender, goal, carbSensitivity);
+    
+    // Create weekly plan
+    const weeklyPlan = weekSchedule.map((dayType, index) => ({
+        day: index,
+        name: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][index],
+        type: dayType,
+        ...dayMacros[dayType]
+    }));
+
+    currentCycleData = {
+        weight,
+        tdee,
+        gender,
+        goal,
+        carbSensitivity,
+        preset: currentPreset,
+        schedule: weekSchedule,
+        weeklyPlan,
+        dayMacros,
+        date: new Date().toISOString()
+    };
+
+    displayResults(currentCycleData);
+    saveToHistory(currentCycleData);
+    
+    document.getElementById('resultsCard').style.display = 'block';
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Calculate macros for each day type
+function calculateDayMacros(tdee, weight, gender, goal, carbSensitivity) {
+    const sensitivityMultiplier = {
+        high: { highCarb: 1.0, lowCarb: 0.7, restCarb: 0.3 },
+        moderate: { highCarb: 0.9, lowCarb: 0.6, restCarb: 0.2 },
+        low: { highCarb: 0.8, lowCarb: 0.5, restCarb: 0.15 }
+    }[carbSensitivity];
+
+    const goalMultiplier = {
+        cut: { high: 1.0, low: 0.9, rest: 0.8 },
+        maintain: { high: 1.05, low: 1.0, rest: 0.95 },
+        bulk: { high: 1.15, low: 1.05, rest: 0.95 }
+    }[goal];
+
+    const minProtein = gender === 'female' ? weight * 1.8 : weight * 2.0;
+
+    return {
+        high: {
+            calories: Math.round(tdee * goalMultiplier.high),
+            protein: Math.round(minProtein),
+            carbs: Math.round((tdee * 0.45 * sensitivityMultiplier.highCarb) / 4),
+            fats: Math.round((tdee * 0.25) / 9),
+            label: 'High Carb',
+            cssClass: 'high-carb',
+            typeClass: 'type-high'
+        },
+        low: {
+            calories: Math.round(tdee * goalMultiplier.low),
+            protein: Math.round(minProtein * 1.1),
+            carbs: Math.round((tdee * 0.20 * sensitivityMultiplier.lowCarb) / 4),
+            fats: Math.round((tdee * 0.35) / 9),
+            label: 'Low Carb',
+            cssClass: 'low-carb',
+            typeClass: 'type-low'
+        },
+        rest: {
+            calories: Math.round(tdee * goalMultiplier.rest),
+            protein: Math.round(minProtein * 1.15),
+            carbs: Math.round((tdee * 0.08 * sensitivityMultiplier.restCarb) / 4),
+            fats: Math.round((tdee * 0.45) / 9),
+            label: 'Rest Day',
+            cssClass: 'no-carb',
+            typeClass: 'type-rest'
+        }
+    };
+}
+
+// Display results
+function displayResults(data) {
+    // Week grid
+    const weekGrid = document.getElementById('weekGrid');
+    weekGrid.innerHTML = data.weeklyPlan.map(day => `
+        <div class="day-card ${day.cssClass}">
+            <div class="day-name">${day.name}</div>
+            <div class="day-type ${day.typeClass}">${day.label}</div>
+            <div class="day-calories">${day.calories}</div>
+            <div class="day-macros">P:${day.protein} C:${day.carbs} F:${day.fats}</div>
+        </div>
+    `).join('');
+
+    // Weekly summary
+    const totalCals = data.weeklyPlan.reduce((sum, d) => sum + d.calories, 0);
+    const avgCals = Math.round(totalCals / 7);
+    const highDays = data.schedule.filter(d => d === 'high').length;
+    const lowDays = data.schedule.filter(d => d === 'low').length;
+    const restDays = data.schedule.filter(d => d === 'rest').length;
+    
+    document.getElementById('weeklySummary').innerHTML = `
+        <div class="summary-card">
+            <div class="summary-value">${avgCals}</div>
+            <div class="summary-label">Avg Daily Cals</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value">${totalCals.toLocaleString()}</div>
+            <div class="summary-label">Weekly Total</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value">${highDays}/${lowDays}/${restDays}</div>
+            <div class="summary-label">High/Low/Rest Days</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value">${data.tdee - avgCals}</div>
+            <div class="summary-label">Avg Daily Deficit</div>
+        </div>
+    `;
+
+    // Cycle details
+    const cycleDetails = document.getElementById('cycleDetails');
+    cycleDetails.innerHTML = Object.entries(data.dayMacros).map(([type, macros]) => `
+        <div class="cycle-card ${type}">
+            <div class="cycle-header">
+                <span class="cycle-title">${type === 'high' ? '🔵' : type === 'low' ? '🟡' : '🔴'} ${macros.label}</span>
+                <span class="cycle-calories">${macros.calories} kcal</span>
+            </div>
+            <div class="macro-bars">
+                <div class="macro-bar bar-protein" style="width:${(macros.protein*4/macros.calories*100)}%"></div>
+                <div class="macro-bar bar-carbs" style="width:${(macros.carbs*4/macros.calories*100)}%"></div>
+                <div class="macro-bar bar-fats" style="width:${(macros.fats*9/macros.calories*100)}%"></div>
+            </div>
+            <div class="macro-details">
+                <div class="macro-item">
+                    <div class="macro-value">${macros.protein}g</div>
+                    <div class="macro-label">Protein</div>
+                </div>
+                <div class="macro-item">
+                    <div class="macro-value">${macros.carbs}g</div>
+                    <div class="macro-label">Carbs</div>
+                </div>
+                <div class="macro-item">
+                    <div class="macro-value">${macros.fats}g</div>
+                    <div class="macro-label">Fats</div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Draw charts
+    drawMacroComparisonChart(data.dayMacros);
+    drawWeeklyCalorieChart();
+    drawMacroDistributionChart();
+}
+
+// Draw macro comparison chart
+function drawMacroComparisonChart(dayMacros) {
+    const ctx = document.getElementById('macroComparisonChart').getContext('2d');
+    if (macroComparisonChart) macroComparisonChart.destroy();
+    
+    macroComparisonChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['High Carb Day', 'Low Carb Day', 'Rest Day'],
+            datasets: [
+                {
+                    label: 'Protein (g)',
+                    data: [dayMacros.high.protein, dayMacros.low.protein, dayMacros.rest.protein],
+                    backgroundColor: 'rgba(239, 68, 68, 0.7)',
+                    borderColor: '#ef4444',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Carbs (g)',
+                    data: [dayMacros.high.carbs, dayMacros.low.carbs, dayMacros.rest.carbs],
+                    backgroundColor: 'rgba(245, 158, 11, 0.7)',
+                    borderColor: '#f59e0b',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Fats (g)',
+                    data: [dayMacros.high.fats, dayMacros.low.fats, dayMacros.rest.fats],
+                    backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                    borderColor: '#10b981',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    },
+                    grid: {
+                        color: document.body.classList.contains('dark') ? '#334155' : '#e2e8f0'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Draw weekly calorie chart
+function drawWeeklyCalorieChart() {
+    if (!currentCycleData) return;
+    
+    const ctx = document.getElementById('weeklyCalorieChart').getContext('2d');
+    if (weeklyCalorieChart) weeklyCalorieChart.destroy();
+    
+    const days = currentCycleData.weeklyPlan;
+    
+    weeklyCalorieChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: days.map(d => d.name),
+            datasets: [{
+                label: 'Daily Calories',
+                data: days.map(d => d.calories),
+                backgroundColor: days.map(d => {
+                    if (d.type === 'high') return 'rgba(59, 130, 246, 0.7)';
+                    if (d.type === 'low') return 'rgba(245, 158, 11, 0.7)';
+                    return 'rgba(239, 68, 68, 0.7)';
+                }),
+                borderColor: days.map(d => {
+                    if (d.type === 'high') return '#3b82f6';
+                    if (d.type === 'low') return '#f59e0b';
+                    return '#ef4444';
+                }),
+                borderWidth: 2,
+                borderRadius: 8
+            }, {
+                label: 'TDEE Line',
+                data: Array(7).fill(currentCycleData.tdee),
+                type: 'line',
+                borderColor: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    },
+                    grid: {
+                        color: document.body.classList.contains('dark') ? '#334155' : '#e2e8f0'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Draw macro distribution chart
+function drawMacroDistributionChart() {
+    if (!currentCycleData) return;
+    
+    const ctx = document.getElementById('macroDistributionChart').getContext('2d');
+    if (macroDistributionChart) macroDistributionChart.destroy();
+    
+    const avgProtein = currentCycleData.weeklyPlan.reduce((s, d) => s + d.protein, 0) / 7;
+    const avgCarbs = currentCycleData.weeklyPlan.reduce((s, d) => s + d.carbs, 0) / 7;
+    const avgFats = currentCycleData.weeklyPlan.reduce((s, d) => s + d.fats, 0) / 7;
+    
+    macroDistributionChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Protein', 'Carbs', 'Fats'],
+            datasets: [{
+                data: [Math.round(avgProtein), Math.round(avgCarbs), Math.round(avgFats)],
+                backgroundColor: [
+                    'rgba(239, 68, 68, 0.8)',
+                    'rgba(245, 158, 11, 0.8)',
+                    'rgba(16, 185, 129, 0.8)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Weekly Average Macro Distribution',
+                    color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
+                }
+            }
+        }
+    });
+}
+
+// Save to history
+function saveToHistory(data) {
+    cycleHistory.unshift({
+        id: Date.now(),
+        preset: data.preset,
+        tdee: data.tdee,
+        weight: data.weight,
+        date: data.date,
+        avgCalories: Math.round(data.weeklyPlan.reduce((s, d) => s + d.calories, 0) / 7)
+    });
+    
+    if (cycleHistory.length > 20) cycleHistory = cycleHistory.slice(0, 20);
+    localStorage.setItem('carbCycleHistory', JSON.stringify(cycleHistory));
+    displayHistory();
+}
+
+// Display history
+function displayHistory() {
+    const historyList = document.getElementById('historyList');
+    if (cycleHistory.length === 0) {
+        historyList.innerHTML = '<p style="color:var(--text-secondary);text-align:center;">No cycles saved yet.</p>';
+        return;
+    }
+    
+    historyList.innerHTML = cycleHistory.map(entry => `
+        <div class="history-item">
+            <div>
+                <div style="font-weight:600;">${entry.preset.toUpperCase()} Protocol</div>
+                <div style="font-size:12px;color:var(--text-secondary);">
+                    ${new Date(entry.date).toLocaleDateString()} • ${entry.weight}kg • ${entry.tdee} TDEE
+                </div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-weight:700;">~${entry.avgCalories} kcal/day</div>
+                <button class="btn btn-sm" onclick="loadHistoryCycle(${entry.id})" style="width:auto;padding:5px 12px;font-size:12px;">
+                    Load
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Load from history
+function loadHistoryCycle(id) {
+    const entry = cycleHistory.find(e => e.id === id);
+    if (entry) {
+        document.getElementById('tdee').value = entry.tdee;
+        if (currentUnit === 'metric') {
+            document.getElementById('weight').value = entry.weight;
+        } else {
+            document.getElementById('weightLbs').value = Math.round(entry.weight * 2.20462);
+        }
+        selectPreset(entry.preset);
+        generateCycle();
+    }
+}
+
+// Clear history
+function clearHistory() {
+    if (confirm('Clear all cycle history?')) {
+        cycleHistory = [];
+        localStorage.removeItem('carbCycleHistory');
+        displayHistory();
+    }
+}
+
+// Reset form
+function resetForm() {
+    document.getElementById('weight').value = '75';
+    document.getElementById('weightLbs').value = '165';
+    document.getElementById('tdee').value = '2500';
+    document.getElementById('gender').value = 'male';
+    document.getElementById('goal').value = 'cut';
+    document.getElementById('carbSensitivity').value = 'moderate';
+    document.getElementById('resultsCard').style.display = 'none';
+    currentCycleData = null;
+    selectPreset('standard');
+}
+
+// AI Chat
+async function sendAI() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    
+    const messagesDiv = document.getElementById('chatMessages');
+    messagesDiv.innerHTML += `<div class="msg-user">${message}</div>`;
+    input.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    let contextPrompt = `[CONTEXT: Carb Cycling Nutrition AI Coach. `;
+    if (currentCycleData) {
+        contextPrompt += `User's protocol: ${currentCycleData.preset}. `;
+        contextPrompt += `TDEE: ${currentCycleData.tdee}. Weight: ${currentCycleData.weight}kg. `;
+        contextPrompt += `Goal: ${currentCycleData.goal}. Carb sensitivity: ${currentCycleData.carbSensitivity}. `;
+    }
+    contextPrompt += `]\nUser question: ${message}`;
+    
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: contextPrompt })
+        });
+        const data = await response.json();
+        const formattedReply = data.reply
+            .replace(/\\n/g, '<br>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        messagesDiv.innerHTML += `<div class="msg-bot">${formattedReply}</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    } catch (error) {
+        messagesDiv.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again.</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+}
+
+// Initialize
+displayHistory();
 </script>
 </body>
 </html>
