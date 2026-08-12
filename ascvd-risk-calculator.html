@@ -352,7 +352,6 @@ body.dark .ai-chat-panel { background: rgba(15,23,42,0.9); border-color: #334155
 
 <script>
 // ===== GLOBAL STATE & CONFIG =====
-var WORKER_URL = 'https://groq-proxy.cscneolikhurd.workers.dev/';
 var isAIProcessing = false;
 var currentUnit = 'mgdl';
 var currentRegion = 'us';
@@ -376,7 +375,7 @@ var recommendations = {
     high: "Statin therapy is strongly recommended per clinical guidelines. Initiate immediate comprehensive intervention and consult a cardiologist."
 };
 
-// ===== CORE CLINICAL MATH (UNCHANGED) =====
+// ===== CORE CLINICAL MATH =====
 function calculateASCVDRaw(){
     var age=parseInt(document.getElementById('age').value);
     var gender=document.querySelector('input[name="gender"]:checked').value;
@@ -403,7 +402,7 @@ function calculateASCVDRaw(){
         var meanRisk=ethnicity==='aa'?86.61:-29.18;
         baseRisk=1-Math.pow(baselineSurvival,Math.exp(sum-meanRisk));
     }
-    if(ethnicity==='south_asian'){baseRisk=baseRisk*1.5;} // 1.5x Multiplier
+    if(ethnicity==='south_asian'){baseRisk=baseRisk*1.5;}
     return parseFloat(Math.min(Math.max(baseRisk*100,0.3),55).toFixed(1));
 }
 
@@ -426,7 +425,6 @@ function updateAll(){
     document.getElementById('riskCategory').textContent = category.text;
     document.getElementById('riskCategory').className = 'risk-category ' + category.class;
     
-    // Smooth progress bar animation
     setTimeout(() => {
         document.getElementById('riskProgress').style.width = Math.min(risk*2,100) + '%';
         document.getElementById('riskProgress').className = 'progress-bar ' + category.class;
@@ -498,13 +496,16 @@ document.querySelectorAll('.unit-btn').forEach(function(btn){
     });
 });
 
-// ===== AI CHAT ENGINE =====
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM
+// ============================================
 function addChatMessage(text, sender) {
     var messagesDiv = document.getElementById('aiChatMessages');
+    if (!messagesDiv) return;
+    
     var msgDiv = document.createElement('div');
     msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
     
-    // Markdown formatting
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/\n/g, '<br>');
     msgDiv.innerHTML = text;
@@ -515,6 +516,8 @@ function addChatMessage(text, sender) {
 
 function showTypingIndicator() {
     var messagesDiv = document.getElementById('aiChatMessages');
+    if (!messagesDiv) return;
+    
     var typingDiv = document.createElement('div');
     typingDiv.id = 'aiTypingIndicator';
     typingDiv.className = 'ai-message ai-message-bot';
@@ -536,52 +539,66 @@ function getASCVDContext() {
     var chol = document.getElementById('totalChol').value;
     
     if (risk !== '--%') {
-        return `[PATIENT CONTEXT - Risk: ${risk} (${cat}), Age: ${age}, BP: ${sbp}, Chol: ${chol}mg/dL] `;
+        return '[PATIENT CONTEXT - ASCVD Risk: ' + risk + ' (' + cat + '), Age: ' + age + ', BP: ' + sbp + 'mmHg, Total Cholesterol: ' + chol + 'mg/dL]';
     }
-    return '';
+    return '[User is on ASCVD Risk Calculator page]';
 }
 
 async function sendAIMessage(prefilledText) {
     if (isAIProcessing) return;
     
     var input = document.getElementById('aiChatInput');
-    var message = prefilledText || input.value.trim();
+    var message = prefilledText || (input ? input.value.trim() : '');
     if (!message) return;
     
     isAIProcessing = true;
     addChatMessage(message, 'user');
-    if (!prefilledText) input.value = '';
+    if (input && !prefilledText) input.value = '';
     showTypingIndicator();
     
     var context = getASCVDContext();
-    var systemPrompt = "You are an expert Preventive Cardiologist AI for HealthCalc. Provide clear, structured advice in bullet points. Always reference the patient's numbers. End with: '⚠️ Consult a doctor for medical advice.'";
+    
+    var systemPrompt = "You are an expert Preventive Cardiologist AI for HealthCalc.in. " +
+        "Provide clear, structured advice in bullet points. " +
+        "Reference the patient's ASCVD risk numbers in your response. " +
+        "Always end with: '⚠️ Consult a doctor for personalized medical advice.'";
+    
+    var fullPrompt = systemPrompt + "\n\n" + context + "\n\nUSER QUESTION: " + message;
 
     try {
-       var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userMessage: promptContext }) // Fixed payload mapping!
-            });
-
-            var data = await response.json();
-            removeTypingIndicator();
-
-            if(data.reply) {
-                addChatMessage(data.reply, 'bot');
-            } else {
-                throw new Error('Invalid response');
-            }
-        } catch(e) {
-            removeTypingIndicator();
-            console.error('API Error:', e);
-            addChatMessage('❌ <strong>Network Error</strong><br>Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Consult a registered dietitian.', 'bot');
-        } finally {
-            isAIProcessing = false;
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
+        });
+        
+        var data = await response.json();
+        removeTypingIndicator();
+        
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            addChatMessage('❌ No response from AI. Please try again. ⚠️ Consult a cardiologist for medical advice.', 'bot');
         }
+    } catch (error) {
+        removeTypingIndicator();
+        console.error('AI Error:', error);
+        addChatMessage('❌ Connection error. Please check your internet. ⚠️ Consult a healthcare professional for urgent concerns.', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
+    }
+});
 
 // Initialize on load
 updateAll();
 </script>
-</body>
-</html>
