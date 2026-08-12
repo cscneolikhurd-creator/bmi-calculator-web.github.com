@@ -3,124 +3,1057 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weight Gain & Muscle Building Calculator | AI Coach | HealthCalc</title>
-<meta name="description" content="Find your optimal caloric surplus for clean bulking and muscle growth. Includes AI coaching for healthy weight gain.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Advanced Weight Gain & Muscle Building Calculator Pro | Bulking Planner | AI Coach | HealthCalc</title>
+<meta name="description" content="Free advanced weight gain calculator with bulking protocols, macro planning, workout nutrition timing, and AI muscle-building coach. Better than paid fitness apps!">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --primary: #10b981; --primary-light: #d1fae5; --bg: #f0fdf4; --card: #ffffff; --text: #1e293b; --border: #a7f3d0; }
-body.dark { --primary-light: #064e3b; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --border: #334155; }
+:root {
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --primary-light: #d1fae5;
+    --bg: #f0fdf4;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #a7f3d0;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --protein-color: #ef4444;
+    --carbs-color: #3b82f6;
+    --fats-color: #f59e0b;
+    --gradient-1: linear-gradient(135deg, #10b981, #059669);
+    --gradient-2: linear-gradient(135deg, #34d399, #10b981);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+}
+body.dark {
+    --primary-light: #064e3b;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.3);
+}
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg); color: var(--text); padding: 20px; transition: 0.3s; }
-.container { max-width: 900px; margin: 0 auto; }
-.card { background: var(--card); border-radius: 24px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 20px; }
-.hero { text-align: center; margin-bottom: 30px; }
-.hero h1 { color: var(--primary); font-size: 32px; font-weight: 800; }
+body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.header { text-align: center; margin-bottom: 30px; position: relative; }
+.header h1 {
+    font-size: 42px; font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+.header p { color: var(--text-secondary); font-size: 18px; max-width: 700px; margin: 0 auto; }
+.badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px; }
+.badge {
+    padding: 8px 16px; border-radius: 25px; font-size: 13px; font-weight: 600;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 1000;
+    background: var(--card); border: 2px solid var(--border);
+    padding: 12px; border-radius: 50%; cursor: pointer; font-size: 20px;
+    box-shadow: var(--shadow-md); transition: all 0.3s;
+    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle:hover { transform: scale(1.1); box-shadow: var(--shadow-lg); }
+
+/* Cards */
+.card {
+    background: var(--card); border-radius: 24px; padding: 30px;
+    box-shadow: var(--shadow-md); border: 1px solid var(--border);
+    margin-bottom: 20px; transition: all 0.3s ease;
+}
+.card:hover { box-shadow: var(--shadow-lg); }
+.card-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px; color: var(--primary);
+}
+
+/* Grid */
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-.input-group { margin-bottom: 15px; }
-label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px; }
-input, select { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background: var(--card); color: var(--text); outline: none; }
-.btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 10px; }
-.result { text-align: center; padding: 20px; background: var(--primary-light); border-radius: 16px; margin-top: 20px; }
-.cal-highlight { font-size: 36px; font-weight: 800; color: var(--primary); }
-.macro-box { display: flex; justify-content: space-around; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); }
-.ai-panel { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
-.ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 600; }
-.ai-msgs { height: 200px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.msg-bot { background: var(--border); padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-start; color: var(--text); }
-.msg-user { background: var(--primary); color: white; padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-end; }
-.ai-input { display: flex; border-top: 1px solid var(--border); }
-.ai-input input { border: none; border-radius: 0; padding: 12px; flex: 1; background: var(--card); color: var(--text); outline: none;}
-.ai-input button { background: var(--primary); color: white; border: none; padding: 0 20px; cursor: pointer; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media(max-width: 1024px) { .grid, .grid-3 { grid-template-columns: 1fr; } }
+
+/* Input Styles */
+.input-group { margin-bottom: 20px; }
+.input-group label {
+    font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;
+    color: var(--text); display: flex; align-items: center; gap: 6px;
+}
+.input-group label i { color: var(--primary); width: 20px; }
+input, select {
+    width: 100%; padding: 14px 16px; border: 2px solid var(--border);
+    border-radius: 14px; background: var(--bg); color: var(--text);
+    font-size: 16px; outline: none; transition: all 0.3s ease; font-weight: 500;
+}
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(16,185,129,0.1);
+}
+.input-hint { font-size: 12px; color: var(--text-secondary); margin-top: 5px; }
+
+/* Unit Toggle */
+.unit-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+.unit-btn {
+    flex: 1; padding: 10px; border: 2px solid var(--border); border-radius: 10px;
+    background: transparent; color: var(--text); cursor: pointer;
+    font-weight: 600; transition: all 0.3s; text-align: center;
+}
+.unit-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* Buttons */
+.btn {
+    background: var(--gradient-1); color: white; border: none;
+    padding: 16px 24px; width: 100%; border-radius: 14px;
+    font-weight: 700; font-size: 16px; cursor: pointer;
+    transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16,185,129,0.3); }
+.btn:active { transform: translateY(0); }
+.btn-outline {
+    background: transparent; border: 2px solid var(--primary); color: var(--primary);
+    padding: 12px; width: 100%; border-radius: 14px; font-weight: 700;
+    cursor: pointer; margin-top: 10px; transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--primary); color: white; }
+
+/* Tabs */
+.tabs {
+    display: flex; gap: 5px; margin-bottom: 20px;
+    background: var(--bg); padding: 5px; border-radius: 14px; flex-wrap: wrap;
+}
+.tab {
+    flex: 1; min-width: 90px; padding: 12px 18px; border: none;
+    background: transparent; border-radius: 10px; cursor: pointer;
+    font-weight: 600; font-size: 14px; color: var(--text-secondary);
+    transition: all 0.3s; text-align: center;
+}
+.tab.active { background: var(--gradient-1); color: white; box-shadow: var(--shadow-sm); }
+
+/* Results */
+.result-box {
+    background: linear-gradient(135deg, var(--primary-light), var(--card));
+    border-radius: 20px; padding: 30px; text-align: center;
+    border: 2px solid var(--primary); position: relative; overflow: hidden;
+}
+.result-box::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.result-label {
+    font-size: 16px; color: var(--text-secondary); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 1;
+}
+.cal-value {
+    font-size: 56px; font-weight: 900; color: var(--primary);
+    position: relative; z-index: 1; line-height: 1; margin: 15px 0;
+}
+.cal-sub {
+    font-size: 14px; opacity: 0.8; position: relative; z-index: 1;
+}
+
+/* Macro Display */
+.macro-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    margin-top: 20px; position: relative; z-index: 1;
+}
+.macro-card {
+    background: rgba(255,255,255,0.15); padding: 20px 12px;
+    border-radius: 16px; text-align: center; backdrop-filter: blur(10px);
+    transition: all 0.3s; border: 2px solid transparent;
+}
+.macro-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+.macro-card.protein { border-color: var(--protein-color); }
+.macro-card.carbs { border-color: var(--carbs-color); }
+.macro-card.fats { border-color: var(--fats-color); }
+.macro-icon { font-size: 28px; margin-bottom: 8px; }
+.macro-val { font-size: 28px; font-weight: 800; }
+.macro-label { font-size: 13px; opacity: 0.8; }
+.macro-percent { font-size: 11px; opacity: 0.6; margin-top: 3px; }
+.protein .macro-val { color: var(--protein-color); }
+.carbs .macro-val { color: var(--carbs-color); }
+.fats .macro-val { color: var(--fats-color); }
+
+/* Macro Bar */
+.macro-bar-container { margin: 20px 0; position: relative; z-index: 1; }
+.macro-bar { height: 30px; border-radius: 15px; overflow: hidden; display: flex; }
+.macro-segment {
+    height: 100%; transition: width 1s ease;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 12px; min-width: 50px;
+}
+.seg-protein { background: var(--protein-color); }
+.seg-carbs { background: var(--carbs-color); }
+.seg-fats { background: var(--fats-color); }
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-top: 20px;
+}
+.metric-card {
+    padding: 18px; border-radius: 14px; background: var(--bg);
+    border: 1px solid var(--border); text-align: center;
+}
+.metric-icon { font-size: 24px; margin-bottom: 8px; }
+.metric-value { font-size: 20px; font-weight: 700; color: var(--primary); }
+.metric-label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+
+/* Bulking Protocol Cards */
+.protocol-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px; margin-bottom: 20px;
+}
+.protocol-card {
+    padding: 16px; border-radius: 14px; border: 2px solid var(--border);
+    background: var(--card); cursor: pointer; text-align: center;
+    transition: all 0.3s; font-size: 13px;
+}
+.protocol-card:hover, .protocol-card.selected {
+    border-color: var(--primary); background: var(--primary-light);
+    transform: translateY(-2px);
+}
+.protocol-card i { font-size: 24px; color: var(--primary); margin-bottom: 6px; display: block; }
+.protocol-card h4 { font-weight: 700; margin-bottom: 3px; }
+.protocol-card p { color: var(--text-secondary); font-size: 11px; }
+
+/* Meal Plan */
+.meal-plan { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+@media(max-width: 600px) { .meal-plan { grid-template-columns: 1fr; } }
+.meal-card {
+    padding: 18px; border-radius: 14px; background: var(--bg);
+    border: 1px solid var(--border);
+}
+.meal-time { font-weight: 700; color: var(--primary); margin-bottom: 10px; font-size: 14px; }
+.meal-items { list-style: none; font-size: 13px; color: var(--text-secondary); }
+.meal-items li { padding: 4px 0; }
+
+/* Weight Timeline */
+.timeline-container { margin: 20px 0; }
+.timeline-bar {
+    height: 12px; background: var(--border); border-radius: 10px;
+    overflow: hidden; position: relative;
+}
+.timeline-fill {
+    height: 100%; background: var(--gradient-1); border-radius: 10px;
+    transition: width 1.5s ease; position: relative; overflow: hidden;
+}
+.timeline-fill::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.timeline-labels {
+    display: flex; justify-content: space-between; margin-top: 8px;
+    font-size: 11px; color: var(--text-secondary);
+}
+
+/* Weight Gain Shake Recipes */
+.shake-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; margin-top: 15px;
+}
+.shake-card {
+    padding: 18px; border-radius: 14px; background: var(--bg);
+    border: 1px solid var(--border); transition: all 0.3s;
+}
+.shake-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.shake-card h4 { color: var(--primary); margin-bottom: 8px; }
+.shake-card p { font-size: 12px; color: var(--text-secondary); }
+
+/* Chart Container */
+.chart-wrapper { position: relative; height: 300px; margin: 20px 0; }
+
+/* AI Chat */
+.ai-panel {
+    border: 2px solid var(--border); border-radius: 20px;
+    overflow: hidden; background: var(--card); margin-top: 20px;
+}
+.ai-header {
+    background: var(--gradient-1); color: white; padding: 16px 20px;
+    font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 10px;
+}
+.ai-header i { font-size: 24px; }
+.ai-messages {
+    height: 350px; overflow-y: auto; padding: 20px;
+    display: flex; flex-direction: column; gap: 12px; background: var(--bg);
+}
+.ai-messages::-webkit-scrollbar { width: 6px; }
+.ai-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+.msg-bot, .msg-user {
+    padding: 12px 16px; border-radius: 16px; max-width: 85%;
+    font-size: 14px; line-height: 1.5; animation: slideIn 0.3s ease;
+}
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.msg-bot {
+    background: var(--card); border: 1px solid var(--border);
+    align-self: flex-start; border-bottom-left-radius: 4px;
+}
+.msg-user {
+    background: var(--gradient-1); color: white;
+    align-self: flex-end; border-bottom-right-radius: 4px;
+}
+.ai-input-container {
+    display: flex; padding: 15px; border-top: 1px solid var(--border);
+    background: var(--card); gap: 10px;
+}
+.ai-input-container input {
+    flex: 1; border: 2px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; background: var(--bg);
+}
+.ai-input-container button {
+    background: var(--gradient-1); color: white; border: none;
+    padding: 12px 24px; border-radius: 12px; cursor: pointer;
+    font-weight: 600; transition: all 0.3s;
+}
+.ai-input-container button:hover { transform: scale(1.05); }
+
+/* History */
+.history-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px; border-bottom: 1px solid var(--border); transition: all 0.3s;
+}
+.history-item:hover { background: var(--bg); border-radius: 10px; }
+
+@media(max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .cal-value { font-size: 40px; }
+    .macro-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .tabs { flex-direction: column; }
+}
 </style>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+</button>
+
 <div class="container">
-  <button onclick="document.body.classList.toggle('dark')" style="position:absolute;top:20px;right:20px;padding:10px;border-radius:50%;border:none;">☀️/🌙</button>
-  <div class="hero"><h1>Weight Gain Calculator</h1><p>Find your optimal caloric surplus for clean bulking and muscle growth.</p></div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="input-group"><label>Gender</label><select id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
-      <div class="input-group"><label>Age</label><input type="number" id="age" value="25"></div>
-      <div class="input-group"><label>Weight (kg)</label><input type="number" id="weight" value="65"></div>
-      <div class="input-group"><label>Height (cm)</label><input type="number" id="height" value="175"></div>
-      <div class="input-group"><label>Activity Level</label><select id="activity"><option value="1.2">Sedentary</option><option value="1.55" selected>Moderate Exercise</option><option value="1.725">Heavy Exercise</option></select></div>
-      <div class="input-group"><label>Goal Rate</label><select id="rate"><option value="250">Mild Surplus (+0.25 kg/week)</option><option value="500" selected>Moderate Surplus (+0.5 kg/week)</option></select></div>
-      <button class="btn" onclick="calcWeightGain()">Calculate Surplus Target</button>
+    <!-- Header -->
+    <div class="header">
+        <h1>💪 Weight Gain & Muscle Building Pro</h1>
+        <p>Advanced bulking calculator with protocols, nutrient timing, workout nutrition, and AI coaching for lean muscle growth</p>
+        <div class="badges">
+            <span class="badge"><i class="fas fa-dumbbell"></i> Bulking Protocols</span>
+            <span class="badge"><i class="fas fa-clock"></i> Nutrient Timing</span>
+            <span class="badge"><i class="fas fa-blender"></i> Mass Shakes</span>
+            <span class="badge"><i class="fas fa-robot"></i> AI Coach</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Progress Tracking</span>
+        </div>
     </div>
 
-    <div class="card">
-      <div class="result" id="resBox" style="display:none;">
-        <div>Daily Target for Weight Gain</div>
-        <div class="cal-highlight" id="calTarget">—</div>
-        <div style="font-size:12px; opacity:0.8;">Maintenance (TDEE): <span id="tdeeVal"></span> kcal</div>
-        <div class="macro-box">
-          <div><strong style="color:#ef4444;" id="proVal"></strong><br><small>Protein</small></div>
-          <div><strong style="color:#3b82f6;" id="carbVal"></strong><br><small>Carbs</small></div>
-          <div><strong style="color:#f59e0b;" id="fatVal"></strong><br><small>Fats</small></div>
-        </div>
-      </div>
+    <div class="grid">
+        <!-- Input Section -->
+        <div>
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-sliders-h"></i> Your Bulking Profile
+                </div>
 
-      <div class="ai-panel">
-        <div class="ai-header"><i class="fas fa-robot"></i> Bulking AI Coach</div>
-        <div class="ai-msgs" id="chatMsgs"><div class="msg-bot">Calculate your bulking calories above, then ask me for high-calorie meal plans or muscle-building tips!</div></div>
-        <div class="ai-input">
-          <input type="text" id="chatInput" placeholder="E.g., High calorie shake recipe?" onkeypress="if(event.key==='Enter')sendAI()">
-          <button onclick="sendAI()">➤</button>
+                <!-- Bulking Protocol -->
+                <label style="font-weight:700;margin-bottom:10px;"><i class="fas fa-dumbbell"></i> Bulking Protocol</label>
+                <div class="protocol-grid">
+                    <div class="protocol-card selected" onclick="selectProtocol('lean')">
+                        <i class="fas fa-feather-alt"></i>
+                        <h4>Lean Bulk</h4>
+                        <p>+250 kcal · Slow gain</p>
+                    </div>
+                    <div class="protocol-card" onclick="selectProtocol('moderate')">
+                        <i class="fas fa-balance-scale"></i>
+                        <h4>Moderate Bulk</h4>
+                        <p>+500 kcal · Steady gain</p>
+                    </div>
+                    <div class="protocol-card" onclick="selectProtocol('aggressive')">
+                        <i class="fas fa-fire"></i>
+                        <h4>Aggressive Bulk</h4>
+                        <p>+750 kcal · Fast gain</p>
+                    </div>
+                    <div class="protocol-card" onclick="selectProtocol('dirty')">
+                        <i class="fas fa-pizza-slice"></i>
+                        <h4>Dirty Bulk</h4>
+                        <p>+1000 kcal · Max gain</p>
+                    </div>
+                </div>
+
+                <!-- Unit Toggle -->
+                <div class="unit-toggle">
+                    <button class="unit-btn active" onclick="switchUnit('metric')">📏 Metric</button>
+                    <button class="unit-btn" onclick="switchUnit('imperial')">📐 Imperial</button>
+                </div>
+
+                <div id="metric-inputs">
+                    <div class="input-group">
+                        <label><i class="fas fa-venus-mars"></i> Gender</label>
+                        <select id="gender"><option value="male">Male</option><option value="female">Female</option></select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-calendar-alt"></i> Age</label>
+                        <input type="number" id="age" value="25">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Weight (kg)</label>
+                        <input type="number" id="weight" value="65" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
+                        <input type="number" id="height" value="175">
+                    </div>
+                </div>
+
+                <div id="imperial-inputs" style="display:none;">
+                    <div class="input-group">
+                        <label><i class="fas fa-venus-mars"></i> Gender</label>
+                        <select id="genderImp"><option value="male">Male</option><option value="female">Female</option></select>
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-calendar-alt"></i> Age</label>
+                        <input type="number" id="ageImp" value="25">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Weight (lbs)</label>
+                        <input type="number" id="weightLbs" value="143" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-ruler-vertical"></i> Height (ft, in)</label>
+                        <div style="display:flex;gap:10px;">
+                            <input type="number" id="heightFt" value="5" placeholder="ft" style="flex:1;">
+                            <input type="number" id="heightIn" value="9" placeholder="in" style="flex:1;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-person-running"></i> Activity Level</label>
+                    <select id="activity">
+                        <option value="1.2">Sedentary (little/no exercise)</option>
+                        <option value="1.375">Light (1-3 days/week)</option>
+                        <option value="1.55" selected>Moderate (3-5 days/week)</option>
+                        <option value="1.725">Active (6-7 days/week)</option>
+                        <option value="1.9">Very Active (intense daily + physical job)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-bullseye"></i> Training Experience</label>
+                    <select id="experience">
+                        <option value="beginner">Beginner (0-1 year)</option>
+                        <option value="intermediate" selected>Intermediate (1-3 years)</option>
+                        <option value="advanced">Advanced (3+ years)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-weight-hanging"></i> Target Weight (kg)</label>
+                    <input type="number" id="targetWeight" value="75" step="0.1">
+                    <div class="input-hint">Your goal weight for this bulk</div>
+                </div>
+
+                <button class="btn" onclick="calculateWeightGain()">
+                    <i class="fas fa-calculator"></i> Calculate My Bulking Plan
+                </button>
+                <button class="btn-outline" onclick="resetForm()">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Weight Gain Shakes -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-blender"></i> High-Calorie Mass Shakes
+                </div>
+                <div class="shake-grid">
+                    <div class="shake-card">
+                        <h4>🍌 Classic Mass Gainer</h4>
+                        <p>2 cups milk · 2 bananas · 2 tbsp peanut butter · 1 scoop whey · 1 tbsp honey<br>
+                        <strong>~800 kcal | 50g protein</strong></p>
+                    </div>
+                    <div class="shake-card">
+                        <h4>🥜 Peanut Butter Power</h4>
+                        <p>2 cups oat milk · 3 tbsp PB · 1 scoop protein · 1/2 cup oats · 1 tbsp chia seeds<br>
+                        <strong>~900 kcal | 45g protein</strong></p>
+                    </div>
+                    <div class="shake-card">
+                        <h4>🍫 Chocolate Dream</h4>
+                        <p>2 cups whole milk · 2 scoops choc protein · 1 avocado · 2 tbsp cocoa · dates<br>
+                        <strong>~850 kcal | 55g protein</strong></p>
+                    </div>
+                    <div class="shake-card">
+                        <h4>🥚 Breakfast Bulker</h4>
+                        <p>2 cups milk · 3 eggs (pasteurized) · 1 cup oats · 1 banana · honey<br>
+                        <strong>~750 kcal | 40g protein</strong></p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <!-- Results Section -->
+        <div>
+            <div class="card" id="resultsCard" style="display:none;">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('macros')">🥩 Macros</button>
+                    <button class="tab" onclick="switchTab('meals')">🍽️ Meal Plan</button>
+                    <button class="tab" onclick="switchTab('timeline')">📈 Timeline</button>
+                    <button class="tab" onclick="switchTab('chart')">📊 Chart</button>
+                </div>
+
+                <!-- Macros Tab -->
+                <div id="macros-tab" class="tab-content">
+                    <div class="result-box">
+                        <div class="result-label">Daily Bulking Calories</div>
+                        <div class="cal-value" id="calTarget">—</div>
+                        <div class="cal-sub">Maintenance (TDEE): <span id="tdeeVal">—</span> kcal | Surplus: <span id="surplusVal">—</span> kcal</div>
+
+                        <div class="macro-bar-container">
+                            <div class="macro-bar">
+                                <div class="macro-segment seg-protein" id="proSeg" style="width:30%;">Protein</div>
+                                <div class="macro-segment seg-carbs" id="carbSeg" style="width:45%;">Carbs</div>
+                                <div class="macro-segment seg-fats" id="fatSeg" style="width:25%;">Fats</div>
+                            </div>
+                        </div>
+
+                        <div class="macro-grid">
+                            <div class="macro-card protein">
+                                <div class="macro-icon">🥩</div>
+                                <div class="macro-label">Protein</div>
+                                <div class="macro-val" id="proVal">—</div>
+                                <div class="macro-percent" id="proPercent">—</div>
+                            </div>
+                            <div class="macro-card carbs">
+                                <div class="macro-icon">🍚</div>
+                                <div class="macro-label">Carbs</div>
+                                <div class="macro-val" id="carbVal">—</div>
+                                <div class="macro-percent" id="carbPercent">—</div>
+                            </div>
+                            <div class="macro-card fats">
+                                <div class="macro-icon">🥑</div>
+                                <div class="macro-label">Fats</div>
+                                <div class="macro-val" id="fatVal">—</div>
+                                <div class="macro-percent" id="fatPercent">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">⚖️</div>
+                            <div class="metric-value" id="weightGain">—</div>
+                            <div class="metric-label">Weekly Gain</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📅</div>
+                            <div class="metric-value" id="weeksToGoal">—</div>
+                            <div class="metric-label">Weeks to Target</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🏋️</div>
+                            <div class="metric-value" id="proteinPerKg">—</div>
+                            <div class="metric-label">Protein g/kg</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🔥</div>
+                            <div class="metric-value" id="calorieDensity">—</div>
+                            <div class="metric-label">Cal/kg Bodyweight</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meal Plan Tab -->
+                <div id="meals-tab" class="tab-content" style="display:none;">
+                    <h3 style="margin-bottom:15px;">Sample Bulking Meal Plan</h3>
+                    <div class="meal-plan" id="mealPlanDisplay"></div>
+                    <div style="margin-top:15px;padding:15px;background:var(--bg);border-radius:12px;">
+                        <h4 style="color:var(--primary);margin-bottom:8px;">⏰ Nutrient Timing Tips</h4>
+                        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">
+                            • <strong>Pre-Workout (1-2hrs before):</strong> Carbs + moderate protein for energy<br>
+                            • <strong>Post-Workout (within 1hr):</strong> Fast-digesting protein + carbs for recovery<br>
+                            • <strong>Before Bed:</strong> Casein protein (cottage cheese, Greek yogurt) for overnight muscle repair<br>
+                            • <strong>Spread meals evenly:</strong> Every 3-4 hours to maintain positive nitrogen balance
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Tab -->
+                <div id="timeline-tab" class="tab-content" style="display:none;">
+                    <h3 style="margin-bottom:15px;">Weight Gain Projection</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-bar">
+                            <div class="timeline-fill" id="timelineFill" style="width:0%;">
+                                <span id="timelinePercent" style="padding:0 10px;color:white;font-weight:700;font-size:12px;">0%</span>
+                            </div>
+                        </div>
+                        <div class="timeline-labels">
+                            <span>Start</span><span>25%</span><span>50%</span><span>75%</span><span>Goal! 🎉</span>
+                        </div>
+                    </div>
+                    <div id="milestoneList" style="margin-top:15px;"></div>
+                </div>
+
+                <!-- Chart Tab -->
+                <div id="chart-tab" class="tab-content" style="display:none;">
+                    <div class="chart-wrapper">
+                        <canvas id="macroDoughnutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Chat -->
+            <div class="ai-panel">
+                <div class="ai-header">
+                    <i class="fas fa-robot"></i>
+                    <span>Bulking & Muscle Building AI Coach</span>
+                    <span style="font-size:12px;opacity:0.8;">🟢 Online</span>
+                </div>
+                <div class="ai-messages" id="chatMessages">
+                    <div class="msg-bot">
+                        <strong>👋 Welcome to your Bulking AI Coach!</strong><br><br>
+                        I can help you with:<br>
+                        • 🍳 High-calorie meal ideas<br>
+                        • 🏋️ Workout splits for mass<br>
+                        • ⏰ Nutrient timing strategies<br>
+                        • 💪 Breaking through plateaus<br>
+                        • 🥤 Mass gainer shake recipes<br>
+                        • 📊 Adjusting your surplus<br><br>
+                        Calculate your plan first, then ask me anything!
+                    </div>
+                </div>
+                <div class="ai-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about bulking, workouts, or meal plans..." onkeypress="if(event.key==='Enter')sendAI()">
+                    <button onclick="sendAI()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card" style="margin-top:20px;">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Bulking Plan History
+                    <button onclick="clearHistory()" style="margin-left:auto;background:none;border:1px solid var(--danger);color:var(--danger);padding:5px 15px;border-radius:8px;cursor:pointer;font-size:12px;">
+                        Clear
+                    </button>
+                </div>
+                <div id="historyList">
+                    <p style="color:var(--text-secondary);text-align:center;">No bulking plans saved yet.</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>
-  function calcWeightGain() {
-    let w = parseFloat(document.getElementById('weight').value), h = parseFloat(document.getElementById('height').value);
-    let age = parseInt(document.getElementById('age').value), act = parseFloat(document.getElementById('activity').value);
-    let gender = document.getElementById('gender').value, surplus = parseInt(document.getElementById('rate').value);
+// Global variables
+let currentUnit = 'metric';
+let currentProtocol = 'lean';
+let bulkingData = null;
+let macroDoughnutChart = null;
+let planHistory = JSON.parse(localStorage.getItem('bulkingHistory') || '[]');
+
+// Theme toggle
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.getElementById('themeIcon');
+    icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
+
+// Format date
+function formatDate(date) { return new Date(date).toLocaleDateString('en-US', {month:'short', day:'numeric'}); }
+
+// Unit switch
+function switchUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('metric-inputs').style.display = unit === 'metric' ? 'block' : 'none';
+    document.getElementById('imperial-inputs').style.display = unit === 'imperial' ? 'block' : 'none';
+}
+
+// Protocol selection
+function selectProtocol(protocol) {
+    currentProtocol = protocol;
+    document.querySelectorAll('.protocol-card').forEach(c => c.classList.remove('selected'));
+    event.target.closest('.protocol-card').classList.add('selected');
+}
+
+// Tab switch
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabName + '-tab').style.display = 'block';
+    event.target.classList.add('active');
+    if (tabName === 'chart' && bulkingData) drawMacroDoughnut();
+}
+
+// Main calculation
+function calculateWeightGain() {
+    let weight, height, gender, age;
     
-    if(!w || !h || !age) return;
-    let bmr = (10 * w) + (6.25 * h) - (5 * age) + (gender === 'male' ? 5 : -161);
-    let tdee = bmr * act;
-    let targetCal = Math.round(tdee + surplus);
+    if (currentUnit === 'metric') {
+        weight = parseFloat(document.getElementById('weight').value);
+        height = parseFloat(document.getElementById('height').value);
+        gender = document.getElementById('gender').value;
+        age = parseInt(document.getElementById('age').value);
+    } else {
+        weight = parseFloat(document.getElementById('weightLbs').value) * 0.453592;
+        const ft = parseFloat(document.getElementById('heightFt').value) || 0;
+        const inch = parseFloat(document.getElementById('heightIn').value) || 0;
+        height = ((ft * 12) + inch) * 2.54;
+        gender = document.getElementById('genderImp').value;
+        age = parseInt(document.getElementById('ageImp').value);
+    }
+
+    const activity = parseFloat(document.getElementById('activity').value);
+    const experience = document.getElementById('experience').value;
+    const targetWeight = parseFloat(document.getElementById('targetWeight').value);
+
+    if (!weight || !height || !age || !targetWeight) {
+        alert('Please fill all fields');
+        return;
+    }
+    if (targetWeight <= weight) {
+        alert('Target weight must be greater than current weight');
+        return;
+    }
+
+    // BMR (Mifflin-St Jeor)
+    let bmr = (10 * weight) + (6.25 * height) - (5 * age);
+    bmr += (gender === 'male') ? 5 : -161;
     
-    // Bulking Macros: Protein 2.2g/kg, Fats 1g/kg, Carbs fill the rest
-    let pro = Math.round(w * 2.2);
-    let fats = Math.round(w * 1.0);
-    let carbs = Math.round((targetCal - (pro * 4) - (fats * 9)) / 4);
+    // TDEE
+    const tdee = Math.round(bmr * activity);
+    
+    // Protocol surpluses
+    const protocols = {
+        lean: 250,
+        moderate: 500,
+        aggressive: 750,
+        dirty: 1000
+    };
+    const surplus = protocols[currentProtocol];
+    const targetCal = Math.round(tdee + surplus);
+    
+    // Adjust protein based on experience
+    const proteinMultiplier = {
+        beginner: 2.0,
+        intermediate: 2.2,
+        advanced: 2.4
+    };
+    const proteinPerKg = proteinMultiplier[experience];
+    let protein = Math.round(weight * proteinPerKg);
+    let fats = Math.round(weight * 1.2);
+    let carbs = Math.round((targetCal - (protein * 4) - (fats * 9)) / 4);
+    
+    // Ensure minimums
+    if (carbs < weight * 3) {
+        carbs = Math.round(weight * 3);
+        fats = Math.round((targetCal - (protein * 4) - (carbs * 4)) / 9);
+    }
 
-    document.getElementById('resBox').style.display = 'block';
-    document.getElementById('tdeeVal').innerText = Math.round(tdee);
-    document.getElementById('calTarget').innerText = targetCal + " kcal";
-    document.getElementById('proVal').innerText = pro + "g";
-    document.getElementById('carbVal').innerText = carbs + "g";
-    document.getElementById('fatVal').innerText = fats + "g";
-  }
+    const proCals = protein * 4;
+    const carbCals = carbs * 4;
+    const fatCals = fats * 9;
+    const proPct = Math.round((proCals / targetCal) * 100);
+    const carbPct = Math.round((carbCals / targetCal) * 100);
+    const fatPct = Math.round((fatCals / targetCal) * 100);
 
-  async function sendAI() {
-    let input = document.getElementById('chatInput');
-    let msg = input.value.trim();
-    if(!msg) return;
+    // Weight gain projections
+    const totalGain = targetWeight - weight;
+    const weeklyGain = surplus / 7700; // ~7700 kcal per kg
+    const weeksToGoal = totalGain / weeklyGain;
 
-    let md = document.getElementById('chatMsgs');
-    md.innerHTML += `<div class="msg-user">${msg}</div>`;
+    bulkingData = {
+        bmr: Math.round(bmr), tdee, targetCal, surplus,
+        protein, carbs, fats, proCals, carbCals, fatCals,
+        proPct, carbPct, fatPct,
+        weight, targetWeight, totalGain, weeklyGain, weeksToGoal,
+        proteinPerKg, protocol: currentProtocol, experience,
+        calorieDensity: (targetCal / weight).toFixed(1),
+        date: new Date().toISOString()
+    };
+
+    displayResults(bulkingData);
+    generateMealPlan(bulkingData);
+    generateMilestones(bulkingData);
+    saveToHistory(bulkingData);
+    
+    document.getElementById('resultsCard').style.display = 'block';
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Display results
+function displayResults(data) {
+    document.getElementById('calTarget').textContent = data.targetCal.toLocaleString();
+    document.getElementById('tdeeVal').textContent = data.tdee;
+    document.getElementById('surplusVal').textContent = '+' + data.surplus;
+    
+    document.getElementById('proVal').textContent = data.protein + 'g';
+    document.getElementById('carbVal').textContent = data.carbs + 'g';
+    document.getElementById('fatVal').textContent = data.fats + 'g';
+    
+    document.getElementById('proPercent').textContent = data.proPct + '%';
+    document.getElementById('carbPercent').textContent = data.carbPct + '%';
+    document.getElementById('fatPercent').textContent = data.fatPct + '%';
+    
+    document.getElementById('proSeg').style.width = data.proPct + '%';
+    document.getElementById('proSeg').textContent = 'Protein ' + data.proPct + '%';
+    document.getElementById('carbSeg').style.width = data.carbPct + '%';
+    document.getElementById('carbSeg').textContent = 'Carbs ' + data.carbPct + '%';
+    document.getElementById('fatSeg').style.width = data.fatPct + '%';
+    document.getElementById('fatSeg').textContent = 'Fats ' + data.fatPct + '%';
+    
+    document.getElementById('weightGain').textContent = data.weeklyGain.toFixed(2) + ' kg/wk';
+    document.getElementById('weeksToGoal').textContent = Math.round(data.weeksToGoal) + ' wks';
+    document.getElementById('proteinPerKg').textContent = data.proteinPerKg + ' g/kg';
+    document.getElementById('calorieDensity').textContent = data.calorieDensity;
+    
+    // Timeline
+    const percentComplete = Math.min(((data.targetCal - data.tdee) / 1000) * 100, 100);
+    document.getElementById('timelineFill').style.width = percentComplete + '%';
+    document.getElementById('timelinePercent').textContent = Math.round(data.weeksToGoal) + ' weeks';
+}
+
+// Generate meal plan
+function generateMealPlan(data) {
+    const mealCals = [
+        Math.round(data.targetCal * 0.25),
+        Math.round(data.targetCal * 0.10),
+        Math.round(data.targetCal * 0.30),
+        Math.round(data.targetCal * 0.10),
+        Math.round(data.targetCal * 0.25)
+    ];
+
+    const meals = [
+        { time: '🌅 Breakfast (' + mealCals[0] + ' kcal)', items: ['4 whole eggs scrambled', '2 slices whole grain toast with butter', '1 cup oatmeal with milk & honey', '1 banana'] },
+        { time: '🥤 Mid-Morning (' + mealCals[1] + ' kcal)', items: ['Mass gainer shake (see recipes)', 'Handful of mixed nuts', '1 apple'] },
+        { time: '🍽️ Lunch (' + mealCals[2] + ' kcal)', items: ['200g chicken breast or beef', '2 cups brown rice', 'Steamed vegetables with olive oil', 'Greek yogurt'] },
+        { time: '🍎 Pre-Workout (' + mealCals[3] + ' kcal)', items: ['2 rice cakes with peanut butter', 'Protein bar', 'Banana'] },
+        { time: '🌙 Dinner (' + mealCals[4] + ' kcal)', items: ['200g salmon or steak', 'Sweet potato (large)', 'Roasted vegetables', 'Cottage cheese before bed'] }
+    ];
+
+    document.getElementById('mealPlanDisplay').innerHTML = meals.map(m => `
+        <div class="meal-card">
+            <div class="meal-time">${m.time}</div>
+            <ul class="meal-items">
+                ${m.items.map(i => `<li>• ${i}</li>`).join('')}
+            </ul>
+        </div>
+    `).join('');
+}
+
+// Generate milestones
+function generateMilestones(data) {
+    const milestones = [
+        { pct: 25, label: 'Quarter Way!' },
+        { pct: 50, label: 'Halfway! 🎉' },
+        { pct: 75, label: 'Almost There!' },
+        { pct: 100, label: 'Goal Achieved! 🏆' }
+    ];
+
+    document.getElementById('milestoneList').innerHTML = '<h4 style="margin-bottom:10px;">🎯 Your Milestones</h4>' + milestones.map(m => {
+        const weightAtMilestone = data.weight + (data.totalGain * m.pct / 100);
+        const weeks = data.weeksToGoal * m.pct / 100;
+        const date = new Date();
+        date.setDate(date.getDate() + weeks * 7);
+        
+        return `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg);border-radius:10px;margin-bottom:8px;">
+                <span style="font-weight:600;">${m.label}</span>
+                <span style="color:var(--text-secondary);font-size:13px;">
+                    ${weightAtMilestone.toFixed(1)} kg • ${formatDate(date)}
+                </span>
+            </div>
+        `;
+    }).join('');
+}
+
+// Draw macro doughnut chart
+function drawMacroDoughnut() {
+    if (!bulkingData) return;
+    const ctx = document.getElementById('macroDoughnutChart').getContext('2d');
+    if (macroDoughnutChart) macroDoughnutChart.destroy();
+    
+    macroDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Protein', 'Carbs', 'Fats'],
+            datasets: [{
+                data: [bulkingData.proCals, bulkingData.carbCals, bulkingData.fatCals],
+                backgroundColor: [
+                    'rgba(239, 68, 68, 0.8)',
+                    'rgba(59, 130, 246, 0.8)',
+                    'rgba(245, 158, 11, 0.8)'
+                ],
+                borderWidth: 2,
+                borderColor: '#fff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b',
+                        padding: 15
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Save to history
+function saveToHistory(data) {
+    planHistory.unshift({
+        id: Date.now(),
+        calories: data.targetCal,
+        protein: data.protein,
+        carbs: data.carbs,
+        fats: data.fats,
+        protocol: data.protocol,
+        surplus: data.surplus,
+        date: data.date
+    });
+    if (planHistory.length > 20) planHistory = planHistory.slice(0, 20);
+    localStorage.setItem('bulkingHistory', JSON.stringify(planHistory));
+    displayHistory();
+}
+
+// Display history
+function displayHistory() {
+    const list = document.getElementById('historyList');
+    if (planHistory.length === 0) {
+        list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;">No bulking plans saved yet.</p>';
+        return;
+    }
+    list.innerHTML = planHistory.map(entry => `
+        <div class="history-item">
+            <div>
+                <strong>${entry.calories} kcal</strong> • ${entry.protocol} bulk (+${entry.surplus})
+                <div style="font-size:12px;color:var(--text-secondary);">
+                    P:${entry.protein}g C:${entry.carbs}g F:${entry.fats}g • ${formatDate(entry.date)}
+                </div>
+            </div>
+            <button onclick="loadHistory(${entry.id})" style="background:var(--primary);color:white;border:none;padding:5px 12px;border-radius:8px;cursor:pointer;font-size:11px;">Load</button>
+        </div>
+    `).join('');
+}
+
+// Load history
+function loadHistory(id) {
+    const entry = planHistory.find(e => e.id === id);
+    if (entry) {
+        bulkingData = {
+            targetCal: entry.calories,
+            protein: entry.protein, carbs: entry.carbs, fats: entry.fats,
+            proCals: entry.protein * 4, carbCals: entry.carbs * 4, fatCals: entry.fats * 9,
+            proPct: Math.round((entry.protein * 4 / entry.calories) * 100),
+            carbPct: Math.round((entry.carbs * 4 / entry.calories) * 100),
+            fatPct: Math.round((entry.fats * 9 / entry.calories) * 100),
+            surplus: entry.surplus, protocol: entry.protocol,
+            tdee: entry.calories - entry.surplus, bmr: 0,
+            weeklyGain: entry.surplus / 7700, weeksToGoal: 0,
+            weight: 0, targetWeight: 0, totalGain: 0,
+            proteinPerKg: 0, calorieDensity: 0,
+            date: entry.date
+        };
+        displayResults(bulkingData);
+        generateMealPlan(bulkingData);
+        generateMilestones(bulkingData);
+        document.getElementById('resultsCard').style.display = 'block';
+        document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Clear history
+function clearHistory() {
+    if (confirm('Clear all bulking plan history?')) {
+        planHistory = [];
+        localStorage.removeItem('bulkingHistory');
+        displayHistory();
+    }
+}
+
+// Reset form
+function resetForm() {
+    document.getElementById('weight').value = '65';
+    document.getElementById('height').value = '175';
+    document.getElementById('age').value = '25';
+    document.getElementById('gender').value = 'male';
+    document.getElementById('activity').value = '1.55';
+    document.getElementById('experience').value = 'intermediate';
+    document.getElementById('targetWeight').value = '75';
+    document.getElementById('resultsCard').style.display = 'none';
+    bulkingData = null;
+    selectProtocol('lean');
+    document.querySelector('.protocol-card').classList.add('selected');
+}
+
+// AI Chat
+async function sendAI() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    
+    const md = document.getElementById('chatMessages');
+    md.innerHTML += `<div class="msg-user">${message}</div>`;
     input.value = '';
     md.scrollTop = md.scrollHeight;
-
-    let cal = document.getElementById('calTarget').innerText;
-    let prompt = `[USER GOAL: Bulking / Weight Gain. Target: ${cal}]\nAct as a Bulking/Fitness AI. Provide high-calorie, clean eating advice. Answer: ${msg}`;
-
-    try {
-      var res = await fetch('/api/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ userMessage: prompt }) });
-      var data = await res.json();
-      md.innerHTML += `<div class="msg-bot">${data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-      md.scrollTop = md.scrollHeight;
-    } catch(e) {
-      md.innerHTML += `<div class="msg-bot">❌ Connection error to Vercel API. Make sure /api/chat is deployed.</div>`;
+    
+    let context = '[CONTEXT: Bulking & Muscle Building AI Coach. ';
+    if (bulkingData) {
+        context += `Calories: ${bulkingData.targetCal} (TDEE: ${bulkingData.tdee}, +${bulkingData.surplus}). `;
+        context += `Macros: P:${bulkingData.protein}g C:${bulkingData.carbs}g F:${bulkingData.fats}g. `;
+        context += `Protocol: ${bulkingData.protocol} bulk. `;
     }
-  }
+    context += `]\nUser: ${message}`;
+    
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: context })
+        });
+        const data = await res.json();
+        const reply = data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        md.innerHTML += `<div class="msg-bot">${reply}</div>`;
+        md.scrollTop = md.scrollHeight;
+    } catch(e) {
+        md.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again.</div>`;
+        md.scrollTop = md.scrollHeight;
+    }
+}
+
+// Initialize
+displayHistory();
 </script>
 </body>
 </html>
