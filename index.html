@@ -5,22 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
-<!-- SEO Meta Tags -->
+<!-- ========== SEO META TAGS ========== -->
 <title>HealthCalc.in — 30+ Free Medical & Fitness Calculators | AI Health Assistant</title>
 <meta name="title" content="HealthCalc.in — Premium Medical & Fitness Calculators | Global Standard">
-<meta name="description" content="Free evidence-based health calculators: BMI, Calories, ASCVD Heart Risk, BAC, VO2 Max, Keto, Pregnancy, Period Tracker, Macro Calculator & more. Features AI health assistant.">
-<meta name="keywords" content="health calculator, BMI, calorie calculator, ASCVD risk, keto calculator, pregnancy calculator, period tracker, macro calculator, body fat, WHR, ponderal index, army body fat, ovulation calculator, conception calculator, carb cycling, calorie deficit, weight gain, HealthCalc">
+<meta name="description" content="Free evidence-based health calculators: BMI, Calories, ASCVD Heart Risk, BAC, Keto, Pregnancy, Period Tracker, Macro Calculator, Ovulation, Body Fat, WHR, VO2 Max & more. Features AI health assistant. Trusted worldwide.">
+<meta name="keywords" content="health calculator, BMI calculator, calorie calculator, ASCVD risk, keto calculator, pregnancy calculator, period tracker, macro calculator, body fat, WHR, ponderal index, army body fat, ovulation calculator, conception calculator, carb cycling, calorie deficit, weight gain, BAC calculator, FFMI, VO2 max, heart risk, vascular age, ideal weight, MET calculator, HealthCalc">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="revisit-after" content="7 days">
-<link rel="canonical" href="https://healthcalc.in/index.html">
+<link rel="canonical" href="https://healthcalc.in/">
 
-<!-- Open Graph / Facebook -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://healthcalc.in/">
 <meta property="og:title" content="HealthCalc.in — 30+ Premium Medical & Fitness Calculators">
 <meta property="og:description" content="Medical-grade calculators with AI Health Assistant. Calculate heart risk, body composition, pregnancy timeline, keto macros & more for free.">
 <meta property="og:site_name" content="HealthCalc">
+<meta property="og:image" content="https://healthcalc.in/images/healthcalc-og.jpg">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HealthCalc.in — 30+ Free Health Calculators">
+<meta name="twitter:description" content="Free evidence-based health calculators with AI assistant.">
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "HealthCalc",
+  "url": "https://healthcalc.in",
+  "description": "Free online health calculators platform with 30+ evidence-based tools and AI health assistant.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://healthcalc.in/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -63,7 +85,7 @@ body.dark .top-nav { background:rgba(15,23,42,0.9); }
 
 /* Hero */
 .hero { text-align:center; padding:60px 20px 40px; }
-.hero h1 { font-size:clamp(36px,6vw,64px); font-weight:800; margin-bottom:20px; line-height:1.1; letter-spacing:-1px; }
+.hero h1 { font-size:clamp(36px,6vw,60px); font-weight:800; margin-bottom:20px; line-height:1.1; letter-spacing:-1px; }
 .hero h1 .highlight { background:linear-gradient(135deg,var(--primary),#8b5cf6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero p { font-size:18px; color:var(--text-muted); max-width:700px; margin:0 auto 40px; line-height:1.6; }
 
@@ -106,26 +128,26 @@ body.dark .top-nav { background:rgba(15,23,42,0.9); }
 .ai-chat-input { flex:1; padding:14px 20px; border-radius:50px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.2); color:white; font-size:15px; outline:none; }
 .ai-chat-send-btn { width:48px; height:48px; border-radius:50%; background:var(--accent); color:white; border:none; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; }
 
-/* Toast */
-#toast { visibility:hidden; min-width:250px; background:var(--text); color:var(--card-bg); text-align:center; border-radius:50px; padding:12px 24px; position:fixed; z-index:9999; left:50%; bottom:30px; transform:translateX(-50%); font-size:14px; font-weight:500; opacity:0; transition:opacity 0.3s,bottom 0.3s; }
-#toast.show { visibility:visible; opacity:1; bottom:50px; }
-
 /* Footer */
 footer { text-align:center; padding:40px 20px; border-top:1px solid var(--border); font-size:14px; color:var(--text-muted); }
 footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0 10px; }
+.footer-disclaimer { margin-top:16px; font-size:12px; background:var(--primary-light); padding:12px; border-radius:8px; display:inline-block; max-width:800px; line-height:1.5; border:1px solid var(--border); }
+
+#toast { visibility:hidden; min-width:250px; background:var(--text); color:var(--card-bg); text-align:center; border-radius:50px; padding:12px 24px; position:fixed; z-index:9999; left:50%; bottom:30px; transform:translateX(-50%); font-size:14px; font-weight:500; opacity:0; transition:opacity 0.3s,bottom 0.3s; }
+#toast.show { visibility:visible; opacity:1; bottom:50px; }
 
 @keyframes slideIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-.typing-dots { display:flex; gap:4px; align-items:center; padding:4px; }
-.typing-dots div { width:6px; height:6px; background:rgba(255,255,255,0.6); border-radius:50%; animation:typeBlink 1.4s infinite ease-in-out; }
-.typing-dots div:nth-child(1) { animation-delay:0s; }
-.typing-dots div:nth-child(2) { animation-delay:0.2s; }
-.typing-dots div:nth-child(3) { animation-delay:0.4s; }
-@keyframes typeBlink { 0%,100% { transform:scale(1); opacity:0.2; } 50% { transform:scale(1.2); opacity:1; } }
+
+@media(max-width:768px) {
+  .hero h1 { font-size:32px; }
+  .tools-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
 
 <div class="container">
+  <!-- Top Navigation -->
   <nav class="top-nav">
     <a href="index.html" class="brand-logo"><i class="fas fa-notes-medical"></i> Health<span>Calc</span></a>
     <div class="nav-controls">
@@ -142,6 +164,7 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
     </div>
   </nav>
 
+  <!-- Hero -->
   <header class="hero">
     <h1>30+ <span class="highlight">Evidence-Based</span> Health Tools</h1>
     <p>Accurate, medical-grade calculators for cardiovascular risk, body composition, women's health, nutrition, fitness, and lifestyle — paired with a premium real-time AI guidance engine.</p>
@@ -162,9 +185,10 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
     </div>
   </header>
 
+  <!-- Tools Grid -->
   <main class="tools-grid" id="toolsGrid">
     
-    <!-- ==================== HEART & CARDIO (4 tools) ==================== -->
+    <!-- ==================== HEART & CARDIO (4) ==================== -->
     <a href="ascvd-risk-calculator.html" class="tool-card" data-category="cardio" data-keywords="ascvd heart risk stroke cholesterol blood pressure acc aha">
       <div><div class="tool-icon"><i class="fas fa-heartbeat"></i></div>
       <div class="tool-title">ASCVD Risk Calculator</div>
@@ -177,20 +201,20 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <div class="tool-desc">Framingham CVD risk model with Heart Age calculation and ethnic adjustments.</div></div>
       <div class="tool-tag">Cardiovascular</div>
     </a>
-    <a href="heart-rate-calculator.html" class="tool-card" data-category="cardio" data-keywords="heart rate zones karvonen fat burn cardio max hr">
-      <div><div class="tool-icon"><i class="fas fa-wave-square"></i></div>
-      <div class="tool-title">Heart Rate Zones</div>
-      <div class="tool-desc">Calculate your 5 personalized training zones using the accurate Karvonen formula.</div></div>
-      <div class="tool-tag">Cardiovascular</div>
-    </a>
     <a href="vascular-age-calculator.html" class="tool-card" data-category="cardio" data-keywords="vascular age arterial stiffness pulse wave velocity">
       <div><div class="tool-icon"><i class="fas fa-stethoscope"></i></div>
       <div class="tool-title">Vascular Age Calculator</div>
       <div class="tool-desc">Calculate arterial age and stiffness metrics derived from blood pressure & cholesterol.</div></div>
       <div class="tool-tag">Cardiovascular</div>
     </a>
+    <a href="heart-rate-calculator.html" class="tool-card" data-category="cardio" data-keywords="heart rate zones karvonen fat burn cardio max hr">
+      <div><div class="tool-icon"><i class="fas fa-wave-square"></i></div>
+      <div class="tool-title">Heart Rate Zones</div>
+      <div class="tool-desc">Calculate your 5 personalized training zones using the accurate Karvonen formula.</div></div>
+      <div class="tool-tag">Cardiovascular</div>
+    </a>
 
-    <!-- ==================== BODY & FITNESS (12 tools) ==================== -->
+    <!-- ==================== BODY & FITNESS (12) ==================== -->
     <a href="bmi-calculator.html" class="tool-card" data-category="fitness" data-keywords="bmi body mass index weight ideal weight asian who">
       <div><div class="tool-icon"><i class="fas fa-weight-scale"></i></div>
       <div class="tool-title">BMI Calculator</div>
@@ -248,7 +272,7 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
     <a href="met-calculator.html" class="tool-card" data-category="fitness" data-keywords="met activity exercise calories epoc afterburn">
       <div><div class="tool-icon"><i class="fas fa-person-running"></i></div>
       <div class="tool-title">MET Activity Calculator</div>
-      <div class="tool-desc">Calculate exact calories burned for 500+ exercises based on Metabolic Equivalent tasks.</div></div>
+      <div class="tool-desc">Calculate exact calories burned for 50+ exercises based on Metabolic Equivalent tasks.</div></div>
       <div class="tool-tag">Fitness</div>
     </a>
     <a href="metabolic-age.html" class="tool-card" data-category="fitness" data-keywords="metabolic age bmr metabolism score fitness age">
@@ -264,7 +288,7 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <div class="tool-tag">Fitness</div>
     </a>
 
-    <!-- ==================== DIET & NUTRITION (7 tools) ==================== -->
+    <!-- ==================== DIET & NUTRITION (7) ==================== -->
     <a href="calorie-calculator.html" class="tool-card" data-category="nutrition" data-keywords="calorie tdee bmr weight loss deficit muscle gain mifflin">
       <div><div class="tool-icon"><i class="fas fa-fire-flame-curved"></i></div>
       <div class="tool-title">Calorie & TDEE Guide</div>
@@ -308,7 +332,7 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <div class="tool-tag">Nutrition</div>
     </a>
 
-    <!-- ==================== WOMEN'S HEALTH (5 tools) ==================== -->
+    <!-- ==================== WOMEN'S HEALTH (6) ==================== -->
     <a href="pregnancy-calculator.html" class="tool-card" data-category="women" data-keywords="pregnancy due date trimester lmp acog fetal size week conception">
       <div><div class="tool-icon"><i class="fas fa-baby-carriage"></i></div>
       <div class="tool-title">Pregnancy Calculator Pro <span class="new-badge">NEW</span></div>
@@ -346,7 +370,7 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <div class="tool-tag">Wellness</div>
     </a>
 
-    <!-- ==================== SLEEP & LIFESTYLE (4 tools) ==================== -->
+    <!-- ==================== SLEEP & LIFESTYLE (4) ==================== -->
     <a href="bac-calculator.html" class="tool-card" data-category="lifestyle" data-keywords="bac blood alcohol content widmark sober time legal driving limit">
       <div><div class="tool-icon"><i class="fas fa-wine-bottle"></i></div>
       <div class="tool-title">BAC Calculator</div>
@@ -372,7 +396,7 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <div class="tool-tag">Lifestyle</div>
     </a>
 
-    <!-- ==================== ADVANCED HEALTH (5 tools) ==================== -->
+    <!-- ==================== ADVANCED HEALTH (4) ==================== -->
     <a href="gut-microbiome-calculator.html" class="tool-card" data-category="advanced" data-keywords="gut microbiome digestion probiotic prebiotic health score">
       <div><div class="tool-icon"><i class="fas fa-bacteria"></i></div>
       <div class="tool-title">Gut Microbiome Score</div>
@@ -397,13 +421,30 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <div class="tool-desc">Calculate drug clearance times and active concentrations in your system over time.</div></div>
       <div class="tool-tag">Medical</div>
     </a>
-    <a href="about.html" class="tool-card" data-category="advanced" data-keywords="about healthcalc mission team">
-      <div><div class="tool-icon"><i class="fas fa-circle-info"></i></div>
-      <div class="tool-title">About HealthCalc</div>
-      <div class="tool-desc">Learn about our mission, medical review board, and commitment to evidence-based health tools.</div></div>
-      <div class="tool-tag">Information</div>
-    </a>
-    
+
+  </main>
+
+  <!-- AI Assistant Banner -->
+  <section class="ai-banner">
+    <div class="ai-banner-content">
+      <h2><i class="fas fa-robot" style="color:var(--accent)"></i> HealthCalc Pro AI</h2>
+      <p>Ask complex health or fitness questions and get instant, customized, and evidence-based guidance mapped to clinical standards.</p>
+      
+      <div class="ai-chat-panel">
+        <div class="ai-chat-messages" id="aiChatMessages">
+          <div class="ai-message ai-message-bot">
+            <strong>Hello! 👋</strong> I am your HealthCalc AI Assistant. Ask me anything about heart risk, weight loss, keto dieting, pregnancy health, or how to use any of our 30+ calculators!
+          </div>
+        </div>
+        <div class="ai-chat-input-row">
+          <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="E.g., How do I lower my ASCVD risk naturally?" onkeypress="if(event.key==='Enter')sendAIMessage()">
+          <button class="ai-chat-send-btn" onclick="sendAIMessage()" title="Send Message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer role="contentinfo">
@@ -415,7 +456,7 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <a href="sitemap.xml">Sitemap</a>
     </p>
     <p style="margin-top:16px;font-weight:600;">© 2026 HealthCalc.in — The Global Standard in Health Assessments.</p>
-    <div class="footer-disclaimer" style="margin-top:16px;font-size:12px;background:var(--primary-light);padding:12px;border-radius:8px;display:inline-block;max-width:800px;line-height:1.5;border:1px solid var(--border);">
+    <div class="footer-disclaimer">
       ⚕️ <strong>Medical Disclaimer:</strong> The tools and AI responses provided on HealthCalc.in are for educational and informational purposes only. They are not intended as a substitute for professional medical advice, diagnosis, or treatment. Always consult a licensed medical professional for personal health concerns.
     </div>
   </footer>
@@ -484,37 +525,25 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
     md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
   }
 
-  function showTypingIndicator() {
-    var md = document.getElementById('aiChatMessages');
-    var msgDiv = document.createElement('div');
-    msgDiv.className = 'ai-message ai-message-bot'; msgDiv.id = 'typingIndicator';
-    msgDiv.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
-    md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
-  }
-
-  function removeTypingIndicator() { var t=document.getElementById('typingIndicator'); if(t)t.remove(); }
-
   async function sendAIMessage() {
     var input = document.getElementById('aiChatInput');
     var message = input.value.trim();
     if(!message) return;
     addChatMessage(message,'user');
-    input.value = ''; showTypingIndicator();
+    input.value = '';
+    
     try {
       var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat',{
         method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({userMessage:message})
       });
-      var data = await response.json(); removeTypingIndicator();
+      var data = await response.json();
       if(data.reply) addChatMessage(data.reply,'bot');
       else throw new Error('Invalid response');
     } catch(e) {
-      removeTypingIndicator();
-      addChatMessage("🏥 <strong>Network Error:</strong><br>Unable to connect to AI backend. Please try again later.<br><br>⚠️ <em>Consult a doctor for personal medical advice.</em>",'bot');
+      addChatMessage("🏥 <strong>Unable to connect to AI.</strong><br>Please try again later.<br><br>⚠️ <em>Consult a doctor for personal medical advice.</em>",'bot');
     }
   }
-
-  
 </script>
 </body>
 </html>
