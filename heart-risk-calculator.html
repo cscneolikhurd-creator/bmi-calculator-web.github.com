@@ -710,280 +710,334 @@ body.dark .ai-chat-disclaimer { background: #0f172a; border-color: #334155; }
         disclaimerText: '⚕️ शैक्षिक उद्देश्यों के लिए। डॉक्टर से सलाह लें।'
       }
     };
+  
+  <script>
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+var isAIProcessing = false;
+var currentLang = 'en';
+var cholesterolUnit = 'mgdl';
+var currentMethod = 'framingham';
 
-    // ===== GLOBAL VARIABLES =====
-    var currentLang = 'en';
-    var cholesterolUnit = 'mgdl';
-    var currentMethod = 'framingham';
+// ===== TRANSLATIONS =====
+var translations = {
+  en: {
+    headerDesc: 'Estimate 10-year CVD risk with medical-grade algorithms, AI chat & ethnic adjustment.',
+    profileTitle: 'Your Health Profile', ageLabel: 'Age (40-79)', genderLabel: 'Gender',
+    maleOpt: 'Male', femaleOpt: 'Female', totalCholLabel: 'Total Cholesterol', hdlLabel: 'HDL Cholesterol',
+    sbpLabel: 'Systolic BP (mmHg)', bpTreatLabel: 'On BP treatment?', noOpt: 'No', yesOpt: 'Yes',
+    smokerLabel: 'Current Smoker?', noSmokeOpt: 'No', yesSmokeOpt: 'Yes',
+    diabeticLabel: 'Diabetes?', noDiabOpt: 'No', yesDiabOpt: 'Yes',
+    raceLabel: 'Race / Ethnicity', southAsianOpt: '🇮🇳 South Asian', aaOpt: 'African American',
+    whiteOpt: 'White / Caucasian', otherOpt: 'Other',
+    indianNoteText: '⚠️ South Asians have 2-3x higher heart risk. Our calculation includes this adjustment.',
+    calculateBtnText: 'Calculate 10-Year Risk',
+    resultsTitle: 'Your Risk Assessment', heartAgeLabel: 'Your heart age:',
+    smokingImpactLabel: 'Quit smoking', bpImpactLabel: 'Control blood pressure', cholImpactLabel: 'Lower cholesterol',
+    exploreTitle: '🔗 Explore More Free Tools',
+    tipsTitle: '❤️ Heart-Healthy Tips',
+    tip1: 'Eat a diet rich in fruits, vegetables, whole grains, and lean protein',
+    tip2: 'Get at least 150 minutes of moderate exercise weekly',
+    tip3: 'Maintain a healthy weight and BMI',
+    tip4: 'Limit sodium, saturated fats, and added sugars',
+    tip5: 'Avoid smoking and limit alcohol intake',
+    tip6: 'Manage stress through meditation or hobbies',
+    disclaimerText: '⚕️ This calculator uses validated Framingham and ASCVD algorithms with ethnic adjustment. For educational purposes only.'
+  }
+};
 
-    // ===== LANGUAGE FUNCTION =====
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.getElementById('langSelect') && (document.getElementById('langSelect').value = lang);
-      var t = translations[lang] || translations.en;
-      Object.keys(t).forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el && !['INPUT', 'SELECT'].includes(el.tagName)) el.innerHTML = t[id];
-      });
-      ['maleOpt', 'femaleOpt', 'noOpt', 'yesOpt', 'noSmokeOpt', 'yesSmokeOpt', 'noDiabOpt', 'yesDiabOpt', 'southAsianOpt', 'aaOpt', 'whiteOpt', 'otherOpt'].forEach(function(id) {
-        var o = document.getElementById(id);
-        if (o && t[id]) o.innerHTML = t[id];
-      });
-      calculateRisk();
+// ===== LANGUAGE FUNCTION =====
+function setLanguage(lang) {
+  currentLang = lang;
+  var t = translations[lang] || translations.en;
+  Object.keys(t).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el && !['INPUT', 'SELECT'].includes(el.tagName)) el.innerHTML = t[id];
+  });
+  ['maleOpt', 'femaleOpt', 'noOpt', 'yesOpt', 'noSmokeOpt', 'yesSmokeOpt', 'noDiabOpt', 'yesDiabOpt', 'southAsianOpt', 'aaOpt', 'whiteOpt', 'otherOpt'].forEach(function(id) {
+    var o = document.getElementById(id);
+    if (o && t[id]) o.innerHTML = t[id];
+  });
+  calculateRisk();
+}
+
+// ===== CHOLESTEROL UNIT =====
+function setCholesterolUnit(unit) {
+  cholesterolUnit = unit;
+  document.querySelectorAll('.unit-btn').forEach(function(btn) { btn.classList.toggle('active', btn.dataset.unit === unit); });
+  var tc = document.getElementById('totalChol');
+  var hdl = document.getElementById('hdl');
+  var tcVal = parseFloat(tc.value) || 200;
+  var hdlVal = parseFloat(hdl.value) || 45;
+  if (unit === 'mmol') { tc.value = (tcVal / 38.67).toFixed(1); hdl.value = (hdlVal / 38.67).toFixed(1); }
+  else { tc.value = Math.round(tcVal * 38.67); hdl.value = Math.round(hdlVal * 38.67); }
+  document.getElementById('totalCholUnit').textContent = unit === 'mgdl' ? 'mg/dL' : 'mmol/L';
+  document.getElementById('hdlUnit').textContent = unit === 'mgdl' ? 'mg/dL' : 'mmol/L';
+  calculateRisk();
+}
+
+function getTc() { var v = parseFloat(document.getElementById('totalChol').value) || 200; return cholesterolUnit === 'mgdl' ? v : v * 38.67; }
+function getHdl() { var v = parseFloat(document.getElementById('hdl').value) || 45; return cholesterolUnit === 'mgdl' ? v : v * 38.67; }
+
+// ===== RISK CALCULATION =====
+function calculateRisk() {
+  var age = parseInt(document.getElementById('age').value) || 55;
+  var isMale = document.getElementById('gender').value === 'male';
+  var tc = getTc();
+  var hdl = getHdl();
+  var sbp = parseInt(document.getElementById('sbp').value) || 130;
+  var onTreatment = document.getElementById('bpTreat').value === '1';
+  var smoker = document.getElementById('smoker').value === '1';
+  var diabetic = document.getElementById('diabetic').value === '1';
+  var race = document.getElementById('race').value;
+  var isSouthAsian = race === 'southasian';
+  var isAA = race === 'aa';
+  var risk = 0;
+  
+  if (currentMethod === 'framingham') {
+    if (isMale) { if (age < 40) risk = 1.5; else if (age < 50) risk = 4.5; else if (age < 60) risk = 9.5; else if (age < 70) risk = 16; else risk = 23; }
+    else { if (age < 40) risk = 0.8; else if (age < 50) risk = 2.5; else if (age < 60) risk = 5.5; else if (age < 70) risk = 10; else risk = 15; }
+    if (tc > 240) risk *= 1.4; else if (tc > 200) risk *= 1.15;
+    if (hdl < 40) risk *= 1.3; else if (hdl < 50) risk *= 1.1;
+    if (sbp > 160) risk *= 1.5; else if (sbp > 140) risk *= 1.25; else if (sbp > 130) risk *= 1.1;
+    if (onTreatment) risk *= 1.05;
+    if (smoker) risk *= 1.8;
+    if (diabetic) risk *= 1.7;
+  } else {
+    if (isMale) { if (age < 40) risk = 1.2; else if (age < 50) risk = 3.8; else if (age < 60) risk = 8.2; else if (age < 70) risk = 14.5; else risk = 21; if (isAA) risk *= 1.3; }
+    else { if (age < 40) risk = 0.6; else if (age < 50) risk = 2.1; else if (age < 60) risk = 4.8; else if (age < 70) risk = 9.2; else risk = 14; if (isAA) risk *= 1.4; }
+    if (tc > 240) risk *= 1.35; else if (tc > 200) risk *= 1.1;
+    if (hdl < 40) risk *= 1.25; else if (hdl < 50) risk *= 1.1;
+    if (sbp > 140) risk *= 1.35; else if (sbp > 130) risk *= 1.15;
+    if (onTreatment) risk *= 1.1;
+    if (smoker) risk *= 1.7;
+    if (diabetic) risk *= 1.6;
+  }
+  
+  if (isSouthAsian) risk *= 1.8;
+  risk = Math.min(45, Math.max(0.5, risk));
+  risk = Math.round(risk * 10) / 10;
+  
+  document.getElementById('riskPercent').textContent = risk.toFixed(1);
+  var categoryEl = document.getElementById('riskCategory');
+  var categoryClass = 'risk-category', categoryText = '';
+  if (risk < 5) { categoryText = 'Low Risk'; categoryClass += ' category-low'; }
+  else if (risk < 7.5) { categoryText = 'Borderline'; categoryClass += ' category-borderline'; }
+  else if (risk < 20) { categoryText = 'Moderate Risk'; categoryClass += ' category-moderate'; }
+  else { categoryText = 'High Risk'; categoryClass += ' category-high'; }
+  categoryEl.textContent = categoryText;
+  categoryEl.className = categoryClass;
+  
+  var heartAge = age;
+  if (risk > 20) heartAge += 12; else if (risk > 10) heartAge += 6; else if (risk > 5) heartAge += 2;
+  if (isSouthAsian) heartAge += 3;
+  heartAge = Math.min(90, heartAge);
+  document.getElementById('heartAge').textContent = heartAge;
+  
+  document.getElementById('smokingImpact').textContent = smoker ? '-' + (risk * 0.25).toFixed(1) + '%' : '0%';
+  document.getElementById('bpImpact').textContent = sbp > 130 ? '-' + (risk * 0.18).toFixed(1) + '%' : '0%';
+  document.getElementById('cholImpact').textContent = (tc > 200 || hdl < 45) ? '-' + (risk * 0.15).toFixed(1) + '%' : '0%';
+  
+  var interpretationText = '';
+  if (risk < 5) interpretationText = '✅ Low risk - keep maintaining your healthy lifestyle!';
+  else if (risk < 7.5) interpretationText = '⚠️ Borderline risk - lifestyle modifications recommended.';
+  else if (risk < 20) interpretationText = '📊 Moderate risk - discuss prevention strategies with your doctor.';
+  else interpretationText = '🚨 High risk - consult a cardiologist within 30 days.';
+  document.getElementById('interpretation').textContent = interpretationText;
+  
+  saveToLocalStorage();
+}
+
+// ===== RESET =====
+function resetForm() {
+  document.getElementById('age').value = '55';
+  document.getElementById('gender').value = 'female';
+  if (cholesterolUnit === 'mgdl') { document.getElementById('totalChol').value = '200'; document.getElementById('hdl').value = '45'; }
+  else { document.getElementById('totalChol').value = '5.2'; document.getElementById('hdl').value = '1.2'; }
+  document.getElementById('sbp').value = '130';
+  document.getElementById('bpTreat').value = '0';
+  document.getElementById('smoker').value = '0';
+  document.getElementById('diabetic').value = '0';
+  document.getElementById('race').value = 'southasian';
+  calculateRisk();
+}
+
+// ===== LOCAL STORAGE =====
+function saveToLocalStorage() {
+  var data = {
+    lang: currentLang, unit: cholesterolUnit, method: currentMethod,
+    age: document.getElementById('age').value, gender: document.getElementById('gender').value,
+    tc: document.getElementById('totalChol').value, hdl: document.getElementById('hdl').value,
+    sbp: document.getElementById('sbp').value, bpTreat: document.getElementById('bpTreat').value,
+    smoker: document.getElementById('smoker').value, diabetic: document.getElementById('diabetic').value,
+    race: document.getElementById('race').value
+  };
+  localStorage.setItem('heartRiskCalculator', JSON.stringify(data));
+}
+
+function loadFromLocalStorage() {
+  var saved = localStorage.getItem('heartRiskCalculator');
+  if (saved) {
+    try {
+      var d = JSON.parse(saved);
+      if (d.lang) setLanguage(d.lang);
+      if (d.unit) setCholesterolUnit(d.unit);
+      if (d.method) { currentMethod = d.method; document.getElementById('methodFramingham').classList.toggle('active', d.method === 'framingham'); document.getElementById('methodASCVD').classList.toggle('active', d.method === 'ascvd'); }
+      if (d.age) document.getElementById('age').value = d.age;
+      if (d.gender) document.getElementById('gender').value = d.gender;
+      if (d.tc) document.getElementById('totalChol').value = d.tc;
+      if (d.hdl) document.getElementById('hdl').value = d.hdl;
+      if (d.sbp) document.getElementById('sbp').value = d.sbp;
+      if (d.bpTreat) document.getElementById('bpTreat').value = d.bpTreat;
+      if (d.smoker) document.getElementById('smoker').value = d.smoker;
+      if (d.diabetic) document.getElementById('diabetic').value = d.diabetic;
+      if (d.race) document.getElementById('race').value = d.race;
+    } catch(e) {}
+  }
+  calculateRisk();
+}
+
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var msgDiv = document.createElement('div');
+    msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    msgDiv.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    msgDiv.innerHTML = text;
+    md.appendChild(msgDiv);
+    md.scrollTop = md.scrollHeight;
+}
+
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:12px;color:#94a3b8;">AI is thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
+}
+
+function removeTypingIndicator() {
+    var t = document.getElementById('aiTypingIndicator');
+    if (t) t.remove();
+}
+
+function getHeartContext() {
+    var risk = document.getElementById('riskPercent').textContent;
+    var cat = document.getElementById('riskCategory').textContent;
+    var heartAge = document.getElementById('heartAge').textContent;
+    var isSouthAsian = document.getElementById('race').value === 'southasian';
+    
+    if (risk !== '--') {
+        return '[HEART RISK PROFILE - 10-Year CVD Risk: ' + risk + '%, Category: ' + cat + ', Heart Age: ' + heartAge + ' years, South Asian: ' + (isSouthAsian ? 'Yes (higher risk)' : 'No') + ']';
     }
+    return '[User is on Heart Risk Calculator page]';
+}
 
-    // ===== CHOLESTEROL UNIT =====
-    function setCholesterolUnit(unit) {
-      cholesterolUnit = unit;
-      document.querySelectorAll('.unit-btn').forEach(function(btn) { btn.classList.toggle('active', btn.dataset.unit === unit); });
-      var tc = document.getElementById('totalChol');
-      var hdl = document.getElementById('hdl');
-      var tcVal = parseFloat(tc.value) || 200;
-      var hdlVal = parseFloat(hdl.value) || 45;
-      if (unit === 'mmol') { tc.value = (tcVal / 38.67).toFixed(1); hdl.value = (hdlVal / 38.67).toFixed(1); }
-      else { tc.value = Math.round(tcVal * 38.67); hdl.value = Math.round(hdlVal * 38.67); }
-      document.getElementById('totalCholUnit').textContent = unit === 'mgdl' ? 'mg/dL' : 'mmol/L';
-      document.getElementById('hdlUnit').textContent = unit === 'mgdl' ? 'mg/dL' : 'mmol/L';
-      calculateRisk();
-    }
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var context = getHeartContext();
+    
+    var fullPrompt = "You are a professional Heart Health AI Assistant on HealthCalc.in. " +
+        "Provide structured, concise, clear, and actionable medical advice. " +
+        "Include diet tips (Mediterranean/DASH), exercise recommendations, and guidance on when to consult a cardiologist. " +
+        "Always end with: '⚠️ Consult a healthcare professional for personalized medical advice.'\n\n" +
+        context + "\n\nUSER QUESTION: " + message;
 
-    function getTc() { var v = parseFloat(document.getElementById('totalChol').value) || 200; return cholesterolUnit === 'mgdl' ? v : v * 38.67; }
-    function getHdl() { var v = parseFloat(document.getElementById('hdl').value) || 45; return cholesterolUnit === 'mgdl' ? v : v * 38.67; }
-
-    // ===== RISK CALCULATION =====
-    function calculateRisk() {
-      var age = parseInt(document.getElementById('age').value) || 55;
-      var isMale = document.getElementById('gender').value === 'male';
-      var tc = getTc();
-      var hdl = getHdl();
-      var sbp = parseInt(document.getElementById('sbp').value) || 130;
-      var onTreatment = document.getElementById('bpTreat').value === '1';
-      var smoker = document.getElementById('smoker').value === '1';
-      var diabetic = document.getElementById('diabetic').value === '1';
-      var race = document.getElementById('race').value;
-      var isSouthAsian = race === 'southasian';
-      var isAA = race === 'aa';
-      var risk = 0;
-      
-      if (currentMethod === 'framingham') {
-        if (isMale) { if (age < 40) risk = 1.5; else if (age < 50) risk = 4.5; else if (age < 60) risk = 9.5; else if (age < 70) risk = 16; else risk = 23; }
-        else { if (age < 40) risk = 0.8; else if (age < 50) risk = 2.5; else if (age < 60) risk = 5.5; else if (age < 70) risk = 10; else risk = 15; }
-        if (tc > 240) risk *= 1.4; else if (tc > 200) risk *= 1.15;
-        if (hdl < 40) risk *= 1.3; else if (hdl < 50) risk *= 1.1;
-        if (sbp > 160) risk *= 1.5; else if (sbp > 140) risk *= 1.25; else if (sbp > 130) risk *= 1.1;
-        if (onTreatment) risk *= 1.05;
-        if (smoker) risk *= 1.8;
-        if (diabetic) risk *= 1.7;
-      } else {
-        if (isMale) { if (age < 40) risk = 1.2; else if (age < 50) risk = 3.8; else if (age < 60) risk = 8.2; else if (age < 70) risk = 14.5; else risk = 21; if (isAA) risk *= 1.3; }
-        else { if (age < 40) risk = 0.6; else if (age < 50) risk = 2.1; else if (age < 60) risk = 4.8; else if (age < 70) risk = 9.2; else risk = 14; if (isAA) risk *= 1.4; }
-        if (tc > 240) risk *= 1.35; else if (tc > 200) risk *= 1.1;
-        if (hdl < 40) risk *= 1.25; else if (hdl < 50) risk *= 1.1;
-        if (sbp > 140) risk *= 1.35; else if (sbp > 130) risk *= 1.15;
-        if (onTreatment) risk *= 1.1;
-        if (smoker) risk *= 1.7;
-        if (diabetic) risk *= 1.6;
-      }
-      
-      if (isSouthAsian) risk *= 1.8;
-      risk = Math.min(45, Math.max(0.5, risk));
-      risk = Math.round(risk * 10) / 10;
-      
-      document.getElementById('riskPercent').textContent = risk.toFixed(1);
-      var categoryEl = document.getElementById('riskCategory');
-      var categoryClass = 'risk-category', categoryText = '';
-      if (risk < 5) { categoryText = 'Low Risk'; categoryClass += ' category-low'; }
-      else if (risk < 7.5) { categoryText = 'Borderline'; categoryClass += ' category-borderline'; }
-      else if (risk < 20) { categoryText = 'Moderate Risk'; categoryClass += ' category-moderate'; }
-      else { categoryText = 'High Risk'; categoryClass += ' category-high'; }
-      categoryEl.textContent = categoryText;
-      categoryEl.className = categoryClass;
-      
-      var heartAge = age;
-      if (risk > 20) heartAge += 12; else if (risk > 10) heartAge += 6; else if (risk > 5) heartAge += 2;
-      if (isSouthAsian) heartAge += 3;
-      heartAge = Math.min(90, heartAge);
-      document.getElementById('heartAge').textContent = heartAge;
-      
-      document.getElementById('smokingImpact').textContent = smoker ? '-' + (risk * 0.25).toFixed(1) + '%' : '0%';
-      document.getElementById('bpImpact').textContent = sbp > 130 ? '-' + (risk * 0.18).toFixed(1) + '%' : '0%';
-      document.getElementById('cholImpact').textContent = (tc > 200 || hdl < 45) ? '-' + (risk * 0.15).toFixed(1) + '%' : '0%';
-      
-      var interpretationText = '';
-      if (risk < 5) interpretationText = '✅ Low risk - keep maintaining your healthy lifestyle!';
-      else if (risk < 7.5) interpretationText = '⚠️ Borderline risk - lifestyle modifications recommended.';
-      else if (risk < 20) interpretationText = '📊 Moderate risk - discuss prevention strategies with your doctor.';
-      else interpretationText = '🚨 High risk - consult a cardiologist within 30 days.';
-      document.getElementById('interpretation').textContent = interpretationText;
-      
-      saveToLocalStorage();
-    }
-
-    // ===== RESET FUNCTION =====
-    function resetForm() {
-      document.getElementById('age').value = '55';
-      document.getElementById('gender').value = 'female';
-      if (cholesterolUnit === 'mgdl') { document.getElementById('totalChol').value = '200'; document.getElementById('hdl').value = '45'; }
-      else { document.getElementById('totalChol').value = '5.2'; document.getElementById('hdl').value = '1.2'; }
-      document.getElementById('sbp').value = '130';
-      document.getElementById('bpTreat').value = '0';
-      document.getElementById('smoker').value = '0';
-      document.getElementById('diabetic').value = '0';
-      document.getElementById('race').value = 'southasian';
-      calculateRisk();
-    }
-
-    // ===== LOCAL STORAGE =====
-    function saveToLocalStorage() {
-      var data = {
-        lang: currentLang, unit: cholesterolUnit, method: currentMethod,
-        age: document.getElementById('age').value, gender: document.getElementById('gender').value,
-        tc: document.getElementById('totalChol').value, hdl: document.getElementById('hdl').value,
-        sbp: document.getElementById('sbp').value, bpTreat: document.getElementById('bpTreat').value,
-        smoker: document.getElementById('smoker').value, diabetic: document.getElementById('diabetic').value,
-        race: document.getElementById('race').value
-      };
-      localStorage.setItem('heartRiskCalculator', JSON.stringify(data));
-    }
-
-    function loadFromLocalStorage() {
-      var saved = localStorage.getItem('heartRiskCalculator');
-      if (saved) {
-        try {
-          var d = JSON.parse(saved);
-          if (d.lang) setLanguage(d.lang);
-          if (d.unit) setCholesterolUnit(d.unit);
-          if (d.method) { currentMethod = d.method; document.getElementById('methodFramingham').classList.toggle('active', d.method === 'framingham'); document.getElementById('methodASCVD').classList.toggle('active', d.method === 'ascvd'); }
-          if (d.age) document.getElementById('age').value = d.age;
-          if (d.gender) document.getElementById('gender').value = d.gender;
-          if (d.tc) document.getElementById('totalChol').value = d.tc;
-          if (d.hdl) document.getElementById('hdl').value = d.hdl;
-          if (d.sbp) document.getElementById('sbp').value = d.sbp;
-          if (d.bpTreat) document.getElementById('bpTreat').value = d.bpTreat;
-          if (d.smoker) document.getElementById('smoker').value = d.smoker;
-          if (d.diabetic) document.getElementById('diabetic').value = d.diabetic;
-          if (d.race) document.getElementById('race').value = d.race;
-        } catch(e) {}
-      }
-      calculateRisk();
-    }
-
-    // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-    // ==============================================
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function removeTypingIndicator() {
-        var typing = document.getElementById('aiTypingIndicator');
-        if (typing) typing.remove();
-    }
-
-    function getHeartContext() {
-        var risk = document.getElementById('riskPercent').textContent;
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
+        });
+        
+        var data = await response.json();
+        removeTypingIndicator();
+        
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response from AI');
+        }
+    } catch (error) {
+        removeTypingIndicator();
+        console.error('AI Error:', error);
+        
+        // Fallback response
         var cat = document.getElementById('riskCategory').textContent;
-        var heartAge = document.getElementById('heartAge').textContent;
-        var isSouthAsian = document.getElementById('race').value === 'southasian';
-        if (risk !== '--') {
-            return 'User Heart Risk Profile: 10-Year CVD Risk=' + risk + '%, Category=' + cat + ', Heart Age=' + heartAge + ', South Asian=' + (isSouthAsian ? 'Yes (higher risk)' : 'No') + '. ';
-        }
-        return '';
+        var fb = '❤️ <strong>Heart Health Recommendations:</strong><br><br>';
+        if (cat.includes('High')) fb += '• Consult a cardiologist within 30 days<br>• Follow a Mediterranean/DASH diet<br>• 150 minutes exercise weekly<br>• Quit smoking immediately<br>• Monitor BP regularly (target <130/80)<br><br>';
+        else if (cat.includes('Moderate')) fb += '• Discuss prevention with your doctor<br>• Reduce saturated fats, increase fiber<br>• Regular cholesterol and BP checks<br>• Walk 30 minutes daily<br><br>';
+        else fb += '• Maintain heart-healthy lifestyle<br>• Balanced diet and regular exercise<br>• Annual health check-ups<br><br>';
+        fb += '⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>';
+        addChatMessage(fb, 'bot');
+    } finally {
+        isAIProcessing = false;
     }
+}
 
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if (!message) return;
-        
-        addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
-        showTypingIndicator();
-        
-        var context = getHeartContext();
-        var promptText = "You are a professional Heart Health AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable medical advice in fluent English. Include diet tips (Mediterranean/DASH), exercise recommendations, and guidance on when to consult a cardiologist. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
-
-        try {
-            var response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
-            });
-            
-            var data = await response.json();
-            removeTypingIndicator();
-            
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { 
-                throw new Error('No response from AI worker'); 
-            }
-        } catch (error) {
-            removeTypingIndicator();
-            console.error('AI Chat Error:', error);
-            var cat = document.getElementById('riskCategory').textContent;
-            var fb = '❤️ <strong>Heart Health Recommendations:</strong><br><br>';
-            if (cat.includes('High')) fb += '• Consult a cardiologist within 30 days<br>• Follow a Mediterranean/DASH diet rich in whole grains and vegetables<br>• Engage in 150 minutes of moderate exercise weekly<br>• Cease smoking immediately<br>• Monitor blood pressure regularly (target <130/80)<br><br>';
-            else if (cat.includes('Moderate')) fb += '• Discuss prevention strategies with your doctor<br>• Reduce saturated fats and increase fiber<br>• Schedule regular cholesterol and BP checks<br>• Walk 30 minutes daily<br><br>';
-            else fb += '• Maintain a heart-healthy lifestyle<br>• Eat a balanced diet and exercise regularly<br>• Routine health check-ups annually<br><br>';
-            fb += '⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>';
-            addChatMessage(fb, 'bot');
-        }
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
     }
+});
 
-    // ===== EVENT LISTENERS =====
-    document.getElementById('methodFramingham').addEventListener('click', function() {
-      currentMethod = 'framingham'; this.classList.add('active');
-      document.getElementById('methodASCVD').classList.remove('active'); calculateRisk();
-    });
-    document.getElementById('methodASCVD').addEventListener('click', function() {
-      currentMethod = 'ascvd'; this.classList.add('active');
-      document.getElementById('methodFramingham').classList.remove('active'); calculateRisk();
-    });
-    document.querySelectorAll('input, select').forEach(function(el) {
-      el.addEventListener('input', function() { saveToLocalStorage(); calculateRisk(); });
-      el.addEventListener('change', function() { saveToLocalStorage(); calculateRisk(); });
-    });
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => { const lang = btn.getAttribute('data-lang'); if (lang) setLanguage(lang); });
-    });
+// ===== EVENT LISTENERS =====
+document.getElementById('methodFramingham').addEventListener('click', function() {
+  currentMethod = 'framingham'; this.classList.add('active');
+  document.getElementById('methodASCVD').classList.remove('active'); calculateRisk();
+});
+document.getElementById('methodASCVD').addEventListener('click', function() {
+  currentMethod = 'ascvd'; this.classList.add('active');
+  document.getElementById('methodFramingham').classList.remove('active'); calculateRisk();
+});
+document.querySelectorAll('input, select').forEach(function(el) {
+  el.addEventListener('input', function() { saveToLocalStorage(); calculateRisk(); });
+  el.addEventListener('change', function() { saveToLocalStorage(); calculateRisk(); });
+});
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', function() { var lang = btn.getAttribute('data-lang'); if (lang) setLanguage(lang); });
+});
 
-    // Theme
-    function initTheme() { var s = localStorage.getItem('healthcalc_theme') || 'light'; document.body.classList.toggle('dark', s === 'dark'); }
-    function setTheme(t) { localStorage.setItem('healthcalc_theme', t); document.body.classList.toggle('dark', t === 'dark'); }
-    document.querySelectorAll('.theme-option').forEach(function(b) { b.addEventListener('click', function() { setTheme(b.dataset.theme); }); });
-    initTheme();
+// Theme
+function initTheme() { var s = localStorage.getItem('healthcalc_theme') || 'light'; document.body.classList.toggle('dark', s === 'dark'); }
+function setTheme(t) { localStorage.setItem('healthcalc_theme', t); document.body.classList.toggle('dark', t === 'dark'); }
+document.querySelectorAll('.theme-option').forEach(function(b) { b.addEventListener('click', function() { setTheme(b.dataset.theme); }); });
+initTheme();
 
-    // Country
-    document.getElementById('countrySelect').addEventListener('change', function(e) { localStorage.setItem('healthcalc_country', e.target.value); });
-    (function() { var saved = localStorage.getItem('healthcalc_country') || 'us'; document.getElementById('countrySelect').value = saved; })();
+// Country
+document.getElementById('countrySelect').addEventListener('change', function(e) { localStorage.setItem('healthcalc_country', e.target.value); });
+(function() { var saved = localStorage.getItem('healthcalc_country') || 'us'; document.getElementById('countrySelect').value = saved; })();
 
-    // ===== EXPOSE GLOBALS =====
-    window.setLanguage = setLanguage;
-    window.setCholesterolUnit = setCholesterolUnit;
-    window.resetForm = resetForm;
-    window.calculateRisk = calculateRisk;
-    window.sendAIMessage = sendAIMessage;
+// ===== EXPOSE GLOBALS =====
+window.setLanguage = setLanguage;
+window.setCholesterolUnit = setCholesterolUnit;
+window.resetForm = resetForm;
+window.calculateRisk = calculateRisk;
+window.sendAIMessage = sendAIMessage;
 
-    // ===== INITIALIZE =====
-    window.onload = loadFromLocalStorage;
+// ===== INITIALIZE =====
+window.onload = loadFromLocalStorage;
 </script>
-</body>
-</html>
