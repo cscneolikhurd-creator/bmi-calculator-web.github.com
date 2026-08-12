@@ -3,561 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
-
-<title>Advanced VO₂ Max Estimator | Cardio Fitness Level | AI Chat | US/UK/CA/AU | HealthCalc</title>
-<meta name="description" content="Professional VO2 Max calculator with AI chat. Resting HR & 1-Mile Walk Test methods. Age/gender norms, personalized training tips. ACSM, CDC, NHS, Health Canada guidelines. Free & private.">
-<meta name="keywords" content="VO2 max calculator, cardio fitness, aerobic capacity, endurance training, AI fitness chat, USA, UK, Canada, Australia">
-<meta name="author" content="HealthCalc">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="revisit-after" content="7 days">
+<title>Advanced VO₂ Max Estimator | Cardio Fitness | AI Chat | HealthCalc</title>
+<meta name="description" content="Professional VO2 Max calculator with Resting HR & 1-Mile Walk Test methods. AI chat for personalized training tips. Free & private.">
+<meta name="keywords" content="VO2 max calculator, cardio fitness, aerobic capacity, endurance training, AI fitness chat">
 <link rel="canonical" href="https://healthcalc.in/vo2max-calculator.html">
 
-<link rel="alternate" hreflang="en-us" href="https://healthcalc.in/vo2max-calculator.html">
-<link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/vo2max-calculator.html">
-<link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/vo2max-calculator.html">
-<link rel="alternate" hreflang="en-au" href="https://healthcalc.in/vo2max-calculator.html">
-<link rel="alternate" hreflang="x-default" href="https://healthcalc.in/vo2max-calculator.html">
-
-<meta property="og:title" content="Advanced VO₂ Max Estimator | AI Chat">
-<meta property="og:description" content="Estimate your VO2 Max without lab test. AI chat for personalized training tips.">
-<meta property="og:url" content="https://healthcalc.in/vo2max-calculator.html">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://healthcalc.in/images/vo2max-og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="HealthCalc">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Advanced VO₂ Max Estimator | AI Chat">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  "name": "Advanced VO₂ Max Estimator with AI Assistant",
-  "description": "Estimate VO2 Max using Resting HR and 1-Mile Walk Test methods with AI-powered training tips.",
-  "url": "https://healthcalc.in/vo2max-calculator.html",
-  "author": {"@type": "Organization", "name": "HealthCalc"},
-  "about": {"@type": "MedicalCondition", "name": "Cardiovascular Fitness"},
-  "inLanguage": ["en"],
-  "dateModified": "2026-07-10"
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "What is VO2 Max?", "acceptedAnswer": {"@type": "Answer", "text": "VO2 Max is the maximum rate of oxygen your body can use during intense exercise. It's the gold standard measure of cardiovascular fitness."}},
-    {"@type": "Question", "name": "What is a good VO2 Max score?", "acceptedAnswer": {"@type": "Answer", "text": "For men 40-49, average is 35-45 mL/kg/min. For women same age, 30-38 is average. Elite athletes can exceed 60-70."}},
-    {"@type": "Question", "name": "How can I improve my VO2 Max?", "acceptedAnswer": {"@type": "Answer", "text": "High-intensity interval training (HIIT), tempo runs, and consistent aerobic training 3-5x/week are most effective. Chat with AI for personalized tips."}}
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
-    {"@type": "ListItem", "position": 2, "name": "Fitness Tools", "item": "https://healthcalc.in/#tools"},
-    {"@type": "ListItem", "position": 3, "name": "VO₂ Max Estimator", "item": "https://healthcalc.in/vo2max-calculator.html"}
-  ]
-}
-</script>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --primary: #2c5364; --primary-dark: #1a3a47; --primary-light: #d4e6f1;
-  --success: #10b981; --warning: #f59e0b; --danger: #ef4444;
-  --dark: #1e293b; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
-  --gray-600: #475569; --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08); --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
-  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#2c5364;--primary-dark:#1a3a47;--primary-light:#d4e6f1;
+  --success:#10b981;--warning:#f59e0b;--danger:#ef4444;
+  --dark:#1e293b;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-600:#475569;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.08);--shadow-lg:0 10px 30px rgba(0,0,0,0.12);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;
 }
+body.dark{background:#0f172a;color:#e2e8f0}
+body.dark .card{background:#1e293b;border-color:#334155}
+body.dark input,body.dark select{background:#0f172a;border-color:#475569;color:#e2e8f0}
+body.dark .result{background:#0f172a}
+body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
+body.dark .ai-chat-messages{background:#0f172a}
+body.dark .ai-message-bot{background:#1e293b;color:#e2e8f0}
+body.dark .ai-chat-input{background:#0f172a;border-color:#475569;color:#e2e8f0}
+body.dark .ai-suggestion-chip{background:#334155;color:#cbd5e1}
+body.dark .ai-suggestion-chip:hover{background:var(--primary);color:white}
 
-body { font-family: 'Inter', sans-serif; background: linear-gradient(145deg, #0f2027, #203a43, #2c5364); min-height: 100vh; padding: 20px; color: white; transition: background 0.3s; }
-body.dark { background: linear-gradient(145deg, #0a0f1a, #0f172a, #1e293b); }
-body.dark .card { background: #1e293b; color: #e2e8f0; }
-body.dark label { color: #cbd5e1; }
-body.dark input, body.dark select { background: #0f172a; border-color: #334155; color: #e2e8f0; }
-body.dark .result { background: #0f172a; }
-body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
-body.dark .ai-chat-messages { background: #0f172a; }
-body.dark .ai-message-bot { background: #1e293b; color: #e2e8f0; }
-body.dark .ai-chat-input { background: #0f172a; border-color: #475569; color: #e2e8f0; }
-body.dark .ai-chat-suggestions { background: #1e293b; border-color: #334155; }
-body.dark .ai-suggestion-chip { background: #334155; color: #cbd5e1; border-color: #475569; }
-body.dark .ai-suggestion-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
-body.dark .comparison-box, body.dark .training-tip, body.dark .vo2-scale { background: #0f172a; }
-body.dark .interlinks a { background: #334155; color: #cbd5e1; }
-body.dark .interlinks a:hover { background: var(--primary); color: white; }
-body.dark footer { color: #94a3b8; }
-body.dark .health-authority-note { background: #1e293b; color: #94a3b8; }
-body.dark .method-selector { background: #334155; }
-body.dark .method-btn { color: #94a3b8; }
-body.dark .method-btn.active { background: #475569; color: #a5f3fc; }
+body{font-family:'Inter',sans-serif;background:linear-gradient(145deg,#0f2027,#203a43,#2c5364);min-height:100vh;padding:20px;color:white;transition:all 0.3s}
+.container{max-width:800px;margin:0 auto}
 
-.container { max-width: 800px; margin: 0 auto; }
+.health-note{background:rgba(255,255,255,0.1);padding:6px 16px;border-radius:40px;font-size:0.8rem;display:inline-block;margin-bottom:15px}
 
-.international-bar { display: flex; justify-content: flex-end; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
-.health-authority-note { background: rgba(255,255,255,0.1); padding: 6px 16px; border-radius: 40px; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; backdrop-filter: blur(4px); }
+.card{background:white;border-radius:var(--radius-xl);padding:28px;box-shadow:0 25px 50px rgba(0,0,0,0.3);color:var(--dark);transition:background 0.3s}
+h1{font-size:26px;font-weight:800;color:var(--primary-dark);margin-bottom:6px}
 
-.card { background: white; border-radius: var(--radius-xl); padding: 32px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); color: var(--dark); transition: background 0.3s; }
+.method-selector{display:flex;gap:8px;margin:18px 0;background:var(--gray-100);padding:4px;border-radius:50px}
+.method-btn{flex:1;text-align:center;padding:10px;border-radius:50px;cursor:pointer;font-weight:600;background:transparent;color:var(--gray-600);border:none;font-size:13px}
+.method-btn.active{background:white;box-shadow:var(--shadow-sm);color:var(--primary)}
 
-h1 { font-size: 28px; background: linear-gradient(145deg, #0f2027, #2c5364); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.form-group{margin-bottom:14px}
+label{font-weight:600;display:block;margin-bottom:4px;font-size:13px}
+input,select{width:100%;padding:11px 14px;border:2px solid var(--gray-200);border-radius:var(--radius-md);font-size:14px;background:white}
+input:focus,select:focus{outline:none;border-color:var(--primary)}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.row-2{grid-template-columns:1fr}}
 
-.method-selector { display: flex; gap: 12px; margin: 20px 0; background: var(--gray-100); padding: 6px; border-radius: 60px; }
-.method-btn { flex: 1; text-align: center; padding: 10px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.2s; background: transparent; color: var(--gray-600); }
-.method-btn.active { background: white; box-shadow: var(--shadow-sm); color: var(--primary); }
+.calc-btn{background:var(--primary);color:white;width:100%;padding:14px;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;margin:16px 0;transition:all 0.2s}
+.calc-btn:hover{background:var(--primary-dark);transform:translateY(-2px)}
 
-.form-group { margin-bottom: 18px; }
-label { font-weight: 600; display: block; margin-bottom: 6px; color: var(--dark); font-size: 14px; }
-input, select { width: 100%; padding: 12px 14px; border: 2px solid var(--gray-200); border-radius: var(--radius-md); font-size: 14px; transition: all 0.2s; background: white; color: var(--dark); }
-input:focus, select:focus { outline: none; border-color: var(--primary); }
-.row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-@media (max-width: 500px) { .row-2col { grid-template-columns: 1fr; } }
+.result{background:linear-gradient(145deg,#e0f0ff,#f0f8ff);border-radius:var(--radius-lg);padding:22px;text-align:center}
+.vo2-value{font-size:44px;font-weight:800;color:var(--primary-dark);line-height:1}
+.fitness-level{font-size:16px;font-weight:700;margin:8px 0}
 
-.calc-btn { background: var(--primary); color: white; width: 100%; padding: 14px; border: none; border-radius: 60px; font-size: 16px; font-weight: 700; cursor: pointer; margin: 20px 0; transition: all 0.2s; }
-.calc-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+/* AI CHAT */
+.ai-chat-panel{margin:16px 0;border:2px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;background:white}
+body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
+.ai-chat-header{background:linear-gradient(135deg,#2c5364,#1a3a47);color:white;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:13px}
+.ai-chat-messages{height:180px;overflow-y:auto;padding:10px;background:var(--gray-50);display:flex;flex-direction:column;gap:6px}
+body.dark .ai-chat-messages{background:#0f172a}
+.ai-message-bot{background:white;padding:8px 12px;border-radius:10px;border-top-left-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,0.08);max-width:85%;font-size:12px;align-self:flex-start}
+body.dark .ai-message-bot{background:#1e293b;color:#e2e8f0}
+.ai-message-user{background:var(--primary);color:white;padding:8px 12px;border-radius:10px;border-top-right-radius:3px;max-width:85%;font-size:12px;align-self:flex-end}
+.ai-chat-suggestions{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px;background:white;border-top:1px solid var(--gray-200)}
+.ai-suggestion-chip{background:var(--gray-100);padding:5px 10px;border-radius:12px;font-size:10px;cursor:pointer;border:1px solid var(--gray-200);color:var(--gray-600);white-space:nowrap}
+.ai-suggestion-chip:hover{background:var(--primary);color:white;border-color:var(--primary)}
+.ai-chat-input-row{display:flex;gap:6px;padding:8px 10px;background:white;border-top:1px solid var(--gray-200)}
+.ai-chat-input{flex:1;padding:9px 12px;border:2px solid var(--gray-200);border-radius:20px;outline:none;font-size:12px;font-family:inherit}
+.ai-chat-send-btn{width:34px;height:34px;border-radius:50%;background:var(--primary);color:white;border:none;cursor:pointer;font-size:14px}
+.ai-chat-disclaimer{padding:5px 10px;background:var(--gray-50);border-top:1px solid var(--gray-200);text-align:center;font-size:9px;color:var(--gray-600)}
 
-.result { background: linear-gradient(145deg, #e0f0ff, #f0f8ff); border-radius: var(--radius-lg); padding: 24px; text-align: center; }
-.vo2-value { font-size: 48px; font-weight: 800; color: var(--primary-dark); line-height: 1; }
-.fitness-level { font-size: 18px; font-weight: 700; margin: 10px 0; }
-.percentile { background: #d4e6f1; display: inline-block; padding: 4px 16px; border-radius: 60px; font-size: 12px; font-weight: 600; color: var(--primary-dark); }
+footer{text-align:center;color:#cbd5e1;margin-top:20px;font-size:11px}
+footer a{color:white;text-decoration:none}
 
-.fitness-meter { margin: 20px 0; }
-.meter-bar { height: 10px; background: var(--gray-200); border-radius: 10px; overflow: hidden; }
-.meter-fill { height: 100%; width: 0%; border-radius: 10px; transition: width 0.3s; }
-
-.vo2-scale { margin: 20px 0; padding: 16px; background: var(--gray-50); border-radius: var(--radius-lg); }
-.scale-bars { display: flex; height: 40px; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
-.scale-bar { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: white; }
-.scale-bar.poor { background: #ef4444; } .scale-bar.fair { background: #f59e0b; } .scale-bar.average { background: #fbbf24; color: #333; }
-.scale-bar.good { background: #10b981; } .scale-bar.excellent { background: #059669; } .scale-bar.superior { background: #047857; }
-.scale-indicator { position: relative; height: 20px; margin-top: 5px; }
-.scale-marker { position: absolute; width: 4px; height: 20px; background: var(--dark); transform: translateX(-50%); border-radius: 2px; transition: left 0.5s ease; }
-
-.comparison-box { background: var(--gray-50); border-radius: var(--radius-lg); padding: 16px; margin-top: 20px; }
-.comparison-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; }
-.comparison-value { font-weight: 700; color: var(--primary-dark); }
-.training-tip { background: var(--gray-50); border-radius: var(--radius-lg); padding: 16px; margin-top: 20px; font-size: 13px; border-left: 4px solid var(--primary); line-height: 1.6; }
-
-/* AI Chat Panel */
-.ai-chat-panel { margin: 20px 0; border: 2px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; background: white; transition: all 0.3s; }
-body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
-.ai-chat-header { background: linear-gradient(135deg, #2c5364, #1a3a47); color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 14px; }
-.ai-chat-header-left { display: flex; align-items: center; gap: 8px; }
-.ai-chat-status { font-size: 10px; opacity: 0.9; font-weight: 400; }
-.ai-chat-messages { height: 200px; overflow-y: auto; padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px; }
-body.dark .ai-chat-messages { background: #0f172a; }
-.ai-message-bot { background: white; padding: 10px 14px; border-radius: 12px; border-top-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); max-width: 85%; font-size: 13px; line-height: 1.5; align-self: flex-start; color: #1e293b; }
-body.dark .ai-message-bot { background: #1e293b; color: #e2e8f0; }
-.ai-message-user { background: var(--primary); color: white; padding: 10px 14px; border-radius: 12px; border-top-right-radius: 4px; max-width: 85%; font-size: 13px; line-height: 1.5; align-self: flex-end; }
-.ai-chat-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; background: white; border-top: 1px solid #e2e8f0; }
-body.dark .ai-chat-suggestions { background: #1e293b; border-color: #334155; }
-.ai-suggestion-chip { background: #f1f5f9; padding: 6px 12px; border-radius: 15px; font-size: 11px; cursor: pointer; border: 1px solid #e2e8f0; color: #475569; transition: all 0.2s; white-space: nowrap; }
-body.dark .ai-suggestion-chip { background: #334155; color: #cbd5e1; border-color: #475569; }
-.ai-suggestion-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
-.ai-chat-input-row { display: flex; gap: 8px; padding: 10px 12px; background: white; border-top: 1px solid #e2e8f0; }
-body.dark .ai-chat-input-row { background: #0f172a; border-color: #334155; }
-.ai-chat-input { flex: 1; padding: 10px 14px; border: 2px solid #e2e8f0; border-radius: 25px; outline: none; font-size: 13px; font-family: inherit; color: #1e293b; }
-body.dark .ai-chat-input { background: #0f172a; border-color: #475569; color: #e2e8f0; }
-.ai-chat-input:focus { border-color: var(--primary); }
-.ai-chat-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 16px; flex-shrink: 0; transition: all 0.2s; }
-.ai-chat-send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
-.ai-chat-disclaimer { padding: 6px 12px; background: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; font-size: 10px; color: #64748b; }
-body.dark .ai-chat-disclaimer { background: #0f172a; border-color: #334155; }
-
-.interlinks { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--gray-200); }
-.interlinks a { background: var(--gray-100); padding: 6px 16px; border-radius: 40px; text-decoration: none; font-size: 12px; color: var(--gray-600); transition: all 0.2s; }
-.interlinks a:hover { background: var(--primary); color: white; }
-
-footer { text-align: center; color: #cbd5e1; margin-top: 24px; font-size: 11px; padding-bottom: 20px; }
-footer a { color: white; text-decoration: none; }
-
-@keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
-@media (max-width: 600px) { .ai-chat-messages { height: 160px; } }
+@keyframes messageSlideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.ai-chat-messages{height:150px}}
 </style>
 </head>
 <body>
 <div class="container">
 
-  <nav class="international-bar" aria-label="Region, theme, language selector">
-    <select id="countrySelect" aria-label="Select country">
-      <option value="us">🇺🇸 United States</option>
-      <option value="uk">🇬🇧 United Kingdom</option>
-      <option value="ca">🇨🇦 Canada</option>
-      <option value="au">🇦🇺 Australia</option>
-    </select>
-    <div class="theme-toggle">
-      <button class="theme-option" data-theme="light" aria-label="Light mode">☀️ Light</button>
-      <button class="theme-option" data-theme="dark" aria-label="Dark mode">🌙 Dark</button>
+<div class="health-note">❤️ Based on ACSM/CDC/NHS guidelines – VO₂ max norms by age and gender</div>
+
+<div class="card">
+<h1>🫁 Advanced VO₂ Max Estimator</h1>
+<p style="color:#666;font-size:13px;margin-bottom:16px">Gold standard for cardiovascular fitness. AI chat for personalized training tips!</p>
+
+<div class="method-selector">
+    <button class="method-btn active" data-method="resting">🩺 Resting HR Method</button>
+    <button class="method-btn" data-method="walk">🚶 1-Mile Walk Test</button>
+</div>
+
+<div id="restingMethod">
+    <div class="row-2">
+        <div class="form-group"><label>Gender</label><select id="genderRest"><option value="male">Male</option><option value="female">Female</option></select></div>
+        <div class="form-group"><label>Age (years)</label><input type="number" id="ageRest" value="30" min="18" max="80"></div>
     </div>
-  </nav>
-  <div id="healthAuthorityNote" class="health-authority-note">❤️ Based on ACSM/CDC/NHS guidelines – VO2 max norms by age and gender</div>
+    <div class="form-group"><label>Resting Heart Rate (bpm)</label><input type="number" id="restingHR" value="70" placeholder="60-100"></div>
+    <div class="form-group"><label>Activity Level</label><select id="activityLevel"><option value="sedentary">Sedentary</option><option value="light">Light</option><option value="moderate">Moderate</option><option value="active">Active</option><option value="very">Very Active</option></select></div>
+</div>
 
-  <main class="card">
-    <h1>🫁 Advanced VO₂ Max Estimator with AI Chat</h1>
-    <p style="color:#666;font-size:14px;margin-bottom:20px">Gold standard for cardiovascular fitness. AI chat for personalized training tips!</p>
-
-    <div class="method-selector">
-      <div class="method-btn active" data-method="resting">🩺 Resting HR Method</div>
-      <div class="method-btn" data-method="walk">🚶 1-Mile Walk Test</div>
+<div id="walkMethod" style="display:none;">
+    <div class="row-2">
+        <div class="form-group"><label>Gender</label><select id="genderWalk"><option value="male">Male</option><option value="female">Female</option></select></div>
+        <div class="form-group"><label>Age (years)</label><input type="number" id="ageWalk" value="35" min="18" max="80"></div>
     </div>
+    <div class="form-group"><label>Weight</label><div class="row-2"><input type="number" id="weightWalk" value="70"><select id="weightUnit"><option value="kg">kg</option><option value="lbs">lbs</option></select></div></div>
+    <div class="form-group"><label>1-Mile Walk Time (minutes)</label><input type="number" id="walkTime" step="0.1" value="15"></div>
+    <div class="form-group"><label>Heart Rate after walk (bpm)</label><input type="number" id="walkHR" value="130"></div>
+</div>
 
-    <div id="restingMethod">
-      <div class="row-2col">
-        <div class="form-group"><label><i class="fas fa-venus-mars"></i> Gender</label><select id="genderRest"><option value="male">Male</option><option value="female">Female</option></select></div>
-        <div class="form-group"><label><i class="fas fa-calendar-alt"></i> Age (years)</label><input type="number" id="ageRest" value="30" min="18" max="80"></div>
-      </div>
-      <div class="form-group"><label><i class="fas fa-heart"></i> Resting Heart Rate (bpm)</label><input type="number" id="restingHR" value="70" placeholder="60-100"><small style="color:#666;font-size:11px">Measure first thing in morning</small></div>
-      <div class="form-group"><label><i class="fas fa-running"></i> Physical Activity Level</label><select id="activityLevel"><option value="sedentary">🛋️ Sedentary</option><option value="light">🚶 Light (1-2x/week)</option><option value="moderate">🏃 Moderate (3-4x/week)</option><option value="active">🏋️ Active (5-6x/week)</option><option value="very">⚡ Very Active (daily)</option></select></div>
-    </div>
+<button class="calc-btn" onclick="calculateVO2()"><i class="fas fa-chart-line"></i> Calculate VO₂ Max</button>
 
-    <div id="walkMethod" style="display:none;">
-      <div class="row-2col">
-        <div class="form-group"><label><i class="fas fa-venus-mars"></i> Gender</label><select id="genderWalk"><option value="male">Male</option><option value="female">Female</option></select></div>
-        <div class="form-group"><label><i class="fas fa-calendar-alt"></i> Age (years)</label><input type="number" id="ageWalk" value="35" min="18" max="80"></div>
-      </div>
-      <div class="form-group"><label><i class="fas fa-weight-scale"></i> Weight</label><div class="row-2col"><input type="number" id="weightWalk" value="70"><select id="weightUnit"><option value="kg">kg</option><option value="lbs">lbs</option></select></div></div>
-      <div class="form-group"><label><i class="fas fa-clock"></i> 1-Mile Walk Time (minutes)</label><input type="number" id="walkTime" step="0.1" value="15" placeholder="e.g., 14.5"></div>
-      <div class="form-group"><label><i class="fas fa-heart"></i> Heart Rate after walk (bpm)</label><input type="number" id="walkHR" value="130"></div>
-    </div>
+<div class="result" id="resultArea">
+    <div style="font-size:12px;color:var(--gray-600)">Your Estimated VO₂ Max</div>
+    <div class="vo2-value" id="vo2Number">--</div>
+    <div class="fitness-level" id="fitnessCategory">--</div>
+    <div id="percentileInfo" style="font-size:11px;color:var(--gray-600);margin-top:4px">--</div>
 
-    <button class="calc-btn" id="calcVO2"><i class="fas fa-chart-line"></i> Calculate VO₂ Max</button>
-
-    <div class="result" id="resultArea">
-      <div>Your Estimated VO₂ Max</div>
-      <div class="vo2-value" id="vo2Number">--</div>
-      <div class="fitness-level" id="fitnessCategory">--</div>
-      <div id="percentileInfo" class="percentile">--</div>
-
-      <div class="fitness-meter">
-        <div class="meter-bar"><div class="meter-fill" id="fitnessMeter" style="width:0%;background:#10b981"></div></div>
-        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--gray-600);margin-top:6px"><span>Poor</span><span>Fair</span><span>Avg</span><span>Good</span><span>Exc</span><span>Sup</span></div>
-      </div>
-
-      <div class="vo2-scale">
-        <div style="font-weight:600;margin-bottom:10px;font-size:13px">📊 VO₂ Max Percentile Range</div>
-        <div class="scale-bars"><div class="scale-bar poor">Poor</div><div class="scale-bar fair">Fair</div><div class="scale-bar average">Avg</div><div class="scale-bar good">Good</div><div class="scale-bar excellent">Exc</div><div class="scale-bar superior">Sup</div></div>
-        <div class="scale-indicator"><div class="scale-marker" id="scaleMarker" style="left:0%"></div></div>
-      </div>
-
-      <div class="comparison-box">
-        <div class="comparison-item"><span>📊 Your VO₂ Max</span><span class="comparison-value" id="yourVO2">--</span></div>
-        <div class="comparison-item"><span>👥 Age Group Avg</span><span class="comparison-value" id="avgVO2">--</span></div>
-        <div class="comparison-item"><span>🏆 Elite Range</span><span class="comparison-value">55-70+</span></div>
-      </div>
-
-      <div id="trainingTip" class="training-tip"></div>
-
-      <!-- AI Chat Panel -->
-      <div class="ai-chat-panel" id="aiChatPanel">
-        <div class="ai-chat-header">
-          <div class="ai-chat-header-left"><span>🫁</span><span>Cardio Fitness AI Assistant</span></div>
-          <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
+    <!-- AI CHAT -->
+    <div class="ai-chat-panel" style="margin-top:14px;">
+        <div class="ai-chat-header"><span>🫁 Cardio Fitness AI</span><span style="font-size:9px;opacity:0.8;">🟢 Online</span></div>
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-message-bot"><strong>Hello! 👋</strong><br>Calculate your VO₂ Max, then ask me about training plans and HIIT workouts!</div>
         </div>
-        <div class="ai-chat-messages" id="aiChatMessages" role="log">
-          <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
-            <strong>Hello! 👋</strong><br><br>
-            I'm your <strong>Cardio Fitness AI Assistant</strong>. Calculate your VO₂ Max above, then ask me about training plans, HIIT workouts, endurance tips, and how to improve your aerobic capacity!
-          </div>
-        </div>
-        <div class="ai-chat-suggestions" id="aiChatSuggestions">
-          <span class="ai-suggestion-chip" onclick="sendAIMessage('How to improve my VO2 Max quickly?')">🚀 Improve VO2 Max?</span>
-          <span class="ai-suggestion-chip" onclick="sendAIMessage('Best HIIT workouts for cardio fitness?')">⚡ HIIT for cardio?</span>
-          <span class="ai-suggestion-chip" onclick="sendAIMessage('Endurance training plan for beginners?')">🏃 Beginner plan?</span>
-          <span class="ai-suggestion-chip" onclick="sendAIMessage('What is a good VO2 Max for my age?')">📊 Good VO2 Max?</span>
-          <span class="ai-suggestion-chip" onclick="sendAIMessage('How to train for a 5K run?')">🏅 5K training?</span>
-          <span class="ai-suggestion-chip" onclick="sendAIMessage('Benefits of zone 2 training?')">💓 Zone 2 training?</span>
+        <div class="ai-chat-suggestions">
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('How to improve my VO2 Max?')">🚀 Improve VO2?</span>
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('Best HIIT workouts for cardio?')">⚡ HIIT workouts?</span>
+            <span class="ai-suggestion-chip" onclick="sendAIMessage('Beginner running plan?')">🏃 Beginner plan?</span>
         </div>
         <div class="ai-chat-input-row">
-          <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your VO2 Max..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-          <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button>
+            <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about cardio training..." onkeypress="if(event.key==='Enter')sendAIMessage()">
+            <button class="ai-chat-send-btn" onclick="sendAIMessage()">➤</button>
         </div>
-        <div class="ai-chat-disclaimer">⚠️ Educational purposes only. Consult a fitness professional.</div>
-      </div>
+        <div class="ai-chat-disclaimer">⚠️ Educational only. Consult a fitness professional.</div>
     </div>
+</div>
+</div>
 
-    <nav class="interlinks" aria-label="Related fitness tools">
-      <a href="bac-calculator.html">🍺 BAC</a>
-      <a href="ffmi-calculator.html">💪 FFMI</a>
-      <a href="whr-calculator.html">📏 WHR</a>
-      <a href="heart-rate-calculator.html">💓 Heart Zones</a>
-      <a href="met-calculator.html">🏃 Activity</a>
-      <a href="ascvd-risk-calculator.html">❤️ ASCVD</a>
-    </nav>
-  </main>
-
-  <footer role="contentinfo">
-    <p>© 2026 HealthCalc.in — VO₂ Max Estimator | <a href="privacy-policy.html">Privacy</a> • <a href="terms-of-service.html">Terms</a> • <a href="sitemap.xml">Sitemap</a></p>
-    <p style="margin-top:4px">Formulas: Resting HR (Uth et al.) • 1-Mile Walk (Kline et al.) | ACSM & Cooper Institute data</p>
-  </footer>
+<footer><p>© 2026 HealthCalc — VO₂ Max Estimator | <a href="privacy-policy.html">Privacy</a></p></footer>
 </div>
 
 <script>
-    // ==============================================
-    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-    // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+var isAIProcessing = false;
+var currentMethod = 'resting';
 
-    let currentMethod = 'resting';
-
-    // ===== METHOD SELECTOR =====
-    document.querySelectorAll('.method-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
+// ===== METHOD SELECTOR =====
+document.querySelectorAll('.method-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
         document.querySelectorAll('.method-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
         currentMethod = btn.getAttribute('data-method');
         document.getElementById('restingMethod').style.display = currentMethod === 'resting' ? 'block' : 'none';
         document.getElementById('walkMethod').style.display = currentMethod === 'walk' ? 'block' : 'none';
         calculateVO2();
-      });
     });
+});
 
-    // ===== FITNESS LEVEL =====
-    function getFitnessLevel(vo2, gender) {
-      if (gender === 'male') {
+// ===== THEME =====
+(function() {
+    var s = localStorage.getItem('healthcalc_theme') || 'light';
+    document.body.classList.toggle('dark', s === 'dark');
+})();
+
+// ===== FITNESS LEVEL =====
+function getFitnessLevel(vo2, gender) {
+    if (gender === 'male') {
         if (vo2 < 35) return '🔴 Poor';
         if (vo2 < 42) return '🟠 Fair';
         if (vo2 < 48) return '🟡 Average';
         if (vo2 < 54) return '🟢 Good';
         if (vo2 < 60) return '💪 Excellent';
         return '🏆 Superior (Athlete)';
-      } else {
+    } else {
         if (vo2 < 29) return '🔴 Poor';
         if (vo2 < 35) return '🟠 Fair';
         if (vo2 < 40) return '🟡 Average';
         if (vo2 < 46) return '🟢 Good';
         if (vo2 < 52) return '💪 Excellent';
         return '🏆 Superior (Athlete)';
-      }
     }
+}
 
-    // ===== GET PERCENTILE =====
-    function getPercentile(vo2, gender, age) {
-      if (age < 30) {
+// ===== GET PERCENTILE =====
+function getPercentile(vo2, gender, age) {
+    if (age < 30) {
         if (gender === 'male') { if (vo2 > 55) return 'Top 5%'; if (vo2 > 48) return 'Top 25%'; if (vo2 > 42) return 'Average'; return 'Below avg'; }
         else { if (vo2 > 48) return 'Top 5%'; if (vo2 > 42) return 'Top 25%'; if (vo2 > 36) return 'Average'; return 'Below avg'; }
-      } else if (age < 45) {
+    } else if (age < 45) {
         if (gender === 'male') { if (vo2 > 52) return 'Top 5%'; if (vo2 > 45) return 'Top 25%'; if (vo2 > 39) return 'Average'; return 'Below avg'; }
         else { if (vo2 > 45) return 'Top 5%'; if (vo2 > 39) return 'Top 25%'; if (vo2 > 34) return 'Average'; return 'Below avg'; }
-      } else {
+    } else {
         if (gender === 'male') { if (vo2 > 48) return 'Top 5%'; if (vo2 > 40) return 'Top 25%'; if (vo2 > 34) return 'Average'; return 'Below avg'; }
         else { if (vo2 > 42) return 'Top 5%'; if (vo2 > 36) return 'Top 25%'; if (vo2 > 30) return 'Average'; return 'Below avg'; }
-      }
     }
+}
 
-    // ===== GET AVERAGE VO2 =====
-    function getAverageVO2(gender, age) {
-      if (gender === 'male') { if (age < 30) return 45; if (age < 40) return 42; if (age < 50) return 39; if (age < 60) return 35; return 32; }
-      else { if (age < 30) return 38; if (age < 40) return 36; if (age < 50) return 33; if (age < 60) return 30; return 27; }
-    }
+// ===== MAIN CALCULATION =====
+function calculateVO2() {
+    var vo2 = 0, gender, age;
 
-    // ===== GET TRAINING TIP =====
-    function getTrainingTip(vo2, gender, age) {
-      if (vo2 < 35) return '💡 <strong>Beginner:</strong> Start with brisk walking 30 min/day, 3-4x weekly. Gradually increase intensity over 4-6 weeks.';
-      else if (vo2 < 45) return '💡 <strong>Intermediate:</strong> Add interval training (1 min fast, 2 min slow). Aim for 150-200 min cardio weekly.';
-      else if (vo2 < 55) return '💡 <strong>Advanced:</strong> Great base! Incorporate tempo runs and HIIT 1-2x/week. Periodized training for continued gains.';
-      else return '🏅 <strong>Elite:</strong> Excellent endurance! Focus on VO2 max intervals (3-5 min at 90-95% max HR). Maintain strength training 2x/week.';
-    }
-
-    // ===== MAIN CALCULATION =====
-    function calculateVO2() {
-      let vo2 = 0, gender, age;
-
-      if (currentMethod === 'resting') {
+    if (currentMethod === 'resting') {
         gender = document.getElementById('genderRest').value;
         age = parseFloat(document.getElementById('ageRest').value);
-        let hr = parseFloat(document.getElementById('restingHR').value);
-        let activity = document.getElementById('activityLevel').value;
-        if (isNaN(age) || isNaN(hr) || age < 18 || age > 80) return;
-        let hrMax = 208 - (0.7 * age);
-        let hrRatio = hrMax / hr;
-        let actMod = { sedentary: 0.85, light: 0.92, moderate: 1.0, active: 1.08, very: 1.15 };
+        var hr = parseFloat(document.getElementById('restingHR').value);
+        var activity = document.getElementById('activityLevel').value;
+        if (isNaN(age) || isNaN(hr)) return;
+        var hrMax = 208 - (0.7 * age);
+        var hrRatio = hrMax / hr;
+        var actMod = { sedentary: 0.85, light: 0.92, moderate: 1.0, active: 1.08, very: 1.15 };
         vo2 = 45 * hrRatio * (actMod[activity] || 1.0);
-      } else {
+    } else {
         gender = document.getElementById('genderWalk').value;
         age = parseFloat(document.getElementById('ageWalk').value);
-        let weight = parseFloat(document.getElementById('weightWalk').value);
-        let weightUnit = document.getElementById('weightUnit').value;
-        let time = parseFloat(document.getElementById('walkTime').value);
-        let hrWalk = parseFloat(document.getElementById('walkHR').value);
+        var weight = parseFloat(document.getElementById('weightWalk').value);
+        var weightUnit = document.getElementById('weightUnit').value;
+        var time = parseFloat(document.getElementById('walkTime').value);
+        var hrWalk = parseFloat(document.getElementById('walkHR').value);
         if (isNaN(age) || isNaN(weight) || isNaN(time) || isNaN(hrWalk)) return;
         if (weightUnit === 'lbs') weight = weight / 2.20462;
-        let genderVal = (gender === 'male') ? 1 : 0;
+        var genderVal = (gender === 'male') ? 1 : 0;
         vo2 = 132.853 - (0.0769 * weight) - (0.3877 * age) + (6.315 * genderVal) - (3.2649 * time) - (0.1565 * hrWalk);
-      }
-
-      vo2 = Math.min(85, Math.max(18, Math.round(vo2 * 10) / 10));
-
-      document.getElementById('vo2Number').innerHTML = vo2 + ' mL/kg/min';
-      document.getElementById('yourVO2').innerHTML = vo2 + ' mL/kg/min';
-      document.getElementById('fitnessCategory').innerHTML = getFitnessLevel(vo2, gender);
-      document.getElementById('percentileInfo').innerHTML = '📊 ' + getPercentile(vo2, gender, age) + ' for age ' + Math.round(age);
-      document.getElementById('avgVO2').innerHTML = getAverageVO2(gender, age) + ' mL/kg/min';
-      document.getElementById('trainingTip').innerHTML = getTrainingTip(vo2, gender, age);
-
-      let meterPct = gender === 'male' ? Math.min(100, Math.max(5, (vo2 / 65) * 100)) : Math.min(100, Math.max(5, (vo2 / 58) * 100));
-      document.getElementById('fitnessMeter').style.width = meterPct + '%';
-      document.getElementById('scaleMarker').style.left = meterPct + '%';
-
-      let meterColor;
-      if (vo2 < 35) meterColor = '#ef4444'; else if (vo2 < 42) meterColor = '#f59e0b';
-      else if (vo2 < 48) meterColor = '#fbbf24'; else if (vo2 < 54) meterColor = '#10b981';
-      else if (vo2 < 60) meterColor = '#059669'; else meterColor = '#047857';
-      document.getElementById('fitnessMeter').style.background = meterColor;
-
-      // Save to localStorage
-      saveToLocalStorage();
     }
 
-    // ===== LOCAL STORAGE =====
-    function saveToLocalStorage() {
-      var data = {
-        method: currentMethod,
-        genderRest: document.getElementById('genderRest').value,
-        ageRest: document.getElementById('ageRest').value,
-        restingHR: document.getElementById('restingHR').value,
-        activityLevel: document.getElementById('activityLevel').value,
-        genderWalk: document.getElementById('genderWalk').value,
-        ageWalk: document.getElementById('ageWalk').value,
-        weightWalk: document.getElementById('weightWalk').value,
-        weightUnit: document.getElementById('weightUnit').value,
-        walkTime: document.getElementById('walkTime').value,
-        walkHR: document.getElementById('walkHR').value
-      };
-      try { localStorage.setItem('vo2maxCalculator', JSON.stringify(data)); } catch(e) {}
-    }
+    vo2 = Math.min(85, Math.max(18, Math.round(vo2 * 10) / 10));
 
-    function loadFromLocalStorage() {
-      var saved = localStorage.getItem('vo2maxCalculator');
-      if (saved) {
-        try {
-          var d = JSON.parse(saved);
-          if (d.method) {
-            currentMethod = d.method;
-            document.querySelectorAll('.method-btn').forEach(function(b) { b.classList.remove('active'); });
-            var btn = document.querySelector('.method-btn[data-method="' + d.method + '"]');
-            if (btn) btn.classList.add('active');
-            document.getElementById('restingMethod').style.display = d.method === 'resting' ? 'block' : 'none';
-            document.getElementById('walkMethod').style.display = d.method === 'walk' ? 'block' : 'none';
-          }
-          if (d.genderRest) document.getElementById('genderRest').value = d.genderRest;
-          if (d.ageRest) document.getElementById('ageRest').value = d.ageRest;
-          if (d.restingHR) document.getElementById('restingHR').value = d.restingHR;
-          if (d.activityLevel) document.getElementById('activityLevel').value = d.activityLevel;
-          if (d.genderWalk) document.getElementById('genderWalk').value = d.genderWalk;
-          if (d.ageWalk) document.getElementById('ageWalk').value = d.ageWalk;
-          if (d.weightWalk) document.getElementById('weightWalk').value = d.weightWalk;
-          if (d.weightUnit) document.getElementById('weightUnit').value = d.weightUnit;
-          if (d.walkTime) document.getElementById('walkTime').value = d.walkTime;
-          if (d.walkHR) document.getElementById('walkHR').value = d.walkHR;
-        } catch(e) {}
-      }
-    }
+    document.getElementById('vo2Number').innerHTML = vo2 + ' mL/kg/min';
+    document.getElementById('fitnessCategory').innerHTML = getFitnessLevel(vo2, gender);
+    document.getElementById('percentileInfo').innerHTML = '📊 ' + getPercentile(vo2, gender, age) + ' for age ' + Math.round(age);
+}
 
-    // ===== EVENT LISTENERS =====
-    document.getElementById('calcVO2').addEventListener('click', calculateVO2);
+// ===== EVENT LISTENERS =====
+['genderRest','ageRest','restingHR','activityLevel','genderWalk','ageWalk','weightWalk','weightUnit','walkTime','walkHR'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.addEventListener('input', calculateVO2); el.addEventListener('change', calculateVO2); }
+});
 
-    var allInputs = ['genderRest','ageRest','restingHR','activityLevel','genderWalk','ageWalk','weightWalk','weightUnit','walkTime','walkHR'];
-    allInputs.forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        el.addEventListener('input', function() { saveToLocalStorage(); calculateVO2(); });
-        el.addEventListener('change', function() { saveToLocalStorage(); calculateVO2(); });
-      }
-    });
+// ============================================
+// ✅ AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var msgDiv = document.createElement('div');
+    msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    msgDiv.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    msgDiv.innerHTML = text;
+    md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
+}
 
-    // ===== THEME =====
-    function initTheme() { var s = localStorage.getItem('healthcalc_theme') || 'light'; document.body.classList.toggle('dark', s === 'dark'); }
-    function setTheme(t) { localStorage.setItem('healthcalc_theme', t); document.body.classList.toggle('dark', t === 'dark'); }
-    document.querySelectorAll('.theme-option').forEach(function(b) { b.addEventListener('click', function() { setTheme(b.dataset.theme); }); });
-    initTheme();
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator'; td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td); md.scrollTop = md.scrollHeight;
+}
 
-    // ===== COUNTRY =====
-    document.getElementById('countrySelect').addEventListener('change', function(e) { localStorage.setItem('healthcalc_country', e.target.value); });
-    (function() { var s = localStorage.getItem('healthcalc_country') || 'us'; document.getElementById('countrySelect').value = s; })();
+function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if (t) t.remove(); }
 
-    // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-    // ==============================================
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
+function getVO2Context() {
+    var vo2 = document.getElementById('vo2Number').textContent;
+    if (vo2 && vo2 !== '--') return '[VO2 Max: ' + vo2 + ', Level: ' + document.getElementById('fitnessCategory').textContent + ']';
+    return '';
+}
 
-    function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var fullPrompt = "You are a Cardio Fitness AI on HealthCalc.in. " + getVO2Context() + "\n\nUSER: " + message + "\n\nProvide structured training advice. End with: '⚠️ Consult a fitness professional.'";
 
-    function removeTypingIndicator() { var t = document.getElementById('aiChatInput'); if (t) t.remove(); }
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
+        });
+        var data = await response.json();
+        removeTypingIndicator();
+        if (data && data.reply) { addChatMessage(data.reply, 'bot'); }
+        else { throw new Error('No response'); }
+    } catch (e) {
+        removeTypingIndicator();
+        addChatMessage('🫁 <strong>VO2 Max Tips:</strong><br><br>• HIIT 2x/week for rapid improvement<br>• Tempo runs at threshold pace<br>• Zone 2 training for aerobic base<br>• Consistency over intensity<br><br>⚠️ Consult a fitness professional.', 'bot');
+    } finally { isAIProcessing = false; }
+}
 
-    function getVO2Context() {
-        var vo2 = document.getElementById('vo2Number').innerHTML;
-        if (vo2 && vo2 !== '--') return 'User VO2 Max: ' + vo2 + '. ';
-        return '';
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    var ci = document.getElementById('aiChatInput');
+    if (ci) ci.addEventListener('keypress', function(e) { if (e.key === 'Enter') sendAIMessage(); });
+});
 
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if (!message) return;
-        addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
-        showTypingIndicator();
-        var context = getVO2Context();
-        var promptText = "You are a Cardio Fitness AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable training advice in fluent English. Include HIIT, endurance, and cardiovascular fitness tips. End with: '⚠️ Consult a fitness professional before starting any new exercise program.'";
+// ===== EXPOSE =====
+window.calculateVO2 = calculateVO2;
+window.sendAIMessage = sendAIMessage;
 
-        try {
-            var response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
-            });
-            
-            var data = await response.json();
-            removeTypingIndicator();
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { 
-                throw new Error('No response from AI worker'); 
-            }
-        } catch (e) {
-            removeTypingIndicator();
-            console.error('AI Error:', e);
-            addChatMessage('🫁 <strong>VO2 Max Tips:</strong><br><br>• HIIT 2x/week for rapid improvement<br>• Tempo runs at threshold pace<br>• Zone 2 training for aerobic base<br>• Strength training supports endurance<br>• Consistency over intensity<br><br>⚠️ <em>Consult a fitness professional.</em>', 'bot');
-        }
-    }
-
-    // ===== EXPOSE GLOBALLY =====
-    window.sendAIMessage = sendAIMessage;
-
-    // ===== INITIALIZE =====
-    loadFromLocalStorage();
-    calculateVO2();
+// ===== INIT =====
+calculateVO2();
 </script>
 </body>
 </html>
