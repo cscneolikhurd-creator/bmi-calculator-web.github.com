@@ -210,143 +210,200 @@ footer{text-align:center;padding:20px;margin-top:30px;font-size:13px;color:var(-
     </div>
 </div>
 
-</div>
-</main>
-
-<footer role="contentinfo">
-<p>© 2026 HealthCalc.in — Free Body Composition Engine. Consult a physician or trainer for personal fitness plans.</p>
-</footer>
-
-</div>
-
 <script>
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
-    var currentUnit = 'metric';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+var isAIProcessing = false;
+var currentUnit = 'metric';
 
-    function setUnit(unit) {
-        currentUnit = unit;
-        document.querySelectorAll('.unit-btn').forEach(b => b.classList.toggle('active', b.dataset.unit === unit));
-        document.getElementById('metricFields').style.display = unit === 'metric' ? 'block' : 'none';
-        document.getElementById('imperialFields').style.display = unit === 'imperial' ? 'block' : 'none';
-        calculateBodyFat();
+// ===== UNIT SWITCHING =====
+function setUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('.unit-btn').forEach(function(b) { 
+        b.classList.toggle('active', b.dataset.unit === unit); 
+    });
+    document.getElementById('metricFields').style.display = unit === 'metric' ? 'block' : 'none';
+    document.getElementById('imperialFields').style.display = unit === 'imperial' ? 'block' : 'none';
+    calculateBodyFat();
+}
+
+document.querySelectorAll('.unit-btn').forEach(function(b) {
+    b.addEventListener('click', function() { setUnit(this.dataset.unit); });
+});
+
+// ===== HIP INPUT TOGGLE =====
+function toggleHipInput() {
+    var g = document.getElementById('gender').value;
+    var show = g === 'female' ? 'block' : 'none';
+    document.getElementById('hipGroupMetric').style.display = show;
+    document.getElementById('hipGroupImperial').style.display = show;
+    calculateBodyFat();
+}
+
+// ===== BODY FAT CALCULATION =====
+function calculateBodyFat() {
+    var g = document.getElementById('gender').value;
+    var hCm, wKg, neckCm, waistCm, hipCm;
+
+    if(currentUnit === 'metric') {
+        hCm = parseFloat(document.getElementById('heightCm').value);
+        wKg = parseFloat(document.getElementById('weightKg').value);
+        neckCm = parseFloat(document.getElementById('neckCm').value);
+        waistCm = parseFloat(document.getElementById('waistCm').value);
+        hipCm = parseFloat(document.getElementById('hipCm').value);
+    } else {
+        hCm = parseFloat(document.getElementById('heightIn').value) * 2.54;
+        wKg = parseFloat(document.getElementById('weightLbs').value) * 0.453592;
+        neckCm = parseFloat(document.getElementById('neckIn').value) * 2.54;
+        waistCm = parseFloat(document.getElementById('waistIn').value) * 2.54;
+        hipCm = parseFloat(document.getElementById('hipIn').value) * 2.54;
     }
 
-    document.querySelectorAll('.unit-btn').forEach(b => b.addEventListener('click', function(){ setUnit(this.dataset.unit); }));
+    if(!hCm || !wKg || !neckCm || !waistCm) return;
 
-    function toggleHipInput() {
-        let g = document.getElementById('gender').value;
-        document.getElementById('hipGroupMetric').style.display = g === 'female' ? 'block' : 'none';
-        document.getElementById('hipGroupImperial').style.display = g === 'female' ? 'block' : 'none';
-        calculateBodyFat();
+    var fatPercent = 0;
+    if(g === 'male') {
+        fatPercent = 495 / (1.0324 - 0.19077 * Math.log10(waistCm - neckCm) + 0.15456 * Math.log10(hCm)) - 450;
+    } else {
+        if(!hipCm) return;
+        fatPercent = 495 / (1.29579 - 0.35004 * Math.log10(waistCm + hipCm - neckCm) + 0.22100 * Math.log10(hCm)) - 450;
     }
 
-    function calculateBodyFat() {
-        let g = document.getElementById('gender').value;
-        let hCm, wKg, neckCm, waistCm, hipCm;
+    fatPercent = Math.max(2, Math.min(60, parseFloat(fatPercent.toFixed(1))));
+    var fatMassKg = (wKg * (fatPercent / 100)).toFixed(1);
+    var leanMassKg = (wKg - fatMassKg).toFixed(1);
 
-        if(currentUnit === 'metric') {
-            hCm = parseFloat(document.getElementById('heightCm').value);
-            wKg = parseFloat(document.getElementById('weightKg').value);
-            neckCm = parseFloat(document.getElementById('neckCm').value);
-            waistCm = parseFloat(document.getElementById('waistCm').value);
-            hipCm = parseFloat(document.getElementById('hipCm').value);
-        } else {
-            hCm = parseFloat(document.getElementById('heightIn').value) * 2.54;
-            wKg = parseFloat(document.getElementById('weightLbs').value) * 0.453592;
-            neckCm = parseFloat(document.getElementById('neckIn').value) * 2.54;
-            waistCm = parseFloat(document.getElementById('waistIn').value) * 2.54;
-            hipCm = parseFloat(document.getElementById('hipIn').value) * 2.54;
-        }
-
-        if(!hCm || !wKg || !neckCm || !waistCm) return;
-
-        let fatPercent = 0;
-        if(g === 'male') {
-            fatPercent = 495 / (1.0324 - 0.19077 * Math.log10(waistCm - neckCm) + 0.15456 * Math.log10(hCm)) - 450;
-        } else {
-            if(!hipCm) return;
-            fatPercent = 495 / (1.29579 - 0.35004 * Math.log10(waistCm + hipCm - neckCm) + 0.22100 * Math.log10(hCm)) - 450;
-        }
-
-        fatPercent = Math.max(2, Math.min(60, parseFloat(fatPercent.toFixed(1))));
-        let fatMassKg = (wKg * (fatPercent / 100)).toFixed(1);
-        let leanMassKg = (wKg - fatMassKg).toFixed(1);
-
-        let category = '';
-        if(g === 'male') {
-            if(fatPercent < 6) category = 'Essential Fat';
-            else if(fatPercent < 14) category = 'Athletes';
-            else if(fatPercent < 18) category = 'Fitness';
-            else if(fatPercent < 25) category = 'Acceptable';
-            else category = 'Obese';
-        } else {
-            if(fatPercent < 14) category = 'Essential Fat';
-            else if(fatPercent < 21) category = 'Athletes';
-            else if(fatPercent < 25) category = 'Fitness';
-            else if(fatPercent < 32) category = 'Acceptable';
-            else category = 'Obese';
-        }
-
-        document.getElementById('fatPercentVal').innerText = fatPercent + '%';
-        document.getElementById('fatCategoryVal').innerText = category;
-
-        if(currentUnit === 'metric') {
-            document.getElementById('fatMassVal').innerText = fatMassKg + ' kg';
-            document.getElementById('leanMassVal').innerText = leanMassKg + ' kg';
-        } else {
-            document.getElementById('fatMassVal').innerText = (fatMassKg * 2.20462).toFixed(1) + ' lbs';
-            document.getElementById('leanMassVal').innerText = (leanMassKg * 2.20462).toFixed(1) + ' lbs';
-        }
+    var category = '';
+    if(g === 'male') {
+        if(fatPercent < 6) category = 'Essential Fat';
+        else if(fatPercent < 14) category = 'Athletes';
+        else if(fatPercent < 18) category = 'Fitness';
+        else if(fatPercent < 25) category = 'Acceptable';
+        else category = 'Obese';
+    } else {
+        if(fatPercent < 14) category = 'Essential Fat';
+        else if(fatPercent < 21) category = 'Athletes';
+        else if(fatPercent < 25) category = 'Fitness';
+        else if(fatPercent < 32) category = 'Acceptable';
+        else category = 'Obese';
     }
 
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    document.getElementById('fatPercentVal').innerText = fatPercent + '%';
+    document.getElementById('fatCategoryVal').innerText = category;
+
+    if(currentUnit === 'metric') {
+        document.getElementById('fatMassVal').innerText = fatMassKg + ' kg';
+        document.getElementById('leanMassVal').innerText = leanMassKg + ' kg';
+    } else {
+        document.getElementById('fatMassVal').innerText = (fatMassKg * 2.20462).toFixed(1) + ' lbs';
+        document.getElementById('leanMassVal').innerText = (leanMassKg * 2.20462).toFixed(1) + ' lbs';
     }
+}
 
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if(!message) return;
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var msgDiv = document.createElement('div');
+    msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    msgDiv.innerHTML = text;
+    md.appendChild(msgDiv);
+    md.scrollTop = md.scrollHeight;
+}
 
-        addChatMessage(message, 'user');
-        if(!prefilledText) input.value = '';
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI is thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
+}
 
-        let fat = document.getElementById('fatPercentVal').innerText;
-        let cat = document.getElementById('fatCategoryVal').innerText;
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
+}
 
-        let promptText = `You are a fitness AI on HealthCalc.in. User Context: Body Fat=${fat} (${cat}). User Question: ${message}. Provide structured, clear advice in fluent English. End with: "⚠️ Consult a trainer or doctor for personal fitness plans."`;
+function getBodyFatContext() {
+    var fat = document.getElementById('fatPercentVal').innerText;
+    var cat = document.getElementById('fatCategoryVal').innerText;
+    var gender = document.getElementById('gender').value;
+    
+    return '[BODY FAT PROFILE - Body Fat: ' + fat + ', Category: ' + cat + ', Gender: ' + gender + ']';
+}
 
-       try {
-            // ✅ DIRECT VERCEL URL (Cross-Origin Setup)
-            var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userMessage: promptContext }) // Agar Index page hai toh promptContext ki jagah 'message' hoga
-            });
-            
-            var data = await response.json(); 
-            removeTypingIndicator();
-            
-            // ✅ Naya Backend data.reply bhejta hai
-            if(data.reply) {
-                addChatMessage(data.reply, 'bot');
-            } else { 
-                throw new Error('Invalid response'); 
-            }
-        } catch(e) { 
-            removeTypingIndicator(); 
-            console.error('Fetch Error:', e); 
-            addChatMessage('❌ <strong>Connection Error</strong><br>Vercel backend se connect nahi ho pa raha hai. Kripya check karein ki `api/chat.js` Vercel par live hai.<br><br>⚠️ Consult your doctor.', 'bot'); 
-        } finally {
-            isAIProcessing = false;
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var context = getBodyFatContext();
+    
+    var fullPrompt = "You are a fitness and body composition AI assistant on HealthCalc.in. " +
+        "Provide structured, clear, and actionable fitness advice. " +
+        "Include tips for reducing body fat, building muscle, and body recomposition. " +
+        "Always end with: '⚠️ Consult a trainer or doctor for personal fitness plans.'\n\n" +
+        context + "\n\nUSER QUESTION: " + message;
+
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
+        });
+        
+        var data = await response.json();
+        removeTypingIndicator();
+        
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response from AI');
         }
-      
-    toggleHipInput();
+    } catch (e) {
+        removeTypingIndicator();
+        console.error('AI Error:', e);
+        addChatMessage('🧬 <strong>Body Composition Tips:</strong><br><br>• Aim for 1.6-2.2g protein per kg bodyweight<br>• Combine strength training with cardio<br>• Create a moderate calorie deficit for fat loss<br>• Get 7-9 hours sleep for recovery<br>• Stay consistent with your routine<br><br>⚠️ <em>Consult a trainer or doctor for personal fitness plans.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
+    }
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
+    }
+});
+
+// ===== EXPOSE GLOBALS =====
+window.setUnit = setUnit;
+window.toggleHipInput = toggleHipInput;
+window.calculateBodyFat = calculateBodyFat;
+window.sendAIMessage = sendAIMessage;
+
+// ===== INITIALIZE =====
+toggleHipInput();
+calculateBodyFat();
 </script>
-</body>
-</html>
+
+
+
