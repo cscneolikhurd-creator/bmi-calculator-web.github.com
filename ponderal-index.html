@@ -3,107 +3,872 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ponderal Index Calculator | Better than BMI | AI Coach | HealthCalc</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Advanced Ponderal Index & Body Composition Pro | PI, BMI, Corpulence | AI Coach | HealthCalc</title>
+<meta name="description" content="Free advanced Ponderal Index (PI) calculator with BMI comparison, Rohrer's Index, Corpulence Index, body fat estimation, and AI health coach. More accurate than BMI for tall/short individuals!">
+<meta name="keywords" content="ponderal index calculator, Rohrer index, corpulence index, BMI alternative, body composition, height-weight ratio, PI calculator">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --primary: #0891b2; --primary-light: #ccfbf1; --bg: #f0fdfa; --card: #ffffff; --text: #1e293b; --border: #99f6e4; }
-body.dark { --primary-light: #115e59; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --border: #334155; }
+:root {
+    --primary: #0891b2;
+    --primary-dark: #0e7490;
+    --primary-light: #ccfbf1;
+    --bg: #f0fdfa;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #99f6e4;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --gradient-1: linear-gradient(135deg, #0891b2, #0e7490);
+    --gradient-2: linear-gradient(135deg, #22d3ee, #0891b2);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+}
+body.dark {
+    --primary-light: #115e59;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.3);
+}
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg); color: var(--text); padding: 20px; transition: 0.3s; }
-.container { max-width: 900px; margin: 0 auto; }
-.card { background: var(--card); border-radius: 24px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 20px; }
-.hero { text-align: center; margin-bottom: 30px; }
-.hero h1 { color: var(--primary); font-size: 32px; font-weight: 800; }
+body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.header { text-align: center; margin-bottom: 30px; }
+.header h1 {
+    font-size: 42px; font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 10px;
+}
+.header p { color: var(--text-secondary); font-size: 18px; max-width: 700px; margin: 0 auto; }
+.badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px; }
+.badge {
+    padding: 8px 16px; border-radius: 25px; font-size: 13px; font-weight: 600;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 1000;
+    background: var(--card); border: 2px solid var(--border);
+    padding: 12px; border-radius: 50%; cursor: pointer; font-size: 20px;
+    box-shadow: var(--shadow-md); transition: all 0.3s;
+    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle:hover { transform: scale(1.1); box-shadow: var(--shadow-lg); }
+
+/* Cards */
+.card {
+    background: var(--card); border-radius: 24px; padding: 30px;
+    box-shadow: var(--shadow-md); border: 1px solid var(--border);
+    margin-bottom: 20px; transition: all 0.3s ease;
+}
+.card:hover { box-shadow: var(--shadow-lg); }
+.card-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px; color: var(--primary);
+}
+
+/* Grid */
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-.input-group { margin-bottom: 15px; }
-label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px; }
-input { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background: var(--card); color: var(--text); outline: none; }
-.btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 10px; }
-.result { text-align: center; padding: 20px; background: var(--primary-light); border-radius: 16px; margin-top: 20px; }
-.pi-highlight { font-size: 42px; font-weight: 900; color: var(--primary); }
-.ai-panel { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
-.ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 600; }
-.ai-msgs { height: 200px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.msg-bot { background: var(--border); padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-start; color: var(--text); }
-.msg-user { background: var(--primary); color: white; padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-end; }
-.ai-input { display: flex; border-top: 1px solid var(--border); }
-.ai-input input { border: none; padding: 12px; flex: 1; background: var(--card); color: var(--text); outline: none;}
-.ai-input button { background: var(--primary); color: white; border: none; padding: 0 20px; cursor: pointer; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media(max-width: 1024px) { .grid, .grid-3 { grid-template-columns: 1fr; } }
+
+/* Input Styles */
+.input-group { margin-bottom: 20px; }
+.input-group label {
+    font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;
+    color: var(--text); display: flex; align-items: center; gap: 6px;
+}
+.input-group label i { color: var(--primary); width: 20px; }
+input, select {
+    width: 100%; padding: 14px 16px; border: 2px solid var(--border);
+    border-radius: 14px; background: var(--bg); color: var(--text);
+    font-size: 16px; outline: none; transition: all 0.3s ease; font-weight: 500;
+}
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(8,145,178,0.1);
+}
+.input-hint { font-size: 12px; color: var(--text-secondary); margin-top: 5px; }
+
+/* Unit Toggle */
+.unit-toggle { display: flex; gap: 10px; margin-bottom: 15px; }
+.unit-btn {
+    flex: 1; padding: 10px; border: 2px solid var(--border); border-radius: 10px;
+    background: transparent; color: var(--text); cursor: pointer;
+    font-weight: 600; transition: all 0.3s; text-align: center;
+}
+.unit-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* Buttons */
+.btn {
+    background: var(--gradient-1); color: white; border: none;
+    padding: 16px 24px; width: 100%; border-radius: 14px;
+    font-weight: 700; font-size: 16px; cursor: pointer;
+    transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(8,145,178,0.3); }
+.btn:active { transform: translateY(0); }
+.btn-outline {
+    background: transparent; border: 2px solid var(--primary); color: var(--primary);
+    padding: 12px; width: 100%; border-radius: 14px; font-weight: 700;
+    cursor: pointer; margin-top: 10px; transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--primary); color: white; }
+
+/* Tabs */
+.tabs {
+    display: flex; gap: 5px; margin-bottom: 20px;
+    background: var(--bg); padding: 5px; border-radius: 14px; flex-wrap: wrap;
+}
+.tab {
+    flex: 1; min-width: 90px; padding: 12px 18px; border: none;
+    background: transparent; border-radius: 10px; cursor: pointer;
+    font-weight: 600; font-size: 14px; color: var(--text-secondary);
+    transition: all 0.3s; text-align: center;
+}
+.tab.active { background: var(--gradient-1); color: white; box-shadow: var(--shadow-sm); }
+
+/* Result Box */
+.result-box {
+    background: linear-gradient(135deg, var(--primary-light), var(--card));
+    border-radius: 20px; padding: 30px; text-align: center;
+    border: 2px solid var(--primary); position: relative; overflow: hidden;
+}
+.result-box::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(8,145,178,0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.result-label {
+    font-size: 16px; color: var(--text-secondary); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 1;
+}
+.pi-value {
+    font-size: 64px; font-weight: 900; color: var(--primary);
+    position: relative; z-index: 1; line-height: 1; margin: 15px 0;
+}
+.pi-unit { font-size: 20px; font-weight: 600; }
+.category-badge {
+    display: inline-block; padding: 10px 24px; border-radius: 25px;
+    font-weight: 700; font-size: 16px; margin-top: 10px; position: relative; z-index: 1;
+}
+
+/* Comparison Cards */
+.comparison-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px;
+}
+.comparison-card {
+    padding: 18px; border-radius: 14px; background: var(--bg);
+    border: 2px solid var(--border); text-align: center; transition: all 0.3s;
+}
+.comparison-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.comparison-card.highlight { border-color: var(--primary); background: var(--primary-light); }
+.comparison-value { font-size: 22px; font-weight: 800; color: var(--primary); }
+.comparison-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+.comparison-unit { font-size: 11px; color: var(--text-secondary); }
+
+/* Scale Visual */
+.scale-visual {
+    display: flex; align-items: center; justify-content: center;
+    gap: 5px; margin: 20px 0; position: relative; z-index: 1;
+}
+.scale-marker {
+    flex: 1; text-align: center; padding: 10px 5px; border-radius: 10px;
+    font-size: 12px; font-weight: 600; transition: all 0.3s;
+}
+.scale-marker.active {
+    background: var(--primary); color: white; transform: scale(1.15);
+    box-shadow: 0 4px 15px rgba(8,145,178,0.3);
+}
+
+/* Height Chart */
+.height-chart-container { margin: 20px 0; }
+.height-bar {
+    height: 8px; background: var(--border); border-radius: 10px;
+    overflow: hidden; position: relative;
+}
+.height-fill {
+    height: 100%; background: var(--gradient-1); border-radius: 10px;
+    transition: width 1.5s ease;
+}
+
+/* Chart Container */
+.chart-wrapper { position: relative; height: 300px; margin: 20px 0; }
+
+/* Info Cards */
+.info-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px; margin-top: 15px;
+}
+.info-card {
+    padding: 18px; border-radius: 14px; background: var(--bg);
+    border: 1px solid var(--border); text-align: center;
+}
+.info-card i { font-size: 28px; color: var(--primary); margin-bottom: 8px; }
+.info-card h4 { font-size: 14px; margin-bottom: 5px; }
+.info-card p { font-size: 12px; color: var(--text-secondary); }
+
+/* AI Chat */
+.ai-panel {
+    border: 2px solid var(--border); border-radius: 20px;
+    overflow: hidden; background: var(--card); margin-top: 20px;
+}
+.ai-header {
+    background: var(--gradient-1); color: white; padding: 16px 20px;
+    font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 10px;
+}
+.ai-header i { font-size: 24px; }
+.ai-messages {
+    height: 300px; overflow-y: auto; padding: 20px;
+    display: flex; flex-direction: column; gap: 12px; background: var(--bg);
+}
+.ai-messages::-webkit-scrollbar { width: 6px; }
+.ai-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+.msg-bot, .msg-user {
+    padding: 12px 16px; border-radius: 16px; max-width: 85%;
+    font-size: 14px; line-height: 1.5; animation: slideIn 0.3s ease;
+}
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.msg-bot {
+    background: var(--card); border: 1px solid var(--border);
+    align-self: flex-start; border-bottom-left-radius: 4px;
+}
+.msg-user {
+    background: var(--gradient-1); color: white;
+    align-self: flex-end; border-bottom-right-radius: 4px;
+}
+.ai-input-container {
+    display: flex; padding: 15px; border-top: 1px solid var(--border);
+    background: var(--card); gap: 10px;
+}
+.ai-input-container input {
+    flex: 1; border: 2px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; background: var(--bg);
+}
+.ai-input-container button {
+    background: var(--gradient-1); color: white; border: none;
+    padding: 12px 24px; border-radius: 12px; cursor: pointer;
+    font-weight: 600; transition: all 0.3s;
+}
+.ai-input-container button:hover { transform: scale(1.05); }
+
+/* History */
+.history-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px; border-bottom: 1px solid var(--border); transition: all 0.3s;
+}
+.history-item:hover { background: var(--bg); border-radius: 8px; }
+
+@media(max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .pi-value { font-size: 44px; }
+    .comparison-grid { grid-template-columns: 1fr 1fr; }
+    .tabs { flex-direction: column; }
+}
 </style>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+</button>
+
 <div class="container">
-  <button onclick="document.body.classList.toggle('dark')" style="position:absolute;top:20px;right:20px;padding:10px;border-radius:50%;border:none;">☀️/🌙</button>
-  <div class="hero"><h1>Ponderal Index</h1><p>An alternative to BMI that better evaluates tall or short individuals.</p></div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="input-group"><label>Weight (kg)</label><input type="number" id="weight" value="70"></div>
-      <div class="input-group"><label>Height (cm)</label><input type="number" id="height" value="175"></div>
-      <button class="btn" onclick="calcPI()">Calculate Ponderal Index</button>
-    </div>
-
-    <div class="card">
-      <div class="result" id="resBox" style="display:none;">
-        <div>Your Ponderal Index (PI)</div>
-        <div class="pi-highlight" id="piResult">—</div>
-        <div style="margin-top:10px; font-weight:600;" id="piCategory"></div>
-      </div>
-
-      <div class="ai-panel">
-        <div class="ai-header"><i class="fas fa-robot"></i> Body Composition AI</div>
-        <div class="ai-msgs" id="chatMsgs"><div class="msg-bot">I can explain why PI is better than BMI for your height. Ask me anything!</div></div>
-        <div class="ai-input">
-          <input type="text" id="chatInput" placeholder="Ask about body composition..." onkeypress="if(event.key==='Enter')sendAI()">
-          <button onclick="sendAI()">➤</button>
+    <!-- Header -->
+    <div class="header">
+        <h1>📐 Ponderal Index Pro</h1>
+        <p>Advanced body composition analysis with Ponderal Index, Rohrer's Index, Corpulence Index, BMI comparison, and AI health coaching</p>
+        <div class="badges">
+            <span class="badge"><i class="fas fa-calculator"></i> Ponderal Index (PI)</span>
+            <span class="badge"><i class="fas fa-ruler"></i> Rohrer's Index</span>
+            <span class="badge"><i class="fas fa-chart-bar"></i> Corpulence Index</span>
+            <span class="badge"><i class="fas fa-balance-scale"></i> BMI Comparison</span>
+            <span class="badge"><i class="fas fa-robot"></i> AI Coach</span>
         </div>
-      </div>
     </div>
-  </div>
+
+    <div class="grid">
+        <!-- Input Section -->
+        <div>
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-sliders-h"></i> Your Body Measurements
+                </div>
+
+                <!-- Unit Toggle -->
+                <div class="unit-toggle">
+                    <button class="unit-btn active" onclick="switchUnit('metric')">📏 Metric (kg/cm)</button>
+                    <button class="unit-btn" onclick="switchUnit('imperial')">📐 Imperial (lbs/in)</button>
+                </div>
+
+                <div id="metric-inputs">
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Weight (kg)</label>
+                        <input type="number" id="weight" value="70" step="0.1" min="30" max="300">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
+                        <input type="number" id="height" value="175" step="0.1" min="100" max="250">
+                    </div>
+                </div>
+
+                <div id="imperial-inputs" style="display:none;">
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Weight (lbs)</label>
+                        <input type="number" id="weightLbs" value="154" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-ruler-vertical"></i> Height</label>
+                        <div style="display:flex;gap:10px;">
+                            <input type="number" id="heightFt" value="5" placeholder="ft" style="flex:1;">
+                            <input type="number" id="heightIn" value="9" placeholder="in" style="flex:1;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-venus-mars"></i> Gender</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-calendar-alt"></i> Age</label>
+                    <input type="number" id="age" value="30" min="2" max="120">
+                    <div class="input-hint">For pediatric PI reference ranges (optional)</div>
+                </div>
+
+                <button class="btn" onclick="calculatePI()">
+                    <i class="fas fa-calculator"></i> Calculate All Indices
+                </button>
+                <button class="btn-outline" onclick="resetForm()">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- What is PI? -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-info-circle"></i> Why Ponderal Index?
+                </div>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-ruler-combined"></i>
+                        <h4>Height-Neutral</h4>
+                        <p>Uses height³ making it fairer for tall & short people</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-baby"></i>
+                        <h4>Pediatric Use</h4>
+                        <p>Standard for assessing newborns & children</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-flask"></i>
+                        <h4>Scientific</h4>
+                        <p>Rohrer's 1908 formula still used in research</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Better Scaling</h4>
+                        <p>Cubic scaling matches body volume better than BMI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div>
+            <div class="card" id="resultsCard" style="display:none;">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('overview')">📊 Overview</button>
+                    <button class="tab" onclick="switchTab('comparison')">📋 Compare</button>
+                    <button class="tab" onclick="switchTab('chart')">📈 Chart</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview-tab" class="tab-content">
+                    <div class="result-box">
+                        <div class="result-label">Ponderal Index (PI)</div>
+                        <div class="pi-value">
+                            <span id="piResult">—</span><span class="pi-unit"> kg/m³</span>
+                        </div>
+                        <div id="piCategoryBadge"></div>
+
+                        <!-- Scale Visual -->
+                        <div class="scale-visual" style="margin-top:20px;">
+                            <div class="scale-marker" style="background:#dbeafe;color:#1e40af;">Under<br><10</div>
+                            <div class="scale-marker" style="background:#d1fae5;color:#065f46;">Normal<br>10-14</div>
+                            <div class="scale-marker" style="background:#fef3c7;color:#92400e;">Over<br>14-17</div>
+                            <div class="scale-marker" style="background:#fee2e2;color:#991b1b;">Obese<br>>17</div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-grid">
+                        <div class="comparison-card">
+                            <div class="comparison-value" id="bmiValue">—</div>
+                            <div class="comparison-label">BMI</div>
+                            <div class="comparison-unit">kg/m²</div>
+                        </div>
+                        <div class="comparison-card">
+                            <div class="comparison-value" id="rohrerValue">—</div>
+                            <div class="comparison-label">Rohrer's Index</div>
+                            <div class="comparison-unit">g/cm³ × 100</div>
+                        </div>
+                        <div class="comparison-card">
+                            <div class="comparison-value" id="corpulenceValue">—</div>
+                            <div class="comparison-label">Corpulence Index</div>
+                            <div class="comparison-unit">kg/m³</div>
+                        </div>
+                        <div class="comparison-card">
+                            <div class="comparison-value" id="bodySurfaceValue">—</div>
+                            <div class="comparison-label">Body Surface Area</div>
+                            <div class="comparison-unit">m²</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Tab -->
+                <div id="comparison-tab" class="tab-content" style="display:none;">
+                    <h3 style="margin-bottom:15px;">BMI vs Ponderal Index Comparison</h3>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                            <thead>
+                                <tr style="background:var(--gradient-1);color:white;">
+                                    <th style="padding:10px;text-align:left;">Metric</th>
+                                    <th style="padding:10px;">BMI</th>
+                                    <th style="padding:10px;">Ponderal Index</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid var(--border);">
+                                    <td style="padding:10px;"><strong>Formula</strong></td>
+                                    <td style="padding:10px;text-align:center;">Weight / Height²</td>
+                                    <td style="padding:10px;text-align:center;">Weight / Height³</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border);">
+                                    <td style="padding:10px;"><strong>Unit</strong></td>
+                                    <td style="padding:10px;text-align:center;">kg/m²</td>
+                                    <td style="padding:10px;text-align:center;">kg/m³</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border);">
+                                    <td style="padding:10px;"><strong>Best For</strong></td>
+                                    <td style="padding:10px;text-align:center;">General population</td>
+                                    <td style="padding:10px;text-align:center;">Tall/short individuals, children</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border);">
+                                    <td style="padding:10px;"><strong>Scaling</strong></td>
+                                    <td style="padding:10px;text-align:center;">Square (area-based)</td>
+                                    <td style="padding:10px;text-align:center;">Cubic (volume-based)</td>
+                                </tr>
+                                <tr style="border-bottom:1px solid var(--border);">
+                                    <td style="padding:10px;"><strong>Tall People</strong></td>
+                                    <td style="padding:10px;text-align:center;color:var(--danger);">Overestimates obesity</td>
+                                    <td style="padding:10px;text-align:center;color:var(--success);">More accurate</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px;"><strong>Short People</strong></td>
+                                    <td style="padding:10px;text-align:center;color:var(--danger);">Underestimates obesity</td>
+                                    <td style="padding:10px;text-align:center;color:var(--success);">More accurate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Chart Tab -->
+                <div id="chart-tab" class="tab-content" style="display:none;">
+                    <div class="chart-wrapper">
+                        <canvas id="bodyCompChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Chat -->
+            <div class="ai-panel">
+                <div class="ai-header">
+                    <i class="fas fa-robot"></i>
+                    <span>Body Composition AI Coach</span>
+                    <span style="font-size:12px;opacity:0.8;">🟢 Online</span>
+                </div>
+                <div class="ai-messages" id="chatMessages">
+                    <div class="msg-bot">
+                        <strong>👋 Welcome to Body Composition AI!</strong><br><br>
+                        I can explain:<br>
+                        • 📐 Why PI is better than BMI for you<br>
+                        • 👶 Pediatric PI standards<br>
+                        • 📊 Your body composition results<br>
+                        • 💪 Healthy weight strategies<br>
+                        • 🔬 The science behind PI<br><br>
+                        Calculate your PI first, then ask me anything!
+                    </div>
+                </div>
+                <div class="ai-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about PI, BMI, or body composition..." onkeypress="if(event.key==='Enter')sendAI()">
+                    <button onclick="sendAI()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card" style="margin-top:20px;">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Calculation History
+                    <button onclick="clearHistory()" style="margin-left:auto;background:none;border:1px solid var(--danger);color:var(--danger);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;">Clear</button>
+                </div>
+                <div id="historyList">
+                    <p style="color:var(--text-secondary);text-align:center;">No calculations yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-  function calcPI() {
-    let w = parseFloat(document.getElementById('weight').value);
-    let hCm = parseFloat(document.getElementById('height').value);
-    if(!w || !hCm) return;
+// Global variables
+let currentUnit = 'metric';
+let bodyCompData = null;
+let bodyCompChart = null;
+let calcHistory = JSON.parse(localStorage.getItem('piHistory') || '[]');
 
-    let hM = hCm / 100;
-    let pi = w / Math.pow(hM, 3); // Formula: kg / m^3
+// Theme toggle
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.getElementById('themeIcon');
+    icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
 
-    document.getElementById('resBox').style.display = 'block';
-    document.getElementById('piResult').innerText = pi.toFixed(2);
+// Format date
+function formatDate(date) { return new Date(date).toLocaleDateString('en-US', {month:'short', day:'numeric'}); }
+
+// Unit switch
+function switchUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('metric-inputs').style.display = unit === 'metric' ? 'block' : 'none';
+    document.getElementById('imperial-inputs').style.display = unit === 'imperial' ? 'block' : 'none';
+}
+
+// Tab switch
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabName + '-tab').style.display = 'block';
+    event.target.classList.add('active');
+    if (tabName === 'chart' && bodyCompData) drawBodyCompChart();
+}
+
+// Main calculation
+function calculatePI() {
+    let weight, height, gender, age;
     
-    let cat = '';
-    if (pi < 11) cat = '<span style="color:#3b82f6;">Underweight</span>';
-    else if (pi >= 11 && pi <= 14) cat = '<span style="color:#10b981;">Normal / Healthy</span>';
-    else cat = '<span style="color:#ef4444;">Overweight / Obese</span>';
-    
-    document.getElementById('piCategory').innerHTML = cat;
-  }
-
-  async function sendAI() {
-    let input = document.getElementById('chatInput'), msg = input.value.trim();
-    if(!msg) return;
-
-    let md = document.getElementById('chatMsgs');
-    md.innerHTML += `<div class="msg-user">${msg}</div>`;
-    input.value = ''; md.scrollTop = md.scrollHeight;
-
-    let pi = document.getElementById('piResult').innerText;
-    let prompt = `[USER GOAL: Body Composition. Ponderal Index: ${pi}]\nAct as a Health AI. Answer: ${msg}`;
-
-    try {
-      var res = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ userMessage: prompt }) });
-      var data = await res.json();
-      md.innerHTML += `<div class="msg-bot">${data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-      md.scrollTop = md.scrollHeight;
-    } catch(e) {
-      md.innerHTML += `<div class="msg-bot">❌ Connection error to Vercel API.</div>`;
+    if (currentUnit === 'metric') {
+        weight = parseFloat(document.getElementById('weight').value);
+        height = parseFloat(document.getElementById('height').value);
+        gender = document.getElementById('gender').value;
+        age = parseInt(document.getElementById('age').value) || 30;
+    } else {
+        weight = parseFloat(document.getElementById('weightLbs').value) * 0.453592;
+        const ft = parseFloat(document.getElementById('heightFt').value) || 0;
+        const inch = parseFloat(document.getElementById('heightIn').value) || 0;
+        height = ((ft * 12) + inch) * 2.54;
+        gender = document.getElementById('gender').value;
+        age = parseInt(document.getElementById('age').value) || 30;
     }
-  }
+
+    if (!weight || !height || weight <= 0 || height <= 0) {
+        alert('Please enter valid weight and height');
+        return;
+    }
+
+    const heightM = height / 100;
+    const heightCm = height;
+
+    // Ponderal Index (PI) = weight(kg) / height(m)³
+    const pi = weight / Math.pow(heightM, 3);
+
+    // BMI = weight(kg) / height(m)²
+    const bmi = weight / Math.pow(heightM, 2);
+
+    // Rohrer's Index = (weight(g) / height(cm)³) × 100
+    const rohrerIndex = (weight * 1000 / Math.pow(heightCm, 3)) * 100;
+
+    // Corpulence Index = weight(kg) / height(m)³ (same as PI, sometimes used interchangeably)
+    const corpulenceIndex = pi;
+
+    // Body Surface Area (Mosteller formula)
+    const bsa = Math.sqrt((heightCm * weight) / 3600);
+
+    // PI Category
+    let category, catColor, catBg;
+    if (pi < 10) {
+        category = 'Underweight';
+        catColor = '#1e40af';
+        catBg = '#dbeafe';
+    } else if (pi <= 14) {
+        category = 'Normal / Healthy';
+        catColor = '#065f46';
+        catBg = '#d1fae5';
+    } else if (pi <= 17) {
+        category = 'Overweight';
+        catColor = '#92400e';
+        catBg = '#fef3c7';
+    } else {
+        category = 'Obese';
+        catColor = '#991b1b';
+        catBg = '#fee2e2';
+    }
+
+    // BMI Category
+    let bmiCategory;
+    if (bmi < 18.5) bmiCategory = 'Underweight';
+    else if (bmi < 25) bmiCategory = 'Normal';
+    else if (bmi < 30) bmiCategory = 'Overweight';
+    else bmiCategory = 'Obese';
+
+    bodyCompData = {
+        pi, bmi, rohrerIndex, corpulenceIndex, bsa,
+        category, catColor, catBg, bmiCategory,
+        weight, height: heightCm, gender, age,
+        date: new Date().toISOString()
+    };
+
+    displayResults(bodyCompData);
+    saveToHistory(bodyCompData);
+    
+    document.getElementById('resultsCard').style.display = 'block';
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Display results
+function displayResults(data) {
+    // PI Result
+    document.getElementById('piResult').textContent = data.pi.toFixed(2);
+    document.getElementById('piCategoryBadge').innerHTML = 
+        `<span class="category-badge" style="background:${data.catBg};color:${data.catColor};">${data.category}</span>`;
+
+    // Comparison values
+    document.getElementById('bmiValue').textContent = data.bmi.toFixed(1);
+    document.getElementById('rohrerValue').textContent = data.rohrerIndex.toFixed(1);
+    document.getElementById('corpulenceValue').textContent = data.corpulenceIndex.toFixed(2);
+    document.getElementById('bodySurfaceValue').textContent = data.bsa.toFixed(2);
+
+    // Highlight scale marker
+    document.querySelectorAll('.scale-marker').forEach(m => m.classList.remove('active'));
+    const markers = document.querySelectorAll('.scale-marker');
+    if (data.pi < 10) markers[0].classList.add('active');
+    else if (data.pi <= 14) markers[1].classList.add('active');
+    else if (data.pi <= 17) markers[2].classList.add('active');
+    else markers[3].classList.add('active');
+}
+
+// Draw body composition chart
+function drawBodyCompChart() {
+    if (!bodyCompData) return;
+    
+    const ctx = document.getElementById('bodyCompChart').getContext('2d');
+    if (bodyCompChart) bodyCompChart.destroy();
+    
+    // Comparison data normalized
+    const data = bodyCompData;
+    
+    bodyCompChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Ponderal Index', 'BMI', "Rohrer's Index", 'Body Surface Area'],
+            datasets: [{
+                label: 'Your Values',
+                data: [data.pi, data.bmi, data.rohrerIndex / 10, data.bsa * 10],
+                backgroundColor: [
+                    'rgba(8, 145, 178, 0.8)',
+                    'rgba(59, 130, 246, 0.6)',
+                    'rgba(245, 158, 11, 0.6)',
+                    'rgba(16, 185, 129, 0.6)'
+                ],
+                borderColor: [
+                    '#0891b2',
+                    '#3b82f6',
+                    '#f59e0b',
+                    '#10b981'
+                ],
+                borderWidth: 2,
+                borderRadius: 8
+            }, {
+                label: 'Normal Range (Upper)',
+                data: [14, 25, 16, 22],
+                type: 'line',
+                borderColor: '#ef4444',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                pointRadius: 0,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b',
+                        usePointStyle: true
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Body Composition Metrics Comparison (Scaled)',
+                    color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    },
+                    grid: {
+                        color: document.body.classList.contains('dark') ? '#334155' : '#e2e8f0'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Save to history
+function saveToHistory(data) {
+    calcHistory.unshift({
+        id: Date.now(),
+        pi: data.pi,
+        bmi: data.bmi,
+        category: data.category,
+        weight: data.weight,
+        height: data.height,
+        date: data.date
+    });
+    if (calcHistory.length > 20) calcHistory = calcHistory.slice(0, 20);
+    localStorage.setItem('piHistory', JSON.stringify(calcHistory));
+    displayHistory();
+}
+
+// Display history
+function displayHistory() {
+    const list = document.getElementById('historyList');
+    if (calcHistory.length === 0) {
+        list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;">No calculations yet.</p>';
+        return;
+    }
+    list.innerHTML = calcHistory.map(entry => `
+        <div class="history-item">
+            <div>
+                <strong>PI: ${entry.pi.toFixed(2)} kg/m³</strong> • ${entry.category}
+                <div style="font-size:11px;color:var(--text-secondary);">
+                    BMI: ${entry.bmi.toFixed(1)} • ${entry.weight}kg • ${entry.height}cm • ${formatDate(entry.date)}
+                </div>
+            </div>
+            <button onclick="loadHistory(${entry.id})" style="background:var(--primary);color:white;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;">Load</button>
+        </div>
+    `).join('');
+}
+
+// Load history
+function loadHistory(id) {
+    const entry = calcHistory.find(e => e.id === id);
+    if (entry) {
+        document.getElementById('weight').value = entry.weight;
+        document.getElementById('height').value = entry.height;
+        calculatePI();
+    }
+}
+
+// Clear history
+function clearHistory() {
+    if (confirm('Clear all history?')) {
+        calcHistory = [];
+        localStorage.removeItem('piHistory');
+        displayHistory();
+    }
+}
+
+// Reset form
+function resetForm() {
+    document.getElementById('weight').value = '70';
+    document.getElementById('height').value = '175';
+    document.getElementById('weightLbs').value = '154';
+    document.getElementById('heightFt').value = '5';
+    document.getElementById('heightIn').value = '9';
+    document.getElementById('gender').value = 'male';
+    document.getElementById('age').value = '30';
+    document.getElementById('resultsCard').style.display = 'none';
+    bodyCompData = null;
+}
+
+// AI Chat
+async function sendAI() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    
+    const md = document.getElementById('chatMessages');
+    md.innerHTML += `<div class="msg-user">${message}</div>`;
+    input.value = '';
+    md.scrollTop = md.scrollHeight;
+    
+    let context = '[CONTEXT: Body Composition & Ponderal Index Expert AI. ';
+    if (bodyCompData) {
+        context += `User: PI=${bodyCompData.pi.toFixed(2)} (${bodyCompData.category}), `;
+        context += `BMI=${bodyCompData.bmi.toFixed(1)} (${bodyCompData.bmiCategory}), `;
+        context += `Height=${bodyCompData.height}cm, Weight=${bodyCompData.weight}kg. `;
+    }
+    context += `]\nUser: ${message}`;
+    
+    try {
+        const res = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: context })
+        });
+        const data = await res.json();
+        const reply = data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        md.innerHTML += `<div class="msg-bot">${reply}</div>`;
+        md.scrollTop = md.scrollHeight;
+    } catch(e) {
+        md.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again.</div>`;
+        md.scrollTop = md.scrollHeight;
+    }
+}
+
+// Initialize
+displayHistory();
 </script>
 </body>
 </html>
