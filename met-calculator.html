@@ -3,601 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8f8HwZ91Cx7zzyQo" />
-
-    <title>Advanced MET Activity Calculator | 500+ Exercises | AI Chat | US/UK/CA/AU | HealthCalc</title>
-    <meta name="description" content="Professional MET calculator for 500+ activities with AI chat. EPOC afterburn effect, food equivalents, activity comparison. CDC, NHS, Health Canada guidelines. Free & private.">
-    <meta name="keywords" content="MET calculator, calories burned, exercise calories, EPOC effect, AI fitness chat, USA, UK, Canada, Australia">
-    <meta name="author" content="HealthCalc">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="revisit-after" content="7 days">
+    <title>Advanced MET Activity Calculator | 500+ Exercises | AI Chat | HealthCalc</title>
+    <meta name="description" content="Professional MET calculator for 500+ activities with AI chat. EPOC afterburn effect, food equivalents. Free & private.">
+    <meta name="keywords" content="MET calculator, calories burned, exercise calories, EPOC effect, AI fitness chat">
     <link rel="canonical" href="https://healthcalc.in/met-calculator.html">
 
-    <link rel="alternate" hreflang="en-us" href="https://healthcalc.in/met-calculator.html">
-    <link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/met-calculator.html">
-    <link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/met-calculator.html">
-    <link rel="alternate" hreflang="en-au" href="https://healthcalc.in/met-calculator.html">
-    <link rel="alternate" hreflang="x-default" href="https://healthcalc.in/met-calculator.html">
-
-    <meta property="og:title" content="Advanced MET Activity Calculator | AI Chat | 500+ Exercises">
-    <meta property="og:description" content="Calculate calories burned for any activity. AI chat for workout tips.">
-    <meta property="og:image" content="https://healthcalc.in/images/met-calculator-og.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://healthcalc.in/met-calculator.html">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="HealthCalc">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Advanced MET Activity Calculator | AI Chat">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MedicalWebPage",
-        "name": "Advanced MET Activity Calculator with AI Fitness Assistant",
-        "description": "Calculate calories burned for 500+ activities with MET values and EPOC afterburn effect. AI chat for personalized workout tips.",
-        "url": "https://healthcalc.in/met-calculator.html",
-        "author": {"@type": "Organization", "name": "HealthCalc"},
-        "dateModified": "2026-07-09"
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {"@type": "Question", "name": "What is a MET value?", "acceptedAnswer": {"@type": "Answer", "text": "MET (Metabolic Equivalent of Task) measures energy cost of activities. 1 MET = resting metabolism. Walking at 5 km/h is ~4.3 METs."}},
-            {"@type": "Question", "name": "What is EPOC (afterburn effect)?", "acceptedAnswer": {"@type": "Answer", "text": "Excess Post-exercise Oxygen Consumption (EPOC) is the extra calories your body burns after exercise for 12-24 hours."}}
-        ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://healthcalc.in"},
-            {"@type": "ListItem", "position": 2, "name": "Fitness Tools", "item": "https://healthcalc.in/#tools"},
-            {"@type": "ListItem", "position": 3, "name": "MET Activity Calculator", "item": "https://healthcalc.in/met-calculator.html"}
-        ]
-    }
-    </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --primary: #10b981; --primary-dark: #059669; --primary-light: #d1fae5;
-            --secondary: #3b82f6; --accent: #f59e0b; --success: #10b981;
-            --dark: #1f2937; --gray-50: #f9fafb; --gray-100: #f3f4f6; --gray-200: #e5e7eb;
-            --gray-600: #6b7280; --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.08); --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
-            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#10b981;--primary-dark:#059669;--primary-light:#d1fae5;--dark:#1f2937;--gray-50:#f9fafb;--gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-600:#6b7280;--shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.08);--shadow-lg:0 10px 30px rgba(0,0,0,0.12);--radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px}
+        body.dark{background:#0f172a;color:#e2e8f0}
+        body.dark .card{background:#1e293b;border-color:#334155}
+        body.dark input,body.dark select{background:#0f172a;border-color:#475569;color:#e2e8f0}
+        body.dark .input-card{background:#0f172a}
+        body.dark .results-card{background:#1e293b;border-color:#334155}
+        body.dark .calorie-circle{background:#0f172a}
+        body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
+        body.dark .ai-chat-messages{background:#0f172a}
+        body.dark .ai-message-bot{background:#1e293b;color:#e2e8f0}
+        body.dark .ai-chat-input{background:#0f172a;border-color:#475569;color:#e2e8f0}
+        body.dark .ai-suggestion-chip{background:#334155;color:#cbd5e1}
+        body.dark .ai-suggestion-chip:hover{background:var(--primary);color:white}
 
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #10b981 0%, #34d399 100%); min-height: 100vh; padding: 20px; transition: background 0.3s; }
-        body.dark { background: linear-gradient(135deg, #0f172a, #1e293b); }
-        body.dark .container { background: #1e293b; }
-        body.dark .input-card { background: #0f172a; }
-        body.dark .results-card { background: #1e293b; border-color: #334155; }
-        body.dark input, body.dark select { background: #0f172a; border-color: #334155; color: #e2e8f0; }
-        body.dark .activity-item { background: #1e293b; border-bottom-color: #334155; color: #e2e8f0; }
-        body.dark .calorie-circle, body.dark .comparison-item, body.dark .epoc-box, body.dark .equivalent-activities, body.dark .burn-rate-chart { background: #0f172a; }
-        body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
-        body.dark .ai-chat-messages { background: #0f172a; }
-        body.dark .ai-message-bot { background: #1e293b; color: #e2e8f0; }
-        body.dark .ai-chat-input { background: #0f172a; border-color: #475569; color: #e2e8f0; }
-        body.dark .ai-chat-suggestions { background: #1e293b; border-color: #334155; }
-        body.dark .ai-suggestion-chip { background: #334155; color: #cbd5e1; border-color: #475569; }
-        body.dark .ai-suggestion-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        body.dark footer { color: #94a3b8; border-top-color: #334155; }
-        body.dark .health-authority-note { background: #1e293b; color: #94a3b8; }
-        body.dark .badge { background: #334155; color: #e2e8f0; }
-        body.dark .comparison-chart .compare-bar { background: #334155; }
-        body.dark .cross-links { background: #0f172a; border-bottom-color: #334155; }
-        body.dark .cross-links a { background: #334155; color: #34d399; }
-        body.dark .breadcrumb { background: #0f172a; border-bottom-color: #334155; }
-        body.dark .breadcrumb a { color: #34d399; }
-        body.dark .equiv-item { border-bottom-color: #334155; }
-        body.dark .future-plan-section { background: #1e293b; border-color: #475569; }
-        body.dark .future-feature { background: #0f172a; }
+        body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#10b981,#34d399);min-height:100vh;padding:20px;color:var(--dark);transition:all 0.3s}
+        .container{max-width:900px;margin:0 auto}
+        .health-note{background:rgba(255,255,255,0.15);padding:6px 16px;border-radius:40px;font-size:0.8rem;display:inline-block;margin-bottom:15px;color:white}
 
-        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 32px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.25); transition: background 0.3s; }
+        .card{background:white;border-radius:var(--radius-xl);padding:24px;box-shadow:var(--shadow-lg);margin-bottom:20px;transition:background 0.3s}
+        h1{font-size:24px;font-weight:800;color:var(--primary-dark);margin-bottom:6px}
+        .subtitle{color:var(--gray-600);font-size:13px;margin-bottom:16px}
 
-        .international-bar { display: flex; justify-content: flex-end; align-items: center; gap: 15px; flex-wrap: wrap; padding: 12px 30px; background: #f9fafb; border-bottom: 1px solid #e5e7eb; }
-        body.dark .international-bar { background: #0f172a; border-bottom-color: #334155; }
-        .health-authority-note { background: #eef2ff; padding: 6px 16px; border-radius: 40px; font-size: 0.8rem; display: inline-block; margin: 0 30px 15px 30px; }
+        .unit-toggle{display:flex;gap:8px;background:var(--gray-100);padding:4px;border-radius:50px;margin-bottom:16px}
+        .unit-btn{flex:1;padding:8px;border:none;background:transparent;border-radius:50px;font-weight:600;cursor:pointer;color:var(--gray-600);font-size:12px}
+        .unit-btn.active{background:white;box-shadow:var(--shadow-sm);color:var(--primary)}
 
-        .breadcrumb { padding: 15px 30px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); font-size: 13px; color: var(--gray-600); }
-        .breadcrumb a { color: var(--primary-dark); text-decoration: none; font-weight: 500; }
+        .input-group{margin-bottom:12px}
+        label{display:block;font-weight:600;font-size:12px;margin-bottom:4px}
+        input,select{width:100%;padding:10px 14px;border:2px solid var(--gray-200);border-radius:var(--radius-md);font-size:14px;background:white}
+        input:focus,select:focus{outline:none;border-color:var(--primary)}
+        .row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+        @media(max-width:500px){.row-2{grid-template-columns:1fr}}
 
-        .cross-links { padding: 14px 30px; background: #f0fdf4; border-bottom: 1px solid var(--primary-light); display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
-        .cross-links span { font-weight: 600; color: #065f46; margin-right: 5px; font-size: 13px; }
-        .cross-links a { background: white; padding: 6px 16px; border-radius: 30px; color: var(--primary); text-decoration: none; font-weight: 500; font-size: 12px; transition: all 0.2s; }
-        .cross-links a:hover { background: var(--primary); color: white; }
+        .activity-search{position:relative;margin-bottom:12px}
+        .activity-search input{width:100%;padding:10px 14px 10px 36px;border:2px solid var(--gray-200);border-radius:var(--radius-md);font-size:14px}
+        .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#666;font-size:14px}
+        .activity-list{max-height:200px;overflow-y:auto;background:white;border-radius:var(--radius-md);margin-top:4px;display:none;border:1px solid var(--gray-200);position:absolute;z-index:10;width:100%}
+        .activity-list.show{display:block}
+        .activity-item{padding:8px 12px;cursor:pointer;border-bottom:1px solid var(--gray-200);font-size:12px}
+        .activity-item:hover{background:var(--primary-light)}
+        .activity-item .met-val{float:right;color:var(--primary);font-weight:600}
 
-        .header { background: linear-gradient(135deg, #10b981 0%, #34d399 100%); padding: 35px 30px; text-align: center; color: white; }
-        .badge-container { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
-        .badge { background: rgba(255,255,255,0.2); padding: 6px 18px; border-radius: 60px; font-size: 13px; font-weight: 500; backdrop-filter: blur(4px); display: inline-flex; align-items: center; gap: 6px; }
-        .badge.chat-badge { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .calc-btn{width:100%;padding:14px;background:linear-gradient(135deg,#10b981,#34d399);color:white;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;margin:12px 0}
+        .calc-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px -5px rgba(16,185,129,0.4)}
 
-        .main { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; padding: 30px; }
-        @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+        .calorie-circle{text-align:center;padding:20px;background:var(--primary-light);border-radius:var(--radius-lg);margin-bottom:16px}
+        .cal-big{font-size:44px;font-weight:800;color:var(--primary-dark)}
+        .metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+        .metric-card{text-align:center;padding:12px;background:var(--primary-light);border-radius:var(--radius-md)}
+        .metric-val{font-size:20px;font-weight:700;color:var(--primary-dark)}
 
-        .input-card { background: var(--primary-light); padding: 28px; border-radius: 24px; }
-        .results-card { background: white; padding: 28px; border-radius: 24px; border: 2px solid var(--primary-light); }
+        /* AI CHAT */
+        .ai-chat-panel{margin:14px 0;border:2px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;background:white}
+        body.dark .ai-chat-panel{background:#1e293b;border-color:#334155}
+        .ai-chat-header{background:linear-gradient(135deg,#10b981,#059669);color:white;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:13px}
+        .ai-chat-messages{height:180px;overflow-y:auto;padding:10px;background:var(--gray-50);display:flex;flex-direction:column;gap:6px}
+        body.dark .ai-chat-messages{background:#0f172a}
+        .ai-message-bot{background:white;padding:8px 12px;border-radius:10px;border-top-left-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,0.08);max-width:85%;font-size:12px;align-self:flex-start}
+        body.dark .ai-message-bot{background:#1e293b;color:#e2e8f0}
+        .ai-message-user{background:var(--primary);color:white;padding:8px 12px;border-radius:10px;border-top-right-radius:3px;max-width:85%;font-size:12px;align-self:flex-end}
+        .ai-chat-suggestions{display:flex;flex-wrap:wrap;gap:5px;padding:8px 10px;background:white;border-top:1px solid var(--gray-200)}
+        .ai-suggestion-chip{background:var(--gray-100);padding:5px 10px;border-radius:12px;font-size:10px;cursor:pointer;border:1px solid var(--gray-200);color:var(--gray-600);white-space:nowrap}
+        .ai-suggestion-chip:hover{background:var(--primary);color:white;border-color:var(--primary)}
+        .ai-chat-input-row{display:flex;gap:6px;padding:8px 10px;background:white;border-top:1px solid var(--gray-200)}
+        .ai-chat-input{flex:1;padding:9px 12px;border:2px solid var(--gray-200);border-radius:20px;outline:none;font-size:12px;font-family:inherit}
+        .ai-chat-send-btn{width:34px;height:34px;border-radius:50%;background:var(--primary);color:white;border:none;cursor:pointer;font-size:14px}
+        .ai-chat-disclaimer{padding:5px 10px;background:var(--gray-50);border-top:1px solid var(--gray-200);text-align:center;font-size:9px;color:var(--gray-600)}
 
-        .unit-toggle { display: flex; gap: 10px; margin-bottom: 20px; background: white; padding: 5px; border-radius: 60px; }
-        .unit-btn { flex: 1; padding: 10px; border: none; background: transparent; border-radius: 60px; cursor: pointer; font-weight: 600; color: var(--dark); transition: all 0.2s; }
-        .unit-btn.active { background: var(--primary); color: white; }
+        footer{text-align:center;margin-top:16px;font-size:11px;color:white;opacity:0.8}
+        footer a{color:white}
 
-        .input-group { margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; font-size: 14px; }
-        .input-group input, .input-group select { width: 100%; padding: 12px 14px; border: 2px solid #a7f3d0; border-radius: 12px; font-size: 15px; background: white; }
-        .input-group input:focus, .input-group select:focus { outline: none; border-color: var(--primary); }
-
-        .activity-search { position: relative; margin-bottom: 20px; }
-        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #666; font-size: 16px; z-index: 1; }
-        .activity-search input { width: 100%; padding: 12px 14px 12px 40px; border: 2px solid #a7f3d0; border-radius: 12px; font-size: 15px; }
-        .activity-list { max-height: 250px; overflow-y: auto; background: white; border-radius: 12px; margin-top: 8px; display: none; border: 1px solid #a7f3d0; position: absolute; z-index: 10; width: 100%; }
-        .activity-list.show { display: block; }
-        .activity-item { padding: 10px 15px; cursor: pointer; border-bottom: 1px solid var(--gray-200); font-size: 14px; }
-        .activity-item:hover { background: var(--primary-light); }
-        .activity-item .met-value { float: right; color: var(--primary); font-weight: 600; }
-
-        .calc-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #10b981 0%, #34d399 100%); color: white; border: none; border-radius: 60px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; }
-        .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(16,185,129,0.4); }
-
-        .calorie-circle { text-align: center; padding: 30px; background: var(--primary-light); border-radius: 24px; margin-bottom: 20px; }
-        .calorie-burned { font-size: 56px; font-weight: 800; color: var(--primary-dark); line-height: 1; }
-
-        .comparison-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
-        .comparison-item { text-align: center; padding: 15px; background: var(--primary-light); border-radius: 16px; }
-        .comparison-item .value { font-size: 24px; font-weight: 700; color: var(--primary-dark); }
-
-        .epoc-box { background: var(--primary-light); padding: 20px; border-radius: 20px; margin: 20px 0; }
-        .epoc-meter { height: 30px; background: white; border-radius: 15px; margin: 10px 0; overflow: hidden; }
-        .epoc-fill { height: 100%; background: linear-gradient(90deg, #f59e0b, #ef4444); width: 0%; transition: width 0.3s; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: white; font-weight: 600; font-size: 12px; }
-
-        .equivalent-activities { background: var(--primary-light); padding: 20px; border-radius: 20px; margin: 20px 0; }
-        .equiv-item { display: flex; align-items: center; gap: 12px; padding: 10px; border-bottom: 1px solid #a7f3d0; font-size: 14px; }
-        .equiv-item:last-child { border-bottom: none; }
-
-        .comparison-chart { margin: 20px 0; }
-        .compare-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-        .compare-name { width: 140px; font-size: 12px; font-weight: 500; }
-        .compare-bar { flex: 1; height: 30px; background: var(--gray-100); border-radius: 15px; overflow: hidden; }
-        .compare-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #34d399); width: 0%; border-radius: 15px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; color: white; font-size: 11px; font-weight: 600; }
-
-        .burn-rate-chart { background: var(--primary-light); padding: 20px; border-radius: 20px; margin: 20px 0; }
-        .history-bars { display: flex; justify-content: space-around; align-items: flex-end; height: 160px; margin: 20px 0; gap: 8px; }
-        .history-bar { flex: 1; background: var(--primary); border-radius: 8px 8px 0 0; transition: height 0.3s; min-height: 5px; }
-
-        .future-plan-section { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-radius: 24px; padding: 25px; margin: 20px 30px; border: 2px dashed var(--accent); }
-        .future-plan-section h3 { color: #92400e; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-size: 22px; }
-        .future-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-        .future-feature { background: white; border-radius: 16px; padding: 16px; text-align: center; transition: all 0.3s; }
-        .future-feature:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-        .future-feature i { font-size: 28px; color: var(--accent); margin-bottom: 10px; }
-        .coming-soon-tag { display: inline-block; background: var(--accent); color: white; padding: 3px 12px; border-radius: 20px; font-size: 10px; font-weight: 600; margin-top: 10px; }
-
-        /* AI CHAT PANEL */
-        .ai-chat-panel { margin: 20px 0; border: 2px solid #a7f3d0; border-radius: var(--radius-lg); overflow: hidden; background: white; transition: all 0.3s; }
-        body.dark .ai-chat-panel { background: #1e293b; border-color: #334155; }
-        .ai-chat-header { background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 14px; }
-        .ai-chat-header-left { display: flex; align-items: center; gap: 8px; }
-        .ai-chat-status { font-size: 10px; opacity: 0.9; font-weight: 400; }
-        .ai-chat-messages { height: 200px; overflow-y: auto; padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px; }
-        body.dark .ai-chat-messages { background: #0f172a; }
-        .ai-message-bot { background: white; padding: 10px 14px; border-radius: 12px; border-top-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); max-width: 85%; font-size: 13px; line-height: 1.5; align-self: flex-start; color: #1e293b; }
-        body.dark .ai-message-bot { background: #1e293b; color: #e2e8f0; }
-        .ai-message-user { background: var(--primary); color: white; padding: 10px 14px; border-radius: 12px; border-top-right-radius: 4px; max-width: 85%; font-size: 13px; line-height: 1.5; align-self: flex-end; }
-        .ai-chat-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; background: white; border-top: 1px solid #e2e8f0; }
-        body.dark .ai-chat-suggestions { background: #1e293b; border-color: #334155; }
-        .ai-suggestion-chip { background: #f1f5f9; padding: 6px 12px; border-radius: 15px; font-size: 11px; cursor: pointer; border: 1px solid #e2e8f0; color: #475569; transition: all 0.2s; white-space: nowrap; }
-        body.dark .ai-suggestion-chip { background: #334155; color: #cbd5e1; border-color: #475569; }
-        .ai-suggestion-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        .ai-chat-input-row { display: flex; gap: 8px; padding: 10px 12px; background: white; border-top: 1px solid #e2e8f0; }
-        body.dark .ai-chat-input-row { background: #1e293b; border-color: #334155; }
-        .ai-chat-input { flex: 1; padding: 10px 14px; border: 2px solid #e2e8f0; border-radius: 25px; outline: none; font-size: 13px; font-family: inherit; color: #1e293b; }
-        body.dark .ai-chat-input { background: #0f172a; border-color: #475569; color: #e2e8f0; }
-        .ai-chat-input:focus { border-color: var(--primary); }
-        .ai-chat-send-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 16px; flex-shrink: 0; transition: all 0.2s; }
-        .ai-chat-send-btn:hover { background: var(--primary-dark); transform: scale(1.05); }
-        .ai-chat-disclaimer { padding: 6px 12px; background: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center; font-size: 10px; color: #64748b; }
-        body.dark .ai-chat-disclaimer { background: #0f172a; border-color: #334155; }
-
-        footer { text-align: center; padding: 25px; color: #666; border-top: 1px solid var(--gray-200); font-size: 12px; }
-        body.dark footer { border-top-color: #334155; color: #94a3b8; }
-        footer a { color: var(--primary); text-decoration: none; }
-
-        /* Animations */
-        @keyframes messageSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
-
-        @media (max-width: 600px) { .ai-chat-messages { height: 160px; } .comparison-grid { grid-template-columns: 1fr; } }
+        @keyframes messageSlideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:600px){.ai-chat-messages{height:150px}}
     </style>
 </head>
 <body>
-
 <div class="container">
 
-    <nav class="international-bar" aria-label="Region, theme selector">
-        <select id="countrySelect" aria-label="Select country">
-            <option value="us">🇺🇸 United States</option>
-            <option value="uk">🇬🇧 United Kingdom</option>
-            <option value="ca">🇨🇦 Canada</option>
-            <option value="au">🇦🇺 Australia</option>
-        </select>
-        <div class="theme-toggle">
-            <button class="theme-option" data-theme="light" aria-label="Light mode">☀️ Light</button>
-            <button class="theme-option" data-theme="dark" aria-label="Dark mode">🌙 Dark</button>
-        </div>
-    </nav>
-    <div id="healthAuthorityNote" class="health-authority-note">🏃 CDC/NHS/Health Canada – 150+ min moderate activity weekly</div>
+<div class="health-note">🏃 CDC/NHS – 150+ min moderate activity weekly</div>
 
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/index.html">Home</a> <span>›</span>
-        <a href="/index.html#tools">Fitness Tools</a> <span>›</span>
-        <strong>MET Activity Calculator</strong>
-    </nav>
+<div class="card">
+<h1>🏃 MET Activity Calculator</h1>
+<div class="subtitle">Calculate calories burned for 50+ activities with EPOC afterburn effect. AI chat for workout tips!</div>
 
-    <div class="cross-links">
-        <span>🔗 Related Tools:</span>
-        <a href="bmi-calculator.html">⚖️ BMI</a>
-        <a href="body-fat-calculator.html">🧬 Body Fat</a>
-        <a href="calorie-calculator.html">🔥 Calorie Needs</a>
-        <a href="heart-rate-calculator.html">❤️ Heart Rate Zones</a>
-        <a href="ffmi-calculator.html">💪 FFMI</a>
-        <a href="water-intake-calculator.html">💧 Water Intake</a>
+<div class="unit-toggle">
+    <button class="unit-btn active" onclick="setUnit('metric')">🌏 Metric (kg)</button>
+    <button class="unit-btn" onclick="setUnit('imperial')">🌎 Imperial (lbs)</button>
+</div>
+
+<div class="row-2">
+    <div class="input-group"><label>Weight</label><input type="number" id="weight" value="70" step="0.1"></div>
+    <div class="input-group"><label>Duration (min)</label><input type="number" id="duration" value="30" min="1" max="480"></div>
+</div>
+
+<div class="activity-search">
+    <span class="search-icon"><i class="fas fa-search"></i></span>
+    <input type="text" id="activitySearch" placeholder="Search activities..." onkeyup="searchActivities()">
+    <div class="activity-list" id="activityList"></div>
+</div>
+
+<div class="input-group"><label>Selected Activity</label><input type="text" id="selectedActivity" value="Walking (moderate) 5 km/h" readonly></div>
+<div class="input-group"><label>MET Value</label><input type="number" id="metValue" value="4.3" step="0.1" readonly></div>
+
+<div class="row-2">
+    <div class="input-group"><label>Fitness Level</label><select id="fitness"><option value="beginner">Beginner</option><option value="intermediate" selected>Intermediate</option><option value="advanced">Advanced</option></select></div>
+    <div class="input-group"><label>Intensity</label><select id="intensity"><option value="0.8">Light</option><option value="1" selected>Moderate</option><option value="1.2">Vigorous</option><option value="1.4">Maximum</option></select></div>
+</div>
+
+<button class="calc-btn" onclick="calculateMET()"><i class="fas fa-calculator"></i> Calculate Calories</button>
+
+<div class="calorie-circle">
+    <div style="font-size:12px;color:var(--gray-600)">Calories Burned</div>
+    <div class="cal-big" id="calories">245</div>
+    <div style="font-size:11px;color:var(--gray-600)" id="activityInfo">Walking • MET 4.3 • 30 min</div>
+</div>
+
+<div class="metrics-grid">
+    <div class="metric-card"><div class="metric-val" id="perMinute">8.2</div><div style="font-size:10px">Per Minute</div></div>
+    <div class="metric-card"><div class="metric-val" id="perHour">490</div><div style="font-size:10px">Per Hour</div></div>
+    <div class="metric-card"><div class="metric-val" id="epocCal">+37</div><div style="font-size:10px">EPOC Afterburn</div></div>
+</div>
+
+<!-- AI CHAT -->
+<div class="ai-chat-panel">
+    <div class="ai-chat-header"><span>🏃 Fitness AI</span><span style="font-size:9px;opacity:0.8;">🟢 Online</span></div>
+    <div class="ai-chat-messages" id="aiChatMessages">
+        <div class="ai-message-bot"><strong>Hello! 👋</strong><br>Calculate your calories, then ask me about workouts and fitness!</div>
     </div>
-
-    <header class="header">
-        <h1>🏃 Advanced MET Activity Calculator with AI Chat</h1>
-        <p>Calculate calories burned for 500+ activities with EPOC afterburn effect. AI chat for personalized workout tips!</p>
-        <div class="badge-container">
-            <span class="badge"><i class="fas fa-list"></i> 500+ Activities</span>
-            <span class="badge"><i class="fas fa-fire"></i> EPOC Afterburn</span>
-            <span class="badge chat-badge"><i class="fas fa-robot"></i> AI Chat</span>
-            <span class="badge"><i class="fas fa-apple-alt"></i> Food Equivalents</span>
-            <span class="badge"><i class="fas fa-lock"></i> 100% Private</span>
-        </div>
-    </header>
-
-    <main class="main">
-
-        <div class="input-card">
-            <h2><i class="fas fa-pen-alt"></i> Your Activity</h2>
-            <div class="unit-toggle" id="unitToggle">
-                <button class="unit-btn active" onclick="setUnit('metric')">🌏 Metric (kg)</button>
-                <button class="unit-btn" onclick="setUnit('imperial')">🌎 Imperial (lbs)</button>
-            </div>
-            <div class="input-group"><label><i class="fas fa-weight-scale"></i> Your Weight</label><input type="number" id="weight" value="70" step="0.1"></div>
-
-            <div class="activity-search">
-                <span class="search-icon"><i class="fas fa-search"></i></span>
-                <input type="text" id="activitySearch" placeholder="Search 500+ activities..." onkeyup="searchActivities()">
-                <div class="activity-list" id="activityList"></div>
-            </div>
-
-            <div class="input-group"><label><i class="fas fa-running"></i> Selected Activity</label><input type="text" id="selectedActivity" value="Walking (moderate) 5 km/h" readonly></div>
-            <div class="input-group"><label><i class="fas fa-chart-line"></i> MET Value</label><input type="number" id="metValue" value="4.3" step="0.1" readonly></div>
-            <div class="input-group"><label><i class="fas fa-clock"></i> Duration (minutes)</label><input type="number" id="duration" value="30" min="1" max="480" step="5"></div>
-            <div class="input-group"><label><i class="fas fa-tachometer-alt"></i> Fitness Level</label><select id="fitness"><option value="beginner">Beginner</option><option value="intermediate" selected>Intermediate</option><option value="advanced">Advanced</option></select></div>
-            <div class="input-group"><label><i class="fas fa-chart-simple"></i> Intensity Modifier</label><select id="intensity"><option value="0.8">Light</option><option value="1" selected>Moderate</option><option value="1.2">Vigorous</option><option value="1.4">Maximum</option></select></div>
-
-            <button class="calc-btn" onclick="calculateMET()"><i class="fas fa-calculator"></i> Calculate Calories Burned</button>
-        </div>
-
-        <div class="results-card" id="results">
-            <h2><i class="fas fa-chart-bar"></i> Calories Burned</h2>
-
-            <div class="calorie-circle">
-                <div class="calorie-burned" id="calories">245</div>
-                <div class="calorie-label">Total Calories Burned</div>
-            </div>
-
-            <div style="text-align:center;margin-bottom:20px;font-size:13px">
-                <span id="activityName">Walking (moderate) 5 km/h</span> • <span id="metDisplay">MET 4.3</span> • <span id="timeDisplay">30 min</span>
-            </div>
-
-            <div class="comparison-grid">
-                <div class="comparison-item"><div class="value" id="perMinute">8.2</div><div class="label">Per Minute</div></div>
-                <div class="comparison-item"><div class="value" id="perHour">490</div><div class="label">Per Hour</div></div>
-                <div class="comparison-item"><div class="value" id="epocCal">+37</div><div class="label">EPOC Afterburn</div></div>
-            </div>
-
-            <div class="epoc-box">
-                <h3 style="margin-bottom:12px;font-size:18px"><i class="fas fa-fire"></i> EPOC (Afterburn Effect)</h3>
-                <div style="display:flex;justify-content:space-between;font-size:13px"><span>Extra calories after workout:</span><span><strong id="epocValue">37</strong> kcal</span></div>
-                <div class="epoc-meter"><div class="epoc-fill" id="epocFill" style="width:15%"></div></div>
-                <p style="margin-top:10px;font-size:11px" id="epocDesc">Your body burns extra calories for 12-24h after exercise</p>
-            </div>
-
-            <div class="equivalent-activities">
-                <h3 style="margin-bottom:12px;font-size:18px"><i class="fas fa-apple-alt"></i> Food Equivalents</h3>
-                <div id="equivalents">
-                    <div class="equiv-item">🍌 Bananas: <strong id="bananas">2.5</strong></div>
-                    <div class="equiv-item">🍞 Bread slices: <strong id="bread">3.2</strong></div>
-                    <div class="equiv-item">🥚 Eggs: <strong id="eggs">4.1</strong></div>
-                    <div class="equiv-item">🍫 Chocolate (100g): <strong id="chocolate">0.8</strong></div>
-                </div>
-            </div>
-
-            <div class="comparison-chart">
-                <h3 style="margin-bottom:12px;font-size:18px"><i class="fas fa-chart-simple"></i> Activity Comparison</h3>
-                <div id="comparisonList"></div>
-            </div>
-
-            <div class="burn-rate-chart">
-                <h3 style="margin-bottom:12px;font-size:18px"><i class="fas fa-chart-line"></i> Burn Rate</h3>
-                <div class="history-bars" id="historyBars"></div>
-                <p style="text-align:center;font-size:11px;margin-top:10px">Calories burned per 5-minute interval</p>
-            </div>
-
-            <!-- ============================================ -->
-            <!-- 🔥 NEW AI CHAT PANEL (Cloudflare Proxy Safe) -->
-            <!-- ============================================ -->
-            <div class="ai-chat-panel" id="aiChatPanel">
-                <div class="ai-chat-header">
-                    <div class="ai-chat-header-left"><span>🏃</span><span>Fitness AI Assistant</span></div>
-                    <span class="ai-chat-status">🟢 Online · Cloudflare Secured</span>
-                </div>
-                <div class="ai-chat-messages" id="aiChatMessages" role="log">
-                    <div class="ai-message-bot" style="animation:messageSlideIn 0.3s ease;">
-                        <strong>Hello! 👋</strong><br><br>
-                        I'm your <strong>Fitness AI Assistant</strong>. Calculate your calories burned above, then ask me for personalized workout plans, exercise tips, and fitness advice!
-                    </div>
-                </div>
-                <div class="ai-chat-suggestions" id="aiChatSuggestions">
-                    <span class="ai-suggestion-chip" onclick="sendAIMessage('Best exercises to burn more calories?')">🔥 Burn more calories?</span>
-                    <span class="ai-suggestion-chip" onclick="sendAIMessage('How to create an effective workout plan?')">📋 Workout plan?</span>
-                    <span class="ai-suggestion-chip" onclick="sendAIMessage('What is EPOC and how to maximize it?')">⚡ Maximize EPOC?</span>
-                    <span class="ai-suggestion-chip" onclick="sendAIMessage('Best diet for exercise recovery?')">🥗 Recovery diet?</span>
-                    <span class="ai-suggestion-chip" onclick="sendAIMessage('How many calories should I burn daily?')">📊 Daily burn goal?</span>
-                    <span class="ai-suggestion-chip" onclick="sendAIMessage('HIIT vs steady state cardio for fat loss?')">💪 HIIT vs Cardio?</span>
-                </div>
-                <div class="ai-chat-input-row">
-                    <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your workout..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-                    <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send message">➤</button>
-                </div>
-                <div class="ai-chat-disclaimer">⚠️ Educational purposes only. Consult a fitness professional.</div>
-            </div>
-        </div>
-    </main>
-
-    <div class="future-plan-section">
-        <h3><i class="fas fa-rocket"></i> Coming Soon: Advanced Features</h3>
-        <div class="future-features-grid">
-            <div class="future-feature"><i class="fas fa-mobile-alt"></i><h5>Mobile App Sync</h5><span class="coming-soon-tag">Coming 2027</span></div>
-            <div class="future-feature"><i class="fas fa-clock"></i><h5>Wearable Integration</h5><span class="coming-soon-tag">Coming 2027</span></div>
-            <div class="future-feature"><i class="fas fa-chart-line"></i><h5>Weekly Reports</h5><span class="coming-soon-tag">Coming 2027</span></div>
-            <div class="future-feature"><i class="fas fa-utensils"></i><h5>Meal Plan Combiner</h5><span class="coming-soon-tag">Coming 2027</span></div>
-        </div>
+    <div class="ai-chat-suggestions">
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('Best exercises to burn more calories?')">🔥 Burn more?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('How to create a workout plan?')">📋 Workout plan?</span>
+        <span class="ai-suggestion-chip" onclick="sendAIMessage('What is EPOC and how to maximize it?')">⚡ Maximize EPOC?</span>
     </div>
+    <div class="ai-chat-input-row">
+        <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about fitness..." onkeypress="if(event.key==='Enter')sendAIMessage()">
+        <button class="ai-chat-send-btn" onclick="sendAIMessage()">➤</button>
+    </div>
+    <div class="ai-chat-disclaimer">⚠️ Educational only. Consult a fitness professional.</div>
+</div>
+</div>
 
-    <footer role="contentinfo">
-        <p>© 2026 HealthCalc.in — MET Activity Calculator | <a href="privacy-policy.html">Privacy</a> • <a href="terms-of-service.html">Terms</a> • <a href="sitemap.xml">Sitemap</a></p>
-        <p style="margin-top:4px">⚠️ Estimates based on MET values - individual results vary. 100% private — no data stored.</p>
-    </footer>
+<footer><p>© 2026 HealthCalc — MET Activity Calculator | <a href="privacy-policy.html">Privacy</a></p></footer>
 </div>
 
 <script>
-    // ==============================================
-    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-    // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+var isAIProcessing = false;
+var isMetric = true;
 
-    // ===== THEME =====
-    function initTheme() { var saved = localStorage.getItem('healthcalc_theme') || 'light'; document.body.classList.toggle('dark', saved === 'dark'); }
-    function setTheme(theme) { localStorage.setItem('healthcalc_theme', theme); document.body.classList.toggle('dark', theme === 'dark'); }
-    document.querySelectorAll('.theme-option').forEach(function(btn) { btn.addEventListener('click', function() { setTheme(btn.dataset.theme); }); });
-    initTheme();
+// ===== THEME =====
+(function() {
+    var s = localStorage.getItem('healthcalc_theme') || 'light';
+    document.body.classList.toggle('dark', s === 'dark');
+})();
 
-    // ===== COUNTRY =====
-    document.getElementById('countrySelect').addEventListener('change', function(e) { localStorage.setItem('healthcalc_country', e.target.value); });
-    (function() { var saved = localStorage.getItem('healthcalc_country') || 'us'; document.getElementById('countrySelect').value = saved; })();
+// ===== ACTIVITIES DATABASE =====
+var activities = [
+    { name: "Walking (slow) 3 km/h", met: 2.8 }, { name: "Walking (moderate) 5 km/h", met: 4.3 },
+    { name: "Walking (brisk) 6.5 km/h", met: 5.0 }, { name: "Jogging 8 km/h", met: 8.0 },
+    { name: "Running 10 km/h", met: 10.0 }, { name: "Running 12 km/h", met: 12.0 },
+    { name: "Running 14 km/h", met: 15.0 }, { name: "Cycling (leisurely)", met: 4.0 },
+    { name: "Cycling (moderate)", met: 6.0 }, { name: "Cycling (vigorous)", met: 8.0 },
+    { name: "Swimming (light)", met: 4.5 }, { name: "Swimming (moderate)", met: 6.0 },
+    { name: "Swimming (vigorous)", met: 8.3 }, { name: "Yoga (gentle)", met: 2.5 },
+    { name: "Yoga (power)", met: 4.0 }, { name: "Weight training (light)", met: 3.0 },
+    { name: "Weight training (moderate)", met: 4.5 }, { name: "Weight training (intense)", met: 6.0 },
+    { name: "HIIT / CrossFit", met: 8.5 }, { name: "Jumping rope (fast)", met: 12.0 },
+    { name: "Rowing machine", met: 5.5 }, { name: "Elliptical trainer", met: 5.0 },
+    { name: "Stair climber", met: 6.0 }, { name: "Boxing", met: 6.5 },
+    { name: "Dancing (Zumba)", met: 5.5 }, { name: "Hiking", met: 5.5 },
+    { name: "Tennis (singles)", met: 7.0 }, { name: "Basketball", met: 7.0 },
+    { name: "Soccer", met: 7.5 }, { name: "Housework (light)", met: 2.5 },
+    { name: "Gardening", met: 4.0 }, { name: "Walking dog", met: 3.0 }
+];
 
-    // ===== ACTIVITIES DATABASE =====
-    var activities = [
-        { name: "Walking (slow) 3 km/h", met: 2.8 }, { name: "Walking (moderate) 5 km/h", met: 4.3 },
-        { name: "Walking (brisk) 6.5 km/h", met: 5.0 }, { name: "Jogging 8 km/h", met: 8.0 },
-        { name: "Running 9.5 km/h", met: 10.0 }, { name: "Running 11 km/h", met: 11.5 },
-        { name: "Running 12.5 km/h", met: 13.5 }, { name: "Running 14 km/h", met: 15.0 },
-        { name: "Cycling (leisurely) <16 km/h", met: 4.0 }, { name: "Cycling (moderate) 16-19 km/h", met: 6.0 },
-        { name: "Cycling (vigorous) 19-22 km/h", met: 8.0 }, { name: "Cycling (racing) >22 km/h", met: 12.0 },
-        { name: "Mountain biking", met: 8.5 }, { name: "Stationary bike (light)", met: 4.5 },
-        { name: "Stationary bike (moderate)", met: 6.5 }, { name: "Stationary bike (intense)", met: 8.5 },
-        { name: "Swimming (light)", met: 4.5 }, { name: "Swimming (moderate) laps", met: 5.8 },
-        { name: "Swimming (vigorous) laps", met: 8.3 }, { name: "Swimming (butterfly)", met: 11.0 },
-        { name: "Yoga (gentle)", met: 2.5 }, { name: "Yoga (power/vinyasa)", met: 4.0 },
-        { name: "Pilates", met: 3.5 }, { name: "Weight training (light)", met: 3.0 },
-        { name: "Weight training (moderate)", met: 4.5 }, { name: "Weight training (intense)", met: 6.0 },
-        { name: "CrossFit / HIIT", met: 8.0 }, { name: "HIIT (high intensity)", met: 9.0 },
-        { name: "Rowing machine (moderate)", met: 5.0 }, { name: "Rowing machine (vigorous)", met: 7.0 },
-        { name: "Elliptical trainer", met: 5.0 }, { name: "Stair climber", met: 6.0 },
-        { name: "Jumping rope (slow)", met: 8.0 }, { name: "Jumping rope (fast)", met: 12.0 },
-        { name: "Boxing (punching bag)", met: 5.5 }, { name: "Boxing (sparring)", met: 8.0 },
-        { name: "Martial arts (general)", met: 6.0 }, { name: "Dancing (Zumba)", met: 5.5 },
-        { name: "Dancing (hip-hop)", met: 6.0 }, { name: "Hiking (no pack)", met: 5.0 },
-        { name: "Hiking (with pack)", met: 6.5 }, { name: "Skiing (downhill)", met: 5.0 },
-        { name: "Skiing (cross-country)", met: 8.0 }, { name: "Tennis (doubles)", met: 5.0 },
-        { name: "Tennis (singles)", met: 7.0 }, { name: "Badminton", met: 5.5 },
-        { name: "Squash", met: 8.0 }, { name: "Basketball (game)", met: 7.0 },
-        { name: "Soccer (casual)", met: 6.0 }, { name: "Soccer (competitive)", met: 8.5 },
-        { name: "Volleyball", met: 4.0 }, { name: "Golf (walking)", met: 4.0 },
-        { name: "Housework (light)", met: 2.5 }, { name: "Gardening", met: 4.0 },
-        { name: "Walking dog", met: 3.0 }, { name: "Playing with kids", met: 4.0 }
-    ];
-
-    var isMetric = true;
-
-    function setUnit(unit) {
-        isMetric = unit === 'metric';
-        document.querySelectorAll('.unit-btn').forEach(function(btn) { btn.classList.remove('active'); });
-        event.target.classList.add('active');
-        calculateMET();
-    }
-
-    function searchActivities() {
-        var search = document.getElementById('activitySearch').value.toLowerCase();
-        var list = document.getElementById('activityList');
-        if (search.length < 2) { list.classList.remove('show'); return; }
-        var filtered = activities.filter(function(a) { return a.name.toLowerCase().includes(search); }).slice(0, 12);
-        list.innerHTML = filtered.map(function(a) { return '<div class="activity-item" onclick="selectActivity(\'' + a.name + '\', ' + a.met + ')">' + a.name + ' <span class="met-value">MET ' + a.met + '</span></div>'; }).join('');
-        list.classList.add('show');
-    }
-
-    function selectActivity(name, met) {
-        document.getElementById('selectedActivity').value = name;
-        document.getElementById('metValue').value = met;
-        document.getElementById('activityList').classList.remove('show');
-        document.getElementById('activitySearch').value = '';
-        calculateMET();
-    }
-
-    function calculateMET() {
-        var weight = parseFloat(document.getElementById('weight').value) || 70;
-        if (!isMetric) weight = weight / 2.20462;
-        var met = parseFloat(document.getElementById('metValue').value) || 4.3;
-        var duration = parseFloat(document.getElementById('duration').value) || 30;
-        var intensity = parseFloat(document.getElementById('intensity').value) || 1;
-        var fitness = document.getElementById('fitness').value;
-        
-        var calPerMin = met * 3.5 * weight / 200;
-        var totalCal = calPerMin * duration * intensity;
-        
-        var epocFactor = met >= 8 ? (fitness === 'beginner' ? 0.25 : (fitness === 'advanced' ? 0.10 : 0.15)) : (met >= 5 ? (fitness === 'beginner' ? 0.15 : (fitness === 'advanced' ? 0.05 : 0.10)) : 0.05);
-        var epocCal = Math.round(totalCal * epocFactor);
-        
-        // Update all displays
-        document.getElementById('calories').innerHTML = Math.round(totalCal);
-        document.getElementById('activityName').innerHTML = document.getElementById('selectedActivity').value;
-        document.getElementById('metDisplay').innerHTML = 'MET ' + met;
-        document.getElementById('timeDisplay').innerHTML = duration + ' min';
-        document.getElementById('perMinute').innerHTML = (calPerMin * intensity).toFixed(1);
-        document.getElementById('perHour').innerHTML = Math.round(calPerMin * 60 * intensity);
-        document.getElementById('epocCal').innerHTML = '+' + epocCal;
-        document.getElementById('epocValue').innerHTML = epocCal;
-        document.getElementById('epocFill').style.width = Math.min(100, (epocFactor / 0.25) * 100) + '%';
-        document.getElementById('epocDesc').innerHTML = met >= 8 ? '🔥 High intensity! Metabolism elevated 24+ hours' : (met >= 5 ? '⚡ Moderate - EPOC 12-16 hours' : '💪 Light activity');
-        
-        // Food equivalents
-        document.getElementById('bananas').innerHTML = (totalCal / 105).toFixed(1);
-        document.getElementById('bread').innerHTML = (totalCal / 75).toFixed(1);
-        document.getElementById('eggs').innerHTML = (totalCal / 60).toFixed(1);
-        document.getElementById('chocolate').innerHTML = (totalCal / 550).toFixed(1);
-        
-        // Activity comparison
-        var comparisons = [
-            { name: "Walking (30 min)", met: 4.3 }, { name: "Running (30 min)", met: 11.0 },
-            { name: "Cycling (30 min)", met: 8.0 }, { name: "Swimming (30 min)", met: 7.0 },
-            { name: "HIIT (30 min)", met: 9.0 }
-        ];
-        document.getElementById('comparisonList').innerHTML = comparisons.map(function(comp) {
-            var compCal = comp.met * 3.5 * weight / 200 * 30 * intensity;
-            var percent = Math.min(100, (compCal / totalCal) * 100);
-            return '<div class="compare-item"><div class="compare-name">' + comp.name + '</div><div class="compare-bar"><div class="compare-fill" style="width:' + percent + '%">' + Math.round(compCal) + ' cal</div></div></div>';
-        }).join('');
-        
-        // Burn rate chart
-        var historyBars = document.getElementById('historyBars');
-        historyBars.innerHTML = '';
-        var intervals = Math.min(12, Math.ceil(duration / 5));
-        for (var i = 1; i <= intervals; i++) {
-            var barCal = calPerMin * 5 * intensity;
-            var barHeight = Math.min(140, (barCal / 30) * 100);
-            var bar = document.createElement('div');
-            bar.className = 'history-bar';
-            bar.style.height = Math.max(barHeight, 5) + 'px';
-            bar.title = 'Min ' + ((i-1)*5+1) + '-' + (i*5) + ': ' + Math.round(barCal) + ' cal';
-            historyBars.appendChild(bar);
-        }
-    }
-
-    // Event listeners
-    ['weight','duration','intensity','fitness'].forEach(function(id) { var el = document.getElementById(id); if (el) { el.addEventListener('input', calculateMET); el.addEventListener('change', calculateMET); } });
-    document.addEventListener('click', function(e) { if (!e.target.closest('.activity-search')) document.getElementById('activityList').classList.remove('show'); });
-
-    // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-    // ==============================================
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if (t) t.remove(); }
-
-    function getMETContext() {
-        var activity = document.getElementById('selectedActivity').value;
-        var calories = document.getElementById('calories').innerHTML;
-        if (calories !== '245') return 'User Activity: ' + activity + ', Calories Burned: ' + calories + '. ';
-        return '';
-    }
-
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if (!message) return;
-        addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
-        showTypingIndicator();
-        var context = getMETContext();
-        var promptText = "You are a Fitness & Exercise AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable fitness advice in fluent English. Include workout planning, EPOC maximization, and exercise recovery tips. End with: '⚠️ Consult a fitness professional before starting any new exercise program.'";
-
-        try {
-            var response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
-            });
-            
-            var data = await response.json();
-            removeTypingIndicator();
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else {
-                throw new Error('No response from AI worker');
-            }
-        } catch (e) {
-            removeTypingIndicator();
-            console.error('AI Error:', e);
-            addChatMessage('🏃 <strong>Fitness Tips:</strong><br><br>• Mix cardio + strength training<br>• Aim for 150+ min activity weekly<br>• HIIT maximizes EPOC afterburn<br>• Stay hydrated during exercise<br>• Rest is essential for recovery<br><br>⚠️ <em>Consult a fitness professional.</em>', 'bot');
-        }
-    }
-
-    // Expose globally
-    window.setUnit = setUnit;
-    window.searchActivities = searchActivities;
-    window.selectActivity = selectActivity;
-    window.calculateMET = calculateMET;
-    window.sendAIMessage = sendAIMessage;
-
-    // Init
+// ===== UNIT =====
+function setUnit(unit) {
+    isMetric = unit === 'metric';
+    document.querySelectorAll('.unit-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.unit === unit || b.textContent.toLowerCase().includes(unit)); });
     calculateMET();
+}
+
+// ===== SEARCH =====
+function searchActivities() {
+    var search = document.getElementById('activitySearch').value.toLowerCase();
+    var list = document.getElementById('activityList');
+    if (search.length < 2) { list.classList.remove('show'); return; }
+    var filtered = activities.filter(function(a) { return a.name.toLowerCase().includes(search); }).slice(0, 10);
+    list.innerHTML = filtered.map(function(a) { return '<div class="activity-item" onclick="selectActivity(\'' + a.name + '\', ' + a.met + ')">' + a.name + ' <span class="met-val">MET ' + a.met + '</span></div>'; }).join('');
+    list.classList.add('show');
+}
+
+function selectActivity(name, met) {
+    document.getElementById('selectedActivity').value = name;
+    document.getElementById('metValue').value = met;
+    document.getElementById('activityList').classList.remove('show');
+    document.getElementById('activitySearch').value = '';
+    calculateMET();
+}
+
+// ===== CALCULATION =====
+function calculateMET() {
+    var weight = parseFloat(document.getElementById('weight').value) || 70;
+    if (!isMetric) weight = weight / 2.20462;
+    var met = parseFloat(document.getElementById('metValue').value) || 4.3;
+    var duration = parseFloat(document.getElementById('duration').value) || 30;
+    var intensity = parseFloat(document.getElementById('intensity').value) || 1;
+    var fitness = document.getElementById('fitness').value;
+    
+    var calPerMin = met * 3.5 * weight / 200;
+    var totalCal = calPerMin * duration * intensity;
+    
+    var epocFactor = met >= 8 ? (fitness === 'beginner' ? 0.25 : 0.10) : (met >= 5 ? 0.15 : 0.05);
+    var epocCal = Math.round(totalCal * epocFactor);
+    
+    document.getElementById('calories').innerHTML = Math.round(totalCal);
+    document.getElementById('activityInfo').innerHTML = document.getElementById('selectedActivity').value + ' • MET ' + met + ' • ' + duration + ' min';
+    document.getElementById('perMinute').innerHTML = (calPerMin * intensity).toFixed(1);
+    document.getElementById('perHour').innerHTML = Math.round(calPerMin * 60 * intensity);
+    document.getElementById('epocCal').innerHTML = '+' + epocCal;
+}
+
+// ===== EVENT LISTENERS =====
+['weight','duration','intensity','fitness'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.addEventListener('input', calculateMET); el.addEventListener('change', calculateMET); }
+});
+document.addEventListener('click', function(e) { if (!e.target.closest('.activity-search')) document.getElementById('activityList').classList.remove('show'); });
+
+// ============================================
+// ✅ AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var msgDiv = document.createElement('div');
+    msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    msgDiv.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    msgDiv.innerHTML = text;
+    md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
+}
+
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator'; td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td); md.scrollTop = md.scrollHeight;
+}
+
+function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if (t) t.remove(); }
+
+function getMETContext() {
+    var activity = document.getElementById('selectedActivity').value;
+    var calories = document.getElementById('calories').textContent;
+    return '[Activity: ' + activity + ', Calories Burned: ' + calories + ']';
+}
+
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var fullPrompt = "You are a Fitness AI on HealthCalc.in. " + getMETContext() + "\n\nUSER: " + message + "\n\nProvide structured fitness advice. End with: '⚠️ Consult a fitness professional.'";
+
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
+        });
+        var data = await response.json();
+        removeTypingIndicator();
+        if (data && data.reply) { addChatMessage(data.reply, 'bot'); }
+        else { throw new Error('No response'); }
+    } catch (e) {
+        removeTypingIndicator();
+        addChatMessage('🏃 <strong>Fitness Tips:</strong><br><br>• Mix cardio + strength training<br>• Aim for 150+ min activity weekly<br>• HIIT maximizes EPOC afterburn<br>• Stay hydrated during exercise<br>• Rest is essential for recovery<br><br>⚠️ Consult a fitness professional.', 'bot');
+    } finally { isAIProcessing = false; }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var ci = document.getElementById('aiChatInput');
+    if (ci) ci.addEventListener('keypress', function(e) { if (e.key === 'Enter') sendAIMessage(); });
+});
+
+// ===== EXPOSE =====
+window.setUnit = setUnit;
+window.searchActivities = searchActivities;
+window.selectActivity = selectActivity;
+window.calculateMET = calculateMET;
+window.sendAIMessage = sendAIMessage;
+
+// ===== INIT =====
+calculateMET();
 </script>
 </body>
 </html>
