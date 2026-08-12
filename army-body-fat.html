@@ -3,126 +3,1283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Army Body Fat Test | Military Tape Measure | AI Coach | HealthCalc</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Army Body Fat Calculator Pro | Military Standards | AI Coach | HealthCalc</title>
+<meta name="description" content="Free advanced Army Body Fat Calculator with US Navy, Army, and Marine Corps standards. AI-powered fitness coach, progress tracking, and visual analytics.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --primary: #4d7c0f; --primary-light: #ecfccb; --bg: #f7fee7; --card: #ffffff; --text: #1e293b; --border: #bbf7d0; }
-body.dark { --primary-light: #14532d; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --border: #334155; }
+:root {
+    --primary: #4d7c0f;
+    --primary-dark: #3f6212;
+    --primary-light: #ecfccb;
+    --bg: #f7fee7;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #bbf7d0;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    --gradient-1: linear-gradient(135deg, #4d7c0f, #65a30d);
+    --gradient-2: linear-gradient(135deg, #1e293b, #334155);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+}
+body.dark {
+    --primary-light: #14532d;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.3);
+}
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg); color: var(--text); padding: 20px; transition: 0.3s; }
-.container { max-width: 900px; margin: 0 auto; }
-.card { background: var(--card); border-radius: 24px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 20px; }
-.hero { text-align: center; margin-bottom: 30px; }
-.hero h1 { color: var(--primary); font-size: 32px; font-weight: 800; }
+body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+.header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+.header p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.badge {
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--card);
+    border: 2px solid var(--border);
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Cards */
+.card {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+}
+
+/* Grid */
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-.input-group { margin-bottom: 15px; }
-label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px; }
-input, select { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background: var(--card); color: var(--text); outline: none; }
-.btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 10px; }
-.result { text-align: center; padding: 20px; background: var(--primary-light); border-radius: 16px; margin-top: 20px; }
-.fat-highlight { font-size: 42px; font-weight: 900; color: var(--primary); }
-.ai-panel { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
-.ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 600; }
-.ai-msgs { height: 200px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.msg-bot { background: var(--border); padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-start; color: var(--text); }
-.msg-user { background: var(--primary); color: white; padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-end; }
-.ai-input { display: flex; border-top: 1px solid var(--border); }
-.ai-input input { border: none; padding: 12px; flex: 1; background: var(--card); color: var(--text); outline: none;}
-.ai-input button { background: var(--primary); color: white; border: none; padding: 0 20px; cursor: pointer; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media(max-width: 1024px) { .grid, .grid-3 { grid-template-columns: 1fr; } }
+
+/* Input Styles */
+.input-group { margin-bottom: 20px; position: relative; }
+.input-group label {
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.input-group label i {
+    color: var(--primary);
+    width: 20px;
+}
+input, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(77,124,15,0.1);
+}
+.input-hint {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+/* Buttons */
+.btn {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(77,124,15,0.3);
+}
+.btn:active { transform: translateY(0); }
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Result Box */
+.result-box {
+    background: linear-gradient(135deg, var(--primary-light), var(--card));
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--primary);
+}
+.result-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(77,124,15,0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.result-label {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.fat-value {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--primary);
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+    margin: 15px 0;
+}
+.fat-unit {
+    font-size: 24px;
+    font-weight: 600;
+}
+.status-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
+}
+.status-pass {
+    background: var(--success);
+    color: white;
+}
+.status-fail {
+    background: var(--danger);
+    color: white;
+}
+.status-borderline {
+    background: var(--warning);
+    color: #1e293b;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+.progress-bar {
+    height: 12px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-1);
+    border-radius: 10px;
+    transition: width 1s ease;
+    position: relative;
+}
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+.progress-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Standards Grid */
+.standards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+.standard-item {
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+}
+.standard-item.highlight {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    font-weight: 700;
+}
+.standard-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.standard-value {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    background: var(--bg);
+    padding: 5px;
+    border-radius: 14px;
+}
+.tab {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+}
+.tab.active {
+    background: var(--gradient-1);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Chart Container */
+.chart-wrapper {
+    position: relative;
+    height: 300px;
+    margin: 20px 0;
+}
+
+/* History */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+}
+.history-item:hover {
+    background: var(--bg);
+    border-radius: 10px;
+}
+.history-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.history-value {
+    font-weight: 700;
+    font-size: 18px;
+}
+.history-change {
+    font-size: 14px;
+    font-weight: 600;
+}
+.change-positive { color: var(--success); }
+.change-negative { color: var(--danger); }
+
+/* AI Chat */
+.ai-panel {
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--card);
+}
+.ai-header {
+    background: var(--gradient-1);
+    color: white;
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.ai-header i {
+    font-size: 24px;
+}
+.ai-messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--bg);
+}
+.ai-messages::-webkit-scrollbar {
+    width: 6px;
+}
+.ai-messages::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+.msg-bot, .msg-user {
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.5;
+    animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.msg-bot {
+    background: var(--card);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+.msg-user {
+    background: var(--gradient-1);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+.ai-input-container {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--border);
+    background: var(--card);
+    gap: 10px;
+}
+.ai-input-container input {
+    flex: 1;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    background: var(--bg);
+}
+.ai-input-container button {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.ai-input-container button:hover {
+    transform: scale(1.05);
+}
+
+/* Quick Tips */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.tip-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.tip-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+.tip-card i {
+    font-size: 32px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+.tip-card h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.tip-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+.comparison-table th {
+    background: var(--gradient-1);
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+.comparison-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+.comparison-table tr:hover {
+    background: var(--bg);
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .fat-value { font-size: 48px; }
+    .grid, .grid-3 { grid-template-columns: 1fr; }
+    .standards-grid { grid-template-columns: 1fr; }
+    .tabs { flex-direction: column; }
+}
 </style>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+</button>
+
 <div class="container">
-  <button onclick="document.body.classList.toggle('dark')" style="position:absolute;top:20px;right:20px;padding:10px;border-radius:50%;border:none;">☀️/🌙</button>
-  <div class="hero"><h1>Army Body Fat Test</h1><p>Calculate your body fat percentage using the official military tape measure method.</p></div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="input-group"><label>Gender</label><select id="gender" onchange="toggleHip()"><option value="male">Male</option><option value="female">Female</option></select></div>
-      <div class="input-group"><label>Age</label><input type="number" id="age" value="25"></div>
-      <div class="input-group"><label>Height (cm)</label><input type="number" id="height" value="175"></div>
-      <div class="input-group"><label>Neck Circumference (cm)</label><input type="number" id="neck" value="38"></div>
-      <div class="input-group"><label>Waist Circumference (cm)</label><input type="number" id="waist" value="85"></div>
-      <div class="input-group" id="hipGroup" style="display:none;"><label>Hip Circumference (cm)</label><input type="number" id="hip" value="95"></div>
-      <button class="btn" onclick="calcArmyFat()">Calculate Body Fat %</button>
-    </div>
-
-    <div class="card">
-      <div class="result" id="resBox" style="display:none;">
-        <div>Estimated Body Fat</div>
-        <div class="fat-highlight" id="fatResult">—</div>
-        <div style="margin-top:10px; font-weight:600;" id="standardCheck"></div>
-      </div>
-
-      <div class="ai-panel">
-        <div class="ai-header"><i class="fas fa-robot"></i> Military Fitness Coach</div>
-        <div class="ai-msgs" id="chatMsgs"><div class="msg-bot">Ask me how to prepare for a physical fitness test or reduce body fat!</div></div>
-        <div class="ai-input">
-          <input type="text" id="chatInput" placeholder="Ask a fitness question..." onkeypress="if(event.key==='Enter')sendAI()">
-          <button onclick="sendAI()">➤</button>
+    <!-- Header -->
+    <div class="header">
+        <h1>🎖️ Army Body Fat Calculator Pro</h1>
+        <p>Advanced military-grade body composition analysis with AI-powered fitness coaching, progress tracking, and multi-standard compliance</p>
+        <div class="badges">
+            <span class="badge"><i class="fas fa-check-circle"></i> US Army Standards</span>
+            <span class="badge"><i class="fas fa-check-circle"></i> US Navy Method</span>
+            <span class="badge"><i class="fas fa-check-circle"></i> Marine Corps</span>
+            <span class="badge"><i class="fas fa-check-circle"></i> Air Force</span>
+            <span class="badge"><i class="fas fa-robot"></i> AI Coach</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Progress Tracking</span>
         </div>
-      </div>
     </div>
-  </div>
+
+    <div class="grid">
+        <!-- Calculator Card -->
+        <div>
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-calculator"></i> Body Measurements
+                </div>
+
+                <!-- Standard Selection Tabs -->
+                <div class="tabs">
+                    <button class="tab active" onclick="switchStandard('army')">🇺🇸 Army</button>
+                    <button class="tab" onclick="switchStandard('navy')">⚓ Navy</button>
+                    <button class="tab" onclick="switchStandard('marine')">🌍 Marines</button>
+                    <button class="tab" onclick="switchStandard('airforce')">✈️ Air Force</button>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-venus-mars"></i> Gender</label>
+                    <select id="gender" onchange="toggleHip()">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-calendar-alt"></i> Age Group</label>
+                    <select id="ageGroup">
+                        <option value="17-20">17-20 years</option>
+                        <option value="21-27" selected>21-27 years</option>
+                        <option value="28-39">28-39 years</option>
+                        <option value="40+">40+ years</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-ruler-vertical"></i> Height</label>
+                    <input type="number" id="height" value="175" placeholder="Enter height in cm" step="0.1">
+                    <div class="input-hint">Measure without shoes, standing straight</div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-weight-scale"></i> Weight (optional)</label>
+                    <input type="number" id="weight" value="75" placeholder="Enter weight in kg" step="0.1">
+                    <div class="input-hint">For BMI comparison and progress tracking</div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-ruler"></i> Neck Circumference</label>
+                    <input type="number" id="neck" value="38" placeholder="Measure below larynx" step="0.1">
+                    <div class="input-hint">Measure just below the Adam's apple</div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-ruler-combined"></i> Waist Circumference</label>
+                    <input type="number" id="waist" value="85" placeholder="Measure at navel level" step="0.1">
+                    <div class="input-hint">Measure at the level of the belly button</div>
+                </div>
+
+                <div class="input-group" id="hipGroup" style="display:none;">
+                    <label><i class="fas fa-ruler-horizontal"></i> Hip Circumference</label>
+                    <input type="number" id="hip" value="95" placeholder="Measure at widest point" step="0.1">
+                    <div class="input-hint">Required for female calculation</div>
+                </div>
+
+                <button class="btn" onclick="calculateBodyFat()">
+                    <i class="fas fa-percentage"></i> Calculate Body Fat %
+                </button>
+
+                <button class="btn btn-outline" onclick="resetForm()" style="margin-top:10px;">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-lightbulb"></i> Quick Tips for Accurate Measurement
+                </div>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-tshirt"></i>
+                        <h4>Wear Thin Clothing</h4>
+                        <p>Remove bulky clothing for accurate tape measurements</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>Morning Measurement</h4>
+                        <p>Measure in the morning before eating for consistency</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-sync"></i>
+                        <h4>Measure Twice</h4>
+                        <p>Take each measurement twice and use the average</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-user-friends"></i>
+                        <h4>Get Help</h4>
+                        <p>Have someone else take measurements for better accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results & AI Panel -->
+        <div>
+            <!-- Results -->
+            <div class="card" id="resultsCard" style="display:none;">
+                <div class="result-box">
+                    <div class="result-label">Estimated Body Fat</div>
+                    <div class="fat-value">
+                        <span id="fatResult">—</span><span class="fat-unit">%</span>
+                    </div>
+                    <div id="statusBadge"></div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                        </div>
+                        <div class="progress-markers">
+                            <span>Essential</span>
+                            <span>Athletic</span>
+                            <span>Fitness</span>
+                            <span>Acceptable</span>
+                            <span>Over</span>
+                        </div>
+                    </div>
+
+                    <div class="standards-grid" id="standardsGrid"></div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-wrapper">
+                    <canvas id="bodyFatChart"></canvas>
+                </div>
+
+                <!-- Additional Metrics -->
+                <div class="grid" style="margin-top:20px;">
+                    <div class="standard-item">
+                        <div class="standard-label">BMI</div>
+                        <div class="standard-value" id="bmiValue">—</div>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-label">Fat Mass</div>
+                        <div class="standard-value" id="fatMass">—</div>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-label">Lean Mass</div>
+                        <div class="standard-value" id="leanMass">—</div>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-label">Waist/Height</div>
+                        <div class="standard-value" id="waistHeight">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Coach -->
+            <div class="ai-panel">
+                <div class="ai-header">
+                    <i class="fas fa-robot"></i>
+                    <span>Military Fitness AI Coach</span>
+                    <span style="font-size:12px;opacity:0.8;">Online</span>
+                </div>
+                <div class="ai-messages" id="chatMessages">
+                    <div class="msg-bot">
+                        <strong>👋 Welcome!</strong> I'm your Military Fitness AI Coach. I can help you:
+                        <br>• Understand your body fat results
+                        <br>• Create a fitness plan to meet standards
+                        <br>• Provide nutrition advice
+                        <br>• Answer military fitness test questions
+                        <br><br>Calculate your body fat first, then ask me anything!
+                    </div>
+                </div>
+                <div class="ai-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about fitness, diet, or military standards..." onkeypress="if(event.key==='Enter')sendAI()">
+                    <button onclick="sendAI()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card" style="margin-top:20px;">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Measurement History
+                    <button onclick="clearHistory()" style="margin-left:auto;background:none;border:1px solid var(--danger);color:var(--danger);padding:5px 15px;border-radius:8px;cursor:pointer;font-size:12px;">
+                        Clear
+                    </button>
+                </div>
+                <div id="historyList">
+                    <p style="color:var(--text-secondary);text-align:center;">No measurements yet. Start tracking your progress!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Military Standards Comparison -->
+    <div class="card">
+        <div class="card-title">
+            <i class="fas fa-table"></i> Military Body Fat Standards Comparison
+        </div>
+        <div style="overflow-x:auto;">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Branch</th>
+                        <th>Age Group</th>
+                        <th>Male Max %</th>
+                        <th>Female Max %</th>
+                        <th>Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Army</strong></td>
+                        <td>17-20 / 21-27 / 28-39 / 40+</td>
+                        <td>20% / 22% / 24% / 26%</td>
+                        <td>30% / 32% / 34% / 36%</td>
+                        <td>Tape Test</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Navy</strong></td>
+                        <td>All ages</td>
+                        <td>22%</td>
+                        <td>33%</td>
+                        <td>Circumference</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marine Corps</strong></td>
+                        <td>17-25 / 26-35 / 36-45 / 46+</td>
+                        <td>18% / 19% / 20% / 21%</td>
+                        <td>26% / 27% / 28% / 29%</td>
+                        <td>Tape & Weight</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Air Force</strong></td>
+                        <td>All ages</td>
+                        <td>20%</td>
+                        <td>28%</td>
+                        <td>Circumference</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <script>
-  function toggleHip() {
-    document.getElementById('hipGroup').style.display = document.getElementById('gender').value === 'female' ? 'block' : 'none';
-  }
+// Global variables
+let currentStandard = 'army';
+let bodyFatChart = null;
+let measurementHistory = JSON.parse(localStorage.getItem('bodyFatHistory') || '[]');
+let currentFatPercentage = 0;
 
-  function calcArmyFat() {
-    let gender = document.getElementById('gender').value;
-    let h = parseFloat(document.getElementById('height').value);
-    let n = parseFloat(document.getElementById('neck').value);
-    let w = parseFloat(document.getElementById('waist').value);
-    let hip = parseFloat(document.getElementById('hip').value) || 0;
+// Theme toggle
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.getElementById('themeIcon');
+    if (document.body.classList.contains('dark')) {
+        icon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.className = 'fas fa-moon';
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Load saved theme
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
+
+// Switch military standard
+function switchStandard(standard) {
+    currentStandard = standard;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
     
-    if(!h || !n || !w) return;
+    // Recalculate if results exist
+    if (currentFatPercentage > 0) {
+        displayResults(currentFatPercentage);
+    }
+}
 
-    let bf = 0;
+// Toggle hip input for female
+function toggleHip() {
+    const hipGroup = document.getElementById('hipGroup');
+    hipGroup.style.display = document.getElementById('gender').value === 'female' ? 'block' : 'none';
+}
+
+// Main calculation function
+function calculateBodyFat() {
+    const gender = document.getElementById('gender').value;
+    const ageGroup = document.getElementById('ageGroup').value;
+    const height = parseFloat(document.getElementById('height').value);
+    const weight = parseFloat(document.getElementById('weight').value) || 0;
+    const neck = parseFloat(document.getElementById('neck').value);
+    const waist = parseFloat(document.getElementById('waist').value);
+    const hip = parseFloat(document.getElementById('hip').value) || 0;
+
+    // Validation
+    if (!height || !neck || !waist) {
+        alert('Please fill in all required measurements (Height, Neck, Waist)');
+        return;
+    }
+
+    if (gender === 'female' && !hip) {
+        alert('Hip measurement is required for female calculation');
+        return;
+    }
+
+    // Calculate body fat using US Navy formula (most widely accepted)
+    let bodyFat;
     if (gender === 'male') {
-        // US Navy formula (metric)
-        bf = 495 / (1.0324 - 0.19077 * Math.log10(w - n) + 0.15456 * Math.log10(h)) - 450;
+        bodyFat = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
     } else {
-        bf = 495 / (1.29579 - 0.35004 * Math.log10(w + hip - n) + 0.22100 * Math.log10(h)) - 450;
+        bodyFat = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.22100 * Math.log10(height)) - 450;
     }
 
-    if (isNaN(bf) || bf < 1 || bf > 70) { alert("Invalid measurements."); return; }
+    // Validate result
+    if (isNaN(bodyFat) || bodyFat < 2 || bodyFat > 70) {
+        alert('Invalid measurements. Please check your inputs and try again.');
+        return;
+    }
 
-    document.getElementById('resBox').style.display = 'block';
-    document.getElementById('fatResult').innerText = bf.toFixed(1) + "%";
+    currentFatPercentage = bodyFat;
     
-    let standard = gender === 'male' ? 20 : 30; // Rough army standard
-    if(bf > standard) {
-        document.getElementById('standardCheck').innerHTML = `<span style="color:#ef4444;">Over typical military standard (${standard}%)</span>`;
+    // Calculate additional metrics
+    if (weight > 0) {
+        const fatMass = (bodyFat / 100) * weight;
+        const leanMass = weight - fatMass;
+        const bmi = weight / ((height / 100) * (height / 100));
+        
+        document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+        document.getElementById('fatMass').textContent = fatMass.toFixed(1) + ' kg';
+        document.getElementById('leanMass').textContent = leanMass.toFixed(1) + ' kg';
     } else {
-        document.getElementById('standardCheck').innerHTML = `<span style="color:#10b981;">Meets typical military standard (<${standard}%)</span>`;
+        document.getElementById('bmiValue').textContent = '—';
+        document.getElementById('fatMass').textContent = '—';
+        document.getElementById('leanMass').textContent = '—';
     }
-  }
+    
+    document.getElementById('waistHeight').textContent = (waist / height).toFixed(2);
 
-  async function sendAI() {
-    let input = document.getElementById('chatInput'), msg = input.value.trim();
-    if(!msg) return;
+    // Display results
+    displayResults(bodyFat);
+    
+    // Save to history
+    saveToHistory(bodyFat, gender, ageGroup);
+    
+    // Scroll to results
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+}
 
-    let md = document.getElementById('chatMsgs');
-    md.innerHTML += `<div class="msg-user">${msg}</div>`;
-    input.value = ''; md.scrollTop = md.scrollHeight;
+// Display results with standards
+function displayResults(bodyFat) {
+    const gender = document.getElementById('gender').value;
+    const ageGroup = document.getElementById('ageGroup').value;
+    
+    // Show results card
+    document.getElementById('resultsCard').style.display = 'block';
+    document.getElementById('fatResult').textContent = bodyFat.toFixed(1);
+    
+    // Get standard limits based on branch and age
+    const standards = getStandards(currentStandard, gender, ageGroup);
+    const maxAllowed = standards.max;
+    
+    // Status badge
+    let statusHTML, statusClass, progressPercent;
+    if (bodyFat <= maxAllowed - 2) {
+        statusHTML = '✅ PASS - Well Within Standards';
+        statusClass = 'status-pass';
+        progressPercent = (bodyFat / (maxAllowed * 1.2)) * 100;
+    } else if (bodyFat <= maxAllowed) {
+        statusHTML = '⚠️ PASS - Borderline';
+        statusClass = 'status-borderline';
+        progressPercent = (bodyFat / (maxAllowed * 1.2)) * 100;
+    } else if (bodyFat <= maxAllowed + 3) {
+        statusHTML = '⚠️ FAIL - Slightly Over Limit';
+        statusClass = 'status-borderline';
+        progressPercent = (bodyFat / (maxAllowed * 1.2)) * 100;
+    } else {
+        statusHTML = '❌ FAIL - Exceeds Standards';
+        statusClass = 'status-fail';
+        progressPercent = (bodyFat / (maxAllowed * 1.2)) * 100;
+    }
+    
+    document.getElementById('statusBadge').innerHTML = `<span class="status-badge ${statusClass}">${statusHTML}</span>`;
+    
+    // Progress bar
+    const progressFill = document.getElementById('progressFill');
+    progressFill.style.width = Math.min(progressPercent, 100) + '%';
+    
+    // Standards grid
+    const standardsGrid = document.getElementById('standardsGrid');
+    const allStandards = [
+        { branch: 'Army', max: getStandards('army', gender, ageGroup).max },
+        { branch: 'Navy', max: getStandards('navy', gender, ageGroup).max },
+        { branch: 'Marines', max: getStandards('marine', gender, ageGroup).max },
+        { branch: 'Air Force', max: getStandards('airforce', gender, ageGroup).max }
+    ];
+    
+    standardsGrid.innerHTML = allStandards.map(s => {
+        const isCurrent = s.branch.toLowerCase() === currentStandard;
+        const meets = bodyFat <= s.max;
+        return `
+            <div class="standard-item ${isCurrent ? 'highlight' : ''}">
+                <div class="standard-label">${s.branch} Standard</div>
+                <div class="standard-value">
+                    ${bodyFat.toFixed(1)}% / ${s.max}%
+                    ${meets ? ' ✅' : ' ❌'}
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Update chart
+    updateChart(bodyFat, maxAllowed);
+}
 
-    let fat = document.getElementById('fatResult').innerText;
-    let prompt = `[USER GOAL: Military Fitness / Body Fat Reduction. Current BF: ${fat}]\nAct as a Military Fitness AI. Answer: ${msg}`;
+// Get standards for different branches
+function getStandards(branch, gender, ageGroup) {
+    const standards = {
+        army: {
+            male: { '17-20': 20, '21-27': 22, '28-39': 24, '40+': 26 },
+            female: { '17-20': 30, '21-27': 32, '28-39': 34, '40+': 36 }
+        },
+        navy: {
+            male: { '17-20': 22, '21-27': 22, '28-39': 22, '40+': 22 },
+            female: { '17-20': 33, '21-27': 33, '28-39': 33, '40+': 33 }
+        },
+        marine: {
+            male: { '17-20': 18, '21-27': 19, '28-39': 20, '40+': 21 },
+            female: { '17-20': 26, '21-27': 27, '28-39': 28, '40+': 29 }
+        },
+        airforce: {
+            male: { '17-20': 20, '21-27': 20, '28-39': 20, '40+': 20 },
+            female: { '17-20': 28, '21-27': 28, '28-39': 28, '40+': 28 }
+        }
+    };
+    
+    return { max: standards[branch][gender][ageGroup] };
+}
 
+// Update chart
+function updateChart(bodyFat, maxAllowed) {
+    const ctx = document.getElementById('bodyFatChart').getContext('2d');
+    
+    if (bodyFatChart) {
+        bodyFatChart.destroy();
+    }
+    
+    const categories = ['Essential', 'Athletic', 'Fitness', 'Acceptable', 'Obese'];
+    const ranges = [5, 13, 17, 24, 35];
+    
+    bodyFatChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: categories,
+            datasets: [{
+                label: 'Your Body Fat %',
+                data: ranges.map((r, i) => {
+                    if (i === 0) return bodyFat <= ranges[0] ? bodyFat : ranges[0];
+                    if (i === categories.length - 1) return bodyFat > ranges[ranges.length - 2] ? bodyFat : 0;
+                    return bodyFat > ranges[i-1] && bodyFat <= ranges[i] ? bodyFat : 0;
+                }),
+                backgroundColor: [
+                    'rgba(16, 185, 129, 0.8)',
+                    'rgba(59, 130, 246, 0.8)',
+                    'rgba(245, 158, 11, 0.8)',
+                    'rgba(239, 68, 68, 0.6)',
+                    'rgba(239, 68, 68, 0.8)'
+                ],
+                borderColor: [
+                    '#10b981',
+                    '#3b82f6',
+                    '#f59e0b',
+                    '#ef4444',
+                    '#ef4444'
+                ],
+                borderWidth: 2,
+                borderRadius: 8
+            }, {
+                label: 'Maximum Standard',
+                data: [maxAllowed, maxAllowed, maxAllowed, maxAllowed, maxAllowed],
+                type: 'line',
+                borderColor: '#4d7c0f',
+                borderWidth: 3,
+                borderDash: [10, 5],
+                pointRadius: 0,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b',
+                        usePointStyle: true
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y.toFixed(1) + '%';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 40,
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        },
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    },
+                    grid: {
+                        color: document.body.classList.contains('dark') ? '#334155' : '#e2e8f0'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    },
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Save to history
+function saveToHistory(bodyFat, gender, ageGroup) {
+    const entry = {
+        date: new Date().toISOString(),
+        bodyFat: bodyFat.toFixed(1),
+        gender,
+        ageGroup,
+        standard: currentStandard,
+        height: document.getElementById('height').value,
+        weight: document.getElementById('weight').value,
+        neck: document.getElementById('neck').value,
+        waist: document.getElementById('waist').value,
+        hip: document.getElementById('hip').value || 'N/A'
+    };
+    
+    measurementHistory.unshift(entry);
+    
+    // Keep only last 30 entries
+    if (measurementHistory.length > 30) {
+        measurementHistory = measurementHistory.slice(0, 30);
+    }
+    
+    localStorage.setItem('bodyFatHistory', JSON.stringify(measurementHistory));
+    displayHistory();
+}
+
+// Display history
+function displayHistory() {
+    const historyList = document.getElementById('historyList');
+    
+    if (measurementHistory.length === 0) {
+        historyList.innerHTML = '<p style="color:var(--text-secondary);text-align:center;">No measurements yet. Start tracking your progress!</p>';
+        return;
+    }
+    
+    historyList.innerHTML = measurementHistory.map((entry, index) => {
+        const date = new Date(entry.date);
+        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const timeStr = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        
+        let change = '';
+        if (index < measurementHistory.length - 1) {
+            const prev = parseFloat(measurementHistory[index + 1].bodyFat);
+            const curr = parseFloat(entry.bodyFat);
+            const diff = (curr - prev).toFixed(1);
+            if (diff > 0) {
+                change = `<span class="history-change change-negative">+${diff}%</span>`;
+            } else if (diff < 0) {
+                change = `<span class="history-change change-positive">${diff}%</span>`;
+            } else {
+                change = `<span class="history-change">0%</span>`;
+            }
+        }
+        
+        return `
+            <div class="history-item">
+                <div>
+                    <div style="font-weight:600;">${entry.standard.toUpperCase()} Standard</div>
+                    <div class="history-date">${dateStr} at ${timeStr}</div>
+                </div>
+                <div style="text-align:right;">
+                    <div class="history-value">${entry.bodyFat}%</div>
+                    ${change}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Clear history
+function clearHistory() {
+    if (confirm('Are you sure you want to clear all measurement history?')) {
+        measurementHistory = [];
+        localStorage.removeItem('bodyFatHistory');
+        displayHistory();
+    }
+}
+
+// Reset form
+function resetForm() {
+    document.getElementById('gender').value = 'male';
+    document.getElementById('ageGroup').value = '21-27';
+    document.getElementById('height').value = '175';
+    document.getElementById('weight').value = '75';
+    document.getElementById('neck').value = '38';
+    document.getElementById('waist').value = '85';
+    document.getElementById('hip').value = '95';
+    document.getElementById('hipGroup').style.display = 'none';
+    document.getElementById('resultsCard').style.display = 'none';
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.tab').classList.add('active');
+    currentStandard = 'army';
+    currentFatPercentage = 0;
+}
+
+// AI Chat
+async function sendAI() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    const messagesDiv = document.getElementById('chatMessages');
+    
+    // Add user message
+    messagesDiv.innerHTML += `<div class="msg-user">${message}</div>`;
+    input.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    // Build context-aware prompt
+    let contextPrompt = `[CONTEXT: Military Fitness AI Coach. `;
+    if (currentFatPercentage > 0) {
+        contextPrompt += `User's current body fat: ${currentFatPercentage.toFixed(1)}%. `;
+        contextPrompt += `Military standard: ${currentStandard.toUpperCase()}. `;
+        const gender = document.getElementById('gender').value;
+        const ageGroup = document.getElementById('ageGroup').value;
+        const maxAllowed = getStandards(currentStandard, gender, ageGroup).max;
+        contextPrompt += `Maximum allowed: ${maxAllowed}%. `;
+        if (currentFatPercentage > maxAllowed) {
+            contextPrompt += `User needs to lose approximately ${((currentFatPercentage - maxAllowed) * 0.73).toFixed(1)} kg of fat to meet standards. `;
+        }
+    }
+    contextPrompt += `]\nUser question: ${message}`;
+    
     try {
-      var res = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ userMessage: prompt }) });
-      var data = await res.json();
-      md.innerHTML += `<div class="msg-bot">${data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-      md.scrollTop = md.scrollHeight;
-    } catch(e) {
-      md.innerHTML += `<div class="msg-bot">❌ Connection error to Vercel API.</div>`;
+        const response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: contextPrompt })
+        });
+        
+        const data = await response.json();
+        const formattedReply = data.reply
+            .replace(/\\n/g, '<br>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/•/g, '<br>•');
+        
+        messagesDiv.innerHTML += `<div class="msg-bot">${formattedReply}</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    } catch (error) {
+        messagesDiv.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again later.</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
-  }
+}
+
+// Load history on page load
+displayHistory();
+
+// Service Worker Registration for PWA
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+}
 </script>
 </body>
 </html>
