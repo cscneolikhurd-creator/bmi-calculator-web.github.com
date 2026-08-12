@@ -5,519 +5,638 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 
-<!-- ========== SEO META TAGS ========== -->
-<title>Advanced WHR Calculator | Waist-to-Hip Ratio | AI Chat | HealthCalc</title>
-<meta name="description" content="Advanced Waist-to-Hip Ratio calculator with AI chat. Visual body shape analysis, WHO risk assessment, personalized health recommendations.">
-<meta name="keywords" content="WHR calculator, waist-to-hip ratio, central obesity, metabolic syndrome, WHO standards, AI health chat">
-<meta name="author" content="HealthCalc">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="revisit-after" content="7 days">
-<link rel="canonical" href="https://healthcalc.in/whr-calculator.html">
-
-<meta property="og:title" content="Advanced WHR Calculator | Health Risk Assessment | AI Chat">
-<meta property="og:description" content="Measure your body fat distribution with AI-powered health tips.">
-<meta property="og:url" content="https://healthcalc.in/whr-calculator.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="HealthCalc">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  "name": "Advanced WHR Calculator with AI Assistant",
-  "description": "Waist-to-Hip Ratio calculator with visual body shape analysis, metabolic risk assessment, and AI-powered health tips.",
-  "url": "https://healthcalc.in/whr-calculator.html"
-}
-</script>
+<title>Advanced WHR Calculator Pro | Body Shape & Health Risk | AI Coach | HealthCalc</title>
+<meta name="description" content="Free advanced Waist-to-Hip Ratio calculator with body shape analysis, multiple health indices (WHR, WHtR, ABSI, BRI), metabolic risk assessment, and AI health coach.">
+<meta name="keywords" content="WHR calculator, waist-to-hip ratio, waist-to-height ratio, ABSI, body roundness index, body shape, apple pear, metabolic syndrome, WHO standards">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
-/* --- PREMIUM CSS VARIABLES (Indigo/Blue Theme for WHR) --- */
 :root {
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --primary-light: #eff6ff;
-  --secondary: #8b5cf6;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --dark: #0f172a;
-  --card-bg: #ffffff;
-  --text: #1e293b;
-  --text-muted: #64748b;
-  --border: #e2e8f0;
-  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-  --shadow-md: 0 8px 16px rgba(0,0,0,0.06);
-  --shadow-hover: 0 20px 40px rgba(59, 130, 246, 0.15);
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --primary: #3b82f6; --primary-hover: #2563eb; --primary-light: #eff6ff;
+  --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444;
+  --dark: #0f172a; --card-bg: #ffffff; --text: #1e293b; --text-muted: #64748b;
+  --border: #e2e8f0; --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02); --shadow-md: 0 8px 16px rgba(0,0,0,0.06);
+  --shadow-hover: 0 20px 40px rgba(59,130,246,0.15);
+  --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
 }
-
 body.dark {
-  --primary-light: #1e3a8a;
-  --card-bg: #1e293b;
-  --text: #f8fafc;
-  --text-muted: #94a3b8;
-  --border: #334155;
+  --primary-light: #1e3a8a; --card-bg: #1e293b; --text: #f8fafc;
+  --text-muted: #94a3b8; --border: #334155;
   --bg-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 20px 40px rgba(0,0,0,0.4);
 }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--bg-gradient); color:var(--text); line-height:1.6; min-height:100vh; transition:var(--transition); }
+.container { max-width:1200px; margin:0 auto; padding:20px; }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text); line-height: 1.6; min-height: 100vh; transition: var(--transition); }
+/* Navigation */
+.top-nav { background:rgba(255,255,255,0.9); backdrop-filter:blur(12px); padding:14px 24px; border-radius:100px; margin-bottom:20px; box-shadow:var(--shadow-sm); border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; position:sticky; top:16px; z-index:1000; }
+body.dark .top-nav { background:rgba(30,41,59,0.9); }
+.nav-links { display:flex; gap:8px; flex-wrap:wrap; }
+.nav-links a { text-decoration:none; color:var(--text-muted); font-weight:600; font-size:13px; padding:8px 18px; border-radius:50px; transition:var(--transition); white-space:nowrap; }
+.nav-links a:hover, .nav-links a.active { background:var(--primary); color:white; }
+.theme-toggle-btn { background:var(--card-bg); border:1px solid var(--border); width:42px; height:42px; border-radius:50%; color:var(--text); cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+.theme-toggle-btn:hover { background:var(--primary-light); }
 
-.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+/* Hero */
+.hero { text-align:center; padding:20px 20px 30px; }
+.hero h1 { font-size:clamp(28px,5vw,40px); font-weight:900; background:linear-gradient(135deg,var(--primary),var(--secondary)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:10px; }
+.hero p { font-size:16px; color:var(--text-muted); max-width:700px; margin:0 auto; }
+.badges { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:15px; }
+.badge { padding:6px 14px; border-radius:20px; font-size:12px; font-weight:600; background:var(--card-bg); border:1px solid var(--border); display:flex; align-items:center; gap:6px; }
 
-/* --- TOP NAVIGATION --- */
-.top-nav { background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; }
-.nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-.nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 14px; padding: 8px 20px; border-radius: 50px; transition: var(--transition); }
-.nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
-.theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
-.theme-toggle-btn:hover { background: var(--primary-light); transform: rotate(15deg); }
+/* Grid */
+.main-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:24px; margin:20px 0; }
+@media(max-width:1024px) { .main-grid { grid-template-columns:1fr; } }
+.card { background:var(--card-bg); border-radius:var(--radius-xl); padding:28px; box-shadow:var(--shadow-md); border:1px solid var(--border); margin-bottom:20px; transition:var(--transition); }
+.card:hover { box-shadow:var(--shadow-hover); }
+.card-title { font-size:18px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:10px; color:var(--primary); }
 
-/* --- INTERNATIONAL BAR --- */
-.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; background: var(--card-bg); padding: 16px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
-.region-selector select { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-size: 14px; font-weight: 600; background: var(--card-bg); color: var(--text); cursor: pointer; outline: none; transition: var(--transition); }
-.region-selector select:focus { border-color: var(--primary); }
+/* Input */
+.input-group { margin-bottom:18px; }
+.input-group label { font-weight:600; font-size:13px; display:block; margin-bottom:8px; color:var(--text); display:flex; align-items:center; gap:6px; }
+.input-group label i { color:var(--primary); width:16px; }
+input, select { width:100%; padding:14px 16px; border:2px solid var(--border); border-radius:var(--radius-md); font-size:15px; background:var(--card-bg); color:var(--text); outline:none; transition:var(--transition); font-weight:500; }
+input:focus, select:focus { border-color:var(--primary); box-shadow:0 0 0 4px rgba(59,130,246,0.1); }
+.input-hint { font-size:11px; color:var(--text-muted); margin-top:5px; }
 
-/* --- HERO SECTION --- */
-.hero { text-align: center; padding: 30px 20px 40px; }
-.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; margin-bottom: 12px; letter-spacing: -1px; }
-.hero p { font-size: 16px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
-.health-authority-note { background: var(--primary-light); color: var(--primary-hover); padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+/* Unit & Gender */
+.unit-row { display:flex; gap:8px; margin-bottom:15px; }
+.unit-opt { flex:1; text-align:center; padding:10px; border:2px solid var(--border); border-radius:10px; cursor:pointer; font-weight:600; transition:var(--transition); font-size:13px; color:var(--text-muted); }
+.unit-opt.active { background:var(--primary); color:white; border-color:var(--primary); }
+.gender-buttons { display:flex; gap:8px; margin-bottom:18px; }
+.gender-btn { flex:1; padding:12px; border:2px solid var(--border); border-radius:10px; background:var(--card-bg); font-weight:600; cursor:pointer; transition:var(--transition); text-align:center; color:var(--text-muted); }
+.gender-btn.active { background:var(--primary); border-color:var(--primary); color:white; }
 
-/* --- MAIN CARD & FORM --- */
-.main-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 24px; margin: 30px 0; }
-@media(max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
-.card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
-.section-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; color: var(--text); padding-bottom: 12px; border-bottom: 2px dashed var(--border); }
-.section-title i { color: var(--primary); }
+/* Buttons */
+.btn { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:white; border:none; padding:16px; width:100%; border-radius:14px; font-weight:700; font-size:16px; cursor:pointer; transition:var(--transition); display:flex; justify-content:center; gap:10px; }
+.btn:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(59,130,246,0.3); }
+.btn-outline { background:transparent; border:2px solid var(--primary); color:var(--primary); padding:12px; width:100%; border-radius:14px; font-weight:700; cursor:pointer; margin-top:8px; transition:var(--transition); }
+.btn-outline:hover { background:var(--primary); color:white; }
 
-/* Unit Toggle */
-.unit-row { display: flex; gap: 12px; background: var(--border); border-radius: 60px; padding: 6px; margin-bottom: 24px; }
-body.dark .unit-row { background: var(--border); }
-.unit-opt { flex: 1; text-align: center; padding: 12px; cursor: pointer; border-radius: 50px; font-weight: 600; transition: var(--transition); color: var(--text-muted); font-size: 14px; }
-.unit-opt.active { background: var(--card-bg); box-shadow: var(--shadow-sm); color: var(--primary); }
+/* Tabs */
+.tabs { display:flex; gap:5px; margin-bottom:18px; background:var(--bg-gradient); padding:4px; border-radius:14px; flex-wrap:wrap; }
+.tab { flex:1; min-width:80px; padding:10px 16px; border:none; background:transparent; border-radius:10px; cursor:pointer; font-weight:600; font-size:13px; color:var(--text-muted); transition:var(--transition); text-align:center; }
+.tab.active { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:white; }
 
-/* Gender Toggle */
-.gender-buttons { display: flex; gap: 12px; margin-bottom: 24px; }
-.gender-btn { flex: 1; padding: 14px; border: 2px solid var(--border); border-radius: 50px; background: var(--card-bg); font-weight: 600; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--text-muted); }
-.gender-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+/* Result Box */
+.result-box { background:linear-gradient(135deg,#1e293b,#0f172a); border-radius:var(--radius-xl); padding:28px; text-align:center; color:white; margin-bottom:20px; position:relative; overflow:hidden; }
+.whr-number { font-size:52px; font-weight:900; background:linear-gradient(135deg,#93c5fd,#3b82f6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin:10px 0; position:relative; z-index:1; }
+.risk-badge { font-size:14px; font-weight:700; padding:6px 16px; border-radius:50px; display:inline-block; position:relative; z-index:1; }
+.risk-low { background:rgba(16,185,129,0.2); color:#6ee7b7; border:1px solid rgba(16,185,129,0.3); }
+.risk-moderate { background:rgba(245,158,11,0.2); color:#fcd34d; border:1px solid rgba(245,158,11,0.3); }
+.risk-high { background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.3); }
 
-.input-group { margin-bottom: 20px; }
-.input-group label { font-weight: 600; font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.input-group label i { color: var(--primary); width: 16px; }
+/* Body Shape */
+.body-shape-visual { background:var(--card-bg); border-radius:var(--radius-lg); padding:20px; text-align:center; border:1px solid var(--border); margin-bottom:15px; }
+.shape-icon { font-size:56px; animation:float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.shape-name { font-size:18px; font-weight:700; margin-top:8px; }
 
-input[type="number"] { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 15px; background: var(--card-bg); color: var(--text); outline: none; transition: var(--transition); font-weight: 500; font-family: 'Inter', sans-serif; }
-input[type="number"]:focus { border-color: var(--primary); }
+/* Comparison Grid */
+.comparison-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:15px; }
+.comparison-card { padding:14px; border-radius:12px; background:var(--bg-gradient); border:1px solid var(--border); text-align:center; }
+.comparison-card.highlight { border-color:var(--primary); background:var(--primary-light); }
+.comparison-value { font-size:18px; font-weight:700; color:var(--primary); }
+.comparison-label { font-size:11px; color:var(--text-muted); margin-top:3px; }
 
-.calc-btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 18px; width: 100%; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 10px; transition: var(--transition); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); display: flex; justify-content: center; gap: 10px; }
-.calc-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4); }
+/* Risk Meter */
+.risk-meter { margin:15px 0; }
+.risk-bar { height:10px; background:var(--border); border-radius:10px; overflow:hidden; }
+.risk-fill { height:100%; border-radius:10px; transition:width 0.8s ease; }
+.risk-fill.low { background:linear-gradient(90deg,#10b981,#34d399); }
+.risk-fill.moderate { background:linear-gradient(90deg,#f59e0b,#fbbf24); }
+.risk-fill.high { background:linear-gradient(90deg,#ef4444,#f87171); }
 
-/* --- RESULTS SECTION --- */
-.result-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: var(--radius-xl); padding: 32px; text-align: center; color: white; margin-bottom: 24px; position: relative; overflow: hidden; }
-.whr-number { font-size: 56px; font-weight: 900; background: linear-gradient(135deg, #93c5fd, #3b82f6); -webkit-background-clip: text; color: transparent; line-height: 1; margin: 10px 0; }
-.risk-level { font-size: 16px; font-weight: 700; margin: 10px 0; padding: 6px 16px; border-radius: 50px; display: inline-block; }
-.risk-level.low { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
-.risk-level.moderate { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3); }
-.risk-level.high { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+/* Chart */
+.chart-wrapper { position:relative; height:280px; margin:15px 0; }
 
-.body-shape-visual { background: var(--bg-gradient); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; text-align: center; border: 1px solid var(--border); }
-.shape-icon { font-size: 60px; margin-bottom: 10px; }
+/* AI Chat */
+.ai-panel { border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; background:var(--card-bg); margin-top:20px; }
+.ai-header { background:linear-gradient(135deg,var(--primary-light),var(--card-bg)); color:var(--primary-hover); padding:14px 18px; font-weight:700; display:flex; align-items:center; gap:10px; }
+body.dark .ai-header { color:#93c5fd; }
+.ai-messages { height:280px; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; font-size:13px; background:var(--bg-gradient); }
+.msg-bot,.msg-user { padding:12px 16px; border-radius:14px; max-width:85%; line-height:1.5; animation:slideIn 0.3s ease; }
+@keyframes slideIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.msg-bot { background:var(--card-bg); border:1px solid var(--border); align-self:flex-start; }
+.msg-user { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:white; align-self:flex-end; }
+.ai-input-row { display:flex; gap:10px; padding:14px; border-top:1px solid var(--border); background:var(--card-bg); }
+.ai-input { flex:1; padding:12px 18px; border-radius:25px; border:2px solid var(--border); background:var(--card-bg); color:var(--text); font-size:14px; outline:none; }
+.ai-input:focus { border-color:var(--primary); }
+.ai-send-btn { width:44px; height:44px; border-radius:50%; background:var(--primary); color:white; border:none; cursor:pointer; font-size:16px; transition:var(--transition); display:flex; align-items:center; justify-content:center; }
+.ai-send-btn:hover { background:var(--primary-hover); transform:scale(1.05); }
 
-.risk-meter { margin: 20px 0; }
-.risk-bar { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; margin-top: 8px; }
-.risk-fill { height: 100%; width: 0%; border-radius: 10px; transition: width 0.5s ease; }
-.risk-fill.low { background: linear-gradient(90deg, #10b981, #34d399); }
-.risk-fill.moderate { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.risk-fill.high { background: linear-gradient(90deg, #ef4444, #f87171); }
+/* History */
+.history-item { display:flex; justify-content:space-between; align-items:center; padding:12px; border-bottom:1px solid var(--border); font-size:13px; }
+.history-item:hover { background:var(--bg-gradient); border-radius:8px; }
 
-.risk-factors { margin: 24px 0; }
-.risk-factor-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; font-weight: 500; }
-
-.recommendations { background: rgba(59, 130, 246, 0.05); border-radius: var(--radius-lg); padding: 20px; margin: 20px 0; border: 1px solid rgba(59, 130, 246, 0.1); }
-.recommendations li { padding: 8px 0; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; }
-
-/* --- PREMIUM AI CHAT PANEL --- */
-.ai-chat-panel { margin-top: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-.ai-chat-header { background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2)); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
-.ai-chat-messages { height: 280px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
-.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; animation: slideIn 0.3s ease; }
-.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
-.ai-message-user { background: var(--primary); color: white; font-weight: 500; border-radius: 16px; border-top-right-radius: 4px; align-self: flex-end; }
-.ai-chat-suggestions { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); }
-.ai-chat-suggestions::-webkit-scrollbar { display: none; }
-.ai-suggestion-chip { background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; font-size: 12px; cursor: pointer; color: #cbd5e1; white-space: nowrap; transition: var(--transition); border: 1px solid transparent; }
-.ai-suggestion-chip:hover { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); }
-.ai-chat-input-row { display: flex; gap: 12px; padding: 16px; background: rgba(0,0,0,0.4); }
-.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 14px; outline: none; transition: var(--transition); }
-.ai-chat-input:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
-.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
-.ai-chat-send-btn:hover { background: var(--primary-hover); transform: scale(1.05); }
-.ai-chat-disclaimer { padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.5); }
-
-/* Animations */
-@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.typing-dots { display: flex; gap: 4px; padding: 4px; }
-.typing-dots div { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
-.typing-dots div:nth-child(1) { animation-delay: -0.32s; }
-.typing-dots div:nth-child(2) { animation-delay: -0.16s; }
-@keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+@media(max-width:768px) {
+  .comparison-grid { grid-template-columns:1fr 1fr; }
+  .whr-number { font-size:38px; }
+}
 </style>
 </head>
 <body>
-
 <div class="container">
-
-  <!-- Premium Top Navigation -->
+  <!-- Navigation -->
   <nav class="top-nav">
     <div class="nav-links">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="ascvd-risk-calculator.html"><i class="fas fa-heartbeat"></i> ASCVD</a>
-      <a href="bmi-calculator.html"><i class="fas fa-weight-scale"></i> BMI</a>
       <a href="whr-calculator.html" class="active"><i class="fas fa-arrows-up-down"></i> WHR</a>
     </div>
-    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
-      <i class="fas fa-moon"></i>
-    </button>
+    <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
   </nav>
 
-  <!-- Regional Settings -->
-  <div class="international-bar">
-    <div class="region-selector">
-      <label for="countrySelect" style="font-weight: 600; color: var(--text);"><i class="fas fa-globe"></i> Region:</label>
-      <select id="countrySelect" aria-label="Select your country">
-        <option value="us">🇺🇸 United States</option>
-        <option value="uk">🇬🇧 United Kingdom</option>
-        <option value="ca">🇨🇦 Canada</option>
-        <option value="au">🇦🇺 Australia</option>
-      </select>
-    </div>
-    <div style="font-weight: 600; color: var(--text-muted); font-size:13px;">
-      <i class="fas fa-shield-halved"></i> 100% Private & Secure
-    </div>
-  </div>
-
+  <!-- Hero -->
   <header class="hero">
-    <div class="health-authority-note"><i class="fas fa-stethoscope"></i> Based on WHO & CDC guidelines</div>
-    <h1>Advanced WHR Calculator</h1>
-    <p>Waist-to-Hip Ratio is a better predictor of metabolic health and cardiovascular risk than BMI. Calculate your shape and chat with our AI for tips!</p>
+    <h1>📐 WHR Calculator Pro</h1>
+    <p>Advanced body composition analysis with WHR, WHtR, ABSI, BRI indices, body shape analysis, and AI health coaching</p>
+    <div class="badges">
+      <span class="badge"><i class="fas fa-calculator"></i> WHR</span>
+      <span class="badge"><i class="fas fa-ruler"></i> WHtR</span>
+      <span class="badge"><i class="fas fa-chart-bar"></i> ABSI</span>
+      <span class="badge"><i class="fas fa-circle"></i> BRI</span>
+      <span class="badge"><i class="fas fa-robot"></i> AI Coach</span>
+    </div>
   </header>
 
   <main class="main-grid">
-    <!-- LEFT COLUMN: INPUTS -->
-    <div class="card">
-      <div class="section-title"><i class="fas fa-sliders-h"></i> Enter Measurements</div>
+    <!-- Input Column -->
+    <div>
+      <div class="card">
+        <div class="card-title"><i class="fas fa-sliders-h"></i> Your Measurements</div>
 
-      <div class="unit-row" id="unitSelectorWHR">
-        <div class="unit-opt active" data-unitwhr="cm">📏 cm (Metric)</div>
-        <div class="unit-opt" data-unitwhr="inch">🇺🇸 inches (Imperial)</div>
-      </div>
+        <div class="unit-row">
+          <div class="unit-opt active" onclick="switchUnit('cm')">📏 Metric (cm)</div>
+          <div class="unit-opt" onclick="switchUnit('inch')">📐 Imperial (in)</div>
+        </div>
 
-      <div class="gender-buttons">
-        <button class="gender-btn active" data-gender="female"><i class="fas fa-female"></i> Female</button>
-        <button class="gender-btn" data-gender="male"><i class="fas fa-male"></i> Male</button>
-      </div>
+        <div class="gender-buttons">
+          <button class="gender-btn active" onclick="switchGender('female')">♀ Female</button>
+          <button class="gender-btn" onclick="switchGender('male')">♂ Male</button>
+        </div>
 
-      <div class="input-group">
-        <label><i class="fas fa-arrows-up-down"></i> Waist Circumference</label>
-        <input type="number" id="waist" step="any" placeholder="e.g., 82" value="82">
-      </div>
-      
-      <div class="input-group">
-        <label><i class="fas fa-arrow-left-right"></i> Hip Circumference</label>
-        <input type="number" id="hip" step="any" placeholder="e.g., 98" value="98">
-      </div>
+        <div class="input-group">
+          <label><i class="fas fa-arrows-up-down"></i> Waist Circumference</label>
+          <input type="number" id="waist" value="82" step="0.1">
+          <div class="input-hint">Measure at navel level after exhaling</div>
+        </div>
 
-      <button class="calc-btn" id="calcWHR" onclick="computeWHR()"><i class="fas fa-calculator"></i> Calculate WHR</button>
+        <div class="input-group">
+          <label><i class="fas fa-arrow-left-right"></i> Hip Circumference</label>
+          <input type="number" id="hip" value="98" step="0.1">
+          <div class="input-hint">Measure at widest part of buttocks</div>
+        </div>
+
+        <div class="input-group">
+          <label><i class="fas fa-ruler-vertical"></i> Height <span id="heightUnit">(cm)</span></label>
+          <input type="number" id="height" value="165" step="0.1">
+        </div>
+
+        <div class="input-group">
+          <label><i class="fas fa-weight-scale"></i> Weight <span id="weightUnit">(kg)</span></label>
+          <input type="number" id="weight" value="65" step="0.1">
+        </div>
+
+        <div class="input-group">
+          <label><i class="fas fa-calendar-alt"></i> Age</label>
+          <input type="number" id="age" value="30" min="18" max="100">
+        </div>
+
+        <button class="btn" onclick="calculateAll()">
+          <i class="fas fa-calculator"></i> Calculate All Indices
+        </button>
+        <button class="btn-outline" onclick="resetForm()">
+          <i class="fas fa-redo"></i> Reset
+        </button>
+      </div>
     </div>
 
-    <!-- RIGHT COLUMN: OUTPUT & AI -->
-    <div class="card">
-      <div class="section-title"><i class="fas fa-chart-pie"></i> Your Health Assessment</div>
-
-      <div class="result-card">
-        <div style="font-size:14px; opacity:0.8; font-weight:600;">Your Waist-to-Hip Ratio</div>
-        <div class="whr-number" id="whrValue">—</div>
-        <div class="risk-level" id="riskCategory">—</div>
-        <div id="whrAdvice" style="font-size:14px; margin-top:8px; font-weight:500;"></div>
-      </div>
-
-      <div class="body-shape-visual">
-        <div class="shape-icon" id="shapeIcon">🍎</div>
-        <div class="shape-name" id="shapeName" style="font-size:1.2rem; font-weight:700; color:var(--text);">Apple Shape</div>
-        <div class="shape-desc" id="shapeDesc" style="font-size:0.85rem; color:var(--text-muted);">Fat stored around abdomen</div>
-      </div>
-
-      <div class="risk-meter">
-        <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600; color:var(--text-muted); margin-bottom:5px;">
-            <span>Low</span><span>Moderate</span><span>High</span>
+    <!-- Results Column -->
+    <div>
+      <div class="card" id="resultsCard" style="display:none;">
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab('overview')">📋 Overview</button>
+          <button class="tab" onclick="switchTab('indices')">📊 All Indices</button>
+          <button class="tab" onclick="switchTab('chart')">📈 Chart</button>
         </div>
-        <div class="risk-bar"><div class="risk-fill" id="riskFill" style="width:0%"></div></div>
-      </div>
 
-      <div class="risk-factors">
-        <h4 style="margin-bottom:12px; color:var(--text);"><i class="fas fa-heartbeat"></i> Risk Factor Analysis</h4>
-        <div class="risk-factor-item"><span>❤️ Cardiovascular</span><span id="cardioRisk">—</span></div>
-        <div class="risk-factor-item"><span>💉 Diabetes</span><span id="diabetesRisk">—</span></div>
-        <div class="risk-factor-item"><span>🫁 Visceral Fat</span><span id="visceralRisk">—</span></div>
-        <div class="risk-factor-item"><span>📊 Metabolic Syndrome</span><span id="metabolicRisk">—</span></div>
-      </div>
-
-      <div class="recommendations">
-        <h4 style="margin-bottom:12px; color:var(--text);"><i class="fas fa-lightbulb"></i> AI Recommendations</h4>
-        <ul id="recommendationsList" style="list-style:none;"></ul>
-      </div>
-
-      <!-- PREMIUM AI CHAT PANEL -->
-      <div class="ai-chat-panel" id="aiChatPanel">
-        <div class="ai-chat-header">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <i class="fas fa-robot" style="color:var(--primary-light);"></i>
-            <span>Body Shape AI Assistant</span>
+        <!-- Overview -->
+        <div id="overview-tab" class="tab-content">
+          <div class="result-box">
+            <div style="font-size:14px;opacity:0.8;position:relative;z-index:1;">Waist-to-Hip Ratio (WHR)</div>
+            <div class="whr-number" id="whrValue">—</div>
+            <div id="riskBadge"></div>
           </div>
-          <span style="font-size:10px; background:rgba(16,185,129,0.2); color:#6ee7b7; padding:4px 10px; border-radius:20px;">Vercel Secured</span>
-        </div>
-        
-        <div class="ai-chat-messages" id="aiChatMessages">
-          <div class="ai-message ai-message-bot">
-            <strong>Hello! 👋</strong><br><br>I'm your Body Shape & Health AI Assistant. Calculate your WHR above, then ask me about reducing waist size, diet plans, exercise tips, and metabolic health strategies!
+
+          <div class="body-shape-visual">
+            <div class="shape-icon" id="shapeIcon">🍎</div>
+            <div class="shape-name" id="shapeName">—</div>
+            <div style="color:var(--text-muted);font-size:13px;" id="shapeDesc">—</div>
+          </div>
+
+          <div class="risk-meter">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:4px;">
+              <span>Low</span><span>Moderate</span><span>High</span>
+            </div>
+            <div class="risk-bar"><div class="risk-fill" id="riskFill" style="width:0%"></div></div>
+          </div>
+
+          <div class="comparison-grid">
+            <div class="comparison-card">
+              <div class="comparison-value" id="whrDisplay">—</div>
+              <div class="comparison-label">WHR</div>
+            </div>
+            <div class="comparison-card">
+              <div class="comparison-value" id="whtrDisplay">—</div>
+              <div class="comparison-label">WHtR</div>
+            </div>
+            <div class="comparison-card">
+              <div class="comparison-value" id="absiDisplay">—</div>
+              <div class="comparison-label">ABSI</div>
+            </div>
+            <div class="comparison-card">
+              <div class="comparison-value" id="briDisplay">—</div>
+              <div class="comparison-label">BRI</div>
+            </div>
           </div>
         </div>
-        
-        <div class="ai-chat-suggestions">
-          <div class="ai-suggestion-chip" onclick="sendAIMessage('How to reduce waist circumference effectively?')">📏 Reduce waist?</div>
-          <div class="ai-suggestion-chip" onclick="sendAIMessage('Best diet to lose belly fat and improve WHR?')">🥗 Diet for WHR?</div>
-          <div class="ai-suggestion-chip" onclick="sendAIMessage('Apple shape vs pear shape health risks?')">🍎 Apple vs Pear?</div>
+
+        <!-- All Indices -->
+        <div id="indices-tab" class="tab-content" style="display:none;">
+          <h3 style="margin-bottom:15px;">Complete Body Composition Indices</h3>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;font-size:13px;">
+              <thead>
+                <tr style="background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;">
+                  <th style="padding:10px;text-align:left;">Index</th>
+                  <th style="padding:10px;">Value</th>
+                  <th style="padding:10px;">Category</th>
+                  <th style="padding:10px;">Risk</th>
+                </tr>
+              </thead>
+              <tbody id="indicesTable"></tbody>
+            </table>
+          </div>
         </div>
-        
-        <div class="ai-chat-input-row">
-          <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about your WHR results..." onkeypress="if(event.key==='Enter')sendAIMessage()">
-          <button class="ai-chat-send-btn" onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i></button>
+
+        <!-- Chart -->
+        <div id="chart-tab" class="tab-content" style="display:none;">
+          <div class="chart-wrapper">
+            <canvas id="bodyCompRadarChart"></canvas>
+          </div>
         </div>
-        <div class="ai-chat-disclaimer">⚠️ Educational only. Consult a healthcare professional for medical advice.</div>
       </div>
 
+      <!-- AI Chat -->
+      <div class="ai-panel">
+        <div class="ai-header">
+          <i class="fas fa-robot" style="font-size:20px;"></i>
+          <span>Body Shape & Health AI Coach</span>
+          <span style="font-size:10px;background:rgba(16,185,129,0.2);color:#6ee7b7;padding:4px 10px;border-radius:20px;margin-left:auto;">🟢 Online</span>
+        </div>
+        <div class="ai-messages" id="chatMessages">
+          <div class="msg-bot">
+            <strong>👋 Welcome!</strong><br><br>
+            I can explain:<br>
+            • 📐 Your WHR and what it means<br>
+            • 🍎 Apple vs Pear body shape risks<br>
+            • 💪 How to reduce waist size<br>
+            • 🥗 Best diet for your body type<br>
+            • 🏃 Exercise for visceral fat loss<br><br>
+            Calculate your WHR first, then ask me anything!
+          </div>
+        </div>
+        <div class="ai-input-row">
+          <input type="text" class="ai-input" id="aiChatInput" placeholder="Ask about your results..." onkeypress="if(event.key==='Enter')sendAI()">
+          <button class="ai-send-btn" onclick="sendAI()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="card" style="margin-top:20px;">
+        <div class="card-title">
+          <i class="fas fa-history"></i> History
+          <button onclick="clearHistory()" style="margin-left:auto;background:none;border:1px solid var(--danger);color:var(--danger);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;">Clear</button>
+        </div>
+        <div id="historyList"><p style="color:var(--text-muted);text-align:center;">No measurements yet.</p></div>
+      </div>
     </div>
   </main>
-
-  <footer role="contentinfo" style="text-align:center; padding:20px; margin-top:30px; font-size:13px; color:var(--text-muted);">
-    <p>© 2026 HealthCalc.in | Follows WHO Guidelines. <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-service.html">Terms</a></p>
-  </footer>
-
 </div>
 
 <script>
-    // ==============================================
-    // THEME MANAGEMENT
-    // ==============================================
-    function initTheme() { 
-        var s = localStorage.getItem('hc_theme') || 'light'; 
-        document.body.classList.toggle('dark', s === 'dark'); 
-        updateThemeIcon(s);
-    }
-    function toggleTheme() { 
-        var isDark = document.body.classList.contains('dark');
-        var newTheme = isDark ? 'light' : 'dark';
-        localStorage.setItem('hc_theme', newTheme); 
-        document.body.classList.toggle('dark', !isDark); 
-        updateThemeIcon(newTheme);
-    }
-    function updateThemeIcon(theme) {
-        var btn = document.getElementById('themeToggleBtn');
-        if(btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    }
-    initTheme();
+let currentUnit = 'cm';
+let currentGender = 'female';
+let bodyData = null;
+let radarChart = null;
+let calcHistory = JSON.parse(localStorage.getItem('whrHistory') || '[]');
 
-    // ==============================================
-    // LOGIC & UI
-    // ==============================================
-    let currentUnit = 'cm';
-    let currentGender = 'female';
+// Theme
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    document.getElementById('themeIcon').className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
 
-    document.querySelectorAll('.unit-opt').forEach(opt => {
-        opt.addEventListener('click', () => {
-            document.querySelectorAll('.unit-opt').forEach(u => u.classList.remove('active'));
-            opt.classList.add('active');
-            currentUnit = opt.getAttribute('data-unitwhr');
-            computeWHR();
-        });
+// Unit switch
+function switchUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('.unit-opt').forEach(o => o.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('heightUnit').textContent = unit === 'cm' ? '(cm)' : '(inches)';
+    document.getElementById('weightUnit').textContent = unit === 'cm' ? '(kg)' : '(lbs)';
+}
+
+// Gender switch
+function switchGender(gender) {
+    currentGender = gender;
+    document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+}
+
+// Tab switch
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabName + '-tab').style.display = 'block';
+    event.target.classList.add('active');
+    if (tabName === 'chart' && bodyData) drawRadarChart();
+}
+
+// Format date
+function formatDate(d) { return new Date(d).toLocaleDateString('en-US', {month:'short', day:'numeric'}); }
+
+// Main calculation
+function calculateAll() {
+    let waist = parseFloat(document.getElementById('waist').value);
+    let hip = parseFloat(document.getElementById('hip').value);
+    let height = parseFloat(document.getElementById('height').value);
+    let weight = parseFloat(document.getElementById('weight').value);
+    let age = parseInt(document.getElementById('age').value) || 30;
+
+    if (!waist || !hip || !height || !weight) {
+        alert('Please fill all measurements');
+        return;
+    }
+
+    // Convert to metric if imperial
+    if (currentUnit === 'inch') {
+        waist *= 2.54;
+        hip *= 2.54;
+        height *= 2.54;
+        weight *= 0.453592;
+    }
+
+    const heightM = height / 100;
+    const bmi = weight / (heightM * heightM);
+
+    // WHR
+    const whr = waist / hip;
+
+    // WHtR (Waist-to-Height Ratio)
+    const whtr = waist / height;
+
+    // ABSI (A Body Shape Index)
+    const absi = waist / (Math.pow(bmi, 2/3) * Math.pow(heightM, 1/2));
+
+    // BRI (Body Roundness Index)
+    const waistM = waist / 100;
+    const bri = 364.2 - 365.5 * Math.sqrt(1 - ((waistM / (2 * Math.PI)) ** 2) / (0.5 * heightM) ** 2);
+
+    // WHR Risk
+    let whrRisk, whrLevel, whrClass;
+    if (currentGender === 'female') {
+        if (whr < 0.80) { whrRisk = 'Low Risk'; whrLevel = 'low'; whrClass = 'risk-low'; }
+        else if (whr < 0.85) { whrRisk = 'Moderate Risk'; whrLevel = 'moderate'; whrClass = 'risk-moderate'; }
+        else { whrRisk = 'High Risk'; whrLevel = 'high'; whrClass = 'risk-high'; }
+    } else {
+        if (whr < 0.90) { whrRisk = 'Low Risk'; whrLevel = 'low'; whrClass = 'risk-low'; }
+        else if (whr < 0.95) { whrRisk = 'Moderate Risk'; whrLevel = 'moderate'; whrClass = 'risk-moderate'; }
+        else { whrRisk = 'High Risk'; whrLevel = 'high'; whrClass = 'risk-high'; }
+    }
+
+    // WHtR Risk
+    let whtrRisk = whtr < 0.5 ? 'Optimal' : 'Increased Risk';
+
+    // Body Shape
+    let shapeIcon, shapeName, shapeDesc;
+    if (whr >= (currentGender === 'female' ? 0.85 : 0.95)) {
+        shapeIcon = '🍎'; shapeName = 'Apple Shape'; shapeDesc = 'Fat stored around abdomen — higher metabolic risk';
+    } else if (whr < (currentGender === 'female' ? 0.75 : 0.85)) {
+        shapeIcon = '🍐'; shapeName = 'Pear Shape'; shapeDesc = 'Fat stored around hips — lower metabolic risk';
+    } else {
+        shapeIcon = '⏳'; shapeName = 'Hourglass Shape'; shapeDesc = 'Balanced fat distribution — moderate risk';
+    }
+
+    bodyData = {
+        whr, whtr, absi, bri, bmi,
+        whrRisk, whrLevel, whrClass,
+        whtrRisk, shapeIcon, shapeName, shapeDesc,
+        waist, hip, height, weight, age,
+        date: new Date().toISOString()
+    };
+
+    displayResults(bodyData);
+    saveToHistory(bodyData);
+    document.getElementById('resultsCard').style.display = 'block';
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Display results
+function displayResults(data) {
+    document.getElementById('whrValue').textContent = data.whr.toFixed(3);
+    document.getElementById('riskBadge').innerHTML = `<span class="risk-badge ${data.whrClass}">${data.whrRisk}</span>`;
+    document.getElementById('shapeIcon').textContent = data.shapeIcon;
+    document.getElementById('shapeName').textContent = data.shapeName;
+    document.getElementById('shapeDesc').textContent = data.shapeDesc;
+
+    const fillPct = data.whrLevel === 'low' ? 25 : (data.whrLevel === 'moderate' ? 60 : 90);
+    const fill = document.getElementById('riskFill');
+    fill.style.width = fillPct + '%';
+    fill.className = 'risk-fill ' + data.whrLevel;
+
+    document.getElementById('whrDisplay').textContent = data.whr.toFixed(3);
+    document.getElementById('whtrDisplay').textContent = data.whtr.toFixed(3);
+    document.getElementById('absiDisplay').textContent = data.absi.toFixed(3);
+    document.getElementById('briDisplay').textContent = data.bri.toFixed(1);
+
+    // Indices table
+    const indices = [
+        { name: 'Waist-to-Hip Ratio (WHR)', value: data.whr.toFixed(3), category: data.whrRisk, risk: data.whrLevel },
+        { name: 'Waist-to-Height Ratio (WHtR)', value: data.whtr.toFixed(3), category: data.whtrRisk, risk: data.whtr < 0.5 ? 'low' : 'high' },
+        { name: 'A Body Shape Index (ABSI)', value: data.absi.toFixed(3), category: data.absi < 0.080 ? 'Lower Risk' : 'Higher Risk', risk: data.absi < 0.080 ? 'low' : 'moderate' },
+        { name: 'Body Roundness Index (BRI)', value: data.bri.toFixed(1), category: data.bri < 4 ? 'Lean' : 'Round', risk: data.bri < 4 ? 'low' : 'moderate' },
+        { name: 'BMI', value: data.bmi.toFixed(1), category: data.bmi < 25 ? 'Normal' : data.bmi < 30 ? 'Overweight' : 'Obese', risk: data.bmi < 25 ? 'low' : 'high' }
+    ];
+
+    document.getElementById('indicesTable').innerHTML = indices.map(i => `
+        <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:10px;"><strong>${i.name}</strong></td>
+            <td style="padding:10px;text-align:center;font-weight:700;">${i.value}</td>
+            <td style="padding:10px;text-align:center;">${i.category}</td>
+            <td style="padding:10px;text-align:center;color:${i.risk === 'low' ? 'var(--success)' : i.risk === 'moderate' ? 'var(--warning)' : 'var(--danger)'};font-weight:700;">
+                ${i.risk === 'low' ? '🟢' : i.risk === 'moderate' ? '🟡' : '🔴'} ${i.risk.toUpperCase()}
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Draw radar chart
+function drawRadarChart() {
+    if (!bodyData) return;
+    const ctx = document.getElementById('bodyCompRadarChart').getContext('2d');
+    if (radarChart) radarChart.destroy();
+
+    radarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['WHR Risk', 'WHtR Health', 'ABSI Shape', 'BRI Roundness', 'BMI Weight'],
+            datasets: [{
+                label: 'Your Body Composition',
+                data: [
+                    bodyData.whrLevel === 'low' ? 80 : bodyData.whrLevel === 'moderate' ? 50 : 20,
+                    bodyData.whtr < 0.5 ? 80 : 40,
+                    bodyData.absi < 0.080 ? 75 : 45,
+                    bodyData.bri < 4 ? 80 : 40,
+                    bodyData.bmi < 25 ? 80 : bodyData.bmi < 30 ? 50 : 25
+                ],
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                borderColor: '#3b82f6',
+                borderWidth: 2,
+                pointBackgroundColor: '#3b82f6',
+                pointRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    min: 0, max: 100,
+                    ticks: { stepSize: 20, color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b' },
+                    pointLabels: { color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b' },
+                    grid: { color: document.body.classList.contains('dark') ? '#334155' : '#e2e8f0' }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: { color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b' }
+                }
+            }
+        }
     });
+}
 
-    document.querySelectorAll('.gender-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentGender = btn.getAttribute('data-gender');
-            computeWHR();
-        });
+// Save history
+function saveToHistory(data) {
+    calcHistory.unshift({
+        id: Date.now(),
+        whr: data.whr,
+        whtr: data.whtr,
+        bmi: data.bmi,
+        risk: data.whrRisk,
+        date: data.date
     });
+    if (calcHistory.length > 20) calcHistory = calcHistory.slice(0, 20);
+    localStorage.setItem('whrHistory', JSON.stringify(calcHistory));
+    displayHistory();
+}
 
-    function computeWHR() {
-        let waistVal = parseFloat(document.getElementById('waist').value);
-        let hipVal = parseFloat(document.getElementById('hip').value);
-        if (isNaN(waistVal) || isNaN(hipVal) || waistVal <= 0 || hipVal <= 0) return;
-        
-        let waistCm = currentUnit === 'inch' ? waistVal * 2.54 : waistVal;
-        let hipCm = currentUnit === 'inch' ? hipVal * 2.54 : hipVal;
-        let ratio = waistCm / hipCm;
-        if (ratio > 2 || ratio < 0.4) return;
+function displayHistory() {
+    const list = document.getElementById('historyList');
+    if (calcHistory.length === 0) {
+        list.innerHTML = '<p style="color:var(--text-muted);text-align:center;">No measurements yet.</p>';
+        return;
+    }
+    list.innerHTML = calcHistory.map(e => `
+        <div class="history-item">
+            <div>
+                <strong>WHR: ${e.whr.toFixed(3)}</strong> • ${e.risk}
+                <div style="font-size:11px;color:var(--text-muted);">WHtR: ${e.whtr.toFixed(3)} • BMI: ${e.bmi.toFixed(1)} • ${formatDate(e.date)}</div>
+            </div>
+            <button onclick="loadHistory(${e.id})" style="background:var(--primary);color:white;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;">Load</button>
+        </div>
+    `).join('');
+}
 
-        document.getElementById('whrValue').innerHTML = ratio.toFixed(3);
+function loadHistory(id) {
+    const entry = calcHistory.find(e => e.id === id);
+    if (entry) calculateAll();
+}
 
-        let riskText = '', riskClass = '', riskLevel = '', shapeIcon = '', shapeName = '';
-        let cardioRisk = '', diabetesRisk = '', visceralRisk = '', metabolicRisk = '';
+function clearHistory() {
+    if (confirm('Clear all history?')) {
+        calcHistory = [];
+        localStorage.removeItem('whrHistory');
+        displayHistory();
+    }
+}
 
-        if (currentGender === 'female') {
-            if (ratio < 0.75) {
-                riskText = "🟢 Low Risk"; riskClass = "low"; riskLevel = "low";
-                shapeIcon = "🍐"; shapeName = "Pear Shape";
-                cardioRisk = "Low"; diabetesRisk = "Low"; visceralRisk = "Low"; metabolicRisk = "Low";
-            } else if (ratio < 0.85) {
-                riskText = "🟡 Moderate Risk"; riskClass = "moderate"; riskLevel = "moderate";
-                shapeIcon = "⏳"; shapeName = "Hourglass Shape";
-                cardioRisk = "Moderate"; diabetesRisk = "Moderate"; visceralRisk = "Moderate"; metabolicRisk = "Borderline";
-            } else {
-                riskText = "🔴 High Risk"; riskClass = "high"; riskLevel = "high";
-                shapeIcon = "🍎"; shapeName = "Apple Shape";
-                cardioRisk = "High"; diabetesRisk = "High"; visceralRisk = "High"; metabolicRisk = "High";
-            }
-        } else {
-            if (ratio < 0.85) {
-                riskText = "🟢 Low Risk"; riskClass = "low"; riskLevel = "low";
-                shapeIcon = "🍐"; shapeName = "Pear Shape";
-                cardioRisk = "Low"; diabetesRisk = "Low"; visceralRisk = "Low"; metabolicRisk = "Low";
-            } else if (ratio < 0.95) {
-                riskText = "🟡 Moderate Risk"; riskClass = "moderate"; riskLevel = "moderate";
-                shapeIcon = "⏳"; shapeName = "Hourglass Shape";
-                cardioRisk = "Moderate"; diabetesRisk = "Moderate"; visceralRisk = "Moderate"; metabolicRisk = "Borderline";
-            } else {
-                riskText = "🔴 High Risk"; riskClass = "high"; riskLevel = "high";
-                shapeIcon = "🍎"; shapeName = "Apple Shape";
-                cardioRisk = "High"; diabetesRisk = "High"; visceralRisk = "High"; metabolicRisk = "High";
-            }
-        }
+function resetForm() {
+    document.getElementById('waist').value = '82';
+    document.getElementById('hip').value = '98';
+    document.getElementById('height').value = '165';
+    document.getElementById('weight').value = '65';
+    document.getElementById('age').value = '30';
+    document.getElementById('resultsCard').style.display = 'none';
+    bodyData = null;
+}
 
-        document.getElementById('riskCategory').innerHTML = riskText;
-        document.getElementById('riskCategory').className = 'risk-level ' + riskClass;
-        document.getElementById('shapeIcon').innerHTML = shapeIcon;
-        document.getElementById('shapeName').innerHTML = shapeName;
-        document.getElementById('shapeDesc').innerHTML = riskLevel === 'high' ? 'Fat around abdomen — higher risk' : (riskLevel === 'moderate' ? 'Balanced — moderate risk' : 'Fat around hips — lower risk');
+// AI Chat
+let isAIProcessing = false;
+async function sendAI() {
+    if (isAIProcessing) return;
+    const input = document.getElementById('aiChatInput');
+    const message = input.value.trim();
+    if (!message) return;
 
-        let fillPercent = riskLevel === 'low' ? 25 : (riskLevel === 'moderate' ? 60 : 90);
-        document.getElementById('riskFill').style.width = fillPercent + '%';
-        document.getElementById('riskFill').className = 'risk-fill ' + riskLevel;
+    isAIProcessing = true;
+    const md = document.getElementById('chatMessages');
+    md.innerHTML += `<div class="msg-user">${message}</div>`;
+    input.value = '';
+    md.scrollTop = md.scrollHeight;
 
-        document.getElementById('cardioRisk').innerHTML = cardioRisk;
-        document.getElementById('diabetesRisk').innerHTML = diabetesRisk;
-        document.getElementById('visceralRisk').innerHTML = visceralRisk;
-        document.getElementById('metabolicRisk').innerHTML = metabolicRisk;
-        
-        [cardioRisk, diabetesRisk, visceralRisk, metabolicRisk].forEach((t, i) => {
-            var el = [document.getElementById('cardioRisk'), document.getElementById('diabetesRisk'), document.getElementById('visceralRisk'), document.getElementById('metabolicRisk')][i];
-            el.style.color = t === 'Low' ? '#10b981' : (t === 'Moderate' || t === 'Borderline' ? '#f59e0b' : '#ef4444');
-            el.style.fontWeight = "bold";
+    let context = '[CONTEXT: Body Composition & WHR Health AI. ';
+    if (bodyData) {
+        context += `WHR:${bodyData.whr.toFixed(3)}(${bodyData.whrRisk}), WHtR:${bodyData.whtr.toFixed(3)}, BMI:${bodyData.bmi.toFixed(1)}. Shape:${bodyData.shapeName}. `;
+    }
+    context += `]\nUser: ${message}`;
+
+    try {
+        const res = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: context })
         });
-
-        var recs = [];
-        if (riskLevel === 'high') {
-            recs = [{ t: 'Start aerobic exercise 150 min/week' }, { t: 'Reduce refined carbs and sugar' }, { t: 'Improve sleep and manage stress' }, { t: 'Consult doctor for screening' }];
-        } else if (riskLevel === 'moderate') {
-            recs = [{ t: '10,000 steps daily + strength 2x/week' }, { t: 'Mediterranean-style diet' }, { t: 'Stay hydrated, limit alcohol' }];
-        } else {
-            recs = [{ t: 'Maintain healthy lifestyle' }, { t: 'Check WHR every 3-6 months' }, { t: 'Routine health checkups' }];
-        }
-        document.getElementById('recommendationsList').innerHTML = recs.map(r => '<li><i class="fas fa-check-circle" style="color:var(--primary); font-size:16px;"></i> ' + r.t + '</li>').join('');
-
-        var advice = ratio.toFixed(3) + ' — ';
-        advice += riskLevel === 'high' ? 'Elevated risk. Reduce waist through exercise and diet.' : (riskLevel === 'moderate' ? 'Moderate range. Maintain healthy habits.' : 'Healthy range. Keep it up!');
-        document.getElementById('whrAdvice').innerHTML = advice;
+        const data = await res.json();
+        const reply = data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        md.innerHTML += `<div class="msg-bot">${reply}</div>`;
+        md.scrollTop = md.scrollHeight;
+    } catch(e) {
+        md.innerHTML += `<div class="msg-bot">❌ Connection error.</div>`;
+        md.scrollTop = md.scrollHeight;
+    } finally {
+        isAIProcessing = false;
     }
+}
 
-    // Auto-calculate on load and input
-    document.getElementById('waist').addEventListener('input', computeWHR);
-    document.getElementById('hip').addEventListener('input', computeWHR);
-    window.addEventListener('load', computeWHR);
+// Auto-calculate on input
+['waist','hip','height','weight','age'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calculateAll);
+});
 
-
-    // ==============================================
-    // VERCEL SECURE AI CHAT INTEGRATION (/api/chat)
-    // ==============================================
-    var isAIProcessing = false;
-
-    function addChatMessage(text, sender) {
-        var md = document.getElementById('aiChatMessages'), msgDiv = document.createElement('div');
-        msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
-        msgDiv.style.animation = 'slideIn 0.3s ease';
-        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        text = text.replace(/\n/g, '<br>');
-        msgDiv.innerHTML = text;
-        md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
-    }
-    
-    function showTypingIndicator() {
-        var md = document.getElementById('aiChatMessages'), td = document.createElement('div');
-        td.id = 'aiTypingIndicator'; td.className = 'ai-message ai-message-bot'; 
-        td.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
-        md.appendChild(td); md.scrollTop = md.scrollHeight;
-    }
-    
-    function removeTypingIndicator() { 
-        var t = document.getElementById('aiTypingIndicator'); 
-        if(t) t.remove(); 
-    }
-
-    async function sendAIMessage(prefilledText) {
-        if (isAIProcessing) return;
-
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if(!message) return;
-
-        isAIProcessing = true;
-        addChatMessage(message, 'user');
-        if(!prefilledText) input.value = '';
-        showTypingIndicator();
-
-        var whr = document.getElementById('whrValue').innerHTML;
-        var context = "";
-        if (whr !== '—') {
-            context = `[PATIENT PROFILE - WHR: ${whr}, Gender: ${currentGender}]\n\n`;
-        }
-
-        var promptContext = context + `Please act as an expert Body Shape & Metabolic Health AI Assistant. Provide evidence-based advice regarding Waist-to-Hip Ratio. Keep answers structured and concise using bullet points. Always end with: '⚠️ Consult a healthcare professional for personalized medical advice.'\n\nUSER QUESTION: ${message}`;
-
-        try {
-            // ✅ CONNECTED TO YOUR SECURE VERCEL BACKEND
-            var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userMessage: promptContext }) 
-            });
-
-            var data = await response.json();
-            removeTypingIndicator();
-
-            if(data.reply) {
-                addChatMessage(data.reply, 'bot');
-            } else {
-                throw new Error('Invalid response');
-            }
-        } catch(e) {
-            removeTypingIndicator();
-            console.error('API Error:', e);
-            addChatMessage('❌ <strong>Network Error</strong><br>Vercel backend se connection nahi ho paya. Kripya check karein ki `/api/chat.js` file properly deploy hui hai.<br><br>⚠️ Consult a healthcare professional for medical advice.', 'bot');
-        } finally {
-            isAIProcessing = false;
-        }
-    }
+displayHistory();
+calculateAll();
 </script>
 </body>
 </html>
