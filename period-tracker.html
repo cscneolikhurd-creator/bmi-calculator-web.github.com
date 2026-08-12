@@ -3,108 +3,882 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Period Tracker & Cycle Predictor | AI Chat | HealthCalc</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Advanced Period Tracker Pro | Cycle Calendar | Symptom Log | AI Coach | HealthCalc</title>
+<meta name="description" content="Free advanced period tracker with cycle predictions, ovulation calendar, symptom logging, PMS tracker, fertility window, and AI women's health coach. Better than paid apps!">
+<meta name="keywords" content="period tracker, menstrual cycle, ovulation calculator, PMS tracker, cycle calendar, fertility window, period predictor">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --primary: #f43f5e; --primary-light: #ffe4e6; --bg: #fff1f2; --card: #ffffff; --text: #1e293b; --border: #fecdd3; }
-body.dark { --primary-light: #881337; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --border: #334155; }
+:root {
+    --primary: #f43f5e;
+    --primary-dark: #e11d48;
+    --primary-light: #ffe4e6;
+    --bg: #fff1f2;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #fecdd3;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --period-color: #ef4444;
+    --pms-color: #f59e0b;
+    --ovulation-color: #ec4899;
+    --fertile-color: #8b5cf6;
+    --follicular-color: #3b82f6;
+    --luteal-color: #10b981;
+    --gradient-1: linear-gradient(135deg, #f43f5e, #e11d48);
+    --gradient-2: linear-gradient(135deg, #fb7185, #f43f5e);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+}
+body.dark {
+    --primary-light: #881337;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.3);
+}
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg); color: var(--text); padding: 20px; transition: 0.3s; }
-.container { max-width: 900px; margin: 0 auto; }
-.card { background: var(--card); border-radius: 24px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 20px; }
-.hero { text-align: center; margin-bottom: 30px; }
-.hero h1 { color: var(--primary); font-size: 32px; font-weight: 800; }
+body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.header { text-align: center; margin-bottom: 30px; }
+.header h1 {
+    font-size: 42px; font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 10px;
+}
+.header p { color: var(--text-secondary); font-size: 18px; max-width: 700px; margin: 0 auto; }
+.badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px; }
+.badge {
+    padding: 8px 16px; border-radius: 25px; font-size: 13px; font-weight: 600;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 6px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 1000;
+    background: var(--card); border: 2px solid var(--border);
+    padding: 12px; border-radius: 50%; cursor: pointer; font-size: 20px;
+    box-shadow: var(--shadow-md); transition: all 0.3s;
+    width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle:hover { transform: scale(1.1); box-shadow: var(--shadow-lg); }
+
+/* Cards */
+.card {
+    background: var(--card); border-radius: 24px; padding: 30px;
+    box-shadow: var(--shadow-md); border: 1px solid var(--border);
+    margin-bottom: 20px; transition: all 0.3s ease;
+}
+.card:hover { box-shadow: var(--shadow-lg); }
+.card-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px; color: var(--primary);
+}
+
+/* Grid */
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-.input-group { margin-bottom: 15px; }
-label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px; }
-input { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background: var(--card); color: var(--text); outline: none; }
-.btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 10px; }
-.result { background: var(--primary-light); border-radius: 16px; padding: 20px; margin-top: 20px; }
-.date-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 10px 0; }
-.date-row strong { color: var(--primary); }
-.ai-panel { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
-.ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 600; }
-.ai-msgs { height: 200px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.msg-bot { background: var(--border); padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-start; color: var(--text); }
-.msg-user { background: var(--primary); color: white; padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-end; }
-.ai-input { display: flex; border-top: 1px solid var(--border); }
-.ai-input input { border: none; padding: 12px; flex: 1; background: var(--card); color: var(--text); outline: none;}
-.ai-input button { background: var(--primary); color: white; border: none; padding: 0 20px; cursor: pointer; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media(max-width: 1024px) { .grid, .grid-3 { grid-template-columns: 1fr; } }
+
+/* Input Styles */
+.input-group { margin-bottom: 20px; }
+.input-group label {
+    font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px;
+    color: var(--text); display: flex; align-items: center; gap: 6px;
+}
+.input-group label i { color: var(--primary); width: 20px; }
+input, select {
+    width: 100%; padding: 14px 16px; border: 2px solid var(--border);
+    border-radius: 14px; background: var(--bg); color: var(--text);
+    font-size: 16px; outline: none; transition: all 0.3s ease; font-weight: 500;
+}
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(244,63,94,0.1);
+}
+.input-hint { font-size: 12px; color: var(--text-secondary); margin-top: 5px; }
+
+/* Buttons */
+.btn {
+    background: var(--gradient-1); color: white; border: none;
+    padding: 16px 24px; width: 100%; border-radius: 14px;
+    font-weight: 700; font-size: 16px; cursor: pointer;
+    transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(244,63,94,0.3); }
+.btn:active { transform: translateY(0); }
+.btn-outline {
+    background: transparent; border: 2px solid var(--primary); color: var(--primary);
+    padding: 12px; width: 100%; border-radius: 14px; font-weight: 700;
+    cursor: pointer; margin-top: 10px; transition: all 0.3s;
+}
+.btn-outline:hover { background: var(--primary); color: white; }
+
+/* Tabs */
+.tabs {
+    display: flex; gap: 5px; margin-bottom: 20px;
+    background: var(--bg); padding: 5px; border-radius: 14px; flex-wrap: wrap;
+}
+.tab {
+    flex: 1; min-width: 90px; padding: 12px 18px; border: none;
+    background: transparent; border-radius: 10px; cursor: pointer;
+    font-weight: 600; font-size: 14px; color: var(--text-secondary);
+    transition: all 0.3s; text-align: center;
+}
+.tab.active { background: var(--gradient-1); color: white; box-shadow: var(--shadow-sm); }
+
+/* Result Box */
+.result-box {
+    background: linear-gradient(135deg, var(--primary-light), var(--card));
+    border-radius: 20px; padding: 25px; border: 2px solid var(--primary);
+    position: relative; overflow: hidden;
+}
+.result-box::before {
+    content: ''; position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(244,63,94,0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+@keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.date-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.08);
+    position: relative; z-index: 1;
+}
+.date-row:last-child { border-bottom: none; }
+.date-row strong { color: var(--primary); font-size: 16px; }
+.date-row span { display: flex; align-items: center; gap: 8px; }
+
+/* Cycle Visual */
+.cycle-visual {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; margin: 20px 0; flex-wrap: wrap;
+}
+.cycle-phase {
+    width: 65px; height: 65px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 11px; text-align: center;
+    transition: all 0.3s; cursor: pointer; border: 3px solid;
+}
+.phase-period { background: #fee2e2; border-color: var(--period-color); color: var(--period-color); }
+.phase-follicular { background: #dbeafe; border-color: var(--follicular-color); color: var(--follicular-color); }
+.phase-ovulation { background: #fce7f3; border-color: var(--ovulation-color); color: var(--ovulation-color); transform: scale(1.15); animation: pulse 2s infinite; }
+.phase-luteal { background: #d1fae5; border-color: var(--luteal-color); color: var(--luteal-color); }
+.phase-pms { background: #fef3c7; border-color: var(--pms-color); color: #92400e; }
+@keyframes pulse { 0%,100% { transform: scale(1.15); } 50% { transform: scale(1.25); } }
+.cycle-arrow { color: var(--text-secondary); font-size: 16px; }
+
+/* Calendar */
+.calendar-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
+    text-align: center; margin-top: 15px;
+}
+.calendar-header { font-weight: 700; font-size: 11px; color: var(--text-secondary); padding: 8px 0; }
+.calendar-day {
+    padding: 10px 4px; border-radius: 8px; font-size: 12px;
+    cursor: pointer; border: 2px solid transparent; transition: all 0.3s;
+}
+.calendar-day:hover { background: var(--border); }
+.calendar-day.period { background: #fee2e2; border-color: var(--period-color); color: var(--period-color); font-weight: 700; }
+.calendar-day.pms { background: #fef3c7; border-color: var(--pms-color); color: #92400e; font-weight: 700; }
+.calendar-day.ovulation { background: #fce7f3; border-color: var(--ovulation-color); color: var(--ovulation-color); font-weight: 700; }
+.calendar-day.fertile { background: #ede9fe; border-color: var(--fertile-color); color: var(--fertile-color); font-weight: 700; }
+.calendar-day.today { border: 2px dashed var(--primary); }
+
+/* Symptoms */
+.symptom-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px; margin-top: 15px;
+}
+.symptom-card {
+    padding: 14px; border-radius: 14px; background: var(--bg);
+    border: 2px solid var(--border); text-align: center; cursor: pointer;
+    transition: all 0.3s; font-size: 13px;
+}
+.symptom-card:hover, .symptom-card.active {
+    border-color: var(--primary); background: var(--primary-light);
+    transform: translateY(-2px);
+}
+.symptom-card i { font-size: 22px; color: var(--primary); margin-bottom: 6px; display: block; }
+
+/* Metrics */
+.metrics-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 15px;
+}
+.metric-card {
+    padding: 15px; border-radius: 12px; background: var(--bg);
+    border: 1px solid var(--border); text-align: center;
+}
+.metric-value { font-size: 20px; font-weight: 700; color: var(--primary); }
+.metric-label { font-size: 11px; color: var(--text-secondary); margin-top: 3px; }
+
+/* Chart Container */
+.chart-wrapper { position: relative; height: 280px; margin: 15px 0; }
+
+/* AI Chat */
+.ai-panel {
+    border: 2px solid var(--border); border-radius: 20px;
+    overflow: hidden; background: var(--card); margin-top: 20px;
+}
+.ai-header {
+    background: var(--gradient-1); color: white; padding: 16px 20px;
+    font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 10px;
+}
+.ai-header i { font-size: 24px; }
+.ai-messages {
+    height: 300px; overflow-y: auto; padding: 20px;
+    display: flex; flex-direction: column; gap: 12px; background: var(--bg);
+}
+.ai-messages::-webkit-scrollbar { width: 6px; }
+.ai-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+.msg-bot, .msg-user {
+    padding: 12px 16px; border-radius: 16px; max-width: 85%;
+    font-size: 14px; line-height: 1.5; animation: slideIn 0.3s ease;
+}
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.msg-bot {
+    background: var(--card); border: 1px solid var(--border);
+    align-self: flex-start; border-bottom-left-radius: 4px;
+}
+.msg-user {
+    background: var(--gradient-1); color: white;
+    align-self: flex-end; border-bottom-right-radius: 4px;
+}
+.ai-input-container {
+    display: flex; padding: 15px; border-top: 1px solid var(--border);
+    background: var(--card); gap: 10px;
+}
+.ai-input-container input {
+    flex: 1; border: 2px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; background: var(--bg);
+}
+.ai-input-container button {
+    background: var(--gradient-1); color: white; border: none;
+    padding: 12px 24px; border-radius: 12px; cursor: pointer;
+    font-weight: 600; transition: all 0.3s;
+}
+.ai-input-container button:hover { transform: scale(1.05); }
+
+/* History */
+.history-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px; border-bottom: 1px solid var(--border); transition: all 0.3s;
+}
+.history-item:hover { background: var(--bg); border-radius: 8px; }
+
+@media(max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .cycle-visual { gap: 4px; }
+    .cycle-phase { width: 50px; height: 50px; font-size: 9px; }
+}
 </style>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+</button>
+
 <div class="container">
-  <button onclick="document.body.classList.toggle('dark')" style="position:absolute;top:20px;right:20px;padding:10px;border-radius:50%;border:none;">☀️/🌙</button>
-  <div class="hero"><h1>Period Tracker</h1><p>Predict your next menstrual cycle, PMS window, and ovulation dates.</p></div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="input-group"><label>First day of last period</label><input type="date" id="lmp"></div>
-      <div class="input-group"><label>Cycle Length (Days)</label><input type="number" id="cycle" value="28"></div>
-      <div class="input-group"><label>Period Duration (Days)</label><input type="number" id="duration" value="5"></div>
-      <button class="btn" onclick="calcCycle()">Predict Next Cycle</button>
-    </div>
-
-    <div class="card">
-      <div class="result" id="resBox" style="display:none;">
-        <h3 style="margin-bottom:15px; color:var(--text);">Your Cycle Timeline</h3>
-        <div class="date-row"><span>🩸 Next Period Starts:</span> <strong id="nextPeriod"></strong></div>
-        <div class="date-row"><span>🌸 PMS Window:</span> <strong id="pmsWindow"></strong></div>
-        <div class="date-row"><span>🥚 Ovulation Day:</span> <strong id="ovulation"></strong></div>
-      </div>
-
-      <div class="ai-panel">
-        <div class="ai-header"><i class="fas fa-robot"></i> Women's Health AI</div>
-        <div class="ai-msgs" id="chatMsgs"><div class="msg-bot">Calculate your dates, then ask me about PMS relief, cramps, or cycle health!</div></div>
-        <div class="ai-input">
-          <input type="text" id="chatInput" placeholder="E.g., How to reduce cramps naturally?" onkeypress="if(event.key==='Enter')sendAI()">
-          <button onclick="sendAI()">➤</button>
+    <!-- Header -->
+    <div class="header">
+        <h1>📅 Period Tracker Pro</h1>
+        <p>Advanced cycle tracking with predictions, ovulation calendar, symptom logging, PMS alerts, and AI women's health coach</p>
+        <div class="badges">
+            <span class="badge"><i class="fas fa-calendar-alt"></i> Cycle Predictor</span>
+            <span class="badge"><i class="fas fa-calendar-check"></i> Ovulation Tracker</span>
+            <span class="badge"><i class="fas fa-clipboard-list"></i> Symptom Log</span>
+            <span class="badge"><i class="fas fa-robot"></i> AI Coach</span>
+            <span class="badge"><i class="fas fa-chart-line"></i> Cycle Analytics</span>
         </div>
-      </div>
     </div>
-  </div>
+
+    <div class="grid">
+        <!-- Input Section -->
+        <div>
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-sliders-h"></i> Your Cycle Details
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-calendar-alt"></i> First Day of Last Period (LMP)</label>
+                    <input type="date" id="lmp" value="2025-01-15">
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-clock"></i> Average Cycle Length (days)</label>
+                    <input type="number" id="cycle" value="28" min="20" max="45">
+                    <div class="input-hint">Typically 21-35 days</div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-tint"></i> Period Duration (days)</label>
+                    <input type="number" id="duration" value="5" min="2" max="10">
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-calendar-week"></i> Luteal Phase Length (days)</label>
+                    <input type="number" id="lutealPhase" value="14" min="10" max="16">
+                    <div class="input-hint">Days from ovulation to next period</div>
+                </div>
+
+                <button class="btn" onclick="calculateCycle()">
+                    <i class="fas fa-calculator"></i> Predict My Cycle
+                </button>
+                <button class="btn-outline" onclick="resetForm()">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-lightbulb"></i> Cycle Phase Guide
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;">
+                    <div style="padding:10px;background:var(--bg);border-radius:10px;border-left:3px solid var(--period-color);">
+                        <strong>🩸 Period</strong><br><span style="color:var(--text-secondary);">Days 1-5: Rest, hydrate, iron-rich foods</span>
+                    </div>
+                    <div style="padding:10px;background:var(--bg);border-radius:10px;border-left:3px solid var(--follicular-color);">
+                        <strong>🌱 Follicular</strong><br><span style="color:var(--text-secondary);">Days 6-13: Energy rises, best for workouts</span>
+                    </div>
+                    <div style="padding:10px;background:var(--bg);border-radius:10px;border-left:3px solid var(--ovulation-color);">
+                        <strong>🥚 Ovulation</strong><br><span style="color:var(--text-secondary);">Day 14: Peak fertility, highest energy</span>
+                    </div>
+                    <div style="padding:10px;background:var(--bg);border-radius:10px;border-left:3px solid var(--luteal-color);">
+                        <strong>💛 Luteal</strong><br><span style="color:var(--text-secondary);">Days 15-28: PMS possible, reduce caffeine</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div>
+            <div class="card" id="resultsCard" style="display:none;">
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('overview')">📋 Overview</button>
+                    <button class="tab" onclick="switchTab('calendar')">📅 Calendar</button>
+                    <button class="tab" onclick="switchTab('symptoms')">📝 Symptoms</button>
+                    <button class="tab" onclick="switchTab('chart')">📊 Chart</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview-tab" class="tab-content">
+                    <div class="result-box">
+                        <h3 style="margin-bottom:15px;position:relative;z-index:1;">📋 Your Cycle Timeline</h3>
+                        <div class="date-row">
+                            <span>🩸 Next Period Starts</span>
+                            <strong id="nextPeriod">—</strong>
+                        </div>
+                        <div class="date-row">
+                            <span>🩸 Period Ends</span>
+                            <strong id="periodEnd">—</strong>
+                        </div>
+                        <div class="date-row">
+                            <span>🌸 PMS Window</span>
+                            <strong id="pmsWindow">—</strong>
+                        </div>
+                        <div class="date-row">
+                            <span>🥚 Ovulation Day</span>
+                            <strong id="ovulation">—</strong>
+                        </div>
+                        <div class="date-row">
+                            <span>✨ Fertile Window</span>
+                            <strong id="fertileWindow">—</strong>
+                        </div>
+                        <div class="date-row">
+                            <span>📅 Period After Next</span>
+                            <strong id="periodAfterNext">—</strong>
+                        </div>
+                    </div>
+
+                    <!-- Cycle Visual -->
+                    <div class="cycle-visual">
+                        <div class="cycle-phase phase-period">🩸<br>Period</div>
+                        <div class="cycle-arrow">→</div>
+                        <div class="cycle-phase phase-follicular">🌱<br>Follicular</div>
+                        <div class="cycle-arrow">→</div>
+                        <div class="cycle-phase phase-ovulation">🥚<br>Ovulation</div>
+                        <div class="cycle-arrow">→</div>
+                        <div class="cycle-phase phase-luteal">💛<br>Luteal</div>
+                        <div class="cycle-arrow">→</div>
+                        <div class="cycle-phase phase-pms">🌸<br>PMS</div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="currentDay">—</div>
+                            <div class="metric-label">Current Cycle Day</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="daysUntilNext">—</div>
+                            <div class="metric-label">Days Until Next</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="daysUntilOvulation">—</div>
+                            <div class="metric-label">Days to Ovulation</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="cyclesPerYear">—</div>
+                            <div class="metric-label">Cycles Per Year</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Tab -->
+                <div id="calendar-tab" class="tab-content" style="display:none;">
+                    <h3 style="margin-bottom:15px;">Cycle Calendar</h3>
+                    <div class="calendar-grid" id="cycleCalendar"></div>
+                    <div style="display:flex;gap:10px;margin-top:10px;font-size:11px;flex-wrap:wrap;">
+                        <span>🩸 Period</span>
+                        <span>🌸 PMS</span>
+                        <span>🥚 Ovulation</span>
+                        <span>✨ Fertile</span>
+                        <span>📍 Today</span>
+                    </div>
+                </div>
+
+                <!-- Symptoms Tab -->
+                <div id="symptoms-tab" class="tab-content" style="display:none;">
+                    <h3 style="margin-bottom:15px;">Log Your Symptoms</h3>
+                    <div class="symptom-grid" id="symptomGrid">
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="cramps">
+                            <i class="fas fa-heart-crack"></i> Cramps
+                        </div>
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="headache">
+                            <i class="fas fa-head-side-virus"></i> Headache
+                        </div>
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="bloating">
+                            <i class="fas fa-circle"></i> Bloating
+                        </div>
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="fatigue">
+                            <i class="fas fa-battery-quarter"></i> Fatigue
+                        </div>
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="mood">
+                            <i class="fas fa-face-frown"></i> Mood Swings
+                        </div>
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="acne">
+                            <i class="fas fa-face-smile-beam"></i> Acne
+                        </div>
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="backache">
+                            <i class="fas fa-person-walking"></i> Backache
+                        </div>
+                        <div class="symptom-card" onclick="toggleSymptom(this)" data-symptom="insomnia">
+                            <i class="fas fa-moon"></i> Insomnia
+                        </div>
+                    </div>
+                    <button class="btn" onclick="saveSymptoms()" style="margin-top:15px;">
+                        <i class="fas fa-save"></i> Save Symptom Log
+                    </button>
+                </div>
+
+                <!-- Chart Tab -->
+                <div id="chart-tab" class="tab-content" style="display:none;">
+                    <div class="chart-wrapper">
+                        <canvas id="cycleChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Chat -->
+            <div class="ai-panel">
+                <div class="ai-header">
+                    <i class="fas fa-robot"></i>
+                    <span>Women's Health AI Coach</span>
+                    <span style="font-size:12px;opacity:0.8;">🟢 Online</span>
+                </div>
+                <div class="ai-messages" id="chatMessages">
+                    <div class="msg-bot">
+                        <strong>👋 Welcome to Women's Health AI!</strong><br><br>
+                        I can help with:<br>
+                        • 🩸 PMS & cramp relief tips<br>
+                        • 🍎 Cycle-syncing nutrition<br>
+                        • 🧘 Period-friendly exercises<br>
+                        • 📅 Understanding your cycle<br>
+                        • 💡 Natural remedy suggestions<br><br>
+                        Predict your cycle first, then ask me anything!
+                    </div>
+                </div>
+                <div class="ai-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about period health, PMS, or cycle..." onkeypress="if(event.key==='Enter')sendAI()">
+                    <button onclick="sendAI()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card" style="margin-top:20px;">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Cycle History
+                    <button onclick="clearHistory()" style="margin-left:auto;background:none;border:1px solid var(--danger);color:var(--danger);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;">Clear</button>
+                </div>
+                <div id="historyList">
+                    <p style="color:var(--text-secondary);text-align:center;">No cycles tracked yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-  function formatDate(date) { return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
+// Global variables
+let cycleData = null;
+let cycleChart = null;
+let activeSymptoms = [];
+let cycleHistory = JSON.parse(localStorage.getItem('periodHistory') || '[]');
 
-  function calcCycle() {
-    let lmp = new Date(document.getElementById('lmp').value);
-    let cycle = parseInt(document.getElementById('cycle').value);
-    if(isNaN(lmp.getTime()) || !cycle) return;
+// Theme toggle
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.getElementById('themeIcon');
+    icon.className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+    localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
 
-    let next = new Date(lmp); next.setDate(lmp.getDate() + cycle);
-    let pmsStart = new Date(next); pmsStart.setDate(next.getDate() - 7);
-    let ovu = new Date(next); ovu.setDate(next.getDate() - 14);
+// Format date
+function formatDate(date) { return date.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}); }
+function formatDateShort(date) { return date.toLocaleDateString('en-US', {month:'short', day:'numeric'}); }
 
-    document.getElementById('resBox').style.display = 'block';
-    document.getElementById('nextPeriod').innerText = formatDate(next);
-    document.getElementById('pmsWindow').innerText = `${formatDate(pmsStart)} to ${formatDate(next)}`;
-    document.getElementById('ovulation').innerText = formatDate(ovu);
-  }
+// Tab switch
+function switchTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(tabName + '-tab').style.display = 'block';
+    event.target.classList.add('active');
+    if (tabName === 'chart' && cycleData) drawCycleChart();
+}
 
-  async function sendAI() {
-    let input = document.getElementById('chatInput'), msg = input.value.trim();
-    if(!msg) return;
-
-    let md = document.getElementById('chatMsgs');
-    md.innerHTML += `<div class="msg-user">${msg}</div>`;
-    input.value = ''; md.scrollTop = md.scrollHeight;
-
-    let next = document.getElementById('nextPeriod').innerText;
-    let prompt = `[USER GOAL: Menstrual Health. Next Period: ${next}]\nAct as an OB/GYN AI Assistant. Answer: ${msg}`;
-
-    try {
-      var res = await fetch('/api/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ userMessage: prompt }) });
-      var data = await res.json();
-      md.innerHTML += `<div class="msg-bot">${data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-      md.scrollTop = md.scrollHeight;
-    } catch(e) {
-      md.innerHTML += `<div class="msg-bot">❌ Connection error to Vercel API.</div>`;
+// Toggle symptom
+function toggleSymptom(card) {
+    card.classList.toggle('active');
+    const symptom = card.dataset.symptom;
+    if (card.classList.contains('active')) {
+        if (!activeSymptoms.includes(symptom)) activeSymptoms.push(symptom);
+    } else {
+        activeSymptoms = activeSymptoms.filter(s => s !== symptom);
     }
-  }
+}
+
+// Save symptoms
+function saveSymptoms() {
+    if (activeSymptoms.length === 0) {
+        alert('Please select at least one symptom');
+        return;
+    }
+    const symptomHistory = JSON.parse(localStorage.getItem('symptomLog') || '[]');
+    symptomHistory.unshift({
+        date: new Date().toISOString(),
+        symptoms: [...activeSymptoms],
+        cycleDay: cycleData ? cycleData.currentDay : 'N/A'
+    });
+    if (symptomHistory.length > 100) symptomHistory = symptomHistory.slice(0, 100);
+    localStorage.setItem('symptomLog', JSON.stringify(symptomHistory));
+    alert('Symptoms saved! ✅');
+    activeSymptoms = [];
+    document.querySelectorAll('.symptom-card').forEach(c => c.classList.remove('active'));
+}
+
+// Main calculation
+function calculateCycle() {
+    const lmpVal = document.getElementById('lmp').value;
+    const cycleLength = parseInt(document.getElementById('cycle').value);
+    const periodDuration = parseInt(document.getElementById('duration').value);
+    const lutealPhase = parseInt(document.getElementById('lutealPhase').value);
+
+    if (!lmpVal || !cycleLength) {
+        alert('Please enter LMP date and cycle length');
+        return;
+    }
+
+    const lmp = new Date(lmpVal + 'T12:00:00');
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    // Calculate dates
+    const nextPeriod = new Date(lmp);
+    nextPeriod.setDate(lmp.getDate() + cycleLength);
+    
+    const periodEnd = new Date(nextPeriod);
+    periodEnd.setDate(nextPeriod.getDate() + periodDuration - 1);
+    
+    const ovulation = new Date(nextPeriod);
+    ovulation.setDate(nextPeriod.getDate() - lutealPhase);
+    
+    const fertileStart = new Date(ovulation);
+    fertileStart.setDate(ovulation.getDate() - 5);
+    const fertileEnd = new Date(ovulation);
+    fertileEnd.setDate(ovulation.getDate() + 1);
+    
+    const pmsStart = new Date(nextPeriod);
+    pmsStart.setDate(nextPeriod.getDate() - 7);
+    
+    const periodAfterNext = new Date(nextPeriod);
+    periodAfterNext.setDate(nextPeriod.getDate() + cycleLength);
+
+    // Current cycle day
+    const diffDays = Math.floor((today - lmp) / (1000*60*60*24));
+    const currentDay = diffDays > 0 && diffDays <= cycleLength ? diffDays : 
+                       (diffDays > cycleLength ? (diffDays % cycleLength) || cycleLength : 1);
+    
+    const daysUntilNext = Math.floor((nextPeriod - today) / (1000*60*60*24));
+    const daysUntilOvulation = Math.floor((ovulation - today) / (1000*60*60*24));
+    const cyclesPerYear = Math.round(365 / cycleLength);
+
+    cycleData = {
+        lmp, nextPeriod, periodEnd, ovulation, fertileStart, fertileEnd,
+        pmsStart, periodAfterNext, cycleLength, periodDuration, lutealPhase,
+        currentDay, daysUntilNext, daysUntilOvulation, cyclesPerYear,
+        today, date: new Date().toISOString()
+    };
+
+    displayResults(cycleData);
+    generateCalendar(cycleData);
+    saveToHistory(cycleData);
+    
+    document.getElementById('resultsCard').style.display = 'block';
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Display results
+function displayResults(data) {
+    document.getElementById('nextPeriod').textContent = formatDate(data.nextPeriod);
+    document.getElementById('periodEnd').textContent = formatDate(data.periodEnd);
+    document.getElementById('pmsWindow').textContent = formatDateShort(data.pmsStart) + ' - ' + formatDateShort(data.nextPeriod);
+    document.getElementById('ovulation').textContent = formatDate(data.ovulation);
+    document.getElementById('fertileWindow').textContent = formatDateShort(data.fertileStart) + ' - ' + formatDateShort(data.fertileEnd);
+    document.getElementById('periodAfterNext').textContent = formatDate(data.periodAfterNext);
+    
+    document.getElementById('currentDay').textContent = 'Day ' + data.currentDay;
+    document.getElementById('daysUntilNext').textContent = data.daysUntilNext + ' days';
+    document.getElementById('daysUntilOvulation').textContent = 
+        data.daysUntilOvulation >= 0 ? data.daysUntilOvulation + ' days' : 'Passed';
+    document.getElementById('cyclesPerYear').textContent = data.cyclesPerYear;
+}
+
+// Generate calendar
+function generateCalendar(data) {
+    const cal = document.getElementById('cycleCalendar');
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    let html = days.map(d => `<div class="calendar-header">${d}</div>`).join('');
+
+    const firstDay = new Date(data.lmp.getFullYear(), data.lmp.getMonth(), 1);
+    const startDay = firstDay.getDay();
+    const daysInMonth = new Date(data.lmp.getFullYear(), data.lmp.getMonth()+1, 0).getDate();
+
+    for (let i=0; i<startDay; i++) html += '<div class="calendar-day"></div>';
+
+    for (let d=1; d<=daysInMonth; d++) {
+        const date = new Date(data.lmp.getFullYear(), data.lmp.getMonth(), d);
+        let cls = ['calendar-day'];
+        
+        // Period days
+        if (date >= data.lmp && date < new Date(data.lmp.getTime() + data.periodDuration*86400000)) {
+            cls.push('period');
+        }
+        if (date >= data.nextPeriod && date < new Date(data.nextPeriod.getTime() + data.periodDuration*86400000)) {
+            cls.push('period');
+        }
+        // PMS days
+        if (date >= data.pmsStart && date < data.nextPeriod) cls.push('pms');
+        // Ovulation
+        if (date.toDateString() === data.ovulation.toDateString()) cls.push('ovulation');
+        // Fertile window
+        if (date >= data.fertileStart && date <= data.fertileEnd) cls.push('fertile');
+        // Today
+        if (date.toDateString() === data.today.toDateString()) cls.push('today');
+        
+        html += `<div class="${cls.join(' ')}">${d}</div>`;
+    }
+    cal.innerHTML = html;
+}
+
+// Draw cycle chart
+function drawCycleChart() {
+    if (!cycleData) return;
+    const ctx = document.getElementById('cycleChart').getContext('2d');
+    if (cycleChart) cycleChart.destroy();
+
+    const days = Array.from({length: cycleData.cycleLength}, (_,i) => 'Day ' + (i+1));
+    const phases = days.map((_, i) => {
+        const day = i + 1;
+        if (day <= cycleData.periodDuration) return 5; // Period
+        if (day < cycleData.cycleLength - cycleData.lutealPhase) return 3; // Follicular
+        if (day === cycleData.cycleLength - cycleData.lutealPhase) return 6; // Ovulation
+        return 4; // Luteal
+    });
+
+    cycleChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: days,
+            datasets: [{
+                label: 'Cycle Phase Intensity',
+                data: phases,
+                backgroundColor: phases.map(p => {
+                    if (p === 5) return 'rgba(239,68,68,0.6)';
+                    if (p === 3) return 'rgba(59,130,246,0.4)';
+                    if (p === 6) return 'rgba(236,72,153,0.8)';
+                    return 'rgba(16,185,129,0.5)';
+                }),
+                borderColor: phases.map(p => {
+                    if (p === 5) return '#ef4444';
+                    if (p === 3) return '#3b82f6';
+                    if (p === 6) return '#ec4899';
+                    return '#10b981';
+                }),
+                borderWidth: 1,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Your Cycle Map (28-day view)',
+                    color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
+                }
+            },
+            scales: {
+                y: {
+                    min: 0, max: 7,
+                    ticks: {
+                        callback: v => ['','Period','','Follicular','','Luteal','Ovulation'][v] || '',
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b',
+                        maxTicksLimit: 14
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Save to history
+function saveToHistory(data) {
+    cycleHistory.unshift({
+        id: Date.now(),
+        lmp: data.lmp.toISOString(),
+        nextPeriod: data.nextPeriod.toISOString(),
+        cycleLength: data.cycleLength,
+        date: data.date
+    });
+    if (cycleHistory.length > 30) cycleHistory = cycleHistory.slice(0, 30);
+    localStorage.setItem('periodHistory', JSON.stringify(cycleHistory));
+    displayHistory();
+}
+
+// Display history
+function displayHistory() {
+    const list = document.getElementById('historyList');
+    if (cycleHistory.length === 0) {
+        list.innerHTML = '<p style="color:var(--text-secondary);text-align:center;">No cycles tracked yet.</p>';
+        return;
+    }
+    list.innerHTML = cycleHistory.map(entry => `
+        <div class="history-item">
+            <div>
+                <strong>Next: ${formatDate(new Date(entry.nextPeriod))}</strong>
+                <div style="font-size:11px;color:var(--text-secondary);">
+                    LMP: ${formatDate(new Date(entry.lmp))} • ${entry.cycleLength}-day cycle
+                </div>
+            </div>
+            <button onclick="loadHistory(${entry.id})" style="background:var(--primary);color:white;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;">Load</button>
+        </div>
+    `).join('');
+}
+
+// Load history
+function loadHistory(id) {
+    const entry = cycleHistory.find(e => e.id === id);
+    if (entry) {
+        document.getElementById('lmp').value = new Date(entry.lmp).toISOString().split('T')[0];
+        document.getElementById('cycle').value = entry.cycleLength;
+        calculateCycle();
+    }
+}
+
+// Clear history
+function clearHistory() {
+    if (confirm('Clear all cycle history?')) {
+        cycleHistory = [];
+        localStorage.removeItem('periodHistory');
+        displayHistory();
+    }
+}
+
+// Reset form
+function resetForm() {
+    document.getElementById('lmp').value = '2025-01-15';
+    document.getElementById('cycle').value = '28';
+    document.getElementById('duration').value = '5';
+    document.getElementById('lutealPhase').value = '14';
+    document.getElementById('resultsCard').style.display = 'none';
+    cycleData = null;
+    activeSymptoms = [];
+}
+
+// AI Chat
+async function sendAI() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    
+    const md = document.getElementById('chatMessages');
+    md.innerHTML += `<div class="msg-user">${message}</div>`;
+    input.value = '';
+    md.scrollTop = md.scrollHeight;
+    
+    let context = '[CONTEXT: Women\'s Health & Menstrual Cycle AI Assistant. ';
+    if (cycleData) {
+        context += `Current: Day ${cycleData.currentDay} of ${cycleData.cycleLength}-day cycle. `;
+        context += `Next period: ${formatDate(cycleData.nextPeriod)}. `;
+        context += `Ovulation: ${formatDate(cycleData.ovulation)}. `;
+    }
+    context += `]\nUser: ${message}`;
+    
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: context })
+        });
+        const data = await res.json();
+        const reply = data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        md.innerHTML += `<div class="msg-bot">${reply}</div>`;
+        md.scrollTop = md.scrollHeight;
+    } catch(e) {
+        md.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again.</div>`;
+        md.scrollTop = md.scrollHeight;
+    }
+}
+
+// Initialize
+displayHistory();
 </script>
 </body>
 </html>
