@@ -3,115 +3,1476 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calorie Deficit Tool | Weight Loss Timeline | AI Coach | HealthCalc</title>
-<meta name="description" content="Map out your weight loss timeline and daily caloric deficit requirements safely with our AI coach.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Advanced Calorie Deficit Calculator | Weight Loss Timeline | AI Nutrition Coach | HealthCalc Pro</title>
+<meta name="description" content="Free advanced calorie deficit calculator with weight loss timeline prediction, macro breakdown, meal timing, progress tracking, and AI nutrition coaching.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-:root { --primary: #ef4444; --primary-light: #fee2e2; --bg: #fef2f2; --card: #ffffff; --text: #1e293b; --border: #fecaca; }
-body.dark { --primary-light: #450a0a; --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --border: #334155; }
+:root {
+    --primary: #ef4444;
+    --primary-dark: #dc2626;
+    --primary-light: #fee2e2;
+    --bg: #fef2f2;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #fecaca;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    --gradient-1: linear-gradient(135deg, #ef4444, #dc2626);
+    --gradient-2: linear-gradient(135deg, #f97316, #ef4444);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+}
+body.dark {
+    --primary-light: #450a0a;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border: #334155;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 15px rgba(0,0,0,0.3);
+}
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg); color: var(--text); padding: 20px; transition: 0.3s; }
-.container { max-width: 900px; margin: 0 auto; }
-.card { background: var(--card); border-radius: 24px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border); margin-bottom: 20px; }
-.hero { text-align: center; margin-bottom: 30px; }
-.hero h1 { color: var(--primary); font-size: 32px; font-weight: 800; }
+body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+.header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+.header p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.badge {
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--card);
+    border: 2px solid var(--border);
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Cards */
+.card {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    box-shadow: var(--shadow-lg);
+}
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+}
+
+/* Grid */
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-.input-group { margin-bottom: 15px; }
-label { font-weight: 600; font-size: 14px; display: block; margin-bottom: 8px; }
-input, select { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: 12px; background: var(--card); color: var(--text); outline: none; }
-.btn { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 10px; }
-.result { text-align: center; padding: 20px; background: var(--primary-light); border-radius: 16px; margin-top: 20px; }
-.cal-highlight { font-size: 36px; font-weight: 800; color: var(--primary); }
-.timeline-box { background: rgba(0,0,0,0.05); padding: 15px; border-radius: 12px; margin-top: 15px; font-size: 14px; font-weight: 600; }
-.ai-panel { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 20px; }
-.ai-header { background: var(--primary); color: white; padding: 12px; font-weight: 600; }
-.ai-msgs { height: 200px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
-.msg-bot { background: var(--border); padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-start; color: var(--text); }
-.msg-user { background: var(--primary); color: white; padding: 10px; border-radius: 10px; max-width: 85%; align-self: flex-end; }
-.ai-input { display: flex; border-top: 1px solid var(--border); }
-.ai-input input { border: none; border-radius: 0; padding: 12px; flex: 1; background: var(--card); color: var(--text); outline: none;}
-.ai-input button { background: var(--primary); color: white; border: none; padding: 0 20px; cursor: pointer; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media(max-width: 1024px) { .grid, .grid-3 { grid-template-columns: 1fr; } }
+
+/* Input Styles */
+.input-group { margin-bottom: 20px; position: relative; }
+.input-group label {
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.input-group label i { color: var(--primary); width: 20px; }
+input, select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(239,68,68,0.1);
+}
+.input-hint {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+.unit-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.unit-btn {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-align: center;
+}
+.unit-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Buttons */
+.btn {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(239,68,68,0.3);
+}
+.btn:active { transform: translateY(0); }
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 13px;
+    width: auto;
+    border-radius: 8px;
+}
+
+/* Results */
+.result-box {
+    background: linear-gradient(135deg, var(--primary-light), var(--card));
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+.result-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.result-label {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+.cal-value {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--primary);
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+    margin: 15px 0;
+}
+.cal-unit {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Timeline */
+.timeline-container {
+    position: relative;
+    padding: 20px 0;
+    z-index: 1;
+}
+.timeline-bar {
+    height: 40px;
+    background: var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+.timeline-fill {
+    height: 100%;
+    background: var(--gradient-2);
+    border-radius: 20px;
+    transition: width 1.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
+}
+.timeline-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+.timeline-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+.metric-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+}
+.metric-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+.metric-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+.metric-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+.metric-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+/* Diet Plan Selector */
+.diet-plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.diet-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+.diet-card:hover, .diet-card.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-3px);
+}
+.diet-card i {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+.diet-card h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.diet-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Meal Plan */
+.meal-plan {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.meal-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+}
+.meal-time {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.meal-items {
+    list-style: none;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+.meal-items li {
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+}
+.meal-items li:last-child {
+    border-bottom: none;
+}
+
+/* Chart Container */
+.chart-wrapper {
+    position: relative;
+    height: 300px;
+    margin: 20px 0;
+}
+
+/* AI Chat */
+.ai-panel {
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--card);
+}
+.ai-header {
+    background: var(--gradient-1);
+    color: white;
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.ai-header i { font-size: 24px; }
+.ai-messages {
+    height: 350px;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--bg);
+}
+.ai-messages::-webkit-scrollbar {
+    width: 6px;
+}
+.ai-messages::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
+.msg-bot, .msg-user {
+    padding: 12px 16px;
+    border-radius: 16px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.5;
+    animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.msg-bot {
+    background: var(--card);
+    border: 1px solid var(--border);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+.msg-user {
+    background: var(--gradient-1);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+.ai-input-container {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--border);
+    background: var(--card);
+    gap: 10px;
+}
+.ai-input-container input {
+    flex: 1;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
+    background: var(--bg);
+}
+.ai-input-container button {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.ai-input-container button:hover {
+    transform: scale(1.05);
+}
+
+/* History */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+}
+.history-item:hover {
+    background: var(--bg);
+    border-radius: 10px;
+}
+.history-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.history-value {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* Tips */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.tip-card {
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.tip-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+.tip-card i {
+    font-size: 32px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+.tip-card h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.tip-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    background: var(--bg);
+    padding: 5px;
+    border-radius: 14px;
+}
+.tab {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+}
+.tab.active {
+    background: var(--gradient-1);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Weight Goal Animation */
+.goal-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+.weight-node {
+    text-align: center;
+}
+.weight-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+    margin: 0 auto;
+}
+.current-weight {
+    background: var(--primary-light);
+    border: 3px solid var(--primary);
+    color: var(--primary);
+}
+.target-weight {
+    background: #dcfce7;
+    border: 3px solid var(--success);
+    color: var(--success);
+}
+.arrow-progress {
+    font-size: 24px;
+    color: var(--primary);
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@media(max-width: 768px) {
+    .header h1 { font-size: 28px; }
+    .cal-value { font-size: 48px; }
+    .grid, .grid-3 { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .tabs { flex-direction: column; }
+}
 </style>
 </head>
 <body>
+<button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+    <i class="fas fa-moon" id="themeIcon"></i>
+</button>
+
 <div class="container">
-  <button onclick="document.body.classList.toggle('dark')" style="position:absolute;top:20px;right:20px;padding:10px;border-radius:50%;border:none;">☀️/🌙</button>
-  <div class="hero"><h1>Calorie Deficit Tool</h1><p>Map out your safe weight loss timeline and daily caloric deficit requirements.</p></div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="input-group"><label>Current Weight (kg)</label><input type="number" id="cWeight" value="85"></div>
-      <div class="input-group"><label>Target Weight (kg)</label><input type="number" id="tWeight" value="75"></div>
-      <div class="input-group"><label>Maintenance Calories (TDEE)</label><input type="number" id="tdee" value="2500" placeholder="Use our Calorie Calculator to find this"></div>
-      <div class="input-group"><label>Deficit Speed</label><select id="deficit"><option value="250">Slow (-0.25 kg/week) | -250 kcal</option><option value="500" selected>Steady (-0.5 kg/week) | -500 kcal</option><option value="1000">Aggressive (-1.0 kg/week) | -1000 kcal</option></select></div>
-      <button class="btn" onclick="calcDeficit()">Calculate Deficit Plan</button>
-    </div>
-
-    <div class="card">
-      <div class="result" id="resBox" style="display:none;">
-        <div>Your Target Daily Calories</div>
-        <div class="cal-highlight" id="calTarget">—</div>
-        <div class="timeline-box" id="timelineBox"></div>
-        <div style="font-size:12px; margin-top:10px; color:#ef4444;">*Never consume fewer than 1200 kcal without medical supervision.</div>
-      </div>
-
-      <div class="ai-panel">
-        <div class="ai-header"><i class="fas fa-robot"></i> Fat Loss AI Coach</div>
-        <div class="ai-msgs" id="chatMsgs"><div class="msg-bot">Set up your deficit plan, then ask me how to deal with hunger or how to plan your meals!</div></div>
-        <div class="ai-input">
-          <input type="text" id="chatInput" placeholder="E.g., How to stay full in a deficit?" onkeypress="if(event.key==='Enter')sendAI()">
-          <button onclick="sendAI()">➤</button>
+    <!-- Header -->
+    <div class="header">
+        <h1>🔥 Calorie Deficit Pro</h1>
+        <p>Advanced weight loss planning with timeline prediction, macro calculations, meal timing, and AI nutrition coaching</p>
+        <div class="badges">
+            <span class="badge"><i class="fas fa-chart-line"></i> Progress Tracking</span>
+            <span class="badge"><i class="fas fa-utensils"></i> Meal Planning</span>
+            <span class="badge"><i class="fas fa-robot"></i> AI Coach</span>
+            <span class="badge"><i class="fas fa-calculator"></i> Macro Calculator</span>
+            <span class="badge"><i class="fas fa-clock"></i> Timeline Predictor</span>
         </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Main Calculator Grid -->
+    <div class="grid">
+        <!-- Input Section -->
+        <div>
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-sliders-h"></i> Your Weight Loss Plan
+                </div>
+
+                <!-- Unit Toggle -->
+                <div class="unit-toggle">
+                    <button class="unit-btn active" onclick="switchUnit('metric')">📏 Metric (kg/cm)</button>
+                    <button class="unit-btn" onclick="switchUnit('imperial')">📐 Imperial (lbs/in)</button>
+                </div>
+
+                <div id="metric-inputs">
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Current Weight (kg)</label>
+                        <input type="number" id="cWeight" value="85" step="0.1" placeholder="Your current weight">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-bullseye"></i> Target Weight (kg)</label>
+                        <input type="number" id="tWeight" value="75" step="0.1" placeholder="Your goal weight">
+                    </div>
+                </div>
+
+                <div id="imperial-inputs" style="display:none;">
+                    <div class="input-group">
+                        <label><i class="fas fa-weight-scale"></i> Current Weight (lbs)</label>
+                        <input type="number" id="cWeightLbs" value="187" step="0.1" placeholder="Your current weight">
+                    </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-bullseye"></i> Target Weight (lbs)</label>
+                        <input type="number" id="tWeightLbs" value="165" step="0.1" placeholder="Your goal weight">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-fire"></i> Maintenance Calories (TDEE)</label>
+                    <input type="number" id="tdee" value="2500" placeholder="Daily calories to maintain weight">
+                    <div class="input-hint">Use our <a href="#" style="color:var(--primary);">TDEE Calculator</a> to find this</div>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-tachometer-alt"></i> Deficit Strategy</label>
+                    <select id="deficit">
+                        <option value="250">🐢 Conservative (-0.25 kg/week) | -250 kcal</option>
+                        <option value="500" selected>🐇 Moderate (-0.5 kg/week) | -500 kcal</option>
+                        <option value="750">🦘 Aggressive (-0.75 kg/week) | -750 kcal</option>
+                        <option value="1000">🚀 Maximum (-1.0 kg/week) | -1000 kcal</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-venus-mars"></i> Gender</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label><i class="fas fa-person-running"></i> Activity Level</label>
+                    <select id="activity">
+                        <option value="sedentary">Sedentary (little/no exercise)</option>
+                        <option value="light">Light (1-3 days/week)</option>
+                        <option value="moderate" selected>Moderate (3-5 days/week)</option>
+                        <option value="active">Active (6-7 days/week)</option>
+                        <option value="very-active">Very Active (intense daily)</option>
+                    </select>
+                </div>
+
+                <button class="btn" onclick="calculateDeficit()">
+                    <i class="fas fa-calculator"></i> Calculate My Plan
+                </button>
+
+                <button class="btn btn-outline" onclick="resetForm()" style="margin-top:10px;">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Quick Tips -->
+            <div class="card">
+                <div class="card-title">
+                    <i class="fas fa-lightbulb"></i> Weight Loss Tips
+                </div>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-water"></i>
+                        <h4>Stay Hydrated</h4>
+                        <p>Drink 2-3L water daily to boost metabolism</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-bed"></i>
+                        <h4>Sleep Well</h4>
+                        <p>7-9 hours sleep regulates hunger hormones</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-dumbbell"></i>
+                        <h4>Strength Train</h4>
+                        <p>Preserve muscle mass during deficit</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-egg"></i>
+                        <h4>High Protein</h4>
+                        <p>1.6-2.2g per kg bodyweight daily</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div>
+            <!-- Main Results -->
+            <div class="card" id="resultsCard" style="display:none;">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" onclick="switchResultsTab('overview')">📊 Overview</button>
+                    <button class="tab" onclick="switchResultsTab('macros')">🥗 Macros</button>
+                    <button class="tab" onclick="switchResultsTab('timeline')">📅 Timeline</button>
+                    <button class="tab" onclick="switchResultsTab('meals')">🍽️ Meal Plan</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview-tab" class="results-tab">
+                    <div class="result-box">
+                        <div class="goal-visual">
+                            <div class="weight-node">
+                                <div class="weight-circle current-weight" id="currentWeightDisplay">85</div>
+                                <div style="margin-top:8px;font-weight:600;">Current</div>
+                            </div>
+                            <div class="arrow-progress">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="weight-node">
+                                <div class="weight-circle target-weight" id="targetWeightDisplay">75</div>
+                                <div style="margin-top:8px;font-weight:600;">Goal</div>
+                            </div>
+                        </div>
+
+                        <div class="result-label">Daily Calorie Target</div>
+                        <div class="cal-value">
+                            <span id="calTarget">—</span><span class="cal-unit"> kcal</span>
+                        </div>
+                        <div id="deficitBadge" style="margin-top:10px;position:relative;z-index:1;"></div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">⚖️</div>
+                            <div class="metric-value" id="totalLoss">—</div>
+                            <div class="metric-label">Total Weight Loss</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📅</div>
+                            <div class="metric-value" id="weeksNeeded">—</div>
+                            <div class="metric-label">Weeks to Goal</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📉</div>
+                            <div class="metric-value" id="weeklyLoss">—</div>
+                            <div class="metric-label">Weekly Loss</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Macros Tab -->
+                <div id="macros-tab" class="results-tab" style="display:none;">
+                    <div class="card-title">Recommended Macro Split</div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">🥩</div>
+                            <div class="metric-value" id="proteinGrams">—</div>
+                            <div class="metric-label">Protein (g)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🍞</div>
+                            <div class="metric-value" id="carbsGrams">—</div>
+                            <div class="metric-label">Carbs (g)</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🥑</div>
+                            <div class="metric-value" id="fatsGrams">—</div>
+                            <div class="metric-label">Fats (g)</div>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="macroChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Timeline Tab -->
+                <div id="timeline-tab" class="results-tab" style="display:none;">
+                    <div class="card-title">Weight Loss Timeline</div>
+                    <div class="timeline-container">
+                        <div class="timeline-bar">
+                            <div class="timeline-fill" id="timelineFill" style="width:0%;">
+                                <span id="timelinePercent">0%</span>
+                            </div>
+                        </div>
+                        <div class="timeline-markers">
+                            <span>Start</span>
+                            <span>25%</span>
+                            <span>50%</span>
+                            <span>75%</span>
+                            <span>Goal! 🎉</span>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="weightLossChart"></canvas>
+                    </div>
+                    <div id="milestoneList" style="margin-top:15px;"></div>
+                </div>
+
+                <!-- Meal Plan Tab -->
+                <div id="meals-tab" class="results-tab" style="display:none;">
+                    <div class="card-title">Sample Meal Plan</div>
+                    <div class="diet-plans">
+                        <div class="diet-card selected" onclick="selectDiet('balanced')">
+                            <i class="fas fa-balance-scale"></i>
+                            <h4>Balanced</h4>
+                            <p>40% Carbs, 30% Protein, 30% Fats</p>
+                        </div>
+                        <div class="diet-card" onclick="selectDiet('lowcarb')">
+                            <i class="fas fa-bread-slice"></i>
+                            <h4>Low Carb</h4>
+                            <p>20% Carbs, 40% Protein, 40% Fats</p>
+                        </div>
+                        <div class="diet-card" onclick="selectDiet('highprotein')">
+                            <i class="fas fa-drumstick-bite"></i>
+                            <h4>High Protein</h4>
+                            <p>30% Carbs, 45% Protein, 25% Fats</p>
+                        </div>
+                    </div>
+                    <div class="meal-plan" id="mealPlanDisplay"></div>
+                </div>
+            </div>
+
+            <!-- AI Coach -->
+            <div class="ai-panel">
+                <div class="ai-header">
+                    <i class="fas fa-robot"></i>
+                    <span>Weight Loss AI Coach</span>
+                    <span style="font-size:12px;opacity:0.8;">🟢 Online</span>
+                </div>
+                <div class="ai-messages" id="chatMessages">
+                    <div class="msg-bot">
+                        <strong>👋 Welcome to your Weight Loss AI Coach!</strong><br><br>
+                        I can help you with:<br>
+                        • 🍎 Meal planning and recipes<br>
+                        • 🏃‍♂️ Exercise recommendations<br>
+                        • 💪 Managing hunger and cravings<br>
+                        • 📊 Understanding your deficit plan<br>
+                        • 🧠 Mindset and motivation tips<br><br>
+                        Calculate your plan first, then ask me anything!
+                    </div>
+                </div>
+                <div class="ai-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask about diet, exercise, or weight loss..." onkeypress="if(event.key==='Enter')sendAI()">
+                    <button onclick="sendAI()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card" style="margin-top:20px;">
+                <div class="card-title">
+                    <i class="fas fa-history"></i> Plan History
+                    <button onclick="clearHistory()" style="margin-left:auto;background:none;border:1px solid var(--danger);color:var(--danger);padding:5px 15px;border-radius:8px;cursor:pointer;font-size:12px;">
+                        Clear
+                    </button>
+                </div>
+                <div id="historyList">
+                    <p style="color:var(--text-secondary);text-align:center;">No plans saved yet. Create your first deficit plan!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-  function calcDeficit() {
-    let cw = parseFloat(document.getElementById('cWeight').value);
-    let tw = parseFloat(document.getElementById('tWeight').value);
-    let tdee = parseInt(document.getElementById('tdee').value);
-    let deficit = parseInt(document.getElementById('deficit').value);
-    
-    if(!cw || !tw || !tdee) return;
-    if(cw <= tw) { alert("Target weight must be less than current weight."); return; }
+// Global variables
+let currentUnit = 'metric';
+let currentDiet = 'balanced';
+let weightLossChart = null;
+let macroChart = null;
+let planHistory = JSON.parse(localStorage.getItem('deficitPlanHistory') || '[]');
+let currentPlanData = null;
 
-    let targetCal = tdee - deficit;
-    if (targetCal < 1200) targetCal = 1200; // Safety floor
-
-    let totalKgToLose = cw - tw;
-    let weeksRequired = totalKgToLose / (deficit / 1000); // roughly 7700 kcal = 1kg fat, 500/day = 3500/wk = ~0.5kg
-    
-    document.getElementById('resBox').style.display = 'block';
-    document.getElementById('calTarget').innerText = targetCal + " kcal";
-    document.getElementById('timelineBox').innerText = `Estimated Time to Target: ${Math.round(weeksRequired)} weeks (${(weeksRequired/4.3).toFixed(1)} months)`;
-  }
-
-  async function sendAI() {
-    let input = document.getElementById('chatInput');
-    let msg = input.value.trim();
-    if(!msg) return;
-
-    let md = document.getElementById('chatMsgs');
-    md.innerHTML += `<div class="msg-user">${msg}</div>`;
-    input.value = '';
-    md.scrollTop = md.scrollHeight;
-
-    let cal = document.getElementById('calTarget').innerText;
-    let prompt = `[USER GOAL: Weight Loss/Calorie Deficit. Target: ${cal}]\nAct as a Weight Loss AI Coach. Provide satiating food tips, metabolism advice, and motivation. Answer: ${msg}`;
-
-    try {
-      var res = await fetch('/api/chat', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ userMessage: prompt }) });
-      var data = await res.json();
-      md.innerHTML += `<div class="msg-bot">${data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-      md.scrollTop = md.scrollHeight;
-    } catch(e) {
-      md.innerHTML += `<div class="msg-bot">❌ Connection error to Vercel API. Make sure /api/chat is deployed.</div>`;
+// Theme toggle
+function toggleTheme() {
+    document.body.classList.toggle('dark');
+    const icon = document.getElementById('themeIcon');
+    if (document.body.classList.contains('dark')) {
+        icon.className = 'fas fa-sun';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.className = 'fas fa-moon';
+        localStorage.setItem('theme', 'light');
     }
-  }
+}
+
+// Load saved theme
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.getElementById('themeIcon').className = 'fas fa-sun';
+}
+
+// Unit switching
+function switchUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('.unit-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    document.getElementById('metric-inputs').style.display = unit === 'metric' ? 'block' : 'none';
+    document.getElementById('imperial-inputs').style.display = unit === 'imperial' ? 'block' : 'none';
+}
+
+// Tab switching for results
+function switchResultsTab(tabName) {
+    document.querySelectorAll('.results-tab').forEach(t => t.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    
+    document.getElementById(tabName + '-tab').style.display = 'block';
+    event.target.classList.add('active');
+    
+    // Redraw charts when switching tabs
+    if (tabName === 'timeline' && currentPlanData) {
+        drawWeightLossChart();
+    }
+    if (tabName === 'macros' && currentPlanData) {
+        drawMacroChart();
+    }
+}
+
+// Diet selection
+function selectDiet(diet) {
+    currentDiet = diet;
+    document.querySelectorAll('.diet-card').forEach(c => c.classList.remove('selected'));
+    event.target.closest('.diet-card').classList.add('selected');
+    
+    if (currentPlanData) {
+        updateMealPlan();
+    }
+}
+
+// Main calculation
+function calculateDeficit() {
+    let cw, tw;
+    
+    if (currentUnit === 'metric') {
+        cw = parseFloat(document.getElementById('cWeight').value);
+        tw = parseFloat(document.getElementById('tWeight').value);
+    } else {
+        cw = parseFloat(document.getElementById('cWeightLbs').value) * 0.453592;
+        tw = parseFloat(document.getElementById('tWeightLbs').value) * 0.453592;
+    }
+    
+    const tdee = parseInt(document.getElementById('tdee').value);
+    const deficit = parseInt(document.getElementById('deficit').value);
+    const gender = document.getElementById('gender').value;
+    const activity = document.getElementById('activity').value;
+
+    // Validation
+    if (!cw || !tw || !tdee) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    if (cw <= tw) {
+        alert('Target weight must be less than current weight');
+        return;
+    }
+
+    // Calculate target calories with safety floor
+    let targetCal = tdee - deficit;
+    const minCal = gender === 'female' ? 1200 : 1500;
+    const safetyWarning = targetCal < minCal;
+    if (targetCal < minCal) targetCal = minCal;
+
+    // Calculate weight loss timeline
+    const totalKgToLose = cw - tw;
+    const weeklyLoss = deficit * 7 / 7700; // 7700 kcal ≈ 1kg fat
+    const weeksNeeded = totalKgToLose / weeklyLoss;
+    
+    // Calculate macro split based on diet type
+    const macros = calculateMacros(targetCal, cw, gender, currentDiet);
+    
+    // Store plan data
+    currentPlanData = {
+        currentWeight: cw,
+        targetWeight: tw,
+        tdee,
+        deficit,
+        targetCal,
+        totalKgToLose,
+        weeklyLoss,
+        weeksNeeded,
+        macros,
+        gender,
+        activity,
+        diet: currentDiet,
+        date: new Date().toISOString()
+    };
+
+    // Display results
+    displayResults(currentPlanData);
+    saveToHistory(currentPlanData);
+    
+    // Show results card
+    document.getElementById('resultsCard').style.display = 'block';
+    document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Calculate macros
+function calculateMacros(calories, weight, gender, diet) {
+    let proteinPct, carbsPct, fatsPct;
+    
+    switch(diet) {
+        case 'lowcarb':
+            proteinPct = 0.40;
+            carbsPct = 0.20;
+            fatsPct = 0.40;
+            break;
+        case 'highprotein':
+            proteinPct = 0.45;
+            carbsPct = 0.30;
+            fatsPct = 0.25;
+            break;
+        default: // balanced
+            proteinPct = 0.30;
+            carbsPct = 0.40;
+            fatsPct = 0.30;
+    }
+    
+    // Minimum protein based on bodyweight
+    const minProtein = weight * 1.6;
+    let proteinGrams = Math.max((calories * proteinPct) / 4, minProtein);
+    let carbsGrams = (calories * carbsPct) / 4;
+    let fatsGrams = (calories * fatsPct) / 9;
+    
+    // Adjust if protein exceeds 50%
+    if ((proteinGrams * 4) / calories > 0.50) {
+        proteinGrams = (calories * 0.50) / 4;
+        const remaining = calories - (proteinGrams * 4);
+        carbsGrams = (remaining * 0.50) / 4;
+        fatsGrams = (remaining * 0.50) / 9;
+    }
+    
+    return {
+        protein: Math.round(proteinGrams),
+        carbs: Math.round(carbsGrams),
+        fats: Math.round(fatsGrams)
+    };
+}
+
+// Display results
+function displayResults(data) {
+    // Overview
+    document.getElementById('calTarget').textContent = data.targetCal;
+    document.getElementById('totalLoss').textContent = data.totalKgToLose.toFixed(1) + ' kg';
+    document.getElementById('weeksNeeded').textContent = Math.round(data.weeksNeeded) + ' wks';
+    document.getElementById('weeklyLoss').textContent = data.weeklyLoss.toFixed(2) + ' kg';
+    
+    // Weight displays
+    document.getElementById('currentWeightDisplay').textContent = data.currentWeight;
+    document.getElementById('targetWeightDisplay').textContent = data.targetWeight;
+    
+    // Deficit badge
+    const deficitColors = {
+        250: '🐢 Conservative',
+        500: '🐇 Moderate',
+        750: '🦘 Aggressive',
+        1000: '🚀 Maximum'
+    };
+    document.getElementById('deficitBadge').innerHTML = 
+        `<span style="background:var(--primary-light);padding:8px 20px;border-radius:20px;font-weight:600;color:var(--primary);">
+            ${deficitColors[data.deficit]} Deficit
+        </span>`;
+    
+    // Macros
+    document.getElementById('proteinGrams').textContent = data.macros.protein + 'g';
+    document.getElementById('carbsGrams').textContent = data.macros.carbs + 'g';
+    document.getElementById('fatsGrams').textContent = data.macros.fats + 'g';
+    
+    // Timeline
+    const timelinePercent = Math.min(((52 - Math.max(data.weeksNeeded, 1)) / 52) * 100, 100);
+    document.getElementById('timelineFill').style.width = timelinePercent + '%';
+    document.getElementById('timelinePercent').textContent = Math.round(data.weeksNeeded) + ' weeks';
+    
+    // Milestones
+    generateMilestones(data);
+    
+    // Charts
+    drawMacroChart();
+    drawWeightLossChart();
+    
+    // Meal plan
+    updateMealPlan();
+}
+
+// Generate milestones
+function generateMilestones(data) {
+    const milestones = [
+        { pct: 10, label: '10% to Goal' },
+        { pct: 25, label: 'Quarter Way!' },
+        { pct: 50, label: 'Halfway! 🎉' },
+        { pct: 75, label: 'Almost There!' },
+        { pct: 90, label: 'Final Stretch!' },
+        { pct: 100, label: 'Goal Achieved! 🏆' }
+    ];
+    
+    const milestoneList = document.getElementById('milestoneList');
+    milestoneList.innerHTML = '<h4 style="margin-bottom:15px;">🎯 Your Milestones</h4>' + milestones.map(m => {
+        const weightAtMilestone = data.currentWeight - (data.totalKgToLose * m.pct / 100);
+        const weeksToMilestone = data.weeksNeeded * m.pct / 100;
+        const date = new Date();
+        date.setDate(date.getDate() + weeksToMilestone * 7);
+        
+        return `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg);border-radius:10px;margin-bottom:8px;">
+                <span style="font-weight:600;">${m.label}</span>
+                <span style="color:var(--text-secondary);">
+                    ${weightAtMilestone.toFixed(1)} kg • ${date.toLocaleDateString('en-US', {month:'short', day:'numeric'})}
+                </span>
+            </div>
+        `;
+    }).join('');
+}
+
+// Draw macro chart
+function drawMacroChart() {
+    if (!currentPlanData) return;
+    
+    const ctx = document.getElementById('macroChart').getContext('2d');
+    if (macroChart) macroChart.destroy();
+    
+    macroChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Protein', 'Carbs', 'Fats'],
+            datasets: [{
+                data: [currentPlanData.macros.protein, currentPlanData.macros.carbs, currentPlanData.macros.fats],
+                backgroundColor: [
+                    'rgba(239, 68, 68, 0.8)',
+                    'rgba(251, 191, 36, 0.8)',
+                    'rgba(59, 130, 246, 0.8)'
+                ],
+                borderColor: [
+                    '#ef4444',
+                    '#fbbf24',
+                    '#3b82f6'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b',
+                        padding: 20
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Draw weight loss chart
+function drawWeightLossChart() {
+    if (!currentPlanData) return;
+    
+    const ctx = document.getElementById('weightLossChart').getContext('2d');
+    if (weightLossChart) weightLossChart.destroy();
+    
+    const weeks = Math.ceil(currentPlanData.weeksNeeded);
+    const labels = [];
+    const weights = [];
+    
+    for (let i = 0; i <= weeks; i++) {
+        labels.push('Week ' + i);
+        weights.push(currentPlanData.currentWeight - (currentPlanData.weeklyLoss * i));
+    }
+    
+    weightLossChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels.filter((_, i) => i % Math.ceil(weeks/10) === 0 || i === weeks),
+            datasets: [{
+                label: 'Projected Weight',
+                data: weights.filter((_, i) => i % Math.ceil(weeks/10) === 0 || i === weeks),
+                borderColor: '#ef4444',
+                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: '#ef4444'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        callback: v => v + ' kg',
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    },
+                    grid: {
+                        color: document.body.classList.contains('dark') ? '#334155' : '#e2e8f0'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Update meal plan
+function updateMealPlan() {
+    if (!currentPlanData) return;
+    
+    const calories = currentPlanData.targetCal;
+    const mealCalories = [
+        Math.round(calories * 0.25), // Breakfast
+        Math.round(calories * 0.10), // Snack
+        Math.round(calories * 0.35), // Lunch
+        Math.round(calories * 0.10), // Snack
+        Math.round(calories * 0.20)  // Dinner
+    ];
+    
+    const mealSuggestions = {
+        balanced: [
+            ['Oatmeal with berries & eggs', 'Greek yogurt with nuts', 'Whole grain toast with avocado'],
+            ['Apple with almond butter', 'Protein shake', 'Mixed nuts'],
+            ['Grilled chicken salad', 'Quinoa bowl with veggies', 'Turkey wrap'],
+            ['Cottage cheese with fruit', 'Rice cakes with peanut butter', 'Vegetable sticks with hummus'],
+            ['Salmon with sweet potato', 'Lean steak with broccoli', 'Tofu stir-fry']
+        ],
+        lowcarb: [
+            ['Eggs with avocado', 'Keto smoothie', 'Bacon and eggs'],
+            ['Cheese cubes', 'Celery with cream cheese', 'Hard-boiled eggs'],
+            ['Chicken Caesar salad', 'Tuna lettuce wraps', 'Steak salad'],
+            ['Pork rinds', 'Olives', 'Macadamia nuts'],
+            ['Grilled fish with asparagus', 'Beef stir-fry', 'Cauliflower rice bowl']
+        ],
+        highprotein: [
+            ['Protein pancakes', 'Egg white omelette', 'Chicken breakfast burrito'],
+            ['Protein bar', 'Turkey slices', 'Edamame'],
+            ['Double chicken bowl', 'Tuna pasta', 'Lean beef burger'],
+            ['Greek yogurt', 'Protein pudding', 'Beef jerky'],
+            ['Grilled chicken breast', 'Fish fillet', 'Turkey meatballs']
+        ]
+    };
+    
+    const meals = mealSuggestions[currentDiet] || mealSuggestions.balanced;
+    const mealNames = ['🌅 Breakfast', '🥤 Morning Snack', '🍽️ Lunch', '🍎 Afternoon Snack', '🌙 Dinner'];
+    
+    document.getElementById('mealPlanDisplay').innerHTML = mealNames.map((name, i) => `
+        <div class="meal-card">
+            <div class="meal-time">${name} - ${mealCalories[i]} kcal</div>
+            <ul class="meal-items">
+                ${meals[i].map(m => `<li>• ${m}</li>`).join('')}
+            </ul>
+        </div>
+    `).join('');
+}
+
+// Save to history
+function saveToHistory(data) {
+    planHistory.unshift({
+        ...data,
+        id: Date.now()
+    });
+    
+    if (planHistory.length > 20) {
+        planHistory = planHistory.slice(0, 20);
+    }
+    
+    localStorage.setItem('deficitPlanHistory', JSON.stringify(planHistory));
+    displayHistory();
+}
+
+// Display history
+function displayHistory() {
+    const historyList = document.getElementById('historyList');
+    
+    if (planHistory.length === 0) {
+        historyList.innerHTML = '<p style="color:var(--text-secondary);text-align:center;">No plans saved yet. Create your first deficit plan!</p>';
+        return;
+    }
+    
+    historyList.innerHTML = planHistory.map(entry => {
+        const date = new Date(entry.date);
+        return `
+            <div class="history-item">
+                <div>
+                    <div style="font-weight:600;">${entry.targetCal} kcal/day</div>
+                    <div class="history-date">${date.toLocaleDateString()} - Loss ${entry.totalKgToLose.toFixed(1)}kg in ${Math.round(entry.weeksNeeded)} weeks</div>
+                </div>
+                <button class="btn btn-sm" onclick="loadPlan(${entry.id})" style="width:auto;">
+                    <i class="fas fa-redo"></i> Load
+                </button>
+            </div>
+        `;
+    }).join('');
+}
+
+// Load plan from history
+function loadPlan(id) {
+    const plan = planHistory.find(p => p.id === id);
+    if (plan) {
+        currentPlanData = plan;
+        displayResults(plan);
+        document.getElementById('resultsCard').style.display = 'block';
+        document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Clear history
+function clearHistory() {
+    if (confirm('Clear all plan history?')) {
+        planHistory = [];
+        localStorage.removeItem('deficitPlanHistory');
+        displayHistory();
+    }
+}
+
+// Reset form
+function resetForm() {
+    document.getElementById('cWeight').value = '85';
+    document.getElementById('tWeight').value = '75';
+    document.getElementById('tdee').value = '2500';
+    document.getElementById('deficit').value = '500';
+    document.getElementById('gender').value = 'male';
+    document.getElementById('activity').value = 'moderate';
+    document.getElementById('resultsCard').style.display = 'none';
+    currentPlanData = null;
+}
+
+// AI Chat
+async function sendAI() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (!message) return;
+    
+    const messagesDiv = document.getElementById('chatMessages');
+    messagesDiv.innerHTML += `<div class="msg-user">${message}</div>`;
+    input.value = '';
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    
+    let contextPrompt = `[CONTEXT: Weight Loss AI Coach. `;
+    if (currentPlanData) {
+        contextPrompt += `User's plan: ${currentPlanData.targetCal} kcal/day, ${currentPlanData.deficit} kcal deficit. `;
+        contextPrompt += `Current weight: ${currentPlanData.currentWeight}kg, Target: ${currentPlanData.targetWeight}kg. `;
+        contextPrompt += `Macros: P:${currentPlanData.macros.protein}g C:${currentPlanData.macros.carbs}g F:${currentPlanData.macros.fats}g. `;
+    }
+    contextPrompt += `]\nUser question: ${message}`;
+    
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: contextPrompt })
+        });
+        
+        const data = await response.json();
+        const formattedReply = data.reply
+            .replace(/\\n/g, '<br>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        messagesDiv.innerHTML += `<div class="msg-bot">${formattedReply}</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    } catch (error) {
+        messagesDiv.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again.</div>`;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+}
+
+// Initialize
+displayHistory();
 </script>
 </body>
 </html>
