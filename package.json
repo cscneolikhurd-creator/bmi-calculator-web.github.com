@@ -1,0 +1,15 @@
+{
+  "name": "healthcalc-api",
+  "version": "1.0.0",
+  "description": "HealthCalc API with AI chat and report email",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
