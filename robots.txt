@@ -82,6 +82,7 @@ Allow: /gut-microbiome-calculator.html
 Allow: /inflammation-score-calculator.html
 Allow: /life-expectancy-calculator.html
 Allow: /medication-half-life-tracker.html
+Allow: /report-problem.html
 
 # ============================================
 # STATIC PAGES (5 Pages)
