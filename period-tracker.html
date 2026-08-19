@@ -540,6 +540,7 @@ let cycleData = null;
 let cycleChart = null;
 let activeSymptoms = [];
 let cycleHistory = JSON.parse(localStorage.getItem('periodHistory') || '[]');
+let isAIProcessing = false;
 
 // Theme toggle
 function toggleTheme() {
@@ -612,7 +613,6 @@ function calculateCycle() {
     const today = new Date();
     today.setHours(0,0,0,0);
 
-    // Calculate dates
     const nextPeriod = new Date(lmp);
     nextPeriod.setDate(lmp.getDate() + cycleLength);
     
@@ -633,7 +633,6 @@ function calculateCycle() {
     const periodAfterNext = new Date(nextPeriod);
     periodAfterNext.setDate(nextPeriod.getDate() + cycleLength);
 
-    // Current cycle day
     const diffDays = Math.floor((today - lmp) / (1000*60*60*24));
     const currentDay = diffDays > 0 && diffDays <= cycleLength ? diffDays : 
                        (diffDays > cycleLength ? (diffDays % cycleLength) || cycleLength : 1);
@@ -689,20 +688,15 @@ function generateCalendar(data) {
         const date = new Date(data.lmp.getFullYear(), data.lmp.getMonth(), d);
         let cls = ['calendar-day'];
         
-        // Period days
         if (date >= data.lmp && date < new Date(data.lmp.getTime() + data.periodDuration*86400000)) {
             cls.push('period');
         }
         if (date >= data.nextPeriod && date < new Date(data.nextPeriod.getTime() + data.periodDuration*86400000)) {
             cls.push('period');
         }
-        // PMS days
         if (date >= data.pmsStart && date < data.nextPeriod) cls.push('pms');
-        // Ovulation
         if (date.toDateString() === data.ovulation.toDateString()) cls.push('ovulation');
-        // Fertile window
         if (date >= data.fertileStart && date <= data.fertileEnd) cls.push('fertile');
-        // Today
         if (date.toDateString() === data.today.toDateString()) cls.push('today');
         
         html += `<div class="${cls.join(' ')}">${d}</div>`;
@@ -719,10 +713,10 @@ function drawCycleChart() {
     const days = Array.from({length: cycleData.cycleLength}, (_,i) => 'Day ' + (i+1));
     const phases = days.map((_, i) => {
         const day = i + 1;
-        if (day <= cycleData.periodDuration) return 5; // Period
-        if (day < cycleData.cycleLength - cycleData.lutealPhase) return 3; // Follicular
-        if (day === cycleData.cycleLength - cycleData.lutealPhase) return 6; // Ovulation
-        return 4; // Luteal
+        if (day <= cycleData.periodDuration) return 5;
+        if (day < cycleData.cycleLength - cycleData.lutealPhase) return 3;
+        if (day === cycleData.cycleLength - cycleData.lutealPhase) return 6;
+        return 4;
     });
 
     cycleChart = new Chart(ctx, {
@@ -738,12 +732,6 @@ function drawCycleChart() {
                     if (p === 6) return 'rgba(236,72,153,0.8)';
                     return 'rgba(16,185,129,0.5)';
                 }),
-                borderColor: phases.map(p => {
-                    if (p === 5) return '#ef4444';
-                    if (p === 3) return '#3b82f6';
-                    if (p === 6) return '#ec4899';
-                    return '#10b981';
-                }),
                 borderWidth: 1,
                 borderRadius: 4
             }]
@@ -751,28 +739,10 @@ function drawCycleChart() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: 'Your Cycle Map (28-day view)',
-                    color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
-                }
-            },
+            plugins: { legend: { display: false } },
             scales: {
-                y: {
-                    min: 0, max: 7,
-                    ticks: {
-                        callback: v => ['','Period','','Follicular','','Luteal','Ovulation'][v] || '',
-                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b',
-                        maxTicksLimit: 14
-                    }
-                }
+                y: { min: 0, max: 7 },
+                x: { maxTicksLimit: 14 }
             }
         }
     });
@@ -842,43 +812,102 @@ function resetForm() {
     activeSymptoms = [];
 }
 
-// AI Chat
-async function sendAI() {
-    const input = document.getElementById('chatInput');
-    const message = input.value.trim();
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('chatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'msg-user' : 'msg-bot';
+    div.style.animation = 'slideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
+}
+
+function showTyping() {
+    var md = document.getElementById('chatMessages');
+    if (!md) return;
+    var d = document.createElement('div');
+    d.id = 'aiTyping';
+    d.className = 'msg-bot';
+    d.innerHTML = '<span style="font-size:12px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(d);
+    md.scrollTop = md.scrollHeight;
+}
+
+function hideTyping() { 
+    var t = document.getElementById('aiTyping'); 
+    if (t) t.remove(); 
+}
+
+function getPeriodContext() {
+    if (cycleData) {
+        return '[PERIOD CONTEXT - Day ' + cycleData.currentDay + ' of ' + cycleData.cycleLength + 
+               '-day cycle, Next Period: ' + formatDate(cycleData.nextPeriod) + 
+               ', Ovulation: ' + formatDate(cycleData.ovulation) + ']';
+    }
+    return '[User is on Period Tracker page]';
+}
+
+async function sendAI(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('chatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
     if (!message) return;
     
-    const md = document.getElementById('chatMessages');
-    md.innerHTML += `<div class="msg-user">${message}</div>`;
-    input.value = '';
-    md.scrollTop = md.scrollHeight;
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTyping();
     
-    let context = '[CONTEXT: Women\'s Health & Menstrual Cycle AI Assistant. ';
-    if (cycleData) {
-        context += `Current: Day ${cycleData.currentDay} of ${cycleData.cycleLength}-day cycle. `;
-        context += `Next period: ${formatDate(cycleData.nextPeriod)}. `;
-        context += `Ovulation: ${formatDate(cycleData.ovulation)}. `;
-    }
-    context += `]\nUser: ${message}`;
-    
+    var fullPrompt = "You are a Women's Health & Menstrual Cycle AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based advice. " +
+        "Always end with: '⚠️ Consult a gynecologist for medical advice.'\n\n" +
+        getPeriodContext() + "\n\nUSER QUESTION: " + message;
+
     try {
-        const res = await fetch('/api/chat', {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userMessage: context })
+            body: JSON.stringify({ userMessage: fullPrompt })
         });
-        const data = await res.json();
-        const reply = data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        md.innerHTML += `<div class="msg-bot">${reply}</div>`;
-        md.scrollTop = md.scrollHeight;
-    } catch(e) {
-        md.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again.</div>`;
-        md.scrollTop = md.scrollHeight;
+        
+        var data = await response.json();
+        hideTyping();
+        
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
+        }
+    } catch (e) {
+        hideTyping();
+        console.error('AI Error:', e);
+        addChatMessage('🌸 <strong>Cycle Health Tips:</strong><br><br>• Use heat pads for cramps<br>• Stay hydrated (2-3L water)<br>• Light exercise reduces PMS<br>• Track symptoms regularly<br>• Get 7-8 hours sleep<br><br>⚠️ <em>Consult a gynecologist for medical advice.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
 }
 
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAI();
+        });
+    }
+});
+
 // Initialize
 displayHistory();
+calculateCycle();
 </script>
+          
 </body>
 </html>
