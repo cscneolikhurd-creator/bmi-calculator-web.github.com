@@ -358,12 +358,11 @@ footer a{color:white;text-decoration:none}
 
 <script>
 // ==============================================
-// 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
+// GLOBAL VARIABLES
 // ==============================================
-var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
-
 var chart = null;
 var currentTab = 'single';
+var isAIProcessing = false;
 
 // ===== TAB SWITCHING =====
 document.querySelectorAll('.tab-btn').forEach(function(btn) {
@@ -377,7 +376,7 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
     });
 });
 
-// ===== PRESET DRUGS (SINGLE TAB) =====
+// ===== PRESET DRUGS =====
 document.querySelectorAll('#singleTab .preset-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
         document.getElementById('halfLifeSingle').value = btn.dataset.half;
@@ -394,12 +393,10 @@ document.querySelectorAll('#drugTableBody tr').forEach(function(row) {
         var dose = parseInt(row.dataset.dose) || 100;
         var name = row.dataset.name || 'Medication';
         
-        // Load into current active tab
         if (currentTab === 'single' || currentTab === 'info') {
             document.getElementById('halfLifeSingle').value = half;
             document.getElementById('doseSingle').value = dose;
             document.getElementById('medNameSingle').value = name;
-            // Switch to single tab
             document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
             document.querySelector('.tab-btn[data-tab="single"]').classList.add('active');
             currentTab = 'single';
@@ -434,35 +431,30 @@ function calculateSingle() {
         return;
     }
     
-    var k = Math.LN2 / halfLife; // elimination rate constant
+    var k = Math.LN2 / halfLife;
     var currentConc = dose * Math.exp(-k * hoursSince);
     var remainingPct = Math.exp(-k * hoursSince) * 100;
-    var elimTime95 = halfLife * 4.32; // ~4.32 half-lives for 95% elimination
+    var elimTime95 = halfLife * 4.32;
     
-    // Update cards
     document.getElementById('initialConc').innerHTML = dose.toFixed(0) + ' mg';
     document.getElementById('currentConc').innerHTML = currentConc.toFixed(2) + ' mg';
     document.getElementById('remainingPct').innerHTML = remainingPct.toFixed(1) + '%';
     document.getElementById('elimTime').innerHTML = elimTime95.toFixed(1) + ' hours';
     
-    // Generate chart
-    var points = [], labels = [];
+    var points = [];
     var maxHours = Math.max(48, halfLife * 6);
     for (var i = 0; i <= 100; i++) {
         var t = (i / 100) * maxHours;
         var conc = dose * Math.exp(-k * t);
         points.push({x: t, y: conc});
-        labels.push(t.toFixed(1));
     }
     
     updateChart(points, medName + ' Concentration (mg)');
     
-    // Interpretation
     document.getElementById('interpretation').innerHTML = 
         '<strong>' + medName + '</strong> has a half-life of <strong>' + halfLife + ' hours</strong>.<br>' +
-        '📊 After <strong>' + hoursSince + ' hours</strong>, <strong>' + remainingPct.toFixed(1) + '%</strong> (' + currentConc.toFixed(1) + ' mg) remains in your system.<br>' +
-        '⏰ It will take approximately <strong>' + elimTime95.toFixed(1) + ' hours</strong> (' + (elimTime95/24).toFixed(1) + ' days) for 95% of the drug to be eliminated.<br>' +
-        '🔬 Elimination rate constant (k) = <strong>' + k.toFixed(4) + '</strong> per hour.';
+        '📊 After <strong>' + hoursSince + ' hours</strong>, <strong>' + remainingPct.toFixed(1) + '%</strong> (' + currentConc.toFixed(1) + ' mg) remains.<br>' +
+        '⏰ 95% elimination: <strong>' + elimTime95.toFixed(1) + ' hours</strong> (' + (elimTime95/24).toFixed(1) + ' days).';
 }
 
 function calculateMulti() {
@@ -479,31 +471,25 @@ function calculateMulti() {
     }
     
     var k = Math.LN2 / halfLife;
-    
-    // Steady state calculations
     var accFactor = 1 / (1 - Math.exp(-k * interval));
     var peak = dose * accFactor;
     var trough = peak * Math.exp(-k * interval);
     
-    // Current concentration (sum of all remaining doses)
     var currentConc = 0;
     for (var d = 0; d < numDoses; d++) {
         var timeSinceDose = hoursSince + (d * interval);
         currentConc += dose * Math.exp(-k * timeSinceDose);
     }
     
-    var remainingPct = (currentConc / peak) * 100;
     var elimTime95 = halfLife * 4.32;
     var timeToSteady = halfLife * 4.32;
     
-    // Update cards
     document.getElementById('initialConc').innerHTML = peak.toFixed(1) + ' mg/L eq';
     document.getElementById('currentConc').innerHTML = currentConc.toFixed(2) + ' mg/L eq';
-    document.getElementById('remainingPct').innerHTML = Math.min(100, remainingPct).toFixed(1) + '% of peak';
+    document.getElementById('remainingPct').innerHTML = Math.min(100, (currentConc / peak) * 100).toFixed(1) + '% of peak';
     document.getElementById('elimTime').innerHTML = elimTime95.toFixed(1) + ' hours';
     
-    // Generate chart
-    var points = [], labels = [];
+    var points = [];
     var maxHours = Math.max(72, halfLife * 6, interval * numDoses + 24);
     for (var i = 0; i <= 200; i++) {
         var t = (i / 200) * maxHours;
@@ -514,27 +500,21 @@ function calculateMulti() {
             }
         }
         points.push({x: t, y: conc});
-        labels.push(t.toFixed(1));
     }
     
     updateChart(points, medName + ' Concentration (mg/L equivalent)');
     
-    // Interpretation
     document.getElementById('interpretation').innerHTML = 
         '<strong>' + medName + '</strong> half-life: <strong>' + halfLife + ' hours</strong> | Dosing: every <strong>' + interval + ' hours</strong><br>' +
-        '🔄 Steady state reached after ~<strong>' + timeToSteady.toFixed(1) + ' hours</strong> (' + (timeToSteady/24).toFixed(1) + ' days)<br>' +
-        '📈 Peak at steady state: <strong>' + peak.toFixed(1) + ' mg/L eq</strong> | Trough: <strong>' + trough.toFixed(1) + ' mg/L eq</strong><br>' +
-        '📊 Accumulation factor: <strong>' + accFactor.toFixed(2) + 'x</strong><br>' +
-        '⏰ 95% elimination after last dose: <strong>' + elimTime95.toFixed(1) + ' hours</strong>';
+        '🔄 Steady state: ~<strong>' + timeToSteady.toFixed(1) + ' hours</strong> (' + (timeToSteady/24).toFixed(1) + ' days)<br>' +
+        '📈 Peak: <strong>' + peak.toFixed(1) + ' mg/L eq</strong> | Trough: <strong>' + trough.toFixed(1) + ' mg/L eq</strong><br>' +
+        '📊 Accumulation factor: <strong>' + accFactor.toFixed(2) + 'x</strong>';
 }
 
 // ===== CHART UPDATE =====
 function updateChart(dataPoints, label) {
     var ctx = document.getElementById('concentrationChart').getContext('2d');
-    
-    if (chart) {
-        chart.destroy();
-    }
+    if (chart) chart.destroy();
     
     chart = new Chart(ctx, {
         type: 'line',
@@ -602,7 +582,6 @@ function resetForm() {
 document.getElementById('calculateBtn').addEventListener('click', calculate);
 document.getElementById('resetBtn').addEventListener('click', resetForm);
 
-// Auto-calculate on input change
 var allInputs = ['medNameSingle','halfLifeSingle','doseSingle','hoursSinceSingle',
                  'medNameMulti','halfLifeMulti','doseMulti','dosingInterval','numDoses','hoursSinceMulti'];
 allInputs.forEach(function(id) {
@@ -636,89 +615,105 @@ document.getElementById('countrySelect').addEventListener('change', function(e) 
     document.getElementById('countrySelect').value = s;
 })();
 
-// ==============================================
-// 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-// ==============================================
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
 function addChatMessage(text, sender) {
-    var messagesDiv = document.getElementById('aiChatMessages');
-    var msgDiv = document.createElement('div');
-    msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-    msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-    msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    messagesDiv.appendChild(msgDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    div.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
 }
 
 function showTypingIndicator() {
-    var messagesDiv = document.getElementById('aiChatMessages');
-    var typingDiv = document.createElement('div');
-    typingDiv.id = 'aiTypingIndicator';
-    typingDiv.className = 'ai-message-bot';
-    typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-    typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-    messagesDiv.appendChild(typingDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
 }
 
-function removeTypingIndicator() {
-    var typing = document.getElementById('aiTypingIndicator');
-    if (typing) typing.remove();
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
 }
 
 function getMedicationContext() {
     var med = currentTab === 'single' ? document.getElementById('medNameSingle').value : document.getElementById('medNameMulti').value;
-    var conc = document.getElementById('currentConc').innerText;
+    var conc = document.getElementById('currentConc').textContent;
     if (conc && conc !== '—') {
-        return 'User Medication Profile: Drug=' + med + ', Current Estimated Concentration=' + conc + '. ';
+        return '[MEDICATION - Drug: ' + med + ', Current Concentration: ' + conc + ']';
     }
-    return '';
+    return '[User is on Medication Half-Life Tracker page]';
 }
 
 async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
     var input = document.getElementById('aiChatInput');
-    var message = prefilledText || input.value.trim();
+    var message = prefilledText || (input ? input.value.trim() : '');
     if (!message) return;
     
+    isAIProcessing = true;
     addChatMessage(message, 'user');
-    if (!prefilledText) input.value = '';
+    if (input && !prefilledText) input.value = '';
     showTypingIndicator();
     
-    var context = getMedicationContext();
-    var promptText = "You are a professional Medication & Pharmacology AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable pharmacology and drug safety advice in fluent English. End with: '⚠️ Consult a healthcare professional for personalized medical advice. This is educational information only.'";
+    var fullPrompt = "You are a Medication & Pharmacology AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based drug safety advice. " +
+        "Always end with: '⚠️ Consult a healthcare professional for medical advice. This is educational information only.'\n\n" +
+        getMedicationContext() + "\n\nUSER QUESTION: " + message;
 
     try {
-        var response = await fetch(WORKER_URL, {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt: promptText })
+            body: JSON.stringify({ userMessage: fullPrompt })
         });
         
         var data = await response.json();
         removeTypingIndicator();
         
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-            addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-        } else { 
-            throw new Error('No response from AI worker'); 
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
         }
-    } catch (error) {
+    } catch (e) {
         removeTypingIndicator();
-        console.error('AI Chat Error:', error);
-        var fb = '💊 <strong>Medication Safety Tips:</strong><br><br>• Always follow your doctor\'s prescription exactly<br>• Never adjust dosage without consulting your healthcare provider<br>• Half-life determines how long a drug stays in your system<br>• It takes 4-5 half-lives for 95% elimination<br>• Steady state reached after 4-5 half-lives of consistent dosing<br>• Individual metabolism varies by age, liver function, genetics<br><br>⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>';
-        addChatMessage(fb, 'bot');
+        console.error('AI Error:', e);
+        addChatMessage('💊 <strong>Medication Safety Tips:</strong><br><br>• Always follow your doctor\'s prescription<br>• Never adjust dosage without consulting healthcare provider<br>• Half-life determines drug duration in system<br>• 4-5 half-lives for 95% elimination<br>• Individual metabolism varies<br><br>⚠️ <em>Consult a healthcare professional.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
 }
 
-// Expose globally
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
+    }
+});
+
+// ===== EXPOSE GLOBALS =====
 window.sendAIMessage = sendAIMessage;
 
 // ===== INITIAL CALCULATION =====
 calculate();
+</script>    
+    
+    
+    
 
-console.log('✅ Medication Half-Life Tracker Ready!');
-console.log('💬 AI Chat Active with Cloudflare Worker Proxy');
-console.log('📊 Chart.js Loaded');
-console.log('💊 Single Dose + Multi Dose + Drug Database');
-</script>
-</body>
-</html>
