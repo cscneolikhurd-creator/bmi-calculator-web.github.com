@@ -925,357 +925,290 @@
 </div>
 
 <script>
-    // ==============================================
-    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-    // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+let isAIProcessing = false;
 
-    (function() {
-        // ========== KEYWORD DATABASE (80+ Realistic Trending Data 2026) ==========
-        const keywordDatabase = [
-            // ===== US TRENDING =====
-            { name: "US midterm elections 2026 polls", category: "us", subCat: "news", volume: "890K", trend: "+720%", country: "United States", region: "US" },
-            { name: "IRS tax filing deadline 2026", category: "us", subCat: "finance", volume: "678K", trend: "+580%", country: "United States", region: "US" },
-            { name: "ChatGPT 5 release date", category: "ai", subCat: "ai", volume: "345K", trend: "+520%", country: "United States", region: "US,UK,CA,AU" },
-            { name: "Super Bowl 2027 tickets price", category: "us", subCat: "sports", volume: "456K", trend: "+890%", country: "United States", region: "US" },
-            { name: "Social Security COLA increase 2026", category: "us", subCat: "finance", volume: "234K", trend: "+345%", country: "United States", region: "US" },
-            { name: "Atlantic hurricane season forecast 2026", category: "us", subCat: "weather", volume: "321K", trend: "+420%", country: "United States", region: "US" },
-            { name: "Best AI tools for students 2026", category: "ai", subCat: "ai", volume: "278K", trend: "+310%", country: "United States", region: "US,UK,CA" },
-            { name: "Medicare enrollment deadline 2026", category: "us", subCat: "health", volume: "198K", trend: "+265%", country: "United States", region: "US" },
-            { name: "Tesla Cybertruck delivery update", category: "us", subCat: "tech", volume: "567K", trend: "+440%", country: "United States", region: "US" },
-            { name: "Federal Reserve interest rate decision", category: "us", subCat: "finance", volume: "423K", trend: "+510%", country: "United States", region: "US" },
-            
-            // ===== UK TRENDING =====
-            { name: "UK general election results 2026", category: "uk", subCat: "news", volume: "567K", trend: "+890%", country: "United Kingdom", region: "UK" },
-            { name: "NHS waiting times latest 2026", category: "uk", subCat: "health", volume: "345K", trend: "+450%", country: "United Kingdom", region: "UK" },
-            { name: "UK housing market forecast 2026", category: "uk", subCat: "finance", volume: "289K", trend: "+560%", country: "United Kingdom", region: "UK" },
-            { name: "Premier League table 2026/27", category: "uk", subCat: "sports", volume: "890K", trend: "+310%", country: "United Kingdom", region: "UK" },
-            { name: "Energy price cap update 2026", category: "uk", subCat: "finance", volume: "345K", trend: "+420%", country: "United Kingdom", region: "UK" },
-            { name: "London tube strike dates 2026", category: "uk", subCat: "travel", volume: "234K", trend: "+380%", country: "United Kingdom", region: "UK" },
-            { name: "UK visa sponsorship jobs 2026", category: "uk", subCat: "immigration", volume: "178K", trend: "+290%", country: "United Kingdom", region: "UK" },
-            
-            // ===== CANADA TRENDING =====
-            { name: "Canada carbon tax rebate 2026", category: "ca", subCat: "finance", volume: "234K", trend: "+670%", country: "Canada", region: "CA" },
-            { name: "Canadian federal election polls", category: "ca", subCat: "news", volume: "789K", trend: "+1200%", country: "Canada", region: "CA" },
-            { name: "Toronto housing market forecast", category: "ca", subCat: "finance", volume: "345K", trend: "+380%", country: "Canada", region: "CA" },
-            { name: "Express Entry draw results 2026", category: "ca", subCat: "immigration", volume: "289K", trend: "+450%", country: "Canada", region: "CA" },
-            { name: "Vancouver real estate trends 2026", category: "ca", subCat: "finance", volume: "178K", trend: "+290%", country: "Canada", region: "CA" },
-            { name: "Canada immigration targets 2026-2028", category: "ca", subCat: "immigration", volume: "312K", trend: "+520%", country: "Canada", region: "CA" },
-            
-            // ===== AUSTRALIA TRENDING =====
-            { name: "RBA interest rate decision 2026", category: "au", subCat: "finance", volume: "234K", trend: "+560%", country: "Australia", region: "AU" },
-            { name: "Melbourne property market update", category: "au", subCat: "finance", volume: "189K", trend: "+340%", country: "Australia", region: "AU" },
-            { name: "Sydney house prices forecast 2026", category: "au", subCat: "finance", volume: "212K", trend: "+410%", country: "Australia", region: "AU" },
-            { name: "Australian Open 2027 tickets", category: "au", subCat: "sports", volume: "456K", trend: "+780%", country: "Australia", region: "AU" },
-            { name: "Ashes cricket series 2026 schedule", category: "au", subCat: "sports", volume: "345K", trend: "+620%", country: "Australia", region: "AU" },
-            { name: "Australia skilled visa changes 2026", category: "au", subCat: "immigration", volume: "198K", trend: "+380%", country: "Australia", region: "AU" },
-            
-            // ===== INDIA TRENDING =====
-            { name: "UPI transaction limit increase 2026", category: "india", subCat: "finance", volume: "289K", trend: "+660%", country: "India", region: "IN" },
-            { name: "IPL 2026 schedule and tickets", category: "india", subCat: "sports", volume: "2.5M", trend: "+1500%", country: "India", region: "IN" },
-            { name: "New income tax slabs 2026-27", category: "india", subCat: "finance", volume: "567K", trend: "+520%", country: "India", region: "IN" },
-            { name: "PM Kisan Samman Nidhi next installment", category: "india", subCat: "govt", volume: "456K", trend: "+185%", country: "India", region: "IN" },
-            { name: "Flipkart Big Billion Days 2026 date", category: "india", subCat: "ecom", volume: "1.2M", trend: "+490%", country: "India", region: "IN" },
-            { name: "ITR filing last date FY 2025-26", category: "india", subCat: "finance", volume: "550K", trend: "+430%", country: "India", region: "IN" },
-            { name: "Best smartphone under 15000 2026", category: "india", subCat: "tech", volume: "890K", trend: "+212%", country: "India", region: "IN" },
-            { name: "Startup India registration process", category: "india", subCat: "govt", volume: "189K", trend: "+245%", country: "India", region: "IN" },
-            { name: "Delhi assembly election results 2026", category: "india", subCat: "news", volume: "1.1M", trend: "+2100%", country: "India", region: "IN" },
-            
-            // ===== GLOBAL / AI / TECH =====
-            { name: "Gemini AI vs ChatGPT comparison", category: "ai", subCat: "ai", volume: "256K", trend: "+380%", country: "Global", region: "US,UK,CA,AU" },
-            { name: "Google SGE impact on SEO 2026", category: "ai", subCat: "ai", volume: "189K", trend: "+310%", country: "Global", region: "US,UK,AU" },
-            { name: "Core Web Vitals optimization guide", category: "global", subCat: "tech", volume: "167K", trend: "+145%", country: "Global", region: "Global" },
-            { name: "INP metric improvement tips", category: "global", subCat: "tech", volume: "98K", trend: "+225%", country: "Global", region: "US,UK" },
-            { name: "Perplexity AI vs Google search", category: "ai", subCat: "ai", volume: "145K", trend: "+290%", country: "Global", region: "US,UK" },
-            { name: "AI content detection tools 2026", category: "ai", subCat: "ai", volume: "234K", trend: "+175%", country: "Global", region: "US,UK,CA" },
-            { name: "Voice search optimization trends", category: "global", subCat: "tech", volume: "112K", trend: "+165%", country: "Global", region: "US" },
-            { name: "Amazon FBA calculator free", category: "global", subCat: "ecom", volume: "301K", trend: "+245%", country: "Global", region: "US,UK" },
-            { name: "Free AI writing tools 2026", category: "ai", subCat: "ai", volume: "533K", trend: "+305%", country: "Global", region: "US,UK,CA" },
-            { name: "Schema markup generator tool", category: "global", subCat: "seo", volume: "212K", trend: "+188%", country: "Global", region: "US,UK" },
-            { name: "Website traffic checker free", category: "global", subCat: "seo", volume: "278K", trend: "+176%", country: "Global", region: "US,UK" },
-            { name: "YouTube thumbnail downloader HD", category: "global", subCat: "social", volume: "389K", trend: "+235%", country: "Global", region: "US,UK" },
-            { name: "Instagram hashtag generator 2026", category: "global", subCat: "social", volume: "410K", trend: "+215%", country: "Global", region: "US,UK" },
-            { name: "TikTok SEO strategy guide", category: "global", subCat: "social", volume: "156K", trend: "+280%", country: "Global", region: "US,UK" },
-            { name: "LinkedIn growth hacks 2026", category: "global", subCat: "social", volume: "123K", trend: "+195%", country: "Global", region: "US" },
-            { name: "SERP features optimization 2026", category: "global", subCat: "seo", volume: "98K", trend: "+155%", country: "Global", region: "Global" },
-            { name: "EEAT guidelines for SEO", category: "global", subCat: "seo", volume: "145K", trend: "+210%", country: "Global", region: "US,UK" },
-            { name: "Zero-click search optimization", category: "global", subCat: "seo", volume: "87K", trend: "+340%", country: "Global", region: "US" },
-            { name: "AI coding assistants comparison", category: "ai", subCat: "ai", volume: "321K", trend: "+460%", country: "Global", region: "US,UK,CA,AU" },
-            { name: "Cryptocurrency market outlook 2026", category: "finance", subCat: "finance", volume: "456K", trend: "+380%", country: "Global", region: "US,UK,CA,AU" }
-        ];
+// ========== KEYWORD DATABASE ==========
+const keywordDatabase = [
+    { name: "US midterm elections 2026 polls", category: "us", subCat: "news", volume: "890K", trend: "+720%", country: "United States", region: "US" },
+    { name: "IRS tax filing deadline 2026", category: "us", subCat: "finance", volume: "678K", trend: "+580%", country: "United States", region: "US" },
+    { name: "ChatGPT 5 release date", category: "ai", subCat: "ai", volume: "345K", trend: "+520%", country: "United States", region: "US,UK,CA,AU" },
+    { name: "Super Bowl 2027 tickets price", category: "us", subCat: "sports", volume: "456K", trend: "+890%", country: "United States", region: "US" },
+    { name: "Social Security COLA increase 2026", category: "us", subCat: "finance", volume: "234K", trend: "+345%", country: "United States", region: "US" },
+    { name: "Atlantic hurricane season forecast 2026", category: "us", subCat: "weather", volume: "321K", trend: "+420%", country: "United States", region: "US" },
+    { name: "Best AI tools for students 2026", category: "ai", subCat: "ai", volume: "278K", trend: "+310%", country: "United States", region: "US,UK,CA" },
+    { name: "Medicare enrollment deadline 2026", category: "us", subCat: "health", volume: "198K", trend: "+265%", country: "United States", region: "US" },
+    { name: "Tesla Cybertruck delivery update", category: "us", subCat: "tech", volume: "567K", trend: "+440%", country: "United States", region: "US" },
+    { name: "Federal Reserve interest rate decision", category: "us", subCat: "finance", volume: "423K", trend: "+510%", country: "United States", region: "US" },
+    { name: "UK general election results 2026", category: "uk", subCat: "news", volume: "567K", trend: "+890%", country: "United Kingdom", region: "UK" },
+    { name: "NHS waiting times latest 2026", category: "uk", subCat: "health", volume: "345K", trend: "+450%", country: "United Kingdom", region: "UK" },
+    { name: "UK housing market forecast 2026", category: "uk", subCat: "finance", volume: "289K", trend: "+560%", country: "United Kingdom", region: "UK" },
+    { name: "Premier League table 2026/27", category: "uk", subCat: "sports", volume: "890K", trend: "+310%", country: "United Kingdom", region: "UK" },
+    { name: "Energy price cap update 2026", category: "uk", subCat: "finance", volume: "345K", trend: "+420%", country: "United Kingdom", region: "UK" },
+    { name: "London tube strike dates 2026", category: "uk", subCat: "travel", volume: "234K", trend: "+380%", country: "United Kingdom", region: "UK" },
+    { name: "UK visa sponsorship jobs 2026", category: "uk", subCat: "immigration", volume: "178K", trend: "+290%", country: "United Kingdom", region: "UK" },
+    { name: "Canada carbon tax rebate 2026", category: "ca", subCat: "finance", volume: "234K", trend: "+670%", country: "Canada", region: "CA" },
+    { name: "Canadian federal election polls", category: "ca", subCat: "news", volume: "789K", trend: "+1200%", country: "Canada", region: "CA" },
+    { name: "Toronto housing market forecast", category: "ca", subCat: "finance", volume: "345K", trend: "+380%", country: "Canada", region: "CA" },
+    { name: "Express Entry draw results 2026", category: "ca", subCat: "immigration", volume: "289K", trend: "+450%", country: "Canada", region: "CA" },
+    { name: "Vancouver real estate trends 2026", category: "ca", subCat: "finance", volume: "178K", trend: "+290%", country: "Canada", region: "CA" },
+    { name: "Canada immigration targets 2026-2028", category: "ca", subCat: "immigration", volume: "312K", trend: "+520%", country: "Canada", region: "CA" },
+    { name: "RBA interest rate decision 2026", category: "au", subCat: "finance", volume: "234K", trend: "+560%", country: "Australia", region: "AU" },
+    { name: "Melbourne property market update", category: "au", subCat: "finance", volume: "189K", trend: "+340%", country: "Australia", region: "AU" },
+    { name: "Sydney house prices forecast 2026", category: "au", subCat: "finance", volume: "212K", trend: "+410%", country: "Australia", region: "AU" },
+    { name: "Australian Open 2027 tickets", category: "au", subCat: "sports", volume: "456K", trend: "+780%", country: "Australia", region: "AU" },
+    { name: "Ashes cricket series 2026 schedule", category: "au", subCat: "sports", volume: "345K", trend: "+620%", country: "Australia", region: "AU" },
+    { name: "Australia skilled visa changes 2026", category: "au", subCat: "immigration", volume: "198K", trend: "+380%", country: "Australia", region: "AU" },
+    { name: "UPI transaction limit increase 2026", category: "india", subCat: "finance", volume: "289K", trend: "+660%", country: "India", region: "IN" },
+    { name: "IPL 2026 schedule and tickets", category: "india", subCat: "sports", volume: "2.5M", trend: "+1500%", country: "India", region: "IN" },
+    { name: "New income tax slabs 2026-27", category: "india", subCat: "finance", volume: "567K", trend: "+520%", country: "India", region: "IN" },
+    { name: "PM Kisan Samman Nidhi next installment", category: "india", subCat: "govt", volume: "456K", trend: "+185%", country: "India", region: "IN" },
+    { name: "Flipkart Big Billion Days 2026 date", category: "india", subCat: "ecom", volume: "1.2M", trend: "+490%", country: "India", region: "IN" },
+    { name: "ITR filing last date FY 2025-26", category: "india", subCat: "finance", volume: "550K", trend: "+430%", country: "India", region: "IN" },
+    { name: "Best smartphone under 15000 2026", category: "india", subCat: "tech", volume: "890K", trend: "+212%", country: "India", region: "IN" },
+    { name: "Startup India registration process", category: "india", subCat: "govt", volume: "189K", trend: "+245%", country: "India", region: "IN" },
+    { name: "Delhi assembly election results 2026", category: "india", subCat: "news", volume: "1.1M", trend: "+2100%", country: "India", region: "IN" },
+    { name: "Gemini AI vs ChatGPT comparison", category: "ai", subCat: "ai", volume: "256K", trend: "+380%", country: "Global", region: "US,UK,CA,AU" },
+    { name: "Google SGE impact on SEO 2026", category: "ai", subCat: "ai", volume: "189K", trend: "+310%", country: "Global", region: "US,UK,AU" },
+    { name: "Core Web Vitals optimization guide", category: "global", subCat: "tech", volume: "167K", trend: "+145%", country: "Global", region: "Global" },
+    { name: "INP metric improvement tips", category: "global", subCat: "tech", volume: "98K", trend: "+225%", country: "Global", region: "US,UK" },
+    { name: "Perplexity AI vs Google search", category: "ai", subCat: "ai", volume: "145K", trend: "+290%", country: "Global", region: "US,UK" },
+    { name: "AI content detection tools 2026", category: "ai", subCat: "ai", volume: "234K", trend: "+175%", country: "Global", region: "US,UK,CA" },
+    { name: "Voice search optimization trends", category: "global", subCat: "tech", volume: "112K", trend: "+165%", country: "Global", region: "US" },
+    { name: "Amazon FBA calculator free", category: "global", subCat: "ecom", volume: "301K", trend: "+245%", country: "Global", region: "US,UK" },
+    { name: "Free AI writing tools 2026", category: "ai", subCat: "ai", volume: "533K", trend: "+305%", country: "Global", region: "US,UK,CA" },
+    { name: "Schema markup generator tool", category: "global", subCat: "seo", volume: "212K", trend: "+188%", country: "Global", region: "US,UK" },
+    { name: "Website traffic checker free", category: "global", subCat: "seo", volume: "278K", trend: "+176%", country: "Global", region: "US,UK" },
+    { name: "YouTube thumbnail downloader HD", category: "global", subCat: "social", volume: "389K", trend: "+235%", country: "Global", region: "US,UK" },
+    { name: "Instagram hashtag generator 2026", category: "global", subCat: "social", volume: "410K", trend: "+215%", country: "Global", region: "US,UK" },
+    { name: "TikTok SEO strategy guide", category: "global", subCat: "social", volume: "156K", trend: "+280%", country: "Global", region: "US,UK" },
+    { name: "LinkedIn growth hacks 2026", category: "global", subCat: "social", volume: "123K", trend: "+195%", country: "Global", region: "US" },
+    { name: "SERP features optimization 2026", category: "global", subCat: "seo", volume: "98K", trend: "+155%", country: "Global", region: "Global" },
+    { name: "EEAT guidelines for SEO", category: "global", subCat: "seo", volume: "145K", trend: "+210%", country: "Global", region: "US,UK" },
+    { name: "Zero-click search optimization", category: "global", subCat: "seo", volume: "87K", trend: "+340%", country: "Global", region: "US" },
+    { name: "AI coding assistants comparison", category: "ai", subCat: "ai", volume: "321K", trend: "+460%", country: "Global", region: "US,UK,CA,AU" },
+    { name: "Cryptocurrency market outlook 2026", category: "finance", subCat: "finance", volume: "456K", trend: "+380%", country: "Global", region: "US,UK,CA,AU" }
+];
 
-        // ========== DOM ELEMENTS ==========
-        const gridContainer = document.getElementById('keywordsGrid');
-        const searchInput = document.getElementById('keywordSearch');
-        const searchBtn = document.getElementById('searchBtn');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const sortBtns = document.querySelectorAll('.sort-btn');
-        const keywordCountSpan = document.getElementById('keywordCount');
-        const countrySelect = document.getElementById('countrySelect');
+// ========== DOM ELEMENTS ==========
+const gridContainer = document.getElementById('keywordsGrid');
+const searchInput = document.getElementById('keywordSearch');
+const searchBtn = document.getElementById('searchBtn');
+const categoryBtns = document.querySelectorAll('.category-btn');
+const sortBtns = document.querySelectorAll('.sort-btn');
+const keywordCountSpan = document.getElementById('keywordCount');
+const countrySelect = document.getElementById('countrySelect');
 
-        // ========== STATE ==========
-        let activeCategory = 'all';
-        let searchQuery = '';
-        let currentSort = 'trend';
-        let currentCountry = 'all';
+// ========== STATE ==========
+let activeCategory = 'all';
+let searchQuery = '';
+let currentSort = 'trend';
+let currentCountry = 'all';
 
-        // ========== HELPER FUNCTIONS ==========
-        function getTrendValue(trendStr) {
-            return parseInt(trendStr.replace(/[^0-9]/g, '')) || 0;
+// ========== HELPERS ==========
+function getTrendValue(trendStr) { return parseInt(trendStr.replace(/[^0-9]/g, '')) || 0; }
+function getVolumeValue(volumeStr) {
+    let val = volumeStr.replace(/[^0-9]/g, '');
+    if (volumeStr.includes('M')) return parseInt(val) * 1000;
+    if (volumeStr.includes('K')) return parseInt(val);
+    return parseInt(val) || 0;
+}
+function sortKeywords(keywords) {
+    return [...keywords].sort(function(a, b) {
+        if (currentSort === 'trend') return getTrendValue(b.trend) - getTrendValue(a.trend);
+        else if (currentSort === 'volume') return getVolumeValue(b.volume) - getVolumeValue(a.volume);
+        else return a.name.localeCompare(b.name);
+    });
+}
+function getCountryFlag(country) {
+    var flags = {'United States':'🇺🇸','United Kingdom':'🇬🇧','Canada':'🇨🇦','Australia':'🇦🇺','India':'🇮🇳','Global':'🌐'};
+    return flags[country] || '🌐';
+}
+
+// ========== RENDER ==========
+function renderKeywords() {
+    let filtered = keywordDatabase.filter(function(item) {
+        if (activeCategory !== 'all' && item.category !== activeCategory && item.subCat !== activeCategory) return false;
+        if (currentCountry !== 'all') {
+            var regionMap = {'us':'US','uk':'UK','ca':'CA','au':'AU','in':'IN'};
+            if (!item.region.includes(regionMap[currentCountry])) return false;
         }
-
-        function getVolumeValue(volumeStr) {
-            let val = volumeStr.replace(/[^0-9]/g, '');
-            if (volumeStr.includes('M')) return parseInt(val) * 1000;
-            if (volumeStr.includes('K')) return parseInt(val);
-            return parseInt(val) || 0;
+        if (searchQuery.trim() !== '') {
+            var query = searchQuery.trim().toLowerCase();
+            return item.name.toLowerCase().includes(query) || item.country.toLowerCase().includes(query) || item.subCat.toLowerCase().includes(query);
         }
+        return true;
+    });
 
-        function sortKeywords(keywords) {
-            return [...keywords].sort((a, b) => {
-                if (currentSort === 'trend') {
-                    return getTrendValue(b.trend) - getTrendValue(a.trend);
-                } else if (currentSort === 'volume') {
-                    return getVolumeValue(b.volume) - getVolumeValue(a.volume);
-                } else {
-                    return a.name.localeCompare(b.name);
-                }
-            });
-        }
+    filtered = sortKeywords(filtered);
+    keywordCountSpan.textContent = filtered.length;
 
-        function getCountryFlag(country) {
-            const flags = {
-                'United States': '🇺🇸',
-                'United Kingdom': '🇬🇧',
-                'Canada': '🇨🇦',
-                'Australia': '🇦🇺',
-                'India': '🇮🇳',
-                'Global': '🌐'
-            };
-            return flags[country] || '🌐';
-        }
+    if (filtered.length === 0) {
+        gridContainer.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-secondary);"><p>No keywords found. Try different search.</p></div>';
+        return;
+    }
 
-        // ========== RENDER FUNCTION ==========
-        function renderKeywords() {
-            let filtered = keywordDatabase.filter(item => {
-                if (activeCategory !== 'all' && item.category !== activeCategory && item.subCat !== activeCategory) {
-                    return false;
-                }
-                if (currentCountry !== 'all') {
-                    const regionMap = {
-                        'us': 'US',
-                        'uk': 'UK',
-                        'ca': 'CA',
-                        'au': 'AU',
-                        'in': 'IN'
-                    };
-                    const targetRegion = regionMap[currentCountry];
-                    if (!item.region.includes(targetRegion)) {
-                        return false;
-                    }
-                }
-                if (searchQuery.trim() !== '') {
-                    const query = searchQuery.trim().toLowerCase();
-                    return item.name.toLowerCase().includes(query) || 
-                           item.country.toLowerCase().includes(query) ||
-                           item.subCat.toLowerCase().includes(query);
-                }
-                return true;
-            });
+    let htmlString = '';
+    filtered.forEach(function(kw, index) {
+        var flag = getCountryFlag(kw.country);
+        htmlString += '<div class="keyword-card" onclick="askAIAboutKeyword(\'' + kw.name.replace(/'/g, "\\'") + '\')">' +
+            '<div class="keyword-rank">#' + (index + 1) + ' Trending</div>' +
+            '<div class="keyword-name">' + flag + ' ' + kw.name + '</div>' +
+            '<div class="keyword-meta"><span class="trend-up">' + kw.trend + ' growth</span><span class="search-volume">' + kw.volume + ' searches</span></div>' +
+            '<div class="keyword-tags"><span class="keyword-tag">' + kw.country + '</span><span class="keyword-tag">' + kw.subCat + '</span></div>' +
+            '</div>';
+    });
+    gridContainer.innerHTML = htmlString;
+}
 
-            filtered = sortKeywords(filtered);
-            keywordCountSpan.textContent = filtered.length;
-
-            if (filtered.length === 0) {
-                gridContainer.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:var(--bg-dark); border-radius:var(--radius-lg); border: 1px solid var(--border-dark);">
-                    <i class="fas fa-search" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
-                    <p style="font-size:1.2rem; color:var(--text-primary); font-weight:600;">No keywords found</p>
-                    <p style="color:var(--text-muted); margin-top: 0.5rem;">Try a different search term, category, or country filter.</p>
-                </div>`;
-                return;
-            }
-
-            let htmlString = '';
-            filtered.forEach((kw, index) => {
-                const flag = getCountryFlag(kw.country);
-                
-                htmlString += `
-                    <div class="keyword-card" onclick="askAIAboutKeyword('${kw.name.replace(/'/g, "\\'")}')">
-                        <div class="keyword-rank">#${index + 1} Trending</div>
-                        <div class="keyword-name">${flag} ${kw.name}</div>
-                        <div class="keyword-meta">
-                            <span class="trend-up">${kw.trend} growth</span>
-                            <span class="search-volume"><i class="fas fa-chart-simple"></i> ${kw.volume} searches</span>
-                        </div>
-                        <div class="keyword-tags">
-                            <span class="keyword-tag"><i class="fas fa-map-marker-alt"></i> ${kw.country}</span>
-                            <span class="keyword-tag"><i class="fas fa-tag"></i> ${kw.subCat}</span>
-                            <span class="keyword-tag"><i class="fas fa-clock"></i> 24h surge</span>
-                        </div>
-                    </div>
-                `;
-            });
-
-            gridContainer.innerHTML = htmlString;
-        }
-
-        function updateSortButtons() {
-            sortBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-sort') === currentSort);
-            });
-        }
-
-        function updateCategoryButtons() {
-            categoryBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-category') === activeCategory);
-            });
-        }
-
-        // ========== EVENT LISTENERS ==========
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                activeCategory = this.getAttribute('data-category');
-                updateCategoryButtons();
-                renderKeywords();
-            });
-        });
-
-        sortBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                currentSort = this.getAttribute('data-sort');
-                updateSortButtons();
-                renderKeywords();
-            });
-        });
-
-        searchBtn.addEventListener('click', function() {
-            searchQuery = searchInput.value;
-            renderKeywords();
-        });
-
-        searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchBtn.click();
-            }
-        });
-
-        countrySelect.addEventListener('change', function() {
-            currentCountry = this.value;
-            renderKeywords();
-        });
-
-        // ===== THEME =====
-        function initTheme() {
-            const saved = localStorage.getItem('healthcalc_theme') || 'dark';
-            setTheme(saved);
-        }
-        function setTheme(theme) {
-            localStorage.setItem('healthcalc_theme', theme);
-            document.body.classList.toggle('light', theme === 'light');
-        }
-        document.querySelectorAll('.theme-option').forEach(btn => {
-            btn.addEventListener('click', function() {
-                setTheme(this.dataset.theme);
-            });
-        });
-        initTheme();
-
-        // ========== SET UPDATE DATE ==========
-        function setUpdateDate() {
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
-            document.getElementById('updateDate').textContent = today.toLocaleDateString('en-US', options);
-        }
-
-        // ========== INITIAL RENDER ==========
-        setUpdateDate();
+// ========== EVENTS ==========
+categoryBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        activeCategory = this.getAttribute('data-category');
+        categoryBtns.forEach(function(b) { b.classList.toggle('active', b === btn); });
         renderKeywords();
-    })();
+    });
+});
+sortBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        currentSort = this.getAttribute('data-sort');
+        sortBtns.forEach(function(b) { b.classList.toggle('active', b === btn); });
+        renderKeywords();
+    });
+});
+searchBtn.addEventListener('click', function() { searchQuery = searchInput.value; renderKeywords(); });
+searchInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') searchBtn.click(); });
+countrySelect.addEventListener('change', function() { currentCountry = this.value; renderKeywords(); });
 
-    // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-    // ==============================================
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
+// ===== THEME =====
+function initTheme() {
+    var saved = localStorage.getItem('healthcalc_theme') || 'dark';
+    document.body.classList.toggle('light', saved === 'light');
+}
+function setTheme(theme) {
+    localStorage.setItem('healthcalc_theme', theme);
+    document.body.classList.toggle('light', theme === 'light');
+}
+document.querySelectorAll('.theme-option').forEach(function(btn) {
+    btn.addEventListener('click', function() { setTheme(this.dataset.theme); });
+});
+initTheme();
 
-    function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
+// ===== UPDATE DATE =====
+function setUpdateDate() {
+    var today = new Date();
+    document.getElementById('updateDate').textContent = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
 
-    function removeTypingIndicator() {
-        var typing = document.getElementById('aiTypingIndicator');
-        if (typing) typing.remove();
-    }
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    div.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
+}
 
-    function getSEOContext() {
-        var count = document.getElementById('keywordCount').textContent;
-        var country = document.getElementById('countrySelect').value;
-        return 'User is viewing ' + count + ' trending keywords for country filter: ' + country.toUpperCase() + '. ';
-    }
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
+}
 
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if (!message) return;
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
+}
+
+function getSEOContext() {
+    var count = document.getElementById('keywordCount').textContent;
+    return '[SEO CONTEXT - User viewing ' + count + ' trending keywords]';
+}
+
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var fullPrompt = "You are an SEO & Content Marketing AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based SEO advice. " +
+        "Include blog outlines, keyword strategies, and search intent optimization. " +
+        "Always end with: '⚠️ Test strategies against Google Search guidelines.'\n\n" +
+        getSEOContext() + "\n\nUSER QUESTION: " + message;
+
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
+        });
         
-        addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
-        showTypingIndicator();
+        var data = await response.json();
+        removeTypingIndicator();
         
-        var context = getSEOContext();
-        var promptText = "You are a professional SEO & Content Marketing AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable SEO advice in fluent English. Include blog outlines, keyword cluster ideas, or search intent optimization strategies. End with: '⚠️ Always test SEO strategies against Google Search guidelines.'";
-
-        try {
-            var response = await fetch('https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
-            });
-            
-            var data = await response.json();
-            removeTypingIndicator();
-            
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { 
-                throw new Error('No response from AI worker'); 
-            }
-        } catch (error) {
-            removeTypingIndicator();
-            console.error('AI Chat Error:', error);
-            var fb = '🚀 <strong>SEO Strategy Tips:</strong><br><br>';
-            fb += '• Target high-intent long-tail keywords<br>';
-            fb += '• Create comprehensive, E-E-A-T aligned content<br>';
-            fb += '• Optimize meta tags and heading structures<br>';
-            fb += '• Include structured Schema markup<br>';
-            fb += '• Build contextual internal links<br><br>';
-            fb += '⚠️ <em>Always test SEO strategies against Google Search guidelines.</em>';
-            addChatMessage(fb, 'bot');
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
         }
+    } catch (e) {
+        removeTypingIndicator();
+        console.error('AI Error:', e);
+        addChatMessage('🚀 <strong>SEO Strategy Tips:</strong><br><br>• Target high-intent long-tail keywords<br>• Create E-E-A-T aligned content<br>• Optimize meta tags and headings<br>• Include Schema markup<br>• Build contextual internal links<br><br>⚠️ <em>Test against Google Search guidelines.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
+}
 
-    function askAIAboutKeyword(keyword) {
-        var query = "How can I rank for the keyword: '" + keyword + "'? Give me a content outline and target audience.";
-        sendAIMessage(query);
-        document.getElementById('aiChatPanel').scrollIntoView({ behavior: 'smooth' });
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
     }
+});
 
-    window.sendAIMessage = sendAIMessage;
-    window.askAIAboutKeyword = askAIAboutKeyword;
+function askAIAboutKeyword(keyword) {
+    var query = "How can I rank for the keyword: '" + keyword + "'? Give me a content outline.";
+    sendAIMessage(query);
+    document.getElementById('aiChatPanel').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ===== EXPOSE GLOBALS =====
+window.sendAIMessage = sendAIMessage;
+window.askAIAboutKeyword = askAIAboutKeyword;
+
+// ===== INIT =====
+setUpdateDate();
+renderKeywords();
 </script>
-</body>
-</html>
+   
+
+       
+              
+           
+           
+       
