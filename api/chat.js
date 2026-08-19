@@ -1,14 +1,13 @@
 // ============================================
-// HEALTHCALC.IN - DUAL AI CHAT SYSTEM
-// Primary: Google Gemini (1,500 requests/day FREE)
-// Backup: Groq Llama 3.3 (30 requests/min FREE)
+// HEALTHCALC.IN - MULTI API SYSTEM (5+ Keys)
+// Auto-Failover: Gemini Keys → Groq Keys → Static
 // Vercel: bmi-calculator-web-github-com
 // ============================================
 
 export default async function handler(req, res) {
   
   // ==========================================
-  // CORS HEADERS (GitHub Pages ke liye)
+  // CORS HEADERS
   // ==========================================
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*'); 
@@ -16,7 +15,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
   // ==========================================
-  // OPTIONS Request Handle (Pre-flight)
+  // OPTIONS Request Handle
   // ==========================================
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -35,11 +34,11 @@ export default async function handler(req, res) {
   const { userMessage } = req.body;
 
   if (!userMessage) {
-    return res.status(400).json({ reply: "❌ Please send a message. Kripya kuch puchhein." });
+    return res.status(400).json({ reply: "❌ Please send a message." });
   }
 
   // ==========================================
-  // SYSTEM PROMPT (Medical AI)
+  // SYSTEM PROMPT
   // ==========================================
   const systemPrompt = `You are HealthCalc AI, an expert medical assistant on healthcalc.in website.
 
@@ -56,15 +55,26 @@ RULES TO FOLLOW:
 10. Mention that users can try HealthCalc.in's 30+ free calculators for more help`;
 
   // ==========================================
-  // STEP 1: TRY GEMINI FIRST (Primary)
+  // STEP 1: TRY ALL GEMINI KEYS
   // ==========================================
-  if (process.env.GEMINI_API_KEY) {
-    
-    console.log('🟢 [Gemini] Trying primary AI...');
-    
+  const geminiKeys = [
+    process.env.GEMINI_API_KEY,
+    process.env.GEMINI_API_KEY_2,
+    process.env.GEMINI_API_KEY_3,
+    process.env.GEMINI_API_KEY_4,
+    process.env.GEMINI_API_KEY_5
+  ].filter(Boolean); // Sirf set keys lein
+
+  if (geminiKeys.length > 0) {
+    console.log(`🟢 [Gemini] ${geminiKeys.length} keys found. Trying each...`);
+  }
+
+  for (let i = 0; i < geminiKeys.length; i++) {
     try {
+      console.log(`🟢 [Gemini] Trying Key ${i + 1}/${geminiKeys.length}...`);
+      
       const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKeys[i]}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -84,15 +94,13 @@ RULES TO FOLLOW:
               topP: 0.95
             }
           }),
-          signal: AbortSignal.timeout(12000) // 12 second timeout
+          signal: AbortSignal.timeout(10000)
         }
       );
 
-      // Check if Gemini responded successfully
       if (geminiResponse.ok) {
         const geminiData = await geminiResponse.json();
         
-        // Check for valid response
         if (geminiData.candidates && 
             geminiData.candidates[0] && 
             geminiData.candidates[0].content &&
@@ -100,151 +108,118 @@ RULES TO FOLLOW:
             geminiData.candidates[0].content.parts[0].text) {
           
           const reply = geminiData.candidates[0].content.parts[0].text;
-          console.log('✅ [Gemini] Success! Response received');
+          console.log(`✅ [Gemini] Key ${i + 1} SUCCESS!`);
           
           return res.status(200).json({ 
             reply: reply,
             model: 'gemini',
+            keyUsed: i + 1,
             status: 'success'
           });
         }
-        
-        // If Gemini blocked content
-        if (geminiData.promptFeedback && geminiData.promptFeedback.blockReason) {
-          console.log('🟡 [Gemini] Content blocked:', geminiData.promptFeedback.blockReason);
-        }
       }
       
-      // Rate limit check
       if (geminiResponse.status === 429) {
-        console.log('🟡 [Gemini] Rate limit reached, switching to Groq...');
+        console.log(`🟡 [Gemini] Key ${i + 1} rate limited. Trying next key...`);
       } else {
-        console.log('🟡 [Gemini] Failed with status:', geminiResponse.status);
+        console.log(`🟡 [Gemini] Key ${i + 1} failed (status: ${geminiResponse.status})`);
       }
       
     } catch (geminiError) {
-      console.log('🔴 [Gemini] Error:', geminiError.message);
-      // Continue to backup
+      console.log(`🔴 [Gemini] Key ${i + 1} Error: ${geminiError.message}`);
     }
-    
-  } else {
-    console.log('⚠️ [Gemini] API key not found in Vercel');
+  }
+  
+  console.log('🔴 [Gemini] All keys exhausted');
+
+  // ==========================================
+  // STEP 2: TRY ALL GROQ KEYS
+  // ==========================================
+  const groqKeys = [
+    process.env.GROQ_API_KEY,
+    process.env.GROQ_API_KEY_2,
+    process.env.GROQ_API_KEY_3,
+    process.env.GROQ_API_KEY_4,
+    process.env.GROQ_API_KEY_5
+  ].filter(Boolean);
+
+  if (groqKeys.length > 0) {
+    console.log(`🟠 [Groq] ${groqKeys.length} keys found. Trying each...`);
   }
 
-  // ==========================================
-  // STEP 2: TRY GROQ (Backup)
-  // ==========================================
-  if (process.env.GROQ_API_KEY) {
-    
-    console.log('🟠 [Groq] Trying backup AI...');
-    
-    // Try different Groq models (best to fallback)
-    const groqModels = [
-      'llama-3.3-70b-versatile',    // Best quality
-      'mixtral-8x7b-32768',         // Fast & capable
-      'llama-3.1-8b-instant',       // Ultra-fast
-      'gemma2-9b-it'                // Google's open model
-    ];
+  const groqModels = [
+    'llama-3.3-70b-versatile',
+    'mixtral-8x7b-32768',
+    'llama-3.1-8b-instant',
+    'gemma2-9b-it'
+  ];
 
-    for (const model of groqModels) {
+  for (let i = 0; i < groqKeys.length; i++) {
+    const model = groqModels[i % groqModels.length];
+    
+    try {
+      console.log(`🟠 [Groq] Trying Key ${i + 1}/${groqKeys.length} (${model})...`);
       
-      try {
-        const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            model: model,
-            messages: [
-              { role: 'system', content: systemPrompt },
-              { role: 'user', content: userMessage }
-            ],
-            temperature: 0.7,
-            max_tokens: 800,
-            top_p: 0.95
-          }),
-          signal: AbortSignal.timeout(15000) // 15 second timeout
-        });
+      const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${groqKeys[i]}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userMessage }
+          ],
+          temperature: 0.7,
+          max_tokens: 800,
+          top_p: 0.95
+        }),
+        signal: AbortSignal.timeout(15000)
+      });
 
-        if (groqResponse.ok) {
-          const groqData = await groqResponse.json();
+      if (groqResponse.ok) {
+        const groqData = await groqResponse.json();
+        
+        if (groqData.choices && 
+            groqData.choices[0] && 
+            groqData.choices[0].message &&
+            groqData.choices[0].message.content) {
           
-          if (groqData.choices && 
-              groqData.choices[0] && 
-              groqData.choices[0].message &&
-              groqData.choices[0].message.content) {
-            
-            const reply = groqData.choices[0].message.content;
-            console.log(`✅ [Groq] Success with model: ${model}`);
-            
-            return res.status(200).json({ 
-              reply: reply,
-              model: 'groq',
-              groqModel: model,
-              status: 'success'
-            });
-          }
+          const reply = groqData.choices[0].message.content;
+          console.log(`✅ [Groq] Key ${i + 1} SUCCESS (${model})!`);
+          
+          return res.status(200).json({ 
+            reply: reply,
+            model: 'groq',
+            groqModel: model,
+            keyUsed: i + 1,
+            status: 'success'
+          });
         }
-        
-        // Rate limit check
-        if (groqResponse.status === 429) {
-          console.log(`🟡 [Groq] Rate limit for ${model}, trying next model...`);
-          continue; // Try next model
-        }
-        
-        console.log(`🟡 [Groq] ${model} failed with status: ${groqResponse.status}`);
-        
-      } catch (groqError) {
-        console.log(`🔴 [Groq] ${model} error:`, groqError.message);
-        continue; // Try next model
       }
+      
+      if (groqResponse.status === 429) {
+        console.log(`🟡 [Groq] Key ${i + 1} rate limited. Trying next...`);
+      } else {
+        console.log(`🟡 [Groq] Key ${i + 1} failed (status: ${groqResponse.status})`);
+      }
+      
+    } catch (groqError) {
+      console.log(`🔴 [Groq] Key ${i + 1} Error: ${groqError.message}`);
     }
-    
-    console.log('🔴 [Groq] All models failed');
-    
-  } else {
-    console.log('⚠️ [Groq] API key not found in Vercel');
   }
+  
+  console.log('🔴 [Groq] All keys exhausted');
 
   // ==========================================
-  // STEP 3: CHECK IF ANY API KEY EXISTS
-  // ==========================================
-  if (!process.env.GEMINI_API_KEY && !process.env.GROQ_API_KEY) {
-    return res.status(200).json({ 
-      reply: `❌ **Backend Configuration Error**
-
-Vercel mein koi bhi API key set nahi hai. Kripya ye steps follow karein:
-
-1. **Vercel Dashboard kholen:**
-   https://vercel.com/cscneolikhurd-creators-projects/bmi-calculator-web-github-com/settings/environment-variables
-
-2. **Ye dono keys add karein:**
-   • KEY: \`GEMINI_API_KEY\` (Google AI Studio se free lein)
-   • KEY: \`GROQ_API_KEY\` (Groq console se free lein)
-
-3. **Keys milengi yahan:**
-   • Gemini: https://makersuite.google.com/app/apikey
-   • Groq: https://console.groq.com/keys
-
-4. **Redeploy karein** Vercel mein
-
-Help chahiye? Contact: healthcalc.in/contact`,
-      model: 'error',
-      status: 'no_api_keys'
-    });
-  }
-
-  // ==========================================
-  // STEP 4: STATIC FALLBACK (Last Resort)
+  // STEP 3: STATIC FALLBACK
   // ==========================================
   console.log('⚪ [Fallback] Using static response');
   
-  let staticReply = getStaticResponse(userMessage);
-  
   return res.status(200).json({ 
-    reply: staticReply,
+    reply: getStaticResponse(userMessage),
     model: 'offline',
     status: 'fallback'
   });
@@ -256,7 +231,6 @@ Help chahiye? Contact: healthcalc.in/contact`,
 function getStaticResponse(message) {
   const msg = message.toLowerCase();
   
-  // Emergency keywords check
   const emergencyWords = [
     'emergency', 'heart attack', 'chest pain', 'stroke', 
     'bleeding', 'can\'t breathe', 'suicide', 'overdose',
@@ -277,19 +251,11 @@ function getStaticResponse(message) {
 • 🇦🇺 Australia: **000**
 
 🚑 Call emergency services NOW. Do NOT wait.
-🏥 Go to nearest hospital emergency room.
-
-**While waiting for help:**
-• Stay calm
-• If person is unconscious, check breathing
-• Don't give food or drink
-• Keep phone charged and nearby
 
 ⚠️ This is an automated response. Please seek immediate medical attention.`;
     }
   }
   
-  // BMI related
   if (msg.includes('bmi') || msg.includes('body mass')) {
     return `📊 **About BMI (Body Mass Index)**
 
@@ -301,20 +267,9 @@ function getStaticResponse(message) {
 
 💡 **Use our free BMI Calculator:** healthcalc.in/bmi-calculator.html
 
-**Limitations of BMI:**
-• Doesn't account for muscle mass
-• May not be accurate for athletes
-• Doesn't measure body fat distribution
-
-**Try these better alternatives:**
-• Waist-to-Hip Ratio Calculator
-• Body Fat Percentage Calculator
-• Ponderal Index Calculator
-
 ⚠️ Consult a healthcare professional for personalized medical advice.`;
   }
   
-  // Weight loss
   if (msg.includes('weight loss') || msg.includes('lose weight') || msg.includes('diet')) {
     return `🥗 **Healthy Weight Loss Guide**
 
@@ -325,54 +280,48 @@ function getStaticResponse(message) {
 • Never go below 1200 kcal (women) / 1500 kcal (men)
 
 **Evidence-Based Tips:**
-• 🥩 Eat protein with every meal (1.6-2.2g per kg bodyweight)
+• 🥩 Eat protein with every meal
 • 💧 Drink 2-3 liters water daily
 • 😴 Get 7-9 hours quality sleep
 • 🏃 Combine cardio + strength training
 • 🥦 Fill half plate with vegetables
-• 📊 Track calories with our free calculator
 
 **Free Tools at HealthCalc.in:**
 • Calorie Deficit Calculator
 • Macro Calculator
 • Keto Calculator
-• Carb Cycling Planner
 
 ⚠️ Consult a healthcare professional for personalized medical advice.`;
   }
   
-  // Pregnancy
-  if (msg.includes('pregnancy') || msg.includes('pregnant') || msg.includes('baby') || msg.includes('due date')) {
+  if (msg.includes('pregnancy') || msg.includes('pregnant') || msg.includes('baby')) {
     return `🤰 **Pregnancy Health Information**
 
 **Pregnancy Duration:** 40 weeks (280 days from LMP)
 
 **Trimesters:**
-• **1st Trimester:** Weeks 1-12 (Baby's organs form)
-• **2nd Trimester:** Weeks 13-26 (Feel baby move)
-• **3rd Trimester:** Weeks 27-40 (Baby grows rapidly)
+• **1st:** Weeks 1-12 (organs form)
+• **2nd:** Weeks 13-26 (feel baby move)
+• **3rd:** Weeks 27-40 (rapid growth)
 
 **Essential Care:**
-• 💊 Take prenatal vitamins (Folic acid, Iron)
-• 🏥 Regular prenatal checkups
-• 🥗 Eat balanced, nutritious meals
-• 🚫 Avoid alcohol, smoking, raw foods
-• 🧘 Stay active with pregnancy-safe exercises
+• 💊 Take prenatal vitamins
+• 🏥 Regular checkups
+• 🥗 Eat balanced meals
+• 🚫 Avoid alcohol, smoking
 
 **Free Pregnancy Tools:**
-• 🤰 Pregnancy Calculator - Due Date
+• 🤰 Pregnancy Calculator
 • 🥚 Ovulation Calculator
 • 📅 Period Tracker
-• 👶 Conception Date Calculator
 
 ⚠️ Always consult your OB-GYN for pregnancy care.`;
   }
   
-  // Keto
   if (msg.includes('keto') || msg.includes('ketogenic')) {
     return `🥑 **Ketogenic Diet Overview**
 
-**Macro Ratio (Standard Keto):**
+**Macro Ratio:**
 • 70-75% Fats
 • 20-25% Protein
 • 5% Net Carbs (<25g daily)
@@ -380,27 +329,19 @@ function getStaticResponse(message) {
 **Foods to Eat:**
 • 🥩 Meat, fish, eggs
 • 🥑 Avocados, olive oil
-• 🧀 Cheese, butter, cream
+• 🧀 Cheese, butter
 • 🥬 Low-carb vegetables
-
-**Foods to Avoid:**
-• 🍞 Bread, pasta, rice
-• 🍬 Sugar, sweets
-• 🍌 High-sugar fruits
-• 🥔 Potatoes, grains
 
 **Free Keto Tools:**
 • Keto Macro Calculator
 • Carb Cycling Planner
-• Body Fat Calculator
 
 ⚠️ Consult a healthcare professional before starting keto.`;
   }
   
-  // Default response
   return `👋 **Welcome to HealthCalc AI!**
 
-I'm currently in offline mode (high traffic). Here's what you can do:
+I'm currently in high traffic mode. Please try again in a moment.
 
 **📊 Try Our 30+ Free Health Calculators:**
 • ❤️ ASCVD Heart Risk Calculator
@@ -410,7 +351,6 @@ I'm currently in offline mode (high traffic). Here's what you can do:
 • 🔥 Calorie Deficit Calculator
 • 😴 Sleep Cycle Calculator
 • 💪 FFMI Calculator
-• 🎖️ Army Body Fat Calculator
 
 **💡 Quick Health Tips:**
 • 🥗 Eat 5 servings of fruits/vegetables daily
