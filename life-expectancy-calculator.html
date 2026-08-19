@@ -355,47 +355,47 @@ footer { text-align: center; padding: 24px; color: var(--text-muted); font-size:
 </div>
 
 <script>
-    // ==============================================
-    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-    // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+let currentLang = 'en';
+let isAIProcessing = false;
 
-    let currentLang = 'en';
-
-    function updateUI() {
-      const age = parseInt(document.getElementById('age').value) || 35;
-      const gender = document.getElementById('gender').value;
-      const country = document.getElementById('country').value;
-      const height = parseFloat(document.getElementById('height').value) || 165;
-      const weight = parseFloat(document.getElementById('weight').value) || 70;
-      const smoking = parseInt(document.getElementById('smoking').value) || 0;
-      const alcohol = parseInt(document.getElementById('alcohol').value) || 1;
-      const exercise = parseInt(document.getElementById('exercise').value) || 120;
-      const diet = parseInt(document.getElementById('diet').value) || 3;
-      const sleep = parseFloat(document.getElementById('sleep').value) || 7;
-      const isDeepMode = document.getElementById('deepFields').classList.contains('visible');
-      
-      document.getElementById('ageVal').textContent = age;
-      document.getElementById('smokeVal').textContent = {0:'Never',1:'Former',2:'Current'}[smoking];
-      document.getElementById('alcoholVal').textContent = {0:'None',1:'Light',2:'Moderate',3:'Heavy'}[alcohol];
-      document.getElementById('exVal').textContent = exercise;
-      document.getElementById('dietVal').textContent = diet + '/5';
-      document.getElementById('sleepVal').textContent = sleep;
-      
-      const baseData = {USA:78.5,IND:70.8,GBR:81.4,CAN:82.2,AUS:83.4,OTHER:77.0};
-      let base = baseData[country] || 77.0;
-      if (gender === 'female') base += 2.5;
-      let remaining = base - age;
-      let modifier = 0;
-      const bmi = weight / ((height/100) ** 2);
-      if (bmi < 18.5) modifier -= 1.2; else if (bmi >= 30) modifier -= 3.0; else if (bmi >= 25) modifier -= 0.8; else modifier += 0.5;
-      if (smoking === 2) modifier -= 8.0; else if (smoking === 1) modifier -= 2.0;
-      if (alcohol === 3) modifier -= 3.5; else if (alcohol === 2) modifier -= 0.5; else if (alcohol === 1) modifier += 0.3;
-      if (exercise < 30) modifier -= 3.0; else if (exercise >= 150 && exercise <= 300) modifier += 2.8; else if (exercise >= 60) modifier += 0.8;
-      modifier += (diet - 3) * 0.9;
-      if (sleep < 5.5) modifier -= 3.0; else if (sleep < 6.5) modifier -= 0.5; else if (sleep >= 7 && sleep <= 9) modifier += 1.2;
-      
-      if (isDeepMode) {
+// ===== UPDATE UI =====
+function updateUI() {
+    const age = parseInt(document.getElementById('age').value) || 35;
+    const gender = document.getElementById('gender').value;
+    const country = document.getElementById('country').value;
+    const height = parseFloat(document.getElementById('height').value) || 165;
+    const weight = parseFloat(document.getElementById('weight').value) || 70;
+    const smoking = parseInt(document.getElementById('smoking').value) || 0;
+    const alcohol = parseInt(document.getElementById('alcohol').value) || 1;
+    const exercise = parseInt(document.getElementById('exercise').value) || 120;
+    const diet = parseInt(document.getElementById('diet').value) || 3;
+    const sleep = parseFloat(document.getElementById('sleep').value) || 7;
+    const isDeepMode = document.getElementById('deepFields').classList.contains('visible');
+    
+    document.getElementById('ageVal').textContent = age;
+    document.getElementById('smokeVal').textContent = {0:'Never',1:'Former',2:'Current'}[smoking];
+    document.getElementById('alcoholVal').textContent = {0:'None',1:'Light',2:'Moderate',3:'Heavy'}[alcohol];
+    document.getElementById('exVal').textContent = exercise;
+    document.getElementById('dietVal').textContent = diet + '/5';
+    document.getElementById('sleepVal').textContent = sleep;
+    
+    const baseData = {USA:78.5,IND:70.8,GBR:81.4,CAN:82.2,AUS:83.4,OTHER:77.0};
+    let base = baseData[country] || 77.0;
+    if (gender === 'female') base += 2.5;
+    let remaining = base - age;
+    let modifier = 0;
+    const bmi = weight / ((height/100) ** 2);
+    if (bmi < 18.5) modifier -= 1.2; else if (bmi >= 30) modifier -= 3.0; else if (bmi >= 25) modifier -= 0.8; else modifier += 0.5;
+    if (smoking === 2) modifier -= 8.0; else if (smoking === 1) modifier -= 2.0;
+    if (alcohol === 3) modifier -= 3.5; else if (alcohol === 2) modifier -= 0.5; else if (alcohol === 1) modifier += 0.3;
+    if (exercise < 30) modifier -= 3.0; else if (exercise >= 150 && exercise <= 300) modifier += 2.8; else if (exercise >= 60) modifier += 0.8;
+    modifier += (diet - 3) * 0.9;
+    if (sleep < 5.5) modifier -= 3.0; else if (sleep < 6.5) modifier -= 0.5; else if (sleep >= 7 && sleep <= 9) modifier += 1.2;
+    
+    if (isDeepMode) {
         const hr = parseInt(document.getElementById('restingHr').value) || 72;
         if (hr > 85) modifier -= 1.5; else if (hr < 55) modifier += 0.5;
         const bp = parseInt(document.getElementById('bpSystolic').value) || 120;
@@ -412,151 +412,181 @@ footer { text-align: center; padding: 24px; color: var(--text-muted); font-size:
         modifier += (social - 5) * 0.15;
         const chronic = document.getElementById('chronic').value;
         if (chronic === 'diabetes') modifier -= 5.0; else if (chronic === 'heart') modifier -= 7.0; else if (chronic === 'cancer') modifier -= 3.0;
-      }
-      
-      let lifespan = age + remaining + modifier;
-      lifespan = Math.min(110, Math.max(45, lifespan));
-      let healthRatio = 0.88;
-      if (modifier < -5) healthRatio = 0.75; else if (modifier < -2) healthRatio = 0.82; else if (modifier > 3) healthRatio = 0.92;
-      let healthspan = lifespan * healthRatio;
-      
-      document.getElementById('lifespanDisplay').innerText = lifespan.toFixed(1);
-      document.getElementById('healthspanNum').innerText = healthspan.toFixed(1);
-      document.getElementById('lifespanNum').innerText = lifespan.toFixed(1);
-      const today = new Date();
-      const birthYear = today.getFullYear() - age;
-      const deathYear = birthYear + Math.round(lifespan);
-      const deathDate = new Date(deathYear, today.getMonth(), today.getDate());
-      document.getElementById('deathDateDisplay').innerText = deathDate.toLocaleDateString('en-US', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
-      
-      const gap = (lifespan - healthspan).toFixed(1);
-      document.querySelector('#healthGapMsg span').innerHTML = 'You may spend ' + gap + ' years in less-than-good health.';
-      
-      let baseCountry = baseData[country] || 77.0;
-      if (gender === 'female') baseCountry += 2.5;
-      const diff = (lifespan - baseCountry).toFixed(1);
-      document.getElementById('countryAvg').innerHTML = baseCountry.toFixed(1);
-      document.getElementById('youVsCountry').innerHTML = (diff > 0 ? '+' : '') + diff;
-      
-      const actionList = document.getElementById('actionList');
-      let actions = [];
-      if (smoking === 2) actions.push('🚭 Quit smoking → +3.2 yrs');
-      if (sleep < 6.5 || sleep > 9.5) actions.push('😴 Optimize sleep → +1.8 yrs');
-      if (exercise < 120) actions.push('🚶 30 min daily walk → +2.0 yrs');
-      if (diet < 4) actions.push('🥗 Improve diet → +1.5 yrs');
-      if (bmi < 18.5 || bmi > 25) actions.push('⚖️ Healthy BMI → +1.6 yrs');
-      if (actions.length === 0) actions.push('🎉 Great job! Keep maintaining healthy habits');
-      actionList.innerHTML = actions.slice(0, 4).map(a => '<li>✅ ' + a + '</li>').join('');
     }
+    
+    let lifespan = age + remaining + modifier;
+    lifespan = Math.min(110, Math.max(45, lifespan));
+    let healthRatio = 0.88;
+    if (modifier < -5) healthRatio = 0.75; else if (modifier < -2) healthRatio = 0.82; else if (modifier > 3) healthRatio = 0.92;
+    let healthspan = lifespan * healthRatio;
+    
+    document.getElementById('lifespanDisplay').innerText = lifespan.toFixed(1);
+    document.getElementById('healthspanNum').innerText = healthspan.toFixed(1);
+    document.getElementById('lifespanNum').innerText = lifespan.toFixed(1);
+    const today = new Date();
+    const birthYear = today.getFullYear() - age;
+    const deathYear = birthYear + Math.round(lifespan);
+    const deathDate = new Date(deathYear, today.getMonth(), today.getDate());
+    document.getElementById('deathDateDisplay').innerText = deathDate.toLocaleDateString('en-US', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    
+    const gap = (lifespan - healthspan).toFixed(1);
+    document.querySelector('#healthGapMsg span').innerHTML = 'You may spend ' + gap + ' years in less-than-good health.';
+    
+    let baseCountry = baseData[country] || 77.0;
+    if (gender === 'female') baseCountry += 2.5;
+    const diff = (lifespan - baseCountry).toFixed(1);
+    document.getElementById('countryAvg').innerHTML = baseCountry.toFixed(1);
+    document.getElementById('youVsCountry').innerHTML = (diff > 0 ? '+' : '') + diff;
+    
+    const actionList = document.getElementById('actionList');
+    let actions = [];
+    if (smoking === 2) actions.push('🚭 Quit smoking → +3.2 yrs');
+    if (sleep < 6.5 || sleep > 9.5) actions.push('😴 Optimize sleep → +1.8 yrs');
+    if (exercise < 120) actions.push('🚶 30 min daily walk → +2.0 yrs');
+    if (diet < 4) actions.push('🥗 Improve diet → +1.5 yrs');
+    if (bmi < 18.5 || bmi > 25) actions.push('⚖️ Healthy BMI → +1.6 yrs');
+    if (actions.length === 0) actions.push('🎉 Great job! Keep maintaining healthy habits');
+    actionList.innerHTML = actions.slice(0, 4).map(function(a) { return '<li>✅ ' + a + '</li>'; }).join('');
+}
 
-    // Mode switch
-    document.getElementById('modeQuick').addEventListener('click', () => {
-      document.getElementById('modeQuick').classList.add('active');
-      document.getElementById('modeDeep').classList.remove('active');
-      document.getElementById('deepFields').classList.remove('visible');
-      updateUI();
-    });
-    document.getElementById('modeDeep').addEventListener('click', () => {
-      document.getElementById('modeDeep').classList.add('active');
-      document.getElementById('modeQuick').classList.remove('active');
-      document.getElementById('deepFields').classList.add('visible');
-      updateUI();
-    });
-
-    // Event listeners
-    ['age','gender','country','height','weight','smoking','alcohol','exercise','diet','sleep','restingHr','bpSystolic','cholesterol','glucose','stress','mental','social','chronic'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) { el.addEventListener('input', updateUI); el.addEventListener('change', updateUI); }
-    });
-
-    // Theme
-    function initTheme(){ var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark'); }
-    function setTheme(t){ localStorage.setItem('healthcalc_theme',t);document.body.classList.toggle('dark',t==='dark'); }
-    document.querySelectorAll('.theme-option').forEach(b=>b.addEventListener('click',function(){setTheme(b.dataset.theme)}));
-    initTheme();
-
-    // Country
-    document.getElementById('countrySelect').addEventListener('change',function(e){localStorage.setItem('healthcalc_country',e.target.value)});
-    (function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;})();
-
-    // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-    // ==============================================
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function removeTypingIndicator() {
-        var typing = document.getElementById('aiTypingIndicator');
-        if (typing) typing.remove();
-    }
-
-    function getLifeExpectancyContext() {
-        var lifespan = document.getElementById('lifespanDisplay').innerText;
-        var healthspan = document.getElementById('healthspanNum').innerText;
-        if (lifespan && lifespan !== '83.2') {
-            return 'User Longevity Profile: Est. Lifespan=' + lifespan + ' years, Healthspan=' + healthspan + ' years. ';
-        }
-        return '';
-    }
-
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if (!message) return;
-        
-        addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
-        showTypingIndicator();
-        
-        var context = getLifeExpectancyContext();
-        var promptText = "You are a professional Longevity & Healthy Aging AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable longevity advice in fluent English. Include evidence-based diet, exercise, sleep, stress management, and lifestyle recommendations. Structure with bullet points. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
-
-        try {
-            var response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
-            });
-            
-            var data = await response.json();
-            removeTypingIndicator();
-            
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { 
-                throw new Error('No response from AI worker'); 
-            }
-        } catch (error) {
-            removeTypingIndicator();
-            console.error('AI Chat Error:', error);
-            var fb = '⏳ <strong>Longevity Tips from Research:</strong><br><br>• Don\'t smoke — adds 7-10 years to life expectancy<br>• Exercise 150+ min/week (walking, swimming, cycling)<br>• Eat Mediterranean/DASH diet rich in vegetables and olive oil<br>• Sleep 7-9 hours consistently<br>• Maintain healthy BMI (18.5-24.9)<br>• Manage stress through meditation or yoga<br>• Stay socially connected<br>• Regular health check-ups<br><br>⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>';
-            addChatMessage(fb, 'bot');
-        }
-    }
-
-    // Expose globally
-    window.sendAIMessage = sendAIMessage;
-
-    // Init
+// ===== MODE SWITCH =====
+document.getElementById('modeQuick').addEventListener('click', function() {
+    document.getElementById('modeQuick').classList.add('active');
+    document.getElementById('modeDeep').classList.remove('active');
+    document.getElementById('deepFields').classList.remove('visible');
     updateUI();
+});
+document.getElementById('modeDeep').addEventListener('click', function() {
+    document.getElementById('modeDeep').classList.add('active');
+    document.getElementById('modeQuick').classList.remove('active');
+    document.getElementById('deepFields').classList.add('visible');
+    updateUI();
+});
+
+// ===== EVENT LISTENERS =====
+['age','gender','country','height','weight','smoking','alcohol','exercise','diet','sleep','restingHr','bpSystolic','cholesterol','glucose','stress','mental','social','chronic'].forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) { el.addEventListener('input', updateUI); el.addEventListener('change', updateUI); }
+});
+
+// ===== THEME =====
+function initTheme(){ 
+    var s = localStorage.getItem('healthcalc_theme') || 'light';
+    document.body.classList.toggle('dark', s === 'dark'); 
+}
+function setTheme(t){ 
+    localStorage.setItem('healthcalc_theme', t);
+    document.body.classList.toggle('dark', t === 'dark'); 
+}
+document.querySelectorAll('.theme-option').forEach(function(b) {
+    b.addEventListener('click', function() { setTheme(b.dataset.theme); });
+});
+initTheme();
+
+// ===== COUNTRY =====
+document.getElementById('countrySelect').addEventListener('change', function(e) {
+    localStorage.setItem('healthcalc_country', e.target.value);
+});
+(function() {
+    var s = localStorage.getItem('healthcalc_country') || 'us';
+    document.getElementById('countrySelect').value = s;
+})();
+
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    div.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
+}
+
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
+}
+
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
+}
+
+function getLifeExpectancyContext() {
+    var lifespan = document.getElementById('lifespanDisplay').textContent;
+    var healthspan = document.getElementById('healthspanNum').textContent;
+    return '[LONGEVITY PROFILE - Lifespan: ' + lifespan + ' years, Healthspan: ' + healthspan + ' years]';
+}
+
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var fullPrompt = "You are a Longevity & Healthy Aging AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based longevity advice. " +
+        "Always end with: '⚠️ Consult a healthcare professional for medical advice.'\n\n" +
+        getLifeExpectancyContext() + "\n\nUSER QUESTION: " + message;
+
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
+        });
+        
+        var data = await response.json();
+        removeTypingIndicator();
+        
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
+        }
+    } catch (e) {
+        removeTypingIndicator();
+        console.error('AI Error:', e);
+        addChatMessage('⏳ <strong>Longevity Tips:</strong><br><br>• Don\'t smoke — adds 7-10 years<br>• Exercise 150+ min/week<br>• Eat Mediterranean/DASH diet<br>• Sleep 7-9 hours consistently<br>• Maintain healthy BMI (18.5-24.9)<br>• Manage stress via meditation<br>• Stay socially connected<br>• Regular health check-ups<br><br>⚠️ <em>Consult a healthcare professional.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
+    }
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
+    }
+});
+
+// ===== EXPOSE GLOBALS =====
+window.sendAIMessage = sendAIMessage;
+
+// ===== INIT =====
+updateUI();
 </script>
-</body>
-</html>
+ 
+
+   
