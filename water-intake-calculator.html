@@ -420,190 +420,244 @@
 </div>
 
 <script>
-    // ==============================================
-    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-    // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+let currentUnit = 'metric';
+let displayUnit = 'L';
+let currentWaterLiters = 2.5;
+let isAIProcessing = false;
 
-    let currentUnit = 'metric';
-    let displayUnit = 'L';
-    let currentWaterLiters = 2.5;
+// ===== THEME =====
+function initTheme(){ 
+    var s = localStorage.getItem('healthcalc_theme') || 'light';
+    document.body.classList.toggle('dark', s === 'dark'); 
+}
+function setTheme(t){ 
+    localStorage.setItem('healthcalc_theme', t);
+    document.body.classList.toggle('dark', t === 'dark'); 
+}
+document.querySelectorAll('.theme-option').forEach(function(b) {
+    b.addEventListener('click', function() { setTheme(b.dataset.theme); });
+});
+initTheme();
 
-    // Theme
-    function initTheme(){ var s=localStorage.getItem('healthcalc_theme')||'light';document.body.classList.toggle('dark',s==='dark'); }
-    function setTheme(t){ localStorage.setItem('healthcalc_theme',t);document.body.classList.toggle('dark',t==='dark'); }
-    document.querySelectorAll('.theme-option').forEach(b=>b.addEventListener('click',function(){setTheme(b.dataset.theme)}));
-    initTheme();
+// ===== COUNTRY =====
+document.getElementById('countrySelect').addEventListener('change', function(e) {
+    localStorage.setItem('healthcalc_country', e.target.value);
+});
+(function() {
+    var s = localStorage.getItem('healthcalc_country') || 'us';
+    document.getElementById('countrySelect').value = s;
+})();
 
-    // Country
-    document.getElementById('countrySelect').addEventListener('change',function(e){localStorage.setItem('healthcalc_country',e.target.value)});
-    (function(){var s=localStorage.getItem('healthcalc_country')||'us';document.getElementById('countrySelect').value=s;})();
-
-    // Unit toggle
-    function setWaterUnit(unit) {
-        currentUnit = unit;
-        document.querySelectorAll('#unitToggle .unit-btn').forEach(b => b.classList.toggle('active', b.dataset.unit === unit));
-        var w = document.getElementById('weight');
-        if (unit === 'metric') { document.getElementById('weightUnitDisplay').textContent = 'kg'; if (w.value) w.value = (parseFloat(w.value) / 2.20462).toFixed(1); }
-        else { document.getElementById('weightUnitDisplay').textContent = 'lbs'; if (w.value) w.value = (parseFloat(w.value) * 2.20462).toFixed(1); }
-        calculateWater();
+// ===== UNIT TOGGLE =====
+function setWaterUnit(unit) {
+    currentUnit = unit;
+    document.querySelectorAll('#unitToggle .unit-btn').forEach(function(b) {
+        b.classList.toggle('active', b.dataset.unit === unit);
+    });
+    var w = document.getElementById('weight');
+    if (unit === 'metric') { 
+        document.getElementById('weightUnitDisplay').textContent = 'kg'; 
+        if (w.value) w.value = (parseFloat(w.value) / 2.20462).toFixed(1); 
+    } else { 
+        document.getElementById('weightUnitDisplay').textContent = 'lbs'; 
+        if (w.value) w.value = (parseFloat(w.value) * 2.20462).toFixed(1); 
     }
+    calculateWater();
+}
 
-    // Display unit switch
-    function switchDisplayUnit(unit) {
-        displayUnit = unit;
-        document.querySelectorAll('.unit-pill').forEach(p => p.classList.toggle('active', p.dataset.display === unit));
-        updateWaterDisplay();
+// ===== DISPLAY UNIT =====
+function switchDisplayUnit(unit) {
+    displayUnit = unit;
+    document.querySelectorAll('.unit-pill').forEach(function(p) {
+        p.classList.toggle('active', p.dataset.display === unit);
+    });
+    updateWaterDisplay();
+}
+
+function convertWater(liters, unit) {
+    var c = { L: liters, oz: liters * 33.814, cups: liters * 4.227, glasses: liters * 4 };
+    return c[unit] || liters;
+}
+
+function updateWaterDisplay() {
+    document.getElementById('waterAmount').textContent = convertWater(currentWaterLiters, displayUnit).toFixed(1);
+    document.getElementById('waterUnit').textContent = displayUnit;
+    document.getElementById('waterCups').innerHTML = '~' + Math.round(currentWaterLiters * 4) + ' glasses';
+    
+    var slots = [0.2, 0.4, 0.3, 0.1];
+    ['morningAmount','afternoonAmount','eveningAmount','nightAmount'].forEach(function(id, i) {
+        document.getElementById(id).textContent = convertWater(currentWaterLiters * slots[i], displayUnit).toFixed(1) + displayUnit;
+    });
+    
+    var weather = document.getElementById('weather').value;
+    var hotAdd = (weather === 'hot' ? 0.5 : (weather === 'indian-summer' ? 0.8 : 0));
+    var humidAdd = (weather === 'humid' ? 0.3 : 0);
+    document.getElementById('hotAmount').innerHTML = '+' + convertWater(hotAdd, displayUnit).toFixed(1) + displayUnit;
+    document.getElementById('humidAmount').innerHTML = '+' + convertWater(humidAdd, displayUnit).toFixed(1) + displayUnit;
+    
+    var activityAdd = [0, 0.3, 0.5, 0.8, 1.2][parseInt(document.getElementById('activity').value)];
+    var w = document.getElementById('weather').value;
+    var weatherAdd = w === 'hot' ? 0.5 : (w === 'humid' ? 0.3 : (w === 'cold' ? -0.1 : (w === 'indian-summer' ? 0.8 : 0)));
+    var base = currentWaterLiters - activityAdd - weatherAdd;
+    document.getElementById('baseWater').innerHTML = convertWater(base, displayUnit).toFixed(1);
+    document.getElementById('activityWater').innerHTML = (activityAdd > 0 ? '+' : '') + convertWater(activityAdd, displayUnit).toFixed(1);
+    document.getElementById('envWater').innerHTML = (weatherAdd >= 0 ? '+' : '') + convertWater(weatherAdd, displayUnit).toFixed(1);
+}
+
+function updateActivityLabel(val) {
+    var labels = ['Sedentary', 'Light', 'Moderate', 'Active', 'Very Active'];
+    document.getElementById('activityValue').textContent = labels[parseInt(val)];
+    calculateWater();
+}
+
+function updateSweatLabel(val) {
+    var labels = ['Low Sweat', 'Average', 'Heavy Sweat'];
+    document.getElementById('sweatValue').textContent = labels[parseInt(val)];
+    calculateWater();
+}
+
+// ===== MAIN CALCULATION =====
+function calculateWater() {
+    var weight = parseFloat(document.getElementById('weight').value) || 70;
+    if (currentUnit === 'imperial') weight = weight / 2.20462;
+    var age = parseInt(document.getElementById('age').value) || 30;
+    var activityLevel = parseInt(document.getElementById('activity').value);
+    var sweatLevel = parseInt(document.getElementById('sweat').value);
+    var weather = document.getElementById('weather').value;
+    var caffeine = document.getElementById('caffeine').checked;
+    var alcohol = document.getElementById('alcohol').checked;
+    var pregnant = document.getElementById('pregnant').checked;
+    var breastfeeding = document.getElementById('breastfeeding').checked;
+    
+    var base = weight * 0.033;
+    if (age > 65) base *= 0.95; 
+    else if (age < 18) base *= 1.1;
+    
+    var activityAdd = [0, 0.3, 0.5, 0.8, 1.2][activityLevel];
+    var sweatAdd = [0, 0.2, 0.4][sweatLevel];
+    var weatherAdd = weather === 'hot' ? 0.5 : (weather === 'humid' ? 0.3 : (weather === 'cold' ? -0.1 : (weather === 'indian-summer' ? 0.8 : 0)));
+    var lifestyleAdd = (caffeine ? 0.2 : 0) + (alcohol ? 0.3 : 0) + (pregnant ? 0.3 : 0) + (breastfeeding ? 0.7 : 0);
+    
+    currentWaterLiters = Math.min(5.5, Math.max(1.5, Math.round((base + activityAdd + sweatAdd + weatherAdd + lifestyleAdd) * 10) / 10));
+    
+    updateWaterDisplay();
+    document.getElementById('glassFill').style.height = Math.min(100, (currentWaterLiters / 4.5) * 100) + '%';
+    document.getElementById('glassPercent').textContent = Math.round((currentWaterLiters / 4.5) * 100) + '% of daily target';
+    document.getElementById('hotFactor').style.opacity = (weather === 'hot' || weather === 'indian-summer') ? '1' : '0.4';
+    document.getElementById('humidFactor').style.opacity = (weather === 'humid') ? '1' : '0.4';
+}
+
+// ===== EVENT LISTENERS =====
+['weight','age','activity','sweat','weather','caffeine','alcohol','pregnant','breastfeeding'].forEach(function(id) {
+    var el = document.getElementById(id); 
+    if (el) { 
+        el.addEventListener('input', calculateWater); 
+        if (el.type === 'checkbox') el.addEventListener('change', calculateWater); 
     }
+});
 
-    function convertWater(liters, unit) {
-        var c = { L: liters, oz: liters * 33.814, cups: liters * 4.227, glasses: liters * 4 };
-        return c[unit] || liters;
-    }
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    div.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
+}
 
-    function updateWaterDisplay() {
-        document.getElementById('waterAmount').textContent = convertWater(currentWaterLiters, displayUnit).toFixed(1);
-        document.getElementById('waterUnit').textContent = displayUnit;
-        document.getElementById('waterCups').innerHTML = '~' + Math.round(currentWaterLiters * 4) + ' glasses';
-        
-        var slots = [0.2, 0.4, 0.3, 0.1];
-        ['morningAmount','afternoonAmount','eveningAmount','nightAmount'].forEach(function(id, i) {
-            document.getElementById(id).textContent = convertWater(currentWaterLiters * slots[i], displayUnit).toFixed(1) + displayUnit;
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
+}
+
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
+}
+
+function getWaterContext() {
+    var amt = document.getElementById('waterAmount').textContent;
+    var unit = document.getElementById('waterUnit').textContent;
+    return '[HYDRATION PROFILE - Daily Water Need: ' + amt + ' ' + unit + ']';
+}
+
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var fullPrompt = "You are a Hydration AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based hydration advice. " +
+        "Always end with: '⚠️ Consult a healthcare professional for medical advice.'\n\n" +
+        getWaterContext() + "\n\nUSER QUESTION: " + message;
+
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
         });
         
-        var weather = document.getElementById('weather').value;
-        var hotAdd = (weather === 'hot' ? 0.5 : (weather === 'indian-summer' ? 0.8 : 0));
-        var humidAdd = (weather === 'humid' ? 0.3 : 0);
-        document.getElementById('hotAmount').innerHTML = '+' + convertWater(hotAdd, displayUnit).toFixed(1) + displayUnit;
-        document.getElementById('humidAmount').innerHTML = '+' + convertWater(humidAdd, displayUnit).toFixed(1) + displayUnit;
+        var data = await response.json();
+        removeTypingIndicator();
         
-        var activityAdd = [0, 0.3, 0.5, 0.8, 1.2][parseInt(document.getElementById('activity').value)];
-        var w = document.getElementById('weather').value;
-        var weatherAdd = w === 'hot' ? 0.5 : (w === 'humid' ? 0.3 : (w === 'cold' ? -0.1 : (w === 'indian-summer' ? 0.8 : 0)));
-        var base = currentWaterLiters - activityAdd - weatherAdd;
-        document.getElementById('baseWater').innerHTML = convertWater(base, displayUnit).toFixed(1);
-        document.getElementById('activityWater').innerHTML = (activityAdd > 0 ? '+' : '') + convertWater(activityAdd, displayUnit).toFixed(1);
-        document.getElementById('envWater').innerHTML = (weatherAdd >= 0 ? '+' : '') + convertWater(weatherAdd, displayUnit).toFixed(1);
-    }
-
-    function updateActivityLabel(val) {
-        var labels = ['Sedentary', 'Light', 'Moderate', 'Active', 'Very Active'];
-        document.getElementById('activityValue').textContent = labels[parseInt(val)];
-        calculateWater();
-    }
-
-    function updateSweatLabel(val) {
-        var labels = ['Low Sweat', 'Average', 'Heavy Sweat'];
-        document.getElementById('sweatValue').textContent = labels[parseInt(val)];
-        calculateWater();
-    }
-
-    function calculateWater() {
-        var weight = parseFloat(document.getElementById('weight').value) || 70;
-        if (currentUnit === 'imperial') weight = weight / 2.20462;
-        var age = parseInt(document.getElementById('age').value) || 30;
-        var activityLevel = parseInt(document.getElementById('activity').value);
-        var sweatLevel = parseInt(document.getElementById('sweat').value);
-        var weather = document.getElementById('weather').value;
-        var caffeine = document.getElementById('caffeine').checked;
-        var alcohol = document.getElementById('alcohol').checked;
-        var pregnant = document.getElementById('pregnant').checked;
-        var breastfeeding = document.getElementById('breastfeeding').checked;
-        
-        var base = weight * 0.033;
-        if (age > 65) base *= 0.95; else if (age < 18) base *= 1.1;
-        var activityAdd = [0, 0.3, 0.5, 0.8, 1.2][activityLevel];
-        var sweatAdd = [0, 0.2, 0.4][sweatLevel];
-        var weatherAdd = weather === 'hot' ? 0.5 : (weather === 'humid' ? 0.3 : (weather === 'cold' ? -0.1 : (weather === 'indian-summer' ? 0.8 : 0)));
-        var lifestyleAdd = (caffeine ? 0.2 : 0) + (alcohol ? 0.3 : 0) + (pregnant ? 0.3 : 0) + (breastfeeding ? 0.7 : 0);
-        currentWaterLiters = Math.min(5.5, Math.max(1.5, Math.round((base + activityAdd + sweatAdd + weatherAdd + lifestyleAdd) * 10) / 10));
-        
-        updateWaterDisplay();
-        document.getElementById('glassFill').style.height = Math.min(100, (currentWaterLiters / 4.5) * 100) + '%';
-        document.getElementById('glassPercent').textContent = Math.round((currentWaterLiters / 4.5) * 100) + '% of daily target';
-        document.getElementById('hotFactor').style.opacity = (weather === 'hot' || weather === 'indian-summer') ? '1' : '0.4';
-        document.getElementById('humidFactor').style.opacity = (weather === 'humid') ? '1' : '0.4';
-    }
-
-    // Event listeners
-    ['weight','age','activity','sweat','weather','caffeine','alcohol','pregnant','breastfeeding'].forEach(function(id) {
-        var el = document.getElementById(id); if (el) { el.addEventListener('input', calculateWater); if (el.type === 'checkbox') el.addEventListener('change', calculateWater); }
-    });
-
-    // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-    // ==============================================
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
-
-    function removeTypingIndicator() { var t = document.getElementById('aiTypingIndicator'); if (t) t.remove(); }
-
-    function getWaterContext() {
-        var amt = document.getElementById('waterAmount').textContent;
-        var unit = document.getElementById('waterUnit').textContent;
-        if (amt !== '2.5' || currentWaterLiters !== 2.5) return 'User daily water need: ' + amt + ' ' + unit + '. ';
-        return '';
-    }
-
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if (!message) return;
-        addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
-        showTypingIndicator();
-        var context = getWaterContext();
-        var promptText = "You are a Hydration AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable hydration advice in fluent English. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
-
-        try {
-            var response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
-            });
-            
-            var data = await response.json();
-            removeTypingIndicator();
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else {
-                throw new Error('No response from AI worker');
-            }
-        } catch (e) {
-            removeTypingIndicator();
-            console.error('AI Error:', e);
-            addChatMessage('💧 <strong>Hydration Tips:</strong><br><br>• Drink water first thing in the morning<br>• Carry a reusable water bottle<br>• Set hydration reminders<br>• Eat water-rich foods (cucumber, watermelon)<br>• Monitor urine color (pale straw = hydrated)<br>• Increase intake during exercise<br><br>⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>', 'bot');
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
         }
+    } catch (e) {
+        removeTypingIndicator();
+        console.error('AI Error:', e);
+        addChatMessage('💧 <strong>Hydration Tips:</strong><br><br>• Drink water first thing in morning<br>• Carry a reusable water bottle<br>• Set hydration reminders<br>• Eat water-rich foods (cucumber, watermelon)<br>• Monitor urine color (pale straw = hydrated)<br>• Increase intake during exercise<br><br>⚠️ <em>Consult a healthcare professional.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
+}
 
-    // Expose globally
-    window.setWaterUnit = setWaterUnit;
-    window.switchDisplayUnit = switchDisplayUnit;
-    window.updateActivityLabel = updateActivityLabel;
-    window.updateSweatLabel = updateSweatLabel;
-    window.calculateWater = calculateWater;
-    window.sendAIMessage = sendAIMessage;
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
+    }
+});
 
-    // Init
-    calculateWater();
+// ===== EXPOSE GLOBALS =====
+window.setWaterUnit = setWaterUnit;
+window.switchDisplayUnit = switchDisplayUnit;
+window.updateActivityLabel = updateActivityLabel;
+window.updateSweatLabel = updateSweatLabel;
+window.calculateWater = calculateWater;
+window.sendAIMessage = sendAIMessage;
+
+// ===== INIT =====
+calculateWater();
 </script>
-</body>
-</html>
+ 
+ 
