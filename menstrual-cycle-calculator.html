@@ -809,9 +809,9 @@
 
 <script>
 // ==============================================
-// 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
+// GLOBAL VARIABLES
 // ==============================================
-var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+let isAIProcessing = false;
 
 // ===== TRANSLATIONS =====
 const translations = {
@@ -832,8 +832,8 @@ const translations = {
         futureTitle: 'Coming Soon: Advanced Features', future1: 'Period Reminders', future2: 'Festival Calendar',
         future3: 'Ayurvedic Diet Plan', future4: 'Cycle Trend Analysis', future5: 'Weather-Based Tips', future6: 'Doctor Consultation',
         faqTitle: 'Frequently Asked Questions',
-        faq1Q: 'How is ovulation calculated?', faq1A: 'Ovulation typically occurs 14 days before your next period. For a 28-day cycle, ovulation is on day 14.',
-        faq2Q: 'What are Ayurvedic period care tips?', faq2A: 'Ayurveda recommends warm foods, ginger tea, sesame oil massage, and rest during periods.',
+        faq1Q: 'How is ovulation calculated?', faq1A: 'Ovulation typically occurs 14 days before your next period.',
+        faq2Q: 'What are Ayurvedic period care tips?', faq2A: 'Ayurveda recommends warm foods, ginger tea, sesame oil massage, and rest.',
         faq3Q: 'How accurate is PMS prediction?', faq3A: 'Based on cycle phase and common symptoms. Individual experiences vary.',
         faq4Q: 'Is my period data private?', faq4A: 'Yes! All calculations happen in your browser. 100% private.',
         faq5Q: 'Can I use this for contraception?', faq5A: 'No. This is for tracking only. Consult a doctor.',
@@ -858,34 +858,20 @@ const translations = {
         fertilityTitle: 'फर्टिलिटी विंडो', fertileRangeLabel: 'फर्टाइल विंडो:',
         tipsTitle: '🌿 आयुर्वेदिक पीरियड केयर सुझाव', pmsTitle: 'PMS लक्षण प्रेडिक्टर',
         symptomsLikely: 'लक्षण संभावित:', forecastSummary: '📅 3-महीने का पूर्वानुमान देखें',
-        futureTitle: 'जल्द आ रहा है: नई सुविधाएं', future1: 'पीरियड रिमाइंडर', future2: 'त्योहार कैलेंडर',
-        future3: 'आयुर्वेदिक डाइट प्लान', future4: 'चक्र ट्रेंड विश्लेषण', future5: 'मौसम टिप्स', future6: 'डॉक्टर परामर्श',
         faqTitle: 'अक्सर पूछे जाने वाले प्रश्न',
         faq1Q: 'ओवुलेशन कैसे कैलकुलेट होता है?', faq1A: 'ओवुलेशन आमतौर पर अगले पीरियड से 14 दिन पहले होता है।',
-        faq2Q: 'आयुर्वेदिक पीरियड टिप्स क्या हैं?', faq2A: 'आयुर्वेद गर्म भोजन, अदरक की चाय, तिल के तेल की मालिश और आराम की सलाह देता है।',
-        faq3Q: 'PMS भविष्यवाणी कितनी सटीक है?', faq3A: 'चक्र अवस्था और सामान्य लक्षणों पर आधारित। व्यक्तिगत अनुभव भिन्न हो सकते हैं।',
+        faq2Q: 'आयुर्वेदिक पीरियड टिप्स क्या हैं?', faq2A: 'आयुर्वेद गर्म भोजन, अदरक की चाय, तिल के तेल की मालिश की सलाह देता है।',
+        faq3Q: 'PMS भविष्यवाणी कितनी सटीक है?', faq3A: 'चक्र अवस्था और सामान्य लक्षणों पर आधारित।',
         faq4Q: 'क्या मेरा पीरियड डेटा निजी है?', faq4A: 'हाँ! सभी गणनाएं आपके ब्राउज़र में होती हैं। 100% निजी।',
-        faq5Q: 'क्या इसका उपयोग गर्भनिरोधक के लिए कर सकते हैं?', faq5A: 'नहीं। यह केवल ट्रैकिंग के लिए है। डॉक्टर से सलाह लें।',
+        faq5Q: 'क्या इसका उपयोग गर्भनिरोधक के लिए कर सकते हैं?', faq5A: 'नहीं। यह केवल ट्रैकिंग के लिए है।',
         faq6Q: 'सामान्य चक्र लंबाई क्या है?', faq6A: 'सामान्य चक्र 21-35 दिनों के बीच होता है।',
-        tip1: 'अदरक और गुड़ के साथ गर्म पानी पिएं', tip2: 'पेट के निचले हिस्से पर गर्म तिल के तेल की मालिश करें',
+        tip1: 'अदरक और गुड़ के साथ गर्म पानी पिएं', tip2: 'पेट पर गर्म तिल के तेल की मालिश करें',
         tip3: 'हल्का, गर्म भोजन करें (खिचड़ी, सूप)', tip4: 'हल्का योग करें (चाइल्ड पोज़, कैट-काउ)',
         phases: { menstrual: 'मासिक', follicular: 'फॉलिक्युलर', ovulation: 'ओवुलेशन', luteal: 'ल्यूटियल' },
         months: ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'],
         weekdays: ['सोम', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि', 'रवि']
     }
 };
-
-const esTranslations = {...translations.en};
-const frTranslations = {...translations.en};
-const deTranslations = {...translations.en};
-const jaTranslations = {...translations.en};
-const arTranslations = {...translations.en};
-
-translations.es = esTranslations;
-translations.fr = frTranslations;
-translations.de = deTranslations;
-translations.ja = jaTranslations;
-translations.ar = arTranslations;
 
 // ===== GLOBAL STATE =====
 let currentLang = 'en';
@@ -906,7 +892,7 @@ function populateDays() {
 // ===== POPULATE MONTHS =====
 function populateMonths() {
     const monthSelect = document.getElementById('lastMonth');
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     monthSelect.innerHTML = '';
     for (let i = 1; i <= 12; i++) {
         const option = document.createElement('option');
@@ -934,33 +920,23 @@ function populateYears() {
 // ===== SET LANGUAGE =====
 function setLanguage(lang) {
     currentLang = lang;
-    const t = translations[lang];
-    if (!t) return;
+    const t = translations[lang] || translations.en;
     
-    Object.keys(t).forEach(key => {
+    Object.keys(t).forEach(function(key) {
         const el = document.getElementById(key);
         if (el && !['INPUT', 'SELECT'].includes(el.tagName)) {
-            if (key === 'tip1' || key === 'tip2' || key === 'tip3' || key === 'tip4') {
-                el.innerHTML = `<i class="fas fa-check-circle"></i> ${t[key]}`;
-            } else {
-                el.textContent = t[key];
-            }
+            el.textContent = t[key];
         }
     });
     
     for (let i = 1; i <= 4; i++) {
-        const tipEl = document.getElementById(`tip${i}`);
-        if (tipEl && t[`tip${i}`]) {
-            tipEl.innerHTML = `<i class="fas fa-check-circle"></i> ${t[`tip${i}`]}`;
+        const tipEl = document.getElementById('tip' + i);
+        if (tipEl && t['tip' + i]) {
+            tipEl.innerHTML = '<i class="fas fa-check-circle"></i> ' + t['tip' + i];
         }
     }
     
     populateMonths();
-    
-    document.title = lang === 'hi' 
-        ? '🌸 एडवांस मासिक धर्म कैलकुलेटर: PMS प्रेडिक्टर, फर्टिलिटी विंडो और आयुर्वेदिक टिप्स | HealthCalc'
-        : '🌸 Advanced Menstrual Cycle Calculator: PMS Predictor, Fertility Window & Ayurvedic Tips | HealthCalc';
-    
     calculateCycle();
 }
 
@@ -972,57 +948,20 @@ function resetForm() {
     document.getElementById('cycleLength').value = '28';
     document.getElementById('periodLength').value = '5';
     document.getElementById('age').value = '30';
-    document.querySelectorAll('.symptom').forEach(cb => cb.checked = false);
-    calculateCycle();
-}
-
-// ===== LOCAL STORAGE =====
-function saveToLocalStorage() {
-    const data = {
-        lang: currentLang,
-        lastMonth: document.getElementById('lastMonth').value,
-        lastDay: document.getElementById('lastDay').value,
-        lastYear: document.getElementById('lastYear').value,
-        cycleLength: document.getElementById('cycleLength').value,
-        periodLength: document.getElementById('periodLength').value,
-        age: document.getElementById('age').value,
-        symptoms: Array.from(document.querySelectorAll('.symptom:checked')).map(cb => cb.value)
-    };
-    localStorage.setItem('menstrualCycleData', JSON.stringify(data));
-}
-
-function loadFromLocalStorage() {
-    const saved = localStorage.getItem('menstrualCycleData');
-    if (saved) {
-        try {
-            const data = JSON.parse(saved);
-            if (data.lang) setLanguage(data.lang);
-            if (data.lastMonth) document.getElementById('lastMonth').value = data.lastMonth;
-            if (data.lastDay) document.getElementById('lastDay').value = data.lastDay;
-            if (data.lastYear) document.getElementById('lastYear').value = data.lastYear;
-            if (data.cycleLength) document.getElementById('cycleLength').value = data.cycleLength;
-            if (data.periodLength) document.getElementById('periodLength').value = data.periodLength;
-            if (data.age) document.getElementById('age').value = data.age;
-            if (data.symptoms) {
-                document.querySelectorAll('.symptom').forEach(cb => {
-                    cb.checked = data.symptoms.includes(cb.value);
-                });
-            }
-        } catch(e) {}
-    }
+    document.querySelectorAll('.symptom').forEach(function(cb) { cb.checked = false; });
     calculateCycle();
 }
 
 // ===== MAIN CALCULATION =====
 function calculateCycle() {
-    const t = translations[currentLang];
+    const t = translations[currentLang] || translations.en;
     const lastMonth = parseInt(document.getElementById('lastMonth').value);
     const lastDay = parseInt(document.getElementById('lastDay').value);
     const lastYear = parseInt(document.getElementById('lastYear').value);
     const cycleLength = parseInt(document.getElementById('cycleLength').value) || 28;
     const periodLength = parseInt(document.getElementById('periodLength').value) || 5;
     const age = parseInt(document.getElementById('age').value) || 30;
-    const symptoms = Array.from(document.querySelectorAll('.symptom:checked')).map(s => s.value);
+    const symptoms = Array.from(document.querySelectorAll('.symptom:checked')).map(function(s) { return s.value; });
     
     const lastPeriod = new Date(lastYear, lastMonth - 1, lastDay);
     const nextPeriod = new Date(lastPeriod);
@@ -1061,8 +1000,7 @@ function calculateCycle() {
         fertileStartDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' }) + ' - ' + 
         fertileEndDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' });
     
-    document.getElementById('fertilityAdvice').innerHTML = 
-        `⚡ ${currentLang === 'hi' ? 'ओवुलेशन दिन' : 'Ovulation on Day'} ${ovulationDay} (${ovulationDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' })})`;
+    document.getElementById('fertilityAdvice').innerHTML = '⚡ ' + (currentLang === 'hi' ? 'ओवुलेशन दिन' : 'Ovulation on Day') + ' ' + ovulationDay;
     
     let fertilityFill = 0;
     if (cycleDay >= fertileStart && cycleDay <= fertileEnd) fertilityFill = 100;
@@ -1072,10 +1010,11 @@ function calculateCycle() {
     fertilityFillEl.style.width = Math.min(100, fertilityFill) + '%';
     fertilityFillEl.textContent = fertilityFill >= 30 ? Math.round(fertilityFill) + '%' : '';
     
+    // Calendar
     const calendar = document.getElementById('calendar');
     calendar.innerHTML = '';
-    t.weekdays.forEach(day => {
-        calendar.innerHTML += `<div style="font-weight: 600; color: #666; text-align: center; font-size: 11px;">${day}</div>`;
+    t.weekdays.forEach(function(day) {
+        calendar.innerHTML += '<div style="font-weight:600;color:#666;text-align:center;font-size:11px;">' + day + '</div>';
     });
     
     const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -1091,32 +1030,33 @@ function calculateCycle() {
         if (cDay >= 1 && cDay <= periodLength) cls += ' period';
         else if (cDay >= fertileStart && cDay <= fertileEnd) cls += cDay === ovulationDay ? ' ovulation' : ' fertile';
         else if (cDay > (cycleLength - 5) && cDay <= cycleLength) cls += ' pms';
-        calendar.innerHTML += `<div class="${cls}">${d}</div>`;
+        calendar.innerHTML += '<div class="' + cls + '">' + d + '</div>';
     }
     
+    // PMS
     const pmsStart = cycleLength - 7;
-    document.getElementById('pmsDays').innerHTML = currentLang === 'hi' 
-        ? `दिन ${pmsStart}-${cycleLength}` 
-        : `Days ${pmsStart}-${cycleLength}`;
+    document.getElementById('pmsDays').innerHTML = currentLang === 'hi' ? 'दिन ' + pmsStart + '-' + cycleLength : 'Days ' + pmsStart + '-' + cycleLength;
     
-    let predictedSymptoms = [];
-    if (age < 30) predictedSymptoms = ['bloating', 'cramps', 'mood', 'cravings'];
-    else if (age < 40) predictedSymptoms = ['headache', 'fatigue', 'cramps', 'bloating'];
-    else predictedSymptoms = ['fatigue', 'headache', 'mood', 'acne'];
-    
+    // Symptoms
     const symMap = {
-        bloating: `😖 ${t.symBloating}`, headache: `🤕 ${t.symHeadache}`, cramps: `😣 ${t.symCramps}`,
-        fatigue: `😴 ${t.symFatigue}`, mood: `🎭 ${t.symMood}`, cravings: `🍫 ${t.symCravings}`,
-        acne: `🔴 ${t.symAcne}`, tender: `😫 ${t.symTender}`
+        bloating: '😖 ' + t.symBloating, headache: '🤕 ' + t.symHeadache, cramps: '😣 ' + t.symCramps,
+        fatigue: '😴 ' + t.symFatigue, mood: '🎭 ' + t.symMood, cravings: '🍫 ' + t.symCravings,
+        acne: '🔴 ' + t.symAcne, tender: '😫 ' + t.symTender
     };
     
-    const userSymptoms = symptoms.map(s => symMap[s]).filter(s => s);
-    const displaySymptoms = [...new Set([...predictedSymptoms.map(s => symMap[s]), ...userSymptoms])].slice(0, 6);
+    let predicted = [];
+    if (age < 30) predicted = ['bloating', 'cramps', 'mood', 'cravings'];
+    else if (age < 40) predicted = ['headache', 'fatigue', 'cramps', 'bloating'];
+    else predicted = ['fatigue', 'headache', 'mood', 'acne'];
     
-    document.getElementById('predictedSymptoms').innerHTML = displaySymptoms.map(s => 
-        `<span class="symptom-tag ${userSymptoms.includes(s) ? 'high' : ''}">${s}</span>`
-    ).join('');
+    const userSymptoms = symptoms.map(function(s) { return symMap[s]; }).filter(function(s) { return s; });
+    const displaySymptoms = [...new Set([...predicted.map(function(s) { return symMap[s]; }), ...userSymptoms])].slice(0, 6);
     
+    document.getElementById('predictedSymptoms').innerHTML = displaySymptoms.map(function(s) {
+        return '<span class="symptom-tag' + (userSymptoms.includes(s) ? ' high' : '') + '">' + s + '</span>';
+    }).join('');
+    
+    // Forecast
     const forecastDiv = document.getElementById('forecast');
     forecastDiv.innerHTML = '';
     for (let i = 1; i <= 3; i++) {
@@ -1125,133 +1065,163 @@ function calculateCycle() {
         const ovuDate = new Date(forecastDate);
         ovuDate.setDate(forecastDate.getDate() - 14);
         
-        const item = document.createElement('div');
-        item.className = 'forecast-item';
-        item.innerHTML = `
-            <span><strong>${currentLang === 'hi' ? 'चक्र' : 'Cycle'} ${i + 1}</strong></span>
-            <span><i class="fas fa-droplet"></i> ${forecastDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' })}</span>
-            <span><i class="fas fa-egg"></i> ${ovuDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' })}</span>
-        `;
-        forecastDiv.appendChild(item);
+        forecastDiv.innerHTML += '<div class="forecast-item">' +
+            '<span><strong>' + (currentLang === 'hi' ? 'चक्र' : 'Cycle') + ' ' + (i + 1) + '</strong></span>' +
+            '<span><i class="fas fa-droplet"></i> ' + forecastDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' }) + '</span>' +
+            '<span><i class="fas fa-egg"></i> ' + ovuDate.toLocaleDateString(locale, { month: 'short', day: 'numeric' }) + '</span>' +
+            '</div>';
     }
-    
-    saveToLocalStorage();
 }
 
 // ===== SCROLL TOP =====
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
 window.addEventListener('scroll', function() {
     const btn = document.getElementById('scrollTopBtn');
     btn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? 'block' : 'none';
 });
 
 // ===== EVENT LISTENERS =====
-document.querySelectorAll('input, select').forEach(el => {
+document.querySelectorAll('input, select').forEach(function(el) {
     el.addEventListener('change', calculateCycle);
     el.addEventListener('input', calculateCycle);
 });
-
-document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const lang = btn.getAttribute('data-lang');
+document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var lang = btn.getAttribute('data-lang');
         if (lang) setLanguage(lang);
     });
 });
 
-// ==============================================
-// 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-// ==============================================
+// ===== THEME =====
+function initTheme(){ 
+    var s = localStorage.getItem('healthcalc_theme') || 'light';
+    document.body.classList.toggle('dark', s === 'dark'); 
+}
+function setTheme(t){ 
+    localStorage.setItem('healthcalc_theme', t);
+    document.body.classList.toggle('dark', t === 'dark'); 
+}
+document.querySelectorAll('.theme-option').forEach(function(b) {
+    b.addEventListener('click', function() { setTheme(b.dataset.theme); });
+});
+initTheme();
+
+// ===== COUNTRY =====
+document.getElementById('countrySelect').addEventListener('change', function(e) {
+    localStorage.setItem('healthcalc_country', e.target.value);
+});
+(function() {
+    var s = localStorage.getItem('healthcalc_country') || 'us';
+    document.getElementById('countrySelect').value = s;
+})();
+
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
 function addChatMessage(text, sender) {
-    var messagesDiv = document.getElementById('aiChatMessages');
-    var msgDiv = document.createElement('div');
-    msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-    msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-    msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    messagesDiv.appendChild(msgDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    div.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
 }
 
 function showTypingIndicator() {
-    var messagesDiv = document.getElementById('aiChatMessages');
-    var typingDiv = document.createElement('div');
-    typingDiv.id = 'aiTypingIndicator';
-    typingDiv.className = 'ai-message-bot';
-    typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-    typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-    messagesDiv.appendChild(typingDiv);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
 }
 
-function removeTypingIndicator() {
-    var typing = document.getElementById('aiTypingIndicator');
-    if (typing) typing.remove();
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
 }
 
 function getCycleContext() {
-    var nextP = document.getElementById('nextPeriod').textContent;
     var phase = document.getElementById('phase').textContent;
     var cycleDay = document.getElementById('cycleDay').textContent;
-    if (nextP && nextP !== 'April 2, 2026') {
-        return 'User Cycle Status: Phase=' + phase + ', Cycle Day=' + cycleDay + ', Next Period Start=' + nextP + '. ';
-    }
-    return '';
+    var nextPeriod = document.getElementById('nextPeriod').textContent;
+    return '[MENSTRUAL CYCLE - Phase: ' + phase + ', Cycle Day: ' + cycleDay + ', Next Period: ' + nextPeriod + ']';
 }
 
 async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
     var input = document.getElementById('aiChatInput');
-    var message = prefilledText || input.value.trim();
+    var message = prefilledText || (input ? input.value.trim() : '');
     if (!message) return;
     
+    isAIProcessing = true;
     addChatMessage(message, 'user');
-    if (!prefilledText) input.value = '';
+    if (input && !prefilledText) input.value = '';
     showTypingIndicator();
     
-    var context = getCycleContext();
-    var promptText = "You are a professional Women's Health & Gynecological AI Assistant on HealthCalc.in. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable health advice in fluent English. Include PMS management, fertile window guidance, Ayurvedic remedies, or nutrition advice tailored to their cycle phase. End with: '⚠️ Consult a gynecologist or doctor for personalized medical advice.'";
+    var fullPrompt = "You are a Women's Health & Gynecological AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based women's health advice. " +
+        "Include PMS management, fertile window guidance, Ayurvedic remedies. " +
+        "Always end with: '⚠️ Consult a gynecologist for medical advice.'\n\n" +
+        getCycleContext() + "\n\nUSER QUESTION: " + message;
 
     try {
-        var response = await fetch(WORKER_URL, {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt: promptText })
+            body: JSON.stringify({ userMessage: fullPrompt })
         });
         
         var data = await response.json();
         removeTypingIndicator();
         
-        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-            addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-        } else { 
-            throw new Error('No response from AI worker'); 
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
         }
-    } catch (error) {
+    } catch (e) {
         removeTypingIndicator();
-        console.error('AI Chat Error:', error);
-        var fb = '🌸 <strong>Menstrual Care Tips:</strong><br><br>';
-        fb += '• Stay hydrated and drink warm ginger tea for cramps<br>';
-        fb += '• Apply warm sesame oil massage on the lower abdomen<br>';
-        fb += '• Practice gentle yoga or light walking to improve circulation<br>';
-        fb += '• Eat nutrient-rich, warm foods during menstruation<br>';
-        fb += '• Get 7-8 hours of sleep for optimal hormonal balance<br><br>';
-        fb += '⚠️ <em>Consult a gynecologist for medical advice.</em>';
-        addChatMessage(fb, 'bot');
+        console.error('AI Error:', e);
+        addChatMessage('🌸 <strong>Menstrual Care Tips:</strong><br><br>• Drink warm ginger tea for cramps<br>• Apply warm sesame oil massage<br>• Practice gentle yoga or walking<br>• Eat warm, nutrient-rich foods<br>• Get 7-8 hours sleep<br><br>⚠️ <em>Consult a gynecologist.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
 }
 
-// ===== INITIALIZE =====
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
+    }
+});
+
+// ===== EXPOSE GLOBALS =====
 window.setLanguage = setLanguage;
 window.resetForm = resetForm;
 window.calculateCycle = calculateCycle;
 window.scrollToTop = scrollToTop;
 window.sendAIMessage = sendAIMessage;
 
+// ===== INITIALIZE =====
 populateMonths();
 populateDays();
 populateYears();
-loadFromLocalStorage();
+calculateCycle();
 </script>
-</body>
-</html>
+
+
+
+
