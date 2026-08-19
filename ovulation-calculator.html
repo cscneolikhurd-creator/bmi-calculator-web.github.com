@@ -559,11 +559,13 @@ input:focus, select:focus {
 </div>
 
 <script>
+<script>
 // Global variables
 let ovulationData = null;
 let cycleChart = null;
 let cycleHistory = JSON.parse(localStorage.getItem('ovulationHistory') || '[]');
 let activeSymptoms = [];
+let isAIProcessing = false;
 
 // Theme toggle
 function toggleTheme() {
@@ -637,7 +639,6 @@ function calculateOvulation() {
     const lmp = new Date(lmpVal + 'T12:00:00');
     const today = new Date();
     
-    // Calculate dates
     const nextPeriod = new Date(lmp);
     nextPeriod.setDate(lmp.getDate() + cycleLength);
     
@@ -652,12 +653,10 @@ function calculateOvulation() {
     const periodEnd = new Date(lmp);
     periodEnd.setDate(lmp.getDate() + periodLength - 1);
 
-    // Calculate cycle day
     const diffTime = today - lmp;
     const cycleDay = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
     const daysToOvulation = Math.floor((ovulation - today) / (1000 * 60 * 60 * 24));
 
-    // Best days to conceive (2 days before ovulation + ovulation day)
     const bestStart = new Date(ovulation);
     bestStart.setDate(ovulation.getDate() - 2);
 
@@ -688,7 +687,6 @@ function displayResults(data) {
         `${formatDate(data.bestStart)} - ${formatDate(data.ovulation)}`;
     document.getElementById('cycleDay').textContent = `Day ${data.cycleDay}`;
 
-    // Probability bar
     let probability = 0;
     if (data.cycleDay >= data.fertileStart.getDate() - data.lmp.getDate() + 1 && 
         data.cycleDay <= data.fertileEnd.getDate() - data.lmp.getDate() + 1) {
@@ -705,34 +703,27 @@ function generateCalendar(data) {
     
     let html = days.map(d => `<div class="calendar-header">${d}</div>`).join('');
     
-    // Get first day of LMP month
     const firstDay = new Date(data.lmp.getFullYear(), data.lmp.getMonth(), 1);
     const startDay = firstDay.getDay();
     const daysInMonth = new Date(data.lmp.getFullYear(), data.lmp.getMonth() + 1, 0).getDate();
     
-    // Empty cells before first day
     for (let i = 0; i < startDay; i++) {
         html += '<div class="calendar-day empty"></div>';
     }
     
-    // Calendar days
     for (let day = 1; day <= daysInMonth; day++) {
         const currentDate = new Date(data.lmp.getFullYear(), data.lmp.getMonth(), day);
         let classes = ['calendar-day'];
         
-        // Check if period day
         if (currentDate >= data.lmp && currentDate <= data.periodEnd) {
             classes.push('period');
         }
-        // Check if fertile day
         if (currentDate >= data.fertileStart && currentDate <= data.fertileEnd) {
             classes.push('fertile');
         }
-        // Check if ovulation day
         if (currentDate.toDateString() === data.ovulation.toDateString()) {
             classes.push('ovulation');
         }
-        // Check if today
         if (currentDate.toDateString() === data.today.toDateString()) {
             classes.push('today');
         }
@@ -753,9 +744,7 @@ function drawCycleChart() {
     const days = Array.from({length: ovulationData.cycleLength}, (_, i) => `Day ${i + 1}`);
     const hormoneLevels = days.map((_, i) => {
         const day = i + 1;
-        // Simulate estrogen
         let estrogen = 50 + 30 * Math.sin((day / ovulationData.cycleLength) * Math.PI * 2);
-        // Simulate LH surge around ovulation
         const ovulationDay = ovulationData.cycleLength - ovulationData.lutealPhase;
         let lh = 10;
         if (day >= ovulationDay - 2 && day <= ovulationDay) {
@@ -800,11 +789,6 @@ function drawCycleChart() {
                     labels: {
                         color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
                     }
-                },
-                title: {
-                    display: true,
-                    text: 'Hormone Levels Throughout Your Cycle',
-                    color: document.body.classList.contains('dark') ? '#f1f5f9' : '#1e293b'
                 }
             },
             scales: {
@@ -812,7 +796,6 @@ function drawCycleChart() {
                     type: 'linear',
                     display: true,
                     position: 'left',
-                    title: { display: true, text: 'Estrogen Level' },
                     ticks: { color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b' },
                     grid: { color: document.body.classList.contains('dark') ? '#334155' : '#e2e8f0' }
                 },
@@ -820,7 +803,6 @@ function drawCycleChart() {
                     type: 'linear',
                     display: true,
                     position: 'right',
-                    title: { display: true, text: 'LH Level' },
                     ticks: { color: document.body.classList.contains('dark') ? '#94a3b8' : '#64748b' },
                     grid: { drawOnChartArea: false }
                 },
@@ -862,7 +844,7 @@ function displayHistory() {
             <div>
                 <strong>Ovulation: ${formatDate(new Date(entry.ovulation))}</strong>
                 <div style="font-size:12px;color:var(--text-secondary);">
-                    LMP: ${formatDate(new Date(entry.lmp))} • ${entry.cycleLength}-day cycle • ${formatDate(new Date(entry.date))}
+                    LMP: ${formatDate(new Date(entry.lmp))} • ${entry.cycleLength}-day cycle
                 </div>
             </div>
             <button onclick="loadHistory(${entry.id})" style="background:var(--primary);color:white;border:none;padding:5px 12px;border-radius:8px;cursor:pointer;font-size:11px;">Load</button>
@@ -900,43 +882,99 @@ function resetForm() {
     activeSymptoms = [];
 }
 
-// AI Chat
-async function sendAI() {
-    const input = document.getElementById('chatInput');
-    const message = input.value.trim();
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('chatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'msg-user' : 'msg-bot';
+    div.style.animation = 'slideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
+}
+
+function showTyping() {
+    var md = document.getElementById('chatMessages');
+    if (!md) return;
+    var d = document.createElement('div');
+    d.id = 'aiTyping';
+    d.className = 'msg-bot';
+    d.innerHTML = '<span style="font-size:12px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(d);
+    md.scrollTop = md.scrollHeight;
+}
+
+function hideTyping() { 
+    var t = document.getElementById('aiTyping'); 
+    if (t) t.remove(); 
+}
+
+function getOvulationContext() {
+    if (ovulationData) {
+        return '[OVULATION CONTEXT - Ovulation: ' + formatDate(ovulationData.ovulation) + 
+               ', Fertile Window: ' + formatDate(ovulationData.fertileStart) + ' - ' + formatDate(ovulationData.fertileEnd) +
+               ', Cycle Day: ' + ovulationData.cycleDay + ']';
+    }
+    return '[User is on Ovulation Calculator page]';
+}
+
+async function sendAI(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('chatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
     if (!message) return;
     
-    const md = document.getElementById('chatMessages');
-    md.innerHTML += `<div class="msg-user">${message}</div>`;
-    input.value = '';
-    md.scrollTop = md.scrollHeight;
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTyping();
     
-    let context = '[CONTEXT: Fertility & Women\'s Health AI Assistant. ';
-    if (ovulationData) {
-        context += `Ovulation: ${formatDate(ovulationData.ovulation)}. `;
-        context += `Fertile window: ${formatDate(ovulationData.fertileStart)}-${formatDate(ovulationData.fertileEnd)}. `;
-        context += `Cycle day: ${ovulationData.cycleDay}. `;
-    }
-    context += `]\nUser: ${message}`;
-    
+    var fullPrompt = "You are a Fertility & Women's Health AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based fertility advice. " +
+        "Always end with: '⚠️ Consult a gynecologist for medical advice.'\n\n" +
+        getOvulationContext() + "\n\nUSER QUESTION: " + message;
+
     try {
-        const res = await fetch('/api/chat', {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userMessage: context })
+            body: JSON.stringify({ userMessage: fullPrompt })
         });
-        const data = await res.json();
-        const reply = data.reply.replace(/\\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        md.innerHTML += `<div class="msg-bot">${reply}</div>`;
-        md.scrollTop = md.scrollHeight;
-    } catch(e) {
-        md.innerHTML += `<div class="msg-bot">❌ Connection error. Please try again.</div>`;
-        md.scrollTop = md.scrollHeight;
+        
+        var data = await response.json();
+        hideTyping();
+        
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
+        }
+    } catch (e) {
+        hideTyping();
+        console.error('AI Error:', e);
+        addChatMessage('🌸 <strong>Fertility Tips:</strong><br><br>• Track basal body temperature daily<br>• Monitor cervical mucus changes<br>• Have intercourse during fertile window<br>• Maintain healthy BMI<br>• Take folic acid supplements<br>• Reduce stress and caffeine<br><br>⚠️ <em>Consult a gynecologist for medical advice.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
 }
 
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('chatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAI();
+        });
+    }
+});
+
 // Initialize
 displayHistory();
+calculateOvulation();
 </script>
-</body>
-</html>
