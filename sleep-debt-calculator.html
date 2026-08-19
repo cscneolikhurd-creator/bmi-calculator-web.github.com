@@ -903,316 +903,327 @@
 </div>
 
 <script>
-    // ==============================================
-    // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-    // ==============================================
-    var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+let isAIProcessing = false;
 
-    // ===== THEME =====
-    function initTheme() {
-        var saved = localStorage.getItem('healthcalc_theme') || 'dark';
-        document.body.classList.toggle('light-mode', saved === 'light');
+// ===== THEME =====
+function initTheme() {
+    var saved = localStorage.getItem('healthcalc_theme') || 'dark';
+    document.body.classList.toggle('light-mode', saved === 'light');
+}
+function setTheme(theme) {
+    localStorage.setItem('healthcalc_theme', theme);
+    document.body.classList.toggle('light-mode', theme === 'light');
+}
+document.querySelectorAll('.theme-option').forEach(function(btn) {
+    btn.addEventListener('click', function() { setTheme(btn.dataset.theme); });
+});
+initTheme();
+
+// ===== TRANSLATIONS =====
+var translations = {
+    en: {
+        headerSubtitle: 'Recovery Plan • Chronotype Test • AI Sleep Chat • Science-Based Tips',
+        badge1: '7-Day Recovery', badge2: 'Chronotype Test', badge3: 'Sleep Score',
+        inputTitle: 'Your Sleep Patterns', ageLabel: 'Age', bedtimeLabel: 'Bedtime', waketimeLabel: 'Wake time',
+        badDaysLabel: 'Days of insufficient sleep (last 7 days)', qualityLabel: 'Sleep quality (1-10)',
+        quizTitle: 'Quick Chronotype Quiz', energyLabel: 'When do you feel most energetic?',
+        energyMorning: 'Morning (6am-12pm)', energyAfternoon: 'Afternoon (12pm-6pm)', energyEvening: 'Evening (6pm-12am)', energyNight: 'Night (after 12am)',
+        wakePrefLabel: 'If free, when would you wake up naturally?', wakeEarly: 'Before 7am', wakeNormal: '7am-9am', wakeLate: 'After 9am',
+        coffeeLabel: 'Morning coffee/tea needed?', coffeeYes: 'Need it to function', coffeeSometimes: 'Sometimes', coffeeNo: "No, I'm alert naturally",
+        calcBtnText: 'Calculate Sleep Debt', resultsTitle: 'Your Sleep Analysis',
+        debtLabel: 'Total Sleep Debt (hours)', timelineTitle: '7-Day Recovery Plan', tipsTitle: 'Personalized Sleep Tips',
+        scoreLabel: 'Sleep Score', disclaimerText: '⚕️ This calculator provides educational estimates. Consult a sleep specialist.',
+        recovered: '✅ Recovered', day: 'Day', hoursText: 'h', gradeExcellent: 'Excellent', gradeVeryGood: 'Very Good', gradeGood: 'Good', gradeFair: 'Fair', gradePoor: 'Poor',
+        bestBedtimeLabel: 'Recommended Bedtime', bestBedtimeHint: 'Based on your chronotype and wake time'
+    },
+    hi: {
+        headerSubtitle: 'रिकवरी प्लान • क्रोनोटाइप टेस्ट • AI स्लीप चैट',
+        badge1: '7-दिन रिकवरी', badge2: 'क्रोनोटाइप टेस्ट', badge3: 'नींद स्कोर',
+        inputTitle: 'आपकी नींद की आदतें', ageLabel: 'आयु', bedtimeLabel: 'सोने का समय', waketimeLabel: 'जागने का समय',
+        badDaysLabel: 'पिछले 7 दिनों में अपर्याप्त नींद वाले दिन', qualityLabel: 'नींद की गुणवत्ता (1-10)',
+        quizTitle: 'त्वरित क्रोनोटाइप क्विज़', energyLabel: 'आप सबसे अधिक ऊर्जावान कब महसूस करते हैं?',
+        energyMorning: 'सुबह', energyAfternoon: 'दोपहर', energyEvening: 'शाम', energyNight: 'रात',
+        wakePrefLabel: 'अगर छुट्टी हो, तो कब जागेंगे?', wakeEarly: '7 बजे से पहले', wakeNormal: '7-9 बजे', wakeLate: '9 बजे के बाद',
+        coffeeLabel: 'सुबह चाय/कॉफी की ज़रूरत?', coffeeYes: 'बिना पिए काम नहीं चलता', coffeeSometimes: 'कभी-कभी', coffeeNo: 'नहीं',
+        calcBtnText: 'नींद का कर्ज़ कैलकुलेट करें', resultsTitle: 'आपकी नींद का विश्लेषण',
+        debtLabel: 'कुल नींद का कर्ज़ (घंटे)', timelineTitle: '7-दिन रिकवरी प्लान', tipsTitle: 'व्यक्तिगत नींद सुझाव',
+        scoreLabel: 'नींद स्कोर', disclaimerText: '⚕️ यह कैलकुलेटर शैक्षिक अनुमान प्रदान करता है।',
+        recovered: '✅ ठीक', day: 'दिन', hoursText: 'घंटे', gradeExcellent: 'उत्कृष्ट', gradeVeryGood: 'बहुत अच्छा', gradeGood: 'अच्छा', gradeFair: 'ठीक', gradePoor: 'खराब',
+        bestBedtimeLabel: 'सुझाया गया सोने का समय', bestBedtimeHint: 'आपके क्रोनोटाइप पर आधारित'
     }
-    function setTheme(theme) {
-        localStorage.setItem('healthcalc_theme', theme);
-        document.body.classList.toggle('light-mode', theme === 'light');
-    }
-    document.querySelectorAll('.theme-option').forEach(function(btn) {
-        btn.addEventListener('click', function() { setTheme(btn.dataset.theme); });
+};
+
+var countryData = {
+    us: { name: 'USA', authority: 'CDC', link: 'https://www.cdc.gov/sleep/index.html', guideline: 'CDC recommends 7+ hours for adults' },
+    uk: { name: 'UK', authority: 'NHS', link: 'https://www.nhs.uk/live-well/sleep-and-tiredness/', guideline: 'NHS: 7-9 hours for adults' },
+    ca: { name: 'Canada', authority: 'Health Canada', link: 'https://www.canada.ca/en/health-canada.html', guideline: 'Health Canada: 7-9 hours' },
+    au: { name: 'Australia', authority: 'Australian DoH', link: 'https://www.health.gov.au/topics/sleep', guideline: 'Australian guidelines: 7-9 hours' }
+};
+
+var currentLang = 'en';
+var currentCountry = 'us';
+
+function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+    event.target.classList.add('active');
+    updateUIText();
+    updateHealthNote();
+    calculateSleep();
+}
+
+function setCountry(country) {
+    currentCountry = country;
+    document.querySelectorAll('.country-btn').forEach(function(b) { b.classList.remove('active'); });
+    event.target.classList.add('active');
+    document.getElementById('countrySelectMain').value = country;
+    updateHealthNote();
+    calculateSleep();
+}
+
+document.getElementById('countrySelectMain').addEventListener('change', function(e) {
+    setCountry(e.target.value);
+});
+
+function updateUIText() {
+    var t = translations[currentLang];
+    if (!t) return;
+    ['headerSubtitle','badge1','badge2','badge3','inputTitle','ageLabel','bedtimeLabel','waketimeLabel','badDaysLabel','qualityLabel','quizTitle','energyLabel','wakePrefLabel','coffeeLabel','calcBtnText','resultsTitle','debtLabel','timelineTitle','tipsTitle','scoreLabel','disclaimerText','bestBedtimeLabel','bestBedtimeHint'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.innerHTML = t[id];
     });
-    initTheme();
+    document.getElementById('energyMorning').innerHTML = t.energyMorning;
+    document.getElementById('energyAfternoon').innerHTML = t.energyAfternoon;
+    document.getElementById('energyEvening').innerHTML = t.energyEvening;
+    document.getElementById('energyNight').innerHTML = t.energyNight;
+    document.getElementById('wakeEarly').innerHTML = t.wakeEarly;
+    document.getElementById('wakeNormal').innerHTML = t.wakeNormal;
+    document.getElementById('wakeLate').innerHTML = t.wakeLate;
+    document.getElementById('coffeeYes').innerHTML = t.coffeeYes;
+    document.getElementById('coffeeSometimes').innerHTML = t.coffeeSometimes;
+    document.getElementById('coffeeNo').innerHTML = t.coffeeNo;
+    updateQualityLabel(document.getElementById('quality').value);
+}
 
-    // ===== TRANSLATIONS =====
-    var translations = {
-        en: {
-            headerSubtitle: 'Recovery Plan • Chronotype Test • AI Sleep Chat • Science-Based Tips',
-            badge1: '7-Day Recovery', badge2: 'Chronotype Test', badge3: 'Sleep Score',
-            inputTitle: 'Your Sleep Patterns', ageLabel: 'Age', bedtimeLabel: 'Bedtime', waketimeLabel: 'Wake time',
-            badDaysLabel: 'Days of insufficient sleep (last 7 days)', qualityLabel: 'Sleep quality (1-10)',
-            quizTitle: 'Quick Chronotype Quiz', energyLabel: 'When do you feel most energetic?',
-            energyMorning: 'Morning (6am-12pm)', energyAfternoon: 'Afternoon (12pm-6pm)', energyEvening: 'Evening (6pm-12am)', energyNight: 'Night (after 12am)',
-            wakePrefLabel: 'If free, when would you wake up naturally?', wakeEarly: 'Before 7am', wakeNormal: '7am-9am', wakeLate: 'After 9am',
-            coffeeLabel: 'Morning coffee/tea needed?', coffeeYes: 'Need it to function', coffeeSometimes: 'Sometimes', coffeeNo: "No, I'm alert naturally",
-            calcBtnText: 'Calculate Sleep Debt', resultsTitle: 'Your Sleep Analysis',
-            debtLabel: 'Total Sleep Debt (hours)', timelineTitle: '7-Day Recovery Plan', tipsTitle: 'Personalized Sleep Tips',
-            scoreLabel: 'Sleep Score', disclaimerText: '⚕️ This calculator provides educational estimates based on sleep science research. Consult a sleep specialist for chronic insomnia or sleep disorders. No data is stored or transmitted.',
-            recovered: '✅ Recovered', day: 'Day', hoursText: 'h', gradeExcellent: 'Excellent', gradeVeryGood: 'Very Good', gradeGood: 'Good', gradeFair: 'Fair', gradePoor: 'Poor',
-            bestBedtimeLabel: 'Recommended Bedtime', bestBedtimeHint: 'Based on your chronotype and wake time'
-        },
-        hi: {
-            headerSubtitle: 'रिकवरी प्लान • क्रोनोटाइप टेस्ट • AI स्लीप चैट • वैज्ञानिक सुझाव',
-            badge1: '7-दिन रिकवरी', badge2: 'क्रोनोटाइप टेस्ट', badge3: 'नींद स्कोर',
-            inputTitle: 'आपकी नींद की आदतें', ageLabel: 'आयु', bedtimeLabel: 'सोने का समय', waketimeLabel: 'जागने का समय',
-            badDaysLabel: 'पिछले 7 दिनों में अपर्याप्त नींद वाले दिन', qualityLabel: 'नींद की गुणवत्ता (1-10)',
-            quizTitle: 'त्वरित क्रोनोटाइप क्विज़', energyLabel: 'आप सबसे अधिक ऊर्जावान कब महसूस करते हैं?',
-            energyMorning: 'सुबह (6-12 बजे)', energyAfternoon: 'दोपहर (12-6 बजे)', energyEvening: 'शाम (6-12 बजे)', energyNight: 'रात (12 बजे के बाद)',
-            wakePrefLabel: 'अगर छुट्टी हो, तो कब जागेंगे?', wakeEarly: 'सुबह 7 बजे से पहले', wakeNormal: 'सुबह 7-9 बजे', wakeLate: 'सुबह 9 बजे के बाद',
-            coffeeLabel: 'सुबह चाय/कॉफी की ज़रूरत?', coffeeYes: 'बिना पिए काम नहीं चलता', coffeeSometimes: 'कभी-कभी', coffeeNo: 'नहीं, मैं प्राकृतिक रूप से सतर्क रहता हूं',
-            calcBtnText: 'नींद का कर्ज़ कैलकुलेट करें', resultsTitle: 'आपकी नींद का विश्लेषण',
-            debtLabel: 'कुल नींद का कर्ज़ (घंटे)', timelineTitle: '7-दिन रिकवरी प्लान', tipsTitle: 'व्यक्तिगत नींद सुझाव',
-            scoreLabel: 'नींद स्कोर', disclaimerText: '⚕️ यह कैलकुलेटर शैक्षिक अनुमान प्रदान करता है। नींद विशेषज्ञ से परामर्श लें।',
-            recovered: '✅ ठीक', day: 'दिन', hoursText: 'घंटे', gradeExcellent: 'उत्कृष्ट', gradeVeryGood: 'बहुत अच्छा', gradeGood: 'अच्छा', gradeFair: 'ठीक', gradePoor: 'खराब',
-            bestBedtimeLabel: 'सुझाया गया सोने का समय', bestBedtimeHint: 'आपके क्रोनोटाइप और जागने के समय पर आधारित'
+function updateHealthNote() {
+    var c = countryData[currentCountry];
+    var noteDiv = document.getElementById('healthNote');
+    noteDiv.innerHTML = '📋 Based on ' + c.authority + ' guidelines: ' + c.guideline + '. <a href="' + c.link + '" target="_blank" rel="noopener">Learn more</a>';
+}
+
+function updateQualityLabel(val) {
+    var labels = {1:'Very Poor',2:'Poor',3:'Below Avg',4:'Fair',5:'Average',6:'Good',7:'Good',8:'Very Good',9:'Excellent',10:'Excellent'};
+    var hiLabels = {1:'बहुत खराब',2:'खराब',3:'औसत से कम',4:'ठीक',5:'औसत',6:'अच्छी',7:'अच्छी',8:'बहुत अच्छी',9:'उत्कृष्ट',10:'उत्कृष्ट'};
+    var lbs = currentLang === 'hi' ? hiLabels : labels;
+    document.getElementById('qualityValue').textContent = val + '/10 - ' + (lbs[val] || lbs[5]);
+}
+
+function calculateSleep() {
+    var t = translations[currentLang];
+    var age = parseInt(document.getElementById('age').value) || 30;
+    var bedtime = document.getElementById('bedtime').value;
+    var waketime = document.getElementById('waketime').value;
+    var badDays = parseInt(document.getElementById('badDays').value) || 0;
+    var quality = parseInt(document.getElementById('quality').value) || 6;
+    
+    var bedHour = parseInt(bedtime.split(':')[0]);
+    var bedMin = parseInt(bedtime.split(':')[1]);
+    var wakeHour = parseInt(waketime.split(':')[0]);
+    var wakeMin = parseInt(waketime.split(':')[1]);
+    var sleepHours = (wakeHour + wakeMin/60) - (bedHour + bedMin/60);
+    if (sleepHours < 0) sleepHours += 24;
+    sleepHours = Math.round(sleepHours * 10) / 10;
+    
+    var required = 7.5;
+    if (age < 13) required = 9.5;
+    else if (age < 18) required = 8.5;
+    else if (age < 30) required = 8;
+    else if (age < 60) required = 7.5;
+    else required = 7;
+    
+    var dailyDebt = Math.max(0, required - sleepHours);
+    var totalDebt = Math.round((dailyDebt * badDays + (required * (7 - quality/10))) * 10) / 10;
+    totalDebt = Math.min(totalDebt, 40);
+    
+    var energy = document.getElementById('energy').value;
+    var wakePref = document.getElementById('wakePref').value;
+    var coffee = document.getElementById('coffee').value;
+    var chronoType, chronoIcon, chronoDesc;
+    if (energy === 'morning' || wakePref === 'early') {
+        chronoType = currentLang === 'hi' ? 'सुबह का पक्षी' : 'Morning Lark';
+        chronoIcon = '🐦';
+        chronoDesc = currentLang === 'hi' ? 'आप सुबह सबसे अधिक ऊर्जावान रहते हैं' : "You're most energetic in mornings";
+    } else if (energy === 'night' || (energy === 'evening' && coffee === 'yes')) {
+        chronoType = currentLang === 'hi' ? 'रात का उल्लू' : 'Night Owl';
+        chronoIcon = '🦉';
+        chronoDesc = currentLang === 'hi' ? 'आप रात में सबसे अधिक सक्रिय रहते हैं' : "You're most active at night";
+    } else {
+        chronoType = currentLang === 'hi' ? 'मध्यम' : 'Intermediate';
+        chronoIcon = '🐧';
+        chronoDesc = currentLang === 'hi' ? 'आप लचीले हैं' : "You're flexible";
+    }
+    document.getElementById('chronoName').textContent = chronoType;
+    document.getElementById('chronotypeIcon').textContent = chronoIcon;
+    document.getElementById('chronoDesc').textContent = chronoDesc;
+    
+    var wakeHourOnly = wakeHour + wakeMin/60;
+    var idealBedHour = wakeHourOnly - required;
+    if (idealBedHour < 0) idealBedHour += 24;
+    if (chronoType.includes('Owl') || chronoType.includes('उल्लू')) idealBedHour = (idealBedHour + 1) % 24;
+    else if (chronoType.includes('Lark') || chronoType.includes('पक्षी')) idealBedHour = (idealBedHour - 0.5 + 24) % 24;
+    var idealHourInt = Math.floor(idealBedHour);
+    var idealMin = Math.round((idealBedHour - idealHourInt) * 60);
+    document.getElementById('bestBedtimeValue').innerText = idealHourInt.toString().padStart(2,'0') + ':' + idealMin.toString().padStart(2,'0');
+    
+    document.getElementById('debtHours').textContent = totalDebt.toFixed(1);
+    document.getElementById('debtDays').innerHTML = currentLang === 'hi' ? badDays + ' दिन का जमा कर्ज़' : badDays + ' days of accumulated debt';
+    
+    var timeline = document.getElementById('timeline');
+    timeline.innerHTML = '';
+    var remainingDebt = totalDebt;
+    for (var day = 1; day <= 7; day++) {
+        if (remainingDebt <= 0) {
+            timeline.innerHTML += '<div class="timeline-item"><span class="timeline-day">' + t.day + ' ' + day + '</span><div class="timeline-bar"><div class="timeline-fill" style="width:100%;background:#10b981;"></div></div><span class="timeline-hours">' + t.recovered + '</span></div>';
+            continue;
         }
-    };
-
-    var countryData = {
-        us: { name: 'USA', authority: 'CDC', link: 'https://www.cdc.gov/sleep/index.html', guideline: 'CDC recommends 7+ hours for adults' },
-        uk: { name: 'UK', authority: 'NHS', link: 'https://www.nhs.uk/live-well/sleep-and-tiredness/', guideline: 'NHS: 7-9 hours for adults' },
-        ca: { name: 'Canada', authority: 'Health Canada', link: 'https://www.canada.ca/en/health-canada.html', guideline: 'Health Canada: 7-9 hours' },
-        au: { name: 'Australia', authority: 'Australian DoH', link: 'https://www.health.gov.au/topics/sleep', guideline: 'Australian guidelines: 7-9 hours' }
-    };
-
-    var currentLang = 'en';
-    var currentCountry = 'us';
-
-    function setLang(lang) {
-        currentLang = lang;
-        document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-        event.target.classList.add('active');
-        updateUIText();
-        updateHealthNote();
-        calculateSleep();
+        var recoverToday = Math.min(1.5, remainingDebt);
+        remainingDebt = Math.round((remainingDebt - recoverToday) * 10) / 10;
+        var percent = (recoverToday / 1.5) * 100;
+        timeline.innerHTML += '<div class="timeline-item"><span class="timeline-day">' + t.day + ' ' + day + '</span><div class="timeline-bar"><div class="timeline-fill" style="width:' + percent + '%"></div></div><span class="timeline-hours">+' + recoverToday.toFixed(1) + t.hoursText + '</span></div>';
     }
+    
+    var tipsList = [];
+    if (totalDebt > 10) tipsList.push({ icon: '⏰', title: currentLang === 'hi' ? 'बड़ा नींद कर्ज़' : 'Major sleep debt', desc: currentLang === 'hi' ? 'अगले 2 सप्ताह रोज़ 1 घंटा अतिरिक्त सोएं' : 'Add 1 extra hour for 2 weeks' });
+    if (sleepHours < 6) tipsList.push({ icon: '🌙', title: currentLang === 'hi' ? 'बहुत कम नींद' : 'Too little sleep', desc: currentLang === 'hi' ? 'हर रात 30 मिनट पहले सोएं' : 'Go to bed 30 min earlier' });
+    if (quality < 5) tipsList.push({ icon: '📱', title: currentLang === 'hi' ? 'खराब गुणवत्ता' : 'Poor quality', desc: currentLang === 'hi' ? 'सोने से 1 घंटा पहले स्क्रीन बंद करें' : 'No screens 1 hour before bed' });
+    tipsList.push({ icon: '☕', title: currentLang === 'hi' ? 'दोपहर 2 बजे के बाद कैफीन नहीं' : 'No caffeine after 2pm', desc: currentLang === 'hi' ? 'कैफीन 6+ घंटे रहता है' : 'Caffeine stays 6+ hours' });
+    tipsList = tipsList.slice(0, 4);
+    document.getElementById('tips').innerHTML = tipsList.map(function(tip) { return '<div class="tip-item"><span style="font-size:28px;">' + tip.icon + '</span><div><strong>' + tip.title + '</strong><p>' + tip.desc + '</p></div></div>'; }).join('');
+    
+    var score = 100;
+    score -= Math.min(40, dailyDebt * 8);
+    score -= Math.min(30, (10 - quality) * 5);
+    if (badDays > 3) score -= (badDays - 3) * 3;
+    score = Math.max(0, Math.min(100, Math.round(score)));
+    var grade;
+    if (score >= 90) grade = t.gradeExcellent;
+    else if (score >= 75) grade = t.gradeVeryGood;
+    else if (score >= 60) grade = t.gradeGood;
+    else if (score >= 40) grade = t.gradeFair;
+    else grade = t.gradePoor;
+    document.getElementById('sleepScore').textContent = score;
+    document.getElementById('scoreGrade').textContent = grade;
+}
 
-    function setCountry(country) {
-        currentCountry = country;
-        document.querySelectorAll('.country-btn').forEach(function(b) { b.classList.remove('active'); });
-        event.target.classList.add('active');
-        document.getElementById('countrySelectMain').value = country;
-        updateHealthNote();
-        calculateSleep();
-    }
+// ===== EVENT LISTENERS =====
+['age','bedtime','waketime','badDays','quality','energy','wakePref','coffee'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) { el.addEventListener('input', calculateSleep); el.addEventListener('change', calculateSleep); }
+});
 
-    document.getElementById('countrySelectMain').addEventListener('change', function(e) {
-        setCountry(e.target.value);
-    });
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    div.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
+}
 
-    function updateUIText() {
-        var t = translations[currentLang];
-        if (!t) return;
-        ['headerSubtitle','badge1','badge2','badge3','inputTitle','ageLabel','bedtimeLabel','waketimeLabel','badDaysLabel','qualityLabel','quizTitle','energyLabel','wakePrefLabel','coffeeLabel','calcBtnText','resultsTitle','debtLabel','timelineTitle','tipsTitle','scoreLabel','disclaimerText','bestBedtimeLabel','bestBedtimeHint'].forEach(function(id) {
-            var el = document.getElementById(id);
-            if (el) el.innerHTML = t[id];
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
+}
+
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
+}
+
+function getSleepContext() {
+    var debt = document.getElementById('debtHours').textContent;
+    var chrono = document.getElementById('chronoName').textContent;
+    return '[SLEEP PROFILE - Sleep Debt: ' + debt + ' hours, Chronotype: ' + chrono + ']';
+}
+
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var fullPrompt = "You are a Sleep Health AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based sleep advice following CDC/NHS guidelines. " +
+        "Include sleep hygiene tips, circadian rhythm guidance, and recovery strategies. " +
+        "Always end with: '⚠️ Consult a sleep specialist for chronic sleep disorders.'\n\n" +
+        getSleepContext() + "\n\nUSER QUESTION: " + message;
+
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
         });
-        document.getElementById('energyMorning').innerHTML = t.energyMorning;
-        document.getElementById('energyAfternoon').innerHTML = t.energyAfternoon;
-        document.getElementById('energyEvening').innerHTML = t.energyEvening;
-        document.getElementById('energyNight').innerHTML = t.energyNight;
-        document.getElementById('wakeEarly').innerHTML = t.wakeEarly;
-        document.getElementById('wakeNormal').innerHTML = t.wakeNormal;
-        document.getElementById('wakeLate').innerHTML = t.wakeLate;
-        document.getElementById('coffeeYes').innerHTML = t.coffeeYes;
-        document.getElementById('coffeeSometimes').innerHTML = t.coffeeSometimes;
-        document.getElementById('coffeeNo').innerHTML = t.coffeeNo;
-        updateQualityLabel(document.getElementById('quality').value);
-    }
-
-    function updateHealthNote() {
-        var c = countryData[currentCountry];
-        var noteDiv = document.getElementById('healthNote');
-        noteDiv.innerHTML = '📋 Based on ' + c.authority + ' guidelines: ' + c.guideline + '. <a href="' + c.link + '" target="_blank" rel="noopener">Learn more</a>';
-    }
-
-    function updateQualityLabel(val) {
-        var labels = {1:'Very Poor',2:'Poor',3:'Below Avg',4:'Fair',5:'Average',6:'Good',7:'Good',8:'Very Good',9:'Excellent',10:'Excellent'};
-        var hiLabels = {1:'बहुत खराब',2:'खराब',3:'औसत से कम',4:'ठीक',5:'औसत',6:'अच्छी',7:'अच्छी',8:'बहुत अच्छी',9:'उत्कृष्ट',10:'उत्कृष्ट'};
-        var lbs = currentLang === 'hi' ? hiLabels : labels;
-        document.getElementById('qualityValue').textContent = val + '/10 - ' + (lbs[val] || lbs[5]);
-    }
-
-    function calculateSleep() {
-        var t = translations[currentLang];
-        var age = parseInt(document.getElementById('age').value) || 30;
-        var bedtime = document.getElementById('bedtime').value;
-        var waketime = document.getElementById('waketime').value;
-        var badDays = parseInt(document.getElementById('badDays').value) || 0;
-        var quality = parseInt(document.getElementById('quality').value) || 6;
         
-        var bedHour = parseInt(bedtime.split(':')[0]);
-        var bedMin = parseInt(bedtime.split(':')[1]);
-        var wakeHour = parseInt(waketime.split(':')[0]);
-        var wakeMin = parseInt(waketime.split(':')[1]);
-        var sleepHours = (wakeHour + wakeMin/60) - (bedHour + bedMin/60);
-        if (sleepHours < 0) sleepHours += 24;
-        sleepHours = Math.round(sleepHours * 10) / 10;
+        var data = await response.json();
+        removeTypingIndicator();
         
-        var required = 7.5;
-        if (age < 13) required = 9.5;
-        else if (age < 18) required = 8.5;
-        else if (age < 30) required = 8;
-        else if (age < 60) required = 7.5;
-        else required = 7;
-        
-        var dailyDebt = Math.max(0, required - sleepHours);
-        var totalDebt = Math.round((dailyDebt * badDays + (required * (7 - quality/10))) * 10) / 10;
-        totalDebt = Math.min(totalDebt, 40);
-        
-        var energy = document.getElementById('energy').value;
-        var wakePref = document.getElementById('wakePref').value;
-        var coffee = document.getElementById('coffee').value;
-        var chronoType, chronoIcon, chronoDesc;
-        if (energy === 'morning' || wakePref === 'early') {
-            chronoType = currentLang === 'hi' ? 'सुबह का पक्षी (Morning Lark)' : 'Morning Lark';
-            chronoIcon = '🐦';
-            chronoDesc = currentLang === 'hi' ? 'आप सुबह सबसे अधिक ऊर्जावान रहते हैं' : "You're most energetic in mornings";
-        } else if (energy === 'night' || (energy === 'evening' && coffee === 'yes')) {
-            chronoType = currentLang === 'hi' ? 'रात का उल्लू (Night Owl)' : 'Night Owl';
-            chronoIcon = '🦉';
-            chronoDesc = currentLang === 'hi' ? 'आप रात में सबसे अधिक सक्रिय रहते हैं' : "You're most active at night";
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
         } else {
-            chronoType = currentLang === 'hi' ? 'मध्यम (Intermediate)' : 'Intermediate';
-            chronoIcon = '🐧';
-            chronoDesc = currentLang === 'hi' ? 'आप लचीले हैं' : "You're flexible";
+            throw new Error('No response');
         }
-        document.getElementById('chronoName').textContent = chronoType;
-        document.getElementById('chronotypeIcon').textContent = chronoIcon;
-        document.getElementById('chronoDesc').textContent = chronoDesc;
-        
-        var wakeHourOnly = wakeHour + wakeMin/60;
-        var idealBedHour = wakeHourOnly - required;
-        if (idealBedHour < 0) idealBedHour += 24;
-        if (chronoType.includes('Owl') || chronoType.includes('उल्लू')) idealBedHour = (idealBedHour + 1) % 24;
-        else if (chronoType.includes('Lark') || chronoType.includes('पक्षी')) idealBedHour = (idealBedHour - 0.5 + 24) % 24;
-        var idealHourInt = Math.floor(idealBedHour);
-        var idealMin = Math.round((idealBedHour - idealHourInt) * 60);
-        document.getElementById('bestBedtimeValue').innerText = idealHourInt.toString().padStart(2,'0') + ':' + idealMin.toString().padStart(2,'0');
-        
-        document.getElementById('debtHours').textContent = totalDebt.toFixed(1);
-        document.getElementById('debtDays').innerHTML = currentLang === 'hi' ? badDays + ' दिन का जमा कर्ज़' : badDays + ' days of accumulated debt';
-        
-        var timeline = document.getElementById('timeline');
-        timeline.innerHTML = '';
-        var remainingDebt = totalDebt;
-        for (var day = 1; day <= 7; day++) {
-            if (remainingDebt <= 0) {
-                timeline.innerHTML += '<div class="timeline-item"><span class="timeline-day">' + t.day + ' ' + day + '</span><div class="timeline-bar"><div class="timeline-fill" style="width: 100%; background: #10b981;"></div></div><span class="timeline-hours">' + t.recovered + '</span></div>';
-                continue;
-            }
-            var recoverToday = Math.min(1.5, remainingDebt);
-            remainingDebt = Math.round((remainingDebt - recoverToday) * 10) / 10;
-            var percent = (recoverToday / 1.5) * 100;
-            timeline.innerHTML += '<div class="timeline-item"><span class="timeline-day">' + t.day + ' ' + day + '</span><div class="timeline-bar"><div class="timeline-fill" style="width: ' + percent + '%"></div></div><span class="timeline-hours">+' + recoverToday.toFixed(1) + t.hoursText + '</span></div>';
-        }
-        
-        var tipsList = [];
-        if (totalDebt > 10) tipsList.push({ icon: '⏰', title: currentLang === 'hi' ? 'बड़ा नींद कर्ज़' : 'Major sleep debt', desc: currentLang === 'hi' ? 'अगले 2 सप्ताह रोज़ 1 घंटा अतिरिक्त सोएं' : 'Add 1 extra hour for 2 weeks' });
-        if (sleepHours < 6) tipsList.push({ icon: '🌙', title: currentLang === 'hi' ? 'बहुत कम नींद' : 'Too little sleep', desc: currentLang === 'hi' ? 'हर रात 30 मिनट पहले सोएं' : 'Go to bed 30 min earlier' });
-        if (quality < 5) tipsList.push({ icon: '📱', title: currentLang === 'hi' ? 'खराब गुणवत्ता' : 'Poor quality', desc: currentLang === 'hi' ? 'सोने से 1 घंटा पहले स्क्रीन बंद करें' : 'No screens 1 hour before bed' });
-        tipsList.push({ icon: '☕', title: currentLang === 'hi' ? 'दोपहर 2 बजे के बाद कैफीन नहीं' : 'No caffeine after 2pm', desc: currentLang === 'hi' ? 'कैफीन 6+ घंटे रहता है' : 'Caffeine stays 6+ hours' });
-        tipsList = tipsList.slice(0, 4);
-        document.getElementById('tips').innerHTML = tipsList.map(function(tip) { return '<div class="tip-item"><span style="font-size:28px;">' + tip.icon + '</span><div><strong>' + tip.title + '</strong><p>' + tip.desc + '</p></div></div>'; }).join('');
-        
-        var score = 100;
-        score -= Math.min(40, dailyDebt * 8);
-        score -= Math.min(30, (10 - quality) * 5);
-        if (badDays > 3) score -= (badDays - 3) * 3;
-        score = Math.max(0, Math.min(100, Math.round(score)));
-        var grade;
-        if (score >= 90) grade = t.gradeExcellent;
-        else if (score >= 75) grade = t.gradeVeryGood;
-        else if (score >= 60) grade = t.gradeGood;
-        else if (score >= 40) grade = t.gradeFair;
-        else grade = t.gradePoor;
-        document.getElementById('sleepScore').textContent = score;
-        document.getElementById('scoreGrade').textContent = grade;
+    } catch (e) {
+        removeTypingIndicator();
+        console.error('AI Error:', e);
+        addChatMessage('😴 <strong>Sleep Tips:</strong><br><br>• Maintain consistent sleep schedule<br>• Keep bedroom dark and cool (18-20°C)<br>• No screens 1 hour before bed<br>• Avoid caffeine after 2 PM<br>• Practice relaxation techniques<br>• Get morning sunlight exposure<br>• Exercise regularly but not before bed<br><br>⚠️ <em>Consult a sleep specialist.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
     }
+}
 
-    // ==============================================
-    // 🔥 SECURE AI CHAT FUNCTIONS (Cloudflare Proxy)
-    // ==============================================
-    function addChatMessage(text, sender) {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var msgDiv = document.createElement('div');
-        msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-        msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-        msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        messagesDiv.appendChild(msgDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
     }
+});
 
-    function showTypingIndicator() {
-        var messagesDiv = document.getElementById('aiChatMessages');
-        var typingDiv = document.createElement('div');
-        typingDiv.id = 'aiTypingIndicator';
-        typingDiv.className = 'ai-message-bot';
-        typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-        typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-    }
+// ===== EXPOSE GLOBALS =====
+window.setLang = setLang;
+window.setCountry = setCountry;
+window.updateQualityLabel = updateQualityLabel;
+window.calculateSleep = calculateSleep;
+window.sendAIMessage = sendAIMessage;
 
-    function removeTypingIndicator() {
-        var typing = document.getElementById('aiTypingIndicator');
-        if (typing) typing.remove();
-    }
-
-    function getSleepContext() {
-        var debt = document.getElementById('debtHours').textContent;
-        var chrono = document.getElementById('chronoName').textContent;
-        var quality = document.getElementById('quality').value;
-        if (debt !== '--') {
-            return 'User sleep profile: Sleep debt=' + debt + ' hours, Chronotype=' + chrono + ', Sleep quality=' + quality + '/10. ';
-        }
-        return '';
-    }
-
-    async function sendAIMessage(prefilledText) {
-        var input = document.getElementById('aiChatInput');
-        var message = prefilledText || input.value.trim();
-        if (!message) return;
-        
-        addChatMessage(message, 'user');
-        if (!prefilledText) input.value = '';
-        showTypingIndicator();
-        
-        var context = getSleepContext();
-        var promptText = "You are a professional Sleep Health AI Assistant on HealthCalc.in, serving users from US, UK, Canada, and Australia. Follow CDC, NHS, and sleep science guidelines. " + context + "\n\nUser Question: " + message + "\n\nProvide COMPLETE, detailed, science-based sleep advice. Include sleep hygiene tips, circadian rhythm guidance, recovery strategies, and evidence-based recommendations. Structure with bullet points for clarity. End with: '⚠️ Consult a sleep specialist for chronic sleep disorders.'";
-
-        try {
-            var response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: promptText })
-            });
-            
-            var data = await response.json();
-            removeTypingIndicator();
-            
-            if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-            } else { 
-                throw new Error('No response from AI worker'); 
-            }
-        } catch (error) {
-            removeTypingIndicator();
-            console.error('AI Chat Error:', error);
-            var fallback = '😴 <strong>Sleep Tips from Research:</strong><br><br>';
-            fallback += '• Maintain consistent sleep-wake schedule, even on weekends<br>';
-            fallback += '• Keep bedroom dark, cool (65-68°F/18-20°C), and quiet<br>';
-            fallback += '• No screens 1 hour before bedtime (blue light affects melatonin)<br>';
-            fallback += '• Avoid caffeine after 2 PM and alcohol close to bedtime<br>';
-            fallback += '• Practice relaxation techniques: deep breathing, meditation, progressive muscle relaxation<br>';
-            fallback += '• Get morning sunlight exposure to regulate circadian rhythm<br>';
-            fallback += '• Exercise regularly but not within 2-3 hours of bedtime<br><br>';
-            fallback += '⚠️ <em>Consult a sleep specialist for chronic sleep disorders.</em>';
-            addChatMessage(fallback, 'bot');
-        }
-    }
-
-    // Expose functions globally
-    window.setLang = setLang;
-    window.setCountry = setCountry;
-    window.updateQualityLabel = updateQualityLabel;
-    window.calculateSleep = calculateSleep;
-    window.sendAIMessage = sendAIMessage;
-
-    window.onload = function() {
-        updateQualityLabel(6);
-        updateUIText();
-        updateHealthNote();
-        calculateSleep();
-    };
+// ===== INIT =====
+updateQualityLabel(6);
+updateUIText();
+updateHealthNote();
+calculateSleep();
 </script>
-</body>
-</html>
