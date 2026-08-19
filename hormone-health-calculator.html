@@ -843,389 +843,369 @@
     </div>
 
     <script>
-        // ==============================================
-        // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-        // ==============================================
-        var WORKER_URL = 'https://healthcalc-ai-proxy.cscneolikhurd.workers.dev/';
+// ==============================================
+// GLOBAL VARIABLES
+// ==============================================
+let currentGender = 'female';
+let currentLang = 'en';
+let isAIProcessing = false;
 
-        // ===== TRANSLATIONS =====
-        const translations = {
-            en: {
-                inputTitle: 'Your Hormone Profile', maleTitle: 'Male', maleDesc: 'Testosterone, DHT, Andropause',
-                femaleTitle: 'Female', femaleDesc: 'Estrogen, Progesterone, Menopause',
-                ageLabel: 'Your Age', womensHealth: "Women's Health", mensHealth: "Men's Health",
-                menopauseLabel: 'Menopause Status', menoPre: 'Pre-menopause', menoPeri: 'Peri-menopause', 
-                menoPost: 'Post-menopause', menoPreg: 'Pregnant/Breastfeeding',
-                cycleLabel: 'Cycle Regularity', cycle0: 'Very regular', cycle1: 'Mostly regular', 
-                cycle2: 'Sometimes irregular', cycle3: 'Very irregular', cycle4: 'No cycle',
-                pmsLabel: 'Menstrual Symptoms', pms0: 'No symptoms', pms1: 'Mild PMS', 
-                pms2: 'Moderate PMS', pms3: 'Severe PMS/PMDD',
-                andropauseLabel: 'Andropause Symptoms', andro0: 'No symptoms', andro1: 'Mild', 
-                andro2: 'Moderate', andro3: 'Significant',
-                lifestyleTitle: 'Lifestyle Factors', sleepLabel: 'Sleep Quality', stressLabel: 'Stress Level',
-                exerciseLabel: 'Exercise Frequency', bodyFatLabel: 'Body Fat', dietLabel: 'Diet Quality',
-                alcoholLabel: 'Alcohol Consumption', symptomsTitle: 'Hormone-Related Symptoms',
-                calcBtn: 'Analyze My Hormones', resultsTitle: 'Your Hormone Analysis',
-                scoreLabel: 'Overall Hormone Health Score', testLabel: 'Testosterone', cortisolLabel: 'Cortisol',
-                estrogenLabel: 'Estrogen', thyroidLabel: 'Thyroid', findingsTitle: 'Key Findings',
-                recTitle: 'Personalized Recommendations', pdfBtn: 'PDF Report', shareBtn: 'Share Results',
-                futureTitle: 'Coming Soon: Advanced Hormone Features',
-                faqTitle: 'Frequently Asked Questions',
-                faqQ1: 'How accurate is this hormone calculator?',
-                faqA1: 'Based on Endocrine Society research data. Provides estimates based on population averages.',
-                faqQ2: 'What hormones affect men vs women?',
-                faqA2: 'Men: more testosterone. Women: more estrogen/progesterone. Both have all hormones.',
-                faqQ3: 'How can I improve my hormone health?',
-                faqA3: 'Sleep 7-8 hours, manage stress, strength training, healthy fats, reduce alcohol.',
-                faqQ4: 'What does cortisol do?',
-                faqA4: 'Cortisol is your primary stress hormone. High cortisol disrupts sleep and metabolism.',
-                faqQ5: 'How does age affect hormones?',
-                faqA5: 'Testosterone declines ~1% per year after 30. Estrogen drops during menopause.',
-                faqQ6: 'Is my hormone data private?',
-                faqA6: 'Yes! All calculations happen in your browser. 100% private.',
-                disclaimerText: 'Estimates based on Endocrine Society guidelines. Not medical diagnosis.',
-                testDesc: { high: 'Optimal', normal: 'Normal', low: 'Low' },
-                cortisolDesc: { high: 'High', normal: 'Moderate', low: 'Optimal' },
-                estrogenDesc: { high: 'Optimal', normal: 'Normal', low: 'Low' },
-                thyroidDesc: { high: 'Optimal', normal: 'Normal', low: 'Low' },
-                scoreCategories: ['Needs Attention', 'Fair', 'Good', 'Excellent', 'Excellent'],
-                symptomLabels: {
-                    male: ['Low Libido', 'Erectile Dysfunction', 'Fatigue', 'Muscle Loss', 
-                           'Mood Swings', 'Belly Fat', 'Hair Loss', 'Poor Focus'],
-                    female: ['Irregular Periods', 'Heavy Periods', 'Severe PMS', 'Hot Flashes', 
-                             'Night Sweats', 'Fatigue', 'Weight Gain', 'Low Libido']
-                }
-            },
-            hi: {
-                inputTitle: 'हार्मोन प्रोफ़ाइल', maleTitle: 'पुरुष', maleDesc: 'टेस्टोस्टेरोन, DHT, एंड्रोपॉज़',
-                femaleTitle: 'महिला', femaleDesc: 'एस्ट्रोजन, प्रोजेस्टेरोन, मेनोपॉज़',
-                ageLabel: 'आयु', womensHealth: 'महिला स्वास्थ्य', mensHealth: 'पुरुष स्वास्थ्य',
-                menopauseLabel: 'मेनोपॉज़ स्थिति', menoPre: 'प्री-मेनोपॉज़', menoPeri: 'पेरी-मेनोपॉज़',
-                menoPost: 'पोस्ट-मेनोपॉज़', menoPreg: 'गर्भवती',
-                cycleLabel: 'मासिक चक्र', cycle0: 'बहुत नियमित', cycle1: 'नियमित', cycle2: 'कभी अनियमित',
-                cycle3: 'बहुत अनियमित', cycle4: 'कोई नहीं',
-                pmsLabel: 'PMS लक्षण', pms0: 'कोई नहीं', pms1: 'हल्का', pms2: 'मध्यम', pms3: 'गंभीर',
-                andropauseLabel: 'एंड्रोपॉज़', andro0: 'कोई नहीं', andro1: 'हल्का', andro2: 'मध्यम', andro3: 'गंभीर',
-                lifestyleTitle: 'जीवनशैली', sleepLabel: 'नींद', stressLabel: 'तनाव',
-                exerciseLabel: 'व्यायाम', bodyFatLabel: 'शरीर में वसा', dietLabel: 'आहार',
-                alcoholLabel: 'शराब', symptomsTitle: 'हार्मोन लक्षण',
-                calcBtn: 'हार्मोन विश्लेषण करें', resultsTitle: 'हार्मोन विश्लेषण',
-                scoreLabel: 'समग्र हार्मोन स्वास्थ्य स्कोर', testLabel: 'टेस्टोस्टेरोन',
-                cortisolLabel: 'कोर्टिसोल', estrogenLabel: 'एस्ट्रोजन', thyroidLabel: 'थायराइड',
-                findingsTitle: 'मुख्य निष्कर्ष', recTitle: 'व्यक्तिगत सुझाव',
-                pdfBtn: 'PDF रिपोर्ट', shareBtn: 'शेयर करें',
-                futureTitle: 'जल्द आ रहा: उन्नत हार्मोन सुविधाएं',
-                faqTitle: 'अक्सर पूछे जाने वाले प्रश्न',
-                faqQ1: 'यह कैलकुलेटर कितना सटीक है?',
-                faqA1: 'एंडोक्राइन सोसायटी के शोध पर आधारित। जनसंख्या औसत पर अनुमान।',
-                faqQ2: 'पुरुष बनाम महिला हार्मोन?',
-                faqA2: 'पुरुष: अधिक टेस्टोस्टेरोन। महिला: अधिक एस्ट्रोजन/प्रोजेस्टेरोन।',
-                faqQ3: 'हार्मोन स्वास्थ्य कैसे सुधारें?',
-                faqA3: 'नींद, तनाव प्रबंधन, शक्ति प्रशिक्षण, स्वस्थ वसा, शराब कम।',
-                faqQ4: 'कोर्टिसोल क्या करता है?',
-                faqA4: 'कोर्टिसोल तनाव हार्मोन है। उच्च कोर्टिसोल नींद और चयापचय को बाधित करता है।',
-                faqQ5: 'उम्र हार्मोन को कैसे प्रभावित करती है?',
-                faqA5: 'टेस्टोस्टेरोन 30 के बाद ~1% प्रति वर्ष घटता है।',
-                faqQ6: 'क्या मेरा हार्मोन डेटा निजी है?',
-                faqA6: 'हाँ! सभी गणनाएं आपके ब्राउज़र में होती हैं। 100% निजी।',
-                disclaimerText: 'एंडोक्राइन सोसायटी दिशानिर्देशों पर आधारित अनुमान। चिकित्सकीय निदान नहीं।',
-                testDesc: { high: 'इष्टतम', normal: 'सामान्य', low: 'कम' },
-                cortisolDesc: { high: 'उच्च', normal: 'मध्यम', low: 'इष्टतम' },
-                estrogenDesc: { high: 'इष्टतम', normal: 'सामान्य', low: 'कम' },
-                thyroidDesc: { high: 'इष्टतम', normal: 'सामान्य', low: 'कम' },
-                scoreCategories: ['ध्यान दें', 'ठीक', 'अच्छा', 'उत्कृष्ट', 'उत्कृष्ट'],
-                symptomLabels: {
-                    male: ['कम यौन इच्छा', 'स्तंभन दोष', 'थकान', 'मांसपेशी हानि', 
-                           'मूड स्विंग', 'पेट की चर्बी', 'बाल झड़ना', 'खराब फोकस'],
-                    female: ['अनियमित पीरियड', 'भारी पीरियड', 'गंभीर PMS', 'हॉट फ्लैश', 
-                             'रात पसीना', 'थकान', 'वजन बढ़ना', 'कम यौन इच्छा']
-                }
-            }
-        };
-
-        // ===== GLOBAL STATE =====
-        let currentGender = 'female';
-        let currentLang = 'en';
-
-        // ===== SET LANGUAGE =====
-        function setLang(lang) {
-            currentLang = lang;
-            const t = translations[lang];
-            if (!t) return;
-            
-            Object.keys(t).forEach(key => {
-                const el = document.getElementById(key);
-                if (el && !['INPUT', 'SELECT'].includes(el.tagName)) {
-                    el.innerHTML = t[key];
-                }
-            });
-            
-            const optionIds = ['menoPre','menoPeri','menoPost','menoPreg','cycle0','cycle1','cycle2','cycle3','cycle4',
-                               'pms0','pms1','pms2','pms3','andro0','andro1','andro2','andro3','sleep0','sleep1','sleep2','sleep3',
-                               'stress0','stress1','stress2','stress3','stress4','ex0','ex1','ex2','ex3','ex4',
-                               'bf0','bf1','bf2','bf3','bf4','diet0','diet1','diet2','diet3','alc0','alc1','alc2','alc3','alc4'];
-            optionIds.forEach(id => {
-                const el = document.getElementById(id);
-                if (el && t[id]) el.textContent = t[id];
-            });
-            
-            updateSymptoms();
-            calculateHormones();
+// ===== TRANSLATIONS =====
+const translations = {
+    en: {
+        inputTitle: 'Your Hormone Profile', maleTitle: 'Male', maleDesc: 'Testosterone, DHT, Andropause',
+        femaleTitle: 'Female', femaleDesc: 'Estrogen, Progesterone, Menopause',
+        ageLabel: 'Your Age', womensHealth: "Women's Health", mensHealth: "Men's Health",
+        menopauseLabel: 'Menopause Status', menoPre: 'Pre-menopause', menoPeri: 'Peri-menopause', 
+        menoPost: 'Post-menopause', menoPreg: 'Pregnant/Breastfeeding',
+        cycleLabel: 'Cycle Regularity', cycle0: 'Very regular', cycle1: 'Mostly regular', 
+        cycle2: 'Sometimes irregular', cycle3: 'Very irregular', cycle4: 'No cycle',
+        pmsLabel: 'Menstrual Symptoms', pms0: 'No symptoms', pms1: 'Mild PMS', 
+        pms2: 'Moderate PMS', pms3: 'Severe PMS/PMDD',
+        andropauseLabel: 'Andropause Symptoms', andro0: 'No symptoms', andro1: 'Mild', 
+        andro2: 'Moderate', andro3: 'Significant',
+        lifestyleTitle: 'Lifestyle Factors', sleepLabel: 'Sleep Quality', stressLabel: 'Stress Level',
+        exerciseLabel: 'Exercise Frequency', bodyFatLabel: 'Body Fat', dietLabel: 'Diet Quality',
+        alcoholLabel: 'Alcohol Consumption', symptomsTitle: 'Hormone-Related Symptoms',
+        calcBtn: 'Analyze My Hormones', resultsTitle: 'Your Hormone Analysis',
+        scoreLabel: 'Overall Hormone Health Score', testLabel: 'Testosterone', cortisolLabel: 'Cortisol',
+        estrogenLabel: 'Estrogen', thyroidLabel: 'Thyroid', findingsTitle: 'Key Findings',
+        recTitle: 'Personalized Recommendations', pdfBtn: 'PDF Report', shareBtn: 'Share Results',
+        disclaimerText: 'Estimates based on Endocrine Society guidelines. Not medical diagnosis.',
+        symptomLabels: {
+            male: ['Low Libido', 'Erectile Dysfunction', 'Fatigue', 'Muscle Loss', 
+                   'Mood Swings', 'Belly Fat', 'Hair Loss', 'Poor Focus'],
+            female: ['Irregular Periods', 'Heavy Periods', 'Severe PMS', 'Hot Flashes', 
+                     'Night Sweats', 'Fatigue', 'Weight Gain', 'Low Libido']
         }
-
-        // ===== SET GENDER =====
-        function setGender(gender) {
-            currentGender = gender;
-            document.getElementById('genderMale').classList.toggle('active', gender === 'male');
-            document.getElementById('genderFemale').classList.toggle('active', gender === 'female');
-            document.getElementById('maleFields').style.display = gender === 'male' ? 'block' : 'none';
-            document.getElementById('femaleFields').style.display = gender === 'female' ? 'block' : 'none';
-            updateSymptoms();
-            calculateHormones();
+    },
+    hi: {
+        inputTitle: 'हार्मोन प्रोफ़ाइल', maleTitle: 'पुरुष', maleDesc: 'टेस्टोस्टेरोन',
+        femaleTitle: 'महिला', femaleDesc: 'एस्ट्रोजन, प्रोजेस्टेरोन',
+        ageLabel: 'आयु', womensHealth: 'महिला स्वास्थ्य', mensHealth: 'पुरुष स्वास्थ्य',
+        menopauseLabel: 'मेनोपॉज़ स्थिति', menoPre: 'प्री-मेनोपॉज़', menoPeri: 'पेरी-मेनोपॉज़',
+        menoPost: 'पोस्ट-मेनोपॉज़', menoPreg: 'गर्भवती',
+        cycleLabel: 'मासिक चक्र', cycle0: 'बहुत नियमित', cycle1: 'नियमित', cycle2: 'कभी अनियमित',
+        cycle3: 'बहुत अनियमित', cycle4: 'कोई नहीं',
+        pmsLabel: 'PMS लक्षण', pms0: 'कोई नहीं', pms1: 'हल्का', pms2: 'मध्यम', pms3: 'गंभीर',
+        andropauseLabel: 'एंड्रोपॉज़', andro0: 'कोई नहीं', andro1: 'हल्का', andro2: 'मध्यम', andro3: 'गंभीर',
+        lifestyleTitle: 'जीवनशैली', sleepLabel: 'नींद', stressLabel: 'तनाव',
+        exerciseLabel: 'व्यायाम', bodyFatLabel: 'शरीर में वसा', dietLabel: 'आहार',
+        alcoholLabel: 'शराब', symptomsTitle: 'हार्मोन लक्षण',
+        calcBtn: 'हार्मोन विश्लेषण करें', resultsTitle: 'हार्मोन विश्लेषण',
+        scoreLabel: 'समग्र हार्मोन स्कोर', testLabel: 'टेस्टोस्टेरोन',
+        cortisolLabel: 'कोर्टिसोल', estrogenLabel: 'एस्ट्रोजन', thyroidLabel: 'थायराइड',
+        findingsTitle: 'मुख्य निष्कर्ष', recTitle: 'व्यक्तिगत सुझाव',
+        pdfBtn: 'PDF रिपोर्ट', shareBtn: 'शेयर करें',
+        disclaimerText: 'चिकित्सकीय निदान नहीं।',
+        symptomLabels: {
+            male: ['कम यौन इच्छा', 'थकान', 'मांसपेशी हानि', 'मूड स्विंग'],
+            female: ['अनियमित पीरियड', 'हॉट फ्लैश', 'थकान', 'वजन बढ़ना']
         }
+    }
+};
 
-        // ===== UPDATE SYMPTOMS GRID =====
-        function updateSymptoms() {
-            const t = translations[currentLang];
-            const labels = t.symptomLabels[currentGender];
-            const grid = document.getElementById('symptomsGrid');
-            grid.innerHTML = labels.map((label, i) => `
-                <label class="symptom-item" onclick="this.classList.toggle('selected')">
-                    <input type="checkbox" id="sym${i + 1}" onchange="calculateHormones()"> ${label}
-                </label>
-            `).join('');
+// ===== SET LANGUAGE =====
+function setLang(lang) {
+    currentLang = lang;
+    const t = translations[lang] || translations.en;
+    
+    Object.keys(t).forEach(key => {
+        const el = document.getElementById(key);
+        if (el && !['INPUT', 'SELECT'].includes(el.tagName)) {
+            el.innerHTML = t[key];
         }
+    });
+    
+    const optionIds = ['menoPre','menoPeri','menoPost','menoPreg','cycle0','cycle1','cycle2','cycle3','cycle4',
+                       'pms0','pms1','pms2','pms3','andro0','andro1','andro2','andro3'];
+    optionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && t[id]) el.textContent = t[id];
+    });
+    
+    updateSymptoms();
+    calculateHormones();
+}
 
-        // ===== AGE SLIDER =====
-        document.getElementById('age').addEventListener('input', function(e) {
-            document.getElementById('ageValue').innerText = e.target.value;
-            calculateHormones();
+// ===== SET GENDER =====
+function setGender(gender) {
+    currentGender = gender;
+    document.getElementById('genderMale').classList.toggle('active', gender === 'male');
+    document.getElementById('genderFemale').classList.toggle('active', gender === 'female');
+    document.getElementById('maleFields').style.display = gender === 'male' ? 'block' : 'none';
+    document.getElementById('femaleFields').style.display = gender === 'female' ? 'block' : 'none';
+    updateSymptoms();
+    calculateHormones();
+}
+
+// ===== UPDATE SYMPTOMS GRID =====
+function updateSymptoms() {
+    const t = translations[currentLang] || translations.en;
+    const labels = t.symptomLabels[currentGender] || [];
+    const grid = document.getElementById('symptomsGrid');
+    grid.innerHTML = labels.map((label, i) => `
+        <label class="symptom-item">
+            <input type="checkbox" id="sym${i + 1}"> ${label}
+        </label>
+    `).join('');
+}
+
+// ===== AGE SLIDER =====
+document.getElementById('age').addEventListener('input', function(e) {
+    document.getElementById('ageValue').innerText = e.target.value;
+    calculateHormones();
+});
+
+// ===== MAIN CALCULATION =====
+function calculateHormones() {
+    const age = parseInt(document.getElementById('age').value);
+    const sleep = parseInt(document.getElementById('sleep').value);
+    const stress = parseInt(document.getElementById('stress').value);
+    const exercise = parseInt(document.getElementById('exercise').value);
+    const bodyFat = parseInt(document.getElementById('bodyFat').value);
+    const diet = parseInt(document.getElementById('diet').value);
+    const alcohol = parseInt(document.getElementById('alcohol').value);
+    
+    let symptomCount = 0;
+    for (let i = 1; i <= 8; i++) {
+        const sym = document.getElementById('sym' + i);
+        if (sym && sym.checked) symptomCount++;
+    }
+    
+    let testosterone, estrogen;
+    
+    if (currentGender === 'male') {
+        const andropause = parseInt(document.getElementById('andropause').value);
+        testosterone = Math.max(20, Math.min(100, Math.round(100 - age * 0.8 - stress * 4 - bodyFat * 3 - alcohol * 2 - symptomCount * 2 - andropause * 5)));
+        estrogen = Math.max(10, Math.min(60, Math.round(40 - age * 0.3 - bodyFat * 1.5)));
+    } else {
+        const menopause = document.getElementById('menopause').value;
+        const cycleRegular = parseInt(document.getElementById('cycleRegular').value);
+        const cycleSymptoms = parseInt(document.getElementById('cycleSymptoms').value);
+        let menopauseFactor = 0;
+        if (menopause === 'post') menopauseFactor = 30;
+        else if (menopause === 'peri') menopauseFactor = 15;
+        else if (menopause === 'pregnant') menopauseFactor = -10;
+        testosterone = Math.max(10, Math.min(60, Math.round(40 - age * 0.3 - stress * 2 - bodyFat * 2)));
+        estrogen = Math.max(20, Math.min(100, Math.round(100 - menopauseFactor - cycleSymptoms * 5 - cycleRegular * 3 - stress * 3 - bodyFat * 2)));
+    }
+    
+    let cortisol = Math.max(20, Math.min(90, Math.round(100 - stress * 12 + sleep * 4)));
+    let thyroid = Math.max(20, Math.min(100, Math.round(100 - stress * 3 - sleep * 4 - diet * 5 - symptomCount * 2)));
+    
+    let totalScore = Math.round((testosterone + (100 - cortisol) + estrogen + thyroid) / 4);
+    
+    document.getElementById('hormoneScore').innerHTML = totalScore;
+    let category = totalScore >= 80 ? 'Excellent' : (totalScore >= 60 ? 'Good' : (totalScore >= 40 ? 'Fair' : 'Needs Attention'));
+    document.getElementById('hormoneStatus').innerHTML = category;
+    
+    document.getElementById('testosteroneValue').innerHTML = testosterone;
+    document.getElementById('testosteroneBar').style.width = testosterone + '%';
+    document.getElementById('testosteroneDesc').innerHTML = testosterone > 70 ? 'Optimal' : (testosterone > 50 ? 'Normal' : 'Low');
+    
+    document.getElementById('cortisolValue').innerHTML = cortisol;
+    document.getElementById('cortisolBar').style.width = cortisol + '%';
+    document.getElementById('cortisolDesc').innerHTML = cortisol > 70 ? 'High' : (cortisol > 40 ? 'Moderate' : 'Optimal');
+    
+    document.getElementById('estrogenValue').innerHTML = estrogen;
+    document.getElementById('estrogenBar').style.width = estrogen + '%';
+    document.getElementById('estrogenDesc').innerHTML = estrogen > 70 ? 'Optimal' : (estrogen > 50 ? 'Normal' : 'Low');
+    
+    document.getElementById('thyroidValue').innerHTML = thyroid;
+    document.getElementById('thyroidBar').style.width = thyroid + '%';
+    document.getElementById('thyroidDesc').innerHTML = thyroid > 70 ? 'Optimal' : (thyroid > 50 ? 'Normal' : 'Low');
+    
+    let findings = [];
+    if (testosterone < 50 && currentGender === 'male') findings.push('⚠️ Testosterone levels below optimal');
+    if (cortisol > 70) findings.push('⚠️ Cortisol (stress hormone) is elevated');
+    if (estrogen < 50 && currentGender === 'female') findings.push('⚠️ Estrogen levels below optimal');
+    if (thyroid < 50) findings.push('⚠️ Thyroid function may be suboptimal');
+    if (findings.length === 0) findings.push('✓ Your key hormone markers appear balanced');
+    
+    document.getElementById('keyFindings').innerHTML = findings.map(f => `
+        <div class="finding-item">
+            <div class="finding-icon"><i class="fas fa-info"></i></div>
+            <div>${f}</div>
+        </div>
+    `).join('');
+    
+    let recommendations = [];
+    if (stress > 2) recommendations.push({icon:'🧘',title:'Stress Management',desc:'Meditation, deep breathing, yoga'});
+    if (sleep > 1) recommendations.push({icon:'😴',title:'Improve Sleep',desc:'7-8 hours of quality sleep'});
+    if (exercise > 2) recommendations.push({icon:'🏋️',title:'Strength Training',desc:'2-3 times per week'});
+    if (diet > 1) recommendations.push({icon:'🥗',title:'Healthy Fats',desc:'Avocado, nuts, olive oil'});
+    if (alcohol > 2) recommendations.push({icon:'🍷',title:'Reduce Alcohol',desc:'Limit to 1-2 drinks per week'});
+    if (recommendations.length === 0) recommendations.push({icon:'🎉',title:'Excellent!',desc:'Continue your healthy habits'});
+    
+    document.getElementById('recommendations').innerHTML = recommendations.slice(0, 4).map(rec => `
+        <div class="rec-item">
+            <div class="rec-icon">${rec.icon}</div>
+            <div class="rec-content">
+                <div class="rec-title">${rec.title}</div>
+                <div class="rec-desc">${rec.desc}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// ===== SHARE FUNCTION =====
+function shareResults() {
+    const url = window.location.href;
+    if (navigator.share) {
+        navigator.share({ title: 'My Hormone Health Results', url: url });
+    } else {
+        navigator.clipboard.writeText(url);
+        alert('Link copied to clipboard!');
+    }
+}
+
+// ===== THEME =====
+function initTheme() { 
+    var s = localStorage.getItem('healthcalc_theme') || 'light'; 
+    document.body.classList.toggle('dark', s === 'dark'); 
+}
+function setTheme(t) { 
+    localStorage.setItem('healthcalc_theme', t); 
+    document.body.classList.toggle('dark', t === 'dark'); 
+}
+document.querySelectorAll('.theme-option').forEach(function(b) { 
+    b.addEventListener('click', function() { setTheme(b.dataset.theme); }); 
+});
+initTheme();
+
+// ===== COUNTRY =====
+document.getElementById('countrySelect').addEventListener('change', function(e) { 
+    localStorage.setItem('healthcalc_country', e.target.value); 
+});
+(function() { 
+    var s = localStorage.getItem('healthcalc_country') || 'us'; 
+    document.getElementById('countrySelect').value = s; 
+})();
+
+// ===== LANGUAGE BUTTONS =====
+document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { 
+        var lang = btn.getAttribute('data-lang'); 
+        if (lang) setLang(lang); 
+    });
+});
+
+// ===== SCROLL TOP =====
+window.addEventListener('scroll', function() { 
+    document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500); 
+});
+
+// ============================================
+// ✅ FIXED AI CHAT SYSTEM (Vercel API)
+// ============================================
+function addChatMessage(text, sender) {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var div = document.createElement('div');
+    div.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
+    div.style.animation = 'messageSlideIn 0.3s ease';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\n/g, '<br>');
+    div.innerHTML = text;
+    md.appendChild(div);
+    md.scrollTop = md.scrollHeight;
+}
+
+function showTypingIndicator() {
+    var md = document.getElementById('aiChatMessages');
+    if (!md) return;
+    var td = document.createElement('div');
+    td.id = 'aiTypingIndicator';
+    td.className = 'ai-message-bot';
+    td.innerHTML = '<span style="font-size:11px;color:#94a3b8;">AI thinking...</span>';
+    md.appendChild(td);
+    md.scrollTop = md.scrollHeight;
+}
+
+function removeTypingIndicator() { 
+    var t = document.getElementById('aiTypingIndicator'); 
+    if (t) t.remove(); 
+}
+
+function getHormoneContext() {
+    var score = document.getElementById('hormoneScore').textContent;
+    var status = document.getElementById('hormoneStatus').textContent;
+    var test = document.getElementById('testosteroneValue').textContent;
+    var cortisol = document.getElementById('cortisolValue').textContent;
+    var estrogen = document.getElementById('estrogenValue').textContent;
+    var thyroid = document.getElementById('thyroidValue').textContent;
+    
+    return '[HORMONE PROFILE - Score: ' + score + '/100 (' + status + '), Testosterone: ' + test + 
+           ', Cortisol: ' + cortisol + ', Estrogen: ' + estrogen + ', Thyroid: ' + thyroid + 
+           ', Gender: ' + currentGender + ']';
+}
+
+async function sendAIMessage(prefilledText) {
+    if (isAIProcessing) return;
+    
+    var input = document.getElementById('aiChatInput');
+    var message = prefilledText || (input ? input.value.trim() : '');
+    if (!message) return;
+    
+    isAIProcessing = true;
+    addChatMessage(message, 'user');
+    if (input && !prefilledText) input.value = '';
+    showTypingIndicator();
+    
+    var fullPrompt = "You are a Hormone Health AI Assistant on HealthCalc.in. " +
+        "Provide structured, evidence-based hormone health advice. " +
+        "Always end with: '⚠️ Consult a healthcare professional for medical advice.'\n\n" +
+        getHormoneContext() + "\n\nUSER QUESTION: " + message;
+
+    try {
+        var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userMessage: fullPrompt })
         });
-
-        // ===== MAIN CALCULATION =====
-        function calculateHormones() {
-            const t = translations[currentLang];
-            const age = parseInt(document.getElementById('age').value);
-            const sleep = parseInt(document.getElementById('sleep').value);
-            const stress = parseInt(document.getElementById('stress').value);
-            const exercise = parseInt(document.getElementById('exercise').value);
-            const bodyFat = parseInt(document.getElementById('bodyFat').value);
-            const diet = parseInt(document.getElementById('diet').value);
-            const alcohol = parseInt(document.getElementById('alcohol').value);
-            
-            let symptomCount = 0;
-            for (let i = 1; i <= 8; i++) {
-                const sym = document.getElementById('sym' + i);
-                if (sym && sym.checked) symptomCount++;
-            }
-            
-            let testosterone, estrogen;
-            
-            if (currentGender === 'male') {
-                const andropause = parseInt(document.getElementById('andropause').value);
-                testosterone = Math.max(20, Math.min(100, Math.round(100 - age * 0.8 - stress * 4 - bodyFat * 3 - alcohol * 2 - symptomCount * 2 - andropause * 5)));
-                estrogen = Math.max(10, Math.min(60, Math.round(40 - age * 0.3 - bodyFat * 1.5)));
-            } else {
-                const menopause = document.getElementById('menopause').value;
-                const cycleRegular = parseInt(document.getElementById('cycleRegular').value);
-                const cycleSymptoms = parseInt(document.getElementById('cycleSymptoms').value);
-                let menopauseFactor = 0;
-                if (menopause === 'post') menopauseFactor = 30;
-                else if (menopause === 'peri') menopauseFactor = 15;
-                else if (menopause === 'pregnant') menopauseFactor = -10;
-                testosterone = Math.max(10, Math.min(60, Math.round(40 - age * 0.3 - stress * 2 - bodyFat * 2)));
-                estrogen = Math.max(20, Math.min(100, Math.round(100 - menopauseFactor - cycleSymptoms * 5 - cycleRegular * 3 - stress * 3 - bodyFat * 2)));
-            }
-            
-            let cortisol = Math.max(20, Math.min(90, Math.round(100 - stress * 12 + sleep * 4)));
-            let thyroid = Math.max(20, Math.min(100, Math.round(100 - stress * 3 - sleep * 4 - diet * 5 - symptomCount * 2)));
-            
-            let totalScore = Math.round((testosterone + (100 - cortisol) + estrogen + thyroid) / 4);
-            
-            document.getElementById('hormoneScore').innerHTML = totalScore;
-            const categories = t.scoreCategories;
-            let categoryIndex = totalScore >= 80 ? 4 : (totalScore >= 60 ? 3 : (totalScore >= 40 ? 2 : (totalScore >= 20 ? 1 : 0)));
-            document.getElementById('hormoneStatus').innerHTML = categories[categoryIndex];
-            
-            document.getElementById('testosteroneValue').innerHTML = testosterone;
-            document.getElementById('testosteroneBar').style.width = testosterone + '%';
-            document.getElementById('testosteroneDesc').innerHTML = testosterone > 70 ? 'Optimal' : (testosterone > 50 ? 'Normal' : 'Low');
-            
-            document.getElementById('cortisolValue').innerHTML = cortisol;
-            document.getElementById('cortisolBar').style.width = cortisol + '%';
-            document.getElementById('cortisolDesc').innerHTML = cortisol > 70 ? 'High' : (cortisol > 40 ? 'Moderate' : 'Optimal');
-            
-            document.getElementById('estrogenValue').innerHTML = estrogen;
-            document.getElementById('estrogenBar').style.width = estrogen + '%';
-            document.getElementById('estrogenDesc').innerHTML = estrogen > 70 ? 'Optimal' : (estrogen > 50 ? 'Normal' : 'Low');
-            
-            document.getElementById('thyroidValue').innerHTML = thyroid;
-            document.getElementById('thyroidBar').style.width = thyroid + '%';
-            document.getElementById('thyroidDesc').innerHTML = thyroid > 70 ? 'Optimal' : (thyroid > 50 ? 'Normal' : 'Low');
-            
-            let findings = [];
-            if (testosterone < 50 && currentGender === 'male') findings.push('⚠️ Testosterone levels below optimal');
-            if (cortisol > 70) findings.push('⚠️ Cortisol (stress hormone) is elevated');
-            if (estrogen < 50 && currentGender === 'female') findings.push('⚠️ Estrogen levels below optimal');
-            if (thyroid < 50) findings.push('⚠️ Thyroid function may be suboptimal');
-            if (findings.length === 0) findings.push('✓ Your key hormone markers appear balanced');
-            
-            document.getElementById('keyFindings').innerHTML = findings.map(f => `
-                <div class="finding-item">
-                    <div class="finding-icon"><i class="fas fa-info"></i></div>
-                    <div>${f}</div>
-                </div>
-            `).join('');
-            
-            let recommendations = [];
-            if (stress > 2) recommendations.push({icon:'🧘',title:'Stress Management',desc:'Meditation, deep breathing, yoga',impact:'+10-15 points'});
-            if (sleep > 1) recommendations.push({icon:'😴',title:'Improve Sleep',desc:'7-8 hours of quality sleep',impact:'+8-12 points'});
-            if (exercise > 2) recommendations.push({icon:'🏋️',title:'Strength Training',desc:'2-3 times per week',impact:'+10-15 points'});
-            if (diet > 1) recommendations.push({icon:'🥗',title:'Increase Healthy Fats',desc:'Avocado, nuts, olive oil',impact:'+5-8 points'});
-            if (alcohol > 2) recommendations.push({icon:'🍷',title:'Reduce Alcohol',desc:'Limit to 1-2 drinks per week',impact:'+5-10 points'});
-            if (recommendations.length === 0) recommendations.push({icon:'🎉',title:'Excellent Hormone Health!',desc:'Continue your healthy habits',impact:'Maintain'});
-            
-            document.getElementById('recommendations').innerHTML = recommendations.slice(0, 4).map(rec => `
-                <div class="rec-item">
-                    <div class="rec-icon">${rec.icon}</div>
-                    <div class="rec-content">
-                        <div class="rec-title">${rec.title}</div>
-                        <div class="rec-desc">${rec.desc}</div>
-                        <span class="rec-impact">${rec.impact}</span>
-                    </div>
-                </div>
-            `).join('');
+        
+        var data = await response.json();
+        removeTypingIndicator();
+        
+        if (data && data.reply) {
+            addChatMessage(data.reply, 'bot');
+        } else {
+            throw new Error('No response');
         }
+    } catch (e) {
+        removeTypingIndicator();
+        console.error('AI Error:', e);
+        addChatMessage('🔬 <strong>Hormone Health Tips:</strong><br><br>• Sleep 7-8 hours nightly<br>• Manage stress via meditation/yoga<br>• Strength train 2-3x/week<br>• Eat healthy fats (avocado, nuts)<br>• Limit alcohol and processed foods<br>• Get morning sunlight daily<br><br>⚠️ <em>Consult a healthcare professional.</em>', 'bot');
+    } finally {
+        isAIProcessing = false;
+    }
+}
 
-        // ===== SHARE FUNCTION =====
-        function shareResults() {
-            const url = window.location.href;
-            if (navigator.share) {
-                navigator.share({ title: 'My Hormone Health Results', url: url });
-            } else {
-                navigator.clipboard.writeText(url);
-                alert('Link copied to clipboard!');
-            }
-        }
-
-        // ==============================================
-        // 🔥 SECURE CLOUDFLARE WORKER ENDPOINT
-        // ==============================================
-        function addChatMessage(text, sender) {
-            var messagesDiv = document.getElementById('aiChatMessages');
-            var msgDiv = document.createElement('div');
-            msgDiv.className = sender === 'user' ? 'ai-message-user' : 'ai-message-bot';
-            msgDiv.style.animation = 'messageSlideIn 0.3s ease';
-            msgDiv.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            messagesDiv.appendChild(msgDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            var messagesDiv = document.getElementById('aiChatMessages');
-            var typingDiv = document.createElement('div');
-            typingDiv.id = 'aiTypingIndicator';
-            typingDiv.className = 'ai-message-bot';
-            typingDiv.style.cssText = 'display:flex; gap:5px; padding:14px;';
-            typingDiv.innerHTML = '<div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.2s;"></div><div style="width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingBounce 1.4s infinite;animation-delay:0.4s;"></div>';
-            messagesDiv.appendChild(typingDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        function removeTypingIndicator() {
-            var typing = document.getElementById('aiTypingIndicator');
-            if (typing) typing.remove();
-        }
-
-        function getHormoneContext() {
-            var score = document.getElementById('hormoneScore').innerHTML;
-            var status = document.getElementById('hormoneStatus').innerHTML;
-            var test = document.getElementById('testosteroneValue').innerHTML;
-            var cortisol = document.getElementById('cortisolValue').innerHTML;
-            var estrogen = document.getElementById('estrogenValue').innerHTML;
-            var thyroid = document.getElementById('thyroidValue').innerHTML;
-            if (score && score !== '78') {
-                return 'User Hormone Profile: Overall Score=' + score + '/100 (' + status + '), Testosterone=' + test + ', Cortisol=' + cortisol + ', Estrogen=' + estrogen + ', Thyroid=' + thyroid + '. Gender=' + currentGender + '. ';
-            }
-            return '';
-        }
-
-        async function sendAIMessage(prefilledText) {
-            var input = document.getElementById('aiChatInput');
-            var message = prefilledText || input.value.trim();
-            if (!message) return;
-            
-            addChatMessage(message, 'user');
-            if (!prefilledText) input.value = '';
-            showTypingIndicator();
-            
-            var context = getHormoneContext();
-            var promptText = "You are a professional Hormone Health AI Assistant on HealthCalc.in, serving users worldwide. " + context + "\n\nUser Question: " + message + "\n\nProvide structured, concise, clear, and actionable hormone health advice in fluent English. Include diet recommendations, lifestyle changes, stress management tips, and exercise guidance specific to their hormone profile. End with: '⚠️ Consult a healthcare professional for personalized medical advice.'";
-
-            try {
-                var response = await fetch(WORKER_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ prompt: promptText })
-                });
-                
-                var data = await response.json();
-                removeTypingIndicator();
-                
-                if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-                    addChatMessage(data.candidates[0].content.parts[0].text, 'bot');
-                } else { 
-                    throw new Error('No response from AI worker'); 
-                }
-            } catch (error) {
-                removeTypingIndicator();
-                console.error('AI Chat Error:', error);
-                var fb = '🔬 <strong>Hormone Health Tips:</strong><br><br>';
-                fb += '• Sleep 7-8 hours for optimal hormone production<br>';
-                fb += '• Manage stress through meditation, yoga, or deep breathing<br>';
-                fb += '• Strength train 2-3x/week to boost testosterone and growth hormone<br>';
-                fb += '• Eat healthy fats (avocado, nuts, olive oil, fatty fish)<br>';
-                fb += '• Limit alcohol and processed foods<br>';
-                fb += '• Consider adaptogenic herbs (ashwagandha, rhodiola)<br>';
-                fb += '• Get morning sunlight to regulate circadian rhythm<br><br>';
-                fb += '⚠️ <em>Consult a healthcare professional for personalized medical advice.</em>';
-                addChatMessage(fb, 'bot');
-            }
-        }
-
-        // ===== EVENT LISTENERS =====
-        const selectors = ['sleep', 'stress', 'exercise', 'bodyFat', 'diet', 'alcohol', 'menopause', 'cycleRegular', 'cycleSymptoms', 'andropause'];
-        selectors.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.addEventListener('change', calculateHormones);
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+    var chatInput = document.getElementById('aiChatInput');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
         });
+    }
+});
 
-        // Theme
-        function initTheme() { var s = localStorage.getItem('healthcalc_theme') || 'light'; document.body.classList.toggle('dark', s === 'dark'); }
-        function setTheme(t) { localStorage.setItem('healthcalc_theme', t); document.body.classList.toggle('dark', t === 'dark'); }
-        document.querySelectorAll('.theme-option').forEach(b => b.addEventListener('click', function() { setTheme(b.dataset.theme); }));
-        initTheme();
+// ===== EVENT LISTENERS =====
+['sleep', 'stress', 'exercise', 'bodyFat', 'diet', 'alcohol', 'menopause', 'cycleRegular', 'cycleSymptoms', 'andropause'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('change', calculateHormones);
+});
 
-        // Country
-        document.getElementById('countrySelect').addEventListener('change', function(e) { localStorage.setItem('healthcalc_country', e.target.value); });
-        (function() { var s = localStorage.getItem('healthcalc_country') || 'us'; document.getElementById('countrySelect').value = s; })();
+// ===== EXPORT GLOBALS =====
+window.setLang = setLang;
+window.setGender = setGender;
+window.calculateHormones = calculateHormones;
+window.shareResults = shareResults;
+window.sendAIMessage = sendAIMessage;
 
-        // Language buttons
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', (e) => { var lang = btn.getAttribute('data-lang'); if (lang) setLang(lang); }));
-
-        // Scroll top
-        window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 500); });
-
-        // ===== EXPORT GLOBALS =====
-        window.setLang = setLang;
-        window.setGender = setGender;
-        window.calculateHormones = calculateHormones;
-        window.shareResults = shareResults;
-        window.sendAIMessage = sendAIMessage;
-
-        // ===== INITIALIZE =====
-        updateSymptoms();
-        calculateHormones();
-    </script>
-</body>
-</html>
+// ===== INITIALIZE =====
+updateSymptoms();
+calculateHormones();
+</script> 
