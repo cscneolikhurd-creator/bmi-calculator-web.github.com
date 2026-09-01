@@ -1,255 +1,155 @@
-/* ============================================
-   CHAT SYSTEM STYLES
-   ============================================ */
+// ============================================
+// HEALTHCALC.IN - CHAT API
+// ============================================
 
-/* Chat Container */
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-  max-height: 500px;
-  overflow-y: auto;
-  background: #f8fafc;
-  border-radius: 12px;
-  scroll-behavior: smooth;
-}
+export default async function handler(req, res) {
+  // ==========================================
+  // CORS HEADERS - SABSE PEHLE
+  // ==========================================
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-/* Individual Messages */
-.message {
-  display: flex;
-  gap: 12px;
-  max-width: 85%;
-  animation: fadeIn 0.3s ease;
-}
-
-.message.user {
-  align-self: flex-end;
-  flex-direction: row-reverse;
-}
-
-.message.assistant {
-  align-self: flex-start;
-}
-
-.message-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-  background: #e2e8f0;
-}
-
-.message-avatar.user {
-  background: #3b82f6;
-  color: white;
-}
-
-.message-avatar.assistant {
-  background: #10b981;
-  color: white;
-}
-
-.message-content {
-  background: white;
-  padding: 12px 16px;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  font-size: 14px;
-  line-height: 1.6;
-  word-wrap: break-word;
-}
-
-.message.user .message-content {
-  background: #3b82f6;
-  color: white;
-  border-radius: 12px 4px 12px 12px;
-}
-
-.message.assistant .message-content {
-  background: white;
-  border-radius: 4px 12px 12px 12px;
-}
-
-.message-content p {
-  margin: 0 0 8px 0;
-}
-
-.message-content p:last-child {
-  margin-bottom: 0;
-}
-
-.message-content ul {
-  margin: 8px 0;
-  padding-left: 20px;
-}
-
-.message-content li {
-  margin-bottom: 4px;
-}
-
-.message-content strong {
-  color: #0ea5e9;
-}
-
-.message.user .message-content strong {
-  color: #b3d9ff;
-}
-
-.message-time {
-  font-size: 10px;
-  opacity: 0.5;
-  margin-top: 4px;
-  text-align: right;
-}
-
-/* Loading Animation */
-.typing-indicator {
-  display: flex;
-  gap: 6px;
-  padding: 4px 0;
-}
-
-.typing-indicator span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #94a3b8;
-  animation: typing 1.4s infinite both;
-}
-
-.typing-indicator span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes typing {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-8px); }
-}
-
-.loading-text {
-  font-size: 12px;
-  color: #94a3b8;
-  margin-top: 4px;
-}
-
-/* Error Message */
-.message.error .message-content {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
-}
-
-.retry-btn {
-  background: #3b82f6;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 8px;
-  transition: background 0.2s;
-}
-
-.retry-btn:hover {
-  background: #2563eb;
-}
-
-/* Input Area */
-.chat-input-wrapper {
-  display: flex;
-  gap: 8px;
-  padding: 12px 0;
-  border-top: 1px solid #e2e8f0;
-  background: white;
-  border-radius: 0 0 12px 12px;
-}
-
-.chat-input-wrapper textarea {
-  flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  resize: none;
-  font-family: inherit;
-  font-size: 14px;
-  min-height: 44px;
-  max-height: 150px;
-  transition: border-color 0.2s;
-}
-
-.chat-input-wrapper textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.chat-input-wrapper textarea:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.chat-input-wrapper button {
-  width: 44px;
-  height: 44px;
-  border: none;
-  border-radius: 8px;
-  background: #3b82f6;
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.2s;
-  flex-shrink: 0;
-}
-
-.chat-input-wrapper button:hover:not(:disabled) {
-  background: #2563eb;
-  transform: scale(1.02);
-}
-
-.chat-input-wrapper button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Scrollbar */
-.chat-container::-webkit-scrollbar {
-  width: 4px;
-}
-
-.chat-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.chat-container::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .message {
-    max-width: 95%;
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
   }
-  
-  .message-content {
-    font-size: 13px;
-    padding: 10px 12px;
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Only POST method allowed' });
   }
+
+  const { userMessage } = req.body;
+
+  if (!userMessage) {
+    return res.status(400).json({ reply: "❌ Please send a message." });
+  }
+
+  // ==========================================
+  // SYSTEM PROMPT
+  // ==========================================
+  const systemPrompt = `You are HealthCalc AI, an expert medical assistant...
+
+RULES TO FOLLOW:
+1. Give accurate, evidence-based health information
+2. Use simple language
+3. Format answers with bullet points
+4. Keep responses under 500 words
+5. Always end with: "⚠️ Consult a healthcare professional for personalized medical advice."
+6. For emergencies, say: "🚨 MEDICAL EMERGENCY - Call emergency services immediately!"
+7. Never prescribe medicines or diagnose diseases
+8. Be friendly and encouraging
+9. If you don't know something, be honest
+10. Mention HealthCalc.in's 30+ free calculators`;
+
+  // ==========================================
+  // GROQ API CALL
+  // ==========================================
+  const GROQ_API_KEY = process.env.GROQ_API_KEY || process.env.GROQ_API_KEY_2;
+
+  if (!GROQ_API_KEY) {
+    console.log('⚪ No API key found, using fallback');
+    return res.status(200).json({
+      reply: getStaticResponse(userMessage),
+      model: 'offline',
+      status: 'fallback'
+    });
+  }
+
+  try {
+    const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userMessage }
+        ],
+        temperature: 0.7,
+        max_tokens: 800,
+        top_p: 0.95
+      })
+    });
+
+    if (groqResponse.ok) {
+      const data = await groqResponse.json();
+      const reply = data.choices?.[0]?.message?.content;
+
+      if (reply) {
+        return res.status(200).json({
+          reply: reply,
+          model: 'groq',
+          status: 'success'
+        });
+      }
+    }
+  } catch (error) {
+    console.error('Groq API Error:', error.message);
+  }
+
+  // ==========================================
+  // FALLBACK
+  // ==========================================
+  console.log('⚪ Using fallback response');
+  return res.status(200).json({
+    reply: getStaticResponse(userMessage),
+    model: 'offline',
+    status: 'fallback'
+  });
+}
+
+// ============================================
+// STATIC FALLBACK RESPONSES
+// ============================================
+function getStaticResponse(message) {
+  const msg = message.toLowerCase();
+
+  if (msg.includes('bmi') || msg.includes('body mass')) {
+    return `📊 **About BMI (Body Mass Index)**
+
+• **Formula:** Weight(kg) ÷ Height(m)²
+• **Normal Range:** 18.5 - 24.9
+• **Underweight:** Below 18.5
+• **Overweight:** 25 - 29.9
+• **Obese:** 30 and above
+
+💡 **Use our free BMI Calculator:** healthcalc.in/bmi-calculator.html
+
+⚠️ Consult a healthcare professional for personalized medical advice.`;
+  }
+
+  if (msg.includes('weight loss') || msg.includes('diet')) {
+    return `🥗 **Healthy Weight Loss Guide**
+
+**Safe Rate:** 0.5-1 kg (1-2 lbs) per week
+
+**Calorie Basics:**
+• Create 500 kcal daily deficit for ~0.5 kg/week loss
+• Never go below 1200 kcal (women) / 1500 kcal (men)
+
+**Free Tools at HealthCalc.in:**
+• Calorie Deficit Calculator
+• Macro Calculator
+• Keto Calculator
+
+⚠️ Consult a healthcare professional for personalized medical advice.`;
+  }
+
+  return `👋 **Welcome to HealthCalc AI!**
+
+I'm currently in high traffic mode. Please try again in a moment.
+
+**📊 Try Our 30+ Free Health Calculators:**
+• ❤️ ASCVD Heart Risk Calculator
+• ⚖️ BMI Calculator
+• 🤰 Pregnancy Due Date Calculator
+• 🥑 Keto Macro Calculator
+• 🔥 Calorie Deficit Calculator
+• 😴 Sleep Cycle Calculator
+
+⚠️ Consult a healthcare professional for personalized medical advice.`;
 }
