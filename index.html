@@ -114,24 +114,67 @@ body.dark .top-nav { background:rgba(15,23,42,0.9); }
 .tool-tag { font-size:12px; font-weight:600; padding:6px 14px; border-radius:50px; background:var(--bg-gradient); color:var(--text); align-self:flex-start; border:1px solid var(--border); }
 .new-badge { background:var(--accent); color:white; padding:2px 8px; border-radius:10px; font-size:10px; margin-left:6px; font-weight:700; }
 
-/* AI Banner */
-.ai-banner { background:linear-gradient(135deg,#1e3a8a,#3b82f6); border-radius:var(--radius-lg); padding:40px; margin-bottom:60px; display:flex; gap:40px; align-items:center; flex-wrap:wrap; box-shadow:0 20px 40px rgba(37,99,235,0.2); position:relative; overflow:hidden; }
+/* ==========================================
+   AI CHAT SECTION - IMPROVED
+   ========================================== */
+.ai-banner { background:linear-gradient(135deg,#1e3a8a,#3b82f6); border-radius:var(--radius-lg); padding:40px; margin-bottom:60px; display:flex; gap:40px; align-items:flex-start; flex-wrap:wrap; box-shadow:0 20px 40px rgba(37,99,235,0.2); position:relative; overflow:hidden; }
+.ai-banner::before { content:''; position:absolute; top:-50%; right:-20%; width:400px; height:400px; background:rgba(255,255,255,0.05); border-radius:50%; }
 .ai-banner-content { flex:1; min-width:300px; color:white; position:relative; z-index:2; }
 .ai-banner-content h2 { font-size:32px; font-weight:800; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
 .ai-banner-content p { font-size:16px; opacity:0.9; margin-bottom:24px; line-height:1.6; }
 .ai-chat-panel { width:100%; border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius-md); overflow:hidden; background:rgba(15,23,42,0.4); backdrop-filter:blur(16px); }
-.ai-chat-messages { height:250px; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:16px; font-size:14px; }
-.ai-message { max-width:85%; padding:14px 18px; line-height:1.5; animation:slideIn 0.3s ease; }
+.ai-chat-messages { height:280px; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:12px; font-size:14px; scroll-behavior:smooth; }
+.ai-chat-messages::-webkit-scrollbar { width:4px; }
+.ai-chat-messages::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.3); border-radius:10px; }
+.ai-message { max-width:85%; padding:12px 16px; line-height:1.6; animation:slideIn 0.3s ease; word-wrap:break-word; }
 .ai-message-bot { background:rgba(255,255,255,0.1); color:#f8fafc; border-radius:16px; border-top-left-radius:4px; align-self:flex-start; }
 .ai-message-user { background:white; color:#1e3a8a; font-weight:500; border-radius:16px; border-top-right-radius:4px; align-self:flex-end; }
+.ai-message-error { background:rgba(239,68,68,0.2); color:#fca5a5; border-radius:16px; border-top-left-radius:4px; align-self:flex-start; border:1px solid rgba(239,68,68,0.3); }
 .ai-chat-input-row { display:flex; gap:12px; padding:16px; background:rgba(0,0,0,0.2); border-top:1px solid rgba(255,255,255,0.1); }
-.ai-chat-input { flex:1; padding:14px 20px; border-radius:50px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.2); color:white; font-size:15px; outline:none; }
-.ai-chat-send-btn { width:48px; height:48px; border-radius:50%; background:var(--accent); color:white; border:none; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; }
+.ai-chat-input { flex:1; padding:14px 20px; border-radius:50px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.2); color:white; font-size:15px; outline:none; transition:var(--transition); }
+.ai-chat-input::placeholder { color:rgba(255,255,255,0.5); }
+.ai-chat-input:focus { border-color:var(--accent); background:rgba(0,0,0,0.3); }
+.ai-chat-send-btn { width:48px; height:48px; border-radius:50%; background:var(--accent); color:white; border:none; cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center; transition:var(--transition); }
+.ai-chat-send-btn:hover { background:#059669; transform:scale(1.05); }
+.ai-chat-send-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+/* Typing Indicator */
+.typing-indicator { display:flex; gap:6px; padding:8px 0; }
+.typing-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.4); animation:typingBounce 1.4s infinite both; }
+.typing-dot:nth-child(2) { animation-delay:0.2s; }
+.typing-dot:nth-child(3) { animation-delay:0.4s; }
+@keyframes typingBounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-6px); } }
+
+/* ==========================================
+   REPORT FORM - NEW
+   ========================================== */
+.report-section { background:var(--card-bg); border-radius:var(--radius-lg); padding:40px; margin-bottom:60px; border:1px solid var(--border); }
+.report-section h3 { font-size:28px; font-weight:800; margin-bottom:8px; display:flex; align-items:center; gap:12px; }
+.report-section h3 i { color:var(--primary); }
+.report-section > p { color:var(--text-muted); margin-bottom:24px; }
+.report-form { max-width:100%; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-group { margin-bottom:16px; }
+.form-group label { display:block; font-weight:600; font-size:14px; color:var(--text-muted); margin-bottom:4px; }
+.form-group label .required { color:#ef4444; }
+.form-group input, .form-group select, .form-group textarea { width:100%; padding:12px 16px; border:1px solid var(--border); border-radius:12px; font-size:14px; background:var(--bg-gradient); color:var(--text); transition:var(--transition); font-family:inherit; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-light); }
+.form-group textarea { resize:vertical; min-height:100px; }
+.btn-primary { background:var(--primary); color:white; border:none; padding:12px 28px; border-radius:12px; font-size:15px; font-weight:600; cursor:pointer; transition:var(--transition); }
+.btn-primary:hover:not(:disabled) { background:var(--primary-hover); transform:translateY(-2px); box-shadow:0 8px 24px rgba(37,99,235,0.3); }
+.btn-primary:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+.btn-secondary { background:var(--border); color:var(--text); border:none; padding:12px 28px; border-radius:12px; font-size:15px; font-weight:600; cursor:pointer; transition:var(--transition); }
+.btn-secondary:hover { background:var(--text-muted); color:white; }
+.status-message { padding:12px 16px; border-radius:12px; margin-top:16px; font-weight:500; display:none; }
+.status-success { background:#d1fae5; color:#065f46; display:block; }
+.status-error { background:#fef2f2; color:#991b1b; display:block; }
+.status-warning { background:#fef3c7; color:#92400e; display:block; }
 
 /* Footer */
 footer { text-align:center; padding:40px 20px; border-top:1px solid var(--border); font-size:14px; color:var(--text-muted); }
 footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0 10px; }
-.footer-disclaimer { margin-top:16px; font-size:12px; background:var(--primary-light); padding:12px; border-radius:8px; display:inline-block; max-width:800px; line-height:1.5; border:1px solid var(--border); }
+footer a:hover { text-decoration:underline; }
+.footer-disclaimer { margin-top:16px; font-size:12px; background:var(--primary-light); padding:16px 20px; border-radius:12px; display:inline-block; max-width:800px; line-height:1.6; border:1px solid var(--border); }
 
 #toast { visibility:hidden; min-width:250px; background:var(--text); color:var(--card-bg); text-align:center; border-radius:50px; padding:12px 24px; position:fixed; z-index:9999; left:50%; bottom:30px; transform:translateX(-50%); font-size:14px; font-weight:500; opacity:0; transition:opacity 0.3s,bottom 0.3s; }
 #toast.show { visibility:visible; opacity:1; bottom:50px; }
@@ -141,6 +184,11 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
 @media(max-width:768px) {
   .hero h1 { font-size:32px; }
   .tools-grid { grid-template-columns:1fr; }
+  .form-row { grid-template-columns:1fr; }
+  .ai-banner { padding:24px; }
+  .top-nav { padding:12px 16px; border-radius:50px; margin-bottom:20px; }
+  .brand-logo { font-size:18px; }
+  .country-select { padding:6px 12px; font-size:12px; }
 }
 </style>
 </head>
@@ -175,13 +223,13 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
     </div>
 
     <div class="category-tabs">
-      <button class="cat-tab active" onclick="filterCategory('all')"><i class="fas fa-layer-group"></i> All Tools</button>
-      <button class="cat-tab" onclick="filterCategory('cardio')"><i class="fas fa-heart-pulse"></i> Heart & Cardio</button>
-      <button class="cat-tab" onclick="filterCategory('fitness')"><i class="fas fa-dumbbell"></i> Body & Fitness</button>
-      <button class="cat-tab" onclick="filterCategory('nutrition')"><i class="fas fa-apple-whole"></i> Diet & Nutrition</button>
-      <button class="cat-tab" onclick="filterCategory('women')"><i class="fas fa-female"></i> Women's Health</button>
-      <button class="cat-tab" onclick="filterCategory('lifestyle')"><i class="fas fa-bed"></i> Sleep & Lifestyle</button>
-      <button class="cat-tab" onclick="filterCategory('advanced')"><i class="fas fa-microscope"></i> Advanced Health</button>
+      <button class="cat-tab active" onclick="filterCategory('all', this)"><i class="fas fa-layer-group"></i> All Tools</button>
+      <button class="cat-tab" onclick="filterCategory('cardio', this)"><i class="fas fa-heart-pulse"></i> Heart & Cardio</button>
+      <button class="cat-tab" onclick="filterCategory('fitness', this)"><i class="fas fa-dumbbell"></i> Body & Fitness</button>
+      <button class="cat-tab" onclick="filterCategory('nutrition', this)"><i class="fas fa-apple-whole"></i> Diet & Nutrition</button>
+      <button class="cat-tab" onclick="filterCategory('women', this)"><i class="fas fa-female"></i> Women's Health</button>
+      <button class="cat-tab" onclick="filterCategory('lifestyle', this)"><i class="fas fa-bed"></i> Sleep & Lifestyle</button>
+      <button class="cat-tab" onclick="filterCategory('advanced', this)"><i class="fas fa-microscope"></i> Advanced Health</button>
     </div>
   </header>
 
@@ -418,7 +466,9 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
 
   </main>
 
-  <!-- AI Assistant Banner -->
+  <!-- ==========================================
+       AI ASSISTANT BANNER - IMPROVED
+       ========================================== -->
   <section class="ai-banner">
     <div class="ai-banner-content">
       <h2><i class="fas fa-robot" style="color:var(--accent)"></i> HealthCalc Pro AI</h2>
@@ -432,12 +482,69 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
         </div>
         <div class="ai-chat-input-row">
           <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="E.g., How do I lower my ASCVD risk naturally?" onkeypress="if(event.key==='Enter')sendAIMessage()">
-          <button class="ai-chat-send-btn" onclick="sendAIMessage()" title="Send Message">
+          <button class="ai-chat-send-btn" id="aiSendBtn" onclick="sendAIMessage()" title="Send Message">
             <i class="fas fa-paper-plane"></i>
           </button>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ==========================================
+       REPORT FORM - NEW SECTION
+       ========================================== -->
+  <section class="report-section">
+    <h3><i class="fas fa-bug"></i> Report a Problem</h3>
+    <p>Found an issue? Let us know and we'll fix it promptly!</p>
+    
+    <form id="reportForm" class="report-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reportName">Full Name <span class="required">*</span></label>
+          <input type="text" id="reportName" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="reportEmail">Email <span class="required">*</span></label>
+          <input type="email" id="reportEmail" placeholder="your@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reportProblemType">Problem Type</label>
+          <select id="reportProblemType">
+            <option value="Bug">🐛 Bug / Error</option>
+            <option value="Calculator Issue">📊 Calculator Issue</option>
+            <option value="AI Response">🤖 AI Response Issue</option>
+            <option value="Design Issue">🎨 Design Issue</option>
+            <option value="Content Error">📝 Content Error</option>
+            <option value="Feature Request">💡 Feature Request</option>
+            <option value="Other">📌 Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="reportUrgency">Urgency</label>
+          <select id="reportUrgency">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🟠 High</option>
+            <option value="critical">🔴 Critical</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reportDescription">Description <span class="required">*</span></label>
+        <textarea id="reportDescription" rows="4" placeholder="Describe the problem in detail..." required></textarea>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
+        <button type="button" class="btn-secondary" onclick="captureScreenshot()"><i class="fas fa-camera"></i> Add Screenshot</button>
+        <button type="submit" class="btn-primary" id="reportSubmitBtn"><i class="fas fa-paper-plane"></i> Send Report</button>
+      </div>
+
+      <div id="reportStatus" class="status-message"></div>
+    </form>
   </section>
 
   <!-- Footer -->
@@ -448,7 +555,6 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
       <a href="contact.html">Contact Us</a> • 
       <a href="about.html">About Us</a> • 
       <a href="sitemap.xml">Sitemap</a>
-      <a href="report-problem.html"><i class="fas fa-bug"></i> Report Problem</a>
     </p>
     <p style="margin-top:16px;font-weight:600;">© 2026 HealthCalc.in — The Global Standard in Health Assessments.</p>
     <div class="footer-disclaimer">
@@ -459,86 +565,313 @@ footer a { color:var(--primary); text-decoration:none; font-weight:500; margin:0
 
 <div id="toast">Settings updated successfully!</div>
 
+<!-- ==========================================
+     JAVASCRIPT - COMPLETE
+     ========================================== -->
 <script>
-  const themeBtn = document.getElementById('themeToggleBtn');
-  const savedTheme = localStorage.getItem('hc_theme');
+// ============================================
+// THEME TOGGLE
+// ============================================
+const themeBtn = document.getElementById('themeToggleBtn');
+const savedTheme = localStorage.getItem('hc_theme');
+
+if (savedTheme === 'dark') {
+  document.body.classList.add('dark');
+  themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  localStorage.setItem('hc_theme', isDark ? 'dark' : 'light');
+  themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  showToast(isDark ? "Dark Mode Enabled" : "Light Mode Enabled");
+}
+
+// ============================================
+// COUNTRY SELECT
+// ============================================
+const countrySelect = document.getElementById('countrySelect');
+const savedCountry = localStorage.getItem('hc_country');
+if (savedCountry && countrySelect) countrySelect.value = savedCountry;
+if (countrySelect) {
+  countrySelect.addEventListener('change', (e) => {
+    localStorage.setItem('hc_country', e.target.value);
+    showToast(`Region updated to: ${e.target.options[e.target.selectedIndex].text.split(' ')[1]}`);
+  });
+}
+
+// ============================================
+// TOAST NOTIFICATION
+// ============================================
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.className = "show";
+  setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+}
+
+// ============================================
+// SEARCH & FILTER
+// ============================================
+function filterTools() {
+  let input = document.getElementById('toolSearch').value.toLowerCase();
+  let cards = document.querySelectorAll('.tool-card');
+  cards.forEach(card => {
+    let keywords = card.getAttribute('data-keywords').toLowerCase();
+    let title = card.querySelector('.tool-title').innerText.toLowerCase();
+    card.style.display = (keywords.includes(input) || title.includes(input)) ? 'flex' : 'none';
+  });
+}
+
+function filterCategory(cat, btn) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  let cards = document.querySelectorAll('.tool-card');
+  cards.forEach(card => {
+    card.style.display = (cat === 'all' || card.getAttribute('data-category') === cat) ? 'flex' : 'none';
+  });
+}
+
+// ============================================
+// AI CHAT SYSTEM - IMPROVED
+// ============================================
+let isAILoading = false;
+
+function addAIMessage(text, sender) {
+  const md = document.getElementById('aiChatMessages');
+  const msgDiv = document.createElement('div');
+  msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 
+                                      sender === 'error' ? 'ai-message-error' : 'ai-message-bot');
   
-  if (savedTheme === 'dark') {
-    document.body.classList.add('dark');
-    themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
-  }
+  // Format message with bold and line breaks
+  const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  msgDiv.innerHTML = formatted;
+  md.appendChild(msgDiv);
+  md.scrollTop = md.scrollHeight;
+}
 
-  function toggleTheme() {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    localStorage.setItem('hc_theme', isDark ? 'dark' : 'light');
-    themeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    showToast(isDark ? "Dark Mode Enabled" : "Light Mode Enabled");
-  }
+function addTypingIndicator() {
+  const md = document.getElementById('aiChatMessages');
+  const indicator = document.createElement('div');
+  indicator.id = 'typingIndicator';
+  indicator.className = 'ai-message ai-message-bot';
+  indicator.innerHTML = `
+    <div class="typing-indicator">
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+    </div>
+  `;
+  md.appendChild(indicator);
+  md.scrollTop = md.scrollHeight;
+}
 
-  const countrySelect = document.getElementById('countrySelect');
-  const savedCountry = localStorage.getItem('hc_country');
-  if (savedCountry && countrySelect) countrySelect.value = savedCountry;
-  if(countrySelect){
-      countrySelect.addEventListener('change',(e)=>{
-        localStorage.setItem('hc_country',e.target.value);
-        showToast(`Region updated to: ${e.target.options[e.target.selectedIndex].text.split(' ')[1]}`);
-      });
-  }
+function removeTypingIndicator() {
+  const indicator = document.getElementById('typingIndicator');
+  if (indicator) indicator.remove();
+}
 
-  function showToast(message) {
-    const toast = document.getElementById("toast");
-    toast.innerText = message;
-    toast.className = "show";
-    setTimeout(function(){ toast.className = toast.className.replace("show",""); },3000);
-  }
-
-  function filterTools() {
-    let input = document.getElementById('toolSearch').value.toLowerCase();
-    let cards = document.querySelectorAll('.tool-card');
-    cards.forEach(card => {
-      let keywords = card.getAttribute('data-keywords').toLowerCase();
-      let title = card.querySelector('.tool-title').innerText.toLowerCase();
-      card.style.display = (keywords.includes(input) || title.includes(input)) ? 'flex' : 'none';
+async function sendAIMessage() {
+  if (isAILoading) return;
+  
+  const input = document.getElementById('aiChatInput');
+  const message = input.value.trim();
+  if (!message) return;
+  
+  // Add user message
+  addAIMessage(message, 'user');
+  input.value = '';
+  
+  // Show typing indicator
+  isAILoading = true;
+  document.getElementById('aiSendBtn').disabled = true;
+  addTypingIndicator();
+  
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userMessage: message })
     });
-  }
-
-  function filterCategory(cat) {
-    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-    let cards = document.querySelectorAll('.tool-card');
-    cards.forEach(card => {
-      card.style.display = (cat === 'all' || card.getAttribute('data-category') === cat) ? 'flex' : 'none';
-    });
-  }
-
-  function addChatMessage(text, sender) {
-    var md = document.getElementById('aiChatMessages');
-    var msgDiv = document.createElement('div');
-    msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
-    msgDiv.innerHTML = text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
-    md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
-  }
-
-  async function sendAIMessage() {
-    var input = document.getElementById('aiChatInput');
-    var message = input.value.trim();
-    if(!message) return;
-    addChatMessage(message,'user');
-    input.value = '';
     
-    try {
-      var response = await fetch('https://bmi-calculator-web-github-com.vercel.app/api/chat',{
-        method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({userMessage:message})
-      });
-      var data = await response.json();
-      if(data.reply) addChatMessage(data.reply,'bot');
-      else throw new Error('Invalid response');
-    } catch(e) {
-      addChatMessage("🏥 <strong>Unable to connect to AI.</strong><br>Please try again later.<br><br>⚠️ <em>Consult a doctor for personal medical advice.</em>",'bot');
+    const data = await response.json();
+    removeTypingIndicator();
+    
+    if (data.reply) {
+      addAIMessage(data.reply, 'bot');
+    } else if (data.error) {
+      addAIMessage('⚠️ ' + data.error, 'error');
+    } else {
+      throw new Error('Invalid response');
+    }
+  } catch (error) {
+    removeTypingIndicator();
+    console.error('AI Chat Error:', error);
+    addAIMessage(
+      '🏥 **Unable to connect to AI.**\n\n' +
+      'Please try again later or use our free calculators for instant results.\n\n' +
+      '⚠️ *Consult a doctor for personal medical advice.*',
+      'error'
+    );
+  } finally {
+    isAILoading = false;
+    document.getElementById('aiSendBtn').disabled = false;
+    input.focus();
+  }
+}
+
+// ============================================
+// REPORT FORM - COMPLETE
+// ============================================
+let screenshotData = null;
+let isReporting = false;
+
+document.getElementById('reportForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  if (isReporting) return;
+  
+  const name = document.getElementById('reportName').value.trim();
+  const email = document.getElementById('reportEmail').value.trim();
+  const description = document.getElementById('reportDescription').value.trim();
+  const statusEl = document.getElementById('reportStatus');
+  
+  // Validation
+  if (!name || !email || !description) {
+    statusEl.className = 'status-message status-error';
+    statusEl.textContent = '❌ Please fill in all required fields.';
+    statusEl.style.display = 'block';
+    return;
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    statusEl.className = 'status-message status-error';
+    statusEl.textContent = '❌ Please enter a valid email address.';
+    statusEl.style.display = 'block';
+    return;
+  }
+  
+  isReporting = true;
+  const submitBtn = document.getElementById('reportSubmitBtn');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '⏳ Sending...';
+  
+  statusEl.className = 'status-message status-success';
+  statusEl.textContent = '⏳ Sending report...';
+  statusEl.style.display = 'block';
+  
+  const data = {
+    reportId: `RPT-${Date.now()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}`,
+    name: name,
+    email: email,
+    problemType: document.getElementById('reportProblemType').value,
+    urgency: document.getElementById('reportUrgency').value,
+    page: window.location.pathname,
+    description: description,
+    browser: navigator.userAgent,
+    screenSize: `${window.innerWidth}x${window.innerHeight}`,
+    country: await getCountry(),
+    screenshot: screenshotData
+  };
+  
+  try {
+    const response = await fetch('/api/report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      statusEl.className = 'status-message status-success';
+      statusEl.textContent = '✅ Report sent successfully! We\'ll review it shortly.';
+      this.reset();
+      screenshotData = null;
+      document.getElementById('reportName').focus();
+    } else {
+      statusEl.className = 'status-message status-error';
+      statusEl.textContent = '❌ ' + (result.error || 'Failed to send report.');
+    }
+  } catch (error) {
+    statusEl.className = 'status-message status-error';
+    statusEl.textContent = '❌ Network error. Please check your connection and try again.';
+  } finally {
+    isReporting = false;
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Report';
+  }
+});
+
+async function getCountry() {
+  try {
+    const response = await fetch('https://ipapi.co/country_name/');
+    if (response.ok) return await response.text();
+  } catch (e) {}
+  return 'Unknown';
+}
+
+function captureScreenshot() {
+  const statusEl = document.getElementById('reportStatus');
+  
+  // Check if html2canvas is available
+  if (typeof html2canvas !== 'undefined') {
+    html2canvas(document.body, {
+      scale: 0.5,
+      useCORS: true,
+      logging: false
+    }).then(canvas => {
+      screenshotData = canvas.toDataURL('image/png');
+      statusEl.className = 'status-message status-success';
+      statusEl.textContent = '📸 Screenshot captured! (Will be attached to report)';
+      statusEl.style.display = 'block';
+      setTimeout(() => { statusEl.style.display = 'none'; }, 4000);
+    }).catch(err => {
+      console.error('Screenshot error:', err);
+      statusEl.className = 'status-message status-warning';
+      statusEl.textContent = '⚠️ Could not capture screenshot. Please describe the issue in detail.';
+      statusEl.style.display = 'block';
+    });
+  } else {
+    // Load html2canvas dynamically
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+    script.onload = () => {
+      captureScreenshot();
+    };
+    script.onerror = () => {
+      statusEl.className = 'status-message status-warning';
+      statusEl.textContent = '⚠️ Screenshot library not loaded. Please describe the issue.';
+      statusEl.style.display = 'block';
+    };
+    document.head.appendChild(script);
+  }
+}
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', function(e) {
+  // Ctrl+K or Cmd+K to focus search
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('toolSearch').focus();
+  }
+  // Escape to clear search
+  if (e.key === 'Escape') {
+    const search = document.getElementById('toolSearch');
+    if (document.activeElement === search) {
+      search.value = '';
+      filterTools();
+      search.blur();
     }
   }
+});
+
+console.log('🚀 HealthCalc.in loaded successfully!');
+console.log('📊 30+ Evidence-Based Health Calculators');
+console.log('🤖 AI Health Assistant Ready');
 </script>
 </body>
 </html>
