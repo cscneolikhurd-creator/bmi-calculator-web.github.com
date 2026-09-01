@@ -679,17 +679,18 @@ async function sendAIMessage() {
   const message = input.value.trim();
   if (!message) return;
   
-  // Add user message
   addAIMessage(message, 'user');
   input.value = '';
   
-  // Show typing indicator
   isAILoading = true;
   document.getElementById('aiSendBtn').disabled = true;
   addTypingIndicator();
   
   try {
-    const response = await fetch('/api/chat', {
+    // ✅ ABSOLUTE URL USE KAREIN
+    const apiUrl = 'https://bmi-calculator-web-github-com.vercel.app/api/chat';
+    
+    const response = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userMessage: message })
