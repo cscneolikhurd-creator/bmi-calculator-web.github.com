@@ -1,6 +1,25 @@
 // ============================================
-// HEALTHCALC.IN - CHAT API (FINAL VERSION)
+// HEALTHCALC.IN - CHAT API (FULL DEBUG VERSION)
 // ============================================
+
+// ==========================================
+// CONFIGURATION
+// ==========================================
+const API_KEYS = [
+  process.env.GROQ_API_KEY,
+  process.env.GROQ_API_KEY_2,
+  process.env.GROQ_API_KEY_3,
+  process.env.GROQ_API_KEY_4,
+  process.env.GROQ_API_KEY_5
+].filter(key => key && key.trim() !== '');
+
+// Log loaded keys (safely - only first 10 chars)
+console.log(`🔑 Loaded ${API_KEYS.length} API keys`);
+API_KEYS.forEach((key, index) => {
+  const first10 = key.substring(0, 10);
+  const last5 = key.substring(key.length - 5);
+  console.log(`🔑 Key ${index + 1}: ${first10}...${last5}`);
+});
 
 // ==========================================
 // CACHE FOR REPEATED QUESTIONS
@@ -30,39 +49,6 @@ function setCachedResponse(message, response) {
 }
 
 // ==========================================
-// RATE LIMIT TRACKING PER KEY
-// ==========================================
-const keyUsage = new Map();
-
-function trackKeyUsage(keyIndex) {
-  const now = Date.now();
-  const key = `key_${keyIndex}`;
-  if (!keyUsage.has(key)) {
-    keyUsage.set(key, []);
-  }
-  const timestamps = keyUsage.get(key);
-  timestamps.push(now);
-  // Keep only last 1 minute
-  const oneMinuteAgo = now - 60000;
-  const recent = timestamps.filter(t => t > oneMinuteAgo);
-  keyUsage.set(key, recent);
-  return recent.length;
-}
-
-// ==========================================
-// MULTIPLE API KEYS CONFIGURATION
-// ==========================================
-const API_KEYS = [
-  process.env.GROQ_API_KEY,
-  process.env.GROQ_API_KEY_2,
-  process.env.GROQ_API_KEY_3,
-  process.env.GROQ_API_KEY_4,
-  process.env.GROQ_API_KEY_5
-].filter(key => key && key.trim() !== '');
-
-console.log(`🔑 Loaded ${API_KEYS.length} API keys`);
-
-// ==========================================
 // GROQ API CALL WITH RETRY & ROTATION
 // ==========================================
 async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
@@ -75,21 +61,10 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
   const currentKey = API_KEYS[retryCount];
   console.log(`🔑 Trying API Key ${retryCount + 1}/${API_KEYS.length}`);
   
-  // Track usage for this key
-  const usageCount = trackKeyUsage(retryCount);
-  console.log(`📊 Key ${retryCount + 1} usage: ${usageCount}/30 per minute`);
-  
-  // Agar key already rate limited hai toh skip karein
-  if (usageCount >= 25) { // 25 requests per minute, 30 limit hai
-    console.log(`⏳ Key ${retryCount + 1} near limit, trying next...`);
-    return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
-  }
-
-  // Timeout controller - 10 seconds
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 10000);
-
   try {
+    console.log(`📤 Sending request to Groq API...`);
+    console.log(`📝 Message: "${userMessage.substring(0, 50)}..."`);
+    
     const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -105,11 +80,24 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
         temperature: 0.7,
         max_tokens: 800,
         top_p: 0.95
-      }),
-      signal: controller.signal
+      })
     });
 
-    clearTimeout(timeoutId);
+    console.log(`📥 Response status: ${groqResponse.status}`);
+
+    // ⭐ DEBUG: Log full response for errors
+    if (!groqResponse.ok) {
+      const errorText = await groqResponse.text();
+      console.log(`❌ Error response body: ${errorText}`);
+      
+      // Parse error if JSON
+      try {
+        const errorJson = JSON.parse(errorText);
+        console.log(`❌ Error details:`, errorJson);
+      } catch (e) {
+        // Not JSON, continue
+      }
+    }
 
     // ⭐ RATE LIMIT DETECTED (429)
     if (groqResponse.status === 429) {
@@ -123,9 +111,15 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
-    // ⭐ UNAUTHORIZED (401) - Invalid key, skip
+    // ⭐ UNAUTHORIZED (401) - Invalid key
     if (groqResponse.status === 401) {
       console.log(`❌ Invalid API Key ${retryCount + 1}, skipping...`);
+      return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
+    }
+
+    // ⭐ FORBIDDEN (403) - Key doesn't have access
+    if (groqResponse.status === 403) {
+      console.log(`❌ Forbidden - Key ${retryCount + 1} doesn't have access, skipping...`);
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
@@ -137,21 +131,19 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
       if (reply) {
         console.log(`✅ Success with Key ${retryCount + 1}`);
         return reply;
+      } else {
+        console.log(`⚠️ Empty reply from Key ${retryCount + 1}`);
+        return null;
       }
     }
 
-    // Koi aur error (400, 403, etc.)
+    // Koi aur error (400, 404, etc.)
     console.log(`❌ Error ${groqResponse.status} with Key ${retryCount + 1}`);
     return null;
     
   } catch (error) {
-    clearTimeout(timeoutId);
-    if (error.name === 'AbortError') {
-      console.log(`⏰ Timeout on Key ${retryCount + 1}, trying next...`);
-    } else {
-      console.error(`💥 Network error on Key ${retryCount + 1}:`, error.message);
-    }
-    // Network error - next key try karo
+    console.error(`💥 Network error on Key ${retryCount + 1}:`, error.message);
+    console.error(`💥 Error stack:`, error.stack);
     return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
   }
 }
@@ -182,11 +174,14 @@ export default async function handler(req, res) {
     return res.status(400).json({ reply: "❌ Please send a message." });
   }
 
+  console.log(`🚀 Processing request: "${userMessage.substring(0, 50)}..."`);
+
   // ==========================================
   // CHECK CACHE FIRST
   // ==========================================
   const cachedResponse = getCachedResponse(userMessage);
   if (cachedResponse) {
+    console.log('📦 Returning cached response');
     return res.status(200).json({
       reply: cachedResponse,
       model: 'cache',
@@ -230,12 +225,12 @@ RULES TO FOLLOW:
   // TRY GROQ API WITH RETRY
   // ==========================================
   try {
-    console.log(`🚀 Processing request: "${userMessage.substring(0, 50)}..."`);
     const reply = await callGroqWithRetry(userMessage, systemPrompt);
     
     if (reply) {
       // Cache the response
       setCachedResponse(userMessage, reply);
+      console.log('✅ Returning AI response');
       return res.status(200).json({
         reply: reply,
         model: 'groq',
@@ -244,6 +239,7 @@ RULES TO FOLLOW:
     }
   } catch (error) {
     console.error('💥 Unexpected error:', error.message);
+    console.error('💥 Stack:', error.stack);
   }
 
   // ==========================================
