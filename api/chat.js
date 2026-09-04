@@ -1,5 +1,5 @@
 // ============================================
-// HEALTHCALC.IN - CHAT API (FULL DEBUG VERSION)
+// HEALTHCALC.IN - CHAT API (WITH TEST ENDPOINT)
 // ============================================
 
 // ==========================================
@@ -13,7 +13,6 @@ const API_KEYS = [
   process.env.GROQ_API_KEY_5
 ].filter(key => key && key.trim() !== '');
 
-// Log loaded keys (safely - only first 10 chars)
 console.log(`🔑 Loaded ${API_KEYS.length} API keys`);
 API_KEYS.forEach((key, index) => {
   const first10 = key.substring(0, 10);
@@ -22,10 +21,10 @@ API_KEYS.forEach((key, index) => {
 });
 
 // ==========================================
-// CACHE FOR REPEATED QUESTIONS
+// CACHE
 // ==========================================
 const responseCache = new Map();
-const CACHE_TTL = 3600000; // 1 hour
+const CACHE_TTL = 3600000;
 
 function getCachedResponse(message) {
   const key = message.toLowerCase().trim();
@@ -49,10 +48,69 @@ function setCachedResponse(message, response) {
 }
 
 // ==========================================
+// TEST ENDPOINT
+// ==========================================
+export async function test(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Only GET allowed' });
+  }
+
+  console.log('🧪 Running API key test...');
+  
+  const results = [];
+  
+  for (let i = 0; i < API_KEYS.length; i++) {
+    const key = API_KEYS[i];
+    const keyPreview = key.substring(0, 10) + '...' + key.substring(key.length - 5);
+    
+    try {
+      console.log(`🧪 Testing Key ${i + 1}: ${keyPreview}`);
+      
+      const response = await fetch('https://api.groq.com/openai/v1/models', {
+        headers: {
+          'Authorization': `Bearer ${key}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      const result = {
+        key: keyPreview,
+        index: i + 1,
+        status: response.status,
+        ok: response.ok
+      };
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        result.error = errorText.substring(0, 200);
+      }
+      
+      results.push(result);
+      console.log(`🧪 Key ${i + 1} result: ${response.status} ${response.ok ? '✅' : '❌'}`);
+      
+    } catch (error) {
+      results.push({
+        key: keyPreview,
+        index: i + 1,
+        status: 'error',
+        ok: false,
+        error: error.message
+      });
+      console.error(`🧪 Key ${i + 1} error:`, error.message);
+    }
+  }
+  
+  return res.status(200).json({
+    totalKeys: API_KEYS.length,
+    timestamp: new Date().toISOString(),
+    results: results
+  });
+}
+
+// ==========================================
 // GROQ API CALL WITH RETRY & ROTATION
 // ==========================================
 async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
-  // Agar saari keys try kar li hain toh fail
   if (retryCount >= API_KEYS.length) {
     console.log('❌ All API keys exhausted');
     return null;
@@ -63,7 +121,6 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
   
   try {
     console.log(`📤 Sending request to Groq API...`);
-    console.log(`📝 Message: "${userMessage.substring(0, 50)}..."`);
     
     const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -85,45 +142,26 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
 
     console.log(`📥 Response status: ${groqResponse.status}`);
 
-    // ⭐ DEBUG: Log full response for errors
     if (!groqResponse.ok) {
       const errorText = await groqResponse.text();
-      console.log(`❌ Error response body: ${errorText}`);
-      
-      // Parse error if JSON
-      try {
-        const errorJson = JSON.parse(errorText);
-        console.log(`❌ Error details:`, errorJson);
-      } catch (e) {
-        // Not JSON, continue
-      }
+      console.log(`❌ Error response: ${errorText.substring(0, 200)}`);
     }
 
-    // ⭐ RATE LIMIT DETECTED (429)
     if (groqResponse.status === 429) {
-      console.log(`⏳ Rate limit hit on Key ${retryCount + 1}, trying next key...`);
+      console.log(`⏳ Rate limit hit on Key ${retryCount + 1}`);
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
-    // ⭐ SERVER ERROR (5xx) - Retry with next key
     if (groqResponse.status >= 500) {
-      console.log(`⚠️ Server error ${groqResponse.status} on Key ${retryCount + 1}, trying next...`);
+      console.log(`⚠️ Server error ${groqResponse.status} on Key ${retryCount + 1}`);
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
-    // ⭐ UNAUTHORIZED (401) - Invalid key
-    if (groqResponse.status === 401) {
-      console.log(`❌ Invalid API Key ${retryCount + 1}, skipping...`);
+    if (groqResponse.status === 401 || groqResponse.status === 403) {
+      console.log(`❌ Auth error ${groqResponse.status} on Key ${retryCount + 1}, skipping...`);
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
-    // ⭐ FORBIDDEN (403) - Key doesn't have access
-    if (groqResponse.status === 403) {
-      console.log(`❌ Forbidden - Key ${retryCount + 1} doesn't have access, skipping...`);
-      return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
-    }
-
-    // ⭐ SUCCESS
     if (groqResponse.ok) {
       const data = await groqResponse.json();
       const reply = data.choices?.[0]?.message?.content;
@@ -131,19 +169,14 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
       if (reply) {
         console.log(`✅ Success with Key ${retryCount + 1}`);
         return reply;
-      } else {
-        console.log(`⚠️ Empty reply from Key ${retryCount + 1}`);
-        return null;
       }
     }
 
-    // Koi aur error (400, 404, etc.)
     console.log(`❌ Error ${groqResponse.status} with Key ${retryCount + 1}`);
     return null;
     
   } catch (error) {
     console.error(`💥 Network error on Key ${retryCount + 1}:`, error.message);
-    console.error(`💥 Error stack:`, error.stack);
     return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
   }
 }
@@ -152,9 +185,7 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
 // MAIN HANDLER
 // ============================================
 export default async function handler(req, res) {
-  // ==========================================
-  // CORS HEADERS - SABSE PEHLE
-  // ==========================================
+  // CORS HEADERS
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -162,6 +193,11 @@ export default async function handler(req, res) {
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  // ⭐ Handle test endpoint
+  if (req.method === 'GET' && req.url === '/api/chat/test') {
+    return test(req, res);
   }
 
   if (req.method !== 'POST') {
@@ -174,11 +210,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ reply: "❌ Please send a message." });
   }
 
-  console.log(`🚀 Processing request: "${userMessage.substring(0, 50)}..."`);
+  console.log(`🚀 Processing: "${userMessage.substring(0, 50)}..."`);
 
-  // ==========================================
-  // CHECK CACHE FIRST
-  // ==========================================
+  // Check cache
   const cachedResponse = getCachedResponse(userMessage);
   if (cachedResponse) {
     console.log('📦 Returning cached response');
@@ -189,9 +223,6 @@ export default async function handler(req, res) {
     });
   }
 
-  // ==========================================
-  // SYSTEM PROMPT
-  // ==========================================
   const systemPrompt = `You are HealthCalc AI, an expert medical assistant...
 
 RULES TO FOLLOW:
@@ -206,11 +237,8 @@ RULES TO FOLLOW:
 9. If you don't know something, be honest
 10. Mention HealthCalc.in's 30+ free calculators`;
 
-  // ==========================================
-  // CHECK API KEYS
-  // ==========================================
   if (API_KEYS.length === 0) {
-    console.log('⚪ No API keys found, using fallback');
+    console.log('⚪ No API keys found');
     const fallbackReply = getStaticResponse(userMessage);
     setCachedResponse(userMessage, fallbackReply);
     return res.status(200).json({
@@ -221,14 +249,10 @@ RULES TO FOLLOW:
     });
   }
 
-  // ==========================================
-  // TRY GROQ API WITH RETRY
-  // ==========================================
   try {
     const reply = await callGroqWithRetry(userMessage, systemPrompt);
     
     if (reply) {
-      // Cache the response
       setCachedResponse(userMessage, reply);
       console.log('✅ Returning AI response');
       return res.status(200).json({
@@ -239,12 +263,8 @@ RULES TO FOLLOW:
     }
   } catch (error) {
     console.error('💥 Unexpected error:', error.message);
-    console.error('💥 Stack:', error.stack);
   }
 
-  // ==========================================
-  // FALLBACK - Jab sab fail ho jaye
-  // ==========================================
   console.log('⚪ Using fallback response');
   const fallbackReply = getStaticResponse(userMessage);
   setCachedResponse(userMessage, fallbackReply);
@@ -252,19 +272,16 @@ RULES TO FOLLOW:
     reply: fallbackReply,
     model: 'offline',
     status: 'fallback',
-    reason: 'All API keys failed or rate limited'
+    reason: 'All API keys failed'
   });
 }
 
 // ============================================
-// STATIC FALLBACK RESPONSES (ENHANCED)
+// STATIC FALLBACK RESPONSES
 // ============================================
 function getStaticResponse(message) {
   const msg = message.toLowerCase();
 
-  // ==========================================
-  // BMI RELATED
-  // ==========================================
   if (msg.includes('bmi') || msg.includes('body mass') || (msg.includes('weight') && msg.includes('height'))) {
     return `📊 **About BMI (Body Mass Index)**
 
@@ -273,221 +290,12 @@ function getStaticResponse(message) {
 • **Underweight:** Below 18.5
 • **Overweight:** 25 - 29.9
 • **Obese:** 30 and above
-• **Waist circumference matters too!**
 
 💡 **Use our free BMI Calculator:** healthcalc.in/bmi-calculator.html
 
 ⚠️ Consult a healthcare professional for personalized medical advice.`;
   }
 
-  // ==========================================
-  // WEIGHT LOSS / DIET
-  // ==========================================
-  if (msg.includes('weight loss') || msg.includes('diet') || msg.includes('calorie') || msg.includes('fat') || msg.includes('keto')) {
-    return `🥗 **Healthy Weight Loss Guide**
-
-**Safe Rate:** 0.5-1 kg (1-2 lbs) per week
-
-**Calorie Basics:**
-• Create 500 kcal daily deficit for ~0.5 kg/week loss
-• Never go below 1200 kcal (women) / 1500 kcal (men)
-
-**Key Tips:**
-• Eat more protein and fiber
-• Stay hydrated (2-3L water daily)
-• Sleep 7-9 hours
-• Exercise 150 min/week
-
-**Free Tools at HealthCalc.in:**
-• Calorie Deficit Calculator: healthcalc.in/calorie-deficit.html
-• Macro Calculator: healthcalc.in/macro-calculator.html
-• Keto Calculator: healthcalc.in/keto-calculator.html
-
-⚠️ Consult a healthcare professional for personalized medical advice.`;
-  }
-
-  // ==========================================
-  // HEART / ASCVD
-  // ==========================================
-  if (msg.includes('heart') || msg.includes('ascvd') || msg.includes('cardiovascular') || msg.includes('stroke') || msg.includes('blood pressure')) {
-    return `❤️ **Heart Health & ASCVD Risk**
-
-**ASCVD = Atherosclerotic Cardiovascular Disease**
-
-**Risk Factors:**
-• Age & Gender
-• Blood Pressure
-• Cholesterol levels
-• Smoking status
-• Diabetes
-• BMI
-
-**Prevention:**
-• Healthy diet
-• Regular exercise
-• No smoking
-• Stress management
-• Regular checkups
-
-💡 **Calculate your risk:** healthcalc.in/ascvd-calculator.html
-
-⚠️ Consult a healthcare professional for personalized medical advice.`;
-  }
-
-  // ==========================================
-  // PREGNANCY
-  // ==========================================
-  if (msg.includes('pregnancy') || msg.includes('due date') || msg.includes('conception') || msg.includes('ovulation') || msg.includes('menstrual')) {
-    return `🤰 **Pregnancy & Due Date Information**
-
-**Pregnancy Duration:** ~40 weeks (280 days)
-
-**Key Milestones:**
-• First Trimester: Weeks 1-13
-• Second Trimester: Weeks 14-27
-• Third Trimester: Weeks 28-40
-
-**Important:**
-• Regular prenatal checkups
-• Folic acid (400-800 mcg daily)
-• Avoid alcohol, smoking
-• Healthy nutrition
-
-**Free Tools:**
-• Due Date Calculator: healthcalc.in/pregnancy-calculator.html
-• Ovulation Calculator: healthcalc.in/ovulation-calculator.html
-
-⚠️ Consult a healthcare professional for personalized medical advice.`;
-  }
-
-  // ==========================================
-  // SLEEP
-  // ==========================================
-  if (msg.includes('sleep') || msg.includes('insomnia') || msg.includes('rest') || msg.includes('circadian')) {
-    return `😴 **Healthy Sleep Guide**
-
-**Recommended Sleep by Age:**
-• Adults (18-60): 7-9 hours
-• Older adults (61+): 7-8 hours
-• Teens (14-17): 8-10 hours
-• Children (6-13): 9-11 hours
-
-**Sleep Tips:**
-• Consistent schedule
-• Dark, cool room (18-22°C)
-• No screens 1 hour before bed
-• Avoid caffeine after 2 PM
-• Exercise daily
-
-**Free Tools:**
-• Sleep Cycle Calculator: healthcalc.in/sleep-cycle-calculator.html
-• Circadian Rhythm: healthcalc.in/circadian-rhythm-calculator.html
-
-⚠️ Consult a healthcare professional for personalized medical advice.`;
-  }
-
-  // ==========================================
-  // WORKOUT / EXERCISE
-  // ==========================================
-  if (msg.includes('workout') || msg.includes('exercise') || msg.includes('gym') || msg.includes('fitness') || msg.includes('vo2')) {
-    return `💪 **Fitness & Exercise Guide**
-
-**Cardio Guidelines:**
-• 150 min moderate OR 75 min vigorous per week
-• Include strength training 2x per week
-
-**Key Metrics:**
-• VO2 Max: Measure of aerobic fitness
-• MET: Metabolic Equivalent of Task
-• Target Heart Rate: 50-85% of max
-
-**Free Tools:**
-• VO2 Max Calculator: healthcalc.in/vo2max-calculator.html
-• MET Calculator: healthcalc.in/met-calculator.html
-• Heart Rate Calculator: healthcalc.in/heart-rate-calculator.html
-
-⚠️ Consult a healthcare professional before starting any exercise program.`;
-  }
-
-  // ==========================================
-  // HYDRATION / WATER
-  // ==========================================
-  if (msg.includes('water') || msg.includes('hydration') || msg.includes('drink')) {
-    return `💧 **Hydration Guide**
-
-**Daily Water Intake:**
-• Men: ~3.7 liters (15.5 cups)
-• Women: ~2.7 liters (11.5 cups)
-• Increase if active or in hot weather
-
-**Signs of Dehydration:**
-• Dark urine
-• Dry mouth
-• Fatigue
-• Headache
-• Dizziness
-
-**Tips:**
-• Drink water throughout the day
-• Eat water-rich foods (fruits, vegetables)
-• Monitor urine color
-
-💡 **Water Intake Calculator:** healthcalc.in/water-intake-calculator.html
-
-⚠️ Consult a healthcare professional for personalized medical advice.`;
-  }
-
-  // ==========================================
-  // BODY FAT / COMPOSITION
-  // ==========================================
-  if (msg.includes('body fat') || msg.includes('body composition') || msg.includes('ffmi') || msg.includes('body shape')) {
-    return `📏 **Body Composition Guide**
-
-**Key Metrics:**
-• Body Fat Percentage: Essential vs. Storage fat
-• FFMI (Fat-Free Mass Index): Muscle mass indicator
-• Waist-to-Hip Ratio: Health risk indicator
-
-**Healthy Ranges:**
-• Men: 6-24% body fat
-• Women: 16-30% body fat
-
-**Free Tools:**
-• Body Fat Calculator: healthcalc.in/body-fat-calculator.html
-• FFMI Calculator: healthcalc.in/ffmi-calculator.html
-• WHR Calculator: healthcalc.in/whr-calculator.html
-
-⚠️ Consult a healthcare professional for personalized medical advice.`;
-  }
-
-  // ==========================================
-  // GREETINGS / GENERAL
-  // ==========================================
-  if (msg.includes('hi') || msg.includes('hello') || msg.includes('hey') || msg.includes('namaste') || msg.includes('good morning') || msg.includes('good evening')) {
-    return `👋 **Hello! Welcome to HealthCalc AI!**
-
-I'm currently experiencing high traffic. But don't worry - you can still:
-
-📊 **Use Our 30+ Free Health Calculators:**
-• ❤️ Heart Risk (ASCVD) Calculator
-• ⚖️ BMI Calculator
-• 🤰 Pregnancy Due Date Calculator
-• 🥑 Keto Macro Calculator
-• 🔥 Calorie Deficit Calculator
-• 😴 Sleep Cycle Calculator
-• 🏃 Calorie Burn Calculator
-• 💪 One Rep Max Calculator
-• 💧 Water Intake Calculator
-• 📏 Body Fat Calculator
-
-💡 **Tip:** Try again in 1-2 minutes for AI responses!
-
-⚠️ Consult a healthcare professional for personalized medical advice.`;
-  }
-
-  // ==========================================
-  // DEFAULT FALLBACK
-  // ==========================================
   return `👋 **Welcome to HealthCalc AI!**
 
 I'm currently in high traffic mode. Please try again in a moment.
@@ -499,12 +307,6 @@ I'm currently in high traffic mode. Please try again in a moment.
 • 🥑 Keto Macro Calculator
 • 🔥 Calorie Deficit Calculator
 • 😴 Sleep Cycle Calculator
-• 🏃 Calorie Burn Calculator
-• 💪 One Rep Max Calculator
-• 🩺 Blood Pressure Guide
-• 📊 Body Fat Calculator
-• 💧 Water Intake Calculator
-• 📏 WHR Calculator
 
 ⚠️ Consult a healthcare professional for personalized medical advice.`;
 }
