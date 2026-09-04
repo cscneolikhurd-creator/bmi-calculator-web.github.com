@@ -4,7 +4,8 @@
   "description": "HealthCalc API with AI chat and report email",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "node index.js"
   },
   "dependencies": {
     "nodemailer": "^6.9.7"
