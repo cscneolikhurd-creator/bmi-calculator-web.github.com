@@ -1,9 +1,9 @@
 // ============================================
-// HEALTHCALC.IN - CHAT API (WITH TEST ENDPOINT)
+// HEALTHCALC.IN - CHAT API (FIXED VERSION)
 // ============================================
 
 // ==========================================
-// CONFIGURATION
+// CONFIGURATION - WITH VALIDATION
 // ==========================================
 const API_KEYS = [
   process.env.GROQ_API_KEY,
@@ -11,13 +11,21 @@ const API_KEYS = [
   process.env.GROQ_API_KEY_3,
   process.env.GROQ_API_KEY_4,
   process.env.GROQ_API_KEY_5
-].filter(key => key && key.trim() !== '');
+]
+.filter(key => {
+  // Check if key exists and is valid format
+  if (!key || typeof key !== 'string') return false;
+  const trimmed = key.trim();
+  // Groq keys start with 'gsk_' and are at least 20 chars
+  return trimmed.startsWith('gsk_') && trimmed.length > 20;
+})
+.map(key => key.trim()); // Remove any extra spaces
 
-console.log(`🔑 Loaded ${API_KEYS.length} API keys`);
+console.log(`🔑 Loaded ${API_KEYS.length} valid API keys`);
 API_KEYS.forEach((key, index) => {
   const first10 = key.substring(0, 10);
   const last5 = key.substring(key.length - 5);
-  console.log(`🔑 Key ${index + 1}: ${first10}...${last5}`);
+  console.log(`🔑 Key ${index + 1}: ${first10}...${last5} (length: ${key.length})`);
 });
 
 // ==========================================
@@ -59,6 +67,14 @@ export async function test(req, res) {
   
   const results = [];
   
+  if (API_KEYS.length === 0) {
+    return res.status(200).json({
+      totalKeys: 0,
+      error: 'No valid API keys found. Please check environment variables.',
+      timestamp: new Date().toISOString()
+    });
+  }
+  
   for (let i = 0; i < API_KEYS.length; i++) {
     const key = API_KEYS[i];
     const keyPreview = key.substring(0, 10) + '...' + key.substring(key.length - 5);
@@ -75,6 +91,7 @@ export async function test(req, res) {
       
       const result = {
         key: keyPreview,
+        keyLength: key.length,
         index: i + 1,
         status: response.status,
         ok: response.ok
@@ -91,6 +108,7 @@ export async function test(req, res) {
     } catch (error) {
       results.push({
         key: keyPreview,
+        keyLength: key.length,
         index: i + 1,
         status: 'error',
         ok: false,
@@ -142,26 +160,25 @@ async function callGroqWithRetry(userMessage, systemPrompt, retryCount = 0) {
 
     console.log(`📥 Response status: ${groqResponse.status}`);
 
-    if (!groqResponse.ok) {
-      const errorText = await groqResponse.text();
-      console.log(`❌ Error response: ${errorText.substring(0, 200)}`);
-    }
-
+    // ⭐ RATE LIMIT
     if (groqResponse.status === 429) {
       console.log(`⏳ Rate limit hit on Key ${retryCount + 1}`);
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
+    // ⭐ SERVER ERROR
     if (groqResponse.status >= 500) {
       console.log(`⚠️ Server error ${groqResponse.status} on Key ${retryCount + 1}`);
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
+    // ⭐ AUTH ERROR
     if (groqResponse.status === 401 || groqResponse.status === 403) {
       console.log(`❌ Auth error ${groqResponse.status} on Key ${retryCount + 1}, skipping...`);
       return callGroqWithRetry(userMessage, systemPrompt, retryCount + 1);
     }
 
+    // ⭐ SUCCESS
     if (groqResponse.ok) {
       const data = await groqResponse.json();
       const reply = data.choices?.[0]?.message?.content;
@@ -238,14 +255,14 @@ RULES TO FOLLOW:
 10. Mention HealthCalc.in's 30+ free calculators`;
 
   if (API_KEYS.length === 0) {
-    console.log('⚪ No API keys found');
+    console.log('⚪ No valid API keys found');
     const fallbackReply = getStaticResponse(userMessage);
     setCachedResponse(userMessage, fallbackReply);
     return res.status(200).json({
       reply: fallbackReply,
       model: 'offline',
       status: 'fallback',
-      reason: 'No API keys configured'
+      reason: 'No valid API keys configured'
     });
   }
 
