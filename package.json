@@ -1,16 +1,8 @@
 {
-  "name": "healthcalc-api",
+  "name": "healthcalc",
   "version": "1.0.0",
-  "description": "HealthCalc API with AI chat and report email",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js"
-  },
-  "dependencies": {
-    "nodemailer": "^6.9.7"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "vercel-build": "echo 'Build complete'"
   }
 }
