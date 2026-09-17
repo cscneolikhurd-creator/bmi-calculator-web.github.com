@@ -1,14 +1,11 @@
 {
   "version": 2,
+  "buildCommand": "echo 'Static site'",
+  "installCommand": "echo 'No install'",
+  "outputDirectory": ".",
   "functions": {
     "api/*.js": {
       "maxDuration": 10
     }
-  },
-  "rewrites": [
-    {
-      "source": "/api/chat",
-      "destination": "/api/chat.js"
-    }
-  ]
+  }
 }
