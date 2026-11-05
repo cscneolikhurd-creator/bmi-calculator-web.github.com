@@ -1,15 +1,15 @@
 # ============================================
 # ROBOTS.TXT for HealthCalc.in
-# Last Updated: 2026-08-12
-# Total Tools: 30+ Health Calculators
-# International: USA, UK, Canada, Australia, India
+# Last Updated: 2026-11-05
+# Total Tools: 37 Health Calculators
+# Total Pages: 43 (37 tools + 6 static pages)
+# Languages: English (primary)
 # AI Chat: Available on all calculator pages
 # ============================================
 
-# Allow all crawlers full access
+# Allow all crawlers full access to public content
 User-agent: *
 Allow: /
-Crawl-delay: 1
 
 # ============================================
 # SITEMAP LOCATION
@@ -17,150 +17,54 @@ Crawl-delay: 1
 Sitemap: https://healthcalc.in/sitemap.xml
 
 # ============================================
-# HOME PAGE
-# ============================================
-Allow: /index.html
-Allow: /
-
-# ============================================
-# HEART & CARDIOVASCULAR (4 Tools)
-# ============================================
-Allow: /ascvd-risk-calculator.html
-Allow: /heart-risk-calculator.html
-Allow: /vascular-age-calculator.html
-Allow: /heart-rate-calculator.html
-
-# ============================================
-# BODY COMPOSITION & FITNESS (12 Tools)
-# ============================================
-Allow: /bmi-calculator.html
-Allow: /body-fat-calculator.html
-Allow: /army-body-fat.html
-Allow: /body-shape-analyzer.html
-Allow: /whr-calculator.html
-Allow: /ponderal-index.html
-Allow: /ideal-weight-calculator.html
-Allow: /ffmi-calculator.html
-Allow: /vo2max-calculator.html
-Allow: /met-calculator.html
-Allow: /metabolic-age.html
-Allow: /weight-gain-calculator.html
-
-# ============================================
-# DIET & NUTRITION (7 Tools)
-# ============================================
-Allow: /calorie-calculator.html
-Allow: /calorie-deficit.html
-Allow: /macro-calculator.html
-Allow: /keto-calculator.html
-Allow: /carb-cycling.html
-Allow: /dri-calculator.html
-Allow: /water-intake-calculator.html
-
-# ============================================
-# WOMEN'S HEALTH (6 Tools)
-# ============================================
-Allow: /pregnancy-calculator.html
-Allow: /conception-date.html
-Allow: /ovulation-calculator.html
-Allow: /period-tracker.html
-Allow: /menstrual-cycle-calculator.html
-Allow: /hormone-health-calculator.html
-
-# ============================================
-# SLEEP & LIFESTYLE (4 Tools)
-# ============================================
-Allow: /bac-calculator.html
-Allow: /sleep-cycle-calculator.html
-Allow: /sleep-debt-calculator.html
-Allow: /circadian-rhythm-calculator.html
-
-# ============================================
-# ADVANCED HEALTH (4 Tools)
-# ============================================
-Allow: /gut-microbiome-calculator.html
-Allow: /inflammation-score-calculator.html
-Allow: /life-expectancy-calculator.html
-Allow: /medication-half-life-tracker.html
-Allow: /report-problem.html
-
-# ============================================
-# STATIC PAGES (5 Pages)
-# ============================================
-Allow: /about.html
-Allow: /contact.html
-Allow: /privacy-policy.html
-Allow: /terms-of-service.html
-Allow: /sitemap.xml
-
-# ============================================
-# AI CHAT API ENDPOINT
-# ============================================
-# Allow: /api/chat
-# Allow: /api/
-
-# ============================================
-# MULTILINGUAL PAGES
-# ============================================
-Allow: /hi/
-
-# ============================================
-# ASSETS & MEDIA — ALLOW
-# ============================================
-Allow: /global.js
-Allow: /global.css
-Allow: /style.css
-Allow: /script.js
-Allow: /assets/
-Allow: /images/
-Allow: /favicon.ico
-Allow: /favicon-32x32.png
-Allow: /apple-touch-icon.png
-
-# ============================================
-# GOOGLE VERIFICATION
-# ============================================
-Allow: /google0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo.html
-
-# ============================================
-# DISALLOW RULES (prevent duplicate content)
+# DISALLOW RULES (prevent crawling of non-content)
 # ============================================
 
-# URL parameters that create duplicate content
-Disallow: /*?utm_source=*
-Disallow: /*?utm_medium=*
-Disallow: /*?utm_campaign=*
-Disallow: /*?fbclid=*
-Disallow: /*?ref=*
-Disallow: /*?gclid=*
-Disallow: /*?msclkid=*
-Disallow: /*?lang=*
-Disallow: /*?print=*
+# URL parameters that create duplicate content (tracking)
+Disallow: /*?utm_source=
+Disallow: /*?utm_medium=
+Disallow: /*?utm_campaign=
+Disallow: /*?utm_term=
+Disallow: /*?utm_content=
+Disallow: /*?fbclid=
+Disallow: /*?ref=
+Disallow: /*?gclid=
+Disallow: /*?msclkid=
+Disallow: /*?lang=
+Disallow: /*?print=
+
+# API endpoints (server-side only, not for crawling)
+Disallow: /api/
 
 # Temporary/backup files
 Disallow: /*.tmp$
 Disallow: /*.temp$
 Disallow: /*.bak$
 Disallow: /*.old$
+Disallow: /*.log$
 
-# Server files
+# Server & dev files
 Disallow: /cgi-bin/
-Disallow: /wp-admin/
 Disallow: /.git/
 Disallow: /.github/
 Disallow: /node_modules/
+Disallow: /.env
+
+# ============================================
+# EXPLICIT ALLOW (for priority pages if needed)
+# ============================================
+# Homepage (highest priority)
+Allow: /$
 
 # ============================================
 # SEO SUMMARY
 # ============================================
-# Total Indexed: 30+ Tools + 5 Static = 35+ Pages
+# Total Indexed: 37 Tools + 6 Static = 43 Pages
 # AI Chat: Available on all calculator pages
 # International: USA, UK, Canada, Australia, India & 45+ countries
-# Schemas: MedicalWebPage, FAQPage on all pages
+# Schemas: MedicalWebPage, FAQPage, WebApplication on all pages
 # Privacy: 100% browser-based, no data stored
 # Google Verification: 0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo
 # ============================================
 
-# ============================================
 # END OF ROBOTS.TXT
-# ============================================
