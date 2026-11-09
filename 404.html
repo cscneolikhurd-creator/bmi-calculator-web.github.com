@@ -3,27 +3,406 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0d6efd">
   <title>Page Not Found — HealthCalc</title>
+  <meta name="description" content="The page you are looking for could not be found. Explore 37 free medical-grade health calculators on HealthCalc.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Page Not Found — HealthCalc">
+  <meta property="og:description" content="Explore 37 free medical-grade health calculators.">
+  <meta property="og:image" content="https://healthcalc.in/og-image.png">
+  <meta property="og:url" content="https://healthcalc.in/404.html">
+  <meta property="og:type" content="website">
+
+  <link rel="canonical" href="https://healthcalc.in/404.html">
   <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <style>
+    /* Fallback styles — अगर style.css fail हो जाए */
+    :root {
+      --brand: #0d6efd;
+      --brand-dark: #0a58ca;
+      --text: #1a1a1a;
+      --muted: #6c757d;
+      --bg: #ffffff;
+      --card: #f8f9fa;
+      --border: #dee2e6;
+    }
+    * { box-sizing: border-box; }
+    body.nf-body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .nf-wrap { max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
+    .nf-hero { text-align: center; margin-bottom: 32px; }
+    .nf-code {
+      font-size: 96px;
+      font-weight: 800;
+      line-height: 1;
+      margin: 0;
+      background: linear-gradient(135deg, var(--brand), #6610f2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -4px;
+    }
+    .nf-title { font-size: 26px; margin: 12px 0 8px; }
+    .nf-sub { color: var(--muted); margin: 0 0 8px; font-size: 16px; }
+    .nf-sub-hi { color: var(--muted); margin: 0 0 24px; font-size: 15px; }
+
+    .nf-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--brand);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .nf-btn:hover { background: var(--brand-dark); }
+    .nf-btn:active { transform: scale(0.98); }
+
+    .nf-search {
+      position: relative;
+      max-width: 480px;
+      margin: 0 auto 8px;
+    }
+    .nf-search input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .nf-search input:focus { border-color: var(--brand); }
+
+    .nf-suggest {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      max-height: 260px;
+      overflow-y: auto;
+      display: none;
+      z-index: 10;
+      text-align: left;
+    }
+    .nf-suggest.open { display: block; }
+    .nf-suggest a {
+      display: block;
+      padding: 10px 16px;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+    .nf-suggest a:last-child { border-bottom: 0; }
+    .nf-suggest a:hover,
+    .nf-suggest a:focus { background: var(--card); color: var(--brand); }
+    .nf-suggest .nf-cat {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: 6px;
+    }
+
+    .nf-section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 40px 0 12px;
+      font-weight: 700;
+    }
+
+    .nf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .nf-tool {
+      display: block;
+      padding: 14px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: transform 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .nf-tool:hover {
+      border-color: var(--brand);
+      background: #fff;
+      transform: translateY(-2px);
+    }
+    .nf-tool .nf-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #d1e7dd;
+      color: #0a3622;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .nf-footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .nf-footer a { color: var(--brand); text-decoration: none; }
+    .nf-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      .nf-code { font-size: 72px; }
+      .nf-title { font-size: 22px; }
+      .nf-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media print {
+      .nf-search, .nf-footer a { display: none; }
+    }
+  </style>
 </head>
-<body>
-  <main style="max-width:600px;margin:80px auto;padding:0 20px;text-align:center;">
-    <h1 style="font-size:72px;margin:0;color:#0d6efd;">404</h1>
-    <h2>ये page नहीं मिला</h2>
-    <p>जो link आप खोज रहे हैं वो exist नहीं करता या हटा दिया गया है।</p>
-    <p>
-      <a href="/" style="padding:12px 24px;background:#0d6efd;color:#fff;border-radius:8px;text-decoration:none;">
-        होम पर जाएं
-      </a>
-    </p>
-    <p style="margin-top:40px;">
-      <strong>Popular tools:</strong><br>
-      <a href="/bmi-calculator.html">BMI</a> ·
-      <a href="/calorie-calculator.html">Calorie</a> ·
-      <a href="/body-fat-calculator.html">Body Fat</a> ·
-      <a href="/ascvd-risk-calculator.html">Heart Risk</a>
-    </p>
+<body class="nf-body">
+  <main class="nf-wrap" role="main">
+
+    <!-- Hero -->
+    <section class="nf-hero">
+      <h1 class="nf-code">404</h1>
+      <h2 class="nf-title">Page Not Found</h2>
+      <p class="nf-sub">The page you're looking for doesn't exist or has been moved.</p>
+      <p class="nf-sub-hi">ये page नहीं मिला — शायद link गलत है या page हटा दिया गया है।</p>
+      <a href="/" class="nf-btn">← Back to Home / होम पर जाएं</a>
+    </section>
+
+    <!-- Search -->
+    <div class="nf-search" role="search">
+      <label for="nf-q" style="position:absolute;left:-9999px;">Search calculators</label>
+      <input
+        id="nf-q"
+        type="search"
+        placeholder="Search 37 calculators… (e.g. BMI, heart, sleep)"
+        autocomplete="off"
+        aria-autocomplete="list"
+        aria-controls="nf-suggest"
+      >
+      <div id="nf-suggest" class="nf-suggest" role="listbox"></div>
+    </div>
+
+    <!-- All Tools Grid -->
+    <h3 class="nf-section-title">Popular Calculators</h3>
+    <div class="nf-grid">
+      <a class="nf-tool" href="/bmi-calculator.html">BMI Calculator</a>
+      <a class="nf-tool" href="/calorie-calculator.html">Calorie & TDEE</a>
+      <a class="nf-tool" href="/body-fat-calculator.html">Body Fat %</a>
+      <a class="nf-tool" href="/ascvd-risk-calculator.html">ASCVD Heart Risk</a>
+      <a class="nf-tool" href="/macro-calculator.html">Macro Calculator <span class="nf-badge">PRO</span></a>
+      <a class="nf-tool" href="/calorie-deficit.html">Calorie Deficit <span class="nf-badge">PRO</span></a>
+      <a class="nf-tool" href="/pregnancy-calculator.html">Pregnancy Due Date</a>
+      <a class="nf-tool" href="/sleep-cycle-calculator.html">Sleep Cycle</a>
+    </div>
+
+    <h3 class="nf-section-title">Cardiovascular</h3>
+    <div class="nf-grid">
+      <a class="nf-tool" href="/ascvd-risk-calculator.html">ASCVD Risk</a>
+      <a class="nf-tool" href="/heart-risk-calculator.html">Heart Risk (Framingham)</a>
+      <a class="nf-tool" href="/vascular-age-calculator.html">Vascular Age</a>
+      <a class="nf-tool" href="/heart-rate-calculator.html">Heart Rate Zones</a>
+    </div>
+
+    <h3 class="nf-section-title">Body Composition</h3>
+    <div class="nf-grid">
+      <a class="nf-tool" href="/bmi-calculator.html">BMI</a>
+      <a class="nf-tool" href="/body-fat-calculator.html">Body Fat %</a>
+      <a class="nf-tool" href="/army-body-fat.html">Army Body Fat <span class="nf-badge">NEW</span></a>
+      <a class="nf-tool" href="/body-shape-analyzer.html">Body Shape Analyzer</a>
+      <a class="nf-tool" href="/whr-calculator.html">WHR Pro <span class="nf-badge">NEW</span></a>
+      <a class="nf-tool" href="/ponderal-index.html">Ponderal Index <span class="nf-badge">NEW</span></a>
+      <a class="nf-tool" href="/ideal-weight-calculator.html">Ideal Weight</a>
+      <a class="nf-tool" href="/ffmi-calculator.html">FFMI</a>
+    </div>
+
+    <h3 class="nf-section-title">Fitness</h3>
+    <div class="nf-grid">
+      <a class="nf-tool" href="/vo2max-calculator.html">VO₂ Max</a>
+      <a class="nf-tool" href="/met-calculator.html">MET Activity</a>
+      <a class="nf-tool" href="/metabolic-age.html">Metabolic Age</a>
+      <a class="nf-tool" href="/weight-gain-calculator.html">Weight Gain <span class="nf-badge">NEW</span></a>
+    </div>
+
+    <h3 class="nf-section-title">Nutrition</h3>
+    <div class="nf-grid">
+      <a class="nf-tool" href="/calorie-calculator.html">Calorie & TDEE</a>
+      <a class="nf-tool" href="/calorie-deficit.html">Calorie Deficit <span class="nf-badge">NEW</span></a>
+      <a class="nf-tool" href="/macro-calculator.html">Macro <span class="nf-badge">NEW</span></a>
+      <a class="nf-tool" href="/keto-calculator.html">Keto <span class="nf-badge">NEW</span></a>
+      <a class="nf-tool" href="/carb-cycling.html">Carb Cycling <span class="nf-badge">NEW</span></a>
+      <a class="nf-tool" href="/dri-calculator.html">DRI Nutrients</a>
+      <a class="nf-tool" href="/water-intake-calculator.html">Water Intake</a>
+    </div>
+
+    <h3 class="nf-section-title">Women's Health</h3>
+    <div class="nf-grid">
+      <a class="nf-tool" href="/pregnancy-calculator.html">Pregnancy <span class="nf-badge">PRO</span></a>
+      <a class="nf-tool" href="/conception-date.html">Conception Date</a>
+      <a class="nf-tool" href="/ovulation-calculator.html">Ovulation <span class="nf-badge">PRO</span></a>
+      <a class="nf-tool" href="/period-tracker.html">Period Tracker <span class="nf-badge">PRO</span></a>
+      <a class="nf-tool" href="/menstrual-cycle-calculator.html">Menstrual Cycle</a>
+    </div>
+
+    <h3 class="nf-section-title">Wellness & Lifestyle</h3>
+    <div class="nf-grid">
+      <a class="nf-tool" href="/hormone-health-calculator.html">Hormone Health</a>
+      <a class="nf-tool" href="/bac-calculator.html">BAC (Alcohol)</a>
+      <a class="nf-tool" href="/sleep-cycle-calculator.html">Sleep Cycle</a>
+      <a class="nf-tool" href="/sleep-debt-calculator.html">Sleep Debt</a>
+      <a class="nf-tool" href="/circadian-rhythm-calculator.html">Circadian Rhythm</a>
+      <a class="nf-tool" href="/gut-microbiome-calculator.html">Gut Microbiome</a>
+      <a class="nf-tool" href="/inflammation-score-calculator.html">Inflammation Score</a>
+      <a class="nf-tool" href="/life-expectancy-calculator.html">Life Expectancy</a>
+      <a class="nf-tool" href="/medication-half-life-tracker.html">Medication Half-Life</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="nf-footer">
+      <p>
+        Still can't find what you need?
+        <a href="/contact.html">Contact us</a> ·
+        <a href="/report-problem.html">Report a broken link</a> ·
+        <a href="/">Home</a>
+      </p>
+      <p style="font-size:12px;margin-top:12px;">
+        HealthCalc — 37 free medical-grade calculators. No signup. 100% private.
+      </p>
+    </footer>
+
   </main>
+
+  <script>
+    // ── Search with fuzzy suggest ────────────────────────
+    (function () {
+      const TOOLS = [
+        { name: "ASCVD Risk", url: "/ascvd-risk-calculator.html", cat: "Cardio" },
+        { name: "Heart Risk (Framingham)", url: "/heart-risk-calculator.html", cat: "Cardio" },
+        { name: "Vascular Age", url: "/vascular-age-calculator.html", cat: "Cardio" },
+        { name: "Heart Rate Zones", url: "/heart-rate-calculator.html", cat: "Cardio" },
+        { name: "BMI", url: "/bmi-calculator.html", cat: "Body" },
+        { name: "Body Fat", url: "/body-fat-calculator.html", cat: "Body" },
+        { name: "Army Body Fat", url: "/army-body-fat.html", cat: "Body" },
+        { name: "Body Shape Analyzer", url: "/body-shape-analyzer.html", cat: "Body" },
+        { name: "WHR / Waist-Hip", url: "/whr-calculator.html", cat: "Body" },
+        { name: "Ponderal Index", url: "/ponderal-index.html", cat: "Body" },
+        { name: "Ideal Weight", url: "/ideal-weight-calculator.html", cat: "Body" },
+        { name: "FFMI", url: "/ffmi-calculator.html", cat: "Fitness" },
+        { name: "VO2 Max", url: "/vo2max-calculator.html", cat: "Fitness" },
+        { name: "MET Activity", url: "/met-calculator.html", cat: "Fitness" },
+        { name: "Metabolic Age", url: "/metabolic-age.html", cat: "Fitness" },
+        { name: "Weight Gain", url: "/weight-gain-calculator.html", cat: "Fitness" },
+        { name: "Calorie / TDEE", url: "/calorie-calculator.html", cat: "Nutrition" },
+        { name: "Calorie Deficit", url: "/calorie-deficit.html", cat: "Nutrition" },
+        { name: "Macro", url: "/macro-calculator.html", cat: "Nutrition" },
+        { name: "Keto", url: "/keto-calculator.html", cat: "Nutrition" },
+        { name: "Carb Cycling", url: "/carb-cycling.html", cat: "Nutrition" },
+        { name: "DRI Nutrients", url: "/dri-calculator.html", cat: "Nutrition" },
+        { name: "Water Intake", url: "/water-intake-calculator.html", cat: "Nutrition" },
+        { name: "Pregnancy", url: "/pregnancy-calculator.html", cat: "Women" },
+        { name: "Conception Date", url: "/conception-date.html", cat: "Women" },
+        { name: "Ovulation", url: "/ovulation-calculator.html", cat: "Women" },
+        { name: "Period Tracker", url: "/period-tracker.html", cat: "Women" },
+        { name: "Menstrual Cycle", url: "/menstrual-cycle-calculator.html", cat: "Women" },
+        { name: "Hormone Health", url: "/hormone-health-calculator.html", cat: "Wellness" },
+        { name: "BAC / Alcohol", url: "/bac-calculator.html", cat: "Wellness" },
+        { name: "Sleep Cycle", url: "/sleep-cycle-calculator.html", cat: "Wellness" },
+        { name: "Sleep Debt", url: "/sleep-debt-calculator.html", cat: "Wellness" },
+        { name: "Circadian Rhythm", url: "/circadian-rhythm-calculator.html", cat: "Wellness" },
+        { name: "Gut Microbiome", url: "/gut-microbiome-calculator.html", cat: "Wellness" },
+        { name: "Inflammation Score", url: "/inflammation-score-calculator.html", cat: "Wellness" },
+        { name: "Life Expectancy", url: "/life-expectancy-calculator.html", cat: "Wellness" },
+        { name: "Medication Half-Life", url: "/medication-half-life-tracker.html", cat: "Medical" }
+      ];
+
+      const input = document.getElementById("nf-q");
+      const box = document.getElementById("nf-suggest");
+      if (!input || !box) return;
+
+      function render(list) {
+        if (!list.length) { box.classList.remove("open"); box.innerHTML = ""; return; }
+        box.innerHTML = list.map(t =>
+          `<a href="${t.url}" role="option"><strong>${t.name}</strong><span class="nf-cat">${t.cat}</span></a>`
+        ).join("");
+        box.classList.add("open");
+      }
+
+      function search(q) {
+        q = q.trim().toLowerCase();
+        if (!q) return render([]);
+        // simple score: word starts-with > contains
+        const scored = TOOLS.map(t => {
+          const n = t.name.toLowerCase();
+          let s = 0;
+          if (n.startsWith(q)) s = 3;
+          else if (n.includes(q)) s = 2;
+          else if (n.split(/\s+/).some(w => w.startsWith(q))) s = 1;
+          return { t, s };
+        }).filter(x => x.s > 0).sort((a, b) => b.s - a.s).slice(0, 8).map(x => x.t);
+        render(scored);
+      }
+
+      let debounce;
+      input.addEventListener("input", e => {
+        clearTimeout(debounce);
+        debounce = setTimeout(() => search(e.target.value), 100);
+      });
+      input.addEventListener("focus", () => search(input.value));
+      input.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          const first = box.querySelector("a");
+          if (first) { window.location.href = first.getAttribute("href"); }
+        }
+        if (e.key === "Escape") box.classList.remove("open");
+      });
+      document.addEventListener("click", e => {
+        if (!e.target.closest(".nf-search")) box.classList.remove("open");
+      });
+    })();
+
+    // ── Auto-suggest based on attempted URL ─────────────
+    (function () {
+      const path = window.location.pathname.toLowerCase();
+      if (!path || path === "/" || path.includes("404")) return;
+      const input = document.getElementById("nf-q");
+      if (!input) return;
+      // extract last meaningful word from URL slug
+      const slug = path.replace(/\.(html?|php|aspx?)$/, "").split("/").filter(Boolean).pop() || "";
+      const words = slug.split(/[-_]+/).filter(w => w.length > 2);
+      if (words.length) {
+        input.value = words.join(" ");
+        input.dispatchEvent(new Event("input"));
+        input.focus();
+      }
+    })();
+  </script>
 </body>
 </html>
