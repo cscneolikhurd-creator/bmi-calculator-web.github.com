@@ -1,56 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-    <!-- 
+    <!--
     ============================================
     SITEMAP.XML for HealthCalc.in
-    Last Updated: 2026-11-05
-    Total URLs: 43 (37 Tools + 4 Static + 1 Report + 1 Home)
+    Last Updated: 2026-11-09
+    Total URLs: 43 (37 Tools + 5 Static + 1 Home)
     AI Chat: Available on all calculator pages
-    Languages: English (primary)
+    Language: English (hreflang omitted until multi-language launch)
     ============================================
     -->
 
     <!-- ========== HOME PAGE ========== -->
     <url>
         <loc>https://healthcalc.in/</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-11-09</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="en-us" href="https://healthcalc.in/"/>
-        <xhtml:link rel="alternate" hreflang="en-gb" href="https://healthcalc.in/"/>
-        <xhtml:link rel="alternate" hreflang="en-ca" href="https://healthcalc.in/"/>
-        <xhtml:link rel="alternate" hreflang="en-au" href="https://healthcalc.in/"/>
-        <xhtml:link rel="alternate" hreflang="en-in" href="https://healthcalc.in/"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://healthcalc.in/"/>
     </url>
 
     <!-- ========== HEART & CARDIOVASCULAR (4) ========== -->
     <url>
         <loc>https://healthcalc.in/ascvd-risk-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/heart-risk-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/vascular-age-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/heart-rate-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
@@ -58,67 +49,67 @@
     <!-- ========== BODY COMPOSITION & FITNESS (12) ========== -->
     <url>
         <loc>https://healthcalc.in/bmi-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/body-fat-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/army-body-fat.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/body-shape-analyzer.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/whr-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/ponderal-index.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/ideal-weight-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/ffmi-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/vo2max-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/met-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/metabolic-age.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
@@ -132,37 +123,37 @@
     <!-- ========== DIET & NUTRITION (7) ========== -->
     <url>
         <loc>https://healthcalc.in/calorie-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/calorie-deficit.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/macro-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/keto-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/carb-cycling.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/dri-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
@@ -176,37 +167,37 @@
     <!-- ========== WOMEN'S HEALTH (6) ========== -->
     <url>
         <loc>https://healthcalc.in/pregnancy-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.95</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/conception-date.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/ovulation-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/period-tracker.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/menstrual-cycle-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/hormone-health-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
@@ -214,25 +205,25 @@
     <!-- ========== SLEEP & LIFESTYLE (4) ========== -->
     <url>
         <loc>https://healthcalc.in/bac-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/sleep-cycle-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/sleep-debt-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/circadian-rhythm-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
@@ -240,25 +231,25 @@
     <!-- ========== ADVANCED HEALTH (4) ========== -->
     <url>
         <loc>https://healthcalc.in/gut-microbiome-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/inflammation-score-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/life-expectancy-calculator.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/medication-half-life-tracker.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
@@ -266,31 +257,31 @@
     <!-- ========== STATIC PAGES (5) ========== -->
     <url>
         <loc>https://healthcalc.in/about.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-08-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/contact.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/report-problem.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-09-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/privacy-policy.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-06-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.50</priority>
     </url>
     <url>
         <loc>https://healthcalc.in/terms-of-service.html</loc>
-        <lastmod>2026-11-05</lastmod>
+        <lastmod>2026-05-09</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.50</priority>
     </url>
