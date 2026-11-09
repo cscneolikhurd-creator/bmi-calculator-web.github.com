@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d6efd"/>
+      <stop offset="100%" stop-color="#6610f2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="120" r="350" fill="#ffffff" opacity="0.08"/>
+  <circle cx="150" cy="550" r="250" fill="#ffffff" opacity="0.06"/>
+
+  <!-- Logo mark (medical cross in white rounded box) -->
+  <g transform="translate(80, 80)">
+    <rect width="80" height="80" rx="20" fill="#ffffff"/>
+    <path d="M32 14 H48 V32 H66 V48 H48 V66 H32 V48 H14 V32 H32 Z" fill="#0d6efd"/>
+  </g>
+
+  <!-- Brand name -->
+  <text x="80" y="290" font-family="Arial, Helvetica, sans-serif"
+        font-size="100" font-weight="900" fill="#ffffff" letter-spacing="-3">
+    HealthCalc
+  </text>
+
+  <!-- Tagline -->
+  <text x="80" y="370" font-family="Arial, Helvetica, sans-serif"
+        font-size="44" font-weight="600" fill="#ffffff">
+    37 Free Health Calculators
+  </text>
+
+  <!-- Sub-tagline -->
+  <text x="80" y="425" font-family="Arial, Helvetica, sans-serif"
+        font-size="26" font-weight="500" fill="#ffffff" opacity="0.85">
+    Medical-grade  ·  100% Private  ·  No Signup
+  </text>
+
+  <!-- CTA pill -->
+  <g transform="translate(80, 490)">
+    <rect width="300" height="68" rx="34" fill="#ffffff"/>
+    <text x="150" y="45" font-family="Arial, Helvetica, sans-serif"
+          font-size="26" font-weight="700" fill="#0d6efd" text-anchor="middle">
+      healthcalc.in
+    </text>
+  </g>
+</svg>
