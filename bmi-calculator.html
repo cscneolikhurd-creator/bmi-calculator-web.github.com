@@ -6,14 +6,18 @@
 <meta name="google-site-verification" content="0IEZPyTwWA5T34zV_F9iwPc5RxK8fH8wZ91Cx7zzyQo" />
 <meta name="theme-color" content="#667eea">
 
-<title>BAC Calculator 2026: Blood Alcohol Content & Legal Limits | HealthCalc</title>
-<meta name="description" content="Free international BAC calculator using Widmark formula. Check legal driving limits for India, US, UK, and 50+ countries. Indian drinks database, sober-by time, elimination graph.">
+<title>BAC Calculator 2026: Blood Alcohol Content & Legal Limits (India + 50+ Countries) | HealthCalc</title>
+<meta name="description" content="Free international BAC calculator using Widmark formula. Check legal driving limits for India (Section 185 MV Act), US, UK, Canada, Australia, EU, UAE & 50+ countries. Indian drinks database, sober-by time, emergency alcohol poisoning check, elimination graph, AI safety assistant, bilingual English/Hindi hints.">
 <meta name="author" content="HealthCalc">
-<meta name="robots" content="index, follow, max-image-preview:large">
-
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://healthcalc.in/bac-calculator.html">
 
-<!-- HTML2PDF Library for Export -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+<!-- Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -21,14 +25,17 @@
 
 <!-- Favicon & PWA -->
 <link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0d6efd">
 
 <style>
 :root {
   --primary: #667eea; --primary-hover: #5a67d8; --primary-light: #e0e7ff; --secondary: #764ba2;
-  --danger: #ef4444; --warning: #f59e0b; --success: #10b981;
-  --dark: #0f172a; --card-bg: #ffffff; --text: #1e293b; --text-muted: #64748b; --border: #e2e8f0;
+  --danger: #ef4444; --warning: #f59e0b; --success: #10b981; --dark: #0f172a; --card-bg: #ffffff; 
+  --text: #1e293b; --text-muted: #64748b; --border: #e2e8f0;
   --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
   --shadow-sm: 0 2px 4px rgba(0,0,0,0.02); --shadow-md: 0 8px 16px rgba(0,0,0,0.06);
   --shadow-hover: 0 20px 40px rgba(102, 126, 234, 0.15);
@@ -42,22 +49,31 @@ body.dark {
 body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text); line-height: 1.6; min-height: 100vh; transition: var(--transition); }
 .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-.top-nav { background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
+.top-nav { background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
 .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 14px; padding: 8px 20px; border-radius: 50px; transition: var(--transition); }
-.nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; }
-.theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; transition: var(--transition); }
+.nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+.nav-tools { display: flex; gap: 8px; align-items: center; }
+.theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
 .theme-toggle-btn:hover { background: var(--primary-light); transform: rotate(15deg); }
+.lang-toggle { display: flex; gap: 4px; }
+.lang-btn { padding: 6px 12px; border: 1px solid var(--border); border-radius: 50px; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--card-bg); color: var(--text-muted); transition: var(--transition); }
+.lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
 .international-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; background: var(--card-bg); padding: 16px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
-.region-selector select { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-size: 14px; font-weight: 600; background: var(--card-bg); color: var(--text); cursor: pointer; outline: none; }
+.region-selector select { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-size: 14px; font-weight: 600; background: var(--card-bg); color: var(--text); cursor: pointer; outline: none; transition: var(--transition); }
+.region-selector select:focus { border-color: var(--primary); }
 .unit-toggle { display: flex; gap: 8px; align-items: center; }
 .unit-btn { padding: 8px 16px; border: 2px solid var(--border); border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; background: var(--card-bg); color: var(--text-muted); transition: var(--transition); }
 .unit-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
 .hero { text-align: center; padding: 30px 20px 40px; }
-.hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; margin-bottom: 12px; }
+.hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; color: transparent; margin-bottom: 12px; letter-spacing: -1px; }
 .hero p { font-size: 16px; color: var(--text-muted); max-width: 760px; margin: 0 auto; }
+.health-authority-note { background: var(--primary-light); color: var(--primary-hover); padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+
+.privacy-badge { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; padding: 10px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+body.dark .privacy-badge { background: #052e16; color: #6ee7b7; border-color: #166534; }
 
 .card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-md); border: 1px solid var(--border); }
 .form-section { background: var(--bg-gradient); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; border: 1px solid var(--border); }
@@ -68,10 +84,14 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: 
 @media(max-width: 600px) { .row-2 { grid-template-columns: 1fr; } }
 .form-group { margin-bottom: 16px; }
 label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); font-size: 14px; }
+label i { color: var(--primary); margin-right: 6px; }
+
 input, select { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 15px; background: var(--card-bg); color: var(--text); outline: none; transition: var(--transition); font-weight: 500; }
 input:focus, select:focus { border-color: var(--primary); }
+.hint-hi { display: none; font-size: 12px; color: var(--secondary); margin-top: 4px; font-style: italic; }
+body.lang-hi .hint-hi { display: block; }
 
-.drink-item { background: var(--card-bg); padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; border: 1px solid var(--border); }
+.drink-item { background: var(--card-bg); padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 .drink-item select { flex: 2; min-width: 180px; margin-bottom: 0; }
 .drink-item input { flex: 1; min-width: 80px; margin-bottom: 0; }
 .remove-drink { background: #fee2e2; color: var(--danger); border: none; padding: 14px 20px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; transition: var(--transition); }
@@ -79,12 +99,15 @@ input:focus, select:focus { border-color: var(--primary); }
 .add-drink-btn { background: var(--primary-light); color: var(--primary-hover); border: 2px dashed var(--primary); padding: 14px; border-radius: var(--radius-md); cursor: pointer; font-weight: 700; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); margin-top: 10px; }
 .add-drink-btn:hover { background: var(--primary); color: white; }
 
+.standard-drinks-display { background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; font-weight: 600; margin-top: 12px; }
+body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border-color: #92400e; }
+
 .calc-btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 18px; width: 100%; border-radius: 50px; font-size: 18px; font-weight: 800; cursor: pointer; margin: 20px 0; transition: var(--transition); box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); display: flex; justify-content: center; gap: 10px; align-items: center; }
 .calc-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4); }
 .calc-btn.secondary { background: var(--card-bg); color: var(--text); border: 2px solid var(--border); box-shadow: none; }
-.calc-btn.green { background: linear-gradient(135deg,#10b981,#059669); }
+.calc-btn.green { background: linear-gradient(135deg,#10b981,#059669); box-shadow: 0 8px 20px rgba(16,185,129,0.3); }
 
-/* RESULT BOX - PDF Target */
+/* RESULT */
 .result-box { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: var(--radius-xl); padding: 32px; color: white; text-align: center; border: 2px solid transparent; transition: all 0.4s; position: relative; }
 .medically-reviewed-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(16,185,129,0.15); color: #6ee7b7; padding: 6px 14px; border-radius: 50px; font-size: 11px; font-weight: 700; margin-bottom: 20px; border: 1px solid rgba(16,185,129,0.3); }
 .bac-value { font-size: 64px; font-weight: 900; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; color: transparent; margin: 10px 0; line-height: 1; }
@@ -93,87 +116,167 @@ input:focus, select:focus { border-color: var(--primary); }
 .bac-badge.legal { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
 .bac-badge.over { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
 
-.bac-scale { margin: 24px 0; padding: 20px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); }
-.scale-bar { height: 10px; background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444); border-radius: 10px; margin-bottom: 12px; position: relative; }
-.scale-indicator { position: absolute; top: -5px; width: 6px; height: 20px; background: white; border-radius: 3px; transform: translateX(-50%); transition: left 0.5s; box-shadow: 0 0 10px rgba(255,255,255,0.8); }
-.scale-labels { display: flex; justify-content: space-between; font-size: 11px; opacity: 0.8; font-weight: 600; }
+.legal-limits { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 24px 0; }
+.legal-card { background: rgba(255,255,255,0.05); padding: 12px; border-radius: var(--radius-md); font-size: 12px; color: white; border: 1px solid rgba(255,255,255,0.1); }
+.legal-card.selected { border: 2px solid #fbbf24; background: rgba(251,191,36,0.15); }
 
 .sober-time { background: rgba(255,255,255,0.1); padding: 16px; border-radius: var(--radius-md); margin-top: 16px; font-size: 15px; font-weight: 600; }
 .sober-time-clock { font-size: 13px; opacity: 0.9; margin-top: 4px; font-weight: 500; }
 .safety-message { margin-top: 16px; padding: 16px; border-radius: var(--radius-md); font-size: 14px; font-weight: 700; }
 .safety-message.critical { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+.safety-message.warning { background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+.safety-message.caution { background: rgba(245,158,11,0.15); color: #fbbf24; }
 .safety-message.safe { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
-.safety-message.emergency { background: rgba(239,68,68,0.35); color: white; border: 2px solid #ef4444; }
+.safety-message.emergency { background: rgba(239,68,68,0.35); color: white; border: 2px solid #ef4444; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 50% { box-shadow: 0 0 0 12px rgba(239,68,68,0); } }
 
-.legal-limits { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin: 24px 0; }
-.legal-card { background: rgba(255,255,255,0.05); padding: 12px; border-radius: var(--radius-md); font-size: 12px; color: white; border: 1px solid rgba(255,255,255,0.1); }
-.legal-card.selected { border: 2px solid #fbbf24; background: rgba(251,191,36,0.15); }
+.bac-scale { margin: 24px 0; padding: 20px; background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); }
+.scale-bar { height: 10px; background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444); border-radius: 10px; margin-bottom: 12px; position: relative; }
+.scale-indicator { position: absolute; top: -5px; width: 6px; height: 20px; background: white; border-radius: 3px; transform: translateX(-50%); transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(255,255,255,0.8); }
+.scale-labels { display: flex; justify-content: space-between; font-size: 11px; opacity: 0.8; font-weight: 600; }
 
 .chart-container { background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 16px; margin: 16px 0; height: 220px; }
+.legal-info-box { background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-top: 16px; text-align: left; font-size: 12px; }
+.legal-info-box h4 { color: #fbbf24; margin-bottom: 8px; font-size: 14px; }
 
-.action-buttons { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
-.btn-export { flex: 1; padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border); background: white; color: var(--text); font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
-.btn-export:hover { background: #f1f5f9; }
-.btn-share { flex: 1; padding: 14px; border-radius: var(--radius-md); border: none; background: #10b981; color: white; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
-.btn-share:hover { background: #059669; }
+/* AI CHAT */
+.ai-chat-panel { margin-top: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left; }
+.ai-chat-header { background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2)); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.ai-chat-messages { height: 280px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
+.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; animation: slideIn 0.3s ease; }
+.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
+.ai-message-user { background: var(--primary); color: white; font-weight: 500; border-radius: 16px; border-top-right-radius: 4px; align-self: flex-end; }
+.ai-chat-suggestions { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); }
+.ai-chat-suggestions::-webkit-scrollbar { display: none; }
+.ai-suggestion-chip { background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; font-size: 12px; cursor: pointer; color: #cbd5e1; white-space: nowrap; transition: var(--transition); border: 1px solid transparent; }
+.ai-suggestion-chip:hover { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); }
+.ai-chat-input-row { display: flex; gap: 12px; padding: 16px; background: rgba(0,0,0,0.4); }
+.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 14px; outline: none; transition: var(--transition); }
+.ai-chat-input:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
+.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+.ai-chat-send-btn:hover { background: var(--primary-hover); transform: scale(1.05); }
+.ai-chat-disclaimer { padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.5); }
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.typing-dots { display: flex; gap: 4px; padding: 4px; }
+.typing-dots div { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+.typing-dots div:nth-child(1) { animation-delay: -0.32s; }
+.typing-dots div:nth-child(2) { animation-delay: -0.16s; }
+@keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+/* INTERLINKING SECTION (SEO) */
+.interlink-section { margin-top: 40px; padding: 30px; background: var(--card-bg); border-radius: var(--radius-xl); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.interlink-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; color: var(--text); text-align: center; }
+.interlink-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.interlink-card { display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--bg-gradient); border: 1px solid var(--border); border-radius: var(--radius-md); text-decoration: none; color: var(--text); transition: var(--transition); font-weight: 600; font-size: 14px; }
+.interlink-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--shadow-hover); color: var(--primary); }
+.interlink-card i { font-size: 20px; color: var(--primary); width: 24px; text-align: center; }
+
+@media(max-width: 768px) {
+  .bac-value { font-size: 48px; }
+  .card { padding: 20px; }
+  .top-nav { padding: 12px 16px; }
+  .nav-links a { font-size: 12px; padding: 6px 12px; }
+}
 </style>
 </head>
 <body>
 
 <div class="container">
+
   <nav class="top-nav">
     <div class="nav-links">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="ascvd-risk-calculator.html"><i class="fas fa-heartbeat"></i> ASCVD</a>
       <a href="bac-calculator.html" class="active"><i class="fas fa-wine-bottle"></i> BAC</a>
       <a href="bmi-calculator.html"><i class="fas fa-weight-scale"></i> BMI</a>
     </div>
-    <button class="theme-toggle-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <div class="nav-tools">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिं</button>
+      </div>
+      <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+    </div>
   </nav>
 
   <div class="international-bar">
     <div class="region-selector">
-      <label for="countrySelect"><i class="fas fa-globe"></i> Country:</label>
-      <select id="countrySelect" onchange="setCountry(this.value)">
-        <option value="in">🇮🇳 India (0.03%)</option>
-        <option value="us">🇺🇸 United States (0.08%)</option>
-        <option value="uk">🇬🇧 UK (0.08%)</option>
-        <option value="ae">🇦🇪 UAE (0.00%)</option>
+      <label for="countrySelect"><i class="fas fa-globe"></i> Country Rules:</label>
+      <select id="countrySelect" aria-label="Select your country" onchange="setCountry(this.value)">
+        <optgroup label="India"><option value="in" selected>🇮🇳 India (0.03% — Sec 185 MV Act)</option></optgroup>
+        <optgroup label="Americas">
+          <option value="us">🇺🇸 United States (0.08%)</option>
+          <option value="ca">🇨🇦 Canada (0.08%)</option>
+          <option value="br">🇧🇷 Brazil (0.00%)</option>
+        </optgroup>
+        <optgroup label="Europe">
+          <option value="uk-eng">🇬🇧 UK (0.08%)</option>
+          <option value="de">🇩🇪 Germany (0.05%)</option>
+          <option value="fr">🇫🇷 France (0.05%)</option>
+          <option value="se">🇸🇪 Sweden (0.02%)</option>
+        </optgroup>
+        <optgroup label="Asia Pacific">
+          <option value="au">🇦🇺 Australia (0.05%)</option>
+          <option value="jp">🇯🇵 Japan (0.03%)</option>
+          <option value="ae">🇦🇪 UAE (0.00%)</option>
+        </optgroup>
       </select>
     </div>
     <div class="unit-toggle">
-      <button class="unit-btn active" data-unitbac="metric" onclick="setUnit('metric')">Metric (kg)</button>
-      <button class="unit-btn" data-unitbac="imperial" onclick="setUnit('imperial')">Imperial (lbs)</button>
+      <button class="unit-btn active" data-unitbac="metric" onclick="setUnit('metric')">📏 Metric (kg)</button>
+      <button class="unit-btn" data-unitbac="imperial" onclick="setUnit('imperial')">🇺🇸 Imperial (lbs)</button>
     </div>
   </div>
 
+  <header class="hero">
+    <div class="health-authority-note"><i class="fas fa-shield-halved"></i> Widmark Formula Engine · India & International</div>
+    <h1>Premium BAC Calculator</h1>
+    <p>Calculate Blood Alcohol Content with clinical accuracy. Indian drinks database, <strong>Section 185 MV Act</strong> compliance, sober-by clock time, elimination graph, emergency check, and AI safety assistant.</p>
+  </header>
+
   <main class="card">
+    <div class="privacy-badge">
+      <i class="fas fa-lock"></i> All calculations run in your browser. Your data never leaves your device.
+    </div>
+
     <div class="form-section">
-      <div class="section-title"><i class="fas fa-user"></i> Your Details</div>
-      <div class="row-2">
-        <div class="form-group">
-          <label>Gender</label>
-          <select id="gender" onchange="calculateBAC()">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+      <div class="section-title"><i class="fas fa-user"></i> Biological Details</div>
+      <div id="metricFieldsBAC">
+        <div class="row-2">
+          <div class="form-group">
+            <label><i class="fas fa-venus-mars"></i> Gender</label>
+            <select id="gender" onchange="calculateBAC()"><option value="male">👨 Male</option><option value="female">👩 Female</option></select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-weight-scale"></i> Weight (kg)</label>
+            <input type="number" id="weightMetricBAC" step="0.1" value="70" min="20" max="300" oninput="syncWeight('metric')">
+            <div class="hint-hi">वजन किलोग्राम में।</div>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Weight</label>
-          <!-- Metric & Imperial inputs -->
-          <input type="number" id="weightMetric" value="70" step="0.1" oninput="syncWeight('metric')" style="display:block;">
-          <input type="number" id="weightImperial" value="154" step="0.1" oninput="syncWeight('imperial')" style="display:none;">
+      </div>
+      <div id="imperialFieldsBAC" style="display:none">
+        <div class="row-2">
+          <div class="form-group">
+            <label><i class="fas fa-venus-mars"></i> Gender</label>
+            <select id="genderImp" onchange="calculateBAC()"><option value="male">👨 Male</option><option value="female">👩 Female</option></select>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-weight-scale"></i> Weight (lbs)</label>
+            <input type="number" id="weightImpBAC" step="0.1" value="154" min="40" max="660" oninput="syncWeight('imperial')">
+          </div>
         </div>
       </div>
       <div class="row-2">
         <div class="form-group">
-          <label>Hours since first drink</label>
-          <input type="number" id="hours" value="1" step="0.5" oninput="calculateBAC()">
+          <label><i class="fas fa-clock"></i> Hours since FIRST drink</label>
+          <input type="number" id="hours" step="0.5" value="1" min="0" max="24" oninput="calculateBAC()">
+          <div class="hint-hi">पहली ड्रिंक से कितने घंटे बीते।</div>
         </div>
         <div class="form-group">
-          <label>Food Consumed?</label>
+          <label><i class="fas fa-utensils"></i> Food Consumed?</label>
           <select id="food" onchange="calculateBAC()">
-            <option value="empty">Empty Stomach</option>
-            <option value="full" selected>Full Meal</option>
+            <option value="empty">🚫 Empty stomach</option><option value="light">🥗 Light snack</option><option value="full" selected>🍽️ Full meal</option>
           </select>
         </div>
       </div>
@@ -184,16 +287,31 @@ input:focus, select:focus { border-color: var(--primary); }
       <div id="drinksContainer">
         <div class="drink-item">
           <select class="drink-type" onchange="calculateBAC()">
-            <option value="beer">🍺 Beer (650ml, 5%)</option>
-            <option value="old-monk">🥃 Old Monk Rum (60ml, 42.8%)</option>
-            <option value="wine">🍷 Wine (150ml, 12%)</option>
-            <option value="spirit">🥃 Shot (44ml, 40%)</option>
+            <optgroup label="🇮🇳 Indian Beer">
+              <option value="kingfisher-strong">🍺 Kingfisher Strong (650ml, 8%)</option>
+              <option value="kingfisher-premium">🍺 Kingfisher Premium (650ml, 4.8%)</option>
+              <option value="bira-white">🍺 Bira 91 White (330ml, 4.7%)</option>
+            </optgroup>
+            <optgroup label="🇮🇳 Indian Spirits (Desi/IMFL)">
+              <option value="old-monk">🥃 Old Monk Rum (60ml peg, 42.8%)</option>
+              <option value="blenders-pride">🥃 Blenders Pride (60ml peg, 42.8%)</option>
+              <option value="royal-stag">🥃 Royal Stag (60ml peg, 42.8%)</option>
+              <option value="desi-daru">🥃 Desi Daru (60ml, 40%)</option>
+            </optgroup>
+            <optgroup label="🍷 Wine / Western">
+              <option value="wine">🍷 Wine (148ml, 12%)</option>
+              <option value="beer">🍺 Beer (355ml, 5%)</option>
+              <option value="spirit">🥃 Shot (44ml, 40%)</option>
+            </optgroup>
           </select>
-          <input type="number" class="drink-quantity" value="1" step="0.5" min="0" oninput="calculateBAC()">
-          <button class="remove-drink" onclick="removeDrink(this)"><i class="fas fa-trash-alt"></i></button>
+          <input type="number" class="drink-quantity" placeholder="Qty" value="1" step="0.5" min="0" oninput="calculateBAC()">
+          <button class="remove-drink" title="Remove Drink" onclick="removeDrink(this)"><i class="fas fa-trash-alt"></i></button>
         </div>
       </div>
       <button class="add-drink-btn" onclick="addDrink()"><i class="fas fa-plus"></i> Add Another Drink</button>
+      <div class="standard-drinks-display" id="standardDrinksDisplay">
+        <i class="fas fa-wine-glass"></i> Standard drinks: <span id="stdDrinkText">0.0 US (14g) · 0.0 India (10g)</span>
+      </div>
     </div>
 
     <button class="calc-btn" onclick="calculateBAC()"><i class="fas fa-calculator"></i> Calculate BAC</button>
@@ -204,8 +322,8 @@ input:focus, select:focus { border-color: var(--primary); }
         <div class="medically-reviewed-badge">
           <i class="fas fa-shield-check"></i> Medically Reviewed Algorithm
         </div>
-        <div class="bac-label">Estimated Blood Alcohol Content</div>
-        <div class="bac-value" id="bacResult">0.000%</div>
+        <div class="bac-label">Your Estimated Blood Alcohol Content</div>
+        <div class="bac-value" id="bacResult" aria-live="polite">0.000%</div>
         <div id="bacStatusBadge"></div>
 
         <div class="bac-scale">
@@ -216,253 +334,405 @@ input:focus, select:focus { border-color: var(--primary); }
         <div class="legal-limits" id="legalLimitsGrid"></div>
         <div class="sober-time" id="soberTime">⏱️ Enter details to calculate sober time.<div class="sober-time-clock" id="soberTimeClock"></div></div>
         <div id="safetyMessage" class="safety-message"></div>
-
         <div class="chart-container"><canvas id="eliminationChart"></canvas></div>
+        
+        <div class="legal-info-box">
+          <h4>⚖️ Legal Info for <span id="penaltyCountry">India</span></h4>
+          <span id="penaltyText"></span>
+        </div>
+
+        <div class="ai-chat-panel" id="aiChatPanel">
+          <div class="ai-chat-header">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <i class="fas fa-robot" style="color:var(--primary-light);"></i>
+              <span>BAC Safety Assistant</span>
+            </div>
+          </div>
+          <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-message ai-message-bot">
+              <strong>Namaste! 👋</strong><br>I'm your AI Safety Assistant. Calculate your BAC above, and I can give you exact sober times, Indian legal details, and safety guidance.
+            </div>
+          </div>
+          <div class="ai-chat-suggestions">
+            <div class="ai-suggestion-chip" onclick="sendAIMessage('Based on my BAC, how long until I am completely sober?')">⏱️ My sober time?</div>
+            <div class="ai-suggestion-chip" onclick="sendAIMessage('What are the exact Section 185 MV Act penalties in India?')">⚖️ India legal</div>
+            <div class="ai-suggestion-chip" onclick="sendAIMessage('What actually works to reduce BAC faster?')">⚡ Reduce BAC fast?</div>
+          </div>
+          <div class="ai-chat-input-row">
+            <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ask about alcohol safety..." onkeypress="if(event.key==='Enter')sendAIMessage()">
+            <button class="ai-chat-send-btn" onclick="sendAIMessage()" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
       </div>
     </div>
     <!-- PDF TARGET END -->
 
-    <!-- Premium Action Buttons -->
-    <div class="action-buttons">
-      <button class="btn-export" onclick="exportPDF()"><i class="fas fa-file-pdf" style="color:#ef4444;"></i> Download PDF Report</button>
-      <button class="btn-share" onclick="shareResult()"><i class="fas fa-share-alt"></i> Share Result</button>
+    <div style="display:flex; gap:12px; margin-top:24px; margin-bottom:24px; flex-wrap:wrap;">
+      <button class="calc-btn secondary" style="flex:1; min-width:120px; margin:0;" onclick="resetAll()"><i class="fas fa-redo"></i> Reset</button>
+      <button class="calc-btn secondary" style="flex:1; min-width:120px; margin:0; color:#ef4444; border-color:#ef4444;" onclick="exportPDF()"><i class="fas fa-file-pdf"></i> Download PDF</button>
+      <button class="calc-btn green" style="flex:1; min-width:120px; margin:0;" onclick="shareResult()"><i class="fas fa-share-alt"></i> Share</button>
+    </div>
+
+    <!-- INTERLINKING SECTION (SEO & UX) -->
+    <div class="interlink-section">
+      <h3 class="interlink-title">Explore More Health Tools</h3>
+      <div class="interlink-grid">
+        <a href="bmi-calculator.html" class="interlink-card"><i class="fas fa-weight-scale"></i> BMI Calculator</a>
+        <a href="calorie-calculator.html" class="interlink-card"><i class="fas fa-fire"></i> Calorie & TDEE</a>
+        <a href="ascvd-risk-calculator.html" class="interlink-card"><i class="fas fa-heart-pulse"></i> Heart Risk (ASCVD)</a>
+        <a href="body-fat-calculator.html" class="interlink-card"><i class="fas fa-user-check"></i> Body Fat %</a>
+        <a href="sleep-cycle-calculator.html" class="interlink-card"><i class="fas fa-moon"></i> Sleep Cycle</a>
+        <a href="water-intake-calculator.html" class="interlink-card"><i class="fas fa-droplet"></i> Water Intake</a>
+      </div>
     </div>
 
   </main>
 </div>
 
 <script>
-var currentUnit = 'metric';
-var chartInstance = null;
-var countryData = {
-  'in': { limit: 0.03, name: 'India (Sec 185 MV Act)' },
-  'us': { limit: 0.08, name: 'United States' },
-  'uk': { limit: 0.08, name: 'United Kingdom' },
-  'ae': { limit: 0.00, name: 'UAE (Zero Tolerance)' }
-};
+/* ==============================================
+   GLOBAL STATE
+   ============================================== */
+var isAIProcessing = false;
+var currentUnitBAC = 'metric';
 var currentCountry = 'in';
+var currentLang = 'en';
+var eliminationChartInstance = null;
+
+/* ==============================================
+   DATA DICTIONARIES
+   ============================================== */
+var countryData = {
+  'in': {limit:0.03, name:'India', flag:'🇮🇳', penalty:'Section 185 MV Act 1988: First offence — imprisonment up to 6 months and/or fine up to ₹2,000. Second offence — imprisonment up to 2 years and/or fine up to ₹3,000.'},
+  'us': {limit:0.08, name:'United States', flag:'🇺🇸', penalty:'DUI penalties vary by state. Fines up to $2,000, license suspension 6-12 months, possible jail time.'},
+  'ca': {limit:0.08, name:'Canada', flag:'🇨🇦', penalty:'Criminal Code DUI: fines $1,000+, license suspension 1-3 years.'},
+  'br': {limit:0.00, name:'Brazil', flag:'🇧🇷', penalty:'Zero tolerance. Any BAC results in fine, license suspension, vehicle impoundment.'},
+  'uk-eng': {limit:0.08, name:'UK', flag:'🇬🇧', penalty:'Unlimited fine, driving ban 12+ months, possible 6 months prison.'},
+  'de': {limit:0.05, name:'Germany', flag:'🇩🇪', penalty:'Fines start at €500, driving ban 1-3 months. Zero tolerance for novice drivers.'},
+  'fr': {limit:0.05, name:'France', flag:'🇫🇷', penalty:'Fine up to €4,500, license suspension up to 3 years.'},
+  'se': {limit:0.02, name:'Sweden', flag:'🇸🇪', penalty:'Very strict. Fines and license suspension. 0.10%+ = aggravated DUI with prison.'},
+  'au': {limit:0.05, name:'Australia', flag:'🇦🇺', penalty:'Fines A$600-A$3,000+, license suspension 6-12 months. Zero tolerance for novice drivers.'},
+  'jp': {limit:0.03, name:'Japan', flag:'🇯🇵', penalty:'Very strict. Fine up to ¥1,000,000, prison up to 5 years. Passengers can also be penalized.'},
+  'ae': {limit:0.00, name:'UAE', flag:'🇦🇪', penalty:'Zero tolerance. Prison, heavy fines, deportation for expatriates.'}
+};
 
 var DRINK_DB = {
-  'beer': { v: 650, abv: 0.05 },
-  'old-monk': { v: 60, abv: 0.428 },
-  'wine': { v: 150, abv: 0.12 },
-  'spirit': { v: 44, abv: 0.40 }
+  'kingfisher-strong': {v:650, abv:0.08, name:'Kingfisher Strong'},
+  'kingfisher-premium': {v:650, abv:0.048, name:'Kingfisher Premium'},
+  'bira-white': {v:330, abv:0.047, name:'Bira 91 White'},
+  'old-monk': {v:60, abv:0.428, name:'Old Monk Rum'},
+  'blenders-pride': {v:60, abv:0.428, name:'Blenders Pride'},
+  'royal-stag': {v:60, abv:0.428, name:'Royal Stag'},
+  'desi-daru': {v:60, abv:0.40, name:'Desi Daru'},
+  'wine': {v:148, abv:0.12, name:'Wine'},
+  'beer': {v:355, abv:0.05, name:'Beer'},
+  'spirit': {v:44, abv:0.40, name:'Shot'}
 };
 
-// --- UNIT SYNC LOGIC ---
+/* ==============================================
+   UI & STATE FUNCTIONS
+   ============================================== */
+function initTheme() {
+  var s = localStorage.getItem('hc_theme') || 'light';
+  document.body.classList.toggle('dark', s === 'dark');
+  updateThemeIcon(s);
+}
+function toggleTheme() {
+  var isDark = document.body.classList.contains('dark');
+  var newTheme = isDark ? 'light' : 'dark';
+  localStorage.setItem('hc_theme', newTheme);
+  document.body.classList.toggle('dark', !isDark);
+  updateThemeIcon(newTheme);
+  if (chartData) updateEliminationChart();
+}
+function updateThemeIcon(theme) {
+  var btn = document.querySelector('.theme-toggle-btn');
+  if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun" id="themeIcon"></i>' : '<i class="fas fa-moon" id="themeIcon"></i>';
+}
+initTheme();
+
+function setLanguage(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.lang === lang); });
+  document.body.classList.toggle('lang-hi', lang === 'hi');
+  localStorage.setItem('bacLang', lang);
+}
+if (localStorage.getItem('bacLang') === 'hi') setLanguage('hi');
+
 function setUnit(unit) {
-  currentUnit = unit;
-  document.querySelectorAll('.unit-btn').forEach(b => b.classList.toggle('active', b.dataset.unitbac === unit));
-  
-  const metricInp = document.getElementById('weightMetric');
-  const impInp = document.getElementById('weightImperial');
-  
-  if(unit === 'metric') {
-    metricInp.style.display = 'block';
-    impInp.style.display = 'none';
-    impInp.value = (metricInp.value * 2.20462).toFixed(1);
-  } else {
-    metricInp.style.display = 'none';
-    impInp.style.display = 'block';
-    metricInp.value = (impInp.value / 2.20462).toFixed(1);
-  }
+  currentUnitBAC = unit;
+  document.querySelectorAll('.unit-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.unitbac === unit); });
+  document.getElementById('metricFieldsBAC').style.display = (unit === 'metric') ? 'block' : 'none';
+  document.getElementById('imperialFieldsBAC').style.display = (unit === 'imperial') ? 'block' : 'none';
+  localStorage.setItem('healthcalc_unitbac', unit);
   calculateBAC();
 }
 
-function syncWeight(from) {
-  const metricInp = document.getElementById('weightMetric');
-  const impInp = document.getElementById('weightImperial');
-  if(from === 'metric' && metricInp.value) {
-    impInp.value = (metricInp.value * 2.20462).toFixed(1);
-  } else if(from === 'imperial' && impInp.value) {
-    metricInp.value = (impInp.value / 2.20462).toFixed(1);
+function syncWeight(fromUnit) {
+  var wm = document.getElementById('weightMetricBAC');
+  var wi = document.getElementById('weightImpBAC');
+  if (fromUnit === 'metric') {
+    wi.value = (parseFloat(wm.value) * 2.20462).toFixed(1);
+  } else {
+    wm.value = (parseFloat(wi.value) / 2.20462).toFixed(1);
   }
   calculateBAC();
 }
 
 function setCountry(code) {
   currentCountry = code;
+  localStorage.setItem('healthcalc_country', code);
   calculateBAC();
 }
 
+/* ==============================================
+   CALCULATIONS
+   ============================================== */
+function getAlcoholGrams(type, qty) {
+  var d = DRINK_DB[type]; if (!d) return qty * 14;
+  return d.v * d.abv * qty * 0.789;
+}
+
+function getDrinkBreakdown() {
+  var breakdown = [], totalAlcohol = 0;
+  document.querySelectorAll('.drink-item').forEach(function(item) {
+    var type = item.querySelector('.drink-type').value;
+    var qty = parseFloat(item.querySelector('.drink-quantity').value);
+    if (!isNaN(qty) && qty > 0) {
+      var grams = getAlcoholGrams(type, qty);
+      totalAlcohol += grams;
+      breakdown.push({ name: DRINK_DB[type].name, qty: qty, grams: grams });
+    }
+  });
+  return { breakdown: breakdown, totalAlcohol: totalAlcohol };
+}
+
+var chartData = null;
+
+function calculateBAC() {
+  var gender = currentUnitBAC === 'metric' ? document.getElementById('gender').value : document.getElementById('genderImp').value;
+  var weight;
+  if (currentUnitBAC === 'metric') weight = parseFloat(document.getElementById('weightMetricBAC').value);
+  else { var wl = parseFloat(document.getElementById('weightImpBAC').value); weight = wl * 0.453592; }
+  
+  var hours = parseFloat(document.getElementById('hours').value);
+  var metabolism = 0.015;
+  
+  if (isNaN(weight) || weight <= 0) return;
+  if (isNaN(hours) || hours < 0) hours = 0;
+  
+  var data = getDrinkBreakdown();
+  var totalAlcohol = data.totalAlcohol;
+  
+  var usStdDrinks = totalAlcohol / 14, indiaStdDrinks = totalAlcohol / 10;
+  document.getElementById('stdDrinkText').textContent = usStdDrinks.toFixed(1) + ' US (14g) · ' + indiaStdDrinks.toFixed(1) + ' India (10g)';
+  
+  if (totalAlcohol === 0) {
+    document.getElementById('bacResult').innerText = '0.000%';
+    updateResults(0, metabolism);
+    return;
+  }
+  
+  var r = gender === 'male' ? 0.68 : 0.55;
+  var bac = (totalAlcohol / (weight * r)) / 10;
+  bac = Math.max(0, parseFloat((bac - (hours * metabolism)).toFixed(3)));
+  
+  document.getElementById('bacResult').innerText = bac.toFixed(3) + '%';
+  updateResults(bac, metabolism);
+}
+
+function updateResults(bac, metabolism) {
+  var cd = countryData[currentCountry];
+  var limit = cd.limit;
+  
+  document.getElementById('scaleIndicator').style.left = Math.min(bac * 500, 100) + '%';
+  
+  var badge = document.getElementById('bacStatusBadge');
+  if (limit === 0) {
+    badge.innerHTML = bac > 0 ? '<span class="bac-badge over">⚠️ ANY ALCOHOL = ILLEGAL</span>' : '<span class="bac-badge legal">✅ Sober</span>';
+  } else {
+    badge.innerHTML = bac >= limit ? '<span class="bac-badge over">🚫 OVER LEGAL LIMIT</span>' : '<span class="bac-badge legal">✅ Below Legal Limit</span>';
+  }
+  
+  var displayCountries = ['in', 'us', 'uk-eng', 'ae', 'de', 'au'];
+  var gridHtml = '';
+  displayCountries.forEach(function(code) {
+    var c = countryData[code]; if (!c) return;
+    var status = limit > 0 ? (bac >= c.limit ? '<span style="color:#fca5a5; font-weight:bold;">OVER</span>' : '<span style="color:#6ee7b7; font-weight:bold;">SAFE</span>') : (bac > 0 ? '<span style="color:#fca5a5; font-weight:bold;">ZERO</span>' : '<span style="color:#6ee7b7; font-weight:bold;">OK</span>');
+    gridHtml += '<div class="legal-card' + (code === currentCountry ? ' selected' : '') + '"><div>' + c.flag + ' ' + c.name + '</div><div style="margin:4px 0; font-size:14px; font-weight:bold;">' + (c.limit === 0 ? '0.00%' : c.limit.toFixed(2) + '%') + '</div><div>' + status + '</div></div>';
+  });
+  document.getElementById('legalLimitsGrid').innerHTML = gridHtml;
+  
+  var soberHtml = '', soberClockHtml = '';
+  if (bac > 0) {
+    var htz = bac / metabolism;
+    var hrs = Math.floor(htz), mins = Math.round((htz - hrs) * 60);
+    soberHtml = '🚗 Approximately <strong>' + (hrs > 0 ? hrs + 'h ' : '') + mins + 'm</strong> until sober.';
+    var now = new Date(), soberAt = new Date(now.getTime() + htz * 3600000);
+    soberClockHtml = '🕐 Sober by <strong>' + soberAt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) + '</strong>';
+  } else {
+    soberHtml = '✅ BAC is effectively zero — safe to drive.';
+  }
+  document.getElementById('soberTime').innerHTML = soberHtml;
+  document.getElementById('soberTimeClock').innerHTML = soberClockHtml;
+  
+  var sm = '', sc = '';
+  if (bac >= 0.25) { sm = '⚠️ <strong>SEVERE:</strong> High BAC. Risk of poisoning. Do NOT drive.'; sc = 'critical'; }
+  else if (bac >= limit) { sm = '⚠️ <strong>CRITICAL:</strong> You are OVER the legal limit. DO NOT DRIVE.'; sc = 'critical'; }
+  else if (bac > 0) { sm = '⚠️ <strong>CAUTION:</strong> Any alcohol impairs driving. Use a designated driver.'; sc = 'warning'; }
+  else { sm = '✅ Sober and legally safe.'; sc = 'safe'; }
+  
+  var se = document.getElementById('safetyMessage');
+  se.innerHTML = sm; se.className = 'safety-message ' + sc;
+  document.getElementById('penaltyCountry').textContent = cd.name;
+  document.getElementById('penaltyText').textContent = cd.penalty;
+  
+  chartData = { bac: bac, metabolism: metabolism, limit: limit };
+  updateEliminationChart();
+}
+
+function updateEliminationChart() {
+  if (!chartData) return;
+  var canvas = document.getElementById('eliminationChart');
+  if (!canvas) return;
+  
+  if (eliminationChartInstance) eliminationChartInstance.destroy();
+  
+  var maxHours = Math.max(6, Math.ceil(chartData.bac / chartData.metabolism) + 2);
+  var labels = [], data = [], limitLine = [];
+  
+  for (var h = 0; h <= maxHours; h += 0.5) {
+    labels.push(h + 'h');
+    data.push(Math.max(0, chartData.bac - chartData.metabolism * h));
+    limitLine.push(chartData.limit > 0 ? chartData.limit : 0);
+  }
+  
+  eliminationChartInstance = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: { labels: labels, datasets: [
+      { label: 'Your BAC', data: data, borderColor: '#fbbf24', backgroundColor: 'rgba(251,191,36,0.15)', borderWidth: 3, fill: true },
+      { label: 'Legal Limit', data: limitLine, borderColor: '#ef4444', borderDash: [6, 6], borderWidth: 2, pointRadius: 0 }
+    ]},
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } }, scales: { y: { beginAtZero: true, max: Math.max(chartData.limit * 1.5, chartData.bac * 1.2, 0.05), ticks: { color: '#94a3b8', callback: function(v) { return v.toFixed(2) + '%'; } } }, x: { ticks: { color: '#94a3b8' } } } }
+  });
+}
+
+/* ==============================================
+   DYNAMIC DRINKS
+   ============================================== */
 function addDrink() {
-  var div = document.createElement('div');
-  div.className = 'drink-item';
+  var div = document.createElement('div'); div.className = 'drink-item';
   div.innerHTML = `
     <select class="drink-type" onchange="calculateBAC()">
-      <option value="beer">🍺 Beer (650ml, 5%)</option>
-      <option value="old-monk">🥃 Old Monk Rum (60ml, 42.8%)</option>
-      <option value="wine">🍷 Wine (150ml, 12%)</option>
-      <option value="spirit">🥃 Shot (44ml, 40%)</option>
+      <optgroup label="🇮🇳 Indian Beer"><option value="kingfisher-strong">🍺 Kingfisher Strong (650ml, 8%)</option><option value="kingfisher-premium">🍺 Kingfisher Premium (650ml, 4.8%)</option></optgroup>
+      <optgroup label="🇮🇳 Indian Spirits"><option value="old-monk">🥃 Old Monk Rum (60ml, 42.8%)</option><option value="blenders-pride">🥃 Blenders Pride (60ml, 42.8%)</option></optgroup>
+      <optgroup label="🌍 Western"><option value="beer">🍺 Beer (355ml, 5%)</option><option value="wine">🍷 Wine (148ml, 12%)</option></optgroup>
     </select>
-    <input type="number" class="drink-quantity" value="1" step="0.5" oninput="calculateBAC()">
-    <button class="remove-drink" onclick="removeDrink(this)"><i class="fas fa-trash-alt"></i></button>
-  `;
+    <input type="number" class="drink-quantity" placeholder="Qty" value="1" step="0.5" min="0" oninput="calculateBAC()">
+    <button class="remove-drink" title="Remove Drink" onclick="removeDrink(this)"><i class="fas fa-trash-alt"></i></button>`;
   document.getElementById('drinksContainer').appendChild(div);
   calculateBAC();
 }
-
 function removeDrink(btn) {
-  if(document.querySelectorAll('.drink-item').length > 1) {
-    btn.closest('.drink-item').remove();
-    calculateBAC();
-  }
+  var container = document.getElementById('drinksContainer');
+  if (container.children.length > 1) btn.closest('.drink-item').remove();
+  else btn.closest('.drink-item').querySelector('.drink-quantity').value = 0;
+  calculateBAC();
 }
 
-// --- CORE CALCULATION ---
-function calculateBAC() {
-  var gender = document.getElementById('gender').value;
-  var weightKg = parseFloat(document.getElementById('weightMetric').value);
-  var hours = parseFloat(document.getElementById('hours').value) || 0;
-  
-  if(!weightKg || weightKg <= 0) return;
-
-  var totalAlcoholGrams = 0;
-  document.querySelectorAll('.drink-item').forEach(item => {
-    var type = item.querySelector('.drink-type').value;
-    var qty = parseFloat(item.querySelector('.drink-quantity').value) || 0;
-    var d = DRINK_DB[type];
-    // Grams = Volume(ml) * ABV * Density(0.789) * Qty
-    totalAlcoholGrams += (d.v * d.abv * 0.789 * qty);
-  });
-
-  var r = gender === 'male' ? 0.68 : 0.55;
-  // Widmark Formula
-  var peakBAC = (totalAlcoholGrams / (weightKg * r * 10));
-  var currentBAC = Math.max(0, peakBAC - (hours * 0.015));
-
-  updateUI(currentBAC);
+function resetAll() {
+  document.getElementById('weightMetricBAC').value = 70;
+  document.getElementById('weightImpBAC').value = 154;
+  document.getElementById('hours').value = 1;
+  var container = document.getElementById('drinksContainer');
+  container.innerHTML = ''; addDrink(); container.querySelector('.drink-quantity').value = 1;
+  calculateBAC();
 }
 
-function updateUI(bac) {
-  document.getElementById('bacResult').innerText = bac.toFixed(3) + '%';
-  document.getElementById('scaleIndicator').style.left = Math.min(bac * 500, 100) + '%';
-  
-  var limit = countryData[currentCountry].limit;
-  var badge = document.getElementById('bacStatusBadge');
-  badge.innerHTML = bac >= limit ? '<span class="bac-badge over">🚫 OVER LIMIT</span>' : '<span class="bac-badge legal">✅ LEGAL</span>';
-
-  // Sober Time
-  var hoursToSober = bac / 0.015;
-  var soberHtml = "";
-  if(bac > 0) {
-    var h = Math.floor(hoursToSober);
-    var m = Math.round((hoursToSober - h) * 60);
-    var now = new Date();
-    var soberAt = new Date(now.getTime() + hoursToSober * 3600000);
-    soberHtml = `🚗 Sober in approx: <strong>${h}h ${m}m</strong>.<br><span style="font-size:13px;opacity:0.8;">(Around ${soberAt.toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit'})})</span>`;
-  } else {
-    soberHtml = "✅ BAC is zero.";
-  }
-  document.getElementById('soberTime').innerHTML = soberHtml;
-
-  // Safety Message
-  var sm = document.getElementById('safetyMessage');
-  if(bac >= 0.25) {
-    sm.innerHTML = "🚨 EMERGENCY: High risk of poisoning. Call 112 immediately.";
-    sm.className = "safety-message emergency";
-  } else if(bac >= limit) {
-    sm.innerHTML = "⚠️ WARNING: You are over the legal limit. DO NOT DRIVE.";
-    sm.className = "safety-message critical";
-  } else if(bac > 0) {
-    sm.innerHTML = "⚠️ Any alcohol impairs driving. Use a designated driver.";
-    sm.className = "safety-message safe";
-  } else {
-    sm.innerHTML = "✅ You are sober.";
-    sm.className = "safety-message safe";
-  }
-
-  renderChart(bac, limit);
-}
-
-function renderChart(bac, limit) {
-  var ctx = document.getElementById('eliminationChart').getContext('2d');
-  if(chartInstance) chartInstance.destroy();
-
-  var dataPoints = [];
-  var labels = [];
-  for(let i=0; i<=12; i+=1) {
-    labels.push(i + 'h');
-    dataPoints.push(Math.max(0, bac - (i * 0.015)));
-  }
-
-  chartInstance = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Your BAC',
-        data: dataPoints,
-        borderColor: '#fbbf24',
-        backgroundColor: 'rgba(251,191,36,0.1)',
-        borderWidth: 3,
-        fill: true,
-        tension: 0.3
-      }, {
-        label: 'Legal Limit',
-        data: Array(13).fill(limit),
-        borderColor: '#ef4444',
-        borderDash: [5,5],
-        borderWidth: 2,
-        pointRadius: 0
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: { 
-        y: { ticks: { callback: v => v.toFixed(2)+'%' }, max: Math.max(limit*1.5, bac*1.2, 0.05) },
-        x: { grid: { display: false } }
-      }
-    }
-  });
-}
-
-// --- PREMIUM EXPORT & SHARE ---
-function exportPDF() {
-  if(document.getElementById('bacResult').innerText === '0.000%') {
-    alert('Please calculate your BAC first.'); return;
-  }
-  
-  const element = document.getElementById('pdf-content');
-  const opt = {
-    margin:       0.5,
-    filename:     'HealthCalc_BAC_Report.pdf',
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-  };
-
-  // Change background for PDF (so it looks good on paper)
-  element.style.background = '#ffffff';
-  element.style.color = '#000000';
-  
-  html2pdf().set(opt).from(element).save().then(() => {
-    // Revert styles after generating
-    element.style.background = 'transparent';
-    element.style.color = 'inherit';
-  });
-}
-
-function shareResult() {
-  var bac = document.getElementById('bacResult').innerText;
-  var text = `My estimated Blood Alcohol Content is ${bac}. Calculated on HealthCalc.in. Stay safe, never drink and drive!`;
-  
+/* ==============================================
+   PREMIUM EXPORT & SHARE
+   ============================================== */
+async function shareResult() {
+  var text = 'My estimated BAC: ' + document.getElementById('bacResult').innerText + '\nCalculated on HealthCalc.in';
   if (navigator.share) {
-    navigator.share({ title: 'My BAC Result', text: text, url: window.location.href });
+    try { await navigator.share({ title: 'My BAC Result', text: text, url: window.location.href }); } catch(e) {}
   } else {
-    navigator.clipboard.writeText(text + ' ' + window.location.href);
+    await navigator.clipboard.writeText(text + ' ' + window.location.href);
     alert('✅ Result copied to clipboard!');
   }
 }
 
-function toggleTheme() {
-  document.body.classList.toggle('dark');
-  document.getElementById('themeIcon').className = document.body.classList.contains('dark') ? 'fas fa-sun' : 'fas fa-moon';
+function exportPDF() {
+  if (document.getElementById('bacResult').innerText === '0.000%') {
+    alert('Please calculate BAC first.'); return;
+  }
+  const element = document.getElementById('pdf-content');
+  const opt = { margin: 0.5, filename: 'HealthCalc_BAC_Report.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } };
+
+  // Temporarily force light mode background for cleaner PDF printing
+  let originalBg = element.style.background;
+  element.style.background = '#ffffff';
+  element.style.padding = '20px';
+  element.style.borderRadius = '10px';
+
+  html2pdf().set(opt).from(element).save().then(() => {
+    element.style.background = originalBg;
+    element.style.padding = '0';
+  });
 }
 
-// Init
-window.onload = function() { calculateBAC(); };
+/* ==============================================
+   AI CHAT
+   ============================================== */
+function addChatMessage(text, sender) {
+  var md = document.getElementById('aiChatMessages');
+  var msgDiv = document.createElement('div');
+  msgDiv.className = 'ai-message ' + (sender === 'user' ? 'ai-message-user' : 'ai-message-bot');
+  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  msgDiv.innerHTML = text;
+  md.appendChild(msgDiv); md.scrollTop = md.scrollHeight;
+}
+
+async function sendAIMessage(prefilledText) {
+  if (isAIProcessing) return;
+  var input = document.getElementById('aiChatInput');
+  var message = prefilledText || input.value.trim();
+  if (!message) return;
+  
+  isAIProcessing = true;
+  addChatMessage(message, 'user');
+  if (!prefilledText) input.value = '';
+  
+  var md = document.getElementById('aiChatMessages');
+  var td = document.createElement('div'); td.id = 'aiTypingIndicator'; td.className = 'ai-message ai-message-bot';
+  td.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
+  md.appendChild(td); md.scrollTop = md.scrollHeight;
+  
+  var context = '[USER PROFILE]\nBAC: ' + document.getElementById('bacResult').innerText + '\nCountry: ' + countryData[currentCountry].name + '\nQuestion: ' + message;
+  
+  try {
+    var response = await fetch('/api/chat', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userMessage: context })
+    });
+    var data = await response.json();
+    document.getElementById('aiTypingIndicator')?.remove();
+    addChatMessage(data.reply || data.message || 'AI is currently unavailable.', 'bot');
+  } catch (e) {
+    document.getElementById('aiTypingIndicator')?.remove();
+    addChatMessage('❌ <strong>Connection Error</strong><br>Please try again. Only time reduces BAC.', 'bot');
+  } finally {
+    isAIProcessing = false;
+  }
+}
+
+/* ==============================================
+   INIT
+   ============================================== */
+window.addEventListener('load', function() {
+  setCountry(localStorage.getItem('healthcalc_country') || 'in');
+  setUnit(localStorage.getItem('healthcalc_unitbac') || 'metric');
+  calculateBAC();
+});
 </script>
 </body>
 </html>
