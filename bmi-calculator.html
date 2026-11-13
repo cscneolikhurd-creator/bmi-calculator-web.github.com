@@ -7,10 +7,48 @@
 <meta name="theme-color" content="#667eea">
 
 <title>BAC Calculator 2026: Blood Alcohol Content & Legal Limits (India + 50+ Countries) | HealthCalc</title>
-<meta name="description" content="Free international BAC calculator using Widmark formula. Check legal driving limits for India (Section 185 MV Act), US, UK, Canada, Australia, EU, UAE & 50+ countries. Indian drinks database, sober-by time, emergency alcohol poisoning check, elimination graph, AI safety assistant, bilingual English/Hindi hints.">
+<meta name="description" content="Free international BAC calculator using Widmark formula. Check legal driving limits for India (Section 185 MV Act), US, UK, Canada, Australia, EU, UAE & 50+ countries. Indian drinks database, sober-by time, emergency alcohol poisoning check, elimination graph, AI safety assistant.">
 <meta name="author" content="HealthCalc">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://healthcalc.in/bac-calculator.html">
+
+<!-- JSON-LD Schema for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://healthcalc.in/bac-calculator.html#app",
+      "name": "BAC Calculator — India & International",
+      "url": "https://healthcalc.in/bac-calculator.html",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any (Web-based)",
+      "description": "International Blood Alcohol Content calculator using the Widmark formula with Indian drinks database, Section 185 MV Act details, legal limits for 50+ countries, and emergency checks.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+    },
+    {
+      "@type": "MedicalWebPage",
+      "@id": "https://healthcalc.in/bac-calculator.html#webpage",
+      "url": "https://healthcalc.in/bac-calculator.html",
+      "name": "BAC Calculator - Blood Alcohol Content & Legal Limits",
+      "inLanguage": ["en", "hi"],
+      "lastReviewed": "2026-01-15",
+      "reviewedBy": { "@type": "Organization", "name": "HealthCalc Medical Review Team" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://healthcalc.in/bac-calculator.html#faq",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is the legal BAC limit in India?", "acceptedAnswer": { "@type": "Answer", "text": "Under Section 185 of the Motor Vehicles Act 1988, the legal blood alcohol limit in India is 30 mg of alcohol per 100 mL of blood, i.e., BAC of 0.03%." } },
+        { "@type": "Question", "name": "How much alcohol is in an Indian peg?", "acceptedAnswer": { "@type": "Answer", "text": "An Indian peg is typically 60 ml of spirits at 42.8% ABV, containing about 20.3 grams of pure alcohol." } },
+        { "@type": "Question", "name": "How accurate is the Widmark formula?", "acceptedAnswer": { "@type": "Answer", "text": "The Widmark formula is accurate within ±20% for most people. It does not account for liver health, food intake, medications, or genetic variations." } },
+        { "@type": "Question", "name": "How long does it take to sober up?", "acceptedAnswer": { "@type": "Answer", "text": "The average person metabolizes alcohol at approximately 0.015% BAC per hour. There is no way to speed this up — coffee, cold showers, or food will not reduce your BAC." } }
+      ]
+    }
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,12 +91,8 @@ body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: 
 .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 14px; padding: 8px 20px; border-radius: 50px; transition: var(--transition); }
 .nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
-.nav-tools { display: flex; gap: 8px; align-items: center; }
 .theme-toggle-btn { background: var(--card-bg); border: 1px solid var(--border); width: 42px; height: 42px; border-radius: 50%; color: var(--text); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
 .theme-toggle-btn:hover { background: var(--primary-light); transform: rotate(15deg); }
-.lang-toggle { display: flex; gap: 4px; }
-.lang-btn { padding: 6px 12px; border: 1px solid var(--border); border-radius: 50px; font-size: 12px; font-weight: 700; cursor: pointer; background: var(--card-bg); color: var(--text-muted); transition: var(--transition); }
-.lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
 .international-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; background: var(--card-bg); padding: 16px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); }
 .region-selector select { padding: 10px 20px; border: 2px solid var(--border); border-radius: 50px; font-size: 14px; font-weight: 600; background: var(--card-bg); color: var(--text); cursor: pointer; outline: none; transition: var(--transition); }
@@ -88,8 +122,6 @@ label i { color: var(--primary); margin-right: 6px; }
 
 input, select { width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 15px; background: var(--card-bg); color: var(--text); outline: none; transition: var(--transition); font-weight: 500; }
 input:focus, select:focus { border-color: var(--primary); }
-.hint-hi { display: none; font-size: 12px; color: var(--secondary); margin-top: 4px; font-style: italic; }
-body.lang-hi .hint-hi { display: block; }
 
 .drink-item { background: var(--card-bg); padding: 16px; border-radius: var(--radius-md); margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 .drink-item select { flex: 2; min-width: 180px; margin-bottom: 0; }
@@ -107,7 +139,7 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
 .calc-btn.secondary { background: var(--card-bg); color: var(--text); border: 2px solid var(--border); box-shadow: none; }
 .calc-btn.green { background: linear-gradient(135deg,#10b981,#059669); box-shadow: 0 8px 20px rgba(16,185,129,0.3); }
 
-/* RESULT */
+/* RESULT & PDF TARGET */
 .result-box { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-radius: var(--radius-xl); padding: 32px; color: white; text-align: center; border: 2px solid transparent; transition: all 0.4s; position: relative; }
 .medically-reviewed-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(16,185,129,0.15); color: #6ee7b7; padding: 6px 14px; border-radius: 50px; font-size: 11px; font-weight: 700; margin-bottom: 20px; border: 1px solid rgba(16,185,129,0.3); }
 .bac-value { font-size: 64px; font-weight: 900; background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; color: transparent; margin: 10px 0; line-height: 1; }
@@ -124,8 +156,6 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
 .sober-time-clock { font-size: 13px; opacity: 0.9; margin-top: 4px; font-weight: 500; }
 .safety-message { margin-top: 16px; padding: 16px; border-radius: var(--radius-md); font-size: 14px; font-weight: 700; }
 .safety-message.critical { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
-.safety-message.warning { background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
-.safety-message.caution { background: rgba(245,158,11,0.15); color: #fbbf24; }
 .safety-message.safe { background: rgba(16,185,129,0.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
 .safety-message.emergency { background: rgba(239,68,68,0.35); color: white; border: 2px solid #ef4444; animation: pulse 1.5s infinite; }
 @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.7); } 50% { box-shadow: 0 0 0 12px rgba(239,68,68,0); } }
@@ -134,34 +164,25 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
 .scale-bar { height: 10px; background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444); border-radius: 10px; margin-bottom: 12px; position: relative; }
 .scale-indicator { position: absolute; top: -5px; width: 6px; height: 20px; background: white; border-radius: 3px; transform: translateX(-50%); transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(255,255,255,0.8); }
 .scale-labels { display: flex; justify-content: space-between; font-size: 11px; opacity: 0.8; font-weight: 600; }
-
 .chart-container { background: rgba(255,255,255,0.05); border-radius: var(--radius-lg); padding: 16px; margin: 16px 0; height: 220px; }
 .legal-info-box { background: rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; margin-top: 16px; text-align: left; font-size: 12px; }
 .legal-info-box h4 { color: #fbbf24; margin-bottom: 8px; font-size: 14px; }
 
 /* AI CHAT */
-.ai-chat-panel { margin-top: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left; }
+.ai-chat-panel { margin-top: 20px; border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); text-align: left; }
 .ai-chat-header { background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2)); color: white; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .ai-chat-messages { height: 280px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; font-size: 14px; }
-.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; animation: slideIn 0.3s ease; }
-.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; border: 1px solid rgba(255,255,255,0.05); }
+.ai-message { max-width: 85%; padding: 14px 18px; line-height: 1.5; }
+.ai-message-bot { background: rgba(255,255,255,0.1); color: #f8fafc; border-radius: 16px; border-top-left-radius: 4px; align-self: flex-start; }
 .ai-message-user { background: var(--primary); color: white; font-weight: 500; border-radius: 16px; border-top-right-radius: 4px; align-self: flex-end; }
-.ai-chat-suggestions { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.2); border-top: 1px solid rgba(255,255,255,0.05); }
-.ai-chat-suggestions::-webkit-scrollbar { display: none; }
+.ai-chat-suggestions { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.2); }
 .ai-suggestion-chip { background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; font-size: 12px; cursor: pointer; color: #cbd5e1; white-space: nowrap; transition: var(--transition); border: 1px solid transparent; }
-.ai-suggestion-chip:hover { background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.3); }
+.ai-suggestion-chip:hover { background: rgba(255,255,255,0.2); color: white; }
 .ai-chat-input-row { display: flex; gap: 12px; padding: 16px; background: rgba(0,0,0,0.4); }
-.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 14px; outline: none; transition: var(--transition); }
-.ai-chat-input:focus { border-color: var(--primary); background: rgba(255,255,255,0.05); }
-.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
-.ai-chat-send-btn:hover { background: var(--primary-hover); transform: scale(1.05); }
-.ai-chat-disclaimer { padding: 8px; text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); background: rgba(0,0,0,0.5); }
-
-@keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.ai-chat-input { flex: 1; padding: 14px 20px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.2); color: white; font-size: 14px; outline: none; }
+.ai-chat-send-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; }
 .typing-dots { display: flex; gap: 4px; padding: 4px; }
 .typing-dots div { width: 6px; height: 6px; background: #cbd5e1; border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
-.typing-dots div:nth-child(1) { animation-delay: -0.32s; }
-.typing-dots div:nth-child(2) { animation-delay: -0.16s; }
 @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 
 /* INTERLINKING SECTION (SEO) */
@@ -183,7 +204,6 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
 <body>
 
 <div class="container">
-
   <nav class="top-nav">
     <div class="nav-links">
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
@@ -191,13 +211,7 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
       <a href="bac-calculator.html" class="active"><i class="fas fa-wine-bottle"></i> BAC</a>
       <a href="bmi-calculator.html"><i class="fas fa-weight-scale"></i> BMI</a>
     </div>
-    <div class="nav-tools">
-      <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
-        <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिं</button>
-      </div>
-      <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-moon" id="themeIcon"></i></button>
-    </div>
+    <button class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-moon" id="themeIcon"></i></button>
   </nav>
 
   <div class="international-bar">
@@ -230,9 +244,9 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
   </div>
 
   <header class="hero">
-    <div class="health-authority-note"><i class="fas fa-shield-halved"></i> Widmark Formula Engine · India & International</div>
+    <div class="health-authority-note"><i class="fas fa-shield-halved"></i> Widmark Formula Engine · Global Standards</div>
     <h1>Premium BAC Calculator</h1>
-    <p>Calculate Blood Alcohol Content with clinical accuracy. Indian drinks database, <strong>Section 185 MV Act</strong> compliance, sober-by clock time, elimination graph, emergency check, and AI safety assistant.</p>
+    <p>Calculate Blood Alcohol Content with clinical accuracy. Indian drinks database, <strong>Section 185 MV Act</strong> compliance, sober-by clock time, elimination graph, and AI safety assistant.</p>
   </header>
 
   <main class="card">
@@ -251,7 +265,6 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
           <div class="form-group">
             <label><i class="fas fa-weight-scale"></i> Weight (kg)</label>
             <input type="number" id="weightMetricBAC" step="0.1" value="70" min="20" max="300" oninput="syncWeight('metric')">
-            <div class="hint-hi">वजन किलोग्राम में।</div>
           </div>
         </div>
       </div>
@@ -271,12 +284,12 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
         <div class="form-group">
           <label><i class="fas fa-clock"></i> Hours since FIRST drink</label>
           <input type="number" id="hours" step="0.5" value="1" min="0" max="24" oninput="calculateBAC()">
-          <div class="hint-hi">पहली ड्रिंक से कितने घंटे बीते।</div>
         </div>
         <div class="form-group">
           <label><i class="fas fa-utensils"></i> Food Consumed?</label>
           <select id="food" onchange="calculateBAC()">
-            <option value="empty">🚫 Empty stomach</option><option value="light">🥗 Light snack</option><option value="full" selected>🍽️ Full meal</option>
+            <option value="empty">🚫 Empty stomach</option>
+            <option value="full" selected>🍽️ Full meal</option>
           </select>
         </div>
       </div>
@@ -310,7 +323,7 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
       </div>
       <button class="add-drink-btn" onclick="addDrink()"><i class="fas fa-plus"></i> Add Another Drink</button>
       <div class="standard-drinks-display" id="standardDrinksDisplay">
-        <i class="fas fa-wine-glass"></i> Standard drinks: <span id="stdDrinkText">0.0 US (14g) · 0.0 India (10g)</span>
+        <i class="fas fa-wine-glass"></i> Standard drinks: <span id="stdDrinkText">0.0 (Calculating...)</span>
       </div>
     </div>
 
@@ -345,17 +358,17 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
           <div class="ai-chat-header">
             <div style="display:flex; align-items:center; gap:8px;">
               <i class="fas fa-robot" style="color:var(--primary-light);"></i>
-              <span>BAC Safety Assistant</span>
+              <span>Global BAC Safety Assistant</span>
             </div>
           </div>
           <div class="ai-chat-messages" id="aiChatMessages">
             <div class="ai-message ai-message-bot">
-              <strong>Namaste! 👋</strong><br>I'm your AI Safety Assistant. Calculate your BAC above, and I can give you exact sober times, Indian legal details, and safety guidance.
+              <strong>Hello! 👋</strong><br>I'm your AI Safety Assistant. Calculate your BAC above, and I can give you exact sober times, local legal limits, and safety guidance.
             </div>
           </div>
           <div class="ai-chat-suggestions">
             <div class="ai-suggestion-chip" onclick="sendAIMessage('Based on my BAC, how long until I am completely sober?')">⏱️ My sober time?</div>
-            <div class="ai-suggestion-chip" onclick="sendAIMessage('What are the exact Section 185 MV Act penalties in India?')">⚖️ India legal</div>
+            <div class="ai-suggestion-chip" onclick="sendAIMessage('What are the exact penalties in my selected country?')">⚖️ Local legal limits</div>
             <div class="ai-suggestion-chip" onclick="sendAIMessage('What actually works to reduce BAC faster?')">⚡ Reduce BAC fast?</div>
           </div>
           <div class="ai-chat-input-row">
@@ -385,7 +398,6 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
         <a href="water-intake-calculator.html" class="interlink-card"><i class="fas fa-droplet"></i> Water Intake</a>
       </div>
     </div>
-
   </main>
 </div>
 
@@ -396,24 +408,23 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
 var isAIProcessing = false;
 var currentUnitBAC = 'metric';
 var currentCountry = 'in';
-var currentLang = 'en';
 var eliminationChartInstance = null;
 
 /* ==============================================
-   DATA DICTIONARIES
+   GLOBAL DATA DICTIONARIES
    ============================================== */
 var countryData = {
-  'in': {limit:0.03, name:'India', flag:'🇮🇳', penalty:'Section 185 MV Act 1988: First offence — imprisonment up to 6 months and/or fine up to ₹2,000. Second offence — imprisonment up to 2 years and/or fine up to ₹3,000.'},
-  'us': {limit:0.08, name:'United States', flag:'🇺🇸', penalty:'DUI penalties vary by state. Fines up to $2,000, license suspension 6-12 months, possible jail time.'},
-  'ca': {limit:0.08, name:'Canada', flag:'🇨🇦', penalty:'Criminal Code DUI: fines $1,000+, license suspension 1-3 years.'},
-  'br': {limit:0.00, name:'Brazil', flag:'🇧🇷', penalty:'Zero tolerance. Any BAC results in fine, license suspension, vehicle impoundment.'},
-  'uk-eng': {limit:0.08, name:'UK', flag:'🇬🇧', penalty:'Unlimited fine, driving ban 12+ months, possible 6 months prison.'},
-  'de': {limit:0.05, name:'Germany', flag:'🇩🇪', penalty:'Fines start at €500, driving ban 1-3 months. Zero tolerance for novice drivers.'},
-  'fr': {limit:0.05, name:'France', flag:'🇫🇷', penalty:'Fine up to €4,500, license suspension up to 3 years.'},
-  'se': {limit:0.02, name:'Sweden', flag:'🇸🇪', penalty:'Very strict. Fines and license suspension. 0.10%+ = aggravated DUI with prison.'},
-  'au': {limit:0.05, name:'Australia', flag:'🇦🇺', penalty:'Fines A$600-A$3,000+, license suspension 6-12 months. Zero tolerance for novice drivers.'},
-  'jp': {limit:0.03, name:'Japan', flag:'🇯🇵', penalty:'Very strict. Fine up to ¥1,000,000, prison up to 5 years. Passengers can also be penalized.'},
-  'ae': {limit:0.00, name:'UAE', flag:'🇦🇪', penalty:'Zero tolerance. Prison, heavy fines, deportation for expatriates.'}
+  'in': {limit:0.03, name:'India', flag:'🇮🇳', stdDrinkG:10, emergency:'112', penalty:'Section 185 MV Act 1988: First offence — imprisonment up to 6 months and/or fine up to ₹2,000. Second offence — imprisonment up to 2 years and/or fine up to ₹3,000.'},
+  'us': {limit:0.08, name:'United States', flag:'🇺🇸', stdDrinkG:14, emergency:'911', penalty:'DUI penalties vary by state. Fines up to $2,000, license suspension 6-12 months, possible jail time.'},
+  'ca': {limit:0.08, name:'Canada', flag:'🇨🇦', stdDrinkG:13.6, emergency:'911', penalty:'Criminal Code DUI: fines $1,000+, license suspension 1-3 years.'},
+  'br': {limit:0.00, name:'Brazil', flag:'🇧🇷', stdDrinkG:14, emergency:'192', penalty:'Zero tolerance. Any BAC results in fine, license suspension, vehicle impoundment.'},
+  'uk-eng': {limit:0.08, name:'UK', flag:'🇬🇧', stdDrinkG:8, emergency:'999', penalty:'Unlimited fine, driving ban 12+ months, possible 6 months prison.'},
+  'de': {limit:0.05, name:'Germany', flag:'🇩🇪', stdDrinkG:10, emergency:'112', penalty:'Fines start at €500, driving ban 1-3 months. Zero tolerance for novice drivers.'},
+  'fr': {limit:0.05, name:'France', flag:'🇫🇷', stdDrinkG:10, emergency:'112', penalty:'Fine up to €4,500, license suspension up to 3 years.'},
+  'se': {limit:0.02, name:'Sweden', flag:'🇸🇪', stdDrinkG:12, emergency:'112', penalty:'Very strict. Fines and license suspension. 0.10%+ = aggravated DUI with prison.'},
+  'au': {limit:0.05, name:'Australia', flag:'🇦🇺', stdDrinkG:10, emergency:'000', penalty:'Fines A$600-A$3,000+, license suspension 6-12 months. Zero tolerance for novice drivers.'},
+  'jp': {limit:0.03, name:'Japan', flag:'🇯🇵', stdDrinkG:10, emergency:'110', penalty:'Very strict. Fine up to ¥1,000,000, prison up to 5 years. Passengers can also be penalized.'},
+  'ae': {limit:0.00, name:'UAE', flag:'🇦🇪', stdDrinkG:14, emergency:'999', penalty:'Zero tolerance. Prison, heavy fines, deportation for expatriates.'}
 };
 
 var DRINK_DB = {
@@ -430,7 +441,7 @@ var DRINK_DB = {
 };
 
 /* ==============================================
-   UI & STATE FUNCTIONS
+   UI FUNCTIONS
    ============================================== */
 function initTheme() {
   var s = localStorage.getItem('hc_theme') || 'light';
@@ -450,14 +461,6 @@ function updateThemeIcon(theme) {
   if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun" id="themeIcon"></i>' : '<i class="fas fa-moon" id="themeIcon"></i>';
 }
 initTheme();
-
-function setLanguage(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.lang === lang); });
-  document.body.classList.toggle('lang-hi', lang === 'hi');
-  localStorage.setItem('bacLang', lang);
-}
-if (localStorage.getItem('bacLang') === 'hi') setLanguage('hi');
 
 function setUnit(unit) {
   currentUnitBAC = unit;
@@ -482,6 +485,13 @@ function syncWeight(fromUnit) {
 function setCountry(code) {
   currentCountry = code;
   localStorage.setItem('healthcalc_country', code);
+  
+  // Auto-switch units based on country
+  if (code === 'us') {
+    setUnit('imperial');
+  } else {
+    setUnit('metric');
+  }
   calculateBAC();
 }
 
@@ -524,8 +534,10 @@ function calculateBAC() {
   var data = getDrinkBreakdown();
   var totalAlcohol = data.totalAlcohol;
   
-  var usStdDrinks = totalAlcohol / 14, indiaStdDrinks = totalAlcohol / 10;
-  document.getElementById('stdDrinkText').textContent = usStdDrinks.toFixed(1) + ' US (14g) · ' + indiaStdDrinks.toFixed(1) + ' India (10g)';
+  // Dynamic Standard Drinks based on country
+  var stdDrinkWeight = countryData[currentCountry].stdDrinkG;
+  var stdDrinks = totalAlcohol / stdDrinkWeight;
+  document.getElementById('stdDrinkText').textContent = stdDrinks.toFixed(1) + ' (' + stdDrinkWeight + 'g per drink)';
   
   if (totalAlcohol === 0) {
     document.getElementById('bacResult').innerText = '0.000%';
@@ -569,7 +581,7 @@ function updateResults(bac, metabolism) {
     var hrs = Math.floor(htz), mins = Math.round((htz - hrs) * 60);
     soberHtml = '🚗 Approximately <strong>' + (hrs > 0 ? hrs + 'h ' : '') + mins + 'm</strong> until sober.';
     var now = new Date(), soberAt = new Date(now.getTime() + htz * 3600000);
-    soberClockHtml = '🕐 Sober by <strong>' + soberAt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }) + '</strong>';
+    soberClockHtml = '🕐 Sober by <strong>' + soberAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + '</strong>';
   } else {
     soberHtml = '✅ BAC is effectively zero — safe to drive.';
   }
@@ -577,8 +589,9 @@ function updateResults(bac, metabolism) {
   document.getElementById('soberTimeClock').innerHTML = soberClockHtml;
   
   var sm = '', sc = '';
-  if (bac >= 0.25) { sm = '⚠️ <strong>SEVERE:</strong> High BAC. Risk of poisoning. Do NOT drive.'; sc = 'critical'; }
-  else if (bac >= limit) { sm = '⚠️ <strong>CRITICAL:</strong> You are OVER the legal limit. DO NOT DRIVE.'; sc = 'critical'; }
+  // Dynamic Emergency Numbers
+  if (bac >= 0.25) { sm = '⚠️ <strong>SEVERE:</strong> High BAC. Risk of poisoning. Call ' + cd.emergency + ' immediately. Do NOT drive.'; sc = 'critical'; }
+  else if (bac >= limit) { sm = '⚠️ <strong>CRITICAL:</strong> You are OVER the legal limit in ' + cd.name + '. DO NOT DRIVE.'; sc = 'critical'; }
   else if (bac > 0) { sm = '⚠️ <strong>CAUTION:</strong> Any alcohol impairs driving. Use a designated driver.'; sc = 'warning'; }
   else { sm = '✅ Sober and legally safe.'; sc = 'safe'; }
   
@@ -607,13 +620,17 @@ function updateEliminationChart() {
     limitLine.push(chartData.limit > 0 ? chartData.limit : 0);
   }
   
+  var isDark = document.body.classList.contains('dark');
+  var textColor = isDark ? '#94a3b8' : '#64748b';
+  var gridColor = isDark ? '#334155' : '#e2e8f0';
+
   eliminationChartInstance = new Chart(canvas.getContext('2d'), {
     type: 'line',
     data: { labels: labels, datasets: [
       { label: 'Your BAC', data: data, borderColor: '#fbbf24', backgroundColor: 'rgba(251,191,36,0.15)', borderWidth: 3, fill: true },
       { label: 'Legal Limit', data: limitLine, borderColor: '#ef4444', borderDash: [6, 6], borderWidth: 2, pointRadius: 0 }
     ]},
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } } }, scales: { y: { beginAtZero: true, max: Math.max(chartData.limit * 1.5, chartData.bac * 1.2, 0.05), ticks: { color: '#94a3b8', callback: function(v) { return v.toFixed(2) + '%'; } } }, x: { ticks: { color: '#94a3b8' } } } }
+    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: textColor } } }, scales: { y: { beginAtZero: true, max: Math.max(chartData.limit * 1.5, chartData.bac * 1.2, 0.05), ticks: { color: textColor, callback: function(v) { return v.toFixed(2) + '%'; } }, grid: { color: gridColor } }, x: { ticks: { color: textColor }, grid: { display: false } } } }
   });
 }
 
@@ -650,7 +667,7 @@ function resetAll() {
 }
 
 /* ==============================================
-   PREMIUM EXPORT & SHARE
+   PREMIUM EXPORT & SHARE (FIXED FOR DARK MODE)
    ============================================== */
 async function shareResult() {
   var text = 'My estimated BAC: ' + document.getElementById('bacResult').innerText + '\nCalculated on HealthCalc.in';
@@ -667,22 +684,21 @@ function exportPDF() {
     alert('Please calculate BAC first.'); return;
   }
   const element = document.getElementById('pdf-content');
-  const opt = { margin: 0.5, filename: 'HealthCalc_BAC_Report.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } };
+  
+  // Force Light Mode for PDF generation
+  let wasDark = document.body.classList.contains('dark');
+  if (wasDark) document.body.classList.remove('dark');
 
-  // Temporarily force light mode background for cleaner PDF printing
-  let originalBg = element.style.background;
-  element.style.background = '#ffffff';
-  element.style.padding = '20px';
-  element.style.borderRadius = '10px';
+  const opt = { margin: 0.5, filename: 'HealthCalc_BAC_Report.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } };
 
   html2pdf().set(opt).from(element).save().then(() => {
-    element.style.background = originalBg;
-    element.style.padding = '0';
+    if (wasDark) document.body.classList.add('dark');
+    if (chartData) updateEliminationChart(); // Re-render chart with dark/light colors
   });
 }
 
 /* ==============================================
-   AI CHAT
+   AI CHAT WITH FULL GLOBAL CONTEXT
    ============================================== */
 function addChatMessage(text, sender) {
   var md = document.getElementById('aiChatMessages');
@@ -708,15 +724,25 @@ async function sendAIMessage(prefilledText) {
   td.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
   md.appendChild(td); md.scrollTop = md.scrollHeight;
   
-  var context = '[USER PROFILE]\nBAC: ' + document.getElementById('bacResult').innerText + '\nCountry: ' + countryData[currentCountry].name + '\nQuestion: ' + message;
+  var cd = countryData[currentCountry];
+  var data = getDrinkBreakdown();
+  
+  // Deep Context for AI
+  var context = `[USER PROFILE - BAC ASSESSMENT]\n`;
+  context += `- Current BAC: ${document.getElementById('bacResult').innerText}\n`;
+  context += `- Selected Country: ${cd.name} (Legal limit: ${cd.limit}%)\n`;
+  context += `- Emergency Number for this country: ${cd.emergency}\n`;
+  context += `- Gender: ${currentUnitBAC === 'metric' ? document.getElementById('gender').value : document.getElementById('genderImp').value}\n`;
+  context += `- Drinks consumed: ${data.breakdown.map(d => d.qty + 'x ' + d.name).join(', ') || 'None'}\n`;
+  context += `\n[INSTRUCTIONS]\nYou are an expert BAC Safety Assistant. Use the user's exact numbers. Reference the local laws of ${cd.name}. Keep responses under 150 words. Use **bold** for key numbers. Always end with: "⚠️ Never drink and drive."\n\n[USER QUESTION]\n${message}`;
   
   try {
     var response = await fetch('/api/chat', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ userMessage: context })
     });
-    var data = await response.json();
+    var resData = await response.json();
     document.getElementById('aiTypingIndicator')?.remove();
-    addChatMessage(data.reply || data.message || 'AI is currently unavailable.', 'bot');
+    addChatMessage(resData.reply || resData.message || 'AI is currently unavailable.', 'bot');
   } catch (e) {
     document.getElementById('aiTypingIndicator')?.remove();
     addChatMessage('❌ <strong>Connection Error</strong><br>Please try again. Only time reduces BAC.', 'bot');
@@ -729,8 +755,10 @@ async function sendAIMessage(prefilledText) {
    INIT
    ============================================== */
 window.addEventListener('load', function() {
-  setCountry(localStorage.getItem('healthcalc_country') || 'in');
-  setUnit(localStorage.getItem('healthcalc_unitbac') || 'metric');
+  // Auto-detect or use saved country
+  var savedCountry = localStorage.getItem('healthcalc_country') || 'in';
+  document.getElementById('countrySelect').value = savedCountry;
+  setCountry(savedCountry);
   calculateBAC();
 });
 </script>
