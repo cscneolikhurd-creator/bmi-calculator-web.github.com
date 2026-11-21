@@ -111,6 +111,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
@@ -134,7 +135,8 @@ body.dark {
 body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text); line-height: 1.6; min-height: 100vh; transition: var(--transition); }
 .container { max-width: 1250px; margin: 0 auto; padding: 20px; }
 
-.top-nav { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); padding: 14px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
+/* Right padding to prevent overlap with global prefs widget */
+.top-nav { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); padding: 14px 240px 14px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
 body.dark .top-nav { background: rgba(30,41,59,0.9); }
 .nav-links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 13px; padding: 8px 18px; border-radius: 50px; transition: var(--transition); white-space: nowrap; }
@@ -155,7 +157,7 @@ body.dark .top-nav { background: rgba(30,41,59,0.9); }
 .privacy-badge { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
 body.dark .privacy-badge { background: #052e16; color: #6ee7b7; border-color: #166534; }
 
-.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; background: var(--card-bg); padding: 14px 20px; border-radius: 16px; border: 1px solid var(--border); }
+.international-bar { position: static; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; background: var(--card-bg); padding: 14px 20px; border-radius: 16px; border: 1px solid var(--border); }
 .region-selector { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .region-selector label { font-weight: 600; font-size: 13px; }
 .region-selector select { padding: 8px 14px; border: 2px solid var(--border); border-radius: 50px; background: var(--card-bg); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
@@ -295,12 +297,18 @@ body.dark .ai-chat-header { color: #fbcfe8; }
 .medical-disclaimer h3 { font-weight: 700; margin-bottom: 10px; color: var(--text); font-size: 16px; }
 .medical-disclaimer p { color: var(--text-muted); font-size: 13px; line-height: 1.7; margin-bottom: 8px; }
 
+footer { text-align: center; padding: 24px 16px; margin-top: 30px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); }
+footer a { color: var(--primary); text-decoration: none; }
+
 @media(max-width: 768px) {
   .metrics-grid { grid-template-columns: 1fr 1fr; }
   .week-number { font-size: 40px; }
   .due-date { font-size: 28px; }
-  .top-nav { padding: 12px 16px; }
+  .top-nav { padding: 10px 140px 10px 14px; }
   body { padding: 15px; }
+}
+@media(max-width: 480px) {
+  .top-nav { padding: 10px 120px 10px 14px; }
 }
 </style>
 
@@ -359,8 +367,8 @@ body.dark .ai-chat-header { color: #fbcfe8; }
     <div class="region-selector">
       <label for="region"><i class="fas fa-globe-asia"></i> Guidelines:</label>
       <select id="region" onchange="setRegion(this.value)">
-        <option value="india" selected>🇮🇳 India (ICMR-NIN 2024)</option>
-        <option value="international">🌍 International (ACOG/NICE)</option>
+        <option value="india">🇮🇳 India (ICMR-NIN 2024)</option>
+        <option value="international" selected>🌍 International (ACOG/NICE)</option>
       </select>
     </div>
   </div>
@@ -428,11 +436,11 @@ body.dark .ai-chat-header { color: #fbcfe8; }
         </ul>
       </div>
 
-      <div class="pcpndt-box" id="pcpndtBox">
+      <div class="pcpndt-box" id="pcpndtBox" style="display:none;">
         <strong>⚖️ PCPNDT Act Compliance:</strong> Under India's Pre-Conception and Pre-Natal Diagnostic Techniques Act 1994, <strong>sex determination of the fetus is illegal</strong>. Requesting it is a punishable offense. This tool does not and will not predict fetal sex.
       </div>
 
-      <div class="india-care-box" id="indiaCareBox">
+      <div class="india-care-box" id="indiaCareBox" style="display:none;">
         <h4><i class="fas fa-heart"></i> Indian Pregnancy Care (Govt. of India)</h4>
         <ul>
           <li><strong>Folic acid 400–500 mcg daily</strong> — pre-conception to 12 weeks</li>
@@ -635,11 +643,17 @@ body.dark .ai-chat-header { color: #fbcfe8; }
   <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<footer role="contentinfo">
+  <p>© 2026 HealthCalc.in — <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="report-problem.html">Report Issue</a></p>
+  <p style="margin-top:6px;font-size:11px;">Educational only · Consult your OB-GYN/ANM/ASHA · Emergency in India: 108</p>
+</footer>
+
+<script src="global.js"></script>
 <script>
 /* ==============================================
    GLOBAL STATE
    ============================================== */
-var currentRegion = 'india';
+var currentRegion = 'international';
 var currentLang = 'en';
 var pregnancyData = null;
 var weightGainChart = null;
@@ -650,6 +664,16 @@ var contractionLog = JSON.parse(localStorage.getItem('contractionLog') || '[]');
 var calcHistory = JSON.parse(localStorage.getItem('pregnancyHistory') || '[]');
 var userWeightLog = JSON.parse(localStorage.getItem('pregnancyWeightLog') || '[]');
 var isAIProcessing = false;
+
+/* ==============================================
+   REGION MAPPING (page ↔ HealthCalc)
+   ============================================== */
+function regionToHealthCalc(r) {
+  return r === 'india' ? 'IN' : 'US';
+}
+function healthCalcToRegion(r) {
+  return r === 'IN' ? 'india' : 'international';
+}
 
 /* ==============================================
    HELPERS
@@ -692,16 +716,22 @@ function setLanguage(lang) {
 }
 if (localStorage.getItem('preg_lang') === 'hi') setLanguage('hi');
 
-function setRegion(region) {
+function setRegion(region, skipSync) {
   currentRegion = region;
   document.getElementById('region').value = region;
   localStorage.setItem('preg_region', region);
+
   // Show/hide India-specific boxes
   document.getElementById('pcpndtBox').style.display = (region === 'india') ? 'block' : 'none';
   document.getElementById('indiaCareBox').style.display = (region === 'india') ? 'block' : 'none';
+
+  // Sync with global widget
+  if (!skipSync && window.HealthCalc) {
+    HealthCalc.setRegion(regionToHealthCalc(region));
+  }
+
   if (pregnancyData) calculatePregnancy(false);
 }
-if (localStorage.getItem('preg_region')) setRegion(localStorage.getItem('preg_region'));
 
 /* ==============================================
    TAB SWITCH
@@ -716,7 +746,7 @@ function switchTab(tabName) {
 }
 
 /* ==============================================
-   FETAL SIZE DATA (fixed progression)
+   FETAL SIZE DATA
    ============================================== */
 var fetalSizes = [
   {max:4, icon:'🌱', size:'Poppy seed (0.1 cm)'},
@@ -776,13 +806,11 @@ function getTrimester(week) {
    ============================================== */
 function getWeightGainGuideline(bmi, region) {
   if (region === 'india') {
-    // Asian BMI cutoffs: overweight ≥23, obese ≥25
     if (bmi < 18.5) return { range: [12.5, 18], label: 'Underweight — Higher gain', perWeek: 0.5 };
     if (bmi < 23) return { range: [10, 14], label: 'Normal (Asian) — Standard gain', perWeek: 0.4 };
     if (bmi < 25) return { range: [7, 11], label: 'Overweight (Asian) — Moderate gain', perWeek: 0.3 };
     return { range: [5, 9], label: 'Obese (Asian) — Limited gain', perWeek: 0.2 };
   } else {
-    // IOM cutoffs
     if (bmi < 18.5) return { range: [12.5, 18], label: 'Underweight — Higher gain', perWeek: 0.5 };
     if (bmi < 25) return { range: [11.5, 16], label: 'Normal weight — Standard gain', perWeek: 0.42 };
     if (bmi < 30) return { range: [7, 11.5], label: 'Overweight — Moderate gain', perWeek: 0.28 };
@@ -836,22 +864,18 @@ function calculatePregnancy(fromButton) {
     return;
   }
 
-  // Conception
   var ovulationDay = cycleLength - 14;
   var conception = new Date(lmp);
   conception.setDate(lmp.getDate() + ovulationDay);
 
-  // Fertile window
   var fertileStart = new Date(conception);
   fertileStart.setDate(conception.getDate() - 5);
   var fertileEnd = new Date(conception);
   fertileEnd.setDate(conception.getDate() + 1);
 
-  // Next period
   var nextPeriod = new Date(lmp);
   nextPeriod.setDate(lmp.getDate() + cycleLength);
 
-  // Gestational age
   var daysElapsed = Math.max(0, Math.floor((today - lmp) / (1000*60*60*24)));
   var weeksElapsed = Math.max(0, Math.floor(daysElapsed / 7));
   var daysRemaining = Math.ceil((dueDate - today) / (1000*60*60*24));
@@ -859,7 +883,6 @@ function calculatePregnancy(fromButton) {
   var trimester = getTrimester(weeksElapsed);
   var stage = getFetalSize(weeksElapsed);
 
-  // BMI & weight gain rec (region-aware)
   var bmi = preWeight / ((height/100) * (height/100));
   var weightRec = getWeightGainGuideline(bmi, currentRegion);
 
@@ -995,7 +1018,6 @@ function addWeightLog() {
     return;
   }
   var gain = currentWeight - pregnancyData.preWeight;
-  // Remove existing entry for this week, then add
   userWeightLog = userWeightLog.filter(function(e){ return e.week !== pregnancyData.weeksElapsed; });
   userWeightLog.push({
     week: pregnancyData.weeksElapsed,
@@ -1020,7 +1042,7 @@ function renderWeightLogList() {
     var originalIdx = userWeightLog.length - 1 - idx;
     return '<div class="weight-log-item">' +
       '<span>Week ' + e.week + ' · ' + e.weight.toFixed(1) + ' kg (' + (e.gain >= 0 ? '+' : '') + e.gain.toFixed(1) + ' kg)</span>' +
-      '<button data-weight-idx="' + originalIdx + '" onclick="deleteWeightLog(' + originalIdx + ')" aria-label="Delete">×</button>' +
+      '<button onclick="deleteWeightLog(' + originalIdx + ')" aria-label="Delete">×</button>' +
       '</div>';
   }).join('');
 }
@@ -1033,7 +1055,7 @@ function deleteWeightLog(idx) {
 }
 
 /* ==============================================
-   TIMELINE CHART (fixed: proper progression)
+   TIMELINE CHART
    ============================================== */
 function drawPregnancyTimelineChart() {
   if (!pregnancyData) return;
@@ -1041,13 +1063,10 @@ function drawPregnancyTimelineChart() {
   if (pregnancyTimelineChart) pregnancyTimelineChart.destroy();
 
   var weeks = []; for (var i = 0; i <= 40; i++) weeks.push(i);
-  var progress = weeks.map(function(w) {
-    return Math.min(100, (w / 40) * 100);
-  });
+  var progress = weeks.map(function(w) { return Math.min(100, (w / 40) * 100); });
   var currentPosition = pregnancyData.weeksElapsed;
 
   var isDark = document.body.classList.contains('dark');
-  var textColor = isDark ? '#f1f5f9' : '#1e293b';
   var tickColor = isDark ? '#94a3b8' : '#64748b';
 
   pregnancyTimelineChart = new Chart(ctx, {
@@ -1097,7 +1116,7 @@ function redrawCharts() {
 }
 
 /* ==============================================
-   CONTRACTION TIMER (persisted)
+   CONTRACTION TIMER
    ============================================== */
 function startContraction() {
   if (contractionStartTime) return;
@@ -1214,7 +1233,7 @@ function loadHistory(id) {
     lmp.setDate(dueDate.getDate() - 280);
     document.getElementById('lmp').value = lmp.toISOString().split('T')[0];
     document.getElementById('edd').value = '';
-    if (entry.region) setRegion(entry.region);
+    if (entry.region) setRegion(entry.region, true);
     calculatePregnancy(false);
   }
 }
@@ -1286,33 +1305,7 @@ document.getElementById('timerStopBtn').addEventListener('click', stopContractio
 document.getElementById('timerResetBtn').addEventListener('click', resetTimer);
 
 /* ==============================================
-   LOAD SAVED
-   ============================================== */
-(function initPage() {
-  var saved = localStorage.getItem('healthcalc_pregnancy');
-  if (saved) {
-    try {
-      var d = JSON.parse(saved);
-      if (d.lmp) document.getElementById('lmp').value = d.lmp;
-      if (d.edd) document.getElementById('edd').value = d.edd;
-      if (d.cycleLength) document.getElementById('cycleLength').value = d.cycleLength;
-      if (d.preWeight) document.getElementById('preWeight').value = d.preWeight;
-      if (d.height) document.getElementById('height').value = d.height;
-      if (d.region) setRegion(d.region);
-      if (d.lmp || d.edd) calculatePregnancy(false);
-    } catch(e) {}
-  }
-  displayHistory();
-  displayContractionLog();
-  renderWeightLogList();
-})();
-
-window.addEventListener('beforeunload', function() {
-  if (contractionTimer) clearInterval(contractionTimer);
-});
-
-/* ==============================================
-   AI CHAT (XSS-safe + India-aware)
+   AI CHAT
    ============================================== */
 function addChatMessage(text, sender) {
   var md = document.getElementById('aiChatMessages');
@@ -1354,6 +1347,8 @@ function getPregnancyContext() {
   }
   if (currentRegion === 'india') {
     ctx += '\n- IMPORTANT: User is in India. Reference ICMR-NIN 2024. Discuss IFA tablets, calcium, folic acid, TT/Td vaccination. Mention PMMVY, JSY, Ayushman Bharat, ASHA/ANM. Suggest Indian foods (dal, roti, sabzi, paneer, curd, greens, ragi, dates). Never predict fetal sex (PCPNDT Act 1994). For emergencies call 108.\n';
+  } else {
+    ctx += '\n- User is using international (ACOG/NICE) context.\n';
   }
   return ctx;
 }
@@ -1402,6 +1397,60 @@ document.querySelectorAll('.ai-suggestion-chip').forEach(function(chip) {
   chip.addEventListener('click', function() { sendAIMessage(this.dataset.msg); });
 });
 document.getElementById('aiSendBtn').addEventListener('click', function() { sendAIMessage(); });
+
+/* ==============================================
+   INIT — synced with HealthCalc
+   ============================================== */
+// 1. Load saved form data first (may set region via skipSync)
+(function initPage() {
+  var saved = localStorage.getItem('healthcalc_pregnancy');
+  if (saved) {
+    try {
+      var d = JSON.parse(saved);
+      if (d.lmp) document.getElementById('lmp').value = d.lmp;
+      if (d.edd) document.getElementById('edd').value = d.edd;
+      if (d.cycleLength) document.getElementById('cycleLength').value = d.cycleLength;
+      if (d.preWeight) document.getElementById('preWeight').value = d.preWeight;
+      if (d.height) document.getElementById('height').value = d.height;
+      if (d.region) setRegion(d.region, true);
+    } catch(e) {}
+  }
+})();
+
+// 2. If no saved region preference, derive from HealthCalc locale
+if (!localStorage.getItem('preg_region')) {
+  if (window.HealthCalc) {
+    currentRegion = healthCalcToRegion(HealthCalc.getRegion());
+  }
+  document.getElementById('region').value = currentRegion;
+  document.getElementById('pcpndtBox').style.display = (currentRegion === 'india') ? 'block' : 'none';
+  document.getElementById('indiaCareBox').style.display = (currentRegion === 'india') ? 'block' : 'none';
+}
+
+// 3. Sync on widget changes (only if user hasn't manually chosen)
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  if (e.detail.guideline) {
+    var targetRegion = healthCalcToRegion(e.detail.guideline);
+    if (targetRegion !== currentRegion && !localStorage.getItem('preg_region')) {
+      setRegion(targetRegion, true);
+      if (pregnancyData) calculatePregnancy(false);
+    }
+  }
+});
+
+// 4. Recalculate if form has data
+var savedLmp = document.getElementById('lmp').value;
+var savedEdd = document.getElementById('edd').value;
+if (savedLmp || savedEdd) calculatePregnancy(false);
+
+// 5. Render saved data
+displayHistory();
+displayContractionLog();
+renderWeightLogList();
+
+window.addEventListener('beforeunload', function() {
+  if (contractionTimer) clearInterval(contractionTimer);
+});
 </script>
 </body>
 </html>
