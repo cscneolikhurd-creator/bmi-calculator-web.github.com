@@ -1,9 +1,11 @@
 /* =============================================
    HEALTHCALC.IN - GLOBAL + INTERNATIONAL STYLES
-   Version: 2.0
-   Features: Unit Toggle, Ethnicity, Language, AI Chat
-   For US, UK, Canada, Australia
-   Last Updated: 2026-07-10
+   Version: 2.1
+   Features: Unit Toggle, Ethnicity, Language, AI Chat,
+             Region Widget, Disclaimer, Cookie Consent,
+             Sticky Intl Bar, Tool Cards, Dark Mode
+   For US, UK, Canada, Australia, EU, India
+   Last Updated: 2025-11-21
    ============================================= */
 
 /* ---------- CSS Variables (Root) ---------- */
@@ -22,6 +24,13 @@
     --bg: #ffffff;
     --bg-alt: #f8fafc;
     --border: #e2e8f0;
+
+    /* Aliases used by global.js widget + disclaimer */
+    --bg-secondary: var(--bg);
+    --bg-tertiary: var(--bg-alt);
+    --text-primary: var(--text);
+    --text-secondary: var(--text-muted);
+
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
@@ -42,9 +51,14 @@ body.dark {
     --bg: #1e293b;
     --bg-alt: #0f172a;
     --border: #334155;
+    /* Re-map aliases for dark mode */
+    --bg-secondary: var(--bg);
+    --bg-tertiary: var(--bg-alt);
+    --text-primary: var(--text);
+    --text-secondary: var(--text-muted);
 }
 
-/* ---------- Unit Toggle Switch (Metric/Imperial) ---------- */
+/* ---------- Unit Toggle Switch (per-tool, legacy) ---------- */
 .unit-toggle-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -75,9 +89,7 @@ body.dark {
     gap: 8px;
 }
 
-.unit-toggle-btn i {
-    font-size: 1.1rem;
-}
+.unit-toggle-btn i { font-size: 1.1rem; }
 
 .unit-toggle-btn.active {
     background: var(--bg);
@@ -93,6 +105,100 @@ body.dark {
 body.dark .unit-toggle-btn.active {
     background: #334155;
     color: var(--primary);
+}
+
+/* ---------- Global Floating Prefs Widget (top-right) ---------- */
+#hc-prefs-widget {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 9999;
+    background: var(--bg-secondary, #fff);
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 12px;
+    padding: 8px 10px;
+    font-size: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+    font-family: inherit;
+    transition: var(--transition);
+    backdrop-filter: blur(8px);
+}
+.hc-prefs-inner { display: flex; flex-direction: column; gap: 6px; }
+.hc-prefs-row { display: flex; align-items: center; gap: 6px; }
+.hc-prefs-label {
+    font-weight: 600;
+    color: var(--text-secondary, #6b7280);
+    min-width: 62px;
+    font-size: 11px;
+}
+.hc-seg {
+    display: inline-flex;
+    background: var(--bg-tertiary, #f3f4f6);
+    border-radius: 6px;
+    padding: 2px;
+}
+.hc-seg button {
+    border: 0;
+    background: transparent;
+    padding: 3px 9px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    color: var(--text-secondary, #6b7280);
+    font-family: inherit;
+    transition: var(--transition);
+}
+.hc-seg button.active {
+    background: var(--accent, #6366f1);
+    color: #fff;
+    font-weight: 600;
+}
+#hc-prefs-widget select {
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border, #e5e7eb);
+    background: var(--bg-secondary, #fff);
+    font-family: inherit;
+    color: var(--text-primary, #111827);
+    cursor: pointer;
+}
+#hc-prefs-widget select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* Dark mode for floating widget */
+body.dark #hc-prefs-widget {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+}
+body.dark .hc-seg { background: #111827; }
+body.dark #hc-prefs-widget select {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+}
+
+/* ---------- Global Medical Disclaimer (auto-injected) ---------- */
+.hc-global-disclaimer {
+    margin: 40px auto 24px;
+    max-width: 900px;
+    padding: 14px 18px;
+    background: var(--bg-tertiary, #f9fafb);
+    border-left: 3px solid var(--accent, #6366f1);
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--text-secondary, #6b7280);
+}
+.hc-global-disclaimer strong { color: var(--text-primary, #111827); }
+
+body.dark .hc-global-disclaimer {
+    background: #0f172a;
+    color: #94a3b8;
 }
 
 /* ---------- Ethnicity Selector (Asian BMI Cutoff) ---------- */
@@ -131,9 +237,7 @@ body.dark .unit-toggle-btn.active {
     font-family: 'Inter', sans-serif;
 }
 
-.ethnicity-select:hover {
-    border-color: var(--primary);
-}
+.ethnicity-select:hover { border-color: var(--primary); }
 
 .ethnicity-select:focus {
     outline: none;
@@ -149,9 +253,7 @@ body.dark .unit-toggle-btn.active {
     font-weight: 500;
 }
 
-.ethnicity-hint i {
-    margin-right: 5px;
-}
+.ethnicity-hint i { margin-right: 5px; }
 
 body.dark .ethnicity-select {
     background: var(--bg-alt);
@@ -239,7 +341,7 @@ body.dark .asian-warning {
     border-color: var(--primary);
 }
 
-/* ---------- International Bar ---------- */
+/* ---------- International Bar (sticky enhancement) ---------- */
 .international-bar {
     display: flex;
     justify-content: flex-end;
@@ -249,6 +351,11 @@ body.dark .asian-warning {
     padding: 12px 0;
     margin-bottom: 20px;
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    backdrop-filter: blur(10px);
 }
 
 .international-bar select {
@@ -301,9 +408,7 @@ body.dark .health-authority-note {
     font-weight: 500;
 }
 
-.breadcrumb a:hover {
-    text-decoration: underline;
-}
+.breadcrumb a:hover { text-decoration: underline; }
 
 /* ---------- Global Trust Badges ---------- */
 .global-trust-badge {
@@ -330,9 +435,7 @@ body.dark .health-authority-note {
     font-size: 1.2rem;
 }
 
-body.dark .global-trust-badge {
-    background: #2d3748;
-}
+body.dark .global-trust-badge { background: #2d3748; }
 
 /* ---------- Input with Unit ---------- */
 .unit-label {
@@ -398,9 +501,7 @@ body.dark .bmi-category-asian {
 }
 
 /* ---------- Health Risk Meter ---------- */
-.health-risk-meter {
-    margin: 20px 0;
-}
+.health-risk-meter { margin: 20px 0; }
 
 .risk-level {
     display: flex;
@@ -512,9 +613,7 @@ body.dark .country-badge {
     color: var(--text);
 }
 
-.ai-chat-input:focus {
-    border-color: var(--primary);
-}
+.ai-chat-input:focus { border-color: var(--primary); }
 
 .ai-chat-send-btn {
     width: 38px;
@@ -618,8 +717,195 @@ footer a {
     text-decoration: none;
 }
 
-footer a:hover {
+footer a:hover { text-decoration: underline; }
+
+/* =============================================
+   NEW: COOKIE CONSENT BANNER (EU/GDPR)
+   ============================================= */
+.hc-cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 16px 20px;
+    z-index: 99998;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.hc-cookie-banner.visible { display: flex; }
+
+.hc-cookie-banner p {
+    margin: 0;
+    flex: 1;
+    min-width: 240px;
+    line-height: 1.5;
+}
+
+.hc-cookie-banner a {
+    color: var(--primary);
     text-decoration: underline;
+}
+
+.hc-cookie-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.hc-cookie-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--bg-alt);
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.hc-cookie-btn.accept {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.hc-cookie-btn.accept:hover { background: var(--primary-dark); }
+.hc-cookie-btn:hover:not(.accept) { background: var(--primary-light); }
+
+body.dark .hc-cookie-banner { background: #1e293b; }
+
+/* =============================================
+   NEW: TOOL CARDS (Homepage grid polish)
+   ============================================= */
+.tool-card {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    transition: var(--transition);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.tool-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+.tool-card-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.tool-card-badge.new {
+    background: var(--success);
+    color: #fff;
+}
+
+.tool-card-badge.pro {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: #fff;
+}
+
+.tool-card-badge.global {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* =============================================
+   NEW: SHARE / EXPORT BUTTONS
+   ============================================= */
+.hc-share-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.hc-share-btn {
+    padding: 10px 18px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.hc-share-btn:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.hc-share-btn i { font-size: 14px; }
+
+/* =============================================
+   NEW: LOADING SPINNER (for async results)
+   ============================================= */
+.hc-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: hcSpin 0.8s linear infinite;
+}
+
+@keyframes hcSpin { to { transform: rotate(360deg); } }
+
+/* =============================================
+   NEW: RESULT CARD HIGHLIGHT
+   ============================================= */
+.hc-result-card {
+    background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin: 24px 0;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.hc-result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
 }
 
 /* ---------- Print Styles ---------- */
@@ -634,16 +920,20 @@ footer a:hover {
     .social-links,
     .keyword-tags,
     .cross-links,
-    .badge-container {
+    .badge-container,
+    #hc-prefs-widget,
+    .hc-cookie-banner,
+    .hc-share-bar,
+    .hc-global-disclaimer {
         display: none !important;
     }
-    
+
     body {
         background: white !important;
         color: black !important;
     }
-    
-    .card, .result-section {
+
+    .card, .result-section, .hc-result-card {
         border: 2px solid #3498db;
         padding: 20px;
         break-inside: avoid;
@@ -653,91 +943,114 @@ footer a:hover {
 
 /* ---------- High Contrast / Accessibility ---------- */
 @media (prefers-contrast: high) {
-    .unit-toggle-btn.active {
-        outline: 3px solid #000;
-    }
-    
-    .ethnicity-select {
-        border: 2px solid #000;
-    }
-    
-    .ai-chat-input {
-        border: 2px solid #000;
-    }
+    .unit-toggle-btn.active,
+    .hc-seg button.active { outline: 3px solid #000; }
+
+    .ethnicity-select,
+    .ai-chat-input,
+    #hc-prefs-widget { border: 2px solid #000; }
 }
 
 /* ---------- Reduced Motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-    * {
+    *,
+    #hc-prefs-widget,
+    .hc-seg button,
+    .hc-share-btn {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+    .hc-spinner {
+        animation: hcSpin 1.5s linear infinite !important;
     }
 }
 
 /* ---------- Mobile Responsive ---------- */
 @media (max-width: 768px) {
-    .unit-toggle-wrapper {
-        justify-content: center;
-    }
-    
+    .unit-toggle-wrapper { justify-content: center; }
+
     .unit-toggle-btn {
         padding: 10px 16px;
         font-size: 0.9rem;
     }
-    
+
     .language-switcher {
         margin-left: 0;
         justify-content: center;
     }
-    
+
     .international-bar {
         justify-content: center;
+        position: static; /* prevent sticky from eating screen space on mobile */
     }
-    
+
     .global-trust-badge {
         border-radius: var(--radius-lg);
         gap: 15px;
     }
-    
-    .trust-item {
-        font-size: 0.85rem;
-    }
-    
-    .ethnicity-group {
-        padding: 12px;
-    }
-    
+
+    .trust-item { font-size: 0.85rem; }
+
+    .ethnicity-group { padding: 12px; }
+
     .asian-warning {
         flex-direction: column;
         text-align: center;
     }
-    
-    .ai-chat-messages {
-        height: 180px;
-    }
-    
+
+    .ai-chat-messages { height: 180px; }
+
     .scroll-top {
         bottom: 20px;
         right: 20px;
         width: 42px;
         height: 42px;
     }
+
+    /* Widget — scale down but stay visible */
+    #hc-prefs-widget {
+        top: 8px;
+        right: 8px;
+        transform: scale(.9);
+        transform-origin: top right;
+    }
+
+    .hc-global-disclaimer {
+        margin: 24px 12px 16px;
+        font-size: 11px;
+    }
+
+    /* Cookie banner stacks vertically */
+    .hc-cookie-banner {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 16px;
+    }
+    .hc-cookie-actions { justify-content: flex-end; }
+}
+
+/* Extra-small (phones in portrait) */
+@media (max-width: 480px) {
+    #hc-prefs-widget {
+        transform: scale(.82);
+        top: 6px;
+        right: 6px;
+    }
+    .hc-prefs-label { min-width: 50px; font-size: 10px; }
+    .hc-seg button { padding: 2px 7px; font-size: 10px; }
+    #hc-prefs-widget select { font-size: 10px; padding: 3px 4px; }
 }
 
 /* ---------- RTL Support (Arabic/Hebrew) ---------- */
-[dir="rtl"] {
-    text-align: right;
-}
+[dir="rtl"] { text-align: right; }
 
 [dir="rtl"] .ethnicity-group {
     border-left: none;
     border-right: 4px solid var(--primary);
 }
 
-[dir="rtl"] .input-with-unit {
-    flex-direction: row-reverse;
-}
+[dir="rtl"] .input-with-unit { flex-direction: row-reverse; }
 
 [dir="rtl"] .ai-message-bot {
     border-top-left-radius: 12px;
@@ -747,6 +1060,16 @@ footer a:hover {
 [dir="rtl"] .ai-message-user {
     border-top-right-radius: 12px;
     border-top-left-radius: 4px;
+}
+
+[dir="rtl"] #hc-prefs-widget {
+    right: auto;
+    left: 12px;
+}
+
+[dir="rtl"] .hc-global-disclaimer {
+    border-left: none;
+    border-right: 3px solid var(--accent);
 }
 
 /* ---------- Animations ---------- */
