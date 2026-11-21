@@ -60,6 +60,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 
 <!-- Favicon & PWA -->
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -87,7 +88,8 @@ body.dark {
 body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); color: var(--text); line-height: 1.6; min-height: 100vh; transition: var(--transition); }
 .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-.top-nav { background: rgba(var(--card-bg), 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
+/* Right padding to prevent overlap with global prefs widget */
+.top-nav { background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 16px 240px 16px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
 .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 14px; padding: 8px 20px; border-radius: 50px; transition: var(--transition); }
 .nav-links a:hover, .nav-links a.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
@@ -401,6 +403,11 @@ body.dark .standard-drinks-display { background: #422006; color: #fcd34d; border
   </main>
 </div>
 
+<footer style="text-align:center;padding:24px 16px;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border);margin-top:30px;">
+  <p>&copy; 2026 HealthCalc.in &middot; <a href="privacy-policy.html" style="color:var(--primary);">Privacy</a> &middot; <a href="terms-of-service.html" style="color:var(--primary);">Terms</a> &middot; <a href="report-problem.html" style="color:var(--primary);">Report Issue</a></p>
+</footer>
+
+<script src="global.js"></script>
 <script>
 /* ==============================================
    GLOBAL STATE
@@ -462,12 +469,13 @@ function updateThemeIcon(theme) {
 }
 initTheme();
 
-function setUnit(unit) {
+function setUnit(unit, skipGlobalSync) {
   currentUnitBAC = unit;
   document.querySelectorAll('.unit-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.unitbac === unit); });
   document.getElementById('metricFieldsBAC').style.display = (unit === 'metric') ? 'block' : 'none';
   document.getElementById('imperialFieldsBAC').style.display = (unit === 'imperial') ? 'block' : 'none';
-  localStorage.setItem('healthcalc_unitbac', unit);
+  // Sync with the global prefs widget (prevents double-source-of-truth)
+  if (!skipGlobalSync && window.HealthCalc) HealthCalc.setUnits(unit);
   calculateBAC();
 }
 
@@ -485,13 +493,10 @@ function syncWeight(fromUnit) {
 function setCountry(code) {
   currentCountry = code;
   localStorage.setItem('healthcalc_country', code);
-  
-  // Auto-switch units based on country
-  if (code === 'us') {
-    setUnit('imperial');
-  } else {
-    setUnit('metric');
-  }
+  document.getElementById('countrySelect').value = code;
+  // NOTE: Units are intentionally NOT auto-switched here.
+  // The user's unit choice (via global widget or page buttons) is respected.
+  // On first page load, units are derived from locale by global.js anyway.
   calculateBAC();
 }
 
@@ -570,7 +575,10 @@ function updateResults(bac, metabolism) {
   var gridHtml = '';
   displayCountries.forEach(function(code) {
     var c = countryData[code]; if (!c) return;
-    var status = limit > 0 ? (bac >= c.limit ? '<span style="color:#fca5a5; font-weight:bold;">OVER</span>' : '<span style="color:#6ee7b7; font-weight:bold;">SAFE</span>') : (bac > 0 ? '<span style="color:#fca5a5; font-weight:bold;">ZERO</span>' : '<span style="color:#6ee7b7; font-weight:bold;">OK</span>');
+    // FIX: Each card evaluates against ITS OWN limit, not current selected country
+    var status = c.limit === 0
+      ? (bac > 0 ? '<span style="color:#fca5a5; font-weight:bold;">ZERO</span>' : '<span style="color:#6ee7b7; font-weight:bold;">OK</span>')
+      : (bac >= c.limit ? '<span style="color:#fca5a5; font-weight:bold;">OVER</span>' : '<span style="color:#6ee7b7; font-weight:bold;">SAFE</span>');
     gridHtml += '<div class="legal-card' + (code === currentCountry ? ' selected' : '') + '"><div>' + c.flag + ' ' + c.name + '</div><div style="margin:4px 0; font-size:14px; font-weight:bold;">' + (c.limit === 0 ? '0.00%' : c.limit.toFixed(2) + '%') + '</div><div>' + status + '</div></div>';
   });
   document.getElementById('legalLimitsGrid').innerHTML = gridHtml;
@@ -754,12 +762,35 @@ async function sendAIMessage(prefilledText) {
 /* ==============================================
    INIT
    ============================================== */
+/* Helper: derive initial country from user's browser locale */
+function getInitialCountryFromRegion() {
+  if (window.HealthCalc) {
+    var region = HealthCalc.getRegion(); // 'US' | 'UK' | 'EU' | 'AU' | 'CA' | 'IN'
+    var map = { 'US': 'us', 'UK': 'uk-eng', 'EU': 'de', 'AU': 'au', 'CA': 'ca', 'IN': 'in' };
+    if (map[region]) return map[region];
+  }
+  return 'us'; // international default
+}
+
 window.addEventListener('load', function() {
-  // Auto-detect or use saved country
-  var savedCountry = localStorage.getItem('healthcalc_country') || 'in';
-  document.getElementById('countrySelect').value = savedCountry;
-  setCountry(savedCountry);
+  // 1) Sync units from global widget (auto-detected from locale)
+  if (window.HealthCalc) setUnit(HealthCalc.getUnits(), true);
+
+  // 2) Determine initial country: saved → region-derived → 'us'
+  var saved = localStorage.getItem('healthcalc_country');
+  var initialCountry = (saved && countryData[saved]) ? saved : getInitialCountryFromRegion();
+  document.getElementById('countrySelect').value = initialCountry;
+  currentCountry = initialCountry;
+
+  // 3) Calc
   calculateBAC();
+});
+
+// Sync when user changes units via the global widget
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  if (e.detail.units && e.detail.units !== currentUnitBAC) {
+    setUnit(e.detail.units, true); // true = skip HealthCalc.setUnits (avoid loop)
+  }
 });
 </script>
 </body>
