@@ -86,14 +86,11 @@
       "@type": "FAQPage",
       "@id": "https://healthcalc.in/whr-calculator.html#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "What are the healthy WHR cutoffs for Indians?", "acceptedAnswer": { "@type": "Answer", "text": "For Indians (South Asians), stricter WHR cutoffs are recommended: Women <0.81, Men <0.88 (vs WHO's <0.85/<0.90). This is because South Asians have higher visceral fat at the same WHR and develop diabetes/heart disease 5-10 years earlier than Western populations. Many Indian cardiologists use these stricter cutoffs for risk stratification." } },
-        { "@type": "Question", "name": "What is TOFI (Thin Outside Fat Inside)?", "acceptedAnswer": { "@type": "Answer", "text": "TOFI describes people with normal BMI (<23 for Indians) but high body fat / visceral fat. Up to 30% of normal-BMI Indians have TOFI and metabolic syndrome. It's why BMI alone is unreliable for Indians. WHtR >0.5 with normal BMI suggests TOFI — get a body fat or DEXA scan to confirm." } },
-        { "@type": "Question", "name": "What is the South Asian phenotype?", "acceptedAnswer": { "@type": "Answer", "text": "South Asians (Indians, Pakistanis, Bangladeshis, Sri Lankans) have a distinct body composition: lower muscle mass, higher visceral fat, smaller waist but more dangerous fat distribution, lower HDL, higher triglycerides, and higher insulin resistance. This is why heart disease strikes Indians 5-10 years earlier and at lower BMI." } },
-        { "@type": "Question", "name": "What is a healthy WHtR for Indians?", "acceptedAnswer": { "@type": "Answer", "text": "WHO recommends WHtR <0.5 for everyone ('keep waist less than half your height'). For Indians, some researchers recommend stricter <0.48 to account for higher visceral fat. WHtR is more predictive than BMI for Indians — waist should be under 90cm (men) / 80cm (women) per ICMR." } },
-        { "@type": "Question", "name": "How can Indians reduce visceral fat?", "acceptedAnswer": { "@type": "Answer", "text": "Best evidence: 1) Calorie deficit (300-500 kcal below TDEE), 2) 60 min/day moderate exercise (ICMR 2024), 3) Strength training 2-3x/week, 4) Reduce refined carbs (maida, sugar, white rice), 5) Increase protein (dal, paneer, soya, curd), 6) Add millets (bajra, jowar, ragi), 7) 7-9 hours sleep, 8) Reduce alcohol, 9) Manage stress." } },
-        { "@type": "Question", "name": "Why does my WHR say 'moderate risk' but BMI says 'normal'?", "acceptedAnswer": { "@type": "Answer", "text": "This is a classic TOFI (Thin Outside Fat Inside) pattern, common in Indians. Your BMI is normal but your belly fat is elevated — which is more dangerous than general obesity. Focus on waist measurement and body fat %, not just BMI. This is why WHR is more useful than BMI for Indians." } },
-        { "@type": "Question", "name": "What is a healthy waist circumference for Indians?", "acceptedAnswer": { "@type": "Answer", "text": "Per ICMR and Asian cutoffs: Men should aim for waist <90cm; Women <80cm. These are lower than Western cutoffs (102cm men / 88cm women) because South Asians have higher metabolic risk at lower waist circumference. Over 90cm (men) or 80cm (women) = high risk, get metabolic screening (glucose, HbA1c, lipids, BP)." } },
-        { "@type": "Question", "name": "What body shape is healthiest for Indians?", "acceptedAnswer": { "@type": "Answer", "text": "Pear shape (fat around hips/thighs) is metabolically safer than apple shape (fat around belly). Hourglass is the middle. For Indians, even mild apple shape (waist >80cm women, >90cm men) warrants attention because of South Asian phenotype risk. Exercise + diet can shift fat distribution and reduce apple shape." } }
+        { "@type": "Question", "name": "What are the healthy WHR cutoffs for Indians?", "acceptedAnswer": { "@type": "Answer", "text": "For Indians (South Asians), stricter WHR cutoffs are recommended: Women <0.81, Men <0.88 (vs WHO's <0.85/<0.90). This is because South Asians have higher visceral fat at the same WHR and develop diabetes/heart disease 5-10 years earlier than Western populations." } },
+        { "@type": "Question", "name": "What is TOFI (Thin Outside Fat Inside)?", "acceptedAnswer": { "@type": "Answer", "text": "TOFI describes people with normal BMI (<23 for Indians) but high body fat / visceral fat. Up to 30% of normal-BMI Indians have TOFI and metabolic syndrome." } },
+        { "@type": "Question", "name": "What is the South Asian phenotype?", "acceptedAnswer": { "@type": "Answer", "text": "South Asians have lower muscle mass, higher visceral fat, lower HDL, higher triglycerides, and higher insulin resistance. This is why heart disease strikes Indians 5-10 years earlier and at lower BMI." } },
+        { "@type": "Question", "name": "What is a healthy WHtR for Indians?", "acceptedAnswer": { "@type": "Answer", "text": "WHO recommends WHtR <0.5 for everyone. For Indians, some researchers recommend stricter <0.48. Waist should be under 90cm (men) / 80cm (women) per ICMR." } },
+        { "@type": "Question", "name": "Why does my WHR say 'moderate risk' but BMI says 'normal'?", "acceptedAnswer": { "@type": "Answer", "text": "This is TOFI pattern, common in Indians. Your BMI is normal but your belly fat is elevated — which is more dangerous than general obesity." } }
       ]
     },
     {
@@ -110,6 +107,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
@@ -133,7 +131,8 @@ body.dark {
 body { font-family:'Inter',sans-serif; background:var(--bg-gradient); color:var(--text); line-height:1.6; min-height:100vh; transition:var(--transition); }
 .container { max-width:1200px; margin:0 auto; padding:20px; }
 
-.top-nav { background:rgba(255,255,255,0.9); backdrop-filter:blur(12px); padding:14px 24px; border-radius:100px; margin-bottom:20px; box-shadow:var(--shadow-sm); border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; position:sticky; top:16px; z-index:1000; flex-wrap:wrap; gap:10px; }
+/* Right padding to prevent overlap with global prefs widget */
+.top-nav { background:rgba(255,255,255,0.9); backdrop-filter:blur(12px); padding:14px 240px 14px 24px; border-radius:100px; margin-bottom:20px; box-shadow:var(--shadow-sm); border:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; position:sticky; top:16px; z-index:1000; flex-wrap:wrap; gap:10px; }
 body.dark .top-nav { background:rgba(30,41,59,0.9); }
 .nav-links { display:flex; gap:8px; flex-wrap:wrap; }
 .nav-links a { text-decoration:none; color:var(--text-muted); font-weight:600; font-size:13px; padding:8px 18px; border-radius:50px; transition:var(--transition); white-space:nowrap; }
@@ -154,7 +153,7 @@ body.dark .top-nav { background:rgba(30,41,59,0.9); }
 .privacy-badge { background:#ecfdf5; border:1px solid #10b981; color:#065f46; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
 body.dark .privacy-badge { background:#052e16; color:#6ee7b7; border-color:#166534; }
 
-.international-bar { display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap; margin-bottom:20px; background:var(--card-bg); padding:12px 16px; border-radius:14px; border:1px solid var(--border); }
+.international-bar { position:static; display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap; margin-bottom:20px; background:var(--card-bg); padding:12px 16px; border-radius:14px; border:1px solid var(--border); }
 .region-selector { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
 .region-selector label { font-weight:600; font-size:13px; }
 .region-selector select { padding:8px 14px; border:2px solid var(--border); border-radius:50px; background:var(--card-bg); color:var(--text); font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
@@ -324,8 +323,8 @@ body.dark .ai-header { color:#93c5fd; }
     <div class="region-selector">
       <label for="region"><i class="fas fa-globe-asia"></i> <span id="regionLabel">Cutoffs:</span></label>
       <select id="region" onchange="setRegion(this.value)">
-        <option value="india" selected>🇮🇳 India (ICMR, stricter)</option>
-        <option value="international">🌍 International (WHO)</option>
+        <option value="india">🇮🇳 India (ICMR, stricter)</option>
+        <option value="international" selected>🌍 International (WHO)</option>
       </select>
     </div>
   </div>
@@ -577,13 +576,18 @@ body.dark .ai-header { color:#93c5fd; }
   <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<footer style="text-align:center;padding:24px 16px;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border);margin-top:30px;">
+  <p>&copy; 2026 HealthCalc.in &middot; <a href="privacy-policy.html" style="color:var(--primary);">Privacy</a> &middot; <a href="terms-of-service.html" style="color:var(--primary);">Terms</a> &middot; <a href="report-problem.html" style="color:var(--primary);">Report Issue</a></p>
+</footer>
+
+<script src="global.js"></script>
 <script>
 /* ==============================================
    GLOBAL STATE
    ============================================== */
 var currentUnit = 'cm';
 var currentGender = 'female';
-var currentRegion = 'india';
+var currentRegion = 'international';
 var currentLang = 'en';
 var bodyData = null;
 var radarChart = null;
@@ -723,7 +727,6 @@ function setLanguage(lang) {
     drawRadarChart();
   }
 }
-if (localStorage.getItem('whr_lang') === 'hi') setLanguage('hi');
 
 function setRegion(region) {
   currentRegion = region;
@@ -731,15 +734,13 @@ function setRegion(region) {
   localStorage.setItem('whr_region', region);
   if (bodyData) calculateAll(false);
 }
-if (localStorage.getItem('whr_region')) setRegion(localStorage.getItem('whr_region'));
 
 /* ==============================================
-   UNIT SWITCH (precision-safe — internal in cm)
+   UNIT SWITCH — synced with HealthCalc
    ============================================== */
-function switchUnit(unit) {
+function switchUnit(unit, skipSync) {
   if (unit === currentUnit) return;
 
-  // FIXED: Read raw cm values, convert only for display
   if (unit === 'inch') {
     var waistCm = currentUnit === 'cm' ? parseFloat(document.getElementById('waist').value) : parseFloat(document.getElementById('waist').value) * 2.54;
     var hipCm = currentUnit === 'cm' ? parseFloat(document.getElementById('hip').value) : parseFloat(document.getElementById('hip').value) * 2.54;
@@ -768,6 +769,12 @@ function switchUnit(unit) {
   document.querySelectorAll('.unit-opt').forEach(function(o){
     o.classList.toggle('active', o.dataset.unit === unit);
   });
+
+  // Sync back to global widget (unless skipSync, prevents loop)
+  if (!skipSync && window.HealthCalc) {
+    HealthCalc.setUnits(unit === 'cm' ? 'metric' : 'imperial');
+  }
+
   if (bodyData) calculateAll(false);
 }
 
@@ -816,13 +823,11 @@ function calculateAll(fromButton) {
     return;
   }
 
-  // Validation
   if (waist < 40 || waist > 200 || hip < 50 || hip > 200 || height < 100 || height > 250 || weight < 30 || weight > 300) {
     alert(currentLang === 'hi' ? 'अमान्य माप — कृपया जाँचें' : 'Invalid measurements — please check');
     return;
   }
 
-  // Convert to cm/kg if imperial
   if (currentUnit === 'inch') {
     waist *= 2.54;
     hip *= 2.54;
@@ -833,7 +838,6 @@ function calculateAll(fromButton) {
   var heightM = height / 100;
   var bmi = weight / (heightM * heightM);
 
-  // WHR
   var whr = waist / hip;
   var whtr = waist / height;
   var absi = (waist / 100) / (Math.pow(bmi, 2/3) * Math.pow(heightM, 1/2));
@@ -841,16 +845,12 @@ function calculateAll(fromButton) {
   var briTerm = (waistM / (2 * Math.PI)) / (0.5 * heightM);
   var bri = 364.2 - 365.5 * Math.sqrt(Math.max(0, 1 - Math.pow(briTerm, 2)));
 
-  // ============================================
-  // REGION-SPECIFIC THRESHOLDS
-  // ============================================
   var isIndia = currentRegion === 'india';
 
-  // WHR thresholds
   var whrLow, whrHigh;
   if (currentGender === 'female') {
-    whrLow = isIndia ? 0.76 : 0.80;    // India stricter
-    whrHigh = isIndia ? 0.81 : 0.85;   // India stricter
+    whrLow = isIndia ? 0.76 : 0.80;
+    whrHigh = isIndia ? 0.81 : 0.85;
   } else {
     whrLow = isIndia ? 0.83 : 0.90;
     whrHigh = isIndia ? 0.88 : 0.95;
@@ -862,7 +862,6 @@ function calculateAll(fromButton) {
   else if (whr < whrHigh) { whrRisk = t.modRisk; whrLevel = 'moderate'; whrClass = 'risk-moderate'; }
   else { whrRisk = t.highRisk; whrLevel = 'high'; whrClass = 'risk-high'; }
 
-  // WHtR thresholds (India stricter: 0.48 vs 0.50)
   var whtrLimit = isIndia ? 0.48 : 0.50;
   var whtrRisk, whtrLevel;
   if (whtr < whtrLimit - 0.05) { whtrRisk = t.optimal; whtrLevel = 'low'; }
@@ -870,21 +869,18 @@ function calculateAll(fromButton) {
   else if (whtr < whtrLimit + 0.10) { whtrRisk = t.increased; whtrLevel = 'moderate'; }
   else { whtrRisk = t.high; whtrLevel = 'high'; }
 
-  // ABSI (gender-specific)
   var absiRisk, absiLevel;
   var absiCutoff = currentGender === 'male' ? 0.083 : 0.080;
   if (absi < absiCutoff) { absiRisk = t.lowerRisk; absiLevel = 'low'; }
   else if (absi < absiCutoff + 0.010) { absiRisk = t.modRisk; absiLevel = 'moderate'; }
   else { absiRisk = t.higherRisk; absiLevel = 'high'; }
 
-  // BRI
   var briRisk, briLevel;
   if (bri < 3.5) { briRisk = t.lean; briLevel = 'low'; }
   else if (bri < 5.5) { briRisk = t.healthy; briLevel = 'low'; }
   else if (bri < 7.5) { briRisk = t.elevated; briLevel = 'moderate'; }
   else { briRisk = t.high; briLevel = 'high'; }
 
-  // Body Shape
   var shapeIcon, shapeName, shapeDesc;
   var appleThreshold = whrHigh;
   var pearThreshold = whrLow;
@@ -896,11 +892,9 @@ function calculateAll(fromButton) {
     shapeIcon = '⏳'; shapeName = t.hourglassShape; shapeDesc = t.hourglassDesc;
   }
 
-  // TOFI risk (normal BMI + WHtR > 0.5 or >0.48 for India)
   var tofiRisk = false;
   if (bmi < 23 && whtr >= (isIndia ? 0.48 : 0.5)) tofiRisk = true;
 
-  // High-risk callout
   var showHighRisk = whrLevel === 'high' || whtrLevel === 'high' || absiLevel === 'high' || briLevel === 'high';
 
   bodyData = {
@@ -933,11 +927,9 @@ function displayResults(data) {
   document.getElementById('shapeName').textContent = data.shapeName;
   document.getElementById('shapeDesc').textContent = data.shapeDesc;
 
-  // High risk callout
   var hr = document.getElementById('highRiskCallout');
   if (data.showHighRisk) { hr.style.display = 'block'; } else { hr.style.display = 'none'; }
 
-  // TOFI warning
   var tf = document.getElementById('tofiWarning');
   if (data.tofiRisk) { tf.style.display = 'block'; } else { tf.style.display = 'none'; }
 
@@ -1048,7 +1040,7 @@ function loadFromLocalStorage() {
     if (d.age) document.getElementById('age').value = d.age;
     if (d.unit) { currentUnit = d.unit; document.querySelectorAll('.unit-opt').forEach(function(o){ o.classList.toggle('active', o.dataset.unit === d.unit); }); document.getElementById('heightUnit').textContent = d.unit === 'cm' ? '(cm)' : '(in)'; document.getElementById('weightUnit').textContent = d.unit === 'cm' ? '(kg)' : '(lbs)'; }
     if (d.gender) { currentGender = d.gender; document.querySelectorAll('.gender-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.gender === d.gender); }); }
-    if (d.region) setRegion(d.region);
+    if (d.region) { currentRegion = d.region; document.getElementById('region').value = d.region; }
   } catch(e) {}
 }
 
@@ -1163,7 +1155,7 @@ async function shareResult() {
 });
 
 /* ==============================================
-   AI CHAT (XSS-safe + India-aware)
+   AI CHAT (XSS-safe + region-aware)
    ============================================== */
 function addChatMessage(text, sender) {
   var md = document.getElementById('chatMessages');
@@ -1185,7 +1177,6 @@ function showTyping() {
 function hideTyping() { var t = document.getElementById('aiTyping'); if (t) t.remove(); }
 
 function getWHRContext() {
-  var t = TRANSLATIONS[currentLang];
   var ctx = '[BODY COMPOSITION PROFILE — ' + (currentRegion === 'india' ? 'Indian (ICMR, stricter cutoffs)' : 'International (WHO)') + ']\n';
   if (bodyData) {
     ctx += '- Gender: ' + bodyData.gender + '\n';
@@ -1203,8 +1194,9 @@ function getWHRContext() {
     if (bodyData.tofiRisk) ctx += '- TOFI RISK: Normal BMI but high WHtR\n';
   }
   if (currentRegion === 'india') {
-    ctx += '\n- IMPORTANT: User is in India. Use ICMR/Asian cutoffs: WHR women <0.81, men <0.88; waist <80cm (women) / <90cm (men); WHtR <0.48. Discuss TOFI (30% of normal-BMI Indians have metabolic syndrome), South Asian phenotype (lower muscle, higher visceral fat, earlier diabetes/CHD). Recommend: 60 min/day exercise (ICMR), millets (bajra/jowar/ragi), dal/paneer/soya protein, reduce maida/sugar, 7-9 hrs sleep.';
-    ctx += '\n';
+    ctx += '\n- IMPORTANT: User is in India. Use ICMR/Asian cutoffs: WHR women <0.81, men <0.88; waist <80cm (women) / <90cm (men); WHtR <0.48. Discuss TOFI (30% of normal-BMI Indians have metabolic syndrome), South Asian phenotype (lower muscle, higher visceral fat, earlier diabetes/CHD). Recommend: 60 min/day exercise (ICMR), millets (bajra/jowar/ragi), dal/paneer/soya protein, reduce maida/sugar, 7-9 hrs sleep.\n';
+  } else {
+    ctx += '\n- Use WHO international cutoffs: WHR women <0.85, men <0.90; WHtR <0.50; waist <88cm (women) / <102cm (men).\n';
   }
   return ctx;
 }
@@ -1224,7 +1216,7 @@ async function sendAI(prefilled) {
     "Follow ICMR-NIN 2024 (India) and WHO guidelines.\n" +
     "Provide evidence-based, structured advice in bullet points.\n" +
     "Reference the user's actual body composition data.\n" +
-    (currentRegion === 'india' ? "Use Indian context: TOFI, South Asian phenotype, ICMR cutoffs, millets, dal/paneer/soya, 60 min/day exercise.\n" : "") +
+    (currentRegion === 'india' ? "Use Indian context: TOFI, South Asian phenotype, ICMR cutoffs, millets, dal/paneer/soya, 60 min/day exercise.\n" : "Use WHO international cutoffs.\n") +
     "Keep responses under 200 words. Use **bold** for key facts.\n" +
     "Never diagnose. Always recommend consulting a doctor for screening.\n" +
     "Always end with: '⚠️ Consult a healthcare provider for personalized advice. Get metabolic screening (glucose, HbA1c, lipids, BP) if WHR is high.'\n\n" +
@@ -1257,9 +1249,48 @@ document.querySelectorAll('.ai-chip').forEach(function(chip) {
 document.getElementById('aiSendBtn').addEventListener('click', function() { sendAI(); });
 
 /* ==============================================
-   INIT
+   INIT — synced with HealthCalc
    ============================================== */
+// 1. Language from saved
+if (localStorage.getItem('whr_lang') === 'hi') setLanguage('hi');
+
+// 2. Load saved measurements (may set currentUnit, currentRegion, currentGender)
 loadFromLocalStorage();
+
+// 3. If no saved data, derive defaults from HealthCalc (locale-based)
+if (!localStorage.getItem('whr_data')) {
+  // Units from locale
+  if (window.HealthCalc && HealthCalc.isImperial()) {
+    switchUnit('inch', true);
+  }
+  // Region from locale (IN → India, else International)
+  if (window.HealthCalc && HealthCalc.getRegion() === 'IN') {
+    currentRegion = 'india';
+  } else {
+    currentRegion = 'international';
+  }
+  document.getElementById('region').value = currentRegion;
+}
+
+// 4. Sync region with widget's initial state (in case we missed it)
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  // Units
+  if (e.detail.units) {
+    var targetUnit = e.detail.units === 'imperial' ? 'inch' : 'cm';
+    if (targetUnit !== currentUnit) switchUnit(targetUnit, true);
+  }
+  // Region (only if user hasn't explicitly saved a different choice)
+  if (e.detail.guideline) {
+    var targetRegion = e.detail.guideline === 'IN' ? 'india' : 'international';
+    if (targetRegion !== currentRegion) {
+      currentRegion = targetRegion;
+      document.getElementById('region').value = targetRegion;
+      if (bodyData) calculateAll(false);
+    }
+  }
+});
+
+// 5. Render
 displayHistory();
 calculateAll(false);
 </script>
