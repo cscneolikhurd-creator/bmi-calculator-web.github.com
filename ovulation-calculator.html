@@ -111,6 +111,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
@@ -134,7 +135,8 @@ body.dark {
 body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
 .container { max-width: 1250px; margin: 0 auto; }
 
-.top-nav { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); padding: 14px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
+/* Right padding to prevent overlap with global prefs widget */
+.top-nav { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); padding: 14px 240px 14px 24px; border-radius: 100px; margin-bottom: 20px; box-shadow: var(--shadow-sm); border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 16px; z-index: 1000; flex-wrap: wrap; gap: 10px; }
 body.dark .top-nav { background: rgba(30,41,59,0.9); }
 .nav-links { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 600; font-size: 12px; padding: 8px 14px; border-radius: 50px; transition: all 0.2s; white-space: nowrap; }
@@ -154,7 +156,7 @@ body.dark .top-nav { background: rgba(30,41,59,0.9); }
 .privacy-badge { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; margin-bottom: 14px; display: inline-flex; align-items: center; gap: 8px; }
 body.dark .privacy-badge { background: #052e16; color: #6ee7b7; border-color: #166534; }
 
-.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 16px; background: var(--card); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); }
+.international-bar { position: static; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 16px; background: var(--card); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); }
 .region-selector { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
 .region-selector label { font-weight: 600; }
 .region-selector select { padding: 8px 14px; border: 2px solid var(--border); border-radius: 50px; background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
@@ -293,12 +295,18 @@ body.dark .india-tip h4 { color: #fcd34d; }
 .interlinks a { background: var(--bg); padding: 6px 14px; border-radius: 40px; text-decoration: none; font-size: 11px; color: var(--text-secondary); transition: all 0.2s; border: 1px solid var(--border); }
 .interlinks a:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
+footer { text-align: center; padding: 24px 16px; color: var(--text-secondary); font-size: 12px; border-top: 1px solid var(--border); margin-top: 20px; }
+footer a { color: var(--primary); text-decoration: none; }
+
 @media(max-width: 768px) {
   .header h1 { font-size: 24px; }
   .date-value { font-size: 26px; }
   .cycle-phase { width: 52px; height: 52px; font-size: 9px; }
   .calendar-day { padding: 5px 2px; font-size: 10px; }
-  .top-nav { padding: 10px 14px; }
+  .top-nav { padding: 10px 140px 10px 14px; }
+}
+@media(max-width: 480px) {
+  .top-nav { padding: 10px 120px 10px 14px; }
 }
 </style>
 
@@ -363,8 +371,8 @@ body.dark .india-tip h4 { color: #fcd34d; }
     <div class="region-selector">
       <label for="region"><i class="fas fa-globe-asia"></i> Region:</label>
       <select id="region" onchange="setRegion(this.value)">
-        <option value="india" selected>🇮🇳 India (PCOS, thyroid, ICMR)</option>
-        <option value="international">🌍 International (ACOG, NHS)</option>
+        <option value="india">🇮🇳 India (PCOS, thyroid, ICMR)</option>
+        <option value="international" selected>🌍 International (ACOG, NHS)</option>
       </select>
     </div>
   </div>
@@ -524,7 +532,7 @@ body.dark .india-tip h4 { color: #fcd34d; }
             ⚠️ <strong>Thyroid & fertility:</strong> 1 in 10 Indians have thyroid disease. Both hypo- and hyperthyroidism disrupt ovulation. <strong>Get TSH tested before conceiving</strong> — ideal range for pregnancy is 0.5–2.5 mIU/L (tighter than 'normal'). Medication (levothyroxine) often needed.
           </div>
 
-          <div class="india-tip" id="indiaTip">
+          <div class="india-tip" id="indiaTip" style="display:none;">
             <h4><i class="fas fa-flag"></i> Indian Pre-Conception Checklist</h4>
             <ul>
               <li><strong>Folic acid 400–500 mcg daily</strong> — start 3 months before conception (prevents neural tube defects)</li>
@@ -689,6 +697,12 @@ body.dark .india-tip h4 { color: #fcd34d; }
   <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<footer role="contentinfo">
+  <p>© 2026 HealthCalc.in — <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="report-problem.html">Report Issue</a></p>
+  <p style="margin-top:6px;font-size:11px;">Educational only · Not for contraception · Consult a gynecologist for medical advice</p>
+</footer>
+
+<script src="global.js"></script>
 <script>
 /* ============================================
    GLOBAL STATE
@@ -698,8 +712,18 @@ var cycleChart = null;
 var cycleHistory = JSON.parse(localStorage.getItem('ovulationHistory') || '[]');
 var activeSymptoms = [];
 var isAIProcessing = false;
-var currentRegion = 'india';
+var currentRegion = 'international';
 var currentLang = 'en';
+
+/* ============================================
+   REGION MAPPING (page ↔ HealthCalc)
+   ============================================ */
+function regionToHealthCalc(r) {
+  return r === 'india' ? 'IN' : 'US';
+}
+function healthCalcToRegion(r) {
+  return r === 'IN' ? 'india' : 'international';
+}
 
 /* ============================================
    HELPERS
@@ -752,14 +776,16 @@ function setLanguage(lang) {
 }
 if (localStorage.getItem('ovulation_lang') === 'hi') setLanguage('hi');
 
-function setRegion(region) {
+function setRegion(region, skipSync) {
   currentRegion = region;
   document.getElementById('region').value = region;
   localStorage.setItem('ovulation_region', region);
+  // Sync with global widget
+  if (!skipSync && window.HealthCalc) {
+    HealthCalc.setRegion(regionToHealthCalc(region));
+  }
   if (ovulationData) calculateOvulation(false);
 }
-document.getElementById('region').addEventListener('change', function(e){ setRegion(e.target.value); });
-if (localStorage.getItem('ovulation_region')) setRegion(localStorage.getItem('ovulation_region'));
 
 /* ============================================
    HEALTH CONDITION
@@ -823,7 +849,7 @@ function saveSymptoms() {
 }
 
 /* ============================================
-   MAIN CALCULATION (FIXED: irregular cycle warning, validation)
+   MAIN CALCULATION
    ============================================ */
 function calculateOvulation(fromButton) {
   if (fromButton) {
@@ -862,7 +888,6 @@ function calculateOvulation(fromButton) {
     return;
   }
 
-  // Current cycle
   var daysSinceLmp = Math.floor((today - lmp) / (1000 * 60 * 60 * 24));
   if (daysSinceLmp < 0) daysSinceLmp = 0;
   var cyclesPassed = Math.floor(daysSinceLmp / cycleLength);
@@ -871,21 +896,17 @@ function calculateOvulation(fromButton) {
 
   var cycleDay = (daysSinceLmp % cycleLength) + 1;
 
-  // Next period
   var nextPeriod = new Date(currentCycleStart);
   nextPeriod.setDate(currentCycleStart.getDate() + cycleLength);
 
-  // Ovulation
   var ovulation = new Date(nextPeriod);
   ovulation.setDate(nextPeriod.getDate() - lutealPhase);
 
-  // Fertile window
   var fertileStart = new Date(ovulation);
   fertileStart.setDate(ovulation.getDate() - 5);
   var fertileEnd = new Date(ovulation);
   fertileEnd.setDate(ovulation.getDate() + 1);
 
-  // Best conception days
   var bestStart = new Date(ovulation);
   bestStart.setDate(ovulation.getDate() - 2);
 
@@ -904,7 +925,6 @@ function calculateOvulation(fromButton) {
   saveToHistory(ovulationData);
   saveToLocalStorage(ovulationData);
 
-  // Irregular cycle warning
   var irregularWarn = document.getElementById('irregularWarning');
   if (cycleLength < 21 || cycleLength > 35) {
     irregularWarn.classList.add('show');
@@ -912,11 +932,9 @@ function calculateOvulation(fromButton) {
     irregularWarn.classList.remove('show');
   }
 
-  // Show/hide India pre-conception box
   var indiaTip = document.getElementById('indiaTip');
   indiaTip.style.display = currentRegion === 'india' ? 'block' : 'none';
 
-  // Condition warnings
   onConditionChange();
 
   document.getElementById('resultsCard').style.display = 'block';
@@ -938,7 +956,6 @@ function displayResults(data) {
     formatDateShort(data.bestStart) + ' – ' + formatDateShort(data.ovulation);
   document.getElementById('cycleDay').textContent = 'Day ' + data.cycleDay;
 
-  // Conception probability
   var ovulationDayNum = data.cycleLength - data.lutealPhase + 1;
   var diff = data.cycleDay - ovulationDayNum;
   var probability = 0;
@@ -1281,6 +1298,8 @@ function getOvulationContext() {
   ctx += '- Health condition: ' + (ovulationData.condition || 'none') + '\n';
   if (currentRegion === 'india') {
     ctx += '\n- IMPORTANT: User is in India. Context: PCOS affects 1 in 5 Indian women; thyroid disease 1 in 10 adults; anemia 57% of women; Vitamin D deficiency 70-90%. Pre-conception checklist: folic acid 400-500 mcg 3 months before, IFA tablets, Vitamin D, TSH 0.5-2.5 mIU/L. Indian fertility foods: millets (bajra/jowar/ragi), ghee in moderation, pumpkin/flax/sesame seeds, palak, methi, dal+rice, curd, amla, dates, eggs. India has ~1 in 6 infertility prevalence (WHO). Specialist referral: 12+ months under 35, 6+ months 35+.\n';
+  } else {
+    ctx += '\n- User is using international (ACOG/NHS) context.\n';
   }
   if (ovulationData.cycleLength < 21 || ovulationData.cycleLength > 35) {
     ctx += '- WARNING: Irregular cycle length. Calendar method unreliable. Advise OPK/BBT tracking or gynecologist.\n';
@@ -1352,15 +1371,41 @@ document.getElementById('aiSendBtn').addEventListener('click', function() { send
 });
 
 /* ============================================
-   INIT
+   INIT — synced with HealthCalc
    ============================================ */
+// 1. Load saved form data first (may set region via skipSync)
 loadFromLocalStorage();
-displayHistory();
-// Set default LMP to today (not future) but don't auto-calculate until user clicks
+
+// 2. If no saved region preference, derive from HealthCalc locale
+if (localStorage.getItem('ovulation_region')) {
+  currentRegion = localStorage.getItem('ovulation_region');
+  document.getElementById('region').value = currentRegion;
+  document.getElementById('indiaTip').style.display = (currentRegion === 'india') ? 'block' : 'none';
+} else if (window.HealthCalc) {
+  currentRegion = healthCalcToRegion(HealthCalc.getRegion());
+  document.getElementById('region').value = currentRegion;
+  document.getElementById('indiaTip').style.display = (currentRegion === 'india') ? 'block' : 'none';
+}
+
+// 3. Sync on widget changes (only if user hasn't manually chosen)
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  if (e.detail.guideline) {
+    var targetRegion = healthCalcToRegion(e.detail.guideline);
+    if (targetRegion !== currentRegion && !localStorage.getItem('ovulation_region')) {
+      setRegion(targetRegion, true);
+      if (ovulationData) calculateOvulation(false);
+    }
+  }
+});
+
+// 4. Set default LMP to today (not future) but don't auto-calculate until user clicks
 var today = new Date();
 if (!document.getElementById('lmp').value) {
   document.getElementById('lmp').value = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
 }
+
+// 5. Render saved history
+displayHistory();
 </script>
 </body>
 </html>
