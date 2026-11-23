@@ -108,6 +108,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
@@ -129,10 +130,21 @@ body.dark {
 body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
 .container { max-width: 1300px; margin: 0 auto; }
 
-/* Top Controls */
-.top-controls {
-  position: fixed; top: 20px; right: 20px; z-index: 1000;
-  display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: flex-end;
+/* Inline top controls (was fixed, now flows inside container to avoid widget overlap) */
+.top-controls-inline {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-right: 230px;
+  flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+  .top-controls-inline { padding-right: 130px; }
+}
+@media (max-width: 400px) {
+  .top-controls-inline { padding-right: 110px; }
 }
 .theme-toggle {
   background: var(--card); border: 2px solid var(--border); padding: 12px;
@@ -174,6 +186,7 @@ body.dark .privacy-badge { background: #052e16; color: #6ee7b7; border-color: #1
 
 /* International Bar */
 .international-bar {
+  position: static;
   display: flex; justify-content: space-between; align-items: center; gap: 20px;
   flex-wrap: wrap; margin-bottom: 20px; background: var(--card);
   padding: 14px 20px; border-radius: 16px; border: 1px solid var(--border);
@@ -488,14 +501,16 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
 }
 .interlinks a:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
+footer { text-align: center; padding: 24px 16px; color: var(--text-secondary); font-size: 12px; border-top: 1px solid var(--border); margin-top: 30px; }
+footer a { color: var(--primary); text-decoration: none; }
+
 @media(max-width: 768px) {
   .header h1 { font-size: 26px; }
   .date-value { font-size: 32px; }
   .trimester-grid { grid-template-columns: 1fr; }
   .metrics-grid { grid-template-columns: 1fr; }
   .tabs { flex-direction: column; }
-  .top-controls { flex-direction: column; align-items: flex-end; }
-  body { padding: 15px; padding-top: 90px; }
+  body { padding: 15px; }
 }
 </style>
 
@@ -521,17 +536,17 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
 </head>
 <body>
 
-<div class="top-controls">
-  <div class="lang-toggle">
-    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
-    <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिं</button>
-  </div>
-  <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode" aria-label="Toggle dark mode">
-    <i class="fas fa-moon" id="themeIcon"></i>
-  </button>
-</div>
-
 <div class="container">
+  <div class="top-controls-inline">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिं</button>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode" aria-label="Toggle dark mode">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+  </div>
+
   <div class="header">
     <h1>👶 Conception Calculator Pro</h1>
     <p>Due date, fertility window, trimesters, fetal growth, Indian pregnancy care, danger signs, and AI maternity assistant.</p>
@@ -548,8 +563,8 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
     <div class="region-selector">
       <label for="regionSelect" style="font-weight:600; font-size:13px; margin-right:8px;"><i class="fas fa-globe-asia"></i> Region:</label>
       <select id="regionSelect" onchange="setRegion(this.value)">
-        <option value="india" selected>🇮🇳 India (IFA, PMMVY, JSY, PCPNDT)</option>
-        <option value="international">🌍 International</option>
+        <option value="india">🇮🇳 India (IFA, PMMVY, JSY, PCPNDT)</option>
+        <option value="international" selected>🌍 International</option>
       </select>
     </div>
   </div>
@@ -578,7 +593,7 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
         <div id="dueDateInput">
           <div class="input-group">
             <label><i class="fas fa-calendar-check"></i> Expected Due Date (EDD)</label>
-            <input type="date" id="edd" value="2026-03-15">
+            <input type="date" id="edd">
             <div class="input-hint">From your ultrasound or doctor's estimate</div>
           </div>
         </div>
@@ -586,7 +601,7 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
         <div id="lastPeriodInput" style="display:none;">
           <div class="input-group">
             <label><i class="fas fa-calendar"></i> First Day of Last Menstrual Period (LMP)</label>
-            <input type="date" id="lmp" value="2025-06-08">
+            <input type="date" id="lmp">
             <div class="input-hint">The first day of your last period</div>
             <div class="hint-hi">अंतिम माहवारी का पहला दिन।</div>
           </div>
@@ -600,7 +615,7 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
         <div id="conceptionInput" style="display:none;">
           <div class="input-group">
             <label><i class="fas fa-heart"></i> Known Conception Date</label>
-            <input type="date" id="conceptionDateInput" value="2025-06-22">
+            <input type="date" id="conceptionDateInput">
             <div class="input-hint">If you know your ovulation or conception date</div>
           </div>
         </div>
@@ -640,7 +655,7 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
         <p style="margin-top:8px;"><strong>India:</strong> Call <strong>108</strong> (ambulance) or go to nearest government hospital. <strong>International:</strong> Call local emergency number.</p>
       </div>
 
-      <div class="india-care-box" id="indiaCareBox">
+      <div class="india-care-box" id="indiaCareBox" style="display:none;">
         <h4><i class="fas fa-heart"></i> Indian Pregnancy Care (Govt. of India)</h4>
         <ul>
           <li><strong>Folic acid 400–500 mcg daily</strong> — start before conception, continue till 12 weeks</li>
@@ -773,11 +788,11 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
   </div>
 
   <nav class="interlinks" aria-label="Related calculators">
-    <a href="/ovulation-calculator.html">🌡️ Ovulation</a>
-    <a href="/period-tracker.html">📅 Period Tracker</a>
-    <a href="/pregnancy-calculator.html">🤰 Pregnancy</a>
-    <a href="/bmi-calculator.html">⚖️ BMI</a>
-    <a href="/calorie-calculator.html">🔥 Calories</a>
+    <a href="ovulation-calculator.html">🌡️ Ovulation</a>
+    <a href="period-tracker.html">📅 Period Tracker</a>
+    <a href="pregnancy-calculator.html">🤰 Pregnancy</a>
+    <a href="bmi-calculator.html">⚖️ BMI</a>
+    <a href="calorie-calculator.html">🔥 Calories</a>
   </nav>
 </div>
 
@@ -834,18 +849,34 @@ body.dark .india-care-box { background: #422006; color: #fcd34d; border-color: #
   <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<footer role="contentinfo">
+  <p>© 2026 HealthCalc.in — <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="report-problem.html">Report Issue</a></p>
+  <p style="margin-top:6px;font-size:11px;">Educational only · Not a substitute for medical advice · Emergency in India: 108</p>
+</footer>
+
+<script src="global.js"></script>
 <script>
 /* ==============================================
    GLOBAL STATE
    ============================================== */
 var currentCalcType = 'dueDate';
-var currentRegion = 'india';
+var currentRegion = 'international';
 var currentLang = 'en';
 var pregnancyData = null;
 var trimesterChart = null;
 var fetalGrowthChart = null;
 var isAIProcessing = false;
 var pregHistory = JSON.parse(localStorage.getItem('pregHistory') || '[]');
+
+/* ==============================================
+   REGION MAPPING (page ↔ HealthCalc)
+   ============================================== */
+function regionToHealthCalc(r) {
+  return r === 'india' ? 'IN' : 'US';
+}
+function healthCalcToRegion(r) {
+  return r === 'IN' ? 'india' : 'international';
+}
 
 /* ==============================================
    THEME
@@ -876,7 +907,7 @@ function setLanguage(lang) {
 }
 if (localStorage.getItem('preg_lang') === 'hi') setLanguage('hi');
 
-function setRegion(region) {
+function setRegion(region, skipSync) {
   currentRegion = region;
   document.getElementById('regionSelect').value = region;
   localStorage.setItem('preg_region', region);
@@ -886,19 +917,20 @@ function setRegion(region) {
   } else {
     indiaBox.style.display = 'none';
   }
+  // Sync with global widget
+  if (!skipSync && window.HealthCalc) {
+    HealthCalc.setRegion(regionToHealthCalc(region));
+  }
 }
-if (localStorage.getItem('preg_region')) setRegion(localStorage.getItem('preg_region'));
 
 /* ==============================================
    DATE HELPERS (timezone-safe)
    ============================================== */
 function parseLocalDate(str) {
-  // Parse "YYYY-MM-DD" as local noon to avoid DST/timezone issues
   var parts = str.split('-');
   return new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]), 12, 0, 0);
 }
 function dateDiffDays(a, b) {
-  // Whole-day diff (b - a)
   var aMid = new Date(a.getFullYear(), a.getMonth(), a.getDate());
   var bMid = new Date(b.getFullYear(), b.getMonth(), b.getDate());
   return Math.round((bMid - aMid) / (1000 * 60 * 60 * 24));
@@ -924,7 +956,7 @@ function escapeHTML(str) {
 }
 
 /* ==============================================
-   SWITCH CALC TYPE (FIXED: explicit button ref)
+   SWITCH CALC TYPE
    ============================================== */
 function switchCalcType(type, btn) {
   currentCalcType = type;
@@ -936,7 +968,6 @@ function switchCalcType(type, btn) {
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
   } else {
-    // Fallback (from reset)
     var el = document.querySelector('.calc-option[data-type="' + type + '"]');
     if (el) {
       el.classList.add('active');
@@ -949,7 +980,7 @@ function switchCalcType(type, btn) {
 }
 
 /* ==============================================
-   SWITCH RESULTS TAB (FIXED)
+   SWITCH RESULTS TAB
    ============================================== */
 function switchResultsTab(tabName, btn) {
   document.querySelectorAll('.results-content').forEach(function(c){ c.style.display = 'none'; });
@@ -1006,27 +1037,23 @@ function calculateDates() {
     dueDate = addDays(conceptionDate, 266);
   }
 
-  // Fertile window
   var fertileStart = addDays(conceptionDate, -5);
   var fertileEnd = addDays(conceptionDate, 2);
 
-  // Gestational age (from LMP) — timezone-safe
   var gestationalDays = dateDiffDays(lmpDate, today);
   var gestationalWeeks = Math.floor(gestationalDays / 7);
   var gestationalRemainingDays = ((gestationalDays % 7) + 7) % 7;
 
-  // Post-term / pre-conception handling
-  var isPostTerm = gestationalDays > 294; // > 42 weeks
+  var isPostTerm = gestationalDays > 294;
   var isBeforePregnancy = gestationalDays < 0;
 
   var daysRemaining = dateDiffDays(today, dueDate);
   var currentWeek = Math.min(Math.max(Math.ceil(gestationalDays / 7), 1), 45);
 
-  // Trimester
-  var trimester, trimesterClass;
-  if (currentWeek <= 13) { trimester = '1st Trimester'; trimesterClass = 'trim-1'; }
-  else if (currentWeek <= 26) { trimester = '2nd Trimester'; trimesterClass = 'trim-2'; }
-  else { trimester = '3rd Trimester'; trimesterClass = 'trim-3'; }
+  var trimester;
+  if (currentWeek <= 13) trimester = '1st Trimester';
+  else if (currentWeek <= 26) trimester = '2nd Trimester';
+  else trimester = '3rd Trimester';
 
   pregnancyData = {
     conceptionDate: conceptionDate,
@@ -1205,9 +1232,6 @@ function drawFetalGrowthChart() {
   var weeks = [4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
   var lengths = [0.1, 1.6, 5.4, 11.6, 16.4, 21, 25, 28, 32, 35];
   var weights = [0.001, 0.001, 0.014, 0.1, 0.3, 0.6, 1, 1.7, 2.5, 3.4];
-  var currentWeekIdx = weeks.reduce(function(closest, w, i) {
-    return Math.abs(w - pregnancyData.currentWeek) < Math.abs(weeks[closest] - pregnancyData.currentWeek) ? i : closest;
-  }, 0);
 
   fetalGrowthChart = new Chart(ctx, {
     type: 'line',
@@ -1270,9 +1294,9 @@ function drawFetalGrowthChart() {
    RESET / EXPORT / SHARE
    ============================================== */
 function resetForm() {
-  document.getElementById('edd').value = '2026-03-15';
-  document.getElementById('lmp').value = '2025-06-08';
-  document.getElementById('conceptionDateInput').value = '2025-06-22';
+  document.getElementById('edd').value = '';
+  document.getElementById('lmp').value = '';
+  document.getElementById('conceptionDateInput').value = '';
   document.getElementById('cycleLength').value = '28';
   document.getElementById('resultsCard').style.display = 'none';
   clearError();
@@ -1350,16 +1374,14 @@ function clearHistory() {
     renderHistory();
   }
 }
-renderHistory();
 
 /* ==============================================
-   AI CHAT (FIXED: XSS + relative URL + safety)
+   AI CHAT
    ============================================== */
 function addChatMessage(text, sender) {
   var md = document.getElementById('chatMessages');
   var div = document.createElement('div');
   div.className = sender === 'user' ? 'msg-user' : 'msg-bot';
-  // Escape first, then apply markdown bold safely
   var safe = escapeHTML(text);
   safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
   div.innerHTML = safe;
@@ -1391,6 +1413,8 @@ function getPregnancyContext() {
   }
   if (currentRegion === 'india') {
     ctx += '\n- IMPORTANT: User is in India. Prefer Indian context: IFA tablets, calcium, folic acid, TT/Td vaccination, PMMVY, JSY, Ayushman Bharat, ASHA/ANM. Indian dietary examples (dal, roti, sabzi, paneer, curd, greens, ragi). Emergency: call 108.\n';
+  } else {
+    ctx += '\n- User is using international context.\n';
   }
   return ctx;
 }
@@ -1444,7 +1468,31 @@ document.querySelectorAll('.ai-chip').forEach(function(chip) {
   });
 });
 
-// Initialize date inputs to sensible defaults
+/* ==============================================
+   INIT — synced with HealthCalc
+   ============================================== */
+// 1. Region: saved preference → HealthCalc locale → 'international' fallback
+if (localStorage.getItem('preg_region')) {
+  setRegion(localStorage.getItem('preg_region'), true);
+} else if (window.HealthCalc) {
+  var derivedRegion = healthCalcToRegion(HealthCalc.getRegion());
+  setRegion(derivedRegion, true);
+} else {
+  setRegion('international', true);
+}
+
+// 2. Sync on widget changes
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  if (e.detail.guideline) {
+    var targetRegion = healthCalcToRegion(e.detail.guideline);
+    if (targetRegion !== currentRegion && !localStorage.getItem('preg_region')) {
+      setRegion(targetRegion, true);
+      if (pregnancyData) calculateDates();
+    }
+  }
+});
+
+// 3. Init date defaults (today-relative, so inputs are sensible)
 (function initDates() {
   var today = new Date();
   var dueDate = addDays(today, 180);
@@ -1452,6 +1500,9 @@ document.querySelectorAll('.ai-chip').forEach(function(chip) {
   document.getElementById('lmp').value = addDays(today, -60).toISOString().slice(0, 10);
   document.getElementById('conceptionDateInput').value = addDays(today, -45).toISOString().slice(0, 10);
 })();
+
+// 4. Render history
+renderHistory();
 </script>
 </body>
 </html>
