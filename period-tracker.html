@@ -111,6 +111,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root {
@@ -135,6 +136,23 @@ body.dark {
 body { background: var(--bg); color: var(--text); padding: 20px; transition: all 0.3s ease; min-height: 100vh; }
 .container { max-width: 1250px; margin: 0 auto; }
 
+/* Inline top controls (was fixed, now flows inside container to avoid widget overlap) */
+.top-controls-inline {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-right: 230px; /* leaves space for global prefs widget at top-right */
+    flex-wrap: wrap;
+}
+@media (max-width: 640px) {
+    .top-controls-inline { padding-right: 130px; }
+}
+@media (max-width: 400px) {
+    .top-controls-inline { padding-right: 110px; }
+}
+
 .header { text-align: center; margin-bottom: 24px; }
 .header h1 {
     font-size: 38px; font-weight: 900;
@@ -150,10 +168,6 @@ body { background: var(--bg); color: var(--text); padding: 20px; transition: all
     display: flex; align-items: center; gap: 5px;
 }
 
-.top-controls {
-    position: fixed; top: 20px; right: 20px; z-index: 1000;
-    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
-}
 .theme-toggle {
     background: var(--card); border: 2px solid var(--border);
     padding: 10px; border-radius: 50%; cursor: pointer; font-size: 18px;
@@ -177,6 +191,7 @@ body { background: var(--bg); color: var(--text); padding: 20px; transition: all
 body.dark .privacy-badge { background: #052e16; color: #6ee7b7; border-color: #166534; }
 
 .international-bar {
+    position: static;
     display: flex; justify-content: space-between; align-items: center; gap: 15px;
     flex-wrap: wrap; margin-bottom: 16px; background: var(--card);
     padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border);
@@ -447,10 +462,12 @@ body.dark .india-tip h4 { color: #fcd34d; }
 .medical-disclaimer h3 { font-weight: 700; margin-bottom: 10px; color: var(--text); font-size: 16px; }
 .medical-disclaimer p { color: var(--text-secondary); font-size: 13px; line-height: 1.7; margin-bottom: 8px; }
 
+footer { text-align: center; padding: 24px 16px; color: var(--text-secondary); font-size: 12px; border-top: 1px solid var(--border); margin-top: 30px; }
+footer a { color: var(--primary); text-decoration: none; }
+
 @media(max-width: 768px) {
     .header h1 { font-size: 24px; }
-    .top-controls { flex-direction: column; align-items: flex-end; }
-    body { padding: 15px; padding-top: 100px; }
+    body { padding: 15px; }
     .cycle-phase { width: 50px; height: 50px; font-size: 9px; }
 }
 </style>
@@ -477,17 +494,17 @@ body.dark .india-tip h4 { color: #fcd34d; }
 </head>
 <body>
 
-<div class="top-controls">
-    <div class="lang-toggle">
-        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
-        <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिं</button>
-    </div>
-    <button class="theme-toggle" id="themeToggleBtn" title="Toggle Dark Mode" aria-label="Toggle theme">
-        <i class="fas fa-moon" id="themeIcon"></i>
-    </button>
-</div>
-
 <div class="container">
+    <div class="top-controls-inline">
+        <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="hi" onclick="setLanguage('hi')">हिं</button>
+        </div>
+        <button class="theme-toggle" id="themeToggleBtn" title="Toggle Dark Mode" aria-label="Toggle theme">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+    </div>
+
     <div class="header">
         <h1>📅 Period Tracker Pro</h1>
         <p id="heroSubtitle">Cycle tracking with <strong>PCOS, thyroid, anemia warnings</strong>, iron-rich Indian foods, pre-conception checklist, and AI women's health coach.</p>
@@ -508,8 +525,8 @@ body.dark .india-tip h4 { color: #fcd34d; }
         <div class="region-selector">
             <label for="region"><i class="fas fa-globe-asia"></i> Region:</label>
             <select id="region" onchange="setRegion(this.value)">
-                <option value="india" selected>🇮🇳 India (PCOS, thyroid, anemia, ICMR)</option>
-                <option value="international">🌍 International (ACOG, NHS)</option>
+                <option value="india">🇮🇳 India (PCOS, thyroid, anemia, ICMR)</option>
+                <option value="international" selected>🌍 International (ACOG, NHS)</option>
             </select>
         </div>
     </div>
@@ -671,7 +688,7 @@ body.dark .india-tip h4 { color: #fcd34d; }
                         🩸 <strong>Anemia alert:</strong> <strong>57% of Indian women are anemic</strong> (NFHS-5) — heavy periods worsen iron loss. Symptoms: fatigue, pale skin, breathlessness, dizziness. <strong>Get CBC + ferritin tested.</strong> Iron-rich Indian foods: palak, methi, dates, gur (jaggery), til (sesame), bajra, ragi, rajma. <strong>Pair with Vitamin C (amla, lemon)</strong> for absorption. Avoid tea/coffee with meals.
                     </div>
 
-                    <div class="india-tip" id="indiaTip">
+                    <div class="india-tip" id="indiaTip" style="display:none;">
                         <h4><i class="fas fa-flag"></i> Indian Pre-Conception Checklist</h4>
                         <ul>
                             <li><strong>Folic acid 400–500 mcg daily</strong> — start 3 months before conception</li>
@@ -843,6 +860,12 @@ body.dark .india-tip h4 { color: #fcd34d; }
     <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<footer role="contentinfo">
+    <p>© 2026 HealthCalc.in — <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="report-problem.html">Report Issue</a></p>
+    <p style="margin-top:6px;font-size:11px;">Educational only · Not for birth control · Consult a gynecologist for medical advice</p>
+</footer>
+
+<script src="global.js"></script>
 <script>
 /* ============================================
    GLOBAL STATE
@@ -853,8 +876,18 @@ var activeSymptoms = [];
 var cycleHistory = JSON.parse(localStorage.getItem('periodHistory') || '[]');
 var symptomLog = JSON.parse(localStorage.getItem('symptomLog') || '[]');
 var isAIProcessing = false;
-var currentRegion = 'india';
+var currentRegion = 'international';
 var currentLang = 'en';
+
+/* ============================================
+   REGION MAPPING (page ↔ HealthCalc)
+   ============================================ */
+function regionToHealthCalc(r) {
+    return r === 'india' ? 'IN' : 'US';
+}
+function healthCalcToRegion(r) {
+    return r === 'IN' ? 'india' : 'international';
+}
 
 /* ============================================
    HELPERS
@@ -911,16 +944,20 @@ function setLanguage(lang) {
 }
 if (localStorage.getItem('period_lang') === 'hi') setLanguage('hi');
 
-function setRegion(region) {
+function setRegion(region, skipSync) {
     currentRegion = region;
     document.getElementById('region').value = region;
     localStorage.setItem('period_region', region);
     var indiaTip = document.getElementById('indiaTip');
     if (indiaTip) indiaTip.style.display = region === 'india' ? 'block' : 'none';
+
+    // Sync with global widget
+    if (!skipSync && window.HealthCalc) {
+        HealthCalc.setRegion(regionToHealthCalc(region));
+    }
+
     if (cycleData) calculateCycle(false);
 }
-document.getElementById('region').addEventListener('change', function(e){ setRegion(e.target.value); });
-if (localStorage.getItem('period_region')) setRegion(localStorage.getItem('period_region'));
 
 /* ============================================
    HEALTH CONDITION
@@ -1285,7 +1322,7 @@ function loadHistory(id) {
     document.getElementById('duration').value = entry.periodDuration || 5;
     document.getElementById('lutealPhase').value = entry.lutealPhase || 14;
     if (entry.condition) document.getElementById('healthCondition').value = entry.condition;
-    if (entry.region && entry.region !== currentRegion) setRegion(entry.region);
+    if (entry.region && entry.region !== currentRegion) setRegion(entry.region, true);
     calculateCycle(false);
 }
 
@@ -1391,6 +1428,8 @@ function getPeriodContext() {
     ctx += '- Health condition: ' + (cycleData.condition || 'none') + '\n';
     if (currentRegion === 'india') {
         ctx += '\n- IMPORTANT: User is in India. Context: PCOS affects 1 in 5 Indian women; thyroid 1 in 10 adults; anemia 57% of women (NFHS-5). Iron-rich Indian foods: palak, methi, dates, gur (jaggery), til (sesame), bajra, ragi, rajma — pair with Vitamin C (amla, lemon). Avoid tea/coffee with meals. Pre-conception: folic acid 400-500 mcg, IFA, Vitamin D, TSH 0.5-2.5. Specialist referral: 3+ missed cycles, heavy bleeding (>7 days or pad/hour), severe pain. Emergency: 112/108.\n';
+    } else {
+        ctx += '\n- User is using international (ACOG/NHS) context.\n';
     }
     if (cycleData.cycleLength < 21 || cycleData.cycleLength > 35) {
         ctx += '- WARNING: Irregular cycle length. Advise gynecologist evaluation.\n';
@@ -1457,12 +1496,31 @@ document.querySelectorAll('.ai-chip').forEach(function(chip) {
 document.getElementById('aiSendBtn').addEventListener('click', function(){ sendAI(); });
 
 /* ============================================
-   INIT
+   INIT — synced with HealthCalc
    ============================================ */
-if (currentRegion === 'india') {
-    var indiaTip = document.getElementById('indiaTip');
-    if (indiaTip) indiaTip.style.display = 'block';
+// 1. Region: saved preference → HealthCalc locale → 'international' fallback
+if (localStorage.getItem('period_region')) {
+    currentRegion = localStorage.getItem('period_region');
+    document.getElementById('region').value = currentRegion;
+    document.getElementById('indiaTip').style.display = (currentRegion === 'india') ? 'block' : 'none';
+} else if (window.HealthCalc) {
+    currentRegion = healthCalcToRegion(HealthCalc.getRegion());
+    document.getElementById('region').value = currentRegion;
+    document.getElementById('indiaTip').style.display = (currentRegion === 'india') ? 'block' : 'none';
 }
+
+// 2. Sync on widget changes (only if user hasn't manually chosen)
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+    if (e.detail.guideline) {
+        var targetRegion = healthCalcToRegion(e.detail.guideline);
+        if (targetRegion !== currentRegion && !localStorage.getItem('period_region')) {
+            setRegion(targetRegion, true);
+            if (cycleData) calculateCycle(false);
+        }
+    }
+});
+
+// 3. Render saved history
 displayHistory();
 // Do NOT auto-calculate on load — waits for user to click Calculate
 </script>
