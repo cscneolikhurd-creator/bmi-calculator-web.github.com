@@ -108,6 +108,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 
 <style>
 :root{
@@ -129,7 +130,8 @@ body.dark{
 body{font-family:'Inter',sans-serif;background:var(--gradient-bg);min-height:100vh;padding:20px;color:var(--text);transition:background 0.3s,color 0.3s}
 .container{max-width:1150px;margin:0 auto}
 
-.top-nav{background:rgba(255,255,255,0.9);padding:12px 20px;border-radius:100px;margin-bottom:20px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;position:sticky;top:16px;z-index:1000;backdrop-filter:blur(12px)}
+/* Right padding leaves space for global prefs widget at top-right */
+.top-nav{background:rgba(255,255,255,0.9);padding:12px 240px 12px 20px;border-radius:100px;margin-bottom:20px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;position:sticky;top:16px;z-index:1000;backdrop-filter:blur(12px)}
 body.dark .top-nav{background:rgba(30,41,59,0.9)}
 .nav-links{display:flex;gap:8px;flex-wrap:wrap}
 .nav-links a{text-decoration:none;color:var(--text-muted);font-weight:600;font-size:13px;padding:8px 16px;border-radius:50px;transition:all 0.3s;white-space:nowrap}
@@ -155,7 +157,8 @@ body.dark .card{background:#1e293b;border-color:#334155}
 .card-title{font-size:18px;font-weight:700;margin-bottom:18px;color:var(--primary-dark);border-bottom:2px dashed var(--primary-light);padding-bottom:10px;display:flex;align-items:center;gap:8px}
 body.dark .card-title{color:#34d399}
 
-.international-bar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:16px;background:var(--surface);padding:12px 16px;border-radius:12px;border:1px solid var(--border)}
+/* Override global sticky (page has its own sticky nav) */
+.international-bar{position:static;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:16px;background:var(--surface);padding:12px 16px;border-radius:12px;border:1px solid var(--border)}
 .region-selector{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .region-selector label{font-weight:600;font-size:13px}
 .region-selector select{padding:8px 14px;border:2px solid var(--border);border-radius:50px;background:var(--surface);color:var(--text);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
@@ -262,7 +265,18 @@ footer{text-align:center;margin-top:20px;font-size:11px;color:var(--text-muted)}
 footer a{color:var(--primary);text-decoration:none}
 
 @keyframes messageSlideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:600px){.ai-chat-messages{height:160px}.hero h1{font-size:22px}.top-nav{padding:10px 14px}.nav-links a{font-size:11px;padding:6px 12px}}
+
+@media(max-width: 768px){
+  .top-nav{padding:10px 140px 10px 14px}
+}
+@media(max-width:600px){
+  .ai-chat-messages{height:160px}
+  .hero h1{font-size:22px}
+  .nav-links a{font-size:11px;padding:6px 12px}
+}
+@media(max-width: 480px){
+  .top-nav{padding:10px 120px 10px 12px}
+}
 </style>
 
 <!-- Favicon & PWA -->
@@ -325,9 +339,9 @@ footer a{color:var(--primary);text-decoration:none}
     <div class="international-bar">
       <div class="region-selector">
         <label for="region"><i class="fas fa-globe-asia"></i> Guidelines:</label>
-        <select id="region" onchange="displayDRI()">
-          <option value="india" selected>🇮🇳 India (ICMR-NIN 2020)</option>
-          <option value="international">🌍 International (USDA/IOM/NHS)</option>
+        <select id="region" onchange="onRegionSelect(this.value)">
+          <option value="india">🇮🇳 India (ICMR-NIN 2020)</option>
+          <option value="international" selected>🌍 International (USDA/IOM/NHS)</option>
         </select>
       </div>
     </div>
@@ -441,7 +455,9 @@ footer a{color:var(--primary);text-decoration:none}
     </nav>
   </div>
 
-  <footer><p>© 2026 HealthCalc | <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a></p></footer>
+  <footer role="contentinfo">
+    <p>© 2026 HealthCalc | <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="report-problem.html">Report Issue</a></p>
+  </footer>
 </div>
 
 <section class="faq-section">
@@ -496,6 +512,7 @@ footer a{color:var(--primary);text-decoration:none}
   <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<script src="global.js"></script>
 <script>
 /* ==============================================
    GLOBAL STATE
@@ -503,9 +520,19 @@ footer a{color:var(--primary);text-decoration:none}
 var isAIProcessing = false;
 var currentDRI = null;
 var currentLang = 'en';
-var currentRegion = 'india';
+var currentRegion = 'international';
 var filterDeficiencyOnly = false;
 var driHistory = JSON.parse(localStorage.getItem('driHistory') || '[]');
+
+/* ==============================================
+   REGION MAPPING (page ↔ HealthCalc)
+   ============================================== */
+function regionToHealthCalc(r) {
+  return r === 'india' ? 'IN' : 'US';
+}
+function healthCalcToRegion(r) {
+  return r === 'IN' ? 'india' : 'international';
+}
 
 /* ==============================================
    NUTRIENT DATABASE (with India overrides + Indian food sources)
@@ -748,7 +775,7 @@ var NUTRIENT_DB = {
 };
 
 /* ==============================================
-   ICELAND (no, INDIA) PREGNANCY ADJUSTMENTS
+   PREGNANCY ADJUSTMENTS
    ============================================== */
 var PREGNANCY_ADJ = {
   'Folate': { t1: 500, t2: 500, t3: 500 },
@@ -789,7 +816,6 @@ function getDeficiencyRisk(nutrient, gender, age, lifeStage, diet, region) {
   var isLactating = lifeStage === 'lactating';
 
   if (region === 'india') {
-    // India-specific flags
     if (nutrient === 'Vitamin D') risks.push({ text: 'Widespread in India (70-90%)', critical: true });
     if (nutrient === 'Iron' && gender === 'female' && age < 50) risks.push({ text: 'High anemia prevalence in Indian women (57%)', critical: true });
     if (nutrient === 'Iron' && (diet === 'vegetarian' || diet === 'vegan')) risks.push({ text: 'Plant iron poorly absorbed — pair with Vitamin C', critical: false });
@@ -802,7 +828,6 @@ function getDeficiencyRisk(nutrient, gender, age, lifeStage, diet, region) {
     if (nutrient === 'Omega-3 (ALA)' && diet === 'vegan') risks.push({ text: 'ALA only — no DHA/EPA', critical: false });
     if (nutrient === 'Zinc' && (diet === 'vegetarian' || diet === 'vegan')) risks.push({ text: 'Phytates reduce absorption', critical: false });
   } else {
-    // International flags
     if (nutrient === 'Vitamin D') risks.push({ text: 'Common in winter/indoor workers', critical: false });
     if (nutrient === 'Iron' && gender === 'female' && age < 50) risks.push({ text: 'Menstruating women', critical: false });
     if (nutrient === 'Vitamin B12' && diet === 'vegan') risks.push({ text: 'Vegans — supplement needed', critical: true });
@@ -811,6 +836,26 @@ function getDeficiencyRisk(nutrient, gender, age, lifeStage, diet, region) {
   }
   if (isLactating) risks.push({ text: 'Lactation increases needs', critical: false });
   return risks;
+}
+
+/* ==============================================
+   REGION CHANGE
+   ============================================== */
+function onRegionSelect(region) {
+  setRegion(region, false);
+  localStorage.setItem('dri_region', region);
+}
+
+function setRegion(region, skipSync) {
+  currentRegion = region;
+  document.getElementById('region').value = region;
+
+  // Sync with global widget
+  if (!skipSync && window.HealthCalc) {
+    HealthCalc.setRegion(regionToHealthCalc(region));
+  }
+
+  if (currentDRI) displayDRI(false);
 }
 
 /* ==============================================
@@ -839,13 +884,11 @@ function displayDRI(fromButton) {
 
   currentRegion = region;
 
-  // Build DRI values
   var values = {};
   Object.keys(NUTRIENT_DB).forEach(function(key) {
     var item = NUTRIENT_DB[key];
     var val = getValue(item, g, region);
 
-    // Pregnancy/lactation adjustments
     if (PREGNANCY_ADJ[key]) {
       if (ls === 'pregnant-t1') val = PREGNANCY_ADJ[key].t1;
       else if (ls === 'pregnant-t2') val = PREGNANCY_ADJ[key].t2;
@@ -854,7 +897,6 @@ function displayDRI(fromButton) {
     values[key] = { value: val, unit: item.unit, type: item.type, ul: item.ul, category: item.category };
   });
 
-  // Dietary absorption adjustments for veg/vegan
   if (diet === 'vegan') {
     values['Vitamin B12'].value = Math.max(values['Vitamin B12'].value, 2.4);
     values['Iron'].value = Math.round(values['Iron'].value * 1.8);
@@ -868,7 +910,6 @@ function displayDRI(fromButton) {
     gender: g, age: a, lifeStage: ls, diet: diet, region: region, values: values
   };
 
-  // Summary cards
   document.getElementById('calciumValue').textContent = values['Calcium'].value;
   document.getElementById('ironValue').textContent = values['Iron'].value;
   document.getElementById('vitaminCValue').textContent = values['Vitamin C'].value;
@@ -876,7 +917,6 @@ function displayDRI(fromButton) {
   document.getElementById('folateValue').textContent = values['Folate'].value;
   document.getElementById('b12Value').textContent = values['Vitamin B12'].value;
 
-  // Highlight summary cards
   var summaryMap = { calciumValue: 'Calcium', ironValue: 'Iron', vitaminCValue: 'Vitamin C', vitaminDValue: 'Vitamin D', folateValue: 'Folate', b12Value: 'Vitamin B12' };
   Object.keys(summaryMap).forEach(function(sid) {
     var card = document.getElementById(sid).parentElement;
@@ -886,10 +926,7 @@ function displayDRI(fromButton) {
     else if (risks.length > 0) card.classList.add('deficiency');
   });
 
-  // Build table
   renderTable(values, g, a, ls, diet, region);
-
-  // Save to history
   saveToHistory();
 }
 
@@ -906,11 +943,9 @@ function renderTable(values, g, a, ls, diet, region) {
     var hasRisk = risks.length > 0;
     var hasCritical = risks.some(function(r){ return r.critical; });
 
-    // Filters
     if (filterDeficiencyOnly && !hasRisk) return;
     if (searchQuery && !key.toLowerCase().includes(searchQuery)) return;
 
-    // Category row
     if (item.category !== lastCat && !searchQuery) {
       html += '<tr class="category-row"><td colspan="5"><strong>⭐ ' + item.category + '</strong></td></tr>';
       lastCat = item.category;
@@ -965,7 +1000,7 @@ function toggleDeficiencyFilter() {
 /* ==============================================
    EVENT LISTENERS
    ============================================== */
-['gender', 'lifeStage', 'diet', 'region'].forEach(function(id) {
+['gender', 'lifeStage', 'diet'].forEach(function(id) {
   document.getElementById(id).addEventListener('change', function(){ displayDRI(false); });
 });
 var ageTimer = null;
@@ -982,11 +1017,11 @@ function resetAll() {
   document.getElementById('age').value = 30;
   document.getElementById('lifeStage').value = 'normal';
   document.getElementById('diet').value = 'omnivore';
-  document.getElementById('region').value = 'india';
   document.getElementById('searchNutrient').value = '';
   document.getElementById('clearSearchBtn').classList.remove('visible');
   filterDeficiencyOnly = false;
   document.getElementById('filterDefBtn').classList.remove('active');
+  // Keep region as derived (don't force India)
   displayDRI(false);
   document.getElementById('aiChatMessages').innerHTML =
     '<div class="ai-message-bot"><strong>Chat reset. 👋</strong><br>Calculate your DRI above, then ask me about Indian food sources, deficiency risks, or supplements.</div>';
@@ -1043,7 +1078,6 @@ function clearHistory() {
     renderHistory();
   }
 }
-renderHistory();
 
 /* ==============================================
    EXPORT / SHARE
@@ -1148,7 +1182,6 @@ function getNutritionContext() {
   ctx += '- B12 target: ' + v['Vitamin B12'].value + ' ' + v['Vitamin B12'].unit + '\n';
   ctx += '- Zinc target: ' + v['Zinc'].value + ' ' + v['Zinc'].unit + '\n';
 
-  // Add region-specific flags
   if (currentDRI.region === 'india') {
     ctx += '\n- IMPORTANT: User is in India. Reference ICMR-NIN 2020 RDA. Prefer Indian food sources: palak, ragi, gur (jaggery), amla, til (sesame), dal, paneer, curd, bajra, dates. Note that Vitamin D deficiency (70-90%) and anemia in women (57%) are widespread in India.\n';
   } else {
@@ -1207,8 +1240,29 @@ document.querySelectorAll('.ai-suggestion-chip').forEach(function(chip) {
 document.getElementById('aiSendBtn').addEventListener('click', function() { sendAIMessage(); });
 
 /* ==============================================
-   INIT
+   INIT — synced with HealthCalc
    ============================================== */
+// 1. Region: saved preference → HealthCalc locale → 'international' fallback
+if (localStorage.getItem('dri_region')) {
+  setRegion(localStorage.getItem('dri_region'), true);
+} else if (window.HealthCalc) {
+  setRegion(healthCalcToRegion(HealthCalc.getRegion()), true);
+} else {
+  setRegion('international', true);
+}
+
+// 2. Sync on widget changes (only if user hasn't manually chosen)
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  if (e.detail.guideline) {
+    var targetRegion = healthCalcToRegion(e.detail.guideline);
+    if (targetRegion !== currentRegion && !localStorage.getItem('dri_region')) {
+      setRegion(targetRegion, true);
+    }
+  }
+});
+
+// 3. Render
+renderHistory();
 displayDRI(false);
 </script>
 </body>
