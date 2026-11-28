@@ -108,6 +108,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 
 <style>
 :root {
@@ -128,7 +129,8 @@ body.dark {
 body { font-family: 'Inter', sans-serif; background: var(--bg-gradient); min-height: 100vh; padding: 20px; color: var(--text); transition: all 0.3s; }
 .container { max-width: 1150px; margin: 0 auto; }
 
-.top-nav { background: rgba(255,255,255,0.9); padding: 12px 20px; border-radius: 100px; margin-bottom: 20px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; position: sticky; top: 16px; z-index: 1000; backdrop-filter: blur(12px); }
+/* Right padding leaves space for global prefs widget at top-right */
+.top-nav { background: rgba(255,255,255,0.9); padding: 12px 240px 12px 20px; border-radius: 100px; margin-bottom: 20px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; position: sticky; top: 16px; z-index: 1000; backdrop-filter: blur(12px); }
 body.dark .top-nav { background: rgba(30,41,59,0.9); }
 .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 50px; transition: all 0.3s; white-space: nowrap; }
@@ -149,7 +151,8 @@ body.dark .top-nav { background: rgba(30,41,59,0.9); }
 .privacy-badge { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
 body.dark .privacy-badge { background: #052e16; color: #6ee7b7; border-color: #166534; }
 
-.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 16px; background: var(--card-bg); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); }
+/* Override global sticky (page has its own sticky top-nav) */
+.international-bar { position: static; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 16px; background: var(--card-bg); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border); }
 .region-selector { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .region-selector label { font-weight: 600; font-size: 13px; }
 .region-selector select { padding: 8px 14px; border: 2px solid var(--border); border-radius: 50px; background: var(--card-bg); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
@@ -274,7 +277,18 @@ footer { text-align: center; margin-top: 20px; font-size: 11px; color: var(--tex
 footer a { color: var(--primary); text-decoration: none; }
 
 @keyframes messageSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@media(max-width: 600px) { .ai-chat-messages { height: 180px; } .checkbox-grid { grid-template-columns: 1fr; } .factors-grid { grid-template-columns: 1fr; } }
+
+@media(max-width: 768px) {
+  .top-nav { padding: 10px 140px 10px 14px; }
+}
+@media(max-width: 600px) {
+  .ai-chat-messages { height: 180px; }
+  .checkbox-grid { grid-template-columns: 1fr; }
+  .factors-grid { grid-template-columns: 1fr; }
+}
+@media(max-width: 480px) {
+  .top-nav { padding: 10px 120px 10px 12px; }
+}
 </style>
 
 <!-- Favicon & PWA -->
@@ -331,8 +345,8 @@ footer a { color: var(--primary); text-decoration: none; }
     <div class="region-selector">
       <label for="region"><i class="fas fa-globe-asia"></i> Region:</label>
       <select id="region" onchange="setRegion(this.value)">
-        <option value="india" selected>🇮🇳 India (idli, dosa, curd, triphala)</option>
-        <option value="international">🌍 International (yogurt, kefir, kimchi)</option>
+        <option value="india">🇮🇳 India (idli, dosa, curd, triphala)</option>
+        <option value="international" selected>🌍 International (yogurt, kefir, kimchi)</option>
       </select>
     </div>
   </div>
@@ -366,7 +380,7 @@ footer a { color: var(--primary); text-decoration: none; }
           <option value="3">25-35g</option>
           <option value="4">More than 35g</option>
         </select>
-        <div class="small-text" id="fiberTargetText">🎯 ICMR target: 40g/day (India)</div>
+        <div class="small-text" id="fiberTargetText">🎯 USDA target: 30g/day (International)</div>
       </div>
       <div class="form-group">
         <label for="probiotic"><i class="fas fa-drumstick-bite"></i> Fermented / Probiotic Foods</label>
@@ -377,7 +391,7 @@ footer a { color: var(--primary); text-decoration: none; }
           <option value="3">Often</option>
           <option value="4">Daily</option>
         </select>
-        <div class="small-text" id="probioticHint">Idli, dosa, dhokla, curd, buttermilk, kanji</div>
+        <div class="small-text" id="probioticHint">Yogurt, kefir, kimchi, sauerkraut, miso</div>
       </div>
       <div class="form-group">
         <label for="prebiotic"><i class="fas fa-seedling"></i> Prebiotic Foods</label>
@@ -388,7 +402,7 @@ footer a { color: var(--primary); text-decoration: none; }
           <option value="3">Often</option>
           <option value="4">Daily</option>
         </select>
-        <div class="small-text" id="prebioticHint">Garlic, onions, bananas, oats</div>
+        <div class="small-text" id="prebioticHint">Garlic, onions, bananas, oats, leeks</div>
       </div>
       <div class="form-group">
         <label for="processed"><i class="fas fa-candy-cane"></i> Processed Foods</label>
@@ -520,7 +534,7 @@ footer a { color: var(--primary); text-decoration: none; }
         <div id="recommendations"></div>
       </div>
 
-      <div class="india-food-box" id="indiaFoodBox">
+      <div class="india-food-box" id="indiaFoodBox" style="display:none;">
         <h4><i class="fas fa-utensils"></i> Indian Fermented Foods (Daily Probiotics)</h4>
         <ul id="indiaFermentedList"></ul>
         <div style="margin-top:8px;font-size:11px;">
@@ -528,7 +542,7 @@ footer a { color: var(--primary); text-decoration: none; }
         </div>
       </div>
 
-      <div class="remix-box" id="remixBox">
+      <div class="remix-box" id="remixBox" style="display:none;">
         <h4><i class="fas fa-mortar-pestle"></i> Gut-Friendly Indian Remedies</h4>
         <ul id="remixList"></ul>
       </div>
@@ -576,7 +590,9 @@ footer a { color: var(--primary); text-decoration: none; }
     <a href="bmi-calculator.html">⚖️ BMI</a>
   </nav>
 
-  <footer><p>© 2026 HealthCalc | <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a></p></footer>
+  <footer role="contentinfo">
+    <p>© 2026 HealthCalc | <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="report-problem.html">Report Issue</a></p>
+  </footer>
 </div>
 
 <section class="faq-section">
@@ -633,15 +649,26 @@ footer a { color: var(--primary); text-decoration: none; }
   <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<script src="global.js"></script>
 <script>
 /* ==============================================
    GLOBAL STATE
    ============================================== */
 var isAIProcessing = false;
-var currentRegion = 'india';
+var currentRegion = 'international';
 var currentLang = 'en';
 var gutData = null;
 var gutHistory = JSON.parse(localStorage.getItem('gutHistory') || '[]');
+
+/* ==============================================
+   REGION MAPPING (page ↔ HealthCalc)
+   ============================================== */
+function regionToHealthCalc(r) {
+  return r === 'india' ? 'IN' : 'US';
+}
+function healthCalcToRegion(r) {
+  return r === 'IN' ? 'india' : 'international';
+}
 
 /* ==============================================
    FOOD & REMEDY DB (region × diet)
@@ -743,11 +770,16 @@ function setLanguage(lang) {
 }
 if (localStorage.getItem('gut_lang') === 'hi') setLanguage('hi');
 
-function setRegion(region) {
+function setRegion(region, skipSync) {
   currentRegion = region;
   document.getElementById('region').value = region;
-  localStorage.setItem('gut_region', region);
-  // Update India-specific UI
+
+  // Save only when user explicitly chose (skipSync = false/undefined)
+  if (!skipSync) {
+    localStorage.setItem('gut_region', region);
+  }
+
+  // Region-specific UI
   if (region === 'india') {
     document.getElementById('fiberTargetText').textContent = '🎯 ICMR target: 40g/day (India)';
     document.getElementById('probioticHint').textContent = 'Idli, dosa, dhokla, curd, buttermilk, kanji';
@@ -761,9 +793,14 @@ function setRegion(region) {
     document.getElementById('indiaFoodBox').style.display = 'none';
     document.getElementById('remixBox').style.display = 'none';
   }
+
+  // Sync widget only when user explicitly changed (avoid loop from widget listener)
+  if (!skipSync && window.HealthCalc) {
+    HealthCalc.setRegion(regionToHealthCalc(region));
+  }
+
   if (gutData) calculateGutScore(false);
 }
-if (localStorage.getItem('gut_region')) setRegion(localStorage.getItem('gut_region'));
 
 /* ==============================================
    HELPERS
@@ -773,7 +810,7 @@ function escapeHTML(str) {
 }
 
 /* ==============================================
-   MAIN CALCULATION (FIXED: proper thresholds + balanced penalty)
+   MAIN CALCULATION
    ============================================== */
 function calculateGutScore(fromButton) {
   if (fromButton) {
@@ -814,7 +851,6 @@ function calculateGutScore(fromButton) {
   rawScore += stress * 1;      // max 4
   rawScore += water * 1;       // max 4
 
-  // FIXED: Symptoms penalty = 2 points each (max 12, not 18)
   var symptomPenalty = symptoms * 2;
 
   var score = Math.max(0, Math.min(100, Math.round((rawScore - symptomPenalty) / 64 * 100)));
@@ -826,27 +862,22 @@ function calculateGutScore(fromButton) {
   var catIdx = score >= 80 ? 4 : score >= 60 ? 3 : score >= 40 ? 2 : score >= 20 ? 1 : 0;
   document.getElementById('scoreCategory').textContent = categories[catIdx];
 
-  // Fiber display
   var fiberTexts = ['<10g', '10-15g', '15-25g', '25-35g', '>35g'];
   document.getElementById('fiberScore').textContent = fiberTexts[fiber];
   var fiberTarget = currentRegion === 'india' ? '40g' : '30g';
   document.getElementById('fiberDesc').textContent = fiber >= 3 ? '✅ Good intake' : '🎯 Target: ' + fiberTarget + '/day';
 
-  // Diversity
   var diversity = Math.round(((probiotic * 2 + prebiotic * 2 + fiber * 3) / 28) * 100);
   document.getElementById('diversityScore').textContent = diversity + '/100';
   document.getElementById('diversityDesc').textContent = diversity >= 70 ? 'Good diversity' : (diversity >= 50 ? 'Moderate — add variety' : 'Low — eat more plants');
 
-  // Lifestyle
   var lifestyle = Math.round(((sleep * 2 + exercise * 2 + stress * 1 + water * 1 + alcohol * 1 + antibiotics * 1) / 32) * 100);
   document.getElementById('lifestyleScore').textContent = lifestyle + '/100';
   document.getElementById('lifestyleDesc').textContent = lifestyle >= 70 ? 'Healthy habits' : (lifestyle >= 50 ? 'Could improve' : 'Needs attention');
 
-  // Symptom
   document.getElementById('symptomScore').textContent = symptoms + '/6';
   document.getElementById('symptomDesc').textContent = symptoms === 0 ? 'No symptoms' : (symptoms <= 2 ? 'Mild' : symptoms <= 4 ? 'Moderate' : 'Significant — see a doctor');
 
-  // FIXED: Recommendations with proper thresholds
   var recs = [];
   if (fiber < 3) recs.push({ icon: '🥗', title: 'Increase Fiber', desc: currentRegion === 'india' ? 'Add ragi, dal, isabgol, guava, sabzi (target ' + fiberTarget + ')' : 'Add beans, oats, vegetables (target 30g+)' });
   if (probiotic < 3) recs.push({ icon: '🥣', title: 'Add Fermented Foods', desc: currentRegion === 'india' ? 'Idli, dosa, curd, dhokla, buttermilk daily' : 'Yogurt, kefir, kimchi, sauerkraut daily' });
@@ -867,7 +898,6 @@ function calculateGutScore(fromButton) {
     return '<div class="rec-item"><div class="rec-icon">' + r.icon + '</div><div><div style="font-weight:600;font-size:12px;">' + r.title + '</div><div style="font-size:10px;color:var(--text-muted);">' + r.desc + '</div></div></div>';
   }).join('');
 
-  // India food lists
   if (currentRegion === 'india') {
     var fermented = FERMENTED_DB.india[diet] || FERMENTED_DB.india.veg;
     document.getElementById('indiaFermentedList').innerHTML = fermented.map(function(f){ return '<li>' + escapeHTML(f) + '</li>'; }).join('');
@@ -892,8 +922,8 @@ function calculateGutScore(fromButton) {
   var el = document.getElementById(id);
   if (el) el.addEventListener('change', function(){ if (gutData) calculateGutScore(false); });
 });
-for (var i = 1; i <= 6; i++) {
-  var el = document.getElementById('sym' + i);
+for (var j = 1; j <= 6; j++) {
+  var el = document.getElementById('sym' + j);
   if (el) el.addEventListener('change', function(){ if (gutData) calculateGutScore(false); });
 }
 
@@ -993,7 +1023,6 @@ function clearHistory() {
     renderHistory();
   }
 }
-renderHistory();
 
 /* ==============================================
    AI CHAT (XSS-safe, rich context)
@@ -1030,6 +1059,8 @@ function getGutContext() {
   ctx += '- Raw score: ' + gutData.rawScore + '/64 (symptom penalty: -' + gutData.symptomPenalty + ')\n';
   if (currentRegion === 'india') {
     ctx += '\n- IMPORTANT: User is in India. Prefer Indian foods: idli, dosa, dhokla, curd (dahi), buttermilk (chaas), kanji, achaar. Fiber: ragi, bajra, jowar, isabgol, guava, amla, palak. Remedies: jeera water, ajwain, saunf, hing, triphala. Note H. pylori prevalence 60-70% in India — recommend testing if symptoms present. ICMR fiber target = 40g.\n';
+  } else {
+    ctx += '\n- User is using international context.\n';
   }
   return ctx;
 }
@@ -1084,12 +1115,30 @@ document.querySelectorAll('.ai-suggestion-chip').forEach(function(chip) {
 document.getElementById('aiSendBtn').addEventListener('click', function() { sendAIMessage(); });
 
 /* ==============================================
-   INIT
+   INIT — synced with HealthCalc
    ============================================== */
-if (currentRegion === 'india') {
-  document.getElementById('indiaFoodBox').style.display = 'block';
-  document.getElementById('remixBox').style.display = 'block';
+// 1. Region: saved preference → HealthCalc locale → 'international' fallback
+if (localStorage.getItem('gut_region')) {
+  setRegion(localStorage.getItem('gut_region'), true);
+} else if (window.HealthCalc) {
+  setRegion(healthCalcToRegion(HealthCalc.getRegion()), true);
+} else {
+  setRegion('international', true);
 }
+
+// 2. Sync on widget changes (only if user hasn't manually chosen)
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  if (e.detail.guideline) {
+    var targetRegion = healthCalcToRegion(e.detail.guideline);
+    if (targetRegion !== currentRegion && !localStorage.getItem('gut_region')) {
+      setRegion(targetRegion, true);
+      if (gutData) calculateGutScore(false);
+    }
+  }
+});
+
+// 3. Render saved history + initial calculation
+renderHistory();
 calculateGutScore(false);
 </script>
 </body>
