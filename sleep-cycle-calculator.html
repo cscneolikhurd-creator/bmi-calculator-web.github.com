@@ -107,6 +107,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="global.css">
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -123,7 +124,8 @@
 body { font-family: 'Inter', sans-serif; background: var(--gradient-night); min-height: 100vh; padding: 20px; color: white; line-height: 1.6; }
 .container { max-width: 1200px; margin: 0 auto; }
 
-.top-nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 12px 20px; background: rgba(255,255,255,0.05); border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); }
+/* Right padding leaves space for global prefs widget at top-right */
+.top-nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 12px 240px 12px 20px; background: rgba(255,255,255,0.05); border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); }
 .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
 .nav-links a { text-decoration: none; color: #94a3b8; font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 50px; transition: all 0.3s; }
 .nav-links a:hover, .nav-links a.active { background: var(--secondary); color: white; }
@@ -139,7 +141,8 @@ body { font-family: 'Inter', sans-serif; background: var(--gradient-night); min-
 
 .privacy-badge { background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3); padding: 10px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; color: #86efac; }
 
-.international-bar { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); }
+/* Override global sticky (page has floating widget instead of sticky nav) */
+.international-bar { position: static; display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; background: rgba(255,255,255,0.05); padding: 12px 16px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); }
 .region-selector { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .region-selector label { font-weight: 600; font-size: 13px; }
 .region-selector select { padding: 8px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; background: rgba(0,0,0,0.3); color: white; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
@@ -248,7 +251,16 @@ footer a { color: var(--secondary); text-decoration: none; }
 .medical-disclaimer p { color: #cbd5e1; font-size: 13px; line-height: 1.7; margin-bottom: 8px; }
 
 @keyframes messageSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@media(max-width: 600px) { .ai-chat-messages { height: 180px; } .top-nav { padding: 10px 14px; } }
+
+@media(max-width: 768px) {
+  .top-nav { padding: 10px 140px 10px 14px; }
+}
+@media(max-width: 600px) {
+  .ai-chat-messages { height: 180px; }
+}
+@media(max-width: 480px) {
+  .top-nav { padding: 10px 120px 10px 12px; }
+}
 </style>
 
 <!-- Favicon & PWA -->
@@ -301,9 +313,9 @@ footer a { color: var(--secondary); text-decoration: none; }
     <div class="international-bar">
         <div class="region-selector">
             <label for="region"><i class="fas fa-globe-asia"></i> Region:</label>
-            <select id="region" onchange="setRegion(this.value)">
-                <option value="india" selected>🇮🇳 India (shift work, ayurveda, heat)</option>
-                <option value="international">🌍 International (CDC/NHS)</option>
+            <select id="region" onchange="onRegionSelect(this.value)">
+                <option value="india">🇮🇳 India (shift work, ayurveda, heat)</option>
+                <option value="international" selected>🌍 International (CDC/NHS)</option>
             </select>
         </div>
     </div>
@@ -410,7 +422,7 @@ footer a { color: var(--secondary); text-decoration: none; }
                 <div style="font-size:12px;color:#94a3b8;" id="chronoDesc"></div>
             </div>
 
-            <div class="india-hygiene-box" id="indiaHygieneBox">
+            <div class="india-hygiene-box" id="indiaHygieneBox" style="display:none;">
                 <h4><i class="fas fa-leaf"></i> Indian Sleep Hygiene Aids</h4>
                 <ul id="indiaHygieneList"></ul>
             </div>
@@ -453,7 +465,9 @@ footer a { color: var(--secondary); text-decoration: none; }
         </div>
     </div>
 
-    <footer><p>© 2026 HealthCalc | <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a></p></footer>
+    <footer role="contentinfo">
+        <p>© 2026 HealthCalc | <a href="privacy-policy.html">Privacy</a> · <a href="terms-of-service.html">Terms</a> · <a href="report-problem.html">Report Issue</a></p>
+    </footer>
 </div>
 
 <section class="faq-section">
@@ -508,15 +522,26 @@ footer a { color: var(--secondary); text-decoration: none; }
     <p><strong>Last reviewed:</strong> January 2026 | <strong>Reviewed by:</strong> HealthCalc Medical Review Team</p>
 </section>
 
+<script src="global.js"></script>
 <script>
 /* ==============================================
    GLOBAL STATE
    ============================================== */
 var currentMode = 'wake';
-var currentRegion = 'india';
+var currentRegion = 'international';
 var currentLang = 'en';
 var isAIProcessing = false;
 var sleepHistory = JSON.parse(localStorage.getItem('sleepHistory') || '[]');
+
+/* ==============================================
+   REGION MAPPING (page ↔ HealthCalc)
+   ============================================== */
+function regionToHealthCalc(r) {
+  return r === 'india' ? 'IN' : 'US';
+}
+function healthCalcToRegion(r) {
+  return r === 'IN' ? 'india' : 'international';
+}
 
 /* ==============================================
    HELPERS
@@ -533,7 +558,7 @@ function formatTime(date) {
 }
 
 /* ==============================================
-   THEME (dark only by design) + LANGUAGE + REGION
+   LANGUAGE + REGION
    ============================================== */
 function setLanguage(lang) {
   currentLang = lang;
@@ -549,18 +574,21 @@ function setLanguage(lang) {
 }
 if (localStorage.getItem('sleep_lang') === 'hi') setLanguage('hi');
 
-function setRegion(region) {
+/* User explicitly changes region from dropdown */
+function onRegionSelect(region) {
+  setRegion(region, false);
+  localStorage.setItem('sleep_region', region);
+}
+
+function setRegion(region, skipSync) {
   currentRegion = region;
   document.getElementById('region').value = region;
-  localStorage.setItem('sleep_region', region);
-  // Show/hide India hygiene box and heat note
-  document.getElementById('indiaHygieneBox').style.display = (region === 'india') ? 'block' : 'none';
-  if (region === 'india' && (new Date().getMonth() >= 3 && new Date().getMonth() <= 5)) {
-    document.getElementById('heatNote').style.display = 'block';
-  } else {
-    document.getElementById('heatNote').style.display = 'none';
-  }
+
+  // India-specific UI
+  var indiaBox = document.getElementById('indiaHygieneBox');
+  var heatNote = document.getElementById('heatNote');
   if (region === 'india') {
+    indiaBox.style.display = 'block';
     document.getElementById('indiaHygieneList').innerHTML =
       '<li><strong>Warm milk + nutmeg</strong> — tryptophan + sedative effect (1 hour before bed)</li>' +
       '<li><strong>Ashwagandha</strong> 300–600 mg at night — reduces cortisol</li>' +
@@ -569,10 +597,25 @@ function setRegion(region) {
       '<li><strong>Warm foot bath</strong> with rock salt — draws blood from head, aids sleep</li>' +
       '<li><strong>Nasya with Anu Taila</strong> — 2 drops in nostrils (ayurvedic practice)</li>' +
       '<li><strong>Shirodhara / Shiro abhyanga</strong> — oil on forehead (stress relief)</li>';
+    // Heat note only during Indian summer (Apr-Jun)
+    var m = new Date().getMonth();
+    if (m >= 3 && m <= 5) {
+      heatNote.style.display = 'block';
+    } else {
+      heatNote.style.display = 'none';
+    }
+  } else {
+    indiaBox.style.display = 'none';
+    heatNote.style.display = 'none';
   }
-  if (currentRegion === 'india' && document.getElementById('sleepDebt')) calculateSleep(false);
+
+  // Sync with global widget (skip when called from widget listener or init)
+  if (!skipSync && window.HealthCalc) {
+    HealthCalc.setRegion(regionToHealthCalc(region));
+  }
+
+  if (document.getElementById('sleepDebt').textContent !== '--') calculateSleep(false);
 }
-if (localStorage.getItem('sleep_region')) setRegion(localStorage.getItem('sleep_region'));
 
 /* ==============================================
    MODE TOGGLE
@@ -589,9 +632,9 @@ function setMode(mode) {
 
 function onWorkPatternChange() {
   if (currentMode === 'wake' && document.getElementById('workPattern').value === 'night_shift') {
-    document.getElementById('wakeTime').value = '16:00'; // Night shift workers wake in afternoon
+    document.getElementById('wakeTime').value = '16:00';
   } else if (currentMode === 'sleep' && document.getElementById('workPattern').value === 'night_shift') {
-    document.getElementById('sleepTime').value = '08:00'; // Night shift workers sleep in morning
+    document.getElementById('sleepTime').value = '08:00';
   }
   calculateSleep(false);
 }
@@ -607,7 +650,7 @@ var chronoData = {
 };
 
 /* ==============================================
-   AGE-AWARE CYCLE RECOMMENDATIONS (FIXED)
+   AGE-AWARE CYCLE RECOMMENDATIONS
    ============================================== */
 function getRecommendedCycles(ageGroup) {
   if (ageGroup === 'teen') return { min: 6, max: 7, hoursMin: 9, hoursMax: 10.5, label: 'Teens need 8–10 hrs' };
@@ -703,9 +746,7 @@ function calculateSleep(fromButton) {
 
   document.getElementById('cycleDesc').textContent = recommended.label + ' — ' + recommended.min + '–' + recommended.max + ' cycles highlighted';
 
-  /* ============================================
-   SLEEP DEBT (fixed: proper surplus styling)
-   ============================================ */
+  /* SLEEP DEBT */
   var avgSleep = parseFloat(document.getElementById('avgSleep').value);
   var targetSleep = parseFloat(document.getElementById('targetSleep').value);
   var weeklyDiff = (targetSleep - avgSleep) * 7;
@@ -744,21 +785,16 @@ function calculateSleep(fromButton) {
     document.getElementById('recoveryPlan').textContent = '🎯 Perfectly balanced. Maintain this schedule.';
   }
 
-  /* ============================================
-   CHRONOTYPE
-   ============================================ */
+  /* CHRONOTYPE */
   var chrono = document.getElementById('chronotype').value;
   var cd = chronoData[chrono];
   document.getElementById('chronoEmoji').textContent = cd.emoji;
   document.getElementById('chronoTitle').textContent = cd.name;
   document.getElementById('chronoDesc').textContent = cd.desc;
 
-  /* ============================================
-   TIPS
-   ============================================ */
+  /* TIPS */
   var tips = sleepTipsByChrono[chrono] || sleepTipsByChrono.bear;
   var workPattern = document.getElementById('workPattern').value;
-  // Add shift-work tip if applicable
   if (workPattern === 'night_shift' || workPattern === 'rotating') {
     tips = tips.concat([{ icon: '🌙', title: 'Shift-work hygiene', desc: 'Blackout curtains + eye mask + white noise machine. Fixed shifts > rotating.' }]);
   }
@@ -766,15 +802,11 @@ function calculateSleep(fromButton) {
     return '<div class="tip-item"><div class="tip-icon">' + tip.icon + '</div><div><strong style="font-size:13px;">' + escapeHTML(tip.title) + '</strong><div style="font-size:11px;color:#94a3b8;">' + escapeHTML(tip.desc) + '</div></div></div>';
   }).join('');
 
-  /* ============================================
-   CHAT PLACEHOLDER
-   ============================================ */
+  /* CHAT PLACEHOLDER */
   var chatInput = document.getElementById('aiChatInput');
   if (chatInput) chatInput.placeholder = 'Ask about ' + chrono + ' sleep tips...';
 
-  /* ============================================
-   PERSIST
-   ============================================ */
+  /* PERSIST */
   try {
     localStorage.setItem('sleep_data', JSON.stringify({
       mode: currentMode,
@@ -903,40 +935,7 @@ document.getElementById('fallAsleep').addEventListener('input', function() {
 });
 
 /* ==============================================
-   LOAD SAVED DATA
-   ============================================== */
-(function initPage() {
-  try {
-    var saved = localStorage.getItem('sleep_data');
-    if (saved) {
-      var d = JSON.parse(saved);
-      if (d.wakeTime) document.getElementById('wakeTime').value = d.wakeTime;
-      if (d.sleepTime) document.getElementById('sleepTime').value = d.sleepTime;
-      if (d.fallAsleep) {
-        document.getElementById('fallAsleep').value = d.fallAsleep;
-        document.getElementById('fallAsleepValue').textContent = d.fallAsleep + ' min';
-      }
-      if (d.ageGroup) document.getElementById('ageGroup').value = d.ageGroup;
-      if (d.workPattern) document.getElementById('workPattern').value = d.workPattern;
-      if (d.chronotype) document.getElementById('chronotype').value = d.chronotype;
-      if (d.avgSleep) {
-        document.getElementById('avgSleep').value = d.avgSleep;
-        document.getElementById('avgSleepValue').textContent = d.avgSleep + ' hrs';
-      }
-      if (d.targetSleep) {
-        document.getElementById('targetSleep').value = d.targetSleep;
-        document.getElementById('targetSleepValue').textContent = d.targetSleep + ' hrs';
-      }
-      if (d.mode) setMode(d.mode);
-      if (d.region) setRegion(d.region);
-    }
-  } catch(e) {}
-  renderHistory();
-  calculateSleep(false);
-})();
-
-/* ==============================================
-   AI CHAT (XSS-safe + India-aware)
+   AI CHAT
    ============================================== */
 function addChatMessage(text, sender) {
   var md = document.getElementById('aiChatMessages');
@@ -978,6 +977,8 @@ function getSleepContext() {
     ctx += '\n- IMPORTANT: User is in India. Discuss shift work (IT/BPO common), ayurvedic aids (Ashwagandha, Brahmi, Jatamansi, warm milk + nutmeg), joint family noise, late-night OTT/WhatsApp use.';
     if (isSummer) ctx += ' It is Indian summer — heat disrupts deep sleep; recommend cool shower, cotton bedding, hydrate.';
     ctx += '\n';
+  } else {
+    ctx += '\n- User is using international (CDC/NHS) context.\n';
   }
   return ctx;
 }
@@ -1030,11 +1031,66 @@ document.querySelectorAll('.ai-suggestion-chip').forEach(function(chip) {
 document.getElementById('aiSendBtn').addEventListener('click', function() { sendAIMessage(); });
 
 /* ==============================================
-   CLEANUP
+   INIT — synced with HealthCalc
    ============================================== */
-window.addEventListener('beforeunload', function() {
-  // No intervals to clear in this version, but keep for future-proofing
+// 1. Load saved form data first (may restore region via skipSync)
+(function initSaved() {
+  try {
+    var saved = localStorage.getItem('sleep_data');
+    if (saved) {
+      var d = JSON.parse(saved);
+      if (d.wakeTime) document.getElementById('wakeTime').value = d.wakeTime;
+      if (d.sleepTime) document.getElementById('sleepTime').value = d.sleepTime;
+      if (d.fallAsleep) {
+        document.getElementById('fallAsleep').value = d.fallAsleep;
+        document.getElementById('fallAsleepValue').textContent = d.fallAsleep + ' min';
+      }
+      if (d.ageGroup) document.getElementById('ageGroup').value = d.ageGroup;
+      if (d.workPattern) document.getElementById('workPattern').value = d.workPattern;
+      if (d.chronotype) document.getElementById('chronotype').value = d.chronotype;
+      if (d.avgSleep) {
+        document.getElementById('avgSleep').value = d.avgSleep;
+        document.getElementById('avgSleepValue').textContent = d.avgSleep + ' hrs';
+      }
+      if (d.targetSleep) {
+        document.getElementById('targetSleep').value = d.targetSleep;
+        document.getElementById('targetSleepValue').textContent = d.targetSleep + ' hrs';
+      }
+      if (d.mode) {
+        currentMode = d.mode;
+        document.querySelectorAll('.mode-btn').forEach(function(btn) {
+          btn.classList.toggle('active', btn.dataset.mode === d.mode);
+        });
+        document.getElementById('wakeMode').style.display = d.mode === 'wake' ? 'block' : 'none';
+        document.getElementById('sleepMode').style.display = d.mode === 'sleep' ? 'block' : 'none';
+      }
+    }
+  } catch(e) {}
+})();
+
+// 2. Region: saved preference → HealthCalc locale → 'international' fallback
+if (localStorage.getItem('sleep_region')) {
+  setRegion(localStorage.getItem('sleep_region'), true);
+} else if (window.HealthCalc) {
+  setRegion(healthCalcToRegion(HealthCalc.getRegion()), true);
+} else {
+  setRegion('international', true);
+}
+
+// 3. Sync on widget changes (only if user hasn't manually chosen)
+window.addEventListener('healthcalc:prefsChanged', function(e) {
+  if (e.detail.guideline) {
+    var targetRegion = healthCalcToRegion(e.detail.guideline);
+    if (targetRegion !== currentRegion && !localStorage.getItem('sleep_region')) {
+      setRegion(targetRegion, true);
+      if (document.getElementById('sleepDebt').textContent !== '--') calculateSleep(false);
+    }
+  }
 });
+
+// 4. Initial render
+renderHistory();
+calculateSleep(false);
 </script>
 </body>
 </html>
